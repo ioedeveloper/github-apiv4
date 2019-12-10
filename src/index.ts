@@ -1,6 +1,6 @@
 import {
-    queryViewer,
-    queryRepositoryDirectories,
+    viewerQuery,
+    repositoryDirectoriesQuery,
 } from './queries';
 
 import {
@@ -9,13 +9,20 @@ import {
     RepositoryDirectories,
 } from './types';
 
+import {
+    RepositoryDirectoriesVariable,
+} from './variables';
+
 export {
     // export queries
-    queryViewer,
-    queryRepositoryDirectories,
+    viewerQuery,
+    repositoryDirectoriesQuery,
 
     // export query return types
     Viewer,
     FileEntries,
     RepositoryDirectories,
+
+    // export query input variables
+    RepositoryDirectoriesVariable,
  };

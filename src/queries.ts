@@ -1,4 +1,4 @@
-export const queryViewer = `
+export const viewerQuery = `
     query {
         viewer {
             login
@@ -6,7 +6,7 @@ export const queryViewer = `
     }
 `;
 
-export const queryRepositoryDirectories = `
+export const repositoryDirectoriesQuery = `
     query($repositoryOwner: String!, $repositoryName: String!){
         repository(owner: $repositoryOwner, name: $repositoryName){
             defaultBranchRef{
@@ -42,6 +42,38 @@ export const queryRepositoryDirectories = `
                                                                   entries{
                                                                     name
                                                                     type
+                                                                    child: object{
+                                                                      ... on Tree{
+                                                                        entries{
+                                                                          name
+                                                                          type
+                                                                          child: object{
+                                                                            ... on Tree{
+                                                                              entries{
+                                                                                name
+                                                                                type
+                                                                                child: object{
+                                                                                  ... on Tree{
+                                                                                    entries{
+                                                                                      name
+                                                                                      type
+                                                                                      child: object{
+                                                                                        ... on Tree{
+                                                                                          entries{
+                                                                                            name
+                                                                                            type
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
                                                                   }
                                                                 }
                                                               }
