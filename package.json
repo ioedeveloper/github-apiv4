@@ -1,6 +1,6 @@
 {
   "name": "github-apiv4",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.0",
   "description": "A collection of Github Graphql APIv4 queries. ",
   "main": "build/index.js",
   "types": "build/index.d.ts",
