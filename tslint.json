@@ -1,0 +1,22 @@
+{
+    "extends": "tslint:latest",
+    "linterOptions": {
+        "exclude": [
+            "build",
+            "node_modules",
+            "src/model/*.ts"
+        ]
+    },
+    "rules": { 
+        "object-literal-sort-keys": false,
+        "quotemark": [true, "single"],
+        "only-arrow-functions": false,
+        "no-duplicate-imports": false,
+        "variable-name":false,
+        "member-access":false,
+        "curly":false,
+        "ordered-imports":false,
+        "no-string-literal": false,
+        "interface-name":false
+    }
+}
