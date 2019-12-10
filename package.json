@@ -1,0 +1,37 @@
+{
+  "name": "github-apiv4",
+  "version": "0.0.1",
+  "description": "A collection of Github Graphql APIv4 queries. ",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ./",
+    "test": "",
+    "dev": "NODE_ENV=development nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ioedeveloper/github-apiv4.git"
+  },
+  "keywords": [
+    "Github",
+    "Graphql",
+    "APIv4",
+    "Query",
+    "Queries",
+    "API"
+  ],
+  "author": "David Disu <daviddisu8@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ioedeveloper/github-apiv4/issues"
+  },
+  "homepage": "https://github.com/ioedeveloper/github-apiv4#readme",
+  "devDependencies": {
+    "ts-node": "^8.2.0",
+    "typescript": "^3.5.1",
+    "@types/node": "^12.0.12",
+    "nodemon": "^1.19.1",
+    "tslint": "^5.17.0"
+  }
+}
