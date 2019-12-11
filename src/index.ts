@@ -1,28 +1,28 @@
 import {
     viewerQuery,
-    repositoryDirectoriesQuery,
+    repositoryContentQuery,
 } from './queries';
 
 import {
     Viewer,
     FileEntries,
-    RepositoryDirectories,
+    RepositoryContent,
 } from './types';
 
 import {
-    RepositoryDirectoriesVariable,
+    RepositoryContentQueryVariable,
 } from './variables';
 
 export {
     // export queries
     viewerQuery,
-    repositoryDirectoriesQuery,
+    repositoryContentQuery,
 
     // export query return types
     Viewer,
     FileEntries,
-    RepositoryDirectories,
+    RepositoryContent,
 
     // export query input variables
-    RepositoryDirectoriesVariable,
+    RepositoryContentQueryVariable,
  };
