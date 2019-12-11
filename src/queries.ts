@@ -6,7 +6,7 @@ export const viewerQuery = `
     }
 `;
 
-export const repositoryDirectoriesQuery = `
+export const repositoryContentQuery = `
     query($repositoryOwner: String!, $repositoryName: String!){
         repository(owner: $repositoryOwner, name: $repositoryName){
             defaultBranchRef{
@@ -18,46 +18,73 @@ export const repositoryDirectoriesQuery = `
                                     name
                                     type
                                     child: object{
+                                        ... on Blob{
+                                          text
+                                        }
                                         ... on Tree{
                                           entries{
                                             name
                                             type
                                             child: object{
+                                              ... on Blob{
+                                                text
+                                              }
                                               ... on Tree{
                                                 entries{
                                                   name
                                                   type
                                                   child: object{
+                                                    ... on Blob{
+                                                      text
+                                                    }
                                                     ... on Tree{
                                                       entries{
                                                         name
                                                         type
                                                         child: object{
+                                                          ... on Blob{
+                                                            text
+                                                          }
                                                           ... on Tree{
                                                             entries{
                                                               name
                                                               type
                                                               child: object{
+                                                                ... on Blob{
+                                                                  text
+                                                                }
                                                                 ... on Tree{
                                                                   entries{
                                                                     name
                                                                     type
                                                                     child: object{
+                                                                      ... on Blob{
+                                                                        text
+                                                                      }
                                                                       ... on Tree{
                                                                         entries{
                                                                           name
                                                                           type
                                                                           child: object{
+                                                                            ... on Blob{
+                                                                              text
+                                                                            }
                                                                             ... on Tree{
                                                                               entries{
                                                                                 name
                                                                                 type
                                                                                 child: object{
+                                                                                  ... on Blob{
+                                                                                    text
+                                                                                  }
                                                                                   ... on Tree{
                                                                                     entries{
                                                                                       name
                                                                                       type
                                                                                       child: object{
+                                                                                        ... on Blob{
+                                                                                          text
+                                                                                        }
                                                                                         ... on Tree{
                                                                                           entries{
                                                                                             name

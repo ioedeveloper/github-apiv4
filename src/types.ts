@@ -12,7 +12,7 @@ export declare interface FileEntries {
     };
 }
 
-export declare interface RepositoryDirectories {
+export declare interface RepositoryContent {
     repository: {
         defaultBranchRef: {
             target: {

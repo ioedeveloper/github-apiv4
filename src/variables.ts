@@ -1,4 +1,4 @@
-export declare interface RepositoryDirectoriesVariable {
+export declare interface RepositoryContentQueryVariable {
     repositoryOwner: string;
     repositoryName: string;
 }
