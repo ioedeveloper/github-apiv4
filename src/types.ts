@@ -12,7 +12,7 @@ export declare interface FileEntries {
     };
 }
 
-export declare interface RepositoryContent {
+export declare interface RepositoryContentDefaultBranch {
     repository: {
         defaultBranchRef: {
             target: {
@@ -20,6 +20,39 @@ export declare interface RepositoryContent {
                     entries: FileEntries[];
                 };
             };
+        };
+    };
+}
+
+export declare interface RepositoryDirectoriesDefaultBranch {
+    repository: {
+        defaultBranchRef: {
+            target: {
+                files: {
+                    entries: FileEntries[];
+                };
+            };
+        };
+    };
+}
+
+export declare interface Branches {
+    repository: {
+        refs: {
+            edges: [{
+                node: {
+                    id: string;
+                    name: string;
+                    prefix: string;
+                };
+            }];
+            pageInfo: {
+                endCursor: string;
+                hasNextPage: string;
+                hasPreviousPage: string;
+                startCursor: string;
+            }
+            totalCount: number;
         };
     };
 }
