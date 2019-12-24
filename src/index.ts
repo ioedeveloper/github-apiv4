@@ -1,28 +1,14 @@
-import {
-    viewerQuery,
-    repositoryContentQuery,
-} from './queries';
-
-import {
-    Viewer,
-    FileEntries,
-    RepositoryContent,
-} from './types';
-
-import {
-    RepositoryContentQueryVariable,
-} from './variables';
+import * as queries from './queries';
+import * as types from './types';
+import * as queryVariables from './variables';
 
 export {
     // export queries
-    viewerQuery,
-    repositoryContentQuery,
+    queries,
 
     // export query return types
-    Viewer,
-    FileEntries,
-    RepositoryContent,
+    types,
 
     // export query input variables
-    RepositoryContentQueryVariable,
+    queryVariables,
  };
