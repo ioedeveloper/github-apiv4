@@ -28,3 +28,15 @@ export declare interface BranchDirectories {
     repositoryName: string;
     qualifiedName: string;
 }
+
+export declare interface CommitDirectories {
+    repositoryOwner: string;
+    repositoryName: string;
+    expression: string;
+}
+
+export declare interface CommitContent {
+    repositoryOwner: string;
+    repositoryName: string;
+    expression: string;
+}

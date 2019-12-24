@@ -163,3 +163,23 @@ export declare interface Repository {
         viewerSubscription: string;
     };
 }
+
+export declare interface CommitDirectories {
+    repository: {
+        commit: {
+            files: {
+                entries: FileEntries[];
+            };
+        };
+    };
+}
+
+export declare interface CommitContent {
+    repository: {
+        commit: {
+            files: {
+                entries: FileEntriesContent[];
+            };
+        };
+    };
+}
