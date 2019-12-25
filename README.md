@@ -16,7 +16,7 @@ npm i github-apiv4
 ```
 
 ### Usage
-**Javascript Example** - query viewer:
+**Javascript Example - query Viewer:**
 
 Save file as **exampleJS.js**
 ```js
@@ -43,7 +43,7 @@ Execute script on the command line
 node exampleJS.js
 ```
 
-**Typescript Example** - query viewer:
+**Typescript Example - query Viewer:**
 
 Save file as **exampleTS.ts**
 ```ts
@@ -78,7 +78,7 @@ tsc exampleTS.ts
 node exampleTS.js
 ```
 
-**Apollo Client Example** - query repository:
+**Apollo Client Example - query Repository:**
 
 Save file as **apolloClient.ts**
 ```ts
