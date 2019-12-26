@@ -1,0 +1,298 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>queries | github-apiv4</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<ul class="results-priority" style="display:none">
+					</ul>
+					<a href="../index.html" class="title">github-apiv4</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="_queries_.html">queries</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation outline primary">
+				<a style="margin-left:0em" href="../globals.html">Globals</a>
+				<ul style="display:none">
+					{&quot;Queries&quot;:&quot;_queries_&quot;,&quot;Types&quot;:&quot;_types_&quot;,&quot;Query Variables&quot;:&quot;_variables_&quot;}
+				</ul>
+			</nav>
+		</div>
+		<div class="col-7 offset-3 col-content">
+			<h1>External module queries</h1>
+			<section class="tsd-panel-group tsd-index-group">
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#branchcontent" class="tsd-kind-icon">BranchContent</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#branchdirectories" class="tsd-kind-icon">BranchDirectories</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#branches" class="tsd-kind-icon">Branches</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#commitcontent" class="tsd-kind-icon">CommitContent</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#commitdirectories" class="tsd-kind-icon">CommitDirectories</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repository" class="tsd-kind-icon">Repository</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repositorycontent" class="tsd-kind-icon">RepositoryContent</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repositorydirectories" class="tsd-kind-icon">RepositoryDirectories</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#viewer" class="tsd-kind-icon">Viewer</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="branchcontent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Branch<wbr>Content</h3>
+					<div class="tsd-signature tsd-kind-icon">Branch<wbr>Content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){repository(owner: $repositoryOwner, name: $repositoryName){ref(qualifiedName: $qualifiedName){... on Ref{target{... on Commit{files: tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){repository(owner: $repositoryOwner, name: $repositoryName){ref(qualifiedName: $qualifiedName){... on Ref{target{... on Commit{files: tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:291</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for repository branch content (files and directories)</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="branchdirectories" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Branch<wbr>Directories</h3>
+					<div class="tsd-signature tsd-kind-icon">Branch<wbr>Directories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){repository(owner: $repositoryOwner, name: $repositoryName){ref(qualifiedName: $qualifiedName){... on Ref{target{... on Commit{files: tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){repository(owner: $repositoryOwner, name: $repositoryName){ref(qualifiedName: $qualifiedName){... on Ref{target{... on Commit{files: tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:415</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for repository branch directories only (content excluded)</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="branches" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Branches</h3>
+					<div class="tsd-signature tsd-kind-icon">Branches<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){refs(refPrefix: &quot;refs/heads/&quot;, first: 10){edges{node{idnameprefix}cursor}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCount}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){refs(refPrefix: &quot;refs/heads/&quot;, first: 10){edges{node{idnameprefix}cursor}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCount}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:263</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for list of repository branches</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="commitcontent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Commit<wbr>Content</h3>
+					<div class="tsd-signature tsd-kind-icon">Commit<wbr>Content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){repository(owner: $repositoryOwner, name: $repositoryName){commit: object(expression: $expression){... on Commit{files: tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){repository(owner: $repositoryOwner, name: $repositoryName){commit: object(expression: $expression){... on Commit{files: tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:567</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for commit content (files and directories)</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="commitdirectories" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Commit<wbr>Directories</h3>
+					<div class="tsd-signature tsd-kind-icon">Commit<wbr>Directories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){repository(owner: $repositoryOwner, name: $repositoryName){commit: object(expression: $expression){... on Commit{files: tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){repository(owner: $repositoryOwner, name: $repositoryName){commit: object(expression: $expression){... on Commit{files: tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:687</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for commit directories only (content excluded)</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="repository" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Repository</h3>
+					<div class="tsd-signature tsd-kind-icon">Repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:512</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for repository details</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="repositorycontent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Repository<wbr>Content</h3>
+					<div class="tsd-signature tsd-kind-icon">Repository<wbr>Content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){defaultBranchRef{... on Ref{target{... on Commit{files: tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){defaultBranchRef{... on Ref{target{... on Commit{files: tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametypechild: object{... on Blob{text}... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:42</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for repository content (files and directories)</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="repositorydirectories" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Repository<wbr>Directories</h3>
+					<div class="tsd-signature tsd-kind-icon">Repository<wbr>Directories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){defaultBranchRef{... on Ref{target{... on Commit{files: tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){defaultBranchRef{... on Ref{target{... on Commit{files: tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametypechild: object{... on Tree{entries{nametype}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:166</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for repository directories only (content excluded)</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="viewer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Viewer</h3>
+					<div class="tsd-signature tsd-kind-icon">Viewer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query {viewer {idemailloginurlcreatedAtupdatedAtdatabaseIdlocationcompanyHTMLcompanyavatarUrlbiowebsiteUrlisHireableisDeveloperProgramMemberanyPinnableItemsisSiteAdminisViewerviewerCanFollowviewerIsFollowingviewerCanCreateProjectsisEmployeeisBountyHunterisCampusExpertpinnedItemsRemainingprojectsUrl}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query {viewer {idemailloginurlcreatedAtupdatedAtdatabaseIdlocationcompanyHTMLcompanyavatarUrlbiowebsiteUrlisHireableisDeveloperProgramMemberanyPinnableItemsisSiteAdminisViewerviewerCanFollowviewerIsFollowingviewerCanCreateProjectsisEmployeeisBountyHunterisCampusExpertpinnedItemsRemainingprojectsUrl}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:5</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for viewer details</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+			</section>
+			<!--{&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;exclude&quot;:[&quot;**/*+(index).ts&quot;],&quot;outline&quot;:[{&quot;Queries&quot;:&quot;_queries_&quot;,&quot;Types&quot;:&quot;_types_&quot;,&quot;Query Variables&quot;:&quot;_variables_&quot;}]}-->
+		</div>
+		<div class="col-2 col-menu secondary-menu">
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#branchcontent" class="tsd-kind-icon">Branch<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#branchdirectories" class="tsd-kind-icon">Branch<wbr>Directories</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#branches" class="tsd-kind-icon">Branches</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#commitcontent" class="tsd-kind-icon">Commit<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#commitdirectories" class="tsd-kind-icon">Commit<wbr>Directories</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#repository" class="tsd-kind-icon">Repository</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#repositorycontent" class="tsd-kind-icon">Repository<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#repositorydirectories" class="tsd-kind-icon">Repository<wbr>Directories</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#viewer" class="tsd-kind-icon">Viewer</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

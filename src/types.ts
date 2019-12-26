@@ -1,3 +1,6 @@
+/**
+ * @description Github Graphql API response type for Viewer query
+ */
 export declare interface Viewer {
     viewer: {
         id: string;

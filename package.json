@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc -p ./",
     "test": "",
-    "dev": "NODE_ENV=development nodemon"
+    "dev": "NODE_ENV=development nodemon",
+    "docs": "rm -r docs/* && typedoc --theme ./node_modules/typedoc-neo-theme/bin/default"
   },
   "repository": {
     "type": "git",
@@ -28,10 +29,12 @@
   },
   "homepage": "https://github.com/ioedeveloper/github-apiv4#readme",
   "devDependencies": {
-    "ts-node": "^8.2.0",
-    "typescript": "^3.5.1",
     "@types/node": "^12.0.12",
     "nodemon": "^1.19.1",
-    "tslint": "^5.17.0"
+    "ts-node": "^8.2.0",
+    "tslint": "^5.17.0",
+    "typedoc": "0.15.5",
+    "typescript": "^3.5.1",
+    "typedoc-neo-theme": "git+https://github.com/google/typedoc-neo-theme.git"
   }
 }

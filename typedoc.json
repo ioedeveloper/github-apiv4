@@ -1,0 +1,8 @@
+{
+    "exclude": "**/*+(index).ts",
+    "outline": [{
+        "Queries": "_queries_",
+        "Types": "_types_",
+        "Query Variables": "_variables_"
+    }]
+}

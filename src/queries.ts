@@ -1,3 +1,7 @@
+/**
+ * @description Github Graphql Query for viewer details
+ * @type string
+ */
 export const Viewer = `
     query {
         viewer {
@@ -31,6 +35,10 @@ export const Viewer = `
     }
 `;
 
+/**
+ * @description Github Graphql Query for repository content (files and directories)
+ * @type string
+ */
 export const RepositoryContent = `
     query($repositoryOwner: String!, $repositoryName: String!){
         repository(owner: $repositoryOwner, name: $repositoryName){
@@ -151,6 +159,10 @@ export const RepositoryContent = `
     }
 `;
 
+/**
+ * @description Github Graphql Query for repository directories only (content excluded)
+ * @type string
+ */
 export const RepositoryDirectories = `
     query($repositoryOwner: String!, $repositoryName: String!){
         repository(owner: $repositoryOwner, name: $repositoryName){
@@ -244,6 +256,10 @@ export const RepositoryDirectories = `
     }
 `;
 
+/**
+ * @description Github Graphql Query for list of repository branches
+ * @type string
+ */
 export const Branches = `
   query($repositoryOwner: String!, $repositoryName: String!){
     repository(owner: $repositoryOwner, name: $repositoryName){
@@ -268,6 +284,10 @@ export const Branches = `
   }
 `;
 
+/**
+ * @description Github Graphql Query for repository branch content (files and directories)
+ * @type string
+ */
 export const BranchContent = `
     query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){
         repository(owner: $repositoryOwner, name: $repositoryName){
@@ -388,6 +408,10 @@ export const BranchContent = `
     }
 `;
 
+/**
+ * @description Github Graphql Query for repository branch directories only (content excluded)
+ * @type string
+ */
 export const BranchDirectories = `
     query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){
       repository(owner: $repositoryOwner, name: $repositoryName){
@@ -481,6 +505,10 @@ export const BranchDirectories = `
     }
 `;
 
+/**
+ * @description Github Graphql Query for repository details
+ * @type string
+ */
 export const Repository = `
   query($repositoryOwner: String!, $repositoryName: String!){
     repository(owner: $repositoryOwner, name: $repositoryName){
@@ -532,6 +560,10 @@ export const Repository = `
   }
 `;
 
+/**
+ * @description Github Graphql Query for commit content (files and directories)
+ * @type string
+ */
 export const CommitContent = `
   query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
     repository(owner: $repositoryOwner, name: $repositoryName){
@@ -648,6 +680,10 @@ export const CommitContent = `
   }
 `;
 
+/**
+ * @description Github Graphql Query for commit directories only (content excluded)
+ * @type string
+ */
 export const CommitDirectories = `
   query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
     repository(owner: $repositoryOwner, name: $repositoryName){
