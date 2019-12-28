@@ -137,8 +137,8 @@ node apolloClient.js
 ```
 # Resources
 
-- [API Documentation](#api)
-- [Examples](#examples)
+- [API Documentation](https://ioedeveloper.github.io/github-apiv4/)
+- [Examples](#usage)
 
 # Contribute
 ### Contributing to Github-APIv4
