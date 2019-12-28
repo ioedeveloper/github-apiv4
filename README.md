@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/github-apiv4.svg)](https://badge.fury.io/js/github-apiv4)
 <!-- [END badges] -->
 
-###### [API](https://ioedeveloper.github.io/github-apiv4/docs/) | [Contribute](#contribute) | [FAQ](#faq)
+###### [API](https://ioedeveloper.github.io/github-apiv4/) | [Contribute](#contribute) | [FAQ](#faq)
 > Github-APIv4 is a Node library that provides a list of Github graphql (APIv4) queries and their respective return types.
 
 <!-- [START getstarted] -->
