@@ -5,7 +5,7 @@ Thank you for your interest in contributing to **github-apiv4**!! :tada:
 1. Fork and clone forked repository
 
 ```bash
-git clone *forked repository url*
+git clone `forked repository url`
 # git clone https://github.com/ioedeveloper/github-apiv4
 cd github-apiv4
 ```
