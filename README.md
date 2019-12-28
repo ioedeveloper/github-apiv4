@@ -1,8 +1,10 @@
 # Github-APIv4
 <!-- [START badges] -->
+![travis build](https://api.travis-ci.org/ioedeveloper/github-apiv4.svg?branch=master)
+[![npm version](https://badge.fury.io/js/github-apiv4.svg)](https://badge.fury.io/js/github-apiv4)
 <!-- [END badges] -->
 
-###### [API](https://github.com/ioedeveloper/github-apiv4/docs/) | [Contribute](#contribute) | [FAQ](#faq)
+###### [API](https://ioedeveloper.github.io/github-apiv4/docs/) | [Contribute](#contribute) | [FAQ](#faq)
 > Github-APIv4 is a Node library that provides a list of Github graphql (APIv4) queries and their respective return types.
 
 <!-- [START getstarted] -->
@@ -141,7 +143,7 @@ node apolloClient.js
 # Contribute
 ### Contributing to Github-APIv4
 
-Check out [contributing guide](#contribute) to get an overview of github-apiv4 development.
+Check out [contributing guide](https://github.com/ioedeveloper/github-apiv4/blob/master/CONTRIBUTING.md) to get an overview of github-apiv4 development.
 
 # FAQ
 ### Questions?

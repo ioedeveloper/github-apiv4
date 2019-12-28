@@ -8,7 +8,8 @@
     "build": "tsc -p ./",
     "test": "",
     "dev": "NODE_ENV=development nodemon",
-    "docs": "rm -r docs/* && typedoc --theme ./node_modules/typedoc-neo-theme/bin/default"
+    "docs": "rm -r docs/* && typedoc --theme ./node_modules/typedoc-neo-theme/bin/default",
+    "lint": "tslint --project ./tsconfig.json"
   },
   "repository": {
     "type": "git",
