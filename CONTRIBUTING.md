@@ -16,7 +16,13 @@ cd github-apiv4
 npm install
 ```
 
-3. Run github-apiv4 tests locally.
+3. Run dev mode
+
+```bash
+npm run dev
+```
+
+4. Run github-apiv4 tests locally.
 
 ```bash
 npm run test
