@@ -5,7 +5,7 @@ Thank you for your interest in contributing to **github-apiv4**!! :tada:
 1. Fork and clone forked repository
 
 ```bash
-git clone *forked repository url*
+git clone `forked repository url`
 # git clone https://github.com/ioedeveloper/github-apiv4
 cd github-apiv4
 ```
@@ -16,7 +16,13 @@ cd github-apiv4
 npm install
 ```
 
-3. Run github-apiv4 tests locally.
+3. Run dev mode
+
+```bash
+npm run dev
+```
+
+4. Run github-apiv4 tests locally.
 
 ```bash
 npm run test
