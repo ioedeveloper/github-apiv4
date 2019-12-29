@@ -36,8 +36,8 @@ fetch('https://api.github.com/graphql', {
 })
   .then(res => res.json())
   .then(res => console.log(res.data));
-  // res.data is of type githubApiv4.types.Viewer
 ```
+Github API response (res.data is) of type [githubApiv4.types.Viewer](https://github-apiv4.netlify.com/interfaces/_types_.viewer.html)
 
 Execute script on the command line
 
@@ -66,12 +66,12 @@ fetch('https://api.github.com/graphql', {
   .then(res => {
       if((res.data as githubApiv4.types.Viewer).viewer){
         console.log(res.data)
-        // res.data is of type githubApiv4.types.Viewer
       }else{
         console.log('Type Mismatch!');
       }
   })
 ```
+Github API response (res.data is) of type [githubApiv4.types.Viewer](https://github-apiv4.netlify.com/interfaces/_types_.viewer.html)
 
 Execute script on the command line
 
@@ -128,6 +128,7 @@ client.query({
     }
 });
 ```
+Github API response (res.data is) of type [githubApiv4.types.Repository](https://github-apiv4.netlify.com/interfaces/_types_.repository.html)
 
 Execute script on the command line
 

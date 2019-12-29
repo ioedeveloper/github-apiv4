@@ -112,8 +112,8 @@ fetch(<span class="hljs-string">'https://api.github.com/graphql'</span>, {
   <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">query</span>: githubApiv4.queries.Viewer }),
 })
   .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())
-  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res.data));
-  <span class="hljs-comment">// res.data is of type githubApiv4.types.Viewer</span></code></pre>
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res.data));</code></pre>
+				<p>Github API response (res.data is) of type <a href="https://github-apiv4.netlify.com/interfaces/_types_.viewer.html">githubApiv4.types.Viewer</a></p>
 				<p>Execute script on the command line</p>
 				<pre><code class="language-bash">node exampleJS.js</code></pre>
 				<p><strong>Typescript Example - query Viewer:</strong></p>
@@ -135,11 +135,11 @@ fetch(<span class="hljs-string">'https://api.github.com/graphql'</span>, {
   .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
       <span class="hljs-keyword">if</span>((res.data <span class="hljs-keyword">as</span> githubApiv4.types.Viewer).viewer){
         <span class="hljs-built_in">console</span>.log(res.data)
-        <span class="hljs-comment">// res.data is of type githubApiv4.types.Viewer</span>
       }<span class="hljs-keyword">else</span>{
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Type Mismatch!'</span>);
       }
   })</code></pre>
+				<p>Github API response (res.data is) of type <a href="https://github-apiv4.netlify.com/interfaces/_types_.viewer.html">githubApiv4.types.Viewer</a></p>
 				<p>Execute script on the command line</p>
 				<pre><code class="language-bash">tsc exampleTS.ts
 node exampleTS.js</code></pre>
@@ -188,6 +188,7 @@ client.query({
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Type Mismatch!'</span>);
     }
 });</code></pre>
+				<p>Github API response (res.data is) of type <a href="https://github-apiv4.netlify.com/interfaces/_types_.repository.html">githubApiv4.types.Repository</a></p>
 				<p>Execute script on the command line</p>
 				<pre><code class="language-bash">tsc apolloClient.ts
 node apolloClient.js</code></pre>

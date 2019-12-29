@@ -6,7 +6,7 @@
   "types": "build/index.d.ts",
   "scripts": {
     "build": "tsc -p ./",
-    "test": "",
+    "test": "mocha -r ts-node/register test/**/*.test.ts",
     "dev": "NODE_ENV=development nodemon",
     "docs": "rm -r docs/* && typedoc --theme ./node_modules/typedoc-neo-theme/bin/default",
     "lint": "tslint --project ./tsconfig.json"
@@ -30,12 +30,16 @@
   },
   "homepage": "https://github.com/ioedeveloper/github-apiv4#readme",
   "devDependencies": {
+    "@types/chai": "4.2.7",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^12.0.12",
+    "chai": "4.2.0",
+    "mocha": "6.2.2",
     "nodemon": "^1.19.1",
     "ts-node": "^8.2.0",
     "tslint": "^5.17.0",
     "typedoc": "0.15.5",
-    "typescript": "^3.5.1",
-    "typedoc-neo-theme": "git+https://github.com/google/typedoc-neo-theme.git"
+    "typedoc-neo-theme": "git+https://github.com/google/typedoc-neo-theme.git",
+    "typescript": "^3.5.1"
   }
 }
