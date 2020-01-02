@@ -186,3 +186,13 @@ export declare interface CommitContent {
         };
     };
 }
+
+export declare interface Branch {
+    repository: {
+        ref: {
+            id: string,
+            name: string,
+            prefix: string,
+        };
+    };
+}

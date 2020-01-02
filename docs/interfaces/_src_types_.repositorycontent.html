@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Branches | github-apiv4</title>
+	<title>RepositoryContent | github-apiv4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../modules/_variables_.html">variables</a>
+					<a href="../modules/_src_types_.html">src/types</a>
 				</li>
 				<li>
-					<a href="_variables_.branches.html">Branches</a>
+					<a href="_src_types_.repositorycontent.html">RepositoryContent</a>
 				</li>
 			</ul>
 		</div>
@@ -75,12 +75,12 @@
 			</nav>
 		</div>
 		<div class="col-7 offset-3 col-content">
-			<h1>Interface Branches</h1>
+			<h1>Interface RepositoryContent</h1>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Branches</span>
+						<span class="target">RepositoryContent</span>
 					</li>
 				</ul>
 			</section>
@@ -90,8 +90,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.branches.html#repositoryname" class="tsd-kind-icon">repositoryName</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.branches.html#repositoryowner" class="tsd-kind-icon">repositoryOwner</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.repositorycontent.html#repository" class="tsd-kind-icon">repository</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,24 +99,37 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="repositoryname" class="tsd-anchor"></a>
-					<h3>repository<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">repository<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="repository" class="tsd-anchor"></a>
+					<h3>repository</h3>
+					<div class="tsd-signature tsd-kind-icon">repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in variables.ts:17</li>
+							<li>Defined in src/types.ts:54</li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="repositoryowner" class="tsd-anchor"></a>
-					<h3>repository<wbr>Owner</h3>
-					<div class="tsd-signature tsd-kind-icon">repository<wbr>Owner<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in variables.ts:16</li>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>default<wbr>Branch<wbr>Ref<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>files<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+												<ul class="tsd-parameters">
+													<li class="tsd-parameter">
+														<h5>entries<span class="tsd-signature-symbol">: </span><a href="_src_types_.fileentriescontent.html" class="tsd-signature-type">FileEntriesContent</a><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
 						</ul>
-					</aside>
+					</div>
 				</section>
 			</section>
 			<!--{&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;exclude&quot;:[&quot;**/*+(index).ts&quot;],&quot;outline&quot;:[{&quot;Queries&quot;:&quot;_queries_&quot;,&quot;Types&quot;:&quot;_types_&quot;,&quot;Query Variables&quot;:&quot;_variables_&quot;}]}-->
@@ -126,40 +138,49 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
-						<a href="_variables_.branchcontent.html" class="tsd-kind-icon">Branch<wbr>Content</a>
+						<a href="_src_types_.branch.html" class="tsd-kind-icon">Branch</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
-						<a href="_variables_.branchdirectories.html" class="tsd-kind-icon">Branch<wbr>Directories</a>
+						<a href="_src_types_.branchcontent.html" class="tsd-kind-icon">Branch<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+						<a href="_src_types_.branchdirectories.html" class="tsd-kind-icon">Branch<wbr>Directories</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+						<a href="_src_types_.branches.html" class="tsd-kind-icon">Branches</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+						<a href="_src_types_.commitcontent.html" class="tsd-kind-icon">Commit<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+						<a href="_src_types_.commitdirectories.html" class="tsd-kind-icon">Commit<wbr>Directories</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+						<a href="_src_types_.fileentries.html" class="tsd-kind-icon">File<wbr>Entries</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+						<a href="_src_types_.fileentriescontent.html" class="tsd-kind-icon">File<wbr>Entries<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+						<a href="_src_types_.repository.html" class="tsd-kind-icon">Repository</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module root">
-						<a href="_variables_.branches.html" class="tsd-kind-icon">Branches</a>
+						<a href="_src_types_.repositorycontent.html" class="tsd-kind-icon">Repository<wbr>Content</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_variables_.branches.html#repositoryname" class="tsd-kind-icon">repository<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_variables_.branches.html#repositoryowner" class="tsd-kind-icon">repository<wbr>Owner</a>
+								<a href="_src_types_.repositorycontent.html#repository" class="tsd-kind-icon">repository</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
-						<a href="_variables_.commitcontent.html" class="tsd-kind-icon">Commit<wbr>Content</a>
+						<a href="_src_types_.repositorydirectories.html" class="tsd-kind-icon">Repository<wbr>Directories</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
-						<a href="_variables_.commitdirectories.html" class="tsd-kind-icon">Commit<wbr>Directories</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
-						<a href="_variables_.repository.html" class="tsd-kind-icon">Repository</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
-						<a href="_variables_.repositorycontent.html" class="tsd-kind-icon">Repository<wbr>Content</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
-						<a href="_variables_.repositorydirectories.html" class="tsd-kind-icon">Repository<wbr>Directories</a>
+						<a href="_src_types_.viewer.html" class="tsd-kind-icon">Viewer</a>
 					</li>
 				</ul>
 			</nav>

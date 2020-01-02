@@ -40,3 +40,9 @@ export declare interface CommitContent {
     repositoryName: string;
     expression: string;
 }
+
+export declare interface Branch {
+    repositoryOwner: string;
+    repositoryName: string;
+    qualifiedName: string;
+}

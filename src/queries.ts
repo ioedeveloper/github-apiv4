@@ -772,3 +772,19 @@ export const CommitDirectories = `
     }
   }
 `;
+
+/**
+ * @description Github Graphql Query for branch information
+ * @type string
+ */
+export const Branch = `
+  query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){
+    repository(owner: $repositoryOwner, name: $repositoryName){
+      ref(qualifiedName: $qualifiedName){
+        id
+        name
+        prefix
+      }
+    }
+  }
+`;
