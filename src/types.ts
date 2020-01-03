@@ -196,3 +196,33 @@ export declare interface Branch {
         };
     };
 }
+
+export declare interface Commit {
+    repository: {
+        commit: {
+            authoredByCommitter: boolean;
+            authoredDate: string;
+            changedFiles: number;
+            commitUrl: string;
+            committedDate: string;
+            committedViaWeb: boolean;
+            deletions: number;
+            id: string;
+            message: string;
+            messageBody: string;
+            messageBodyHTML: string;
+            messageHeadline: string;
+            messageHeadlineHTML: string;
+            oid: string;
+            pushedDate: string;
+            resourcePath: string;
+            tarballUrl: string;
+            treeResourcePath: string;
+            treeUrl: string;
+            url: string;
+            viewerCanSubscribe: boolean;
+            viewerSubscription: string;
+            zipballUrl: string;
+        };
+    };
+}

@@ -774,7 +774,7 @@ export const CommitDirectories = `
 `;
 
 /**
- * @description Github Graphql Query for branch information
+ * @description Github Graphql Query for branch details
  * @type string
  */
 export const Branch = `
@@ -787,4 +787,42 @@ export const Branch = `
       }
     }
   }
+`;
+
+/**
+ * @description Github Graphql Query for commit details
+ * @type string
+ */
+export const Commit = `
+query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
+  repository(owner: $repositoryOwner, name: $repositoryName){
+    commit: object(expression: $expression){
+      ... on Commit{
+        authoredByCommitter
+        authoredDate
+        changedFiles
+        commitUrl
+        committedDate
+        committedViaWeb
+        deletions
+        id
+        message
+        messageBody
+        messageBodyHTML
+        messageHeadline
+        messageHeadlineHTML
+        oid
+        pushedDate
+        resourcePath
+        tarballUrl
+        treeResourcePath
+        treeUrl
+        url
+        viewerCanSubscribe
+        viewerSubscription
+        zipballUrl
+      }
+    }
+  }
+}
 `;

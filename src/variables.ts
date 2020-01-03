@@ -46,3 +46,9 @@ export declare interface Branch {
     repositoryName: string;
     qualifiedName: string;
 }
+
+export declare interface Commit {
+    repositoryOwner: string;
+    repositoryName: string;
+    expression: string;
+}
