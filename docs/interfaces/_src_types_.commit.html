@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Branch | github-apiv4</title>
+	<title>Commit | github-apiv4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -58,7 +58,7 @@
 					<a href="../modules/_src_types_.html">src/types</a>
 				</li>
 				<li>
-					<a href="_src_types_.branch.html">Branch</a>
+					<a href="_src_types_.commit.html">Commit</a>
 				</li>
 			</ul>
 		</div>
@@ -75,12 +75,12 @@
 			</nav>
 		</div>
 		<div class="col-7 offset-3 col-content">
-			<h1>Interface Branch</h1>
+			<h1>Interface Commit</h1>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Branch</span>
+						<span class="target">Commit</span>
 					</li>
 				</ul>
 			</section>
@@ -90,7 +90,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.branch.html#repository" class="tsd-kind-icon">repository</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.commit.html#repository" class="tsd-kind-icon">repository</a></li>
 							</ul>
 						</section>
 					</div>
@@ -104,23 +104,83 @@
 					<div class="tsd-signature tsd-kind-icon">repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/types.ts:191</li>
+							<li>Defined in src/types.ts:201</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
-								<h5>ref<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+								<h5>commit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
 								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>authored<wbr>ByCommitter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>authored<wbr>Date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>changed<wbr>Files<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>commit<wbr>Url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>committed<wbr>Date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>committed<wbr>Via<wbr>Web<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>deletions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+									</li>
 									<li class="tsd-parameter">
 										<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 									</li>
 									<li class="tsd-parameter">
-										<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<h5>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 									</li>
 									<li class="tsd-parameter">
-										<h5>prefix<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<h5>message<wbr>Body<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>message<wbr>BodyHTML<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>message<wbr>Headline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>message<wbr>HeadlineHTML<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>oid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>pushed<wbr>Date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>resource<wbr>Path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>tarball<wbr>Url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>tree<wbr>Resource<wbr>Path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>tree<wbr>Url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>viewer<wbr>Can<wbr>Subscribe<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>viewer<wbr>Subscription<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>zipball<wbr>Url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 									</li>
 								</ul>
 							</li>
@@ -133,18 +193,9 @@
 		<div class="col-2 col-menu secondary-menu">
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module root">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_src_types_.branch.html" class="tsd-kind-icon">Branch</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.branch.html#repository" class="tsd-kind-icon">repository</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_src_types_.branchcontent.html" class="tsd-kind-icon">Branch<wbr>Content</a>
 					</li>
@@ -154,9 +205,18 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_src_types_.branches.html" class="tsd-kind-icon">Branches</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_src_types_.commit.html" class="tsd-kind-icon">Commit</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.commit.html#repository" class="tsd-kind-icon">repository</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_src_types_.commitcontent.html" class="tsd-kind-icon">Commit<wbr>Content</a>
 					</li>

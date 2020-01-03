@@ -83,6 +83,7 @@
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_src_queries_.html#branchcontent" class="tsd-kind-icon">BranchContent</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_src_queries_.html#branchdirectories" class="tsd-kind-icon">BranchDirectories</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_src_queries_.html#branches" class="tsd-kind-icon">Branches</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_src_queries_.html#commit" class="tsd-kind-icon">Commit</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_src_queries_.html#commitcontent" class="tsd-kind-icon">CommitContent</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_src_queries_.html#commitdirectories" class="tsd-kind-icon">CommitDirectories</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_src_queries_.html#repository" class="tsd-kind-icon">Repository</a></li>
@@ -107,7 +108,7 @@
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-tags">
 						<dl class="tsd-comment-tags"><dt>description</dt>
-							<dd><p>Github Graphql Query for branch information</p>
+							<dd><p>Github Graphql Query for branch details</p>
 							</dd><dt>type</dt>
 							<dd><p>string</p>
 						</dd></dl>
@@ -159,6 +160,23 @@
 					<div class="tsd-comment tsd-typography tsd-comment-tags">
 						<dl class="tsd-comment-tags"><dt>description</dt>
 							<dd><p>Github Graphql Query for list of repository branches</p>
+							</dd><dt>type</dt>
+							<dd><p>string</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="commit" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Commit</h3>
+					<div class="tsd-signature tsd-kind-icon">Commit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){repository(owner: $repositoryOwner, name: $repositoryName){commit: object(expression: $expression){... on Commit{authoredByCommitterauthoredDatechangedFilescommitUrlcommittedDatecommittedViaWebdeletionsidmessagemessageBodymessageBodyHTMLmessageHeadlinemessageHeadlineHTMLoidpushedDateresourcePathtarballUrltreeResourcePathtreeUrlurlviewerCanSubscribeviewerSubscriptionzipballUrl}}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){repository(owner: $repositoryOwner, name: $repositoryName){commit: object(expression: $expression){... on Commit{authoredByCommitterauthoredDatechangedFilescommitUrlcommittedDatecommittedViaWebdeletionsidmessagemessageBodymessageBodyHTMLmessageHeadlinemessageHeadlineHTMLoidpushedDateresourcePathtarballUrltreeResourcePathtreeUrlurlviewerCanSubscribeviewerSubscriptionzipballUrl}}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/queries.ts:796</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for commit details</p>
 							</dd><dt>type</dt>
 							<dd><p>string</p>
 						</dd></dl>
@@ -283,6 +301,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
 						<a href="_src_queries_.html#branches" class="tsd-kind-icon">Branches</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_src_queries_.html#commit" class="tsd-kind-icon">Commit</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
 						<a href="_src_queries_.html#commitcontent" class="tsd-kind-icon">Commit<wbr>Content</a>
