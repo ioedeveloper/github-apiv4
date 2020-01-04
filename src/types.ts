@@ -51,7 +51,7 @@ export declare interface FileEntriesContent {
 }
 
 export declare interface RepositoryContent {
-    repository: {
+    repository: null | {
         defaultBranchRef: {
             target: {
                 files: {
@@ -63,7 +63,7 @@ export declare interface RepositoryContent {
 }
 
 export declare interface RepositoryDirectories {
-    repository: {
+    repository: null | {
         defaultBranchRef: {
             target: {
                 files: {
@@ -75,8 +75,8 @@ export declare interface RepositoryDirectories {
 }
 
 export declare interface Branches {
-    repository: {
-        refs: {
+    repository: null | {
+        branches: null | {
             edges: [{
                 node: {
                     id: string;
@@ -96,8 +96,8 @@ export declare interface Branches {
 }
 
 export declare interface BranchContent {
-    repository: {
-        ref: {
+    repository: null | {
+        branch: null | {
             target: {
                 files: {
                     entries: FileEntriesContent[];
@@ -108,8 +108,8 @@ export declare interface BranchContent {
 }
 
 export declare interface BranchDirectories {
-    repository: {
-        ref: {
+    repository: null | {
+        branch: null | {
             target: {
                 files: {
                     entries: FileEntries[];
@@ -120,7 +120,7 @@ export declare interface BranchDirectories {
 }
 
 export declare interface Repository {
-    repository: {
+    repository: null | {
         createdAt: string;
         databaseId: string;
         description: string | null;
@@ -168,8 +168,8 @@ export declare interface Repository {
 }
 
 export declare interface CommitDirectories {
-    repository: {
-        commit: {
+    repository: null | {
+        commit: null | {
             files: {
                 entries: FileEntries[];
             };
@@ -178,8 +178,8 @@ export declare interface CommitDirectories {
 }
 
 export declare interface CommitContent {
-    repository: {
-        commit: {
+    repository: null | {
+        commit: null | {
             files: {
                 entries: FileEntriesContent[];
             };
@@ -188,8 +188,8 @@ export declare interface CommitContent {
 }
 
 export declare interface Branch {
-    repository: {
-        ref: {
+    repository: null | {
+        branch: null | {
             id: string,
             name: string,
             prefix: string,
@@ -198,8 +198,8 @@ export declare interface Branch {
 }
 
 export declare interface Commit {
-    repository: {
-        commit: {
+    repository: null | {
+        commit: null | {
             authoredByCommitter: boolean;
             authoredDate: string;
             changedFiles: number;
@@ -224,5 +224,16 @@ export declare interface Commit {
             viewerSubscription: string;
             zipballUrl: string;
         };
+    };
+}
+
+export declare interface CodeOfConduct {
+    codeOfConduct: null | {
+        name: string;
+        id: string;
+        body: string;
+        key: string;
+        resourcePath: string;
+        url: string;
     };
 }
