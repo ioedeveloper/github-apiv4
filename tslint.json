@@ -17,6 +17,7 @@
         "curly":false,
         "ordered-imports":false,
         "no-string-literal": false,
-        "interface-name":false
+        "interface-name":false,
+        "no-implicit-dependencies": false
     }
 }

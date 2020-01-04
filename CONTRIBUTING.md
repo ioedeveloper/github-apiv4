@@ -81,7 +81,7 @@ For all dependencies (both installation and development):
 
 - Every feature should have a corresponding test.
 
-Github-Apiv4 tests are located in [`src/test`](https://github.com/ioedeveloper/github-apiv4/blob/master/src/test/)
+Github-Apiv4 tests are located in [`test/`](https://github.com/ioedeveloper/github-apiv4/blob/master/test/)
 
 - To run all tests:
 

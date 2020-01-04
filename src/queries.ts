@@ -1,6 +1,5 @@
 /**
  * @description Github Graphql Query for viewer details
- * @type string
  */
 export const Viewer = `
     query {
@@ -37,7 +36,6 @@ export const Viewer = `
 
 /**
  * @description Github Graphql Query for repository content (files and directories)
- * @type string
  */
 export const RepositoryContent = `
     query($repositoryOwner: String!, $repositoryName: String!){
@@ -161,7 +159,6 @@ export const RepositoryContent = `
 
 /**
  * @description Github Graphql Query for repository directories only (content excluded)
- * @type string
  */
 export const RepositoryDirectories = `
     query($repositoryOwner: String!, $repositoryName: String!){
@@ -258,12 +255,12 @@ export const RepositoryDirectories = `
 
 /**
  * @description Github Graphql Query for list of repository branches
- * @type string
+ * @queryVariable first: 10, after: CURSOR
  */
 export const Branches = `
-  query($repositoryOwner: String!, $repositoryName: String!){
+  query($repositoryOwner: String!, $repositoryName: String!, $first: Int!, $after: String!){
     repository(owner: $repositoryOwner, name: $repositoryName){
-      refs(refPrefix: "refs/heads/", first: 10){
+      branches: refs(refPrefix: "refs/heads/", first: $first, after: $after){
         edges{
           node{
             id
@@ -286,12 +283,12 @@ export const Branches = `
 
 /**
  * @description Github Graphql Query for repository branch content (files and directories)
- * @type string
+ * @queryVariable qualifiedName: "refs/heads/master"
  */
 export const BranchContent = `
     query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){
         repository(owner: $repositoryOwner, name: $repositoryName){
-            ref(qualifiedName: $qualifiedName){
+            branch: ref(qualifiedName: $qualifiedName){
             ... on Ref{
                     target{
                     ... on Commit{
@@ -410,12 +407,12 @@ export const BranchContent = `
 
 /**
  * @description Github Graphql Query for repository branch directories only (content excluded)
- * @type string
+ * @queryVariable qualifiedName: "refs/heads/master"
  */
 export const BranchDirectories = `
     query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){
       repository(owner: $repositoryOwner, name: $repositoryName){
-          ref(qualifiedName: $qualifiedName){
+          branch: ref(qualifiedName: $qualifiedName){
             ... on Ref{
                     target{
                     ... on Commit{
@@ -562,7 +559,7 @@ export const Repository = `
 
 /**
  * @description Github Graphql Query for commit content (files and directories)
- * @type string
+ * @queryVariable expression: "refs/heads/master" OR commit hash
  */
 export const CommitContent = `
   query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
@@ -682,7 +679,7 @@ export const CommitContent = `
 
 /**
  * @description Github Graphql Query for commit directories only (content excluded)
- * @type string
+ * @queryVariable expression: "refs/heads/master" OR commit hash
  */
 export const CommitDirectories = `
   query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
@@ -771,4 +768,75 @@ export const CommitDirectories = `
       }
     }
   }
+`;
+
+/**
+ * @description Github Graphql Query for branch details
+ * @queryVariable qualifiedName: "refs/heads/master"
+ */
+export const Branch = `
+  query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){
+    repository(owner: $repositoryOwner, name: $repositoryName){
+      branch: ref(qualifiedName: $qualifiedName){
+        id
+        name
+        prefix
+      }
+    }
+  }
+`;
+
+/**
+ * @description Github Graphql Query for commit details
+ * @queryVariable expression: "refs/heads/master" OR commit hash
+ */
+export const Commit = `
+query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
+  repository(owner: $repositoryOwner, name: $repositoryName){
+    commit: object(expression: $expression){
+      ... on Commit{
+        authoredByCommitter
+        authoredDate
+        changedFiles
+        commitUrl
+        committedDate
+        committedViaWeb
+        deletions
+        id
+        message
+        messageBody
+        messageBodyHTML
+        messageHeadline
+        messageHeadlineHTML
+        oid
+        pushedDate
+        resourcePath
+        tarballUrl
+        treeResourcePath
+        treeUrl
+        url
+        viewerCanSubscribe
+        viewerSubscription
+        zipballUrl
+      }
+    }
+  }
+}
+`;
+
+/**
+ * @description Github Graphql Query for code of conduct
+ * @queryVariable key: String!
+ */
+export const CodeOfConduct = `
+query($key: String!){
+	codeOfConduct(key: $key){
+    name
+    id
+    body
+    key
+    resourcePath
+    url
+  }
+}
 `;
