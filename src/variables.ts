@@ -58,3 +58,10 @@ export declare interface Commit {
 export declare interface CodeOfConduct {
     key: string;
 }
+
+export declare interface ViewerFollowers {
+    after?: string;
+    before?: string;
+    first?: number;
+    last?: number;
+}

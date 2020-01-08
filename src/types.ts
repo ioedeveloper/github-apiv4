@@ -237,3 +237,21 @@ export declare interface CodeOfConduct {
         url: string;
     };
 }
+
+export declare interface ViewerFollowers {
+    viewer: {
+        followers: {
+            edges: [{
+                node: Viewer;
+                cursor: string;
+            }];
+            pageInfo: {
+                endCursor: string;
+                hasNextPage: string;
+                hasPreviousPage: string;
+                startCursor: string;
+            }
+            totalCount: number;
+        };
+    };
+}

@@ -840,3 +840,54 @@ query($key: String!){
   }
 }
 `;
+
+/**
+ * @description Github Graphql Query for Viewer Followers
+ * @queryVariable after: String! //Cursor , before: String! //Cursor
+ */
+export const ViewerFollowers = `
+  query($after: String, $before: String, $first: Int, $last: Int){
+    viewer{
+      followers(first: $first, after: $after, before: $before, last: $last){
+        edges{
+          node{
+            id
+            email
+            login
+            url
+            createdAt
+            updatedAt
+            databaseId
+            location
+            companyHTML
+            company
+            avatarUrl
+            bio
+            websiteUrl
+            isHireable
+            isDeveloperProgramMember
+            anyPinnableItems
+            isSiteAdmin
+            isViewer
+            viewerCanFollow
+            viewerIsFollowing
+            viewerCanCreateProjects
+            isEmployee
+            isBountyHunter
+            isCampusExpert
+            pinnedItemsRemaining
+            projectsUrl
+          }
+          cursor
+        }
+        pageInfo{
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+        totalCount
+      }
+    }
+  }
+`;
