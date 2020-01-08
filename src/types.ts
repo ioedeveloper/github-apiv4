@@ -83,6 +83,7 @@ export declare interface Branches {
                     name: string;
                     prefix: string;
                 };
+                cursor: string;
             }];
             pageInfo: {
                 endCursor: string;

@@ -15,8 +15,11 @@ export declare interface RepositoryDirectories {
 export declare interface Branches {
     repositoryOwner: string;
     repositoryName: string;
-    first: number;
-    after: string;
+    first?: number;
+    after?: string;
+    before?: string;
+    last?: number;
+    refPrefix?: string;
 }
 
 export declare interface BranchContent {

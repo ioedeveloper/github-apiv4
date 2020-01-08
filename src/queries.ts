@@ -258,9 +258,9 @@ export const RepositoryDirectories = `
  * @queryVariable first: 10, after: CURSOR
  */
 export const Branches = `
-  query($repositoryOwner: String!, $repositoryName: String!, $first: Int!, $after: String!){
+  query($repositoryOwner: String!, $repositoryName: String!, $first: Int, $after: String, $before: String, $last: Int, $refPrefix: String = "refs/heads/"){
     repository(owner: $repositoryOwner, name: $repositoryName){
-      branches: refs(refPrefix: "refs/heads/", first: $first, after: $after){
+      branches: refs(refPrefix: $refPrefix, first: $first, after: $after, last: $last, before: $before){
         edges{
           node{
             id
