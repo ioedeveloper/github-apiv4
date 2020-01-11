@@ -38,8 +38,10 @@
     "nodemon": "^1.19.1",
     "ts-node": "^8.2.0",
     "tslint": "^5.17.0",
-    "typedoc": "0.15.5",
     "typedoc-neo-theme": "git+https://github.com/google/typedoc-neo-theme.git",
     "typescript": "^3.5.1"
+  },
+  "dependencies": {
+    "typedoc": "0.15.8"
   }
 }

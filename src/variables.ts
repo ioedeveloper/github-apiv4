@@ -68,3 +68,7 @@ export declare interface ViewerFollowers {
     first?: number;
     last?: number;
 }
+
+export declare interface User {
+    username: string;
+}

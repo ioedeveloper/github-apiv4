@@ -1,0 +1,238 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>github-apiv4 - v2.1.0</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<ul class="results-priority" style="display:none">
+					</ul>
+					<a href="index.html" class="title">github-apiv4 - v2.1.0</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+			</ul>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation outline primary">
+				<a style="margin-left:0em" href="globals.html">Globals</a>
+				<ul style="display:none">
+					{&quot;Queries&quot;:&quot;_queries_&quot;,&quot;Types&quot;:&quot;_types_&quot;,&quot;Query Variables&quot;:&quot;_variables_&quot;}
+				</ul>
+			</nav>
+		</div>
+		<div class="col-7 offset-3 col-content">
+			<h1> github-apiv4 - v2.1.0</h1>
+			<div class="tsd-panel tsd-typography">
+				<a href="#github-apiv4" id="github-apiv4" style="color: inherit; text-decoration: none;">
+					<h1>Github-APIv4</h1>
+				</a>
+				<!-- [START badges] -->
+				<p><img src="https://api.travis-ci.org/ioedeveloper/github-apiv4.svg?branch=master" alt="travis build">
+				<a href="https://badge.fury.io/js/github-apiv4"><img src="https://badge.fury.io/js/github-apiv4.svg" alt="npm version"></a></p>
+				<!-- [END badges] -->
+				<a href="#a-hrefhttpsgithub-apiv4netlifycomapia--a-hrefcontributecontributea--a-hreffaqfaqa" id="a-hrefhttpsgithub-apiv4netlifycomapia--a-hrefcontributecontributea--a-hreffaqfaqa" style="color: inherit; text-decoration: none;">
+					<h6><a href="https://github-apiv4.netlify.com/">API</a> | <a href="#contribute">Contribute</a> | <a href="#faq">FAQ</a></h6>
+				</a>
+				<blockquote>
+					<p>Github-APIv4 is a Node library that provides a list of Github graphql (APIv4) queries and their respective return types.</p>
+				</blockquote>
+				<!-- [START getstarted] -->
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting Started</h2>
+				</a>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h3>Installation</h3>
+				</a>
+				<p>To use Github-APIv4, run:</p>
+				<pre><code class="language-bash">npm i github-apiv4
+<span class="hljs-comment"># or "yarn add github-apiv4"</span></code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h3>Usage</h3>
+				</a>
+				<p><strong>Javascript Example - query Viewer:</strong></p>
+				<p>Save file as <strong>exampleJS.js</strong></p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> githubApiv4 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'github-apiv4'</span>);
+<span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'isomorphic-fetch'</span>);
+<span class="hljs-keyword">const</span> accessCode = <span class="hljs-string">'YOUR_GITHUB_ACCESS_CODE'</span>;
+
+fetch(<span class="hljs-string">'https://api.github.com/graphql'</span>, {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>,
+  <span class="hljs-attr">headers</span>: { 
+      <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
+      <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">`bearer <span class="hljs-subst">${accessCode}</span>`</span>
+  },
+  <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">query</span>: githubApiv4.queries.Viewer }),
+})
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res.data));</code></pre>
+				<p>Github API response (res.data is) of type <a href="https://github-apiv4.netlify.com/interfaces/_types_.viewer.html">githubApiv4.types.Viewer</a></p>
+				<p>Execute script on the command line</p>
+				<pre><code class="language-bash">node exampleJS.js</code></pre>
+				<p><strong>Typescript Example - query Viewer:</strong></p>
+				<p>Save file as <strong>exampleTS.ts</strong></p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> githubApiv4 <span class="hljs-keyword">from</span> <span class="hljs-string">'github-apiv4'</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fetch <span class="hljs-keyword">from</span> <span class="hljs-string">'isomorphic-fetch'</span>;
+
+<span class="hljs-keyword">const</span> accessCode = <span class="hljs-string">'YOUR_GITHUB_ACCESS_CODE'</span>;
+
+fetch(<span class="hljs-string">'https://api.github.com/graphql'</span>, {
+  method: <span class="hljs-string">'POST'</span>,
+  headers: { 
+      <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
+      <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">`bearer <span class="hljs-subst">${accessCode}</span>`</span>
+  },
+  body: <span class="hljs-built_in">JSON</span>.stringify({ query: githubApiv4.queries.Viewer }),
+})
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+      <span class="hljs-keyword">if</span>((res.data <span class="hljs-keyword">as</span> githubApiv4.types.Viewer).viewer){
+        <span class="hljs-built_in">console</span>.log(res.data)
+      }<span class="hljs-keyword">else</span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Type Mismatch!'</span>);
+      }
+  })</code></pre>
+				<p>Github API response (res.data is) of type <a href="https://github-apiv4.netlify.com/interfaces/_types_.viewer.html">githubApiv4.types.Viewer</a></p>
+				<p>Execute script on the command line</p>
+				<pre><code class="language-bash">tsc exampleTS.ts
+node exampleTS.js</code></pre>
+				<p><strong>Apollo Client Example - query Repository:</strong></p>
+				<p>Save file as <strong>apolloClient.ts</strong></p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> githubApiV4 <span class="hljs-keyword">from</span> <span class="hljs-string">'github-apiv4'</span>;
+<span class="hljs-keyword">import</span> { HttpLink } <span class="hljs-keyword">from</span> <span class="hljs-string">'apollo-link-http'</span>;
+<span class="hljs-keyword">import</span> ApolloClient <span class="hljs-keyword">from</span> <span class="hljs-string">'apollo-client'</span>;
+<span class="hljs-keyword">import</span> { InMemoryCache, IntrospectionFragmentMatcher, NormalizedCacheObject } <span class="hljs-keyword">from</span> <span class="hljs-string">'apollo-cache-inmemory'</span>;
+<span class="hljs-keyword">import</span> { fetch } <span class="hljs-keyword">from</span> <span class="hljs-string">'cross-fetch'</span>;
+<span class="hljs-keyword">import</span> gql <span class="hljs-keyword">from</span> <span class="hljs-string">"graphql-tag"</span>;
+
+<span class="hljs-keyword">const</span> accessCode = <span class="hljs-string">'YOUR_GITHUB_ACCESS_CODE'</span>;
+<span class="hljs-keyword">const</span> client: ApolloClient&lt;NormalizedCacheObject&gt; = <span class="hljs-keyword">new</span> ApolloClient({
+    link: <span class="hljs-keyword">new</span> HttpLink({ uri: <span class="hljs-string">'https://api.github.com/graphql'</span>, fetch }),
+    cache: <span class="hljs-keyword">new</span> InMemoryCache({
+        fragmentMatcher: <span class="hljs-keyword">new</span> IntrospectionFragmentMatcher({
+          introspectionQueryResultData: {
+            __schema: {
+              types: [],
+            },
+          },
+        }),
+      }),
+});
+
+<span class="hljs-comment">// query variables used in repository query (githubApiV4.queryVariables.Repository)</span>
+<span class="hljs-keyword">const</span> queryVariables: githubApiV4.queryVariables.Repository = {
+    repositoryName: <span class="hljs-string">'github-apiv4'</span>,
+    repositoryOwner: <span class="hljs-string">'community'</span>
+};
+
+<span class="hljs-comment">// query with apollo-client</span>
+client.query({
+    query: gql<span class="hljs-string">`<span class="hljs-subst">${githubApiV4.queries.Repository}</span>`</span>,
+    variables: queryVariables,
+    context: {
+        headers: {
+            Authorization: <span class="hljs-string">`bearer <span class="hljs-subst">${accessCode}</span>`</span>
+        }
+    }
+}).then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>{
+    <span class="hljs-keyword">if</span>(res.data <span class="hljs-keyword">as</span> githubApiV4.types.Repository){
+        <span class="hljs-built_in">console</span>.log(res.data);
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Type Mismatch!'</span>);
+    }
+});</code></pre>
+				<p>Github API response (res.data is) of type <a href="https://github-apiv4.netlify.com/interfaces/_types_.repository.html">githubApiv4.types.Repository</a></p>
+				<p>Execute script on the command line</p>
+				<pre><code class="language-bash">tsc apolloClient.ts
+node apolloClient.js</code></pre>
+				<a href="#resources" id="resources" style="color: inherit; text-decoration: none;">
+					<h1>Resources</h1>
+				</a>
+				<ul>
+					<li><a href="https://github-apiv4.netlify.com/">API Documentation</a></li>
+					<li><a href="#usage">Examples</a></li>
+				</ul>
+				<a href="#contribute" id="contribute" style="color: inherit; text-decoration: none;">
+					<h1>Contribute</h1>
+				</a>
+				<a href="#contributing-to-github-apiv4" id="contributing-to-github-apiv4" style="color: inherit; text-decoration: none;">
+					<h3>Contributing to Github-APIv4</h3>
+				</a>
+				<p>Check out <a href="https://github.com/ioedeveloper/github-apiv4/blob/master/CONTRIBUTING.md">contributing guide</a> to get an overview of github-apiv4 development.</p>
+				<a href="#faq" id="faq" style="color: inherit; text-decoration: none;">
+					<h1>FAQ</h1>
+				</a>
+				<a href="#questions" id="questions" style="color: inherit; text-decoration: none;">
+					<h3>Questions?</h3>
+				</a>
+				<ul>
+					<li><a href="https://github.com/ioedeveloper/github-apiv4/issues">bugtracker</a></li>
+				</ul>
+			</div>
+			<!--{&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;exclude&quot;:[&quot;**/*+(index).ts&quot;],&quot;outline&quot;:[{&quot;Queries&quot;:&quot;_queries_&quot;,&quot;Types&quot;:&quot;_types_&quot;,&quot;Query Variables&quot;:&quot;_variables_&quot;}]}-->
+		</div>
+		<div class="col-2 col-menu secondary-menu">
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

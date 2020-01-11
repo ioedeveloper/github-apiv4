@@ -891,3 +891,40 @@ export const ViewerFollowers = `
     }
   }
 `;
+
+/**
+ * @description Github Graphql Query for Github User
+ * @queryVariable username: String!
+ */
+export const User = `
+  query($username: String!){
+    user(login: $username){
+      id
+      email
+      login
+      url
+      createdAt
+      updatedAt
+      databaseId
+      location
+      companyHTML
+      company
+      avatarUrl
+      bio
+      websiteUrl
+      isHireable
+      isDeveloperProgramMember
+      anyPinnableItems
+      isSiteAdmin
+      isViewer
+      viewerCanFollow
+      viewerIsFollowing
+      viewerCanCreateProjects
+      isEmployee
+      isBountyHunter
+      isCampusExpert
+      pinnedItemsRemaining
+      projectsUrl
+    }
+  }
+`;

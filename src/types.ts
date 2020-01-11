@@ -2,35 +2,37 @@
  * @description Github Graphql API response type for Viewer query
  */
 export declare interface Viewer {
-    viewer: {
-        id: string;
-        email: string;
-        login: string;
-        url: string;
-        createdAt: string;
-        updatedAt: string;
-        databaseId: string;
-        companyHTML: string;
-        projectsUrl: string | null;
-        location: string | null;
-        company: string | null;
-        avatarUrl: string | null;
-        bio: string | null;
-        websiteUrl: string | null;
-        isHireable: boolean;
-        isDeveloperProgramMember: boolean;
-        anyPinnableItems: boolean;
-        isSiteAdmin: boolean;
-        viewerCanFollow: boolean;
-        viewerIsFollowing: boolean;
-        viewerCanCreateProjects: boolean;
-        isEmployee: boolean;
-        isBountyHunter: boolean;
-        isCampusExpert: boolean;
-        isViewer: boolean;
-        viewerCanChangePinnedItems: boolean;
-        pinnedItemsRemaining: number;
-    };
+    viewer: UserInfo;
+}
+
+export declare interface UserInfo {
+    id: string;
+    email: string;
+    login: string;
+    url: string;
+    createdAt: string;
+    updatedAt: string;
+    databaseId: string;
+    companyHTML: string;
+    projectsUrl: string | null;
+    location: string | null;
+    company: string | null;
+    avatarUrl: string | null;
+    bio: string | null;
+    websiteUrl: string | null;
+    isHireable: boolean;
+    isDeveloperProgramMember: boolean;
+    anyPinnableItems: boolean;
+    isSiteAdmin: boolean;
+    viewerCanFollow: boolean;
+    viewerIsFollowing: boolean;
+    viewerCanCreateProjects: boolean;
+    isEmployee: boolean;
+    isBountyHunter: boolean;
+    isCampusExpert: boolean;
+    isViewer: boolean;
+    viewerCanChangePinnedItems: boolean;
+    pinnedItemsRemaining: number;
 }
 
 export declare interface FileEntries {
@@ -243,7 +245,7 @@ export declare interface ViewerFollowers {
     viewer: {
         followers: {
             edges: [{
-                node: Viewer;
+                node: UserInfo;
                 cursor: string;
             }];
             pageInfo: {
@@ -255,4 +257,8 @@ export declare interface ViewerFollowers {
             totalCount: number;
         };
     };
+}
+
+export declare interface User {
+    user: UserInfo;
 }
