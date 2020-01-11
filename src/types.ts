@@ -38,17 +38,17 @@ export declare interface UserInfo {
 export declare interface FileEntries {
     name: string;
     type: string;
-    child: {
+    child?: {
         entries: FileEntries[];
     };
 }
 
 export declare interface FileEntriesContent {
-    text: Blob;
     name: string;
     type: string;
     child: {
-        entries: FileEntriesContent[];
+        text?: Blob | null;
+        entries?: FileEntriesContent[];
     };
 }
 

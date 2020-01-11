@@ -562,87 +562,86 @@ export const Repository = `
  * @queryVariable expression: "refs/heads/master" OR commit hash
  */
 export const CommitContent = `
-  query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
-    repository(owner: $repositoryOwner, name: $repositoryName){
-      commit: object(expression: $expression){
-        ... on Commit{
-          files: tree{
-              entries{
-                  name
-                  type
-                  child: object{
-                      ... on Blob{
-                        text
-                      }
-                      ... on Tree{
-                        entries{
-                          name
-                          type
-                          child: object{
-                            ... on Blob{
-                              text
-                            }
-                            ... on Tree{
-                              entries{
-                                name
-                                type
-                                child: object{
-                                  ... on Blob{
-                                    text
-                                  }
-                                  ... on Tree{
-                                    entries{
-                                      name
-                                      type
-                                      child: object{
-                                        ... on Blob{
-                                          text
-                                        }
-                                        ... on Tree{
-                                          entries{
-                                            name
-                                            type
-                                            child: object{
-                                              ... on Blob{
-                                                text
-                                              }
-                                              ... on Tree{
-                                                entries{
-                                                  name
-                                                  type
-                                                  child: object{
-                                                    ... on Blob{
-                                                      text
-                                                    }
-                                                    ... on Tree{
-                                                      entries{
-                                                        name
-                                                        type
-                                                        child: object{
-                                                          ... on Blob{
-                                                            text
-                                                          }
-                                                          ... on Tree{
-                                                            entries{
-                                                              name
-                                                              type
-                                                              child: object{
-                                                                ... on Blob{
-                                                                  text
-                                                                }
-                                                                ... on Tree{
-                                                                  entries{
-                                                                    name
-                                                                    type
-                                                                    child: object{
-                                                                      ... on Blob{
-                                                                        text
-                                                                      }
-                                                                      ... on Tree{
-                                                                        entries{
-                                                                          name
-                                                                          type
-                                                                        }
+query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
+  repository(owner: $repositoryOwner, name: $repositoryName){
+    commit: object(expression: $expression){
+      ... on Commit{
+        files: tree{
+            entries{
+                name
+                type
+                child: object{
+                    ... on Blob{
+                      text
+                    }
+                    ... on Tree{
+                      entries{
+                        name
+                        type
+                        child: object{
+                          ... on Blob{
+                            text
+                          }
+                          ... on Tree{
+                            entries{
+                              name
+                              type
+                              child: object{
+                                ... on Blob{
+                                  text
+                                }
+                                ... on Tree{
+                                  entries{
+                                    name
+                                    type
+                                    child: object{
+                                      ... on Blob{
+                                        text
+                                      }
+                                      ... on Tree{
+                                        entries{
+                                          name
+                                          type
+                                          child: object{
+                                            ... on Blob{
+                                              text
+                                            }
+                                            ... on Tree{
+                                              entries{
+                                                name
+                                                type
+                                                child: object{
+                                                  ... on Blob{
+                                                    text
+                                                  }
+                                                  ... on Tree{
+                                                    entries{
+                                                      name
+                                                      type
+                                                      child: object{
+                                                        ... on Blob{
+                                                          text
+                                                        }
+                                                        ... on Tree{
+                                                          entries{
+                                                            name
+                                                            type
+                                                            child: object{
+                                                              ... on Blob{
+                                                                text
+                                                              }
+                                                              ... on Tree{
+                                                                entries{
+                                                                  name
+                                                                  type
+                                                                  child: object{
+                                                                    ... on Blob{
+                                                                      text
+                                                                    }
+                                                                    ... on Tree{
+                                                                      entries{
+                                                                        name
+                                                                        type
                                                                       }
                                                                     }
                                                                   }
@@ -669,12 +668,13 @@ export const CommitContent = `
                         }
                       }
                     }
-          }
-          }
-      }
-      }
+                  }
+        }
+        }
+    }
     }
   }
+}
 `;
 
 /**
