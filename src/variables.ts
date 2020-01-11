@@ -15,8 +15,11 @@ export declare interface RepositoryDirectories {
 export declare interface Branches {
     repositoryOwner: string;
     repositoryName: string;
-    first: number;
-    after: string;
+    first?: number;
+    after?: string;
+    before?: string;
+    last?: number;
+    refPrefix?: string;
 }
 
 export declare interface BranchContent {
@@ -57,4 +60,15 @@ export declare interface Commit {
 
 export declare interface CodeOfConduct {
     key: string;
+}
+
+export declare interface ViewerFollowers {
+    after?: string;
+    before?: string;
+    first?: number;
+    last?: number;
+}
+
+export declare interface User {
+    username: string;
 }

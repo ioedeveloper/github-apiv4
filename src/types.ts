@@ -2,51 +2,53 @@
  * @description Github Graphql API response type for Viewer query
  */
 export declare interface Viewer {
-    viewer: {
-        id: string;
-        email: string;
-        login: string;
-        url: string;
-        createdAt: string;
-        updatedAt: string;
-        databaseId: string;
-        companyHTML: string;
-        projectsUrl: string | null;
-        location: string | null;
-        company: string | null;
-        avatarUrl: string | null;
-        bio: string | null;
-        websiteUrl: string | null;
-        isHireable: boolean;
-        isDeveloperProgramMember: boolean;
-        anyPinnableItems: boolean;
-        isSiteAdmin: boolean;
-        viewerCanFollow: boolean;
-        viewerIsFollowing: boolean;
-        viewerCanCreateProjects: boolean;
-        isEmployee: boolean;
-        isBountyHunter: boolean;
-        isCampusExpert: boolean;
-        isViewer: boolean;
-        viewerCanChangePinnedItems: boolean;
-        pinnedItemsRemaining: number;
-    };
+    viewer: UserInfo;
+}
+
+export declare interface UserInfo {
+    id: string;
+    email: string;
+    login: string;
+    url: string;
+    createdAt: string;
+    updatedAt: string;
+    databaseId: string;
+    companyHTML: string;
+    projectsUrl: string | null;
+    location: string | null;
+    company: string | null;
+    avatarUrl: string | null;
+    bio: string | null;
+    websiteUrl: string | null;
+    isHireable: boolean;
+    isDeveloperProgramMember: boolean;
+    anyPinnableItems: boolean;
+    isSiteAdmin: boolean;
+    viewerCanFollow: boolean;
+    viewerIsFollowing: boolean;
+    viewerCanCreateProjects: boolean;
+    isEmployee: boolean;
+    isBountyHunter: boolean;
+    isCampusExpert: boolean;
+    isViewer: boolean;
+    viewerCanChangePinnedItems: boolean;
+    pinnedItemsRemaining: number;
 }
 
 export declare interface FileEntries {
     name: string;
     type: string;
-    child: {
+    child?: {
         entries: FileEntries[];
     };
 }
 
 export declare interface FileEntriesContent {
-    text: Blob;
     name: string;
     type: string;
     child: {
-        entries: FileEntriesContent[];
+        text?: Blob | null;
+        entries?: FileEntriesContent[];
     };
 }
 
@@ -83,6 +85,7 @@ export declare interface Branches {
                     name: string;
                     prefix: string;
                 };
+                cursor: string;
             }];
             pageInfo: {
                 endCursor: string;
@@ -236,4 +239,26 @@ export declare interface CodeOfConduct {
         resourcePath: string;
         url: string;
     };
+}
+
+export declare interface ViewerFollowers {
+    viewer: {
+        followers: {
+            edges: [{
+                node: UserInfo;
+                cursor: string;
+            }];
+            pageInfo: {
+                endCursor: string;
+                hasNextPage: string;
+                hasPreviousPage: string;
+                startCursor: string;
+            }
+            totalCount: number;
+        };
+    };
+}
+
+export declare interface User {
+    user: UserInfo;
 }
