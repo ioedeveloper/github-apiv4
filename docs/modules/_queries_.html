@@ -87,6 +87,7 @@
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#commit" class="tsd-kind-icon">Commit</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#commitcontent" class="tsd-kind-icon">CommitContent</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#commitdirectories" class="tsd-kind-icon">CommitDirectories</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repositories" class="tsd-kind-icon">Repositories</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repository" class="tsd-kind-icon">Repository</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repositorycontent" class="tsd-kind-icon">RepositoryContent</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repositorydirectories" class="tsd-kind-icon">RepositoryDirectories</a></li>
@@ -237,6 +238,23 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="repositories" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Repositories</h3>
+					<div class="tsd-signature tsd-kind-icon">Repositories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($username: String!, $affiliations: RepositoryAffiliation, $after: String, $before: String, $first: Int, $isFork: Boolean, $isLocked: Boolean, $last: Int, $orderBy: RepositoryOrder, $privacy: RepositoryPrivacy){user(login: $username){repositories(affiliations: [$affiliations], after: $after, before: $before, first: $first, isFork: $isFork, isLocked: $isLocked, last: $last, orderBy: $orderBy, privacy: $privacy){edges{cursornode{createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCounttotalDiskUsage}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($username: String!, $affiliations: RepositoryAffiliation, $after: String, $before: String, $first: Int, $isFork: Boolean, $isLocked: Boolean, $last: Int, $orderBy: RepositoryOrder, $privacy: RepositoryPrivacy){user(login: $username){repositories(affiliations: [$affiliations], after: $after, before: $before, first: $first, isFork: $isFork, isLocked: $isLocked, last: $last, orderBy: $orderBy, privacy: $privacy){edges{cursornode{createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCounttotalDiskUsage}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:936</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for All User Repositories</p>
+							</dd><dt>queryvariable</dt>
+							<dd><p>username: String! first: Int!</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
 					<a name="repository" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Repository</h3>
 					<div class="tsd-signature tsd-kind-icon">Repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}&#x60;</span></div>
@@ -361,6 +379,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
 						<a href="_queries_.html#commitdirectories" class="tsd-kind-icon">Commit<wbr>Directories</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#repositories" class="tsd-kind-icon">Repositories</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
 						<a href="_queries_.html#repository" class="tsd-kind-icon">Repository</a>

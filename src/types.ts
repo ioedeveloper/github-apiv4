@@ -123,51 +123,53 @@ export declare interface BranchDirectories {
 }
 
 export declare interface Repository {
-    repository: null | {
-        createdAt: string;
-        databaseId: string;
-        description: string | null;
-        descriptionHTML: string;
-        diskUsage: number;
-        forkCount: number;
-        hasIssuesEnabled: boolean;
-        hasProjectsEnabled: boolean;
-        hasWikiEnabled: boolean;
-        homepageUrl: string | null;
-        id: string;
-        isArchived: boolean;
-        isDisabled: boolean;
-        isFork: boolean;
-        isLocked: boolean;
-        isMirror: boolean;
-        isPrivate: boolean;
-        isTemplate: boolean;
-        lockReason: string | null;
-        mergeCommitAllowed: boolean;
-        mirrorUrl: string | null;
-        name: string;
-        nameWithOwner: string;
-        openGraphImageUrl: string;
-        projectsResourcePath: string;
-        projectsUrl: string;
-        pushedAt: string;
-        rebaseMergeAllowed: boolean;
-        resourcePath: string;
-        shortDescriptionHTML: string;
-        squashMergeAllowed: boolean;
-        sshUrl: string;
-        tempCloneToken: string;
-        updatedAt: string;
-        url: string;
-        usesCustomOpenGraphImage: boolean;
-        viewerCanAdminister: boolean;
-        viewerCanCreateProjects: boolean;
-        viewerCanSubscribe: boolean;
-        viewerCanUpdateTopics: boolean;
-        viewerHasStarred: boolean;
-        viewerPermission: string;
-        viewerSubscription: string;
-    };
+    repository: null | RepositoryInfo;
+}
+
+export declare interface RepositoryInfo {
+    createdAt: string;
+    databaseId: string;
+    description: string | null;
+    descriptionHTML: string;
+    diskUsage: number;
+    forkCount: number;
+    hasIssuesEnabled: boolean;
+    hasProjectsEnabled: boolean;
+    hasWikiEnabled: boolean;
+    homepageUrl: string | null;
+    id: string;
+    isArchived: boolean;
+    isDisabled: boolean;
+    isFork: boolean;
+    isLocked: boolean;
+    isMirror: boolean;
+    isPrivate: boolean;
+    isTemplate: boolean;
+    lockReason: string | null;
+    mergeCommitAllowed: boolean;
+    mirrorUrl: string | null;
+    name: string;
+    nameWithOwner: string;
+    openGraphImageUrl: string;
+    projectsResourcePath: string;
+    projectsUrl: string;
+    pushedAt: string;
+    rebaseMergeAllowed: boolean;
+    resourcePath: string;
+    shortDescriptionHTML: string;
+    squashMergeAllowed: boolean;
+    sshUrl: string;
+    tempCloneToken: string;
+    updatedAt: string;
+    url: string;
+    usesCustomOpenGraphImage: boolean;
+    viewerCanAdminister: boolean;
+    viewerCanCreateProjects: boolean;
+    viewerCanSubscribe: boolean;
+    viewerCanUpdateTopics: boolean;
+    viewerHasStarred: boolean;
+    viewerPermission: string;
+    viewerSubscription: string;
 }
 
 export declare interface CommitDirectories {
@@ -261,4 +263,22 @@ export declare interface ViewerFollowers {
 
 export declare interface User {
     user: UserInfo;
+}
+
+export declare interface Repositories {
+    user: {
+        repositories: {
+            edges: [{
+                node: RepositoryInfo;
+                cursor: string;
+            }];
+            pageInfo: {
+                endCursor: string;
+                hasNextPage: string;
+                hasPreviousPage: string;
+                startCursor: string;
+            }
+            totalCount: number;
+        };
+    };
 }

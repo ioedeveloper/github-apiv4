@@ -72,3 +72,16 @@ export declare interface ViewerFollowers {
 export declare interface User {
     username: string;
 }
+
+export declare interface Repositories {
+    username: string;
+    affiliations?: string;
+    after?: string;
+    before?: string;
+    first?: number;
+    isFork?: boolean;
+    isLocked?: boolean;
+    last?: number;
+    orderBy?: string;
+    privacy?: string;
+}

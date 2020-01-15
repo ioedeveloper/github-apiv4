@@ -928,3 +928,73 @@ export const User = `
     }
   }
 `;
+
+/**
+ * @description Github Graphql Query for All User Repositories
+ * @queryVariable username: String! first: Int!
+ */
+export const Repositories = `
+  query($username: String!, $affiliations: RepositoryAffiliation, $after: String, $before: String, $first: Int, $isFork: Boolean, $isLocked: Boolean, $last: Int, $orderBy: RepositoryOrder, $privacy: RepositoryPrivacy){
+    user(login: $username){
+      repositories(affiliations: [$affiliations], after: $after, before: $before, first: $first, isFork: $isFork, isLocked: $isLocked, last: $last, orderBy: $orderBy, privacy: $privacy){
+        edges{
+          cursor
+          node{
+            createdAt
+            databaseId
+            description
+            descriptionHTML
+            diskUsage
+            forkCount
+            hasIssuesEnabled
+            hasProjectsEnabled
+            hasWikiEnabled
+            homepageUrl
+            id
+            isArchived
+            isDisabled
+            isFork
+            isLocked
+            isMirror
+            isPrivate
+            isTemplate
+            lockReason
+            mergeCommitAllowed
+            mirrorUrl
+            name
+            nameWithOwner
+            openGraphImageUrl
+            projectsResourcePath
+            projectsUrl
+            pushedAt
+            rebaseMergeAllowed
+            resourcePath
+            shortDescriptionHTML
+            squashMergeAllowed
+            sshUrl
+            tempCloneToken
+            updatedAt
+            url
+            usesCustomOpenGraphImage
+            viewerCanAdminister
+            viewerCanCreateProjects
+            viewerCanAdminister
+            viewerCanSubscribe
+            viewerCanUpdateTopics
+            viewerHasStarred
+            viewerPermission
+            viewerSubscription
+          }
+        }
+        pageInfo{
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+        totalCount
+        totalDiskUsage
+      }
+    }
+  }
+`;
