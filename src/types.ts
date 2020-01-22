@@ -282,3 +282,54 @@ export declare interface Repositories {
         };
     };
 }
+
+export declare interface Author {
+    avatarUrl: string;
+    login: string;
+    resourcePath: string;
+    url: string;
+}
+
+export declare interface CommitContents {
+    user: {
+        commitComments: {
+            edges: [{
+                cursor: string;
+                node: {
+                    author: Author;
+                    authorAssociation: string;
+                    body: string;
+                    bodyHTML: string;
+                    bodyText: string;
+                    createdAt: string;
+                    createdViaEmail: string;
+                    databaseId: number;
+                    editor: Author | null;
+                    id: string;
+                    includesCreatedEdit: boolean;
+                    isMinimized: boolean;
+                    lastEditedAt: string | null;
+                    minimizedReason: string | null;
+                    path: string | null;
+                    position: number | null;
+                    publishedAt: string;
+                    resourcePath: string;
+                    updatedAt: string;
+                    url: string;
+                    viewerCanDelete: boolean;
+                    viewerCanMinimize: boolean;
+                    viewerCanReact: boolean;
+                    viewerCanUpdate: boolean;
+                    viewerCannotUpdateReasons: string[];
+                }
+            }] | [];
+            pageInfo: {
+                endCursor: string | null;
+                hasNextPage: boolean;
+                hasPreviousPage: boolean;
+                startCursor: string | null;
+            }
+            totalCount: number;
+        };
+    };
+}

@@ -998,3 +998,63 @@ export const Repositories = `
     }
   }
 `;
+
+/**
+ * @description Github Graphql Query for CommitComments
+ * @queryVariable username: String! first: Int!
+ */
+export const CommitComments = `
+query($username: String!, $after: String, $before: String, $first: Int, $last: Int){
+	user(login: $username){
+    commitComments(after: $after, before: $before, first: $first, last: $last){
+      edges{
+        cursor
+        node{
+          author{
+            avatarUrl
+            login
+            resourcePath
+            url
+          }
+          authorAssociation
+          body
+          bodyHTML
+          bodyText
+          createdAt
+          createdViaEmail
+          databaseId
+          editor{
+            avatarUrl
+            login
+            resourcePath
+            url
+          }
+          id
+          includesCreatedEdit
+          isMinimized
+          lastEditedAt
+          minimizedReason
+          path
+          position
+          publishedAt
+          resourcePath
+          updatedAt
+          url
+          viewerCanDelete
+          viewerCanMinimize
+          viewerCanReact
+          viewerCanUpdate
+          viewerCannotUpdateReasons
+        }
+      }
+      pageInfo{
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      totalCount
+    }
+  }
+}
+`;

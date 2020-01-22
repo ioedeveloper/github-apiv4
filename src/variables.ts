@@ -85,3 +85,11 @@ export declare interface Repositories {
     orderBy?: string;
     privacy?: string;
 }
+
+export declare interface CommitContents {
+    username: string;
+    after?: string;
+    before?: string;
+    first?: number;
+    last?: number;
+}
