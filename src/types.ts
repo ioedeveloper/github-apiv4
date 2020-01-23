@@ -290,7 +290,7 @@ export declare interface Author {
     url: string;
 }
 
-export declare interface CommitContents {
+export declare interface UserCommitContents {
     user: {
         commitComments: {
             edges: [{
@@ -323,6 +323,57 @@ export declare interface CommitContents {
                     viewerCannotUpdateReasons: string[];
                 }
             }] | [];
+            pageInfo: {
+                endCursor: string | null;
+                hasNextPage: boolean;
+                hasPreviousPage: boolean;
+                startCursor: string | null;
+            }
+            totalCount: number;
+        };
+    };
+}
+
+export declare interface UserIssues {
+    user: {
+        issues: {
+            edges: [{
+                cursor: string;
+                node: {
+                    activeLockReason: string | null;
+                    author: Author;
+                    body: string;
+                    bodyHTML: string;
+                    bodyText: string;
+                    closed: boolean;
+                    closedAt: string;
+                    createdAt: string;
+                    createdViaEmail: boolean;
+                    databaseId: number;
+                    editor: Author | null;
+                    hovercard: [{
+                        message: string;
+                        octicon: string;
+                    }];
+                    id: string;
+                    includesCreatedEdit: boolean;
+                    lastEditedAt: string | null;
+                    locked: boolean;
+                    number: number;
+                    publishedAt: string;
+                    resourcePath: string;
+                    state: string;
+                    title: string;
+                    updatedAt: string;
+                    url: string;
+                    viewerCanReact: boolean;
+                    viewerCanSubscribe: boolean;
+                    viewerCanUpdate: boolean;
+                    viewerCannotUpdateReasons: string[];
+                    viewerDidAuthor: boolean;
+                    viewerSubscription: string;
+                };
+            }];
             pageInfo: {
                 endCursor: string | null;
                 hasNextPage: boolean;

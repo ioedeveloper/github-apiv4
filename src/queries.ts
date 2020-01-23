@@ -1003,7 +1003,7 @@ export const Repositories = `
  * @description Github Graphql Query for CommitComments
  * @queryVariable username: String! first: Int!
  */
-export const CommitComments = `
+export const UserCommitComments = `
 query($username: String!, $after: String, $before: String, $first: Int, $last: Int){
 	user(login: $username){
     commitComments(after: $after, before: $before, first: $first, last: $last){
@@ -1045,6 +1045,81 @@ query($username: String!, $after: String, $before: String, $first: Int, $last: I
           viewerCanReact
           viewerCanUpdate
           viewerCannotUpdateReasons
+        }
+      }
+      pageInfo{
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      totalCount
+    }
+  }
+}
+`;
+
+/**
+ * @description Github Graphql Query for User Issues
+ * @queryVariable username: String! first: Int!
+ */
+export const UserIssues = `
+query($username: String!, $before: String, $after: String, $filterBy: IssueFilters, $first: Int, $last: Int, $orderBy: IssueOrder, $includeNotificationContexts: Boolean = true){
+  user(login: $username){
+    issues(after: $after, before: $before, filterBy: $filterBy, first: $first, last: $last, orderBy: $orderBy){
+      edges{
+        cursor
+        node{
+          activeLockReason
+          author{
+            avatarUrl
+            login
+            resourcePath
+            url
+          }
+          body
+          bodyHTML
+          bodyText
+          closed
+          closedAt
+          createdAt
+          createdViaEmail
+          databaseId
+          editor{
+            avatarUrl
+            login
+            resourcePath
+            url
+          }
+          hovercard(includeNotificationContexts: $includeNotificationContexts){
+            contexts{
+              message
+              octicon
+            }
+          }
+          id
+          includesCreatedEdit
+          lastEditedAt
+          locked
+          milestone {
+            id
+          }
+          number
+          publishedAt
+          reactionGroups {
+            createdAt
+          }
+          resourcePath
+          state
+          title
+          updatedAt
+          url
+          viewerCanReact
+          viewerCanSubscribe
+          viewerCanUpdate
+          viewerCannotUpdateReasons
+          viewerDidAuthor
+          viewerSubscription
         }
       }
       pageInfo{

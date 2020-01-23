@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Branches | github-apiv4 - v2.2.0</title>
+	<title>UserCommitContents | github-apiv4 - v2.2.0</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -58,7 +58,7 @@
 					<a href="../modules/_types_.html">types</a>
 				</li>
 				<li>
-					<a href="_types_.branches.html">Branches</a>
+					<a href="_types_.usercommitcontents.html">UserCommitContents</a>
 				</li>
 			</ul>
 		</div>
@@ -75,12 +75,12 @@
 			</nav>
 		</div>
 		<div class="col-7 offset-3 col-content">
-			<h1>Interface Branches</h1>
+			<h1>Interface UserCommitContents</h1>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Branches</span>
+						<span class="target">UserCommitContents</span>
 					</li>
 				</ul>
 			</section>
@@ -90,7 +90,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.branches.html#repository" class="tsd-kind-icon">repository</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.usercommitcontents.html#user" class="tsd-kind-icon">user</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,14 +99,47 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="repository" class="tsd-anchor"></a>
-					<h3>repository</h3>
-					<div class="tsd-signature tsd-kind-icon">repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></div>
+					<a name="user" class="tsd-anchor"></a>
+					<h3>user</h3>
+					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in types.ts:80</li>
+							<li>Defined in types.ts:294</li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>commit<wbr>Comments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>edges<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">[]</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>page<wbr>Info<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>end<wbr>Cursor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>has<wbr>Next<wbr>Page<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>has<wbr>Previous<wbr>Page<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>start<wbr>Cursor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+											</li>
+										</ul>
+									</li>
+									<li class="tsd-parameter">
+										<h5>total<wbr>Count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 			<!--{&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;exclude&quot;:[&quot;**/*+(index).ts&quot;],&quot;outline&quot;:[{&quot;Queries&quot;:&quot;_queries_&quot;,&quot;Types&quot;:&quot;_types_&quot;,&quot;Query Variables&quot;:&quot;_variables_&quot;}]}-->
@@ -126,18 +159,9 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_types_.branchdirectories.html" class="tsd-kind-icon">Branch<wbr>Directories</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module root">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_types_.branches.html" class="tsd-kind-icon">Branches</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.branches.html#repository" class="tsd-kind-icon">repository</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_types_.codeofconduct.html" class="tsd-kind-icon">Code<wbr>OfConduct</a>
 					</li>
@@ -174,9 +198,18 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_types_.user.html" class="tsd-kind-icon">User</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_types_.usercommitcontents.html" class="tsd-kind-icon">User<wbr>Commit<wbr>Contents</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.usercommitcontents.html#user" class="tsd-kind-icon">user</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_types_.userinfo.html" class="tsd-kind-icon">User<wbr>Info</a>
 					</li>

@@ -2,6 +2,7 @@
 <!-- [START badges] -->
 ![travis build](https://api.travis-ci.org/ioedeveloper/github-apiv4.svg?branch=master)
 [![npm version](https://badge.fury.io/js/github-apiv4.svg)](https://badge.fury.io/js/github-apiv4)
+[![Open Source Helpers](https://www.codetriage.com/ioedeveloper/github-apiv4/badges/users.svg)](https://www.codetriage.com/ioedeveloper/github-apiv4)
 <!-- [END badges] -->
 
 ###### [API](https://github-apiv4.netlify.com/) | [Contribute](#contribute) | [FAQ](#faq)

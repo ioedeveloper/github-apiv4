@@ -86,10 +86,21 @@ export declare interface Repositories {
     privacy?: string;
 }
 
-export declare interface CommitContents {
+export declare interface UserCommitComments {
     username: string;
     after?: string;
     before?: string;
     first?: number;
     last?: number;
+}
+
+export declare interface UserIssues {
+    username: string;
+    before?: string;
+    after?: string;
+    filterBy?: string;
+    first?: number;
+    last?: number;
+    orderBy?: string;
+    includeNotificationContexts?: boolean;
 }
