@@ -87,10 +87,13 @@
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#commit" class="tsd-kind-icon">Commit</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#commitcontent" class="tsd-kind-icon">CommitContent</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#commitdirectories" class="tsd-kind-icon">CommitDirectories</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repositories" class="tsd-kind-icon">Repositories</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repository" class="tsd-kind-icon">Repository</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repositorycontent" class="tsd-kind-icon">RepositoryContent</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#repositorydirectories" class="tsd-kind-icon">RepositoryDirectories</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#user" class="tsd-kind-icon">User</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#usercommitcomments" class="tsd-kind-icon">UserCommitComments</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#userissues" class="tsd-kind-icon">UserIssues</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#viewer" class="tsd-kind-icon">Viewer</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_queries_.html#viewerfollowers" class="tsd-kind-icon">ViewerFollowers</a></li>
 							</ul>
@@ -237,6 +240,23 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="repositories" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Repositories</h3>
+					<div class="tsd-signature tsd-kind-icon">Repositories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($username: String!, $affiliations: RepositoryAffiliation, $after: String, $before: String, $first: Int, $isFork: Boolean, $isLocked: Boolean, $last: Int, $orderBy: RepositoryOrder, $privacy: RepositoryPrivacy){user(login: $username){repositories(affiliations: [$affiliations], after: $after, before: $before, first: $first, isFork: $isFork, isLocked: $isLocked, last: $last, orderBy: $orderBy, privacy: $privacy){edges{cursornode{createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCounttotalDiskUsage}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($username: String!, $affiliations: RepositoryAffiliation, $after: String, $before: String, $first: Int, $isFork: Boolean, $isLocked: Boolean, $last: Int, $orderBy: RepositoryOrder, $privacy: RepositoryPrivacy){user(login: $username){repositories(affiliations: [$affiliations], after: $after, before: $before, first: $first, isFork: $isFork, isLocked: $isLocked, last: $last, orderBy: $orderBy, privacy: $privacy){edges{cursornode{createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCounttotalDiskUsage}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:936</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for All User Repositories</p>
+							</dd><dt>queryvariable</dt>
+							<dd><p>username: String! first: Int!</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
 					<a name="repository" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Repository</h3>
 					<div class="tsd-signature tsd-kind-icon">Repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($repositoryOwner: String!, $repositoryName: String!){repository(owner: $repositoryOwner, name: $repositoryName){createdAtdatabaseIddescriptiondescriptionHTMLdiskUsageforkCounthasIssuesEnabledhasProjectsEnabledhasWikiEnabledhomepageUrlidisArchivedisDisabledisForkisLockedisMirrorisPrivateisTemplatelockReasonmergeCommitAllowedmirrorUrlnamenameWithOwneropenGraphImageUrlprojectsResourcePathprojectsUrlpushedAtrebaseMergeAllowedresourcePathshortDescriptionHTMLsquashMergeAllowedsshUrltempCloneTokenupdatedAturlusesCustomOpenGraphImageviewerCanAdministerviewerCanCreateProjectsviewerCanAdministerviewerCanSubscribeviewerCanUpdateTopicsviewerHasStarredviewerPermissionviewerSubscription}}&#x60;</span></div>
@@ -297,6 +317,40 @@
 							<dd><p>Github Graphql Query for Github User</p>
 							</dd><dt>queryvariable</dt>
 							<dd><p>username: String!</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="usercommitcomments" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> User<wbr>Commit<wbr>Comments</h3>
+					<div class="tsd-signature tsd-kind-icon">User<wbr>Commit<wbr>Comments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($username: String!, $after: String, $before: String, $first: Int, $last: Int){user(login: $username){commitComments(after: $after, before: $before, first: $first, last: $last){edges{cursornode{author{avatarUrlloginresourcePathurl}authorAssociationbodybodyHTMLbodyTextcreatedAtcreatedViaEmaildatabaseIdeditor{avatarUrlloginresourcePathurl}idincludesCreatedEditisMinimizedlastEditedAtminimizedReasonpathpositionpublishedAtresourcePathupdatedAturlviewerCanDeleteviewerCanMinimizeviewerCanReactviewerCanUpdateviewerCannotUpdateReasons}}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCount}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($username: String!, $after: String, $before: String, $first: Int, $last: Int){user(login: $username){commitComments(after: $after, before: $before, first: $first, last: $last){edges{cursornode{author{avatarUrlloginresourcePathurl}authorAssociationbodybodyHTMLbodyTextcreatedAtcreatedViaEmaildatabaseIdeditor{avatarUrlloginresourcePathurl}idincludesCreatedEditisMinimizedlastEditedAtminimizedReasonpathpositionpublishedAtresourcePathupdatedAturlviewerCanDeleteviewerCanMinimizeviewerCanReactviewerCanUpdateviewerCannotUpdateReasons}}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCount}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:1006</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for CommitComments</p>
+							</dd><dt>queryvariable</dt>
+							<dd><p>username: String! first: Int!</p>
+						</dd></dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="userissues" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> User<wbr>Issues</h3>
+					<div class="tsd-signature tsd-kind-icon">User<wbr>Issues<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"query($username: String!, $before: String, $after: String, $filterBy: IssueFilters, $first: Int, $last: Int, $orderBy: IssueOrder, $includeNotificationContexts: Boolean &#x3D; true){user(login: $username){issues(after: $after, before: $before, filterBy: $filterBy, first: $first, last: $last, orderBy: $orderBy){edges{cursornode{activeLockReasonauthor{avatarUrlloginresourcePathurl}bodybodyHTMLbodyTextclosedclosedAtcreatedAtcreatedViaEmaildatabaseIdeditor{avatarUrlloginresourcePathurl}hovercard(includeNotificationContexts: $includeNotificationContexts){contexts{messageocticon}}idincludesCreatedEditlastEditedAtlockedmilestone {id}numberpublishedAtreactionGroups {createdAt}resourcePathstatetitleupdatedAturlviewerCanReactviewerCanSubscribeviewerCanUpdateviewerCannotUpdateReasonsviewerDidAuthorviewerSubscription}}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCount}}}"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;query($username: String!, $before: String, $after: String, $filterBy: IssueFilters, $first: Int, $last: Int, $orderBy: IssueOrder, $includeNotificationContexts: Boolean &#x3D; true){user(login: $username){issues(after: $after, before: $before, filterBy: $filterBy, first: $first, last: $last, orderBy: $orderBy){edges{cursornode{activeLockReasonauthor{avatarUrlloginresourcePathurl}bodybodyHTMLbodyTextclosedclosedAtcreatedAtcreatedViaEmaildatabaseIdeditor{avatarUrlloginresourcePathurl}hovercard(includeNotificationContexts: $includeNotificationContexts){contexts{messageocticon}}idincludesCreatedEditlastEditedAtlockedmilestone {id}numberpublishedAtreactionGroups {createdAt}resourcePathstatetitleupdatedAturlviewerCanReactviewerCanSubscribeviewerCanUpdateviewerCannotUpdateReasonsviewerDidAuthorviewerSubscription}}pageInfo{endCursorhasNextPagehasPreviousPagestartCursor}totalCount}}}&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in queries.ts:1066</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-tags">
+						<dl class="tsd-comment-tags"><dt>description</dt>
+							<dd><p>Github Graphql Query for User Issues</p>
+							</dd><dt>queryvariable</dt>
+							<dd><p>username: String! first: Int!</p>
 						</dd></dl>
 					</div>
 				</section>
@@ -363,6 +417,9 @@
 						<a href="_queries_.html#commitdirectories" class="tsd-kind-icon">Commit<wbr>Directories</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#repositories" class="tsd-kind-icon">Repositories</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
 						<a href="_queries_.html#repository" class="tsd-kind-icon">Repository</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
@@ -373,6 +430,12 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
 						<a href="_queries_.html#user" class="tsd-kind-icon">User</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#usercommitcomments" class="tsd-kind-icon">User<wbr>Commit<wbr>Comments</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
+						<a href="_queries_.html#userissues" class="tsd-kind-icon">User<wbr>Issues</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module root">
 						<a href="_queries_.html#viewer" class="tsd-kind-icon">Viewer</a>

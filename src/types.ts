@@ -123,51 +123,53 @@ export declare interface BranchDirectories {
 }
 
 export declare interface Repository {
-    repository: null | {
-        createdAt: string;
-        databaseId: string;
-        description: string | null;
-        descriptionHTML: string;
-        diskUsage: number;
-        forkCount: number;
-        hasIssuesEnabled: boolean;
-        hasProjectsEnabled: boolean;
-        hasWikiEnabled: boolean;
-        homepageUrl: string | null;
-        id: string;
-        isArchived: boolean;
-        isDisabled: boolean;
-        isFork: boolean;
-        isLocked: boolean;
-        isMirror: boolean;
-        isPrivate: boolean;
-        isTemplate: boolean;
-        lockReason: string | null;
-        mergeCommitAllowed: boolean;
-        mirrorUrl: string | null;
-        name: string;
-        nameWithOwner: string;
-        openGraphImageUrl: string;
-        projectsResourcePath: string;
-        projectsUrl: string;
-        pushedAt: string;
-        rebaseMergeAllowed: boolean;
-        resourcePath: string;
-        shortDescriptionHTML: string;
-        squashMergeAllowed: boolean;
-        sshUrl: string;
-        tempCloneToken: string;
-        updatedAt: string;
-        url: string;
-        usesCustomOpenGraphImage: boolean;
-        viewerCanAdminister: boolean;
-        viewerCanCreateProjects: boolean;
-        viewerCanSubscribe: boolean;
-        viewerCanUpdateTopics: boolean;
-        viewerHasStarred: boolean;
-        viewerPermission: string;
-        viewerSubscription: string;
-    };
+    repository: null | RepositoryInfo;
+}
+
+export declare interface RepositoryInfo {
+    createdAt: string;
+    databaseId: string;
+    description: string | null;
+    descriptionHTML: string;
+    diskUsage: number;
+    forkCount: number;
+    hasIssuesEnabled: boolean;
+    hasProjectsEnabled: boolean;
+    hasWikiEnabled: boolean;
+    homepageUrl: string | null;
+    id: string;
+    isArchived: boolean;
+    isDisabled: boolean;
+    isFork: boolean;
+    isLocked: boolean;
+    isMirror: boolean;
+    isPrivate: boolean;
+    isTemplate: boolean;
+    lockReason: string | null;
+    mergeCommitAllowed: boolean;
+    mirrorUrl: string | null;
+    name: string;
+    nameWithOwner: string;
+    openGraphImageUrl: string;
+    projectsResourcePath: string;
+    projectsUrl: string;
+    pushedAt: string;
+    rebaseMergeAllowed: boolean;
+    resourcePath: string;
+    shortDescriptionHTML: string;
+    squashMergeAllowed: boolean;
+    sshUrl: string;
+    tempCloneToken: string;
+    updatedAt: string;
+    url: string;
+    usesCustomOpenGraphImage: boolean;
+    viewerCanAdminister: boolean;
+    viewerCanCreateProjects: boolean;
+    viewerCanSubscribe: boolean;
+    viewerCanUpdateTopics: boolean;
+    viewerHasStarred: boolean;
+    viewerPermission: string;
+    viewerSubscription: string;
 }
 
 export declare interface CommitDirectories {
@@ -261,4 +263,124 @@ export declare interface ViewerFollowers {
 
 export declare interface User {
     user: UserInfo;
+}
+
+export declare interface Repositories {
+    user: {
+        repositories: {
+            edges: [{
+                node: RepositoryInfo;
+                cursor: string;
+            }];
+            pageInfo: {
+                endCursor: string;
+                hasNextPage: string;
+                hasPreviousPage: string;
+                startCursor: string;
+            }
+            totalCount: number;
+        };
+    };
+}
+
+export declare interface Author {
+    avatarUrl: string;
+    login: string;
+    resourcePath: string;
+    url: string;
+}
+
+export declare interface UserCommitContents {
+    user: {
+        commitComments: {
+            edges: [{
+                cursor: string;
+                node: {
+                    author: Author;
+                    authorAssociation: string;
+                    body: string;
+                    bodyHTML: string;
+                    bodyText: string;
+                    createdAt: string;
+                    createdViaEmail: string;
+                    databaseId: number;
+                    editor: Author | null;
+                    id: string;
+                    includesCreatedEdit: boolean;
+                    isMinimized: boolean;
+                    lastEditedAt: string | null;
+                    minimizedReason: string | null;
+                    path: string | null;
+                    position: number | null;
+                    publishedAt: string;
+                    resourcePath: string;
+                    updatedAt: string;
+                    url: string;
+                    viewerCanDelete: boolean;
+                    viewerCanMinimize: boolean;
+                    viewerCanReact: boolean;
+                    viewerCanUpdate: boolean;
+                    viewerCannotUpdateReasons: string[];
+                }
+            }] | [];
+            pageInfo: {
+                endCursor: string | null;
+                hasNextPage: boolean;
+                hasPreviousPage: boolean;
+                startCursor: string | null;
+            }
+            totalCount: number;
+        };
+    };
+}
+
+export declare interface UserIssues {
+    user: {
+        issues: {
+            edges: [{
+                cursor: string;
+                node: {
+                    activeLockReason: string | null;
+                    author: Author;
+                    body: string;
+                    bodyHTML: string;
+                    bodyText: string;
+                    closed: boolean;
+                    closedAt: string;
+                    createdAt: string;
+                    createdViaEmail: boolean;
+                    databaseId: number;
+                    editor: Author | null;
+                    hovercard: [{
+                        message: string;
+                        octicon: string;
+                    }];
+                    id: string;
+                    includesCreatedEdit: boolean;
+                    lastEditedAt: string | null;
+                    locked: boolean;
+                    number: number;
+                    publishedAt: string;
+                    resourcePath: string;
+                    state: string;
+                    title: string;
+                    updatedAt: string;
+                    url: string;
+                    viewerCanReact: boolean;
+                    viewerCanSubscribe: boolean;
+                    viewerCanUpdate: boolean;
+                    viewerCannotUpdateReasons: string[];
+                    viewerDidAuthor: boolean;
+                    viewerSubscription: string;
+                };
+            }];
+            pageInfo: {
+                endCursor: string | null;
+                hasNextPage: boolean;
+                hasPreviousPage: boolean;
+                startCursor: string | null;
+            }
+            totalCount: number;
+        };
+    };
 }

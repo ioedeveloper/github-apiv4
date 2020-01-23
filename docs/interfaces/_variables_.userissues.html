@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BranchContent | github-apiv4 - v2.2.0</title>
+	<title>UserIssues | github-apiv4 - v2.2.0</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -58,7 +58,7 @@
 					<a href="../modules/_variables_.html">variables</a>
 				</li>
 				<li>
-					<a href="_variables_.branchcontent.html">BranchContent</a>
+					<a href="_variables_.userissues.html">UserIssues</a>
 				</li>
 			</ul>
 		</div>
@@ -75,12 +75,12 @@
 			</nav>
 		</div>
 		<div class="col-7 offset-3 col-content">
-			<h1>Interface BranchContent</h1>
+			<h1>Interface UserIssues</h1>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BranchContent</span>
+						<span class="target">UserIssues</span>
 					</li>
 				</ul>
 			</section>
@@ -90,9 +90,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.branchcontent.html#qualifiedname" class="tsd-kind-icon">qualifiedName</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.branchcontent.html#repositoryname" class="tsd-kind-icon">repositoryName</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.branchcontent.html#repositoryowner" class="tsd-kind-icon">repositoryOwner</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.userissues.html#after" class="tsd-kind-icon">after</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.userissues.html#before" class="tsd-kind-icon">before</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.userissues.html#filterby" class="tsd-kind-icon">filterBy</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.userissues.html#first" class="tsd-kind-icon">first</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.userissues.html#includenotificationcontexts" class="tsd-kind-icon">includeNotificationContexts</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.userissues.html#last" class="tsd-kind-icon">last</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.userissues.html#orderby" class="tsd-kind-icon">orderBy</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_variables_.userissues.html#username" class="tsd-kind-icon">username</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,32 +106,82 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="qualifiedname" class="tsd-anchor"></a>
-					<h3>qualified<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">qualified<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="after" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> after</h3>
+					<div class="tsd-signature tsd-kind-icon">after<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in variables.ts:28</li>
+							<li>Defined in variables.ts:100</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="repositoryname" class="tsd-anchor"></a>
-					<h3>repository<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">repository<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="before" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> before</h3>
+					<div class="tsd-signature tsd-kind-icon">before<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in variables.ts:27</li>
+							<li>Defined in variables.ts:99</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="repositoryowner" class="tsd-anchor"></a>
-					<h3>repository<wbr>Owner</h3>
-					<div class="tsd-signature tsd-kind-icon">repository<wbr>Owner<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="filterby" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> filter<wbr>By</h3>
+					<div class="tsd-signature tsd-kind-icon">filter<wbr>By<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in variables.ts:26</li>
+							<li>Defined in variables.ts:101</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="first" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> first</h3>
+					<div class="tsd-signature tsd-kind-icon">first<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in variables.ts:102</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="includenotificationcontexts" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> include<wbr>Notification<wbr>Contexts</h3>
+					<div class="tsd-signature tsd-kind-icon">include<wbr>Notification<wbr>Contexts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in variables.ts:105</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="last" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> last</h3>
+					<div class="tsd-signature tsd-kind-icon">last<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in variables.ts:103</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="orderby" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> order<wbr>By</h3>
+					<div class="tsd-signature tsd-kind-icon">order<wbr>By<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in variables.ts:104</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="username" class="tsd-anchor"></a>
+					<h3>username</h3>
+					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in variables.ts:98</li>
 						</ul>
 					</aside>
 				</section>
@@ -139,24 +194,9 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_variables_.branch.html" class="tsd-kind-icon">Branch</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module root">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_variables_.branchcontent.html" class="tsd-kind-icon">Branch<wbr>Content</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_variables_.branchcontent.html#qualifiedname" class="tsd-kind-icon">qualified<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_variables_.branchcontent.html#repositoryname" class="tsd-kind-icon">repository<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_variables_.branchcontent.html#repositoryowner" class="tsd-kind-icon">repository<wbr>Owner</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_variables_.branchdirectories.html" class="tsd-kind-icon">Branch<wbr>Directories</a>
 					</li>
@@ -193,9 +233,39 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_variables_.usercommitcomments.html" class="tsd-kind-icon">User<wbr>Commit<wbr>Comments</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_variables_.userissues.html" class="tsd-kind-icon">User<wbr>Issues</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_variables_.userissues.html#after" class="tsd-kind-icon">after</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_variables_.userissues.html#before" class="tsd-kind-icon">before</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_variables_.userissues.html#filterby" class="tsd-kind-icon">filter<wbr>By</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_variables_.userissues.html#first" class="tsd-kind-icon">first</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_variables_.userissues.html#includenotificationcontexts" class="tsd-kind-icon">include<wbr>Notification<wbr>Contexts</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_variables_.userissues.html#last" class="tsd-kind-icon">last</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_variables_.userissues.html#orderby" class="tsd-kind-icon">order<wbr>By</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_variables_.userissues.html#username" class="tsd-kind-icon">username</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="_variables_.viewerfollowers.html" class="tsd-kind-icon">Viewer<wbr>Followers</a>
 					</li>

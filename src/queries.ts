@@ -928,3 +928,208 @@ export const User = `
     }
   }
 `;
+
+/**
+ * @description Github Graphql Query for All User Repositories
+ * @queryVariable username: String! first: Int!
+ */
+export const Repositories = `
+  query($username: String!, $affiliations: RepositoryAffiliation, $after: String, $before: String, $first: Int, $isFork: Boolean, $isLocked: Boolean, $last: Int, $orderBy: RepositoryOrder, $privacy: RepositoryPrivacy){
+    user(login: $username){
+      repositories(affiliations: [$affiliations], after: $after, before: $before, first: $first, isFork: $isFork, isLocked: $isLocked, last: $last, orderBy: $orderBy, privacy: $privacy){
+        edges{
+          cursor
+          node{
+            createdAt
+            databaseId
+            description
+            descriptionHTML
+            diskUsage
+            forkCount
+            hasIssuesEnabled
+            hasProjectsEnabled
+            hasWikiEnabled
+            homepageUrl
+            id
+            isArchived
+            isDisabled
+            isFork
+            isLocked
+            isMirror
+            isPrivate
+            isTemplate
+            lockReason
+            mergeCommitAllowed
+            mirrorUrl
+            name
+            nameWithOwner
+            openGraphImageUrl
+            projectsResourcePath
+            projectsUrl
+            pushedAt
+            rebaseMergeAllowed
+            resourcePath
+            shortDescriptionHTML
+            squashMergeAllowed
+            sshUrl
+            tempCloneToken
+            updatedAt
+            url
+            usesCustomOpenGraphImage
+            viewerCanAdminister
+            viewerCanCreateProjects
+            viewerCanAdminister
+            viewerCanSubscribe
+            viewerCanUpdateTopics
+            viewerHasStarred
+            viewerPermission
+            viewerSubscription
+          }
+        }
+        pageInfo{
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+        totalCount
+        totalDiskUsage
+      }
+    }
+  }
+`;
+
+/**
+ * @description Github Graphql Query for CommitComments
+ * @queryVariable username: String! first: Int!
+ */
+export const UserCommitComments = `
+query($username: String!, $after: String, $before: String, $first: Int, $last: Int){
+	user(login: $username){
+    commitComments(after: $after, before: $before, first: $first, last: $last){
+      edges{
+        cursor
+        node{
+          author{
+            avatarUrl
+            login
+            resourcePath
+            url
+          }
+          authorAssociation
+          body
+          bodyHTML
+          bodyText
+          createdAt
+          createdViaEmail
+          databaseId
+          editor{
+            avatarUrl
+            login
+            resourcePath
+            url
+          }
+          id
+          includesCreatedEdit
+          isMinimized
+          lastEditedAt
+          minimizedReason
+          path
+          position
+          publishedAt
+          resourcePath
+          updatedAt
+          url
+          viewerCanDelete
+          viewerCanMinimize
+          viewerCanReact
+          viewerCanUpdate
+          viewerCannotUpdateReasons
+        }
+      }
+      pageInfo{
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      totalCount
+    }
+  }
+}
+`;
+
+/**
+ * @description Github Graphql Query for User Issues
+ * @queryVariable username: String! first: Int!
+ */
+export const UserIssues = `
+query($username: String!, $before: String, $after: String, $filterBy: IssueFilters, $first: Int, $last: Int, $orderBy: IssueOrder, $includeNotificationContexts: Boolean = true){
+  user(login: $username){
+    issues(after: $after, before: $before, filterBy: $filterBy, first: $first, last: $last, orderBy: $orderBy){
+      edges{
+        cursor
+        node{
+          activeLockReason
+          author{
+            avatarUrl
+            login
+            resourcePath
+            url
+          }
+          body
+          bodyHTML
+          bodyText
+          closed
+          closedAt
+          createdAt
+          createdViaEmail
+          databaseId
+          editor{
+            avatarUrl
+            login
+            resourcePath
+            url
+          }
+          hovercard(includeNotificationContexts: $includeNotificationContexts){
+            contexts{
+              message
+              octicon
+            }
+          }
+          id
+          includesCreatedEdit
+          lastEditedAt
+          locked
+          milestone {
+            id
+          }
+          number
+          publishedAt
+          reactionGroups {
+            createdAt
+          }
+          resourcePath
+          state
+          title
+          updatedAt
+          url
+          viewerCanReact
+          viewerCanSubscribe
+          viewerCanUpdate
+          viewerCannotUpdateReasons
+          viewerDidAuthor
+          viewerSubscription
+        }
+      }
+      pageInfo{
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      totalCount
+    }
+  }
+}
+`;
