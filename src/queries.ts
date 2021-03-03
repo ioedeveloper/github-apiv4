@@ -1133,3 +1133,266 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `;
+
+ /**
+ * @description Github Graphql Query for License
+ */
+
+export const License = `
+query {
+  license(key: "") {
+    body
+    conditions {
+      description
+      key
+      label
+    }
+    description
+    featured
+    hidden
+    id
+    implementation
+    key
+    limitations {
+      description
+      key
+      label
+    }
+    name
+    nickname
+    permissions {
+      description
+      key
+      label
+    }
+    pseudoLicense
+    spdxId
+    url
+  }
+  licenses {
+    body
+    conditions {
+      description
+      key
+      label
+    }
+    description
+    featured
+    hidden
+    id
+    implementation
+    key
+    limitations {
+      description
+      key
+      label
+    }
+    name
+    nickname
+    permissions {
+      description
+      key
+      label
+    }
+    pseudoLicense
+    spdxId
+    url
+  }
+}
+`
+
+/**
+ * @description Github Graphql Query for MarketPlaceCategories
+ */
+export const MarketPlaceCategories = `
+  query {
+    marketplaceCategories(excludeEmpty: true, excludeSubcategories: false, includeCategories: $includeCategories) {
+      description
+      howItWorks
+      id
+      name
+      primaryListingCount
+      resourcePath
+      secondaryListingCount
+      slug
+      url
+    }
+  }
+`
+/**
+ * @description Github Graphql Query for MarketPlaceCategory
+ */
+
+export const MarketPlaceCategory = `
+  query MyQuery {
+    marketplaceCategories(excludeEmpty: true, excludeSubcategories: false, includeCategories: $includeCategories) {
+      description
+      howItWorks
+      id
+      name
+      primaryListingCount
+      resourcePath
+      secondaryListingCount
+      slug
+      url
+    }
+  }
+`
+
+/**
+ * @description Github Graphql Query for RateLimit
+ */
+
+
+export const RateLimit = `
+  query MyQuery {
+    rateLimit(dryRun: $dryRun) {
+      cost
+      limit
+      nodeCount
+      remaining
+      resetAt
+      used
+    }
+  }
+`
+
+/**
+ * @description Github Graphql Query for Search
+ */
+
+
+export const Search = `
+  query MyQuery {
+    search(query: $query, type: $type, after: $after, before: $before, first: $first, last: $last) {
+      codeCount
+      edges {
+        cursor
+        node {
+          ... on App {
+            id
+            name
+            createdAt
+            databaseId
+            description
+            logoBackgroundColor
+            logoUrl(size: $size)
+            slug
+            updatedAt
+            url
+          }
+          ... on Issue {
+            id
+          }
+        }
+      }
+      issueCount
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      repositoryCount
+      userCount
+      wikiCount
+    }
+  }
+`
+
+/**
+ * @description Github Graphql Query for Sponsorables
+ */
+
+
+
+export const Sponsorables = `
+  query {
+    sponsorables(after: $after, before: $before, dependencyEcosystem: $dependencyEcosystem, first: $first, last: $last, onlyDependencies: $onlyDependencies, orderBy: {field: $field, direction: $direction}, orgLoginForDependencies: $orgLoginForDependencies) {
+      edges {
+        cursor
+        node {
+          ... on Organization {
+            id
+            email
+          }
+          ... on User {
+            id
+            email
+          }
+        }
+      }
+      nodes {
+        ... on Organization {
+          id
+          email
+        }
+        ... on User {
+          id
+          email
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      totalCount
+    }
+  }
+
+`
+
+/**
+ * @description Github Graphql Query for Topic
+ */
+
+export const Topic = `
+  query {
+    topic(name: $name) {
+      id
+      name
+      stargazerCount
+      viewerHasStarred
+      stargazers(after: $after, before: $before, first: $first, last: $last, orderBy: {field: STARRED_AT, direction: ASC}) {
+        edges {
+          cursor
+          starredAt
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+        totalCount
+      }
+      relatedTopics(first: $first) {
+        id
+        name
+        stargazerCount
+        viewerHasStarred
+      }
+    }
+  }
+
+
+`
+
+/**
+ * @description Github Graphql Query for codes of conduct
+ * @queryVariable key: String!
+ */
+export const CodesOfConduct = `
+query($key: String!){
+	codeOfConduct(key: $key){
+    name
+    id
+    body
+    key
+    resourcePath
+    url
+  }
+}
+`;
