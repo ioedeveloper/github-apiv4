@@ -3187,20 +3187,22 @@ query($key: String!){
 `;
 
 /**
- * @description Github Graphql Query for codes of resource
- * @queryVariables first: Int, name: String!, privacy: String, repositoryName: String 
+ * @description Github Graphql MembersCanDeleteReposClearAuditEntry
+ * @defaultVariable id
+ * @queryVariables  avatarUrl
+ * createdAt 
+ * databaseId
+ * login
+ * resourcePath
+ * updatedAt
+ * url
  */
-
-
-export function OnOrganization(fields: string){
-  return `
-    ... on Organization {
-      id
-      email
-      ${fields}
-    }
-  `
-}
+export const Bot = (fields:string) => `
+  ... on Bot {
+    id
+    ${fields}
+  }
+`
 
 export function OnUser(fields: string){
   return `

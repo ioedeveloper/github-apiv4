@@ -6,33 +6,34 @@ export declare interface Viewer {
 }
 
 export declare interface UserInfo {
-    id: string;
-    email: string;
-    login: string;
-    url: string;
-    createdAt: string;
-    updatedAt: string;
-    databaseId: string;
-    companyHTML: string;
-    projectsUrl: string | null;
-    location: string | null;
-    company: string | null;
-    avatarUrl: string | null;
-    bio: string | null;
-    websiteUrl: string | null;
-    isHireable: boolean;
-    isDeveloperProgramMember: boolean;
-    anyPinnableItems: boolean;
-    isSiteAdmin: boolean;
-    viewerCanFollow: boolean;
-    viewerIsFollowing: boolean;
-    viewerCanCreateProjects: boolean;
-    isEmployee: boolean;
-    isBountyHunter: boolean;
-    isCampusExpert: boolean;
-    isViewer: boolean;
-    viewerCanChangePinnedItems: boolean;
-    pinnedItemsRemaining: number;
+    id?: string;
+    email?: string;
+    login?: string;
+    url?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    databaseId?: string;
+    companyHTML?: string;
+    projectsUrl?: string | null;
+    location?: string | null;
+    company?: string | null;
+    avatarUrl?: string | null;
+    bio?: string | null;
+    websiteUrl?: string | null;
+    isHireable?: boolean;
+    isDeveloperProgramMember?: boolean;
+    anyPinnableItems?: boolean;
+    isSiteAdmin?: boolean;
+    viewerCanFollow?: boolean;
+    viewerIsFollowing?: boolean;
+    viewerCanCreateProjects?: boolean;
+    isEmployee?: boolean;
+    isBountyHunter?: boolean;
+    isCampusExpert?: boolean;
+    isViewer?: boolean;
+    viewerCanChangePinnedItems?: boolean;
+    pinnedItemsRemaining?: number;
+    
 }
 
 export declare interface FileEntries {
@@ -383,4 +384,11 @@ export declare interface UserIssues {
             totalCount: number;
         };
     };
+}
+
+export declare interface PageInfo {
+    endCursor: string | null;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+    startCursor: string | null;
 }
