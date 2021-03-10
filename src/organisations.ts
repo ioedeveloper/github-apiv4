@@ -1,9 +1,10 @@
 /**
- * @description Github Graphql Organisation
+ * @description Github Graphql Organization
  * @defaultVariables id, email
- * @queryVariables anyPinnableItems(type: REPOSITORY | GIST | ISSUE | PROJECT | PULL_REQUEST | USER | ORGANIZATION | TEAM)
+ * @queryVariables anyPinnableItems(type: 'REPOSITORY' | 'GIST' | 'ISSUE' | 'PROJECT' | 'PULL_REQUEST' | 'USER' | 'ORGANIZATION' | 'TEAM')
  * auditLog(after: string, before: string, first: number, last: number, orderBy{direction: ASC | DESC, field: CREATED_AT}, query: string,
- * cursor, node: {
+ * cursor, 
+ * node: {
  *  MembersCanDeleteReposClearAuditEntry
  *  MembersCanDeleteReposDisableAuditEntry
  *  MembersCanDeleteReposEnableAuditEntry
@@ -62,27 +63,129 @@
  *  TeamChangeParentTeamAuditEntry
  *  TeamRemoveMemberAuditEntry
  *  TeamRemoveRepositoryAuditEntry
- * })
- * 
+ * }
+ * nodes {
+ *  MembersCanDeleteReposClearAuditEntry
+ *  MembersCanDeleteReposDisableAuditEntry
+ *  MembersCanDeleteReposEnableAuditEntry
+ *  OauthApplicationCreateAuditEntry
+ *  OrgAddBillingManagerAuditEntry
+ *  OrgAddMemberAuditEntry
+ *  OrgBlockUserAuditEntry
+ *  OrgConfigDisableCollaboratorsOnlyAuditEntry
+ *  OrgConfigEnableCollaboratorsOnlyAuditEntry
+ *  OrgCreateAuditEntry
+ *  OrgDisableOauthAppRestrictionsAuditEntry
+ *  OrgDisableSamlAuditEntry
+ *  OrgDisableTwoFactorRequirementAuditEntry
+ *  OrgEnableOauthAppRestrictionsAuditEntry
+ *  OrgEnableSamlAuditEntry
+ *  OrgEnableTwoFactorRequirementAuditEntry
+ *  OrgInviteMemberAuditEntry
+ *  OrgInviteToBusinessAuditEntry
+ *  OrgOauthAppAccessApprovedAuditEntry
+ *  OrgOauthAppAccessDeniedAuditEntry
+ *  OrgOauthAppAccessRequestedAuditEntry
+ *  OrgRemoveBillingManagerAuditEntry
+ *  OrgRemoveMemberAuditEntry
+ *  OrgRemoveOutsideCollaboratorAuditEntry
+ *  OrgRestoreMemberAuditEntry
+ *  OrgUnblockUserAuditEntry
+ *  OrgUpdateDefaultRepositoryPermissionAuditEntry
+ *  OrgUpdateMemberAuditEntry
+ *  OrgUpdateMemberRepositoryCreationPermissionAuditEntry
+ *  OrgUpdateMemberRepositoryInvitationPermissionAuditEntry
+ *  PrivateRepositoryForkingDisableAuditEntry
+ *  PrivateRepositoryForkingEnableAuditEntry
+ *  RepoAccessAuditEntry
+ *  RepoAddMemberAuditEntry
+ *  RepoAddTopicAuditEntry
+ *  RepoArchivedAuditEntry
+ *  RepoChangeMergeSettingAuditEntry
+ *  RepoConfigDisableAnonymousGitAccessAuditEntry
+ *  RepoConfigDisableCollaboratorsOnlyAuditEntry
+ *  RepoConfigDisableContributorsOnlyAuditEntry
+ *  RepoConfigDisableSockpuppetDisallowedAuditEntry
+ *  RepoConfigEnableAnonymousGitAccessAuditEntry
+ *  RepoConfigEnableCollaboratorsOnlyAuditEntry
+ *  RepoConfigEnableContributorsOnlyAuditEntry
+ *  RepoConfigEnableSockpuppetDisallowedAuditEntry
+ *  RepoConfigLockAnonymousGitAccessAuditEntry
+ *  RepoConfigUnlockAnonymousGitAccessAuditEntry
+ *  RepoCreateAuditEntry
+ *  RepoDestroyAuditEntry
+ *  RepoRemoveMemberAuditEntry
+ *  RepoRemoveTopicAuditEntry
+ *  RepositoryVisibilityChangeDisableAuditEntry
+ *  RepositoryVisibilityChangeEnableAuditEntry
+ *  TeamAddMemberAuditEntry
+ *  TeamAddRepositoryAuditEntry
+ *  TeamChangeParentTeamAuditEntry
+ *  TeamRemoveMemberAuditEntry
+ *  TeamRemoveRepositoryAuditEntry
+ * }
+ * PageInfo
+ * totalCount
  */
 
-
-export const Organization = (fields: string) => `
-    ... on Organization {
+ export const Organization = (fields: string) => `
     id
     email
     ${fields}
+`
+/**
+ * @description Github Graphql onOrganization
+ * @defaultVariables id name
+ * @queryVariables Organization
+ */
+
+export const onOrganization = (fields: string) => `
+    ... on Organization {
+        ${fields}
+    }
+`
+/**
+ * @description Github Graphql Organization  
+ * @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
+ * @queryArguments direction 'ASC' | 'DESC' 
+ * orderBy 'LOGIN' | 'CREATED_AT'
+ * after String
+ * before String
+ * first number
+ * last number
+ * query: String
+ * 
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      isUnlicensed
+ *      node {
+ *          Organization
+ *      }
+ *      nodes {
+ *          Organization
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const Organizations = (query:string = "",after:string = '', before: string = '',deployment:string, first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
+    members(after: ${after} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last ?', last: number':''}, orderBy: {field: ${orderBy}, direction: ${direction}}, query: ${query}) {
+        ${fields}
+        totalCount
     }
 `
 
-
 /**
  * @description Github Graphql MembersCanDeleteReposClearAuditEntry
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables action
  * actor {
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -104,7 +207,7 @@ export const Organization = (fields: string) => `
  * enterpriseSlug
  * enterpriseUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -122,12 +225,12 @@ export const OnMembersCanDeleteReposClearAuditEntry = (fields:string = '') => `
 `
 /**
  * @description Github Graphql MembersCanDeleteReposDisableAuditEntry
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -146,7 +249,7 @@ export const OnMembersCanDeleteReposClearAuditEntry = (fields:string = '') => `
  * enterpriseSlug
  * enterpriseUrl
  * operationType
- * Organisation
+ * Organization
  * operationType
  * organizationName
  * organizationResourcePath
@@ -167,12 +270,12 @@ export const MembersCanDeleteReposDisableAuditEntry = (fields:string = '') =>`
 
 /**
  * @description Github Graphql MembersCanDeleteReposEnableAuditEntry
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorLocation {
@@ -190,7 +293,7 @@ export const MembersCanDeleteReposDisableAuditEntry = (fields:string = '') =>`
  * enterpriseSlug
  * enterpriseUrl
  * operationType
- * Organisation
+ * Organization
  * operationType
  * organizationName
  * organizationResourcePath
@@ -209,12 +312,12 @@ export const MembersCanDeleteReposEnableAuditEntry = (fields:string = '') =>`
 `
 /**
  * @description Github Graphql OauthApplicationCreateAuditEntry
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -235,7 +338,7 @@ export const MembersCanDeleteReposEnableAuditEntry = (fields:string = '') =>`
  * oauthApplicationResourcePath
  * oauthApplicationUrl
  * operationType
- * Organisation
+ * Organization
  * operationType
  * organizationName
  * organizationResourcePath
@@ -257,12 +360,12 @@ export const OauthApplicationCreateAuditEntry = (fields:string = '') =>`
  
 /**
  * @description Github Graphql OrgAddBillingManagerAuditEntry 
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -279,7 +382,7 @@ export const OauthApplicationCreateAuditEntry = (fields:string = '') =>`
  * createdAt
  * invitationEmail
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -298,12 +401,12 @@ export const OrgAddBillingManagerAuditEntry = (fields:string = '') =>`
 
 /**
  * @description Github Graphql OrgAddMemberAuditEntry 
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -319,7 +422,7 @@ export const OrgAddBillingManagerAuditEntry = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -339,12 +442,12 @@ export const OrgAddMemberAuditEntry = (fields:string = '') =>`
 
 /**
  * @description Github Graphql OrgBlockUserAuditEntry 
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -366,7 +469,7 @@ export const OrgAddMemberAuditEntry = (fields:string = '') =>`
  * blockedUserUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -386,12 +489,12 @@ export const OrgBlockUserAuditEntry = (fields:string = '') =>`
 
 /**
  * @description Github Graphql OrgConfigDisableCollaboratorsOnlyAuditEntry 
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -406,7 +509,7 @@ export const OrgBlockUserAuditEntry = (fields:string = '') =>`
  * actorResourcePath
  * actorUrl
  * createdAt
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -426,12 +529,12 @@ export const OrgConfigDisableCollaboratorsOnlyAuditEntry = (fields:string = '') 
 
 /**
  * @description Github Graphql OrgConfigEnableCollaboratorsOnly 
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -446,7 +549,7 @@ export const OrgConfigDisableCollaboratorsOnlyAuditEntry = (fields:string = '') 
  * actorResourcePath
  * actorUrl
  * createdAt
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -465,12 +568,12 @@ export const OrgConfigEnableCollaboratorsOnly = (fields:string = '') =>`
 
 /**
  * @description Github Graphql OrgCreateAuditEntry 
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -486,7 +589,7 @@ export const OrgConfigEnableCollaboratorsOnly = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -505,12 +608,12 @@ export const OrgCreateAuditEntry = (fields:string = '') =>`
 
 /**
  * @description Github Graphql OrgDisableOauthAppRestrictionsAuditEntry  
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -526,7 +629,7 @@ export const OrgCreateAuditEntry = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -544,12 +647,12 @@ export const OrgDisableOauthAppRestrictionsAuditEntry  = (fields:string = '') =>
 `
 /**
  * @description Github Graphql OrgDisableTwoFactorRequirementAuditEntry  
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -565,7 +668,7 @@ export const OrgDisableOauthAppRestrictionsAuditEntry  = (fields:string = '') =>
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -584,12 +687,12 @@ export const OrgDisableTwoFactorRequirementAuditEntry  = (fields:string = '') =>
 
 /**
  * @description Github Graphql OrgEnableOauthAppRestrictionsAuditEntry  
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -604,7 +707,7 @@ export const OrgDisableTwoFactorRequirementAuditEntry  = (fields:string = '') =>
  * actorResourcePath
  * actorUrl
  * createdAt
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -622,12 +725,12 @@ export const OrgEnableOauthAppRestrictionsAuditEntry  = (fields:string = '') =>`
 
 `/**
  * @description Github Graphql OrgEnableSamlAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -645,7 +748,7 @@ export const OrgEnableOauthAppRestrictionsAuditEntry  = (fields:string = '') =>`
  * digestMethodUrl
  * issuerUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -664,12 +767,12 @@ export const OrgEnableSamlAuditEntry  = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql OrgEnableTwoFactorRequirementAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -685,7 +788,7 @@ export const OrgEnableSamlAuditEntry  = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -703,12 +806,12 @@ export const OrgEnableTwoFactorRequirementAuditEntry  = (fields:string = '') =>`
 
 `/**
  * @description Github Graphql OrgInviteMemberAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -725,7 +828,7 @@ export const OrgEnableTwoFactorRequirementAuditEntry  = (fields:string = '') =>`
  * createdAt
  * email
  * operationType
- * Organisation
+ * Organization
  * organizationInvitation {
  *  createdAt
  *  email
@@ -761,12 +864,12 @@ export const OrgInviteMemberAuditEntry  = (fields:string = '') =>`
 `
 /**
  * @description Github Graphql OrgDisableSamlAuditEntry  
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -784,7 +887,7 @@ export const OrgInviteMemberAuditEntry  = (fields:string = '') =>`
  * digestMethodUrl
  * issuerUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -804,12 +907,12 @@ export const OrgDisableSamlAuditEntry  = (fields:string = '') =>`
 `
 /**
  * @description Github Graphql OrgOauthAppAccessApprovedAuditEntry  
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -828,7 +931,7 @@ export const OrgDisableSamlAuditEntry  = (fields:string = '') =>`
  * oauthApplicationResourcePath
  * oauthApplicationUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -846,12 +949,12 @@ export const OrgOauthAppAccessApprovedAuditEntry  = (fields:string = '') =>`
 `
 /**
  * @description Github Graphql OrgOauthAppAccessDeniedAuditEntry  
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -870,7 +973,7 @@ export const OrgOauthAppAccessApprovedAuditEntry  = (fields:string = '') =>`
  * oauthApplicationResourcePath
  * oauthApplicationUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -887,12 +990,12 @@ export const OrgOauthAppAccessDeniedAuditEntry  = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql OrgOauthAppAccessRequestedAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -911,7 +1014,7 @@ export const OrgOauthAppAccessDeniedAuditEntry  = (fields:string = '') =>`
  * oauthApplicationResourcePath
  * oauthApplicationUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -928,12 +1031,12 @@ export const OrgOauthAppAccessRequestedAuditEntry  = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql OrgRemoveBillingManagerAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -949,7 +1052,7 @@ export const OrgOauthAppAccessRequestedAuditEntry  = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -966,12 +1069,12 @@ export const OrgRemoveBillingManagerAuditEntry  = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql OrgRemoveMemberAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -988,7 +1091,7 @@ export const OrgRemoveBillingManagerAuditEntry  = (fields:string = '') =>`
  * createdAt
  * membershipTypes
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1006,12 +1109,12 @@ export const OrgRemoveMemberAuditEntry = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql OrgRemoveOutsideCollaboratorAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1028,7 +1131,7 @@ export const OrgRemoveMemberAuditEntry = (fields:string = '') =>`
  * createdAt
  * membershipTypes
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1046,12 +1149,12 @@ export const OrgRemoveOutsideCollaboratorAuditEntry  = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql OrgRestoreMemberAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1067,7 +1170,7 @@ export const OrgRemoveOutsideCollaboratorAuditEntry  = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1108,12 +1211,12 @@ export const OrgRestoreMemberAuditEntry  = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql OrgUnblockUserAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1135,7 +1238,7 @@ export const OrgRestoreMemberAuditEntry  = (fields:string = '') =>`
  * blockedUserName
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1152,12 +1255,12 @@ export const OrgUnblockUserAuditEntry  = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql OrgUpdateDefaultRepositoryPermissionAuditEntry  
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1173,7 +1276,7 @@ export const OrgUnblockUserAuditEntry  = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1192,12 +1295,12 @@ export const OrgUpdateDefaultRepositoryPermissionAuditEntry = (fields:string = '
 }
 `/**
  * @description Github Graphql OrgUpdateMemberAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1213,7 +1316,7 @@ export const OrgUpdateDefaultRepositoryPermissionAuditEntry = (fields:string = '
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1232,12 +1335,12 @@ export const OrgUpdateMemberAuditEntry  = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql OrgUpdateMemberRepositoryInvitationPermissionAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1254,7 +1357,7 @@ export const OrgUpdateMemberAuditEntry  = (fields:string = '') =>`
  * canInviteOutsideCollaboratorsToRepositories
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1271,12 +1374,12 @@ export const canInviteOutsideCollaboratorsToRepositories  = (fields:string = '')
 }
 `/**
  * @description Github Graphql PrivateRepositoryForkingDisableAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1295,7 +1398,7 @@ export const canInviteOutsideCollaboratorsToRepositories  = (fields:string = '')
  * enterpriseSlug
  * enterpriseUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1314,12 +1417,12 @@ export const PrivateRepositoryForkingDisableAuditEntry  = (fields:string = '') =
 
 /**
  * @description Github Graphql PrivateRepositoryForkingEnableAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1338,7 +1441,7 @@ export const PrivateRepositoryForkingDisableAuditEntry  = (fields:string = '') =
  * enterpriseSlug
  * enterpriseUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1356,12 +1459,12 @@ export const PrivateRepositoryForkingEnableAuditEntry  = (fields:string = '') =>
 `
 /**
  * @description Github Graphql RepoAccessAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1377,7 +1480,7 @@ export const PrivateRepositoryForkingEnableAuditEntry  = (fields:string = '') =>
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1395,12 +1498,12 @@ export const RepoAccessAuditEntry = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql RepoAddMemberAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1416,7 +1519,7 @@ export const RepoAccessAuditEntry = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1434,12 +1537,12 @@ export const RepoAddMemberAuditEntry = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql RepoAddTopicAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1455,7 +1558,7 @@ export const RepoAddMemberAuditEntry = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1480,12 +1583,12 @@ export const RepoAddTopicAuditEntry  = (fields:string = '') =>`
 
 /**
  * @description Github Graphql RepoArchivedAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1501,7 +1604,7 @@ export const RepoAddTopicAuditEntry  = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1525,12 +1628,12 @@ export const RepoArchivedAuditEntry  = (fields:string = '') =>`
 
 /**
  * @description Github Graphql RepoChangeMergeSettingAuditEntry
- * @defaultVariable id name
+ * @defaultVariables id name
  * @queryVariables id
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1548,7 +1651,7 @@ export const RepoArchivedAuditEntry  = (fields:string = '') =>`
  * mergeType
  * isEnabled
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1573,12 +1676,12 @@ export const RepoChangeMergeSettingAuditEntry  = (fields:string = '') =>`
 
 /**
  * @description Github Graphql RepoConfigDisableAnonymousGitAccessAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1596,7 +1699,7 @@ export const RepoChangeMergeSettingAuditEntry  = (fields:string = '') =>`
  * mergeType
  * isEnabled
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1621,12 +1724,12 @@ export const RepoConfigDisableAnonymousGitAccessAuditEntry  = (fields:string = '
 
 /**
  * @description Github Graphql RepoConfigDisableCollaboratorsOnlyAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1642,7 +1745,7 @@ export const RepoConfigDisableAnonymousGitAccessAuditEntry  = (fields:string = '
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1666,12 +1769,12 @@ export const RepoConfigDisableCollaboratorsOnlyAuditEntry  = (fields:string = ''
 `
 /**
  * @description Github Graphql RepoConfigDisableSockpuppetDisallowedAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1687,7 +1790,7 @@ export const RepoConfigDisableCollaboratorsOnlyAuditEntry  = (fields:string = ''
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1712,12 +1815,12 @@ export const RepoConfigDisableSockpuppetDisallowedAuditEntry  = (fields:string =
 
 /**
  * @description Github Graphql RepoConfigEnableAnonymousGitAccessAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1733,7 +1836,7 @@ export const RepoConfigDisableSockpuppetDisallowedAuditEntry  = (fields:string =
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1757,12 +1860,12 @@ export const RepoConfigEnableAnonymousGitAccessAuditEntry  = (fields:string = ''
 `
 /**
  * @description Github Graphql RepoConfigEnableCollaboratorsOnlyAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1778,7 +1881,7 @@ export const RepoConfigEnableAnonymousGitAccessAuditEntry  = (fields:string = ''
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1803,12 +1906,12 @@ export const RepoConfigEnableCollaboratorsOnlyAuditEntry  = (fields:string = '')
 
 /**
  * @description Github Graphql RepoConfigEnableContributorsOnlyAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1824,7 +1927,7 @@ export const RepoConfigEnableCollaboratorsOnlyAuditEntry  = (fields:string = '')
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1849,12 +1952,12 @@ export const RepoConfigEnableContributorsOnlyAuditEntry  = (fields:string = '') 
 
 /**
  * @description Github Graphql RepoConfigEnableSockpuppetDisallowedAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1870,7 +1973,7 @@ export const RepoConfigEnableContributorsOnlyAuditEntry  = (fields:string = '') 
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1894,12 +1997,12 @@ export const RepoConfigEnableSockpuppetDisallowedAuditEntry = (fields:string = '
 `
 /**
  * @description Github Graphql RepoConfigLockAnonymousGitAccessAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1915,7 +2018,7 @@ export const RepoConfigEnableSockpuppetDisallowedAuditEntry = (fields:string = '
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1940,12 +2043,12 @@ export const RepoConfigLockAnonymousGitAccessAuditEntry  = (fields:string = '') 
 
 /**
  * @description Github Graphql RepoConfigUnlockAnonymousGitAccessAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -1961,7 +2064,7 @@ export const RepoConfigLockAnonymousGitAccessAuditEntry  = (fields:string = '') 
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -1986,12 +2089,12 @@ export const RepoConfigUnlockAnonymousGitAccessAuditEntry = (fields:string = '')
 
 /**
  * @description Github Graphql RepoCreateAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2009,7 +2112,7 @@ export const RepoConfigUnlockAnonymousGitAccessAuditEntry = (fields:string = '')
  * forkParentName
  * forkSourceName
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2033,12 +2136,12 @@ export const RepoCreateAuditEntry  = (fields:string = '') =>`
 
 /**
  * @description Github Graphql RepoDestroyAuditEntry
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2054,7 +2157,7 @@ export const RepoCreateAuditEntry  = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2080,12 +2183,12 @@ export const RepoDestroyAuditEntry  = (fields:string = '') =>`
 
 /**
  * @description Github Graphql RepoConfigDisableContributorsOnlyAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2104,7 +2207,7 @@ export const RepoDestroyAuditEntry  = (fields:string = '') =>`
  * enterpriseSlug
  * enterpriseUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2129,12 +2232,12 @@ export const RepositoryVisibilityChangeDisableAuditEntry  = (fields:string = '')
 
 /**
  * @description Github Graphql RepoRemoveMemberAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2150,7 +2253,7 @@ export const RepositoryVisibilityChangeDisableAuditEntry  = (fields:string = '')
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2176,12 +2279,12 @@ export const RepoRemoveMemberAuditEntry  = (fields:string = '') =>`
 
 /**
  * @description Github Graphql RepoRemoveTopicAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2200,7 +2303,7 @@ export const RepoRemoveMemberAuditEntry  = (fields:string = '') =>`
  * enterpriseSlug
  * enterpriseUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2225,12 +2328,12 @@ export const RepoRemoveTopicAuditEntry  = (fields:string = '') =>`
 }
 `/**
  * @description Github Graphql RepoConfigDisableContributorsOnlyAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2246,7 +2349,7 @@ export const RepoRemoveTopicAuditEntry  = (fields:string = '') =>`
  * actorUrl
  * createdAt
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2271,12 +2374,12 @@ export const RepoConfigDisableContributorsOnlyAuditEntry  = (fields:string = '')
 
 /**
  * @description Github Graphql RepositoryVisibilityChangeEnableAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2295,7 +2398,7 @@ export const RepoConfigDisableContributorsOnlyAuditEntry  = (fields:string = '')
  * enterpriseSlug
  * enterpriseUrl
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2319,12 +2422,12 @@ export const RepositoryVisibilityChangeEnableAuditEntry  = (fields:string = '') 
 `
 /**
  * @description Github Graphql TeamAddMemberAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2341,7 +2444,7 @@ export const RepositoryVisibilityChangeEnableAuditEntry  = (fields:string = '') 
  * createdAt
  * isLdapMapped
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2368,12 +2471,12 @@ export const TeamAddMemberAuditEntry  = (fields:string = '') =>`
 
 /**
  * @description Github Graphql TeamAddRepositoryAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2390,7 +2493,7 @@ export const TeamAddMemberAuditEntry  = (fields:string = '') =>`
  * createdAt
  * operationType
  * isLdapMapped
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2418,12 +2521,12 @@ export const TeamAddRepositoryAuditEntry  = (fields:string = '') =>`
 
 /**
  * @description Github Graphql TeamChangeParentTeamAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorLocation {
@@ -2440,7 +2543,7 @@ export const TeamAddRepositoryAuditEntry  = (fields:string = '') =>`
  * createdAt
  * isLdapMapped
  * operationType
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2481,12 +2584,12 @@ export const TeamChangeParentTeamAuditEntry  = (fields:string = '') =>`
 
 /**
  * @description Github Graphql TeamRemoveMemberAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2503,7 +2606,7 @@ export const TeamChangeParentTeamAuditEntry  = (fields:string = '') =>`
  * createdAt
  * operationType
  * isLdapMapped
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2529,12 +2632,12 @@ export const TeamRemoveMemberAuditEntry  = (fields:string = '') =>`
 `
 /**
  * @description Github Graphql TeamRemoveRepositoryAuditEntry  
- * @defaultVariable id
+ * @defaultVariables id
  * @queryVariables
  * action
  * actor{
  *  Bot
- *  Organisation
+ *  Organization
  *  User
  * }
  * actorIp
@@ -2551,7 +2654,7 @@ export const TeamRemoveMemberAuditEntry  = (fields:string = '') =>`
  * createdAt
  * operationType
  * isLdapMapped
- * Organisation
+ * Organization
  * organizationName
  * organizationResourcePath
  * organizationUrl
@@ -2574,4 +2677,247 @@ export const TeamRemoveRepositoryAuditEntry  = (fields:string = '') =>`
     id
     ${fields}
 }
+`
+
+/**
+ * @description Github Graphql OrganizationNode  
+ * @defaultVariables cursor
+ * @queryVariables avatarUrl
+ * createdAt
+ * databaseId
+ * description
+ * descriptionHTML
+ * auditLog
+ * Domains
+*/
+
+export const OrganizationNode = (fields:string) => `
+edges {
+    cursor
+    node {
+        ${fields}
+    }
+}
+`
+
+/**
+ * @description Github Graphql Domains  
+ * @defaultVariables orderBy = CREATED_AT direction = "ASC" isVerified = true first = 10 field = "DOMAIN"
+ * @queryArguments 
+ * after String
+ * before String
+ * first number
+ * last number
+ * isVerified boolean
+ * field "DOMAIN" | CREATED_AT
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          createdAt
+ *          databaseId
+ *          dnsHostName
+ *          domain
+ *          hasFoundHostName
+ *          hasFoundVerificationToken
+ *          id
+ *          isRequiredForPolicyEnforcement
+ *          owner {
+ *              onEnterprise
+ *              onOrganization
+ *          }
+ *          isVerified
+ *          punycodeEncodedDomain
+ *          tokenExpirationTime
+ *          updatedAt
+ *          verificationToken
+ *      }
+ *      role
+ *      nodes {
+ *          Organization
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const Domains = (after:string = "", first:number = 10, last:number,isVerified:boolean = true, field:string = "DOMAIN", direction:string = "ASC", fields:string) => `
+    domains(after: ${after}, first: ${first}, isVerified: ${isVerified} ${last? ',last: ${last}' : ''}, orderBy: {field: ${field}, direction: ${direction}}){
+        ${fields}
+    }
+`
+
+/**
+ * @description Github Graphql Members  
+ * @defaultVariables totalCount query = "" orderBy = CREATED_AT role = 'MEMBER' direction = "ASC" role = MEMBER first = 10
+ * @queryArguments direction 'ASC' | 'DESC' 
+ * orderBy 'LOGIN' | 'CREATED_AT'
+ * after String
+ * before String
+ * deployment: 'CLOUD' | 'Server'
+ * first number
+ * last number
+ * organizationLogins: String
+ * query: String
+ * role: 'MEMBER' | 'OWNER' 
+ * 
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      isUnlicensed
+ *      node {
+ *          onEnterpriseUserAccount
+ *          onUser
+ *      }
+ *  }
+ *  nodes {
+*       onEnterpriseUserAccount
+*       onUser
+*       PageInfo
+*       totalCount
+*   }
+*   PageInfo
+*   totalCount
+* }
+*/
+
+export const Members = (query:string = "",after:string = '', before: string = '',deployment:string, first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',organizationLogins:string = '', role:string = 'MEMBER',fields:string = '') => `
+    members(after: ${after} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last ?', last: number':''}, orderBy: {field: ${orderBy}, direction: ${direction}}, organizationLogins: ${organizationLogins}, query: ${query}, role: ${role}) {
+        ${fields}
+    }
+`
+
+/**
+ * @description Github Graphql Team
+ * @defaultVariables id name
+ * @queryVariables 
+ * ancestors {
+ *      Ancestors
+ * }
+ * avatarUrl
+ * combinedSlug
+ * createdAt
+ * databaseId
+ * description
+ */
+
+
+ export const Team = (fields:string = '') => `
+ ... on Team {
+     id
+     name
+     ${fields}
+ }
+`
+
+
+/**
+ * @description Github Graphql onTeam
+ * @defaultVariables id
+ * @queryVariables 
+ * Team
+ */
+
+
+ export const onTeam = (fields:string = '') => `
+ ... on Team {
+     id
+     ${fields}        
+ }
+`
+
+/**
+ * @description Github Graphql Ancestors
+ * @defaultVariables id
+ * @queryVariables 
+ * after String
+ * before String
+ * first number
+ * last number
+ * edges {
+ *      cursor
+ *      node {
+ *          ancestors {
+ *              Ancestors
+ *          }
+ *          avatarUrl
+ *      }
+ *  }
+ *  nodes {
+ *       actor {
+ *          onActor
+ *       }
+ *       PageInfo
+ *       totalCount
+ *   }
+ * }
+ */
+
+
+ export const PushAllowances = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
+    ancestors(after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql MatchingRefs  
+ * @defaultVariables totalCount orderBy = NAME direction = "ASC" first = 10 immediateOnly = false
+ * @queryArguments direction 'ASC' | 'DESC' 
+ * after String
+ * before String
+ * first number
+ * last number
+ * immediateOnly bool
+ * userLogins string
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *         Teams 
+ *      }
+ *  }
+ *  nodes {
+ *       Teams
+ *       PageInfo
+ *       totalCount
+ *   }
+ * }
+*/
+
+export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",after: string = '', before: string = '', first: number = 10, last: number = 0,orderBy: string = "NAME",direction:string =  "ASC", fields: string = '') => `
+    childTeams(immediateOnly: ${immediateOnly}, userLogins: ${userLogins},after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+        totalCount
+    }
+`
+/**
+ * @description Github Graphql RelevantOrganizations
+ * @defaultVariables id
+ * @queryVariables 
+ * after String
+ * before String
+ * first number
+ * last number
+ * edges {
+ *      cursor
+ *      node {
+ *          Organization
+ *      }
+ *  }
+ *  nodes {
+ *       Organization
+ *       PageInfo
+ *       totalCount
+ *   }
+ * }
+ */
+
+
+ export const RelevantOrganizations = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
+    relevantOrganizations(after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+        ${fields}
+        totalCount
+    }
 `
