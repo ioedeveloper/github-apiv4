@@ -1,4 +1,182 @@
 /**
+ * @description Github Graphql Repository
+ * @defaultVariables id
+ * @queryVariables
+ * AssignableUsers
+ * BranchProtectionRules
+ * CodeOfConduct
+ * Collaborators
+ * CommitComments
+ * contactLinks {
+ *      about
+ *      name
+ *      url
+ * }
+ * createdAt
+ * databaseId
+ * defaultBranchRef {
+ *      Ref
+ * }
+ * deleteBranchOnMerge
+ * DeployKeys
+ * Deployment
+ * hasIssuesEnabled
+ * description
+ * descriptionHTML
+ * diskUsage
+ * forkCount
+ * fork {
+ *      Repositories
+ * }
+ * fundingLinks {
+ *      platform
+ *      url
+ * }
+ * hasIssuesEnabled
+ * hasProjectsEnabled
+ * hasWikiEnabled
+ * homepageUrl
+ * id
+ * interactionAbility {
+ *      expiresAt
+ *      limit
+ *      origin
+ * }
+ * isArchived
+ * isBlankIssuesEnabled
+ * isDisabled
+ * isEmpty
+ * isFork
+ * isInOrganization
+ * isLocked
+ * isMirror
+ * isPrivate
+ * isSecurityPolicyEnabled
+ * isTemplate
+ * isUserConfigurationRepository
+ * issue {
+ *      Issue
+ * }
+ * issueOrPullRequest(number: number) {
+ *      onIssue
+ *      onPullRequest
+ * }
+ * issueTemplates {
+ *      about
+ *      body
+ *      name
+ *      title
+ * }
+ * issues {
+ *      Issues
+ * }
+ * label {
+ *      Label
+ * }
+ * labels {
+ *      Labels
+ * }
+ * Languages
+ * latestRelease {
+ *      LatestRelease
+ * }
+ * licenseInfo {
+ *      LicenseInfo
+ * }
+ * lockReason
+ * MentionableUsers
+ * mergeCommitAllowed
+ * Milestone
+ * Milestones
+ * mirrorUrl
+ * name
+ * nameWithOwner
+ * object(expression: string, oid: string) {
+ *      abbreviatedOid
+ *      commitResourcePath
+ *      commitUrl
+ *      id
+ *      oid
+ *      respository {
+ *          Repository
+ *      }
+ *      onCommit
+ *      onTree
+ *      onBlog
+ *      onTag
+ * }
+ * openGraphImageUrl
+ * owner {
+ *      Owner
+ * }
+ * Packages
+ * parent {
+ *      Repository
+ * }
+ * pinnedIssues {
+ *      Issues
+ * }
+ * primaryLanguage {
+ *      color
+ *      id
+ *      name
+ * }
+ * project {
+ *      Project
+ * }
+ * Projects
+ * projectsResourcePath
+ * projectsUrl
+ * pullRequest {
+ *      PullRequest
+ * }
+ * PullRequests
+ * pushedAt
+ * rebaseMergeAllowed
+ * ref {
+ *      Ref
+ * }
+ * Refs
+ * release {
+ *      Release
+ * }
+ * Releases
+ * Topics
+ * resourcePath
+ * securityPolicyUrl
+ * shortDescriptionHTML
+ * squashMergeAllowed
+ * sshUrl
+ * stargazerCount
+ * //implement this Stargazers
+ * Submodules
+ * tempCloneToken
+ * templateRepository {
+ *      Repository
+ * }
+ * updatedAt
+ * url
+ * usesCustomOpenGraphImage
+ * viewerCanAdminister
+ * viewerCanCreateProjects
+ * viewerCanSubscribe
+ * viewerCanUpdateTopics
+ * viewerDefaultCommitEmail
+ * viewerDefaultMergeMethod
+ * viewerHasStarred
+ * viewerPermission
+ * viewerPossibleCommitEmails
+ * viewerSubscription
+ * VulnerabilityAlerts
+ * Watchers
+ */
+
+ export const Repository = (fields:string = '') => `
+    id
+    ${fields}        
+`
+
+/**
  * @description Github Graphql PendingAdminInvitations
  * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
  * @queryVariables
@@ -26,8 +204,8 @@
  * Owner
  */
 
-export const PendingAdminInvitations = (query: string = "", visibility: string = "PUBLIC", after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = "CREATED_AT", directions: string = "ASC", fields: string = '') => `
-    pendingAdminInvitations(query: ${query},visibility = ${visibility}, after: ${after} ${before ? ', before' : ''} , first: ${first} ${last ? ', last: number' : ''},orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
+export const PendingAdminInvitations = (query: string = "", visibility: string = "PUBLIC", first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = "CREATED_AT", directions: string = "ASC", fields: string = '') => `
+    pendingAdminInvitations(query: ${query},visibility = ${visibility}, ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} , first: ${first} ${last ? ', last: number' : ''},orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -67,11 +245,11 @@ export const Owner = (fields: string, user: string = '', organization: string = 
  * edges {
  *      cursor
  *      node {
- *          RepositoryNode
+ *          Repository
  *      }
  *  }
  * nodes {
- *  RepositoryNode
+ *  Repository
  *  PageInfo
  *  totalCount
  *  totalDiskUsage
@@ -79,7 +257,7 @@ export const Owner = (fields: string, user: string = '', organization: string = 
  */
 
 export const Repositories = (affiliations: string = "OWNER", ownerAffiliations: string = "OWNER", privacy: string = "PUBLIC", after: string = "", before: string = "", first: number = 10, last?: number, isFork: boolean = false, isLocked: boolean = false, orderBy: string = "CREATED_AT", direction: string = "ASC", fields: string = "") => `
-    repositories(affiliations: ${affiliations}, ownerAffiliations:${ownerAffiliations}, after: ${after}, before: ${before}, first: ${first}, isFork: ${isFork}, isLocked: ${isLocked}, ${last ? ', last=${last}' : ''} orderBy: {orderBy: ${orderBy}, direction: ${direction}}, ownerAffiliations: OWNER, privacy: ${privacy}) {
+    repositories(affiliations: ${affiliations}, ownerAffiliations:${ownerAffiliations}, ${after ? `, after: ${after} ` : ''}, ${before ? `, before: ${before}`: ''} first: ${first}, isFork: ${isFork}, isLocked: ${isLocked}, ${last ? ', last=${last}' : ''} orderBy: {orderBy: ${orderBy}, direction: ${direction}}, ownerAffiliations: OWNER, privacy: ${privacy}) {
         ${fields}
     }
 `
@@ -128,8 +306,8 @@ export const Repositories = (affiliations: string = "OWNER", ownerAffiliations: 
 * }
 */
 
-export const BranchProtectionRules = (after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    branchProtectionRules(after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const BranchProtectionRules = (first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
+    branchProtectionRules(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }
 `
@@ -195,8 +373,8 @@ export const BranchProtectionRules = (after: string = '', before: string = '', f
 * }
 */
 
-export const BranchProtectionRuleConflicts = (after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    branchProtectionRuleConflicts(after: ${after} ${before ? ', before' : ''} , first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const BranchProtectionRuleConflicts = (first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
+    branchProtectionRuleConflicts(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} , first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }
 `
@@ -275,10 +453,10 @@ export const BranchProtectionRuleConflicts = (after: string = '', before: string
  * isDraft
  * isReadByViewer
  * labels {
- *      Label
+ *      Labels
  * }
  * lastEditedAt
- Make this: //LatestOpinionatedReviews
+ * LatestOpinionatedReviews
  * LatestReviews
  * locked
  * maintainerCanModify
@@ -305,11 +483,117 @@ export const BranchProtectionRuleConflicts = (after: string = '', before: string
  *      Groups
  * }
  * Reactions
+ * repository {
+ *      Repository
+ * }
+ * resourcePath
+ * revertResourcePath
+ * revertUrl
+ * reviewDecision
+ * reviewRequests {
+ *      ReviewRequests
+ * }
+ * reviewThreads {
+ *      ReviewThreads
+ * }
+ * reviews {
+ *      Reviews
+ * }
+ * state
+ * suggestedReviewers {
+ *      isAuthor
+ *      isCommenter
+ *      isCommenter
+ *      reviewer {
+ *          User
+ *      }
+ * }
+ * timeline {
+ *      Timeline
+ * }
+ * timelineItems {
+ *      TimelineItems
+ * }
+ * title
+ * updatedAt
+ * url
+ * userContentEdits {
+ *      UserContentEdits
+ * }
+ * viewerCanApplySuggestion
+ * viewerCanDeleteHeadRef
+ * viewerCanDisableAutoMerge
+ * viewerCanEnableAutoMerge
+ * viewerCanReact
+ * viewerCanSubscribe
+ * viewerCanUpdate
+ * viewerCannotUpdateReasons
+ * viewerDidAuthor
+ * viewerMergeBodyText(mergeType: "MERGE" | "SQUASH" | "REBASE")
+ * viewerMergeHeadlineText(mergeType: "MERGE" | "SQUASH" | "REBASE")
+ * viewerSubscription
  */
 
- export const PullRequest = (fields:string = '') => `
+ export const PullRequest = (number:number = 10 ,fields:string = '') => `
+    pullRequest(number: ${number}) {
+        ${fields}
+    }
+`
+/**
+ * @description Github Graphql onPullRequest  
+ * @queryArguments
+ * PullRequest
+*/
+export const onPullRequest = (fields:string = '') => `
+    ... on PullRequest {
+        ${fields}
+    }
+`
+/**
+ * @description Github Graphql PullRequestReviewThread  
+ * @defaultVariables id
+ * @queryArguments
+ * comments {
+ *      Comments
+ * } 
+ * isOutdated
+ * diffSide
+ * isCollapsed
+ * isResolved
+ * line
+ * originalLine
+ * originalStartLine
+ * path
+ * pullRequest {
+ *      PullRequest
+ * }
+ * repository {
+ *      Repository
+ * }
+ * resolvedBy {
+ *      Owner
+ * }
+ * startDiffSide
+ * startLine
+ * viewerCanReply
+ * viewerCanResolve
+ * viewerCanUnresolve
+*/
+
+export const PullRequestReviewThread = (fields:string = '') => `
     id
     ${fields}
+`
+
+/**
+ * @description Github Graphql onPullRequestReviewThread  
+ * @queryArguments
+ * PullRequestReviewThread
+*/
+export const onPullRequestReviewThread = (fields:string = '') => `
+    ... on PullRequestReviewThread {
+        ${fields}
+    }
 `
 
 /**
@@ -340,8 +624,8 @@ export const BranchProtectionRuleConflicts = (after: string = '', before: string
  * }
 */
 
-export const PullRequests = (baseRefName: string = "", headRefName: string = "", labels: string = "", states: string = "OPEN", after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    pullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
+export const PullRequests = (baseRefName: string = "", headRefName: string = "", labels: string = "", states: string = "OPEN", first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
+    pullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
         ${fields}
         totalCount
     }
@@ -376,8 +660,8 @@ export const PullRequests = (baseRefName: string = "", headRefName: string = "",
  * }
 */
 
-export const AssociatedPullRequests = (baseRefName: string = "", headRefName: string = "", labels: string = "", states: string = "OPEN", after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    associatedPullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
+export const AssociatedPullRequests = (baseRefName: string = "", headRefName: string = "", labels: string = "", states: string = "OPEN", first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
+    associatedPullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
         ${fields}
         totalCount
     }
@@ -447,8 +731,8 @@ export const AssociatedPullRequests = (baseRefName: string = "", headRefName: st
  * }
 */
 
-export const MatchingRefs = (query: string = "", after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    matchingRefs(query : ${query},after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+export const MatchingRefs = (query: string = "", first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
+    matchingRefs(query : ${query},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
         ${fields}
         totalCount
     }
@@ -479,8 +763,8 @@ export const MatchingRefs = (query: string = "", after: string = '', before: str
  * }
 */
 
-export const PushAllowances = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    pushAllowances(after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+export const PushAllowances = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
+    pushAllowances(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
         ${fields}
         totalCount
     }
@@ -555,7 +839,16 @@ export const PushAllowances = (after: string = '', before: string = '', first: n
     id
     ${fields}
 `
-
+/**
+ * @description Github Graphql onIssue  
+ * @queryArguments
+ * Issue
+*/
+export const onIssue = (fields:string = '') => `
+    ... on Issue {
+        ${fields}
+    }
+`
 
 /**
  * @description Github Graphql HoverCard
@@ -581,7 +874,7 @@ export const PushAllowances = (after: string = '', before: string = '', first: n
  *          __typename
  *          message
  *          octicon
- *          RelevantOrganisations
+ *          RelevantOrganizations
  *          totalOrganizationCount
  *      }
  *      ... on ReviewStatusHovercardContext {
@@ -602,7 +895,7 @@ export const PushAllowances = (after: string = '', before: string = '', first: n
  * 
  */
 
- export const HoverCard = (includeNotificationContexts:string = "",fields:string = '') => `
+ export const HoverCard = (fields:string = '') => `
     ${fields}        
 `
 
@@ -614,8 +907,8 @@ export const PushAllowances = (after: string = '', before: string = '', first: n
  * before string
  * first number
  * last number
- * orderBy = "CREATED_AT" | "NAME"
- * direction = "ASC" | "DESC"
+ * orderBy "CREATED_AT" | "NAME"
+ * direction "ASC" | "DESC"
  * @queryVariables 
  *  edges {
  *      cursor
@@ -631,8 +924,8 @@ export const PushAllowances = (after: string = '', before: string = '', first: n
  * }
 */
 
-export const Labels = (after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = "NAME", direction:string = "ASC",fields: string = '') => `
-    labels(after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
+export const Labels = (first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = "NAME", direction:string = "ASC",fields: string = '') => `
+    labels(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
         ${fields}
         totalCount
     }
@@ -688,8 +981,8 @@ export const Labels = (after: string = '', before: string = '', first: number = 
  * }
 */
 
-export const Issues = (labels: string = "",states:string = "OPEN",after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = "NAME", direction:string = "ASC",filterBy:string = "",fields: string = '') => `
-    issues(labels:${labels},states: ${states},after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {field: ${orderBy}, direction: ${direction},
+export const Issues = (labels: string = "",states:string = "OPEN",first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = "NAME", direction:string = "ASC",filterBy:string = "",fields: string = '') => `
+    issues(labels:${labels},states: ${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {field: ${orderBy}, direction: ${direction},
     ${filterBy&&filterBy}) {}
         ${fields}
         totalCount
@@ -877,6 +1170,7 @@ export const onCommit = (fields:string = '') => `
  * oid
  * Repository
  */
+
  export const Tree = (fields:string = '') => `
     ${fields}
 `
@@ -1001,7 +1295,7 @@ export const onCommit = (fields:string = '') => `
 */
 
 export const Deployments = (environments:string = "",after:string = '', before: string = '',deployment:string, first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
-    deployments( environments: ${environments},after: ${after} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+    deployments( environments: ${environments},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -1144,7 +1438,7 @@ export const RefUpdateRules = (fields:string = '') => `
 */
 
 export const Statuses = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    authors(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+    authors(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
@@ -1222,7 +1516,7 @@ export const Statuses = (after:string = '', before: string = '', first:number = 
 */
 
 export const History = (author:string = "",path:string = "",since:string = "", until:string = "",after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    history(${author&&author}${path?`, path: ${path}`:''}${since?`, since: ${since}`:''},${until?`, until: ${until}`:''},after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+    history(${author&&author}${path?`, path: ${path}`:''}${since?`, since: ${since}`:''},${until?`, until: ${until}`:''},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
@@ -1253,7 +1547,7 @@ export const History = (author:string = "",path:string = "",since:string = "", u
 */
 
 export const Parents = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    parents(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+    parents(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
@@ -1342,7 +1636,7 @@ export const Parents = (after:string = '', before: string = '', first:number = 1
 */
 
 export const CombinedContexts = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    combinedContexts(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+    combinedContexts(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
@@ -1405,7 +1699,7 @@ export const CombinedContexts = (after:string = '', before: string = '', first:n
 */
 
 export const Annotations = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    annotations(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+    annotations(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
@@ -1519,7 +1813,7 @@ export const Annotations = (after:string = '', before: string = '', first:number
 */
 
 export const CheckRuns = (filterBy:string = "", after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    checkRuns(${filterBy&&`${filterBy},`}after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+    checkRuns(${filterBy&&`${filterBy},`}${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
@@ -1626,7 +1920,7 @@ export const CheckRuns = (filterBy:string = "", after:string = '', before: strin
 */
 
 export const Submodules = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    submodules(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+    submodules(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
@@ -1661,4 +1955,2044 @@ export const Submodules = (after:string = '', before: string = '', first:number 
     id
     description
     ${fields}        
+`
+/**
+ * @description Github Graphql Milestones  
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * query string
+ * state "OPEN" | "CLOSED"
+ * orderBy "DUE_DATE" | "CREATED_AT" | "UPDATED_AT" | "NUMBER"
+ * direction "ASC" | "DESC"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Milestone
+ *      }
+ *      nodes {
+ *          Milestone
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+* }
+*/
+
+export const Milestones = (query:string = "",state:string = "OPEN",after:string = '', before: string = '', first:number = 10, last:number = 0,orderBy:string = "DUE_DATE", direction: "ASC",fields:string = '') => `
+    milestones(query: ${query},state: ${state},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+        totalCount
+    }
+`
+
+
+/**
+ * @description Github Graphql ReviewRequests
+ * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10
+ * @queryArguments direction 'ASC' | 'DESC' 
+ * orderBy 'LOGIN' | 'CREATED_AT'
+ * after string
+ * before string
+ * first number
+ * last number
+ * 
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          asCodeOwner
+ *          databaseId
+ *          id
+ *          pullRequest {
+ *              PullRequest
+ *          }
+ *          requestedReviewer {
+ *              onMannequin
+ *              onTeam
+ *              onUser
+ *          }
+ *      }
+ *      nodes {
+ *          asCodeOwner
+ *          databaseId
+ *          id
+ *          pullRequest {
+ *              PullRequest
+ *          }
+ *          requestedReviewer {
+ *              onMannequin
+ *              onTeam
+ *              onUser
+ *          }
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const ReviewRequests = (after:string = '', before: string = '', first:number = 10, last:number = 0, fields:string = '') => `
+    reviewRequests(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last ?`, last: ${last}`:''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql ReviewThreads
+ * @defaultVariables totalCount  first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * 
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          comments {
+ *              Comments
+ *              diffSide
+ *              id
+ *              isCollapsed
+ *              isOutdated
+ *              isResolved
+ *              line
+ *              originalLine
+ *              originalStartLine
+ *              path
+ *          }
+ *          pullrequest {
+ *              PullRequest
+ *          }
+ *          repository {
+ *              Repository
+ *          }
+ *          resolvedBy {
+ *              User
+ *          }
+ *          startDiffSide
+ *          startLine
+ *          viewerCanReply
+ *          viewerCanResolve
+ *          viewerCanUnresolve
+ *      }
+ *      nodes {
+ *          comments {
+ *              Comments
+ *              diffSide
+ *              id
+ *              isCollapsed
+ *              isOutdated
+ *              isResolved
+ *              line
+ *              originalLine
+ *              originalStartLine
+ *              path
+ *          }
+ *          pullrequest {
+ *              PullRequest
+ *          }
+ *          repository {
+ *              Repository
+ *          }
+ *          resolvedBy {
+ *              User
+ *          }
+ *          startDiffSide
+ *          startLine
+ *          viewerCanReply
+ *          viewerCanResolve
+ *          viewerCanUnresolve
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const ReviewThreads = (after:string = '', before: string = '', first:number = 10, last:number = 0, fields:string = '') => `
+    reviewThreads(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last ?`, last: ${last}`:''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql Reviews
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * 
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Repository
+ *      }
+ *      role
+ *      nodes {
+ *          Repository
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const Reviews = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
+    reviews(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql Timeline
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * since string
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          ... on AssignedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              assignable {
+ *                  Assignees
+ *              }
+ *              assignee {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              user {
+ *                  User
+ *              }
+ *              
+ *          }
+ *          ... on BaseRefDeletedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              baseRefName
+ *              createdAt
+ *         ClosedEvent     id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *          }
+ *          ... on BaseRefForcePushedEvent {
+ *              id
+ *              afterCommit {
+ *                  Commit   
+ *              }
+ *              beforeCommit {
+ *                  Commit   
+ *               }
+ *              createdAt
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              ref {
+ *                  Ref
+ *              }
+ *           }
+ *          ... on ClosedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              closable {
+ *                  Closable
+ *              }
+ *              closer {
+ *                  onCommit
+ *                  onPullRequest
+ *              }
+ *              createdAt
+ *              id
+ *              resourcePath
+ *              url
+ *           }
+ *          onCommit
+ *          ... on CommitCommentThread {
+ *              Comments
+ *              Commit
+ *              id
+ *              path
+ *              position
+ *              repository {
+ *                  Repository
+ *              }
+ *          }
+ *          ... on CrossReferencedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              isCrossRepository
+ *              referencedAt
+ *              resourcePath
+ *              source {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *              target {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *              url
+ *              willCloseTarget
+ *          }
+ *          ... on DemilestonedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              milestoneTitle
+ *              subject {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *          }
+ *          ... on DeployedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              databaseId
+ *              deployment {
+ *                  Deployment
+ *              }
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              ref {
+ *                  Ref
+ *              }
+ *          }
+ *          ... on DeploymentEnvironmentChangedEvent {
+ *              id
+ *              actor
+ *              createdAt
+ *              deploymentStatus {
+ *                  createdAt
+ *                  creator {
+ *                      Owner
+ *                  }
+ *                  deployment {
+ *                      Deployment
+ *                  }
+ *                  description
+ *                  environmentUrl
+ *                  id
+ *                  logUrl
+ *                  state
+ *                  updatedAt
+ *              }
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *          }
+ *          ... on HeadRefDeletedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              headRefName
+ *              headRef {
+ *                  Ref
+ *              }
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *          }
+ *          ... on HeadRefForcePushedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              afterCommit {
+ *                  Commit   
+ *              }
+ *              beforeCommit {
+ *                  Commit   
+ *              }
+ *              id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              ref {
+ *                  Ref
+ *              }
+ *          }
+ *          ... on HeadRefRestoredEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createAt
+ *              id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *          }
+ *          ... on IssueComment {
+ *              Comment
+ *           }
+ *          ... on LabeledEvent {
+ *              actor {
+ *                  Ownwer
+ *              }
+ *              createdAt
+ *              id
+ *              label {
+ *                  label
+ *              }
+ *              labelable {
+ *                  Labels
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *          }
+ *          ... on LockedEvent {
+ *              createdAt
+ *              creator {
+ *                  Owner
+ *              }
+ *              id
+ *              lockReason
+ *              lockable {
+ *                  activeLockReason
+ *                  locked {
+ *                      OnIssue
+ *                      onPullRequest
+ *                  }
+ *              }
+ *          }
+ *          ... on MergedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              Commit
+ *              createdAt
+ *              id
+ *              mergeRef {
+ *                  Ref
+ *              }
+ *              mergeName 
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              resourcePath
+ *              url
+ *          }
+ *          ... on MilestonedEvent {
+ *                  id
+ *                  actor {
+ *                      Owner
+ *                  }
+ *                  createdAt
+ *                  milestoneTitle
+ *                  subject {
+ *                      onIssue
+ *                      onPullRequest
+ *                  }
+ *          }
+ *          ... on PullRequestReview {
+ *              PullRequest
+ *          }
+ *          ... on PullRequestReviewComment {
+ *              PullRequest
+ *          }
+ *          onPullRequestReviewThread
+ *          ... on ReferencedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              commit {
+ *                  Commit
+ *              }
+ *              commitRepository {
+ *                  Repository
+ *              }
+ *              createdAt
+ *              id
+ *              isCrossRepository
+ *              isDirectReference
+ *              subject {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *          }
+ *          ... on RenamedTitleEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              currentTitle
+ *              subject {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *              previousTitle
+ *          }
+ *          ... on ReopenedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              id
+ *              createdAt
+ *              closable {
+ *                  Closable
+ *              }
+ *           }
+ *          ... on ReviewDismissedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              databaseId
+ *              dismissalMessage
+ *              dismissalMessageHTML
+ *              id
+ *              previousReviewState
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              pullRequestCommit {
+ *                  Commit
+ *                  id
+ *                  pullRequest {
+ *                      PullRequest
+ *                  }
+ *                  resourcePath
+ *                  url
+ *              }
+ *              resourcePath
+ *              review {
+ *                  Review
+ *              }
+ *              url
+ *          }
+ *          ... on ReviewRequestRemovedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              requestedReviewer {
+ *                  onMannequin
+ *                  onTeam
+ *                  onUser
+ *              }
+ *          }
+ *          ... on ReviewRequestedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              requestedReviewer {
+ *                  onMannequin
+ *                  onTeam
+ *                  onUser
+ *              }
+ *          }
+ *          ... on SubscribedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              subscribable {
+ *                  Subscribable
+ *              }
+ *          }
+ *          ... on UnassignedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              assignable {
+ *                  Assignees
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *              assignee {
+ *                  onBot
+ *                  onMannequin
+ *                  onOrganization
+ *                  onUser
+ *              }
+ *              createdAt
+ *              user {
+ *                  User
+ *              }
+ *          }
+ *          ... on UnlabeledEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              label {
+ *                  Label
+ *              }
+ *              labelable {
+ *                  Labels
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *          }
+ *          ... on UnlockedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              lockable {
+ *                  activeLockReason
+ *                  locked
+ *                  onIssue
+ *                  onPullRequest
+ *               }
+ *          }
+ *          ... on UnlockedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              subscribable {
+ *                  id
+ *                  viewerCanSubscribe
+ *                  viewerSubscription
+ *                  onIssue
+ *                  onPullRequest
+ *                  onRepository
+ *                  onTeam
+ *                  onTeamDiscussion
+ *                  onCommit
+ *              }
+ *          }
+ *          ... on UserBlockedEvent {
+ *              actor
+ *              blockDuration
+ *              createdAt
+ *              id
+ *              subject {
+ *                  User
+ *              }
+ *          }
+ *      }
+ *      role
+ *      nodes {
+ *          ... on AssignedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              assignable {
+ *                  Assignees
+ *              }
+ *              assignee {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              user {
+ *                  User
+ *              }
+ *              
+ *          }
+ *          ... on BaseRefDeletedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              baseRefName
+ *              createdAt
+ *         ClosedEvent     id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *          }
+ *          ... on BaseRefForcePushedEvent {
+ *              id
+ *              afterCommit {
+ *                  Commit   
+ *              }
+ *              beforeCommit {
+ *                  Commit   
+ *               }
+ *              createdAt
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              ref {
+ *                  Ref
+ *              }
+ *           }
+ *          ... on ClosedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              closable {
+ *                  Closable
+ *              }
+ *              closer {
+ *                  onCommit
+ *                  onPullRequest
+ *              }
+ *              createdAt
+ *              id
+ *              resourcePath
+ *              url
+ *           }
+ *          onCommit
+ *          ... on CommitCommentThread {
+ *              Comments
+ *              Commit
+ *              id
+ *              path
+ *              position
+ *              repository {
+ *                  Repository
+ *              }
+ *          }
+ *          ... on CrossReferencedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              isCrossRepository
+ *              referencedAt
+ *              resourcePath
+ *              source {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *              target {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *              url
+ *              willCloseTarget
+ *          }
+ *          ... on DemilestonedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              milestoneTitle
+ *              subject {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *          }
+ *          ... on DeployedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              databaseId
+ *              deployment {
+ *                  Deployment
+ *              }
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              ref {
+ *                  Ref
+ *              }
+ *          }
+ *          ... on DeploymentEnvironmentChangedEvent {
+ *              id
+ *              actor
+ *              createdAt
+ *              deploymentStatus {
+ *                  createdAt
+ *                  creator {
+ *                      Owner
+ *                  }
+ *                  deployment {
+ *                      Deployment
+ *                  }
+ *                  description
+ *                  environmentUrl
+ *                  id
+ *                  logUrl
+ *                  state
+ *                  updatedAt
+ *              }
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *          }
+ *          ... on HeadRefDeletedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              headRefName
+ *              headRef {
+ *                  Ref
+ *              }
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *          }
+ *          ... on HeadRefForcePushedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              afterCommit {
+ *                  Commit   
+ *              }
+ *              beforeCommit {
+ *                  Commit   
+ *              }
+ *              id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              ref {
+ *                  Ref
+ *              }
+ *          }
+ *          ... on HeadRefRestoredEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createAt
+ *              id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *          }
+ *          ... on IssueComment {
+ *              Comment
+ *           }
+ *          ... on LabeledEvent {
+ *              actor {
+ *                  Ownwer
+ *              }
+ *              createdAt
+ *              id
+ *              label {
+ *                  label
+ *              }
+ *              labelable {
+ *                  Labels
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *          }
+ *          ... on LockedEvent {
+ *              createdAt
+ *              creator {
+ *                  Owner
+ *              }
+ *              id
+ *              lockReason
+ *              lockable {
+ *                  activeLockReason
+ *                  locked {
+ *                      OnIssue
+ *                      onPullRequest
+ *                  }
+ *              }
+ *          }
+ *          ... on MergedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              Commit
+ *              createdAt
+ *              id
+ *              mergeRef {
+ *                  Ref
+ *              }
+ *              mergeName 
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              resourcePath
+ *              url
+ *          }
+ *          ... on MilestonedEvent {
+ *                  id
+ *                  actor {
+ *                      Owner
+ *                  }
+ *                  createdAt
+ *                  milestoneTitle
+ *                  subject {
+ *                      onIssue
+ *                      onPullRequest
+ *                  }
+ *          }
+ *          ... on PullRequestReview {
+ *              PullRequest
+ *          }
+ *          ... on PullRequestReviewComment {
+ *              PullRequest
+ *          }
+ *          onPullRequestReviewThread
+ *          ... on ReferencedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              commit {
+ *                  Commit
+ *              }
+ *              commitRepository {
+ *                  Repository
+ *              }
+ *              createdAt
+ *              id
+ *              isCrossRepository
+ *              isDirectReference
+ *              subject {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *          }
+ *          ... on RenamedTitleEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              currentTitle
+ *              subject {
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *              previousTitle
+ *          }
+ *          ... on ReopenedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              id
+ *              createdAt
+ *              closable {
+ *                  Closable
+ *              }
+ *           }
+ *          ... on ReviewDismissedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              databaseId
+ *              dismissalMessage
+ *              dismissalMessageHTML
+ *              id
+ *              previousReviewState
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              pullRequestCommit {
+ *                  Commit
+ *                  id
+ *                  pullRequest {
+ *                      PullRequest
+ *                  }
+ *                  resourcePath
+ *                  url
+ *              }
+ *              resourcePath
+ *              review {
+ *                  Review
+ *              }
+ *              url
+ *          }
+ *          ... on ReviewRequestRemovedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              requestedReviewer {
+ *                  onMannequin
+ *                  onTeam
+ *                  onUser
+ *              }
+ *          }
+ *          ... on ReviewRequestedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              pullRequest {
+ *                  PullRequest
+ *              }
+ *              requestedReviewer {
+ *                  onMannequin
+ *                  onTeam
+ *                  onUser
+ *              }
+ *          }
+ *          ... on SubscribedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              subscribable {
+ *                  Subscribable
+ *              }
+ *          }
+ *          ... on UnassignedEvent {
+ *              id
+ *              actor {
+ *                  Owner
+ *              }
+ *              assignable {
+ *                  Assignees
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *              assignee {
+ *                  onBot
+ *                  onMannequin
+ *                  onOrganization
+ *                  onUser
+ *              }
+ *              createdAt
+ *              user {
+ *                  User
+ *              }
+ *          }
+ *          ... on UnlabeledEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              label {
+ *                  Label
+ *              }
+ *              labelable {
+ *                  Labels
+ *                  onIssue
+ *                  onPullRequest
+ *              }
+ *          }
+ *          ... on UnlockedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              lockable {
+ *                  activeLockReason
+ *                  locked
+ *                  onIssue
+ *                  onPullRequest
+ *               }
+ *          }
+ *          ... on UnlockedEvent {
+ *              actor {
+ *                  Owner
+ *              }
+ *              createdAt
+ *              id
+ *              subscribable {
+ *                  id
+ *                  viewerCanSubscribe
+ *                  viewerSubscription
+ *                  onIssue
+ *                  onPullRequest
+ *                  onRepository
+ *                  onTeam
+ *                  onTeamDiscussion
+ *                  onCommit
+ *              }
+ *          }
+ *          ... on UserBlockedEvent {
+ *              actor
+ *              blockDuration
+ *              createdAt
+ *              id
+ *              subject {
+ *                  User
+ *              }
+ *          }
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const Timeline = (since:string = "",after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
+    timeline(${after ? `, after: ${after} ` : ''} ${since?`, since: ${since}`:''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql TimelineItems
+ * @defaultVariables totalCount  first = 10 itemsTypes = "PULL_REQUEST_COMMIT"
+ * @queryArguments
+ * itemsTypes "PULL_REQUEST_COMMIT" | "PULL_REQUEST_COMMIT_COMMENT_THREAD" | "PULL_REQUEST_REVIEW" | "PULL_REQUEST_REVIEW_THREAD" | "PULL_REQUEST_REVISION_MARKER" | "AUTOMATIC_BASE_CHANGE_FAILED_EVENT" | "AUTOMATIC_BASE_CHANGE_SUCCEEDED_EVENT" |
+ * "AUTO_MERGE_DISABLED_EVENT" | "AUTO_MERGE_ENABLED_EVENT" | "AUTO_REBASE_ENABLED_EVENT" | "AUTO_SQUASH_ENABLED_EVENT" | "BASE_REF_CHANGED_EVENT" | "BASE_REF_FORCE_PUSHED_EVENT" | "BASE_REF_DELETED_EVENT" | "DEPLOYED_EVENT" | "DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT" |
+ * "HEAD_REF_DELETED_EVENT" | "HEAD_REF_FORCE_PUSHED_EVENT" | "HEAD_REF_RESTORED_EVENT" | "MERGED_EVENT" | "REVIEW_DISMISSED_EVENT" | "REVIEW_REQUESTED_EVENT" | "REVIEW_REQUEST_REMOVED_EVENT" | "READY_FOR_REVIEW_EVENT" | "CONVERT_TO_DRAFT_EVENT" | 
+ * "ISSUE_COMMENT" | "CROSS_REFERENCED_EVENT" | "ADDED_TO_PROJECT_EVENT" | "ASSIGNED_EVENT" | "CLOSED_EVENT" | "COMMENT_DELETED_EVENT" | "CONNECTED_EVENT" | "CONVERTED_NOTE_TO_ISSUE_EVENT" | "DEMILESTONED_EVENT" | "DISCONNECTED_EVENT" | "LABELED_EVENT" |
+ * "LOCKED_EVENT" "MARKED_AS_DUPLICATE_EVENT" | "MENTIONED_EVENT" | "MILESTONED_EVENT" | "MOVED_COLUMNS_IN_PROJECT_EVENT" | "PINNED_EVENT" | "REFERENCED_EVENT" | "REMOVED_FROM_PROJECT_EVENT" | "RENAMED_TITLE_EVENT" | "REOPENED_EVENT" | "SUBSCRIBED_EVENT" | "TRANSFERRED_EVENT" |
+ * "UNASSIGNED_EVENT" | "UNLABELED_EVENT" | "UNLOCKED_EVENT" | "USER_BLOCKED_EVENT" | "UNMARKED_AS_DUPLICATE_EVENT" | "UNPINNED_EVENT" | "UNSUBSCRIBED_EVENT"
+ * after string
+ * before string
+ * first number
+ * last number
+ * skip number
+ * since string
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Timeline
+ *      }
+ *  }
+ * nodes {
+ *      Timeline
+ *      PageInfo
+ *      totalCount
+ * }
+ * filteredCount
+ * pageCount
+ * PageInfo
+ * updatedAt
+ * }
+*/
+
+export const TimelineItems = (itemsTypes:string = "PULL_REQUEST_COMMIT",after:string = '', before: string = '', first:number = 10, last:number = 0, skip:string, since:string = "",fields:string = '') => `
+    timelineItems(itemsTypes:${itemsTypes},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last ?`, last: ${last}`:''}${skip ?`, skip: ${skip}`:''}
+    ${since ?`, since: ${since}`:''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+
+/**
+ * @description Github Graphql Assignees  
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * 
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          User
+ *      }
+ *      role
+ *      nodes {
+ *          User
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const Assignees = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
+    assignees(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+
+/**
+ * @description Github Graphql Closable
+ * @queryArguments 
+ * closed
+ * closedAt
+ * onProject
+ * onIssue
+ * onPullRequest
+ * onMilestone
+*/
+
+export const Closable = (fields:string = '') => `
+    ${fields}
+`
+
+
+/**
+ * @description Github Graphql Project
+ * @defaultVariables id name
+ * @queryArguments 
+ * id
+ * name
+ * body
+ * bodyHTML
+ * closed
+ * closedAt
+ * column {
+ *      Column
+ * }
+ * createdAt
+ * creator {
+ *      Owner
+ * }
+ * databaseId
+ * number
+ * owner {
+ *      Owner
+ * }
+ * pendingCards {
+ *      Cards
+ * }
+ * progress {
+ *      doneCount
+ *      donePercentage
+ *      enabled
+ *      inProgressCount
+ *      inProgressPercentage
+ *      todoCount
+ *      todoPercentage
+ * }
+ * resourcePath
+ * state
+ * updatedAt
+ * url
+ * viewerCanUpdate
+ * 
+*/
+
+export const Project = (fields:string = '') => `
+    id
+    name
+    ${fields}
+`
+
+/**
+ * @description Github Graphql Column  
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * 
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Cards
+ *          createdAt
+ *          databaseId
+ *          id
+ *          name
+ *          project {
+ *              Project
+ *          }
+ *          purpose
+ *          resourcePath
+ *          updatedAt
+ *          url
+ *      }
+ *      role
+ *      nodes {
+ *          Cards
+ *          createdAt
+ *          databaseId
+ *          id
+ *          name
+ *          purpose
+ *          project {
+ *              Project
+ *          }
+ *          resourcePath
+ *          updatedAt
+ *          url
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const Column = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
+    column(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql Cards  
+ * @defaultVariables totalCount first = 10 archivedStates = ARCHIVED
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * archivedStates: "ARCHIVED" | "NOT_ARCHIVED"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Column
+ *          content {
+ *              onIssue
+ *              onPullRequest
+ *          }
+ *          createdAt
+ *          creator {
+ *              Owner
+ *          }
+ *          databaseId
+ *          id
+ *          isArchived
+ *          note
+ *          project {
+ *              Project
+ *          }
+ *          resourcePath
+ *          state
+ *          updatedAt
+ *          url
+ *      }
+ *      role
+ *      nodes {
+ *          Column
+ *          content {
+ *              onIssue
+ *              onPullRequest
+ *          }
+ *          createdAt
+ *          creator {
+ *              Owner
+ *          }
+ *          databaseId
+ *          id
+ *          isArchived
+ *          note
+ *          project {
+ *              Project
+ *          }
+ *          resourcePath
+ *          state
+ *          updatedAt
+ *          url
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const Cards = (archivedStates:string = "ARCHIVED",after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
+    cards(archivedStates: ${archivedStates},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql Review
+ * @defaultVariables id
+ * @queryVariables 
+ * author {
+ *      Owner
+ * }
+ * authorAssociation
+ * authorCanPushToRepository
+ * body
+ * bodyHTML
+ * bodyText
+ * comment {
+ *      Comments
+ * }
+ * commit {
+ *      Commit
+ * }
+ * createdAt
+ * createdViaEmail
+ * databaseId
+ * editor {
+ *      Owner
+ * }
+ * id
+ * includesCreatedEdit
+ * lastEditedAt
+ * onBehalfOf {
+ *      onBehalfOf
+ * }
+ * publishedAt
+ * pullRequest {
+ *      PullRequest
+ * }
+ * reactionGroups {
+ *      ReactionGroups
+ * }
+ * reactions {
+ *      Reactions
+ * }
+ * repository {
+ *      Repository
+ * }
+ * publishedAt
+ * resourcePath
+ * state
+ * submittedAt
+ * updatedAt
+ * url
+ * userContentEdits {
+ *      UserContentEdits
+ * }
+ * publishedAt
+ * viewerCanDelete
+ * viewerCanReact
+ * viewerCanUpdate
+ * viewerCannotUpdateReasons
+ * viewerDidAuthor
+ */
+
+ export const Review = (fields:string = '') => `
+    id
+    ${fields}        
+`
+
+/**
+ * @description Github Graphql onBehalfOf 
+ * @defaultVariables totalCount first = 10
+ * @queryArguments direction 'ASC' | 'DESC' 
+ * after string
+ * before string
+ * first number
+ * last number
+ * 
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Team
+ *      }
+ *      nodes {
+ *          Team
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+* }
+*/
+
+export const onBehalfOf = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
+    onBehalfOf(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql Subscribable
+ * @defaultVariables id
+ * @queryArguments 
+ * actor {
+ *      Owner
+ * }
+ * createdAt
+ * viewerCanSubscribe
+ * viewerSubscription
+ * onIssue
+ * onPullRequest
+ * onRepository
+ * onTeam
+ * onTeamDiscussion
+ * onCommit
+*/
+
+export const Subscribable = (fields:string = '') => `
+    id
+    ${fields}
+`
+
+
+/**
+ * @description Github Graphql Collaborators
+ * @defaultVariables totalCount first = 10 value = false affiliations "ALL"
+ * @queryArguments 
+ * affiliations "OUTSIDE" | "DIRECT" | "ALL"
+ * after string
+ * before string
+ * first number
+ * query string
+ * @queryVariables
+ *      cursor
+ *      node {
+ *          User
+ *      }
+ *  }
+ * nodes {
+ *  User
+ *  PageInfo
+ *  totalCount
+ * }
+ */
+
+ export const Collaborators = (query: string = "", after: string = "",before: string = "",first: number = 10,last?: number,fields:string = "") => `
+    collaborators(query: ${query}, ${after ? `, after: ${after} ` : ''}, ${before ? `, before: ${before}`: ''} first: ${first}, ${last? ', last=${last}': ''}) {
+        ${fields}
+    }
+`
+
+
+/**
+ * @description Github Graphql DeployKeys
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * @queryVariables 
+ * edges {
+ *      cursor
+ *      node {
+ *          createdAt
+ *          id
+ *          key
+ *          readOnly
+ *          title
+ *          verified
+ *      }
+ *  }
+ * nodes {
+ *      createdAt
+ *      id
+ *      key
+ *      readOnly
+ *      title
+ *      verified
+ *      PageInfo
+ *      totalCount
+ * }
+ * viewerHasReacted
+ * }
+*/
+
+export const DeployKeys = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
+    deployKeys(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql CommitComments
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * @queryVariables 
+ * edges {
+ *      cursor
+ *      node {
+ *         Comment                                                   
+ *      }
+ *  }
+ * nodes {
+ *      Comment
+ *      PageInfo
+ *      totalCount
+ * }
+ * viewerHasReacted
+ * }
+*/
+
+export const CommitComments = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
+    commitComments(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+
+/**
+ * @description Github Graphql Release
+ * @defaultVariables id name
+ * @queryArguments
+ * author {
+ *      User
+ * }
+ * createdAt
+ * description
+ * descriptionHTML
+ * isDraft
+ * isLatest
+ * isPrerelease
+ * name
+ * publishedAt
+ */
+
+ export const Release = (fields:string = '') => `
+    id
+    name
+    ${fields}
+`
+
+/**
+ * @description Github Graphql ReleaseAssets
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * name string
+ * @queryVariables 
+ * edges {
+ *      cursor
+ *      node {
+ *          contentType
+ *          createdAt
+ *          downloadCount
+ *          downloadUrl
+ *          id
+ *          name
+ *          release {
+ *              Release
+ *          }
+ *          size
+ *          updatedAt
+ *          uploadedBy {
+ *              User
+ *          }
+ *          url
+ *      }
+ *  }
+ * nodes {
+ *      contentType
+ *      createdAt
+ *      downloadCount
+ *      downloadUrl
+ *      id
+ *      name
+ *      release {
+ *          Release
+ *      }
+ *      size
+ *      updatedAt
+ *      uploadedBy {
+ *          User
+ *      }
+ *      url
+ *      PageInfo
+ *      totalCount
+ * }
+ * viewerHasReacted
+ * }
+*/
+
+export const ReleaseAssets = (name:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
+    commitComments(name: ${name},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql LicenseInfo
+ * @defaultVariables id name
+ * @queryArguments
+ * body
+ * conditions {
+ *      description
+ *      key
+ *      label
+ * }
+ * description
+ * featured
+ * hidden
+ * id
+ * implementation
+ * key
+ * limitations {
+ *      description
+ *      key
+ *      label
+ * }
+ * name
+ * nickname
+ * permissions {
+ *      description
+ *      key
+ *      label
+ * }
+ * pseudoLicense
+ * spdxId
+ * url
+ */
+
+ export const LicenseInfo = (fields:string = '') => `
+    id
+    name
+    ${fields}
+`
+
+/**
+ * @description Github Graphql Version
+ * @defaultVariables id
+ * @queryArguments
+ * Files
+ * Package
+ * platform
+ * preRelease
+ * readme
+ * Release
+ * statistics {
+ *      downloadsTotalCount
+ * }
+ * summary
+ * version
+ */
+
+ export const Version = (fields:string = '') => `
+    id
+    ${fields}
+`
+
+/**
+ * @description Github Graphql Versions
+ * @defaultVariables totalCount first = 10 orderBy = "CREATE_AT",direction = "ASC"
+ * @queryArguments 
+ * after String
+ * before String
+ * first number
+ * last number
+ * orderBy "CREATE_AT"
+ * direction "ASC"
+ * @queryVariables 
+ * edges {
+ *      cursor
+ *      node {
+ *         Version                                                   
+ *      }
+ *  }
+ * nodes {
+ *      Version
+ *      PageInfo
+ *      totalCount
+ * }
+ * viewerHasReacted
+ * }
+*/
+
+export const Versions = (first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy:string = "CREATE_AT",direction:string = "ASC", fields: string = '') => `
+    versions(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql Package
+ * @defaultVariables id name
+ * @queryArguments
+ * latestVersion {
+ *      Version
+ * }
+ * packageType
+ * repository {
+ *      Repository
+ * }
+ * statistics {
+ *      downloadsTotalCount
+ * }
+ * Version
+ * Version
+ * 
+ */
+
+ export const Package = (fields:string = '') => `
+    id
+    name
+    ${fields}
+`
+/**
+ * @description Github Graphql Packages
+ * @defaultVariables totalCount first = 10 orderBy = "CREATE_AT",direction = "ASC" packageType "NPM"
+ * @queryArguments 
+ * direction "ASC" | "DESC"
+ * field "CREATED_AT"
+ * packageType "NPM" | "RUBYGEMS" | "MAVEN" | "DOCKER" | "DEBIAN" | "NUGET" | "PYPI"
+ * repositoryId string
+ * after String
+ * names string,
+ * before String
+ * first number
+ * last number
+ * orderBy "CREATE_AT"
+ * direction "ASC"
+ * @queryVariables 
+ * edges {
+ *      cursor
+ *      node {
+ *         Package
+ *      }
+ *  }
+ * nodes {
+ *      Package
+ *      PageInfo
+ *      totalCount
+ * }
+ * viewerHasReacted
+ * }
+*/
+
+export const Packages = (names:string = "",packageType:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy:string = "CREATE_AT",direction:string = "ASC", fields: string = '') => `
+    packages(names:${names},${after ? `, after: ${after} ` : ''}${packageType ? `, package: ${packageType} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql VulnerabilityAlerts
+ * @defaultVariables totalCount first = 10 orderBy = "CREATE_AT",direction = "ASC" packageType "NPM"
+ * @queryArguments 
+ * direction "ASC" | "DESC"
+ * field "CREATED_AT"
+ * packageType "NPM" | "RUBYGEMS" | "MAVEN" | "DOCKER" | "DEBIAN" | "NUGET" | "PYPI"
+ * repositoryId string
+ * after String
+ * names string,
+ * before String
+ * first number
+ * last number
+ * orderBy "CREATE_AT"
+ * direction "ASC"
+ * @queryVariables 
+ * edges {
+ *      cursor
+ *      node {
+ *         Package
+ *      }
+ *  }
+ * nodes {
+ * createdAt
+ * dismissReason
+ * dismissedAt
+ * dismisser {
+ *      User
+ * }
+ * id
+ * repository {
+ *      Repository
+ * }
+ * securityAdvisory {
+ *      SecurityAdvisory
+ * }
+ * securityVulnerability {
+ *      Vulnerability
+ * }
+ * vulnerableManifestFilename
+ * vulnerableManifestPath
+ * vulnerableRequirements
+ * viewerHasReacted
+ * }
+*/
+
+export const VulnerabilityAlerts = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
+    vulnerabilityAlerts(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql SecurityAdvisory
+ * @defaultVariables databaseId description
+ * @queryVariables 
+ * cvss {
+ *      score
+ *      vectorString
+ * }
+ * cwes(last: number, first: number, before: string, after: string) {
+ *  totalCount
+ *      nodes {
+ *      cweId
+ *      description
+ *      id
+ *      name
+ * }
+ * edges {
+ *      cursor
+ *      node {
+ *          cweId
+ *          description
+ *          id
+ *          name
+ *      }
+ * }
+ * }
+ * databaseId
+ * description
+ * ghsaId
+ * id
+ * identifiers {
+ *      type
+ *      value
+ * }
+ * notificationsPermalink
+ * origin
+ * permalink
+ * publishedAt
+ * references {
+ *      url
+ * }
+ * severity
+ * summary
+ *      updatedAt
+ * }
+ * updatedAt
+ * vulnerabilities {
+ *      Vulnerabilities
+ * }
+ * withdrawnAt
+ */
+
+
+ export const SecurityAdvisory = (fields:string = '') => `
+    databaseId
+    description
+    ${fields}        
+`
+
+/**
+ * @description Github Graphql Vulnerabilities
+ * @defaultVariables totalCount field = "UPDATED_AT" direction = "ASC" first = 10 ecosystem = "NPM" severities = "LOW"
+ * @queryArguments 
+ * ecosystem "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP"
+ * severities "LOW" | "MODERATE" | "HIGH" | "CRITICAL"
+ * after string
+ * before string
+ * first number
+ * last number
+ * @queryVariables
+ * edges {
+ *      cursor
+ *      node {
+ *          Vulnerability
+ *      }
+ *  }
+ * nodes {
+ *      Vulnerability
+ * }
+ * PageInfo
+ * totalCount
+ * }
+ */
+
+ export const Vulnerabilities = (severities:string = "LOW",ecosystem:string = "NPM",first: number = 10,after: string = "",before: string = "",last?: number, orderBy:string = 'UPDATED_AT', direction:string = 'ASC',fields:string = "") => `
+    vulnerabilities(first: ${first} ${severities ? `, severities: ${severities}`:''} ${after ? `, after: ${after}`: ''} ${before ? `, before: ${before}`: ''}  ${last? ', last=${last}': ''},orderBy: {field: ${orderBy}, direction: ${direction}},) {
+        ${fields}
+    }
+`
+
+/**
+ * @description Github Graphql Vulnerability
+ * @defaultVariables severity
+ * @queryVariables 
+ * advisory {
+ *      SecurityAdvisory
+ * }
+ * firstPatchedVersion {
+ *      identifier
+ * }
+ * package {
+ *      ecosystem
+ *      name
+ * }
+ * severity
+ * updatedAt
+ * vulnerableVersionRange
+ */
+
+ export const Vulnerability = (fields:string = '') => `
+    severity
+    ${fields}        
+`
+
+/**
+ * @description Github Graphql Watches  
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after String
+ * before String
+ * first number
+ * last number
+ * @queryVariables 
+ * edges {
+ *      cursor
+ *      node {
+ *         User                                                   
+ *      }
+ *  }
+ * nodes {
+ *      User
+ *      PageInfo
+ *      totalCount
+ * }
+ * viewerHasReacted
+ * }
+*/
+
+export const Watchers = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
+    watchers(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+        ${fields}
+        totalCount
+    }
 `

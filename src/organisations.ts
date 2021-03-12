@@ -173,7 +173,7 @@ export const onOrganization = (fields: string) => `
 */
 
 export const Organizations = (query:string = "",after:string = '', before: string = '',deployment:string, first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
-    members(after: ${after} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last ?', last: number':''}, orderBy: {field: ${orderBy}, direction: ${direction}}, query: ${query}) {
+    members(after: ${after} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last ?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}, query: ${query}) {
         ${fields}
         totalCount
     }
@@ -830,20 +830,7 @@ export const OrgEnableTwoFactorRequirementAuditEntry  = (fields:string = '') =>`
  * operationType
  * Organization
  * organizationInvitation {
- *  createdAt
- *  email
- *  id
- *  invitationType
- *  invitee{
- *      User
- *  }
- *  inviter {
- *      User
- *  }
- *  organization {
- *      Organization
- *  }
- *  role
+ *      Invitation
  * }
  * organizationName
  * organizationResourcePath
@@ -2742,7 +2729,7 @@ edges {
 */
 
 export const Domains = (after:string = "", first:number = 10, last:number,isVerified:boolean = true, field:string = "DOMAIN", direction:string = "ASC", fields:string) => `
-    domains(after: ${after}, first: ${first}, isVerified: ${isVerified} ${last? ',last: ${last}' : ''}, orderBy: {field: ${field}, direction: ${direction}}){
+    domains(${after ? `, after: ${after}`: ''} first: ${first}, isVerified: ${isVerified} ${last? ',last: ${last}' : ''}, orderBy: {field: ${field}, direction: ${direction}}){
         ${fields}
     }
 `
@@ -2782,7 +2769,7 @@ export const Domains = (after:string = "", first:number = 10, last:number,isVeri
 */
 
 export const Members = (query:string = "",after:string = '', before: string = '',deployment:string, first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',organizationLogins:string = '', role:string = 'MEMBER',fields:string = '') => `
-    members(after: ${after} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last ?', last: number':''}, orderBy: {field: ${orderBy}, direction: ${direction}}, organizationLogins: ${organizationLogins}, query: ${query}, role: ${role}) {
+    members(after: ${after} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last ?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}, organizationLogins: ${organizationLogins}, query: ${query}, role: ${role}) {
         ${fields}
     }
 `
@@ -2795,19 +2782,66 @@ export const Members = (query:string = "",after:string = '', before: string = ''
  *      Ancestors
  * }
  * avatarUrl
+ * childTeams {
+ *      ChildTeams
+ * }
  * combinedSlug
  * createdAt
  * databaseId
  * description
+ * discussion {
+ *      Discussion
+ * }
+ * discussions {
+ *     Discussions
+ * }
+ * discussionsResourcePath
+ * discussionsUrl
+ * editTeamResourcePath
+ * editTeamUrl
+ * id
+ * invitations {
+ *      Invitations
+ * }
+ * memberStatuses {
+ *      MemberStatuses
+ * }
+ * members {
+ *      Members
+ * }
+ * membersResourcePath
+ * membersUrl
+ * name
+ * newTeamResourcePath
+ * newTeamUrl
+ * organization {
+ *      Organization
+ * }
+ * parentTeam {
+ *      Team
+ * }
+ * privacy
+ * repositories {
+ *     Repositories
+ * }
+ * repositoriesResourcePath
+ * repositoriesUrl
+ * resourcePath
+ * slug
+ * teamsResourcePath
+ * teamsUrl
+ * updatedAt
+ * url
+ * viewerCanAdminister
+ * viewerCanSubscribe
+ * viewerSubscription
  */
 
 
  export const Team = (fields:string = '') => `
- ... on Team {
      id
      name
      ${fields}
- }
 `
 
 
@@ -2854,8 +2888,8 @@ export const Members = (query:string = "",after:string = '', before: string = ''
  */
 
 
- export const PushAllowances = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    ancestors(after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+ export const PushAllowances = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
+    ancestors(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
         ${fields}
         totalCount
     }
@@ -2886,8 +2920,8 @@ export const Members = (query:string = "",after:string = '', before: string = ''
  * }
 */
 
-export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",after: string = '', before: string = '', first: number = 10, last: number = 0,orderBy: string = "NAME",direction:string =  "ASC", fields: string = '') => `
-    childTeams(immediateOnly: ${immediateOnly}, userLogins: ${userLogins},after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy: string = "NAME",direction:string =  "ASC", fields: string = '') => `
+    childTeams(immediateOnly: ${immediateOnly}, userLogins: ${userLogins},after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -2915,8 +2949,65 @@ export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",
  */
 
 
- export const RelevantOrganizations = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    relevantOrganizations(after: ${after} ${before ? ', before' : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+ export const RelevantOrganizations = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
+    relevantOrganizations(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql MemberStatus
+ * @defaultVariables id
+ * @queryVariables 
+ * createdAt
+ * emoji
+ * emojiHTML
+ * expiresAt
+ * indicatesLimitedAvailability
+ * message
+ * organization {
+ *      Organization
+ * }
+ * updatedAt
+ * user {
+ *      User
+ * }
+ */
+
+ export const MemberStatus = (fields:string = '') => `
+     id
+     ${fields}        
+`
+
+/**
+ * @description Github Graphql Statuses  
+ * @defaultVariables totalCount first = 10 field= "CREATED_AT" directions = "ASC"
+ * @queryArguments 
+ * field "UPDATED_AT"
+ * directions "ASC" | "DESC"
+ * after string
+ * before string
+ * first number
+ * last number
+ * 
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          MemberStatus
+ *      }
+ *      nodes {
+ *          MemberStatus
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+* }
+*/
+
+export const MemberStatuses = (after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "UPDATED_AT", directions:string = "ASC",fields:string = '') => `
+    memberStatuses(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions},}) {
         ${fields}
         totalCount
     }
