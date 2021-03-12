@@ -1437,8 +1437,8 @@ export const RefUpdateRules = (fields:string = '') => `
 * }
 */
 
-export const Statuses = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    authors(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const Statuses = (first:number = 10,after:string = '', before: string = '', last:number = 0,fields:string = '') => `
+    authors(first: ${first} ${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} ${last?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
@@ -1446,12 +1446,11 @@ export const Statuses = (after:string = '', before: string = '', first:number = 
 
 /**
  * @description Github Graphql File
- * @defaultVariables name type
+ * @defaultVariables name type path
  * @queryVariables 
  * extension
  * isGenerated
  * mode
- * name
  * object {
  *      abbreviatedOid
  *      commitResourcePath
@@ -1467,7 +1466,6 @@ export const Statuses = (after:string = '', before: string = '', first:number = 
  *      onTag
  * }
  * oid
- * path
  * Repository
  * submodule {
  *      branch
@@ -1481,9 +1479,9 @@ export const Statuses = (after:string = '', before: string = '', first:number = 
 
  export const File = (path:string = "",fields:string = '') => `
     file(path: ${path}) {
-        ${fields}
         name
         type
+        ${fields}
     }
 `
 

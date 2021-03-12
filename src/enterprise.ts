@@ -26,7 +26,13 @@
  *  location
  *  Members 
  *  name
- *  Organization
+ *  Organizations
+ *  OwnerInfo
+ *  resourcePath
+ *  slug
+ *  url
+ *  viewerIsAdmin
+ *  websiteUrl
 *}
 */
 

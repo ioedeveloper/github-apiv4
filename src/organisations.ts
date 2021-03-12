@@ -2929,7 +2929,7 @@ first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:str
 */
 
 export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy: string = "NAME",direction:string =  "ASC", fields: string = '') => `
-    childTeams(immediateOnly: ${immediateOnly}, userLogins: ${userLogins},after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+    childTeams(immediateOnly: ${immediateOnly}, userLogins: ${userLogins}${after?`, after: ${after}`:''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
