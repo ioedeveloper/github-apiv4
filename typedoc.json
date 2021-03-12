@@ -4,5 +4,7 @@
         "Queries": "_queries_",
         "Types": "_types_",
         "Query Variables": "_variables_"
-    }]
+    }],
+    "entryPoints": ["./src/index.ts"],
+    "out": "docs"
 }

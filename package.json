@@ -8,7 +8,7 @@
     "build": "tsc -p ./",
     "test": "mocha -r ts-node/register test/**/*.test.ts",
     "dev": "NODE_ENV=development nodemon",
-    "docs": "rm -r docs/* && typedoc --theme ./node_modules/typedoc-neo-theme/bin/default",
+    "docs": "rm -rf ./docs && npx typedoc --theme ./node_modules/typedoc-neo-theme/bin/default",
     "lint": "tslint --project ./tsconfig.json"
   },
   "repository": {
@@ -40,6 +40,6 @@
     "tslint": "^5.17.0",
     "typedoc": "^0.20.30",
     "typedoc-neo-theme": "git+https://github.com/google/typedoc-neo-theme.git",
-    "typescript": "^3.5.1"
+    "typescript": "^4.2.3"
   }
 }
