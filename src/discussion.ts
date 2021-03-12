@@ -125,7 +125,7 @@ export const Discussions = (isPinned:boolean = false,after:string = '', before: 
  */
 
 export const Comment = (fromComment:number = 10,after: string = '', before: string = '', first: number = 10, last: number = 0,orderBy: string = "NUMBER",direction:string =  "ASC", fields: string = '') => `
-    comments(fromComment: ${fromComment},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+    comments(fromComment: ${fromComment},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -225,7 +225,7 @@ export const ReactionGroups = (fields: string = '') => `
 */
 
 export const Reactions = (content:string = "",after: string = '', before: string = '', first: number = 10, last: number = 0,orderBy: string = "CREATED_AT",direction:string =  "ASC", fields: string = '') => `
-    reactions(content: ${content},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+    reactions(content: ${content},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -300,7 +300,7 @@ export const Reaction = (fields: string = "") => `
 */
 
 export const Invitations = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    invitations(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? ', last: number' : ''}) {
+    invitations(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -332,7 +332,7 @@ export const Invitations = (after: string = '', before: string = '', first: numb
 */
 
 export const LatestOpinionatedReviews = (writersOnly:boolean = false,after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    latestOpinionatedReviews(writersOnly: ${writersOnly},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? ', last: number' : ''}) {
+    latestOpinionatedReviews(writersOnly: ${writersOnly},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -363,7 +363,7 @@ export const LatestOpinionatedReviews = (writersOnly:boolean = false,after: stri
 */
 
 export const LatestReviews = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    latestOpinionatedReviews(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? ', last: number' : ''}) {
+    latestOpinionatedReviews(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -394,7 +394,7 @@ export const LatestReviews = (after: string = '', before: string = '', first: nu
 */
 
 export const CommitComments = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    commitComments(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? ', last: number' : ''}) {
+    commitComments(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -431,7 +431,152 @@ export const CommitComments = (after: string = '', before: string = '', first: n
 */
 
 export const Languages = (after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = "SIZE", direction:string = "ASC",fields: string = '') => `
-    labels(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? ', last: number' : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
+    labels(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql AuditLog  
+ * @defaultVariables totalCount orderBy = "CREATED_AT", directions = "ASC", first = 10
+ * @queryArguments 
+ * query string
+ * after String
+ * before String
+ * first number
+ * last number
+ * orderBy "CREATED_AT"
+ * directions "ASC",
+ * @queryVariables
+ * edges {
+ *      cursor, 
+ *      node: {
+ *          MembersCanDeleteReposClearAuditEntry
+ *          MembersCanDeleteReposDisableAuditEntry
+ *          MembersCanDeleteReposEnableAuditEntry
+ *          OauthApplicationCreateAuditEntry
+ *          OrgAddBillingManagerAuditEntry
+ *          OrgAddMemberAuditEntry
+ *          OrgBlockUserAuditEntry
+ *          OrgConfigDisableCollaboratorsOnlyAuditEntry
+ *          OrgConfigEnableCollaboratorsOnlyAuditEntry
+ *          OrgCreateAuditEntry
+ *          OrgDisableOauthAppRestrictionsAuditEntry
+ *          OrgDisableSamlAuditEntry
+ *          OrgDisableTwoFactorRequirementAuditEntry
+ *          OrgEnableOauthAppRestrictionsAuditEntry
+ *          OrgEnableSamlAuditEntry
+ *          OrgEnableTwoFactorRequirementAuditEntry
+ *          OrgInviteMemberAuditEntry
+ *          OrgInviteToBusinessAuditEntry
+ *          OrgOauthAppAccessApprovedAuditEntry
+ *          OrgOauthAppAccessDeniedAuditEntry
+ *          OrgOauthAppAccessRequestedAuditEntry
+ *          OrgRemoveBillingManagerAuditEntry
+ *          OrgRemoveMemberAuditEntry
+ *          OrgRemoveOutsideCollaboratorAuditEntry
+ *          OrgRestoreMemberAuditEntry
+ *          OrgUnblockUserAuditEntry
+ *          OrgUpdateDefaultRepositoryPermissionAuditEntry
+ *          OrgUpdateMemberAuditEntry
+ *          OrgUpdateMemberRepositoryCreationPermissionAuditEntry
+ *          OrgUpdateMemberRepositoryInvitationPermissionAuditEntry
+ *          PrivateRepositoryForkingDisableAuditEntry
+ *          PrivateRepositoryForkingEnableAuditEntry
+ *          RepoAccessAuditEntry
+ *          RepoAddMemberAuditEntry
+ *          RepoAddTopicAuditEntry
+ *          RepoArchivedAuditEntry
+ *          RepoChangeMergeSettingAuditEntry
+ *          RepoConfigDisableAnonymousGitAccessAuditEntry
+ *          RepoConfigDisableCollaboratorsOnlyAuditEntry
+ *          RepoConfigDisableContributorsOnlyAuditEntry
+ *          RepoConfigDisableSockpuppetDisallowedAuditEntry
+ *          RepoConfigEnableAnonymousGitAccessAuditEntry
+ *          RepoConfigEnableCollaboratorsOnlyAuditEntry
+ *          RepoConfigEnableContributorsOnlyAuditEntry
+ *          RepoConfigEnableSockpuppetDisallowedAuditEntry
+ *          RepoConfigLockAnonymousGitAccessAuditEntry
+ *          RepoConfigUnlockAnonymousGitAccessAuditEntry
+ *          RepoCreateAuditEntry
+ *          RepoDestroyAuditEntry
+ *          RepoRemoveMemberAuditEntry
+ *          RepoRemoveTopicAuditEntry
+ *          RepositoryVisibilityChangeDisableAuditEntry
+ *          RepositoryVisibilityChangeEnableAuditEntry
+ *          TeamAddMemberAuditEntry
+ *          TeamAddRepositoryAuditEntry
+ *          TeamChangeParentTeamAuditEntry
+ *          TeamRemoveMemberAuditEntry
+ *          TeamRemoveRepositoryAuditEntry
+ *      }
+ * }
+ * nodes {
+ *      MembersCanDeleteReposClearAuditEntry
+ *      MembersCanDeleteReposDisableAuditEntry
+ *      MembersCanDeleteReposEnableAuditEntry
+ *      OauthApplicationCreateAuditEntry
+ *      OrgAddBillingManagerAuditEntry
+ *      OrgAddMemberAuditEntry
+ *      OrgBlockUserAuditEntry
+ *      OrgConfigDisableCollaboratorsOnlyAuditEntry
+ *      OrgConfigEnableCollaboratorsOnlyAuditEntry
+ *      OrgCreateAuditEntry
+ *      OrgDisableOauthAppRestrictionsAuditEntry
+ *      OrgDisableSamlAuditEntry
+ *      OrgDisableTwoFactorRequirementAuditEntry
+ *      OrgEnableOauthAppRestrictionsAuditEntry
+ *      OrgEnableSamlAuditEntry
+ *      OrgEnableTwoFactorRequirementAuditEntry
+ *      OrgInviteMemberAuditEntry
+ *      OrgInviteToBusinessAuditEntry
+ *      OrgOauthAppAccessApprovedAuditEntry
+ *      OrgOauthAppAccessDeniedAuditEntry
+ *      OrgOauthAppAccessRequestedAuditEntry
+ *      OrgRemoveBillingManagerAuditEntry
+ *      OrgRemoveMemberAuditEntry
+ *      OrgRemoveOutsideCollaboratorAuditEntry
+ *      OrgRestoreMemberAuditEntry
+ *      OrgUnblockUserAuditEntry
+ *      OrgUpdateDefaultRepositoryPermissionAuditEntry
+ *      OrgUpdateMemberAuditEntry
+ *      OrgUpdateMemberRepositoryCreationPermissionAuditEntry
+ *      OrgUpdateMemberRepositoryInvitationPermissionAuditEntry
+ *      PrivateRepositoryForkingDisableAuditEntry
+ *      PrivateRepositoryForkingEnableAuditEntryInvitation
+ *      RepoAccessAuditEntry
+ *      RepoAddMemberAuditEntry
+ *      RepoAddTopicAuditEntry
+ *      RepoArchivedAuditEntry
+ *      RepoChangeMergeSettingAuditEntry
+ *      RepoConfigDisableAnonymousGitAccessAuditEntry
+ *      RepoConfigDisableCollaboratorsOnlyAuditEntry
+ *      RepoConfigDisableContributorsOnlyAuditEntry
+ *      RepoConfigDisableSockpuppetDisallowedAuditEntry
+ *      RepoConfigEnableAnonymousGitAccessAuditEntry
+ *      RepoConfigEnableCollaboratorsOnlyAuditEntry
+ *      RepoConfigEnableContributorsOnlyAuditEntry
+ *      RepoConfigEnableSockpuppetDisallowedAuditEntry
+ *      RepoConfigLockAnonymousGitAccessAuditEntry
+ *      RepoConfigUnlockAnonymousGitAccessAuditEntry
+ *      RepoCreateAuditEntry
+ *      RepoDestroyAuditEntry
+ *      RepoRemoveMemberAuditEntry
+ *      RepoRemoveTopicAuditEntry
+ *      RepositoryVisibilityChangeDisableAuditEntry
+ *      RepositoryVisibilityChangeEnableAuditEntry
+ *      TeamAddMemberAuditEntry
+ *      TeamAddRepositoryAuditEntry
+ *      TeamChangeParentTeamAuditEntry
+ *      TeamRemoveMemberAuditEntry
+ *      TeamRemoveRepositoryAuditEntry
+ * } 
+ * 
+*/
+
+export const AuditLog = (query:string = "",after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = "CREATED_AT", directions: string = "ASC",fields: string = '') => `
+    auditLog(query:${query},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''},orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }

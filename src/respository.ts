@@ -205,7 +205,7 @@
  */
 
 export const PendingAdminInvitations = (query: string = "", visibility: string = "PUBLIC", first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = "CREATED_AT", directions: string = "ASC", fields: string = '') => `
-    pendingAdminInvitations(query: ${query},visibility = ${visibility}, ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} , first: ${first} ${last ? ', last: number' : ''},orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
+    pendingAdminInvitations(query: ${query},visibility = ${visibility}, ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} , first: ${first} ${last ? `last: ${last}` : ''},orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -222,7 +222,7 @@ export const PendingAdminInvitations = (query: string = "", visibility: string =
 
 
 
-export const Owner = (fields: string, user: string = '', organization: string = '', repository: string) => `
+export const Owner = (fields: string) => `
   owner {
     ${fields}
   }
@@ -307,7 +307,7 @@ export const Repositories = (affiliations: string = "OWNER", ownerAffiliations: 
 */
 
 export const BranchProtectionRules = (first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    branchProtectionRules(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+    branchProtectionRules(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }
 `
@@ -374,7 +374,7 @@ export const BranchProtectionRules = (first: number = 10,after: string = '', bef
 */
 
 export const BranchProtectionRuleConflicts = (first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    branchProtectionRuleConflicts(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} , first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+    branchProtectionRuleConflicts(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} , first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }
 `
@@ -625,7 +625,7 @@ export const onPullRequestReviewThread = (fields:string = '') => `
 */
 
 export const PullRequests = (baseRefName: string = "", headRefName: string = "", labels: string = "", states: string = "OPEN", first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    pullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
+    pullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
         ${fields}
         totalCount
     }
@@ -661,7 +661,7 @@ export const PullRequests = (baseRefName: string = "", headRefName: string = "",
 */
 
 export const AssociatedPullRequests = (baseRefName: string = "", headRefName: string = "", labels: string = "", states: string = "OPEN", first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    associatedPullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
+    associatedPullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
         ${fields}
         totalCount
     }
@@ -732,7 +732,7 @@ export const AssociatedPullRequests = (baseRefName: string = "", headRefName: st
 */
 
 export const MatchingRefs = (query: string = "", first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    matchingRefs(query : ${query},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+    matchingRefs(query : ${query},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -764,7 +764,7 @@ export const MatchingRefs = (query: string = "", first: number = 10,after: strin
 */
 
 export const PushAllowances = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    pushAllowances(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+    pushAllowances(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -925,7 +925,7 @@ export const onIssue = (fields:string = '') => `
 */
 
 export const Labels = (first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = "NAME", direction:string = "ASC",fields: string = '') => `
-    labels(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
+    labels(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
         ${fields}
         totalCount
     }
@@ -982,7 +982,7 @@ export const Labels = (first: number = 10,after: string = '', before: string = '
 */
 
 export const Issues = (labels: string = "",states:string = "OPEN",first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = "NAME", direction:string = "ASC",filterBy:string = "",fields: string = '') => `
-    issues(labels:${labels},states: ${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {field: ${orderBy}, direction: ${direction},
+    issues(labels:${labels},states: ${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction},
     ${filterBy&&filterBy}) {}
         ${fields}
         totalCount
@@ -3168,14 +3168,12 @@ export const Closable = (fields:string = '') => `
  * @description Github Graphql Project
  * @defaultVariables id name
  * @queryArguments 
- * id
- * name
  * body
  * bodyHTML
  * closed
  * closedAt
- * column {
- *      Column
+ * columns {
+ *      Columns
  * }
  * createdAt
  * creator {
@@ -3191,8 +3189,8 @@ export const Closable = (fields:string = '') => `
  * }
  * progress {
  *      doneCount
- *      donePercentage
  *      enabled
+ *      donePercentage
  *      inProgressCount
  *      inProgressPercentage
  *      todoCount
@@ -3206,14 +3204,74 @@ export const Closable = (fields:string = '') => `
  * 
 */
 
-export const Project = (fields:string = '') => `
+export const Project = (number:number = 10,fields:string = '') => `
+    project(number:${number}) {
+        id
+        name
+        ${fields}
+    }
+`
+
+/**
+ * @description Github Graphql Projects
+ * @defaultVariables totalCount first = 10
+ * @queryArguments direction 'ASC' | 'DESC' orderBy = "CREATED_AT" states "OPEN"
+ * after string
+ * before string
+ * first number
+ * last number
+ * orderBy "CREATED_AT" | "UPDATED_AT" | "NAME"
+ * direction "ASC"
+ * states "OPEN" | "CLOSED"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Project
+ *      }
+ *  }
+ *  nodes { 
+ *      Project
+ *      PageInfo
+ *      totalCount
+ *   }
+ * }
+*/
+
+export const Projects = (search:string = "",states:string = "OPEN",after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields: string = '') => `
+    projects(search: ${search},state: ${states},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql Column
+ * @defaultVariables id name
+ * @queryVariables 
+ * Cards
+ * createdAt
+ * databaseId
+ * id
+ * name
+ * purpose
+ * project {
+ *      Project
+ * }
+ * resourcePath
+ * updatedAt
+ * url
+ * }
+ */
+
+export const Column = (fields:string = '') => `
     id
     name
     ${fields}
 `
 
 /**
- * @description Github Graphql Column  
+ * @description Github Graphql Columns  
  * @defaultVariables totalCount first = 10
  * @queryArguments 
  * after string
@@ -3225,33 +3283,11 @@ export const Project = (fields:string = '') => `
  *  edges {
  *      cursor
  *      node {
- *          Cards
- *          createdAt
- *          databaseId
- *          id
- *          name
- *          project {
- *              Project
- *          }
- *          purpose
- *          resourcePath
- *          updatedAt
- *          url
+ *          Column
  *      }
  *      role
  *      nodes {
- *          Cards
- *          createdAt
- *          databaseId
- *          id
- *          name
- *          purpose
- *          project {
- *              Project
- *          }
- *          resourcePath
- *          updatedAt
- *          url
+ *          Column
  *          PageInfo
  *          totalCount
  *      }
@@ -3260,11 +3296,44 @@ export const Project = (fields:string = '') => `
 * }
 */
 
-export const Column = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    column(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const Columns = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
+    columns(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
+`
+
+
+/**
+ * @description Github Graphql Card  
+ * @defaultVariables id state
+ * @queryVariables
+ * Column
+ * content {
+ *      onIssue
+ *      onPullRequest
+ * }
+ * createdAt
+ * creator {
+ *      Owner
+ * }
+ * databaseId
+ * id
+ * isArchived
+ * note
+ * project {
+ *      Project
+ * }
+ * resourcePath
+ * state
+ * updatedAt
+ * url
+*/
+
+export const Card = (fields:string = '') => `
+    id 
+    state
+    ${fields}
 `
 
 /**
@@ -3280,51 +3349,11 @@ export const Column = (after:string = '', before: string = '', first:number = 10
  *  edges {
  *      cursor
  *      node {
- *          Column
- *          content {
- *              onIssue
- *              onPullRequest
- *          }
- *          createdAt
- *          creator {
- *              Owner
- *          }
- *          databaseId
- *          id
- *          isArchived
- *          note
- *          project {
- *              Project
- *          }
- *          resourcePath
- *          state
- *          updatedAt
- *          url
+ *          Card
  *      }
  *      role
  *      nodes {
- *          Column
- *          content {
- *              onIssue
- *              onPullRequest
- *          }
- *          createdAt
- *          creator {
- *              Owner
- *          }
- *          databaseId
- *          id
- *          isArchived
- *          note
- *          project {
- *              Project
- *          }
- *          resourcePath
- *          state
- *          updatedAt
- *          url
- *          PageInfo
- *          totalCount
+ *          Card
  *      }
  *  }
 *   PageInfo
@@ -3522,7 +3551,7 @@ export const Subscribable = (fields:string = '') => `
 */
 
 export const DeployKeys = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    deployKeys(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+    deployKeys(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -3553,7 +3582,7 @@ export const DeployKeys = (first: number = 10,after: string = '', before: string
 */
 
 export const CommitComments = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    commitComments(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+    commitComments(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -3637,7 +3666,7 @@ export const CommitComments = (first: number = 10,after: string = '', before: st
 */
 
 export const ReleaseAssets = (name:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    commitComments(name: ${name},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+    commitComments(name: ${name},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -3731,7 +3760,7 @@ export const ReleaseAssets = (name:string = "",first: number = 10,after: string 
 */
 
 export const Versions = (first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy:string = "CREATE_AT",direction:string = "ASC", fields: string = '') => `
-    versions(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+    versions(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''},orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -3793,7 +3822,7 @@ export const Versions = (first: number = 10,after: string = '', before: string =
 */
 
 export const Packages = (names:string = "",packageType:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy:string = "CREATE_AT",direction:string = "ASC", fields: string = '') => `
-    packages(names:${names},${after ? `, after: ${after} ` : ''}${packageType ? `, package: ${packageType} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''},orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+    packages(names:${names},${after ? `, after: ${after} ` : ''}${packageType ? `, package: ${packageType} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''},orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -3846,7 +3875,7 @@ export const Packages = (names:string = "",packageType:string = "",first: number
 */
 
 export const VulnerabilityAlerts = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    vulnerabilityAlerts(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+    vulnerabilityAlerts(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -3991,7 +4020,7 @@ export const VulnerabilityAlerts = (first: number = 10,after: string = '', befor
 */
 
 export const Watchers = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    watchers(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+    watchers(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }

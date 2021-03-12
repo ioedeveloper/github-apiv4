@@ -2,130 +2,102 @@
  * @description Github Graphql Organization
  * @defaultVariables id, email
  * @queryVariables anyPinnableItems(type: 'REPOSITORY' | 'GIST' | 'ISSUE' | 'PROJECT' | 'PULL_REQUEST' | 'USER' | 'ORGANIZATION' | 'TEAM')
- * auditLog(after: string, before: string, first: number, last: number, orderBy{direction: ASC | DESC, field: CREATED_AT}, query: string,
- * cursor, 
- * node: {
- *  MembersCanDeleteReposClearAuditEntry
- *  MembersCanDeleteReposDisableAuditEntry
- *  MembersCanDeleteReposEnableAuditEntry
- *  OauthApplicationCreateAuditEntry
- *  OrgAddBillingManagerAuditEntry
- *  OrgAddMemberAuditEntry
- *  OrgBlockUserAuditEntry
- *  OrgConfigDisableCollaboratorsOnlyAuditEntry
- *  OrgConfigEnableCollaboratorsOnlyAuditEntry
- *  OrgCreateAuditEntry
- *  OrgDisableOauthAppRestrictionsAuditEntry
- *  OrgDisableSamlAuditEntry
- *  OrgDisableTwoFactorRequirementAuditEntry
- *  OrgEnableOauthAppRestrictionsAuditEntry
- *  OrgEnableSamlAuditEntry
- *  OrgEnableTwoFactorRequirementAuditEntry
- *  OrgInviteMemberAuditEntry
- *  OrgInviteToBusinessAuditEntry
- *  OrgOauthAppAccessApprovedAuditEntry
- *  OrgOauthAppAccessDeniedAuditEntry
- *  OrgOauthAppAccessRequestedAuditEntry
- *  OrgRemoveBillingManagerAuditEntry
- *  OrgRemoveMemberAuditEntry
- *  OrgRemoveOutsideCollaboratorAuditEntry
- *  OrgRestoreMemberAuditEntry
- *  OrgUnblockUserAuditEntry
- *  OrgUpdateDefaultRepositoryPermissionAuditEntry
- *  OrgUpdateMemberAuditEntry
- *  OrgUpdateMemberRepositoryCreationPermissionAuditEntry
- *  OrgUpdateMemberRepositoryInvitationPermissionAuditEntry
- *  PrivateRepositoryForkingDisableAuditEntry
- *  PrivateRepositoryForkingEnableAuditEntry
- *  RepoAccessAuditEntry
- *  RepoAddMemberAuditEntry
- *  RepoAddTopicAuditEntry
- *  RepoArchivedAuditEntry
- *  RepoChangeMergeSettingAuditEntry
- *  RepoConfigDisableAnonymousGitAccessAuditEntry
- *  RepoConfigDisableCollaboratorsOnlyAuditEntry
- *  RepoConfigDisableContributorsOnlyAuditEntry
- *  RepoConfigDisableSockpuppetDisallowedAuditEntry
- *  RepoConfigEnableAnonymousGitAccessAuditEntry
- *  RepoConfigEnableCollaboratorsOnlyAuditEntry
- *  RepoConfigEnableContributorsOnlyAuditEntry
- *  RepoConfigEnableSockpuppetDisallowedAuditEntry
- *  RepoConfigLockAnonymousGitAccessAuditEntry
- *  RepoConfigUnlockAnonymousGitAccessAuditEntry
- *  RepoCreateAuditEntry
- *  RepoDestroyAuditEntry
- *  RepoRemoveMemberAuditEntry
- *  RepoRemoveTopicAuditEntry
- *  RepositoryVisibilityChangeDisableAuditEntry
- *  RepositoryVisibilityChangeEnableAuditEntry
- *  TeamAddMemberAuditEntry
- *  TeamAddRepositoryAuditEntry
- *  TeamChangeParentTeamAuditEntry
- *  TeamRemoveMemberAuditEntry
- *  TeamRemoveRepositoryAuditEntry
+ * AuditLog
+ * avatarUrl
+ * createdAt
+ * databaseId
+ * description
+ * descriptionHTML
+ * Domains
+ * email
+ * hasSponsorsListing
+ * interactionAbility {
+ *      expiresAt
+ *      limit
+ *      origin
  * }
- * nodes {
- *  MembersCanDeleteReposClearAuditEntry
- *  MembersCanDeleteReposDisableAuditEntry
- *  MembersCanDeleteReposEnableAuditEntry
- *  OauthApplicationCreateAuditEntry
- *  OrgAddBillingManagerAuditEntry
- *  OrgAddMemberAuditEntry
- *  OrgBlockUserAuditEntry
- *  OrgConfigDisableCollaboratorsOnlyAuditEntry
- *  OrgConfigEnableCollaboratorsOnlyAuditEntry
- *  OrgCreateAuditEntry
- *  OrgDisableOauthAppRestrictionsAuditEntry
- *  OrgDisableSamlAuditEntry
- *  OrgDisableTwoFactorRequirementAuditEntry
- *  OrgEnableOauthAppRestrictionsAuditEntry
- *  OrgEnableSamlAuditEntry
- *  OrgEnableTwoFactorRequirementAuditEntry
- *  OrgInviteMemberAuditEntry
- *  OrgInviteToBusinessAuditEntry
- *  OrgOauthAppAccessApprovedAuditEntry
- *  OrgOauthAppAccessDeniedAuditEntry
- *  OrgOauthAppAccessRequestedAuditEntry
- *  OrgRemoveBillingManagerAuditEntry
- *  OrgRemoveMemberAuditEntry
- *  OrgRemoveOutsideCollaboratorAuditEntry
- *  OrgRestoreMemberAuditEntry
- *  OrgUnblockUserAuditEntry
- *  OrgUpdateDefaultRepositoryPermissionAuditEntry
- *  OrgUpdateMemberAuditEntry
- *  OrgUpdateMemberRepositoryCreationPermissionAuditEntry
- *  OrgUpdateMemberRepositoryInvitationPermissionAuditEntry
- *  PrivateRepositoryForkingDisableAuditEntry
- *  PrivateRepositoryForkingEnableAuditEntry
- *  RepoAccessAuditEntry
- *  RepoAddMemberAuditEntry
- *  RepoAddTopicAuditEntry
- *  RepoArchivedAuditEntry
- *  RepoChangeMergeSettingAuditEntry
- *  RepoConfigDisableAnonymousGitAccessAuditEntry
- *  RepoConfigDisableCollaboratorsOnlyAuditEntry
- *  RepoConfigDisableContributorsOnlyAuditEntry
- *  RepoConfigDisableSockpuppetDisallowedAuditEntry
- *  RepoConfigEnableAnonymousGitAccessAuditEntry
- *  RepoConfigEnableCollaboratorsOnlyAuditEntry
- *  RepoConfigEnableContributorsOnlyAuditEntry
- *  RepoConfigEnableSockpuppetDisallowedAuditEntry
- *  RepoConfigLockAnonymousGitAccessAuditEntry
- *  RepoConfigUnlockAnonymousGitAccessAuditEntry
- *  RepoCreateAuditEntry
- *  RepoDestroyAuditEntry
- *  RepoRemoveMemberAuditEntry
- *  RepoRemoveTopicAuditEntry
- *  RepositoryVisibilityChangeDisableAuditEntry
- *  RepositoryVisibilityChangeEnableAuditEntry
- *  TeamAddMemberAuditEntry
- *  TeamAddRepositoryAuditEntry
- *  TeamChangeParentTeamAuditEntry
- *  TeamRemoveMemberAuditEntry
- *  TeamRemoveRepositoryAuditEntry
+ * ipAllowListEnabledSetting
+ * IpAllowListEntries
+ * isSponsoredBy(accountLogin: string)
+ * isSponsoringViewer
+ * isVerified
+ * itemShowcase {
+ *      Items
+ *      hasPinnedItems
  * }
- * PageInfo
- * totalCount
+ * location
+ * login
+ * MemberStatuses
+ * MembersWithRole
+ * name
+ * newTeamResourcePath
+ * newTeamUrl
+ * notificationDeliveryRestrictionEnabledSetting
+ * organizationBillingEmail
+ * Packages
+ * PendingMembers
+ * PinnableItems
+ * PinnedItems
+ * pinnedItemsRemaining
+ * Project
+ * Projects
+ * projectsResourcePath
+ * projectsUrl
+ * Repositories
+ * Repository
+ * requiresTwoFactorAuthentication
+ * resourcePath
+ * samlIdentityProvider {
+ *      digestMethod
+ *      ExternalIdentities
+ *      id
+ *      idpCertificate
+ *      issuer
+ *      organization {
+ *          Organization
+ *      }
+ *      signatureMethod
+ *      ssoUrl
+ * }
+ * sponsorsListing {
+ *      activeGoal {
+ *          description
+ *          kind
+ *          percentComplete
+ *          targetValue
+ *          title
+ *      }
+ *      createdAt
+ *      fullDescription
+ *      fullDescriptionHTML
+ *      id
+ *      name
+ *      shortDescription
+ *      slug
+ * }
+ * sponsorshipForViewerAsSponsor{
+ *      Sponsor
+ * }
+ * SponsorshipsAsMaintainer
+ * SponsorshipsAsSponsor
+ * team {
+ *      Team
+ * }
+ * Teams
+ * teamsResourcePath
+ * teamsUrl
+ * twitterUsername
+ * updatedAt
+ * url
+ * viewerCanAdminister
+ * viewerCanChangePinnedItems
+ * viewerCanCreateProjects
+ * viewerCanCreateRepositories
+ * viewerCanCreateTeams
+ * viewerCanSponsor
+ * viewerIsAMember
+ * viewerIsSponsoring
+ * websiteUrl
  */
 
  export const Organization = (fields: string) => `
@@ -145,20 +117,16 @@ export const onOrganization = (fields: string) => `
     }
 `
 /**
- * @description Github Graphql Organization  
- * @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
- * orderBy 'LOGIN' | 'CREATED_AT'
+ * @description Github Graphql Organizations
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
  * after String
  * before String
  * first number
  * last number
- * query: String
- * 
  * @queryVariables 
  *  edges {
  *      cursor
- *      isUnlicensed
  *      node {
  *          Organization
  *      }
@@ -172,8 +140,8 @@ export const onOrganization = (fields: string) => `
 * }
 */
 
-export const Organizations = (query:string = "",after:string = '', before: string = '',deployment:string, first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
-    members(after: ${after} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last ?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}, query: ${query}) {
+export const Organizations = (after:string = '', before: string = '',first:number = 10, last:number = 0,fields:string = '') => `
+    organizations(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last ?`, last: ${last}`:''}) {
         ${fields}
         totalCount
     }
@@ -2846,6 +2814,46 @@ export const Members = (query:string = "",after:string = '', before: string = ''
 
 
 /**
+ * @description Github Graphql Teams  
+ * @defaultVariables totalCount query = "" orderBy = "NAME" direction = "ASC" role = "MEMBER" first = 10 ldapMapped = false
+ * @queryArguments direction 'ASC' | 'DESC' 
+ * orderBy "NAME"
+ * after string
+ * before string
+ * first number
+ * last number
+ * privacy "SECRET" | "VISIBLE"
+ * query string
+ * role "ADMIN" | "MEMBER"
+ * rootTeamsOnly boolean
+ * userLogins string
+ * role "ADMIN" | "MEMBER"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Team
+ *      }
+ *      role
+ *      nodes {
+ *          Team
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const Teams = (query:string = "",ldapMapped:boolean = false,privacy: string = "VISIBLE",role: string = "MEMBER",rootTeamsOnly:boolean = false, userLogins:string = "", after:string = '', before: string = '',
+first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
+    teams(query: ${query} ${ldapMapped?`, ldapMapped: ${ldapMapped}`:''} ${privacy?`, privacy: ${privacy}`:''} ${role?`, role: ${role}`:''} ${rootTeamsOnly?`, rootTeamsOnly: ${rootTeamsOnly}`:''} ${userLogins?`, userLogins: ${userLogins}`:''} 
+    ${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''},
+     orderBy: {field: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
  * @description Github Graphql onTeam
  * @defaultVariables id
  * @queryVariables 
@@ -2889,7 +2897,7 @@ export const Members = (query:string = "",after:string = '', before: string = ''
 
 
  export const PushAllowances = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    ancestors(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+    ancestors(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -2909,7 +2917,7 @@ export const Members = (query:string = "",after:string = '', before: string = ''
  *  edges {
  *      cursor
  *      node {
- *         Teams 
+ *         Team
  *      }
  *  }
  *  nodes {
@@ -2921,7 +2929,7 @@ export const Members = (query:string = "",after:string = '', before: string = ''
 */
 
 export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy: string = "NAME",direction:string =  "ASC", fields: string = '') => `
-    childTeams(immediateOnly: ${immediateOnly}, userLogins: ${userLogins},after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+    childTeams(immediateOnly: ${immediateOnly}, userLogins: ${userLogins},after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -2950,7 +2958,7 @@ export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",
 
 
  export const RelevantOrganizations = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    relevantOrganizations(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? ', last: number' : ''}) {
+    relevantOrganizations(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -3012,3 +3020,547 @@ export const MemberStatuses = (after:string = '', before: string = '', first:num
         totalCount
     }
 `
+
+/**
+ * @description Github Graphql IpAllowListEntries
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10
+ * @queryArguments direction 'ASC' | 'DESC' 
+ * after string
+ * before string
+ * first number
+ * last number
+ * orderBy "CREATED_AT" | "ALLOW_LIST_VALUE"
+ * direction "ASC" | "DESC"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          allowListValue
+ *          createdAt
+ *          id
+ *          isActive
+ *          name
+ *          owner {
+ *              onEnterprise
+ *              onOrganization
+ *          }
+ *      }
+ *  }
+ *  nodes {
+ *      allowListValue
+ *      createdAt
+ *      id
+ *      isActive
+ *      name
+ *      owner {
+ *          onEnterprise
+ *          onOrganization
+ *      }
+ *      updatedAt
+ *      PageInfo
+ *      totalCount
+ *   }
+ * }
+*/
+
+export const IpAllowListEntries = (after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = "CREATED_AT", direction:string = "ASC",fields: string = '') => `
+    ipAllowListEntries(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql Items
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * orderBy "SIZE""
+ * direction "ASC" | "DESC"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          onGist
+ *          onRepository
+ *      }
+ *  }
+ *  nodes {
+ *      onGist
+ *      onRepository
+ *      PageInfo
+ *      totalCount
+ *   }
+ * }
+*/
+
+export const Items = (after: string = '', before: string = '', first: number = 10, last: number = 0,fields: string = '') => `
+    labels(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql MembersWithRole
+ * @defaultVariables totalCount orderBy = "SIZE" direction = "ASC" first = 10
+ * @queryArguments direction 'ASC' | 'DESC' 
+ * after string
+ * before string
+ * first number
+ * last number
+ * orderBy "SIZE""
+ * direction "ASC" | "DESC"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          User
+ *      }
+ *  }
+ *  nodes {
+ *      User
+ *      PageInfo
+ *      totalCount
+ *   }
+ * }
+*/
+
+export const MembersWithRole = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
+    membersWithRole(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+
+/**
+ * @description Github Graphql PendingMembers
+ * @defaultVariables totalCount first = 10
+ * @queryArguments direction 'ASC' | 'DESC' 
+ * after string
+ * before string
+ * first number
+ * last number
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          User
+ *      }
+ *  }
+ *  nodes {
+ *      User
+ *      PageInfo
+ *      totalCount
+ *   }
+ * }
+*/
+
+export const PendingMembers = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
+    pendingMembers(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+
+/**
+ * @description Github Graphql PinnableItems
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * types "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          onGist
+ *          onRepository
+ *      }
+ *  }
+ *  nodes {
+ *      onGist
+ *      onRepository
+ *      PageInfo
+ *      totalCount
+ *   }
+ * }
+*/
+
+export const PinnableItems = (types:string = "ORGANIZATION",after: string = '', before: string = '', first: number = 10, last: number = 0,fields: string = '') => `
+    pinnableItems(type: ${types},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+
+/**
+ * @description Github Graphql PinnedItems
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * types "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          onGist
+ *          onRepository
+ *      }
+ *  }
+ *  nodes {
+ *      onGist
+ *      onRepository
+ *      PageInfo
+ *      totalCount
+ *   }
+ * }
+*/
+
+export const PinnedItems = (types:string = "ORGANIZATION",after: string = '', before: string = '', first: number = 10, last: number = 0,fields: string = '') => `
+    pinnedItems(type: ${types},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql ExternalIdentities
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          guid
+ *          organizationInvitation {
+ *              Invitation
+ *          }
+ *          samlIdentity {
+ *              emails {
+ *                  primary
+ *                  type
+ *                  value
+ *              }
+ *              familyName
+ *              givenName
+ *              groups
+ *              nameId
+ *              username
+ *          }
+ *          scimIdentity {
+ *              emails {
+ *                  primary
+ *                  type
+ *                  value
+ *              }
+ *              familyName
+ *              givenName
+ *              groups
+ *              username
+ *          }
+ *          user{
+ *              User
+ *          }
+ *      }
+ *  }
+ *  nodes {
+ *      guid
+ *      organizationInvitation {
+ *          Invitation
+ *      }
+ *      samlIdentity {
+ *          emails {
+ *              primary
+ *              type
+ *              value
+ *          }
+ *          familyName
+ *          givenName
+ *          groups
+ *          nameId
+ *          username
+ *      }
+ *      scimIdentity {
+ *          emails {
+ *              primary
+ *              type
+ *              value
+ *          }
+ *          familyName
+ *          givenName
+ *          groups
+ *          username
+ *      }
+ *      user{
+ *          User
+ *      }
+ *      PageInfo
+ *      totalCount
+ *   }
+ * }
+*/
+
+export const ExternalIdentities = (after: string = '', before: string = '', first: number = 10, last: number = 0,fields: string = '') => `
+    externalIdentities(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+        id
+        ${fields}
+        totalCount
+    }
+`
+
+
+
+/**
+ * @description Github Graphql Sponsorable
+ * @defaultVariables id
+ * @queryVariables 
+ * hasSponsorsListing
+ * isSponsoredBy(accountLogin: string)
+ * isSponsoringViewer
+ * sponsorsListing {
+ *      activeGoal {
+ *          description
+ *          kind
+ *          percentComplete
+ *          targetValue
+ *          title
+ *      }
+ *      createdAt
+ *      fullDescription
+ *      fullDescriptionHTML
+ *      id
+ *      name
+ *      shortDescription
+ *      slug
+ * }
+ * sponsorshipForViewerAsSponsor {
+ *      Sponsor
+ * }
+ * SponsorshipsAsMaintainer
+ * SponsorshipsAsSponsor
+ * viewerCanSponsor
+ * viewerIsSponsoring
+ * onOrganazation
+ * onUser
+ */
+
+ export const Sponsorable = (fields:string = '') => `
+    id
+    ${fields}        
+`
+
+/**
+ * @description Github Graphql Tier
+ * @defaultVariables id name
+ * @queryVariables 
+ * adminInfo {
+ *      Sponsorships
+ * }
+ * createdAt
+ * description
+ * descriptionHTML
+ * monthlyPriceInCents
+ * monthlyPriceInDollars
+ * SponsorsListing
+ * updatedAt
+ */
+
+ export const Tier = (fields:string = '') => `
+    id
+    name
+    ${fields}
+`
+
+/**
+ * @description Github Graphql Goals
+ * @defaultVariables title percentComplete
+ * @queryVariables 
+ * description
+ * kind
+ * targetValue
+ * title
+ */
+
+ export const Goals = (fields:string = '') => `
+    title
+    percentComplete
+    ${fields}
+`
+
+/**
+ * @description Github Graphql SponsorsListing
+ * @defaultVariables id name
+ * @queryVariables 
+ * activeGoal {
+ *      Goal
+ * }
+ * createdAt
+ * fullDescription
+ * fullDescriptionHTML
+ * id
+ * name
+ * shortDescription
+ * slug
+ * Tiers
+ */
+
+ export const SponsorsListing = (fields:string = '') => `
+    id
+    name
+    ${fields}
+`
+
+
+
+/**
+ * @description Github Graphql Tiers  
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * orderBy "CREATED_AT" | "MONTHLY_PRICE_IN_CENTS"
+ * direction "ASC" | "DESC"
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Tier
+ *      }
+ *      role
+ *      nodes {
+ *          Tier
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const Tiers = (after:string = '', before: string = '', first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
+    tiers(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},
+    orderBy: {field: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+    }
+        totalCount
+`
+
+/**
+ * @description Github Graphql Sponsor
+ * @queryVariables 
+ * createdAt
+ * id
+ * maintainer {
+ *      User
+ *  }
+ * privacyLevel
+ * sponsorable {
+ *      Sponsorable
+ * }
+ * sponsorEntity {
+ *      onOrganization
+ *      onUser
+ * }
+ * sponsor {
+ *      User
+ * }
+ * tier {
+ *      Tier
+ * }
+*/
+
+export const Sponsor = (fields:string = '') => `
+    id
+    ${fields}        
+`
+
+/**
+ * @description Github Graphql SponsorshipsAsMaintainer 
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 includePrivate = false
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * orderBy "CREATED_AT"
+ * direction "ASC" | "DESC"
+ * includePrivate boolean
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Sponsor
+ *      }
+ *      role
+ *      nodes {
+ *          Sponsor
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const SponsorshipsAsMaintainer = (includePrivate: boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
+    sponsorshipsAsMaintainer(inincludePrivate: ${includePrivate},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},
+    orderBy: {field: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+    }
+    totalCount
+`
+
+/**
+ * @description Github Graphql sponsorshipsAsSponsor 
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 includePrivate = false
+ * @queryArguments 
+ * after string
+ * before string
+ * first number
+ * last number
+ * orderBy "CREATED_AT"
+ * direction "ASC" | "DESC"
+ * includePrivate boolean
+ * @queryVariables 
+ *  edges {
+ *      cursor
+ *      node {
+ *          Sponsor
+ *      }
+ *      role
+ *      nodes {
+ *          Sponsor
+ *          PageInfo
+ *          totalCount
+ *      }
+ *  }
+*   PageInfo
+* }
+*/
+
+export const SponsorshipsAsSponsor = (includePrivate: boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
+    sponsorshipsAsSponsor(inincludePrivate: ${includePrivate},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},
+    orderBy: {field: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+    }
+    totalCount
+`
+
