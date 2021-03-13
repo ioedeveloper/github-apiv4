@@ -24,6 +24,10 @@
     "API"
   ],
   "author": "David Disu <daviddisu8@gmail.com>",
+  "contributors": [{
+    "name": "David Disu",
+    "email": "daviddisu8@gmail.com"
+  }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ioedeveloper/github-apiv4/issues"
