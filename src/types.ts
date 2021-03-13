@@ -2,7 +2,7 @@
  * @description Github Graphql API response type for Viewer query
  */
 export declare interface Viewer {
-    viewer: UserInfo;
+    viewer: UserInfo; // eslint-disable-line
 }
 
 export declare interface UserInfo {
@@ -123,7 +123,7 @@ export declare interface BranchDirectories {
 }
 
 export declare interface Repository {
-    repository: null | RepositoryInfo;
+    repository: null | RepositoryInfo; //eslint-disable-line
 }
 
 export declare interface RepositoryInfo {
