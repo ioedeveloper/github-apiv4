@@ -3814,3 +3814,17 @@ export const Resource = `
     }
   }
 `
+/**
+ * @description Github Graphql EnterpriseAdministratorInvitation
+ * @queryArguments 
+ * enterpriseSlug string
+ * role string
+ * userLogin number
+ * @queryVariables 
+    Invitation
+*/
+export const ENTERPRISEADMINISTRATORINVITATION = (enterpriseSlug:string, role:string, userLogin:string, fields:string) => `
+  enterpriseAdministratorInvitation(enterpriseSlug: ${enterpriseSlug}, role: ${role}, userLogin: ${userLogin}) {
+    ${fields}
+  }
+`

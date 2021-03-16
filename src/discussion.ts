@@ -257,7 +257,6 @@ export const Reaction = (fields: string = "") => `
  * @queryVariables 
  * createdAt
  *  email
- *  id
  *  invitationType
  *  invitee{
  *      User
@@ -272,8 +271,8 @@ export const Reaction = (fields: string = "") => `
  */
 
  export const Invitation = (fields: string = "") => `
- content
- ${fields}
+    id   
+    ${fields}
 `
 
 /**
