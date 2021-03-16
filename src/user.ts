@@ -1,7 +1,7 @@
 /**
  * @description Github Graphql User
  * @defaultVariables id name
- * @queryVariables anyPinnableItems(type: 'REPOSITORY' | 'GIST' | 'ISSUE' | 'PROJECT' | 'PULL_REQUEST' | 'USER' | 'ORGANIZATION' | 'TEAM')
+ * @queryVariables anyPinnableItems(type: "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM")
  * avatarUrl
  * bio
  * bioHTML
@@ -18,7 +18,7 @@
  * GistComments
  * Gists
  * hasSponsorsListing
- * hovercard(primarySubjectId: '') {
+ * hovercard(primarySubjectId: "") {
  *  contexts {  
  *      message
  *      octicon
@@ -36,7 +36,7 @@
  *          teamsResourcePath
  *          teamsUrl
  *          totalTeamCount
- *          RelevantOrganization
+ *          RelevantOrganizations
  *      }
  *      ... on ReviewStatusHovercardContext {
  *          reviewDecision
@@ -62,7 +62,7 @@
  * isGitHubStar
  * isHireable
  * isSiteAdmin
- * isSponsoredBy(accountLogin: '')
+ * isSponsoredBy(accountLogin: "")
  * isSponsoringViewer
  * isViewer
  * IssueComments
@@ -146,132 +146,115 @@ export const onUser = (fields: string) => `
  * befor
  * first
  * last
- * node
- * edge
- * PageInfo
+ * edges {
+ *      cursor
+ *      node {
+ *         Teams                                                 
+ *      }
+ *  }
+ * nodes {
+ *      Teams 
+ *      PageInfo
+ * }
  */
 
- export const RelevantTeams = (after:string = '', before:string = '', first:number = 10, last:number = 10, node:string = '',
- edge:string = '', pageInfo: string = '') => `
-    relevantTeams(${after ? `, after: ${after}`: ''} ${before ? `, before: ${before}`: ''} first: ${first}, last: ${last}) {
-        ${edge}
-        ${node}
-        ${pageInfo}
+export const RelevantTeams = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    relevantTeams(${after ? `, ${after && `, after: ${after}`}` : ""} ${before ? `, before: ${before}` : ""} first: ${first}, last: ${last}) {
+        ${fields}
         totalcount
     }
  `
+
 /**
- * @description Github Graphql RelevantOrganisation
- * @defaultVariables totalcount
- * @queryVariables after 
- * befor
- * first
- * last
- * node
- * edge
- * PageInfo
- */
-
- export const RelevantOrganization = (after:string = '', before:string = '', first:number = 10, last:number = 10, node:string = '',
- edge:string = '', pageInfo: string = '') => `
-    relevantOrganization(${after ? `, after: ${after}`: ''} ${before ? `, before: ${before}`: ''} first: ${first}, last: ${last}) {
-        ${edge}
-        ${node}
-        ${pageInfo}
-        totalcount
-    }
- `
-
- /**
- * @description Github Graphql EnterpriseUserAccount  
- * @defaultVariables id name
- * @queryVariables avatarUrl
- * createdAt
- * enterprise {
- *  Enterprise
- * }
- * login
- * organizations {
- *  Organizations
- * }
- * resourcePath
- * updatedAt
- * url
- * user {
- *  User
- * }
+* @description Github Graphql EnterpriseUserAccount  
+* @defaultVariables id name
+* @queryVariables avatarUrl
+* createdAt
+* enterprise {
+*  Enterprise
+* }
+* login
+* organizations {
+*  Organizations
+* }
+* resourcePath
+* updatedAt
+* url
+* user {
+*  User
+* }
 */
 
-export const EnterpriseUserAccount = (fields:string = '') => `
+export const EnterpriseUserAccount = (fields: string = "") => `
     id
     name
     ${fields}
 `
 
- /**
- * @description Github Graphql onEnterpriseUserAccount 
- * * @queryVariables EnterpriseUserAccount 
- */
+/**
+* @description Github Graphql onEnterpriseUserAccount 
+* * @queryVariables EnterpriseUserAccount 
+*/
 
-export const onEnterpriseUserAccount = (fields:string = '') => `
+export const onEnterpriseUserAccount = (fields: string = "") => `
     ... on EnterpriseUserAccount {
         ${fields}
     }
 `
 
- /**
- * @description Github Graphql OwnerInfo 
- * @queryVariables Admins
- * AffiliatedUsersWithTwoFactorDisabled
- * affiliatedUsersWithTwoFactorDisabledExist
- * allowPrivateRepositoryForkingSetting
- * AllowPrivateRepositoryForkingSettingOrganizations
- * defaultRepositoryPermissionSetting
- * DefaultRepositoryPermissionSettingOrganizations
- * Domains
- * EnterpriseServerInstallations
- * ipAllowListEnabledSetting
- * IpAllowListEntries
- * isUpdatingDefaultRepositoryPermission
- * isUpdatingTwoFactorRequirement
- * membersCanChangeRepositoryVisibilitySetting
- * MembersCanChangeRepositoryVisibilitySettingOrganizations
- *  membersCanCreateInternalRepositoriesSetting
- * membersCanCreatePrivateRepositoriesSetting
- * membersCanCreatePublicRepositoriesSetting
- * membersCanCreateRepositoriesSetting
- * MembersCanCreateRepositoriesSettingOrganizations
- * membersCanDeleteIssuesSetting
- * MembersCanDeleteIssuesSettingOrganizations
- * membersCanDeleteRepositoriesSetting
- * MembersCanDeleteRepositoriesSettingOrganizations
- * membersCanInviteCollaboratorsSetting
- * MembersCanInviteCollaboratorsSettingOrganizations
- * membersCanMakePurchasesSetting
- * membersCanUpdateProtectedBranchesSetting
- * MembersCanUpdateProtectedBranchesSettingOrganizations
- * membersCanViewDependencyInsightsSetting
- * MembersCanViewDependencyInsightsSettingOrganizations
- * notificationDeliveryRestrictionEnabledSetting
- * organizationProjectsSetting
- * OrganizationProjectsSettingOrganizations
- * OutsideCollaborators
- * PendingAdminInvitations
- * PendingCollaboratorInvitations
- * PendingCollaborators
- * PendingMemberInvitations
- * repositoryProjectsSetting
- * RepositoryProjectsSettingOrganizations
- * SamlIdentityProvider
- * SamlIdentityProviderSettingOrganizations
- * SupportEntitlements
- * teamDiscussionsSetting
- * TeamDiscussionsSettingOrganizations
- * twoFactorRequiredSetting
- * TwoFactorRequiredSettingOrganizations
- */
+/**
+* @description Github Graphql OwnerInfo 
+* @queryVariables Admins
+* AffiliatedUsersWithTwoFactorDisabled
+* affiliatedUsersWithTwoFactorDisabledExist
+* allowPrivateRepositoryForkingSetting
+* AllowPrivateRepositoryForkingSettingOrganizations
+* defaultRepositoryPermissionSetting
+* DefaultRepositoryPermissionSettingOrganizations
+* Domains
+* EnterpriseServerInstallations
+* ipAllowListEnabledSetting
+* IpAllowListEntries
+* isUpdatingDefaultRepositoryPermission
+* isUpdatingTwoFactorRequirement
+* membersCanChangeRepositoryVisibilitySetting
+* MembersCanChangeRepositoryVisibilitySettingOrganizations
+*  membersCanCreateInternalRepositoriesSetting
+* membersCanCreatePrivateRepositoriesSetting
+* membersCanCreatePublicRepositoriesSetting
+* membersCanCreateRepositoriesSetting
+* MembersCanCreateRepositoriesSettingOrganizations
+* membersCanDeleteIssuesSetting
+* MembersCanDeleteIssuesSettingOrganizations
+* membersCanDeleteRepositoriesSetting
+* MembersCanDeleteRepositoriesSettingOrganizations
+* membersCanInviteCollaboratorsSetting
+* MembersCanInviteCollaboratorsSettingOrganizations
+* membersCanMakePurchasesSetting
+* membersCanUpdateProtectedBranchesSetting
+* MembersCanUpdateProtectedBranchesSettingOrganizations
+* membersCanViewDependencyInsightsSetting
+* MembersCanViewDependencyInsightsSettingOrganizations
+* notificationDeliveryRestrictionEnabledSetting
+* organizationProjectsSetting
+* OrganizationProjectsSettingOrganizations
+* OutsideCollaborators
+* PendingAdminInvitations
+* PendingCollaboratorInvitations
+* PendingCollaborators
+* PendingMemberInvitations
+* repositoryProjectsSetting
+* RepositoryProjectsSettingOrganizations
+* SamlIdentityProvider
+* SamlIdentityProviderSettingOrganizations
+* SupportEntitlements
+* teamDiscussionsSetting
+* TeamDiscussionsSettingOrganizations
+* twoFactorRequiredSetting
+* TwoFactorRequiredSettingOrganizations
+*/
 
-export const OwnerInfo = (fields:string = '') => `
+export const OwnerInfo = (fields: string = "") => `
     ownerInfo {
         ${fields}
     }
@@ -280,8 +263,8 @@ export const OwnerInfo = (fields:string = '') => `
 /**
  * @description Github Graphql Admins  
  * @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
- * orderBy 'LOGIN' | 'CREATED_AT'
+ * @queryArguments direction "ASC" | "DESC" 
+ * orderBy "LOGIN" | "CREATED_AT"
  * after string
  * before string
  * first number
@@ -303,8 +286,8 @@ export const OwnerInfo = (fields:string = '') => `
 * }
 */
 
-export const Admins = (query:string = "",after:string = '', before: string = '', first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
-    members(query: ${query}${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const Admins = (query: string = "", first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", after: string = "", before: string = "", last: number) => `
+    members(query: ${query}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -336,8 +319,8 @@ export const Admins = (query:string = "",after:string = '', before: string = '',
 * }
 */
 
-export const AffiliatedUsersWithTwoFactorDisabled = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    affiliatedUsersWithTwoFactorDisabled(after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const AffiliatedUsersWithTwoFactorDisabled = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    affiliatedUsersWithTwoFactorDisabled(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`}, ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -366,8 +349,8 @@ export const AffiliatedUsersWithTwoFactorDisabled = (after:string = '', before: 
 * }
 */
 
-export const AllowPrivateRepositoryForkingSettingOrganizations = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    AllowPrivateRepositoryForkingSettingOrganizations(after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const AllowPrivateRepositoryForkingSettingOrganizations = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    AllowPrivateRepositoryForkingSettingOrganizations(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -396,8 +379,8 @@ export const AllowPrivateRepositoryForkingSettingOrganizations = (after:string =
 * }
 */
 
-export const DefaultRepositoryPermissionSettingOrganizations = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    defaultRepositoryPermissionSettingOrganizations(after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const DefaultRepositoryPermissionSettingOrganizations = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    defaultRepositoryPermissionSettingOrganizations(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -405,7 +388,7 @@ export const DefaultRepositoryPermissionSettingOrganizations = (after:string = '
 
 /**
  * @description Github Graphql EnterpriseServerInstallations  
- * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10
+ * @defaultVariables totalCount first = 10
  * @queryArguments 
  * after string
  * before string
@@ -448,8 +431,9 @@ export const DefaultRepositoryPermissionSettingOrganizations = (after:string = '
 * }
 */
 
-export const EnterpriseServerInstallations = (connectedOnly:boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    enterpriseServerInstallations(connectedOnly: ${connectedOnly} ${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const EnterpriseServerInstallations = (first: number = 10, fields: string = "", connectedOnly: boolean = false, after: string = "", before: string = "", last: number) => `
+    enterpriseServerInstallations(first: ${first} ${connectedOnly && `connectedOnly: ${connectedOnly}`} ${after && `, after: ${after}`} ${before && `, before: ${before}`} 
+    ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -458,7 +442,7 @@ export const EnterpriseServerInstallations = (connectedOnly:boolean = false,afte
 
 /**
  * @description Github Graphql UserAccounts
- * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10
+ * @defaultVariables totalCount first = 10
  * @queryArguments 
  * after string
  * before string
@@ -488,8 +472,8 @@ export const EnterpriseServerInstallations = (connectedOnly:boolean = false,afte
 * }
 */
 
-export const UserAccounts = (connectedOnly:boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    userAccounts(connectedOnly: ${connectedOnly}${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const UserAccounts = (first: number = 10, fields: string = "", connectedOnly: boolean = false, after: string = "", before: string = "", last: number) => `
+    userAccounts(first: ${first} ${connectedOnly && `, connectedOnly: `} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -497,15 +481,15 @@ export const UserAccounts = (connectedOnly:boolean = false,after:string = '', be
 
 /**
  * @description Github Graphql Emails
- * @defaultVariables totalCount field = "EMAIL" direction = "ASC" first = 10
+ * @defaultVariables totalCount orderBy = "EMAIL" direction = "ASC" first = 10
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "EMAIL"
+ * orderBy "EMAIL"
  * @queryVariables 
- *  edges {
+ *  edges {orderBy 
  *      cursor
  *      node {
  *          createdAt
@@ -531,8 +515,8 @@ export const UserAccounts = (connectedOnly:boolean = false,after:string = '', be
  * }
  */
 
-export const Emails = (after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "EMAIL", directions:string = "ASC",fields:string = '') => `
-    emails(after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const Emails = (first: number = 10, fields: string = "", orderBy: string = "EMAIL", directions: string = "ASC", after: string = "", before: string = "", last: number) => `
+    emails(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -540,7 +524,7 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql EnterpriseServerInstallation
- * @defaultVariables totalCount field = "EMAIL" direction = "ASC" first = 10
+ * @defaultVariables totalCount orderBy = "EMAIL" direction = "ASC" first = 10
  * @queryVariables
  * createdAt
  * customerName
@@ -550,7 +534,7 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * UserAccounts
  */
 
- export const EnterpriseServerInstallation = (fields:string = '') => `
+export const EnterpriseServerInstallation = (fields: string = "") => `
     enterpriseServerInstallation {
         ${fields}
     }
@@ -558,13 +542,13 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql UserAccountsUploads
- * @defaultVariables totalCount field = "EMAIL" direction = "ASC" first = 10
+ * @defaultVariables totalCount orderBy = "EMAIL" direction = "ASC" first = 10
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "EMAIL"
+ * orderBy "EMAIL"
  * @queryVariables 
  *  edges {
  *      cursor
@@ -592,8 +576,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * }
  */
 
- export const UserAccountsUploads = (after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    userAccountsUploads(after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const UserAccountsUploads = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = "", before: string = "", last: number) => `
+    userAccountsUploads(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -601,13 +585,13 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql IpAllowListEntries
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "CREATED_AT" | "ALLOW_LIST_VALUE"
+ * orderBy "CREATED_AT" | "ALLOW_LIST_VALUE"
  * @queryVariables 
  *  edges {
  *      cursor
@@ -640,8 +624,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * }
  */
 
- export const IpAllowListEntries = (after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    ipAllowListEntries(after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const IpAllowListEntries = (first: number = 10, orderBy: string = "CREATED_AT", directions: string = "ASC", fields: string = "", after: string = "", before: string = "", last: number) => `
+    ipAllowListEntries(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -649,13 +633,13 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql MembersCanChangeRepositoryVisibilitySettingOrganizations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * value boolean
  * @queryVariables 
  *  edges {
@@ -670,21 +654,21 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const MembersCanChangeRepositoryVisibilitySettingOrganizations = (after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    membersCanChangeRepositoryVisibilitySettingOrganizations(after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const MembersCanChangeRepositoryVisibilitySettingOrganizations = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = "", before: string = "", last: number) => `
+    membersCanChangeRepositoryVisibilitySettingOrganizations(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
 `
 /**
  * @description Github Graphql MembersCanCreateRepositoriesSettingOrganizations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * value "ALL" | "PRIVATE" | "DISABLED"
  * @queryVariables 
  *  edges {
@@ -699,8 +683,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const MembersCanCreateRepositoriesSettingOrganizations = (value:string = "ALL",after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    membersCanCreateRepositoriesSettingOrganizations(value:${value}${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const MembersCanCreateRepositoriesSettingOrganizations = (first: number = 10, value: string = "ALL", fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = "", before: string = "", last: number) => `
+    membersCanCreateRepositoriesSettingOrganizations(value:${value}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -708,13 +692,13 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql MembersCanDeleteIssuesSettingOrganizations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * value boolean
  * @queryVariables 
  *  edges {
@@ -729,8 +713,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const MembersCanDeleteIssuesSettingOrganizations = (value:boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    membersCanDeleteIssuesSettingOrganizations(value: ${value}${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const MembersCanDeleteIssuesSettingOrganizations = (value: boolean = false, first: number = 10,fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = "", before: string = "", last: number) => `
+    membersCanDeleteIssuesSettingOrganizations(value: ${value}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -738,13 +722,13 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql MembersCanDeleteRepositoriesSettingOrganizations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * value boolean
  * @queryVariables 
  *  edges {
@@ -759,8 +743,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const MembersCanDeleteRepositoriesSettingOrganizations = (value:boolean = false, after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    membersCanDeleteRepositoriesSettingOrganizations(value: ${value}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const MembersCanDeleteRepositoriesSettingOrganizations = (value: boolean = false, first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = "", before: string = "", last: number) => `
+    membersCanDeleteRepositoriesSettingOrganizations(value: ${value}, ${after && `, after: ${after}`} ${before && `, before: ${before}`} , first: ${first} ${last && `, last: ${last}`},orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -768,13 +752,13 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql MembersCanInviteCollaboratorsSettingOrganizations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * value boolean
  * @queryVariables 
  *  edges {
@@ -789,8 +773,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const MembersCanInviteCollaboratorsSettingOrganizations = (value:boolean = false, after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    membersCanInviteCollaboratorsSettingOrganizations(value: ${value}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const MembersCanInviteCollaboratorsSettingOrganizations = (value: boolean = false, first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", after: string = "", before: string = "", last: number) => `
+    membersCanInviteCollaboratorsSettingOrganizations(value: ${value}, ${after && `, after: ${after}`} ${before && `, before: ${before}`} , first: ${first} ${last && `, last: ${last}`},orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -798,13 +782,13 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql MembersCanUpdateProtectedBranchesSettingOrganizations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * value boolean
  * @queryVariables 
  *  edges {
@@ -819,8 +803,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const MembersCanUpdateProtectedBranchesSettingOrganizations = (value:boolean = false, after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    membersCanUpdateProtectedBranchesSettingOrganizations(value: ${value}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const MembersCanUpdateProtectedBranchesSettingOrganizations = (value: boolean = false,first: number = 10, orderBy: string = "CREATED_AT", directions: string = "ASC", fields: string = "", after: string = "", before: string = "", last: number) => `
+    membersCanUpdateProtectedBranchesSettingOrganizations(value: ${value}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`},orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -828,13 +812,13 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql MembersCanViewDependencyInsightsSettingOrganizations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * value boolean
  * @queryVariables 
  *  edges {
@@ -849,8 +833,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const MembersCanViewDependencyInsightsSettingOrganizations = (value:boolean = false, after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    membersCanViewDependencyInsightsSettingOrganizations(value: ${value}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const MembersCanViewDependencyInsightsSettingOrganizations = (value: boolean = false, first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = "", before: string = "", last: number) => `
+    membersCanViewDependencyInsightsSettingOrganizations(value: ${value}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -858,13 +842,13 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql OrganizationProjectsSettingOrganizations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * value boolean
  * @queryVariables 
  *  edges {
@@ -879,8 +863,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const OrganizationProjectsSettingOrganizations = (value:boolean = false, after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    organizationProjectsSettingOrganizations(value: ${value}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const OrganizationProjectsSettingOrganizations = (value: boolean = false,first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = "", before: string = "", last: number) => `
+    organizationProjectsSettingOrganizations(value: ${value}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -888,14 +872,14 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql OutsideCollaborators
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
  * login string
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * query string
  * visibility "PRIVATE" | "PUBLIC" | "INTERNAL"
  * @queryVariables 
@@ -915,8 +899,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const OutsideCollaborators = (query:string = "", visibility:string = "PUBLIC", after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    outsideCollaborators(query: ${query},visibility = ${visibility}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const OutsideCollaborators = (query: string = "",  fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", first: number = 10, visibility: string = "PUBLIC", after: string = "", before: string = "", last: number) => `
+    outsideCollaborators(query: ${query}, first: ${first} ${visibility && `, visibility: ${visibility}`} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -924,14 +908,14 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql PendingAdminInvitations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
  * login string
- * field "CREATED_AT" | "LOGIN"
+ * orderBy "CREATED_AT" | "LOGIN"
  * direction "ASC" | "DESC"
  * query string
  * role "OWNER" | "BILLING_MANAGER"
@@ -950,8 +934,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const PendingAdminInvitations = (query:string = "", visibility:string = "PUBLIC", after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    pendingAdminInvitations(query: ${query},visibility = ${visibility}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const PendingAdminInvitations = (query: string = "",first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", visibility: string = "PUBLIC", after: string = "", before: string = "", last: number) => `
+    pendingAdminInvitations(query: ${query},visibility = ${visibility}, ${after && `, after: ${after}`} ${before && `, before: ${before}`} , first: ${first} ${last && `, last: ${last}`},orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -959,14 +943,14 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql PendingCollaboratorInvitations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
  * login string
- * field "CREATED_AT" | "INVITEE_LOGIN"
+ * orderBy "CREATED_AT" | "INVITEE_LOGIN"
  * direction "ASC" | "DESC"
  * query string
  * role "OWNER" | "BILLING_MANAGER"
@@ -985,8 +969,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const PendingCollaboratorInvitations = (query:string = "", after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    pendingCollaboratorInvitations(query: ${query}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const PendingCollaboratorInvitations = (query: string = "", first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC",  after: string = "", before: string = "", last: number) => `
+    pendingCollaboratorInvitations(query: ${query}, ${after && `, after: ${after}`} ${before && `, before: ${before}`} , first: ${first} ${last && `, last: ${last}`},orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -995,14 +979,14 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql PendingCollaborators
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
  * login string
- * field "CREATED_AT" | "INVITEE_LOGIN"
+ * orderBy "CREATED_AT" | "INVITEE_LOGIN"
  * direction "ASC" | "DESC"
  * query string
  * role "OWNER" | "BILLING_MANAGER"
@@ -1021,8 +1005,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const PendingCollaborators = (query:string = "", after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    pendingCollaborators(query: ${query}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const PendingCollaborators = (query: string = "",first: number = 10,fields: string = "",orderBy: string = "CREATED_AT", directions: string = "ASC",  after: string = "", before: string = "",  last: number ) => `
+    pendingCollaborators(query: ${query}, ${after && `, after: ${after}`} ${before && `, before: ${before}`} , first: ${first} ${last && `, last: ${last}`},orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -1030,14 +1014,14 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql PendingMemberInvitations
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
  * @queryArguments 
  * after string
  * before string
  * first number
  * last number
  * login string
- * field "CREATED_AT" | "INVITEE_LOGIN"
+ * orderBy "CREATED_AT" | "INVITEE_LOGIN"
  * direction "ASC" | "DESC"
  * query string
  * role "OWNER" | "BILLING_MANAGER"
@@ -1056,8 +1040,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * PageInfo
  */
 
- export const PendingMemberInvitations = (query:string = "", after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "CREATED_AT", directions:string = "ASC",fields:string = '') => `
-    pendingMemberInvitations(query: ${query}, after: ${after} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions}}) {
+export const PendingMemberInvitations = (query: string = "", fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC",first: number = 10,after: string = "", before: string = "",  last: number) => `
+    pendingMemberInvitations(query: ${query}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
         totalUniqueUserCount
@@ -1066,7 +1050,7 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
 
 /**
  * @description Github Graphql AssignableUsers
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false affiliations "OWNER" isFork = false isLocked = false privacy = "PUBLIC"
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false affiliations "OWNER" isFork = false isLocked = false privacy = "PUBLIC"
  * @queryArguments 
  * affiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
  * ownerAffiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
@@ -1091,8 +1075,8 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  * }
  */
 
- export const AssignableUsers = (query: string = "", after: string = "",before: string = "",first: number = 10,last?: number, fields:string = "") => `
-    assignableUsers(query: ${query}, ${after ? `, after: ${after}`: ''} ${before ? `, before: ${before}`: ''} first: ${first}, ${last? ', last=${last}': ''}) {
+export const AssignableUsers = (query: string = "",first: number = 10, fields: string = "", after: string = "", before: string = "", last?: number) => `
+    assignableUsers(query: ${query}, ${after ? `, ${after && `, after: ${after}`}` : ""} ${before ? `, before: ${before}` : ""} first: ${first}, ${last ? ", last:${last}" : ""}) {
         ${fields}
     }
 `
@@ -1110,7 +1094,7 @@ export const Emails = (after:string = '', before: string = '', first:number = 10
  */
 
 
-export const onMannequin = (fields:string = '') => `
+export const onMannequin = (fields: string = "") => `
     ... on Mannequin {
         id
         email
@@ -1130,7 +1114,7 @@ export const onMannequin = (fields:string = '') => `
  */
 
 
- export const onBot = (fields:string = '') => `
+export const onBot = (fields: string = "") => `
  ... on Bot {
      id
      email
@@ -1153,7 +1137,7 @@ export const onMannequin = (fields:string = '') => `
  *  onBot
  */
 
- export const Author = (fields:string = '') => `
+export const Author = (fields: string = "") => `
      id
      ${fields}        
 `
@@ -1161,7 +1145,7 @@ export const onMannequin = (fields:string = '') => `
 /**
  * @description Github Graphql Author  
  * @defaultVariables totalCount first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -1182,8 +1166,8 @@ export const onMannequin = (fields:string = '') => `
 * }
 */
 
-export const Authors = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    authors(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const Authors = (first: number = 10,  fields: string = "", after: string = "", before: string = "", last: number) => `
+    authors(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1204,7 +1188,7 @@ export const Authors = (after:string = '', before: string = '', first:number = 1
  * onBot
  */
 
- export const Editor = (fields:string = '') => `
+export const Editor = (fields: string = "") => `
     id
     ${fields}        
 `
@@ -1212,7 +1196,7 @@ export const Authors = (after:string = '', before: string = '', first:number = 1
 /**
  * @description Github Graphql UserContentEdits  
  * @defaultVariables totalCount first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -1255,8 +1239,8 @@ export const Authors = (after:string = '', before: string = '', first:number = 1
 * }
 */
 
-export const UserContentEdits = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    userContentEdits(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const UserContentEdits = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    userContentEdits(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1286,8 +1270,8 @@ export const UserContentEdits = (after:string = '', before: string = '', first:n
 * }
 */
 
-export const MentionableUsers = (query:string = "",after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    mentionableUsers(query: ${query}${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const MentionableUsers = (query: string = "", first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    mentionableUsers(query: ${query}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1316,8 +1300,8 @@ export const MentionableUsers = (query:string = "",after:string = '', before: st
 * }
 */
 
-export const RepositoryProjectsSettingOrganizations = (value:boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    repositoryProjectsSettingOrganizations(value: ${value}${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const RepositoryProjectsSettingOrganizations = (value: boolean = false, first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    repositoryProjectsSettingOrganizations(value: ${value}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1340,7 +1324,7 @@ export const RepositoryProjectsSettingOrganizations = (value:boolean = false,aft
 
 
 
- export const SamlIdentityProvider = (fields: string) => `
+export const SamlIdentityProvider = (fields: string) => `
     id
     ${fields}
 `
@@ -1363,7 +1347,7 @@ export const RepositoryProjectsSettingOrganizations = (value:boolean = false,aft
 
 
 
- export const Identity = (fields: string) => `
+export const Identity = (fields: string) => `
     givenName
     ${fields}
 `
@@ -1399,7 +1383,7 @@ export const RepositoryProjectsSettingOrganizations = (value:boolean = false,aft
 
 
 
- export const ExternalIdenty = (fields: string) => `
+export const ExternalIdenty = (fields: string) => `
     id
     ${fields}
 `
@@ -1427,8 +1411,8 @@ export const RepositoryProjectsSettingOrganizations = (value:boolean = false,aft
 * }
 */
 
-export const ExternalIdentities = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    externalIdentities(${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const ExternalIdentities = (first: number = 10, fields: string = "", after: string = "", before: string = "",  last: number) => `
+    externalIdentities(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1458,8 +1442,8 @@ export const ExternalIdentities = (after:string = '', before: string = '', first
 * }
 */
 
-export const SamlIdentityProviderSettingOrganizations = (value:string = "ENFORCED",after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    samlIdentityProviderSettingOrganizations(value:${value},${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const SamlIdentityProviderSettingOrganizations = (value: string, first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    samlIdentityProviderSettingOrganizations(first: ${first} ${value && `, value: ${value}`} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1493,8 +1477,8 @@ export const SamlIdentityProviderSettingOrganizations = (value:string = "ENFORCE
 */
 
 
-export const SupportEntitlements = (after:string = '', before: string = '', first:number = 10, last:number = 0,orderBy:string = "DUE_DATE", direction: "ASC",fields:string = '') => `
-    supportEntitlements(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const SupportEntitlements = (first: number = 10, fields: string = "", orderBy: string = "DUE_DATE", direction: "ASC", after: string = "", before: string = "", last: number) => `
+    supportEntitlements( first: ${first} ${after  &&  `, ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -1525,8 +1509,8 @@ export const SupportEntitlements = (after:string = '', before: string = '', firs
 */
 
 
-export const TeamDiscussionsSettingOrganizations = (value:boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0,orderBy:string = "DUE_DATE", direction: "ASC",fields:string = '') => `
-    teamDiscussionsSettingOrganizations(value: ${value},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const TeamDiscussionsSettingOrganizations = (value: boolean = false,fields: string = "",orderBy: string = "DUE_DATE", direction: "ASC", first: number = 10, after: string = "", before: string = "", last: number) => `
+    teamDiscussionsSettingOrganizations(value: ${value}, first: ${first} ${after  &&  `,  ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -1559,8 +1543,8 @@ export const TeamDiscussionsSettingOrganizations = (value:boolean = false,after:
 */
 
 
-export const TwoFactorRequiredSettingOrganizations = (value:boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0,orderBy:string = "DUE_DATE", direction: "ASC",fields:string = '') => `
-    twoFactorRequiredSettingOrganizations(value: ${value},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const TwoFactorRequiredSettingOrganizations = (value: boolean = false, first: number = 10, after: string = "", fields: string = "", orderBy: string = "DUE_DATE", direction: "ASC", before: string = "", last: number) => `
+    twoFactorRequiredSettingOrganizations(value: ${value},${after  &&  `,  ${after} `} ${before && `, before: ${before}`}, first: ${first} ${last && `, last: ${last}`},orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }

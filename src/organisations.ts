@@ -1,7 +1,7 @@
 /**
  * @description Github Graphql Organization
  * @defaultVariables id, email
- * @queryVariables anyPinnableItems(type: 'REPOSITORY' | 'GIST' | 'ISSUE' | 'PROJECT' | 'PULL_REQUEST' | 'USER' | 'ORGANIZATION' | 'TEAM')
+ * @queryVariables anyPinnableItems(type: "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM")
  * AuditLog
  * avatarUrl
  * createdAt
@@ -100,7 +100,7 @@
  * websiteUrl
  */
 
- export const Organization = (fields: string) => `
+export const Organization = (fields: string) => `
     id
     email
     ${fields}
@@ -120,8 +120,8 @@ export const onOrganization = (fields: string) => `
  * @description Github Graphql Organizations
  * @defaultVariables totalCount first = 10
  * @queryArguments 
- * after String
- * before String
+ * after string
+ * before string
  * first number
  * last number
  * @queryVariables 
@@ -140,8 +140,8 @@ export const onOrganization = (fields: string) => `
 * }
 */
 
-export const Organizations = (after:string = '', before: string = '',first:number = 10, last:number = 0,fields:string = '') => `
-    organizations(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last ?`, last: ${last}`:''}) {
+export const Organizations = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    organizations(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`}, ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -185,7 +185,7 @@ export const Organizations = (after:string = '', before: string = '',first:numbe
  * userUrl
  */
 
-export const OnMembersCanDeleteReposClearAuditEntry = (fields:string = '') => `
+export const OnMembersCanDeleteReposClearAuditEntry = (fields: string = "") => `
 ... on MembersCanDeleteReposClearAuditEntry {
     id
     ${fields}
@@ -229,7 +229,7 @@ export const OnMembersCanDeleteReposClearAuditEntry = (fields:string = '') => `
  *
  */
 
-export const MembersCanDeleteReposDisableAuditEntry = (fields:string = '') =>`
+export const MembersCanDeleteReposDisableAuditEntry = (fields: string = "") => `
 ... on MembersCanDeleteReposDisableAuditEntry {
     id
     ${fields}
@@ -272,7 +272,7 @@ export const MembersCanDeleteReposDisableAuditEntry = (fields:string = '') =>`
  * userUrl
  */
 
-export const MembersCanDeleteReposEnableAuditEntry = (fields:string = '') =>`
+export const MembersCanDeleteReposEnableAuditEntry = (fields: string = "") => `
 ... on MembersCanDeleteReposEnableAuditEntry {
     id
     ${fields}
@@ -319,13 +319,13 @@ export const MembersCanDeleteReposEnableAuditEntry = (fields:string = '') =>`
  * userUrl
  */
 
-export const OauthApplicationCreateAuditEntry = (fields:string = '') =>`
+export const OauthApplicationCreateAuditEntry = (fields: string = "") => `
 ... on OauthApplicationCreateAuditEntry {
     id
     ${fields}
 }
 `
- 
+
 /**
  * @description Github Graphql OrgAddBillingManagerAuditEntry 
  * @defaultVariables id name
@@ -360,7 +360,7 @@ export const OauthApplicationCreateAuditEntry = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgAddBillingManagerAuditEntry = (fields:string = '') =>`
+export const OrgAddBillingManagerAuditEntry = (fields: string = "") => `
 ... on OrgAddBillingManagerAuditEntry {
     id
     ${fields}
@@ -401,7 +401,7 @@ export const OrgAddBillingManagerAuditEntry = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgAddMemberAuditEntry = (fields:string = '') =>`
+export const OrgAddMemberAuditEntry = (fields: string = "") => `
 ... on OrgAddMemberAuditEntry {
     id
     ${fields}
@@ -448,7 +448,7 @@ export const OrgAddMemberAuditEntry = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgBlockUserAuditEntry = (fields:string = '') =>`
+export const OrgBlockUserAuditEntry = (fields: string = "") => `
 ... on OrgBlockUserAuditEntry {
     id
     ${fields}
@@ -488,7 +488,7 @@ export const OrgBlockUserAuditEntry = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgConfigDisableCollaboratorsOnlyAuditEntry = (fields:string = '') =>`
+export const OrgConfigDisableCollaboratorsOnlyAuditEntry = (fields: string = "") => `
 ... on OrgConfigDisableCollaboratorsOnlyAuditEntry {
     id
     ${fields}
@@ -527,7 +527,7 @@ export const OrgConfigDisableCollaboratorsOnlyAuditEntry = (fields:string = '') 
  * userUrl
  */
 
-export const OrgConfigEnableCollaboratorsOnly = (fields:string = '') =>`
+export const OrgConfigEnableCollaboratorsOnly = (fields: string = "") => `
 ... on OrgConfigEnableCollaboratorsOnly {
     id
     ${fields}
@@ -567,7 +567,7 @@ export const OrgConfigEnableCollaboratorsOnly = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgCreateAuditEntry = (fields:string = '') =>`
+export const OrgCreateAuditEntry = (fields: string = "") => `
 ... on OrgCreateAuditEntry {
     id
     ${fields}
@@ -607,7 +607,7 @@ export const OrgCreateAuditEntry = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgDisableOauthAppRestrictionsAuditEntry  = (fields:string = '') =>`
+export const OrgDisableOauthAppRestrictionsAuditEntry = (fields: string = "") => `
 ... on OrgDisableOauthAppRestrictionsAuditEntry {
     id
     ${fields}
@@ -646,7 +646,7 @@ export const OrgDisableOauthAppRestrictionsAuditEntry  = (fields:string = '') =>
  * userUrl
  */
 
-export const OrgDisableTwoFactorRequirementAuditEntry  = (fields:string = '') =>`
+export const OrgDisableTwoFactorRequirementAuditEntry = (fields: string = "") => `
 ... on OrgDisableTwoFactorRequirementAuditEntry {
     id
     ${fields}
@@ -685,7 +685,7 @@ export const OrgDisableTwoFactorRequirementAuditEntry  = (fields:string = '') =>
  * userUrl
  */
 
-export const OrgEnableOauthAppRestrictionsAuditEntry  = (fields:string = '') =>`
+export const OrgEnableOauthAppRestrictionsAuditEntry = (fields: string = "") => `
 ... on OrgEnableOauthAppRestrictionsAuditEntry {
     id
     ${fields}
@@ -728,7 +728,7 @@ export const OrgEnableOauthAppRestrictionsAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgEnableSamlAuditEntry  = (fields:string = '') =>`
+export const OrgEnableSamlAuditEntry = (fields: string = "") => `
 ... on OrgEnableSamlAuditEntry {
     id
     ${fields}
@@ -766,7 +766,7 @@ export const OrgEnableSamlAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgEnableTwoFactorRequirementAuditEntry  = (fields:string = '') =>`
+export const OrgEnableTwoFactorRequirementAuditEntry = (fields: string = "") => `
 ... on OrgEnableTwoFactorRequirementAuditEntry {
     id
     ${fields}
@@ -811,7 +811,7 @@ export const OrgEnableTwoFactorRequirementAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgInviteMemberAuditEntry  = (fields:string = '') =>`
+export const OrgInviteMemberAuditEntry = (fields: string = "") => `
 ... on OrgInviteMemberAuditEntry {
     id
     ${fields}
@@ -854,7 +854,7 @@ export const OrgInviteMemberAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgDisableSamlAuditEntry  = (fields:string = '') =>`
+export const OrgDisableSamlAuditEntry = (fields: string = "") => `
 ... on OrgDisableSamlAuditEntry {
     id
     ${fields}
@@ -896,7 +896,7 @@ export const OrgDisableSamlAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgOauthAppAccessApprovedAuditEntry  = (fields:string = '') =>`
+export const OrgOauthAppAccessApprovedAuditEntry = (fields: string = "") => `
 ... on OrgOauthAppAccessApprovedAuditEntry {
     id
     ${fields}
@@ -938,7 +938,7 @@ export const OrgOauthAppAccessApprovedAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgOauthAppAccessDeniedAuditEntry  = (fields:string = '') =>`
+export const OrgOauthAppAccessDeniedAuditEntry = (fields: string = "") => `
 ... on OrgOauthAppAccessDeniedAuditEntry {
     id
     ${fields}
@@ -979,7 +979,7 @@ export const OrgOauthAppAccessDeniedAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgOauthAppAccessRequestedAuditEntry  = (fields:string = '') =>`
+export const OrgOauthAppAccessRequestedAuditEntry = (fields: string = "") => `
 ... on OrgOauthAppAccessRequestedAuditEntry {
     id
     ${fields}
@@ -1017,7 +1017,7 @@ export const OrgOauthAppAccessRequestedAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgRemoveBillingManagerAuditEntry  = (fields:string = '') =>`
+export const OrgRemoveBillingManagerAuditEntry = (fields: string = "") => `
 ... on OrgRemoveBillingManagerAuditEntry {
     id
     ${fields}
@@ -1057,7 +1057,7 @@ export const OrgRemoveBillingManagerAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgRemoveMemberAuditEntry = (fields:string = '') =>`
+export const OrgRemoveMemberAuditEntry = (fields: string = "") => `
 ... on OrgRemoveMemberAuditEntry {
     id
     ${fields}
@@ -1097,7 +1097,7 @@ export const OrgRemoveMemberAuditEntry = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgRemoveOutsideCollaboratorAuditEntry  = (fields:string = '') =>`
+export const OrgRemoveOutsideCollaboratorAuditEntry = (fields: string = "") => `
 ... on OrgRemoveOutsideCollaboratorAuditEntry {
     id
     ${fields}
@@ -1159,7 +1159,7 @@ export const OrgRemoveOutsideCollaboratorAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgRestoreMemberAuditEntry  = (fields:string = '') =>`
+export const OrgRestoreMemberAuditEntry = (fields: string = "") => `
 ... on OrgRestoreMemberAuditEntry {
     id
     ${fields}
@@ -1203,7 +1203,7 @@ export const OrgRestoreMemberAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgUnblockUserAuditEntry  = (fields:string = '') =>`
+export const OrgUnblockUserAuditEntry = (fields: string = "") => `
 ... on OrgUnblockUserAuditEntry {
     id
     ${fields}
@@ -1243,7 +1243,7 @@ export const OrgUnblockUserAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const OrgUpdateDefaultRepositoryPermissionAuditEntry = (fields:string = '') =>`
+export const OrgUpdateDefaultRepositoryPermissionAuditEntry = (fields: string = "") => `
 ... on OrgUpdateDefaultRepositoryPermissionAuditEntry {
     id
     ${fields}
@@ -1283,7 +1283,7 @@ export const OrgUpdateDefaultRepositoryPermissionAuditEntry = (fields:string = '
  * userUrl
  */
 
-export const OrgUpdateMemberAuditEntry  = (fields:string = '') =>`
+export const OrgUpdateMemberAuditEntry = (fields: string = "") => `
 ... on OrgUpdateMemberAuditEntry {
     id
     ${fields}
@@ -1322,7 +1322,7 @@ export const OrgUpdateMemberAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const canInviteOutsideCollaboratorsToRepositories  = (fields:string = '') =>`
+export const canInviteOutsideCollaboratorsToRepositories = (fields: string = "") => `
 ... on canInviteOutsideCollaboratorsToRepositories {
     id
     ${fields}
@@ -1363,7 +1363,7 @@ export const canInviteOutsideCollaboratorsToRepositories  = (fields:string = '')
  * userUrl
  */
 
-export const PrivateRepositoryForkingDisableAuditEntry  = (fields:string = '') => `
+export const PrivateRepositoryForkingDisableAuditEntry = (fields: string = "") => `
 ... on PrivateRepositoryForkingDisableAuditEntry {
     id
     ${fields}
@@ -1406,7 +1406,7 @@ export const PrivateRepositoryForkingDisableAuditEntry  = (fields:string = '') =
  * userUrl
  */
 
-export const PrivateRepositoryForkingEnableAuditEntry  = (fields:string = '') =>`
+export const PrivateRepositoryForkingEnableAuditEntry = (fields: string = "") => `
 ... on PrivateRepositoryForkingEnableAuditEntry {
     id
     ${fields}
@@ -1446,7 +1446,7 @@ export const PrivateRepositoryForkingEnableAuditEntry  = (fields:string = '') =>
  * visibility
  */
 
-export const RepoAccessAuditEntry = (fields:string = '') =>`
+export const RepoAccessAuditEntry = (fields: string = "") => `
 ... on RepoAccessAuditEntry {
     id
     ${fields}
@@ -1485,7 +1485,7 @@ export const RepoAccessAuditEntry = (fields:string = '') =>`
  * visibility
  */
 
-export const RepoAddMemberAuditEntry = (fields:string = '') =>`
+export const RepoAddMemberAuditEntry = (fields: string = "") => `
 ... on RepoAddMemberAuditEntry {
     id
     ${fields}
@@ -1529,7 +1529,7 @@ export const RepoAddMemberAuditEntry = (fields:string = '') =>`
  * userUrl
  */
 
-export const RepoAddTopicAuditEntry  = (fields:string = '') =>`
+export const RepoAddTopicAuditEntry = (fields: string = "") => `
 ... on RepoAddTopicAuditEntry {
     id
     ${fields}
@@ -1574,7 +1574,7 @@ export const RepoAddTopicAuditEntry  = (fields:string = '') =>`
  * visibility
  */
 
-export const RepoArchivedAuditEntry  = (fields:string = '') =>`
+export const RepoArchivedAuditEntry = (fields: string = "") => `
 ... on RepoArchivedAuditEntry {
     id
     ${fields}
@@ -1622,7 +1622,7 @@ export const RepoArchivedAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const RepoChangeMergeSettingAuditEntry  = (fields:string = '') =>`
+export const RepoChangeMergeSettingAuditEntry = (fields: string = "") => `
 ... on RepoChangeMergeSettingAuditEntry {
     id
     ${fields}
@@ -1670,7 +1670,7 @@ export const RepoChangeMergeSettingAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const RepoConfigDisableAnonymousGitAccessAuditEntry  = (fields:string = '') =>`
+export const RepoConfigDisableAnonymousGitAccessAuditEntry = (fields: string = "") => `
 ... on RepoConfigDisableAnonymousGitAccessAuditEntry {
     id
     ${fields}
@@ -1716,7 +1716,7 @@ export const RepoConfigDisableAnonymousGitAccessAuditEntry  = (fields:string = '
  * userUrl
  */
 
-export const RepoConfigDisableCollaboratorsOnlyAuditEntry  = (fields:string = '') =>`
+export const RepoConfigDisableCollaboratorsOnlyAuditEntry = (fields: string = "") => `
 ... on RepoConfigDisableCollaboratorsOnlyAuditEntry {
     id
     ${fields}
@@ -1761,7 +1761,7 @@ export const RepoConfigDisableCollaboratorsOnlyAuditEntry  = (fields:string = ''
  * userUrl
  */
 
-export const RepoConfigDisableSockpuppetDisallowedAuditEntry  = (fields:string = '') =>`
+export const RepoConfigDisableSockpuppetDisallowedAuditEntry = (fields: string = "") => `
 ... on RepoConfigDisableSockpuppetDisallowedAuditEntry {
     id
     ${fields}
@@ -1807,7 +1807,7 @@ export const RepoConfigDisableSockpuppetDisallowedAuditEntry  = (fields:string =
  * userUrl
  */
 
-export const RepoConfigEnableAnonymousGitAccessAuditEntry  = (fields:string = '') =>`
+export const RepoConfigEnableAnonymousGitAccessAuditEntry = (fields: string = "") => `
 ... on RepoConfigEnableAnonymousGitAccessAuditEntry {
     id
     ${fields}
@@ -1852,7 +1852,7 @@ export const RepoConfigEnableAnonymousGitAccessAuditEntry  = (fields:string = ''
  * userUrl
  */
 
-export const RepoConfigEnableCollaboratorsOnlyAuditEntry  = (fields:string = '') =>`
+export const RepoConfigEnableCollaboratorsOnlyAuditEntry = (fields: string = "") => `
 ... on RepoConfigEnableCollaboratorsOnlyAuditEntry {
     id
     ${fields}
@@ -1898,7 +1898,7 @@ export const RepoConfigEnableCollaboratorsOnlyAuditEntry  = (fields:string = '')
  * userUrl
  */
 
-export const RepoConfigEnableContributorsOnlyAuditEntry  = (fields:string = '') =>`
+export const RepoConfigEnableContributorsOnlyAuditEntry = (fields: string = "") => `
 ... on RepoConfigEnableContributorsOnlyAuditEntry {
     id
     ${fields}
@@ -1944,7 +1944,7 @@ export const RepoConfigEnableContributorsOnlyAuditEntry  = (fields:string = '') 
  * userUrl
  */
 
-export const RepoConfigEnableSockpuppetDisallowedAuditEntry = (fields:string = '') =>`
+export const RepoConfigEnableSockpuppetDisallowedAuditEntry = (fields: string = "") => `
 ... on RepoConfigEnableSockpuppetDisallowedAuditEntry {
     id
     ${fields}
@@ -1989,7 +1989,7 @@ export const RepoConfigEnableSockpuppetDisallowedAuditEntry = (fields:string = '
  * userUrl
  */
 
-export const RepoConfigLockAnonymousGitAccessAuditEntry  = (fields:string = '') =>`
+export const RepoConfigLockAnonymousGitAccessAuditEntry = (fields: string = "") => `
 ... on RepoConfigLockAnonymousGitAccessAuditEntry {
     id
     ${fields}
@@ -2035,7 +2035,7 @@ export const RepoConfigLockAnonymousGitAccessAuditEntry  = (fields:string = '') 
  * userUrl
  */
 
-export const RepoConfigUnlockAnonymousGitAccessAuditEntry = (fields:string = '') =>`
+export const RepoConfigUnlockAnonymousGitAccessAuditEntry = (fields: string = "") => `
 ... on RepoConfigUnlockAnonymousGitAccessAuditEntry {
     id
     ${fields}
@@ -2082,7 +2082,7 @@ export const RepoConfigUnlockAnonymousGitAccessAuditEntry = (fields:string = '')
  * visibility
  */
 
-export const RepoCreateAuditEntry  = (fields:string = '') =>`
+export const RepoCreateAuditEntry = (fields: string = "") => `
 ... on RepoCreateAuditEntry {
     id
     ${fields}
@@ -2129,7 +2129,7 @@ export const RepoCreateAuditEntry  = (fields:string = '') =>`
  * visibility
  */
 
-export const RepoDestroyAuditEntry  = (fields:string = '') =>`
+export const RepoDestroyAuditEntry = (fields: string = "") => `
 ... on RepoDestroyAuditEntry {
     id
     ${fields}
@@ -2178,7 +2178,7 @@ export const RepoDestroyAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const RepositoryVisibilityChangeDisableAuditEntry  = (fields:string = '') =>`
+export const RepositoryVisibilityChangeDisableAuditEntry = (fields: string = "") => `
 ... on RepositoryVisibilityChangeDisableAuditEntry {
     id
     ${fields}
@@ -2225,7 +2225,7 @@ export const RepositoryVisibilityChangeDisableAuditEntry  = (fields:string = '')
  * visibility
  */
 
-export const RepoRemoveMemberAuditEntry  = (fields:string = '') =>`
+export const RepoRemoveMemberAuditEntry = (fields: string = "") => `
 ... on RepoRemoveMemberAuditEntry {
     id
     ${fields}
@@ -2276,7 +2276,7 @@ export const RepoRemoveMemberAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const RepoRemoveTopicAuditEntry  = (fields:string = '') =>`
+export const RepoRemoveTopicAuditEntry = (fields: string = "") => `
 ... on RepoRemoveTopicAuditEntry {
     id
     ${fields}
@@ -2320,7 +2320,7 @@ export const RepoRemoveTopicAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const RepoConfigDisableContributorsOnlyAuditEntry  = (fields:string = '') =>`
+export const RepoConfigDisableContributorsOnlyAuditEntry = (fields: string = "") => `
 ... on RepoConfigDisableContributorsOnlyAuditEntry {
     id
     ${fields}
@@ -2369,7 +2369,7 @@ export const RepoConfigDisableContributorsOnlyAuditEntry  = (fields:string = '')
  * userUrl
  */
 
-export const RepositoryVisibilityChangeEnableAuditEntry  = (fields:string = '') =>`
+export const RepositoryVisibilityChangeEnableAuditEntry = (fields: string = "") => `
 ... on RepositoryVisibilityChangeEnableAuditEntry {
     id
     ${fields}
@@ -2417,7 +2417,7 @@ export const RepositoryVisibilityChangeEnableAuditEntry  = (fields:string = '') 
  * userUrl
  */
 
-export const TeamAddMemberAuditEntry  = (fields:string = '') =>`
+export const TeamAddMemberAuditEntry = (fields: string = "") => `
 ... on TeamAddMemberAuditEntry {
     id
     ${fields}
@@ -2466,7 +2466,7 @@ export const TeamAddMemberAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const TeamAddRepositoryAuditEntry  = (fields:string = '') =>`
+export const TeamAddRepositoryAuditEntry = (fields: string = "") => `
 ... on TeamAddRepositoryAuditEntry {
     id
     ${fields}
@@ -2530,7 +2530,7 @@ export const TeamAddRepositoryAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const TeamChangeParentTeamAuditEntry  = (fields:string = '') =>`
+export const TeamChangeParentTeamAuditEntry = (fields: string = "") => `
 ... on TeamChangeParentTeamAuditEntry {
     id
     ${fields}
@@ -2579,7 +2579,7 @@ export const TeamChangeParentTeamAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const TeamRemoveMemberAuditEntry  = (fields:string = '') =>`
+export const TeamRemoveMemberAuditEntry = (fields: string = "") => `
 ... on TeamRemoveMemberAuditEntry {
     id
     ${fields}
@@ -2627,7 +2627,7 @@ export const TeamRemoveMemberAuditEntry  = (fields:string = '') =>`
  * userUrl
  */
 
-export const TeamRemoveRepositoryAuditEntry  = (fields:string = '') =>`
+export const TeamRemoveRepositoryAuditEntry = (fields: string = "") => `
 ... on TeamRemoveRepositoryAuditEntry {
     id
     ${fields}
@@ -2646,7 +2646,7 @@ export const TeamRemoveRepositoryAuditEntry  = (fields:string = '') =>`
  * Domains
 */
 
-export const OrganizationNode = (fields:string) => `
+export const OrganizationNode = (fields: string) => `
 edges {
     cursor
     node {
@@ -2659,8 +2659,8 @@ edges {
  * @description Github Graphql Domains  
  * @defaultVariables orderBy = CREATED_AT direction = "ASC" isVerified = true first = 10 field = "DOMAIN"
  * @queryArguments 
- * after String
- * before String
+ * after string
+ * before string
  * first number
  * last number
  * isVerified boolean
@@ -2696,25 +2696,27 @@ edges {
 * }
 */
 
-export const Domains = (after:string = "", first:number = 10, last:number,isVerified:boolean = true, field:string = "DOMAIN", direction:string = "ASC", fields:string) => `
-    domains(${after ? `, after: ${after}`: ''} first: ${first}, isVerified: ${isVerified} ${last? ',last: ${last}' : ''}, orderBy: {field: ${field}, direction: ${direction}}){
+export const Domains = (isVerified: boolean = true, first: number = 10, fields: string = "", orderBy: string = "DOMAIN", direction: string = "ASC", after: string = "", last: number) => `
+    domains(first: ${first}, isVerified: ${isVerified} ${after && `, after: ${after}`} ${last && `, last: ${last} `}, orderBy: {field: ${orderBy}, direction: ${direction}}){
         ${fields}
     }
 `
 
 /**
  * @description Github Graphql Members  
- * @defaultVariables totalCount query = "" orderBy = CREATED_AT role = 'MEMBER' direction = "ASC" role = MEMBER first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
- * orderBy 'LOGIN' | 'CREATED_AT'
- * after String
- * before String
- * deployment: 'CLOUD' | 'Server'
+ * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC"  first = 10
+ * @queryArguments 
+ * query string
+ * direction "ASC" | "DESC" 
+ * orderBy "LOGIN" | "CREATED_AT" 
+ * after string
+ * before string 
+ * deployment: "CLOUD" | "SERVER"
  * first number
  * last number
- * organizationLogins: String
- * query: String
- * role: 'MEMBER' | 'OWNER' 
+ * organizationLogins: string
+ * query: string
+ * role: "MEMBER" | "OWNER" 
  * 
  * @queryVariables 
  *  edges {
@@ -2736,8 +2738,8 @@ export const Domains = (after:string = "", first:number = 10, last:number,isVeri
 * }
 */
 
-export const Members = (query:string = "",after:string = '', before: string = '',deployment:string, first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',organizationLogins:string = '', role:string = 'MEMBER',fields:string = '') => `
-    members(after: ${after} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last ?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}, organizationLogins: ${organizationLogins}, query: ${query}, role: ${role}) {
+export const Members = (query: string = "", first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", organizationLogins: string = "", role: string = "", deployment: string, after: string = "", before: string = "", last: number) => `
+    members( query: ${query}, first: ${first}, orderBy: {field: ${orderBy}, direction: ${direction}} ${deployment && `,deployment: ${deployment}`}, ${organizationLogins && `organizationLogins: ${organizationLogins}`} ${role && `, role: ${role}`} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
     }
 `
@@ -2806,7 +2808,7 @@ export const Members = (query:string = "",after:string = '', before: string = ''
  */
 
 
- export const Team = (fields:string = '') => `
+export const Team = (fields: string = "") => `
      id
      name
      ${fields}
@@ -2815,8 +2817,10 @@ export const Members = (query:string = "",after:string = '', before: string = ''
 
 /**
  * @description Github Graphql Teams  
- * @defaultVariables totalCount query = "" orderBy = "NAME" direction = "ASC" role = "MEMBER" first = 10 ldapMapped = false
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @defaultVariables totalCount orderBy = "NAME" direction = "ASC" role = "MEMBER" first = 10 ldapMapped = false
+ * @queryArguments 
+ * query string
+ * direction "ASC" | "DESC" 
  * orderBy "NAME"
  * after string
  * before string
@@ -2843,10 +2847,10 @@ export const Members = (query:string = "",after:string = '', before: string = ''
 * }
 */
 
-export const Teams = (query:string = "",ldapMapped:boolean = false,privacy: string = "VISIBLE",role: string = "MEMBER",rootTeamsOnly:boolean = false, userLogins:string = "", after:string = '', before: string = '',
-first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
-    teams(query: ${query} ${ldapMapped?`, ldapMapped: ${ldapMapped}`:''} ${privacy?`, privacy: ${privacy}`:''} ${role?`, role: ${role}`:''} ${rootTeamsOnly?`, rootTeamsOnly: ${rootTeamsOnly}`:''} ${userLogins?`, userLogins: ${userLogins}`:''} 
-    ${after?`, after: ${after}`:''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''},
+export const Teams = (query: string = "", first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", ldapMapped: boolean, privacy: string = "VISIBLE", role: string = "MEMBER", rootTeamsOnly: boolean, userLogins: string = "", after: string = "", before: string = "",
+    last: number) => `
+    teams(query: ${query}, first: ${first} ${ldapMapped && `, ldapMapped: ${ldapMapped}`} ${privacy && `, privacy: ${privacy}`} ${role && `, role: ${role}`} ${rootTeamsOnly && `, rootTeamsOnly: ${rootTeamsOnly}`} ${userLogins && `, userLogins: ${userLogins}`} 
+    ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`},
      orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
@@ -2861,7 +2865,7 @@ first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:str
  */
 
 
- export const onTeam = (fields:string = '') => `
+export const onTeam = (fields: string = "") => `
  ... on Team {
      id
      ${fields}        
@@ -2872,8 +2876,8 @@ first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:str
  * @description Github Graphql Ancestors
  * @defaultVariables id
  * @queryVariables 
- * after String
- * before String
+ * after string
+ * before string
  * first number
  * last number
  * edges {
@@ -2896,8 +2900,8 @@ first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:str
  */
 
 
- export const PushAllowances = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    ancestors(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
+export const PushAllowances = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    ancestors(first: ${first} ${after && `after: ${after}`} ${before && `, before: ${before}`}  ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -2905,13 +2909,13 @@ first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:str
 
 /**
  * @description Github Graphql MatchingRefs  
- * @defaultVariables totalCount orderBy = NAME direction = "ASC" first = 10 immediateOnly = false
- * @queryArguments direction 'ASC' | 'DESC' 
- * after String
- * before String
+ * @defaultVariables totalCount orderBy = NAME direction = "ASC" first = 10
+ * @queryArguments direction "ASC" | "DESC" 
+ * after string
+ * before string
  * first number
  * last number
- * immediateOnly bool
+ * immediateOnly boolean
  * userLogins string
  * @queryVariables 
  *  edges {
@@ -2928,8 +2932,8 @@ first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:str
  * }
 */
 
-export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy: string = "NAME",direction:string =  "ASC", fields: string = '') => `
-    childTeams(immediateOnly: ${immediateOnly}, userLogins: ${userLogins}${after?`, after: ${after}`:''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const ChildTeams = (first: number = 10, fields: string = "", orderBy: string = "NAME", direction: string = "ASC", immediateOnly: boolean, userLogins: string = "", after: string = "", before: string = "", last: number) => `
+    childTeams(first:${first} ${immediateOnly && `immediateOnly: ${immediateOnly}`} ${userLogins && `, userLogins: ${userLogins}`} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -2938,8 +2942,8 @@ export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",
  * @description Github Graphql RelevantOrganizations
  * @defaultVariables id
  * @queryVariables 
- * after String
- * before String
+ * after string
+ * before string
  * first number
  * last number
  * edges {
@@ -2957,8 +2961,8 @@ export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",
  */
 
 
- export const RelevantOrganizations = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    relevantOrganizations(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
+export const RelevantOrganizations = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    relevantOrganizations( first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -2983,7 +2987,7 @@ export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",
  * }
  */
 
- export const MemberStatus = (fields:string = '') => `
+export const MemberStatus = (fields: string = "") => `
      id
      ${fields}        
 `
@@ -3014,8 +3018,8 @@ export const ChildTeams = (immediateOnly:boolean = false,userLogins:string = "",
 * }
 */
 
-export const MemberStatuses = (after:string = '', before: string = '', first:number = 10, last:number = 0,field:string = "UPDATED_AT", directions:string = "ASC",fields:string = '') => `
-    memberStatuses(after: ${after} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${field}, direction: ${directions},}) {
+export const MemberStatuses = (first: number = 10, fields: string = "", directions: string = "ASC", orderBy: string = "UPDATED_AT", after: string = "", before: string = "", last: number) => `
+    memberStatuses(first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${directions},}) {
         ${fields}
         totalCount
     }
@@ -3024,7 +3028,7 @@ export const MemberStatuses = (after:string = '', before: string = '', first:num
 /**
  * @description Github Graphql IpAllowListEntries
  * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -3063,8 +3067,8 @@ export const MemberStatuses = (after:string = '', before: string = '', first:num
  * }
 */
 
-export const IpAllowListEntries = (after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = "CREATED_AT", direction:string = "ASC",fields: string = '') => `
-    ipAllowListEntries(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
+export const IpAllowListEntries = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", after: string = "", before: string = "", last: number) => `
+    ipAllowListEntries(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction}) {
         ${fields}
         totalCount
     }
@@ -3097,8 +3101,8 @@ export const IpAllowListEntries = (after: string = '', before: string = '', firs
  * }
 */
 
-export const Items = (after: string = '', before: string = '', first: number = 10, last: number = 0,fields: string = '') => `
-    labels(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const Items = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    labels(${after && `, after: ${after} `}${before && `, before: ${before} `}, first: ${first}${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3106,14 +3110,12 @@ export const Items = (after: string = '', before: string = '', first: number = 1
 
 /**
  * @description Github Graphql MembersWithRole
- * @defaultVariables totalCount orderBy = "SIZE" direction = "ASC" first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
  * after string
  * before string
  * first number
  * last number
- * orderBy "SIZE""
- * direction "ASC" | "DESC"
  * @queryVariables 
  *  edges {
  *      cursor
@@ -3129,8 +3131,8 @@ export const Items = (after: string = '', before: string = '', first: number = 1
  * }
 */
 
-export const MembersWithRole = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    membersWithRole(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const MembersWithRole = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    membersWithRole(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3140,7 +3142,7 @@ export const MembersWithRole = (after: string = '', before: string = '', first: 
 /**
  * @description Github Graphql PendingMembers
  * @defaultVariables totalCount first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments
  * after string
  * before string
  * first number
@@ -3160,8 +3162,8 @@ export const MembersWithRole = (after: string = '', before: string = '', first: 
  * }
 */
 
-export const PendingMembers = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    pendingMembers(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const PendingMembers = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    pendingMembers(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3194,8 +3196,8 @@ export const PendingMembers = (after: string = '', before: string = '', first: n
  * }
 */
 
-export const PinnableItems = (types:string = "ORGANIZATION",after: string = '', before: string = '', first: number = 10, last: number = 0,fields: string = '') => `
-    pinnableItems(type: ${types},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const PinnableItems = (first: number = 10, fields: string = "", types: string = "ORGANIZATION", after: string = "", before: string = "", last: number) => `
+    pinnableItems(${types && `, type: ${types}`} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${first && `first: ${first}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3228,8 +3230,8 @@ export const PinnableItems = (types:string = "ORGANIZATION",after: string = '', 
  * }
 */
 
-export const PinnedItems = (types:string = "ORGANIZATION",after: string = '', before: string = '', first: number = 10, last: number = 0,fields: string = '') => `
-    pinnedItems(type: ${types},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const PinnedItems = (first: number = 10, fields: string = "", types: string = "ORGANIZATION", after: string = "", before: string = "", last: number) => `
+    pinnedItems(first: ${first} ${types && `, type: ${types}`} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3316,8 +3318,8 @@ export const PinnedItems = (types:string = "ORGANIZATION",after: string = '', be
  * }
 */
 
-export const ExternalIdentities = (after: string = '', before: string = '', first: number = 10, last: number = 0,fields: string = '') => `
-    externalIdentities(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const ExternalIdentities = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    externalIdentities(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         id
         ${fields}
         totalCount
@@ -3360,7 +3362,7 @@ export const ExternalIdentities = (after: string = '', before: string = '', firs
  * onUser
  */
 
- export const Sponsorable = (fields:string = '') => `
+export const Sponsorable = (fields: string = "") => `
     id
     ${fields}        
 `
@@ -3381,7 +3383,7 @@ export const ExternalIdentities = (after: string = '', before: string = '', firs
  * updatedAt
  */
 
- export const Tier = (fields:string = '') => `
+export const Tier = (fields: string = "") => `
     id
     name
     ${fields}
@@ -3397,7 +3399,7 @@ export const ExternalIdentities = (after: string = '', before: string = '', firs
  * title
  */
 
- export const Goals = (fields:string = '') => `
+export const Goals = (fields: string = "") => `
     title
     percentComplete
     ${fields}
@@ -3420,7 +3422,7 @@ export const ExternalIdentities = (after: string = '', before: string = '', firs
  * Tiers
  */
 
- export const SponsorsListing = (fields:string = '') => `
+export const SponsorsListing = (fields: string = "") => `
     id
     name
     ${fields}
@@ -3455,9 +3457,8 @@ export const ExternalIdentities = (after: string = '', before: string = '', firs
 * }
 */
 
-export const Tiers = (after:string = '', before: string = '', first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
-    tiers(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},
-    orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const Tiers = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", after: string = "", before: string = "", last: number) => `
+    tiers(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }
         totalCount
@@ -3487,14 +3488,14 @@ export const Tiers = (after:string = '', before: string = '', first:number = 10,
  * }
 */
 
-export const Sponsor = (fields:string = '') => `
+export const Sponsor = (fields: string = "") => `
     id
     ${fields}        
 `
 
 /**
  * @description Github Graphql SponsorshipsAsMaintainer 
- * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 includePrivate = false
+ * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 
  * @queryArguments 
  * after string
  * before string
@@ -3520,8 +3521,8 @@ export const Sponsor = (fields:string = '') => `
 * }
 */
 
-export const SponsorshipsAsMaintainer = (includePrivate: boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
-    sponsorshipsAsMaintainer(inincludePrivate: ${includePrivate},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},
+export const SponsorshipsAsMaintainer = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", includePrivate: boolean, after: string = "", before: string = "", last: number) => `
+    sponsorshipsAsMaintainer(first: ${first}, ${includePrivate && `, includePrivate: ${includePrivate}`} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`},
     orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }
@@ -3556,8 +3557,8 @@ export const SponsorshipsAsMaintainer = (includePrivate: boolean = false,after:s
 * }
 */
 
-export const SponsorshipsAsSponsor = (includePrivate: boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
-    sponsorshipsAsSponsor(inincludePrivate: ${includePrivate},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''},
+export const SponsorshipsAsSponsor = (includePrivate: boolean, after: string = "", before: string = "", first: number = 10, last: number, orderBy: string = "CREATED_AT", direction: string = "ASC", fields: string = "") => `
+    sponsorshipsAsSponsor(first: ${first}, ${includePrivate && `includePrivate: ${includePrivate}`} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`},
     orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }

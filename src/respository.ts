@@ -171,7 +171,7 @@
  * Watchers
  */
 
- export const Repository = (fields:string = '') => `
+export const Repository = (fields: string = "") => `
     id
     ${fields}        
 `
@@ -204,8 +204,8 @@
  * Owner
  */
 
-export const PendingAdminInvitations = (query: string = "", visibility: string = "PUBLIC", first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = "CREATED_AT", directions: string = "ASC", fields: string = '') => `
-    pendingAdminInvitations(query: ${query},visibility = ${visibility}, ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} , first: ${first} ${last ? `last: ${last}` : ''},orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
+export const PendingAdminInvitations = (query: string, first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", directions: string = "ASC", visibility: string, after: string = "", before: string = "", last: number) => `
+    pendingAdminInvitations(${query && ` query: ${query}`},first: ${first} ${visibility && `, visibility: ${visibility}`} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
@@ -213,7 +213,6 @@ export const PendingAdminInvitations = (query: string = "", visibility: string =
 
 /**
  * @description Github Graphql Owner
- * @defaultVariables totalCount field = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
  * @queryVariables
  * avatarUrl
  * id
@@ -222,7 +221,7 @@ export const PendingAdminInvitations = (query: string = "", visibility: string =
 
 
 
-export const Owner = (fields: string) => `
+export const Owner = (fields: string = "") => `
   owner {
     ${fields}
   }
@@ -248,7 +247,7 @@ export const Owner = (fields: string) => `
  *          Repository
  *      }
  *  }
- * nodes {
+ * nodes {`
  *  Repository
  *  PageInfo
  *  totalCount
@@ -256,8 +255,9 @@ export const Owner = (fields: string) => `
  * }
  */
 
-export const Repositories = (affiliations: string = "OWNER", ownerAffiliations: string = "OWNER", privacy: string = "PUBLIC", after: string = "", before: string = "", first: number = 10, last?: number, isFork: boolean = false, isLocked: boolean = false, orderBy: string = "CREATED_AT", direction: string = "ASC", fields: string = "") => `
-    repositories(affiliations: ${affiliations}, ownerAffiliations:${ownerAffiliations}, ${after ? `, after: ${after} ` : ''}, ${before ? `, before: ${before}`: ''} first: ${first}, isFork: ${isFork}, isLocked: ${isLocked}, ${last ? ', last=${last}' : ''} orderBy: {orderBy: ${orderBy}, direction: ${direction}}, ownerAffiliations: OWNER, privacy: ${privacy}) {
+export const Repositories = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", isFork: boolean = false, isLocked: boolean = false, affiliations: string, ownerAffiliations: string, privacy: string, after: string, before: string, last?: number) => `
+    repositories(first: ${first} ${affiliations && `affiliations: ${affiliations}`} ${ownerAffiliations && `, ownerAffiliations: ${ownerAffiliations}`} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${isFork && `isFork: ${isFork}`} ${isLocked && `, ${isLocked}`} ${last && `, last:${last}`}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}, 
+    ${privacy && `privacy: ${privacy}`}) {
         ${fields}
     }
 `
@@ -265,7 +265,7 @@ export const Repositories = (affiliations: string = "OWNER", ownerAffiliations: 
 /**
  * @description Github Graphql BranchProtectionRules  
  * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -306,8 +306,8 @@ export const Repositories = (affiliations: string = "OWNER", ownerAffiliations: 
 * }
 */
 
-export const BranchProtectionRules = (first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    branchProtectionRules(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const BranchProtectionRules = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", after: string = "", before: string = "", last: number) => `
+    branchProtectionRules( first: ${first}, ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }
 `
@@ -315,7 +315,7 @@ export const BranchProtectionRules = (first: number = 10,after: string = '', bef
 /**
  * @description Github Graphql BranchProtectionRuleConflicts  
  * @defaultVariables totalCount orderBy = CREATED_AT  direction = "ASC" first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -373,8 +373,8 @@ export const BranchProtectionRules = (first: number = 10,after: string = '', bef
 * }
 */
 
-export const BranchProtectionRuleConflicts = (first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    branchProtectionRuleConflicts(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} , first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const BranchProtectionRuleConflicts = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", after: string = "", before: string = "", last: number) => `
+    branchProtectionRuleConflicts(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }
 `
@@ -534,7 +534,7 @@ export const BranchProtectionRuleConflicts = (first: number = 10,after: string =
  * viewerSubscription
  */
 
- export const PullRequest = (number:number = 10 ,fields:string = '') => `
+export const PullRequest = (number: number = 10, fields: string = "") => `
     pullRequest(number: ${number}) {
         ${fields}
     }
@@ -544,7 +544,9 @@ export const BranchProtectionRuleConflicts = (first: number = 10,after: string =
  * @queryArguments
  * PullRequest
 */
-export const onPullRequest = (fields:string = '') => `
+
+
+export const onPullRequest = (fields: string = "") => `
     ... on PullRequest {
         ${fields}
     }
@@ -580,7 +582,7 @@ export const onPullRequest = (fields:string = '') => `
  * viewerCanUnresolve
 */
 
-export const PullRequestReviewThread = (fields:string = '') => `
+export const PullRequestReviewThread = (fields: string = "") => `
     id
     ${fields}
 `
@@ -590,7 +592,7 @@ export const PullRequestReviewThread = (fields:string = '') => `
  * @queryArguments
  * PullRequestReviewThread
 */
-export const onPullRequestReviewThread = (fields:string = '') => `
+export const onPullRequestReviewThread = (fields: string = "") => `
     ... on PullRequestReviewThread {
         ${fields}
     }
@@ -598,8 +600,8 @@ export const onPullRequestReviewThread = (fields:string = '') => `
 
 /**
  * @description Github Graphql PullRequests  
- * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10 states = "OPEN"
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -624,8 +626,8 @@ export const onPullRequestReviewThread = (fields:string = '') => `
  * }
 */
 
-export const PullRequests = (baseRefName: string = "", headRefName: string = "", labels: string = "", states: string = "OPEN", first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    pullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
+export const PullRequests = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", baseRefName: string, headRefName: string, labels: string, states: string, after: string = "", before: string = "", last: number) => `
+    pullRequests(first: ${first} ${baseRefName && `, baseRefName: ${baseRefName}`} ${headRefName && `, headRefName: ${headRefName}`} ${labels && `, labels: ${labels}`} ${states && `, states: ${states}`} ${after && `, after: ${after}`} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
         ${fields}
         totalCount
     }
@@ -635,7 +637,7 @@ export const PullRequests = (baseRefName: string = "", headRefName: string = "",
 /**
  * @description Github Graphql AssociatedPullRequests  
  * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10 states = "OPEN"
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -660,8 +662,9 @@ export const PullRequests = (baseRefName: string = "", headRefName: string = "",
  * }
 */
 
-export const AssociatedPullRequests = (baseRefName: string = "", headRefName: string = "", labels: string = "", states: string = "OPEN", first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = 'CREATED_AT', direction: string = 'ASC', fields: string = '') => `
-    associatedPullRequests(baseRefName : ${baseRefName},headRefName:${headRefName},labels:${labels},states:${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}},) {
+export const AssociatedPullRequests = (first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", baseRefName: string, headRefName: string, labels: string, states: string, after: string = "", before: string = "", last: number) => `
+    associatedPullRequests(first: ${first} ${baseRefName && `, baseRefName : ${baseRefName}`} ${headRefName && `, headRefName: ${headRefName}`} ${labels && `, labels: ${labels}`} ${states && `, states: ${states}`} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, 
+    orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -669,8 +672,8 @@ export const AssociatedPullRequests = (baseRefName: string = "", headRefName: st
 
 /**
  * @description Github Graphql MatchingRefs  
- * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
  * after string
  * before string
  * first number
@@ -731,8 +734,8 @@ export const AssociatedPullRequests = (baseRefName: string = "", headRefName: st
  * }
 */
 
-export const MatchingRefs = (query: string = "", first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    matchingRefs(query : ${query},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
+export const MatchingRefs = (query: string, first: number = 10, after: string = "", before: string = "", last: number, fields: string = "") => `
+    matchingRefs(query : ${query}, first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -740,8 +743,8 @@ export const MatchingRefs = (query: string = "", first: number = 10,after: strin
 
 /**
  * @description Github Graphql MatchingRefs  
- * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @defaultVariables totalCount first = 10
+ * @queryArguments 
  * after string
  * before string
  * first number
@@ -763,8 +766,8 @@ export const MatchingRefs = (query: string = "", first: number = 10,after: strin
  * }
 */
 
-export const PushAllowances = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    pushAllowances(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
+export const PushAllowances = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    pushAllowances(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -785,7 +788,7 @@ export const PushAllowances = (first: number = 10,after: string = '', before: st
  * 
  */
 
- export const App = (fields:string = '') => `
+export const App = (fields: string = "") => `
     id
     name
     ${fields}        
@@ -798,7 +801,7 @@ export const PushAllowances = (first: number = 10,after: string = '', before: st
  * App
  */
 
- export const onApp = (fields:string = '') => `
+export const onApp = (fields: string = "") => `
  ... on App {
      ${fields}        
  }
@@ -835,7 +838,7 @@ export const PushAllowances = (first: number = 10,after: string = '', before: st
  */
 
 
- export const Issue = (fields:string = '') => `
+export const Issue = (fields: string = "") => `
     id
     ${fields}
 `
@@ -844,7 +847,7 @@ export const PushAllowances = (first: number = 10,after: string = '', before: st
  * @queryArguments
  * Issue
 */
-export const onIssue = (fields:string = '') => `
+export const onIssue = (fields: string = "") => `
     ... on Issue {
         ${fields}
     }
@@ -895,14 +898,14 @@ export const onIssue = (fields:string = '') => `
  * 
  */
 
- export const HoverCard = (fields:string = '') => `
+export const HoverCard = (fields: string = "") => `
     ${fields}        
 `
 
 /**
  * @description Github Graphql Labels  
  * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -924,8 +927,8 @@ export const onIssue = (fields:string = '') => `
  * }
 */
 
-export const Labels = (first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = "NAME", direction:string = "ASC",fields: string = '') => `
-    labels(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
+export const Labels = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number, orderBy: string = "NAME", direction: string = "ASC") => `
+    labels(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction}) {
         ${fields}
         totalCount
     }
@@ -949,7 +952,7 @@ export const Labels = (first: number = 10,after: string = '', before: string = '
  */
 
 
- export const Label = (fields:string = '') => `
+export const Label = (fields: string = "") => `
     id
     ${fields}
 `
@@ -957,7 +960,7 @@ export const Labels = (first: number = 10,after: string = '', before: string = '
 /**
  * @description Github Graphql Issues  
  * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 states = "OPEN"
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -981,9 +984,9 @@ export const Labels = (first: number = 10,after: string = '', before: string = '
  * }
 */
 
-export const Issues = (labels: string = "",states:string = "OPEN",first: number = 10,after: string = '', before: string = '', last: number = 0, orderBy: string = "NAME", direction:string = "ASC",filterBy:string = "",fields: string = '') => `
-    issues(labels:${labels},states: ${states},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction},
-    ${filterBy&&filterBy}) {}
+export const Issues = (labels: string, first: number = 10, fields: string = "", orderBy: string = "NAME", direction: string = "ASC", filterBy: string, states: string, after: string = "", before: string = "", last: number) => `
+    issues(first: ${first} ${labels && `, labels: ${labels}`} ${states && `, states: ${states}`} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction},
+    ${filterBy && filterBy}) {}
         ${fields}
         totalCount
     }
@@ -1018,34 +1021,34 @@ export const Issues = (labels: string = "",states:string = "OPEN",first: number 
  * } 
  */
 
- export const BaseRef = (fields:string = "") => `
+export const BaseRef = (fields: string) => `
     ${fields}
- ` 
+ `
 
- /**
- * @description Github Graphql Branch
- * @defaultVariables id name
- * @queryVariables 
- * associatedPullRequests {
- *      AssociatedPullRequests
- * }
- * branchProtectionRule {
- *      BranchProtectionRules
- * }
- * prefix
- * refUpdateRule {
- *      RefUpdateRules
- * }
- * repository {
- *      Repository
- * }
- * target
- */
+/**
+* @description Github Graphql Branch
+* @defaultVariables id name
+* @queryVariables 
+* associatedPullRequests {
+*      AssociatedPullRequests
+* }
+* branchProtectionRule {
+*      BranchProtectionRules
+* }
+* prefix
+* refUpdateRule {
+*      RefUpdateRules
+* }
+* repository {
+*      Repository
+* }
+* target
+*/
 
-  export const Branch = (fields:string = '') => `
-  id
-  name
-  ${fields}        
+export const Branch = (fields: string = "") => `
+    id
+    name
+    ${fields}        
 `
 
 
@@ -1142,7 +1145,7 @@ export const Issues = (labels: string = "",states:string = "OPEN",first: number 
  * zipballUrl
  */
 
- export const Commit = (fields:string = '') => `
+export const Commit = (fields: string = "") => `
      id
      ${fields}        
 `
@@ -1152,7 +1155,7 @@ export const Issues = (labels: string = "",states:string = "OPEN",first: number 
  * @queryArguments
  * Commit 
  */
-export const onCommit = (fields:string = '') => `
+export const onCommit = (fields: string = "") => `
     ... on Commit {
         ${fields}
     }
@@ -1171,16 +1174,16 @@ export const onCommit = (fields:string = '') => `
  * Repository
  */
 
- export const Tree = (fields:string = '') => `
+export const Tree = (fields: string = "") => `
     ${fields}
 `
 /**
  * @description Github Graphql onTree  
  * @queryArguments
  * Tree
- * @defaultVariables totalCount environments = "" orderBy = CREATED_AT direction = "ASC" first = 10
+ * @defaultVariables totalCount environments  orderBy = CREATED_AT direction = "ASC" first = 10
  */
- export const onTree = (fields:string = '') => `
+export const onTree = (fields: string = "") => `
  ... on Tree {
      ${fields}
  }
@@ -1201,7 +1204,7 @@ export const onCommit = (fields:string = '') => `
  * Repository
  * text
  */
- export const Blob = (fields:string = '') => `
+export const Blob = (fields: string = "") => `
     ${fields}
 `
 
@@ -1210,10 +1213,10 @@ export const onCommit = (fields:string = '') => `
  * @queryArguments
  * Blob
  */
- export const onBlob = (fields:string = '') => `
- ... on Blob {
-     ${fields}
- }
+export const onBlob = (fields: string = "") => `
+    ... on Blob {
+        ${fields}
+    }
 `
 /**
  * @description Github Graphql Tag  
@@ -1250,7 +1253,7 @@ export const onCommit = (fields:string = '') => `
  * }
  * 
  */
- export const Tag = (fields:string = '') => `
+export const Tag = (fields: string = "") => `
     id
     name
     ${fields}
@@ -1261,18 +1264,18 @@ export const onCommit = (fields:string = '') => `
  * @queryArguments
  * Tag
  */
- export const onTag = (fields:string = '') => `
- ... on Tag {
-     ${fields}
- }
+export const onTag = (fields: string = "") => `
+    ... on Tag {
+        ${fields}
+    }
 `
 
 
 /**
  * @description Github Graphql Deployments  
- * @defaultVariables totalCount environments = "" orderBy = CREATED_AT direction = "ASC" first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
- * orderBy 'CREATED_AT'
+ * @defaultVariables totalCount environments  orderBy = CREATED_AT direction = "ASC" first = 10
+ * @queryArguments direction "ASC" | "DESC" 
+ * orderBy "CREATED_AT"
  * after string
  * before string
  * first number
@@ -1294,8 +1297,8 @@ export const onCommit = (fields:string = '') => `
 * }
 */
 
-export const Deployments = (environments:string = "",after:string = '', before: string = '',deployment:string, first:number = 10, last:number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields:string = '') => `
-    deployments( environments: ${environments},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, deployment:${deployment} , first: ${first} ${last?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const Deployments = (environments: string, first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", after: string = "", before: string = "", deployment: string, last: number) => `
+    deployments(first: ${first} ${environments && `, environments: ${environments}`} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${deployment && `deployment: ${deployment}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -1341,7 +1344,7 @@ export const Deployments = (environments:string = "",after:string = '', before: 
  * updatedAt
  */
 
- export const Deployment = (fields:string = '') => `
+export const Deployment = (fields: string = "") => `
     id
     ${fields}        
 `
@@ -1365,7 +1368,7 @@ export const Deployments = (environments:string = "",after:string = '', before: 
  *  target
  */
 
- export const Ref = (fields:string = '') => `
+export const Ref = (fields: string = "") => `
     id
     ${fields}        
 `
@@ -1383,7 +1386,7 @@ export const Deployments = (environments:string = "",after:string = '', before: 
  *      viewerCanPush
 */
 
-export const RefUpdateRules = (fields:string = '') => `
+export const RefUpdateRules = (fields: string = "") => `
     id
     ${fields}        
 `
@@ -1408,7 +1411,7 @@ export const RefUpdateRules = (fields:string = '') => `
  * state
  */
 
- export const Status = (fields:string = '') => `
+export const Status = (fields: string = "") => `
      id
      ${fields}        
 `
@@ -1437,8 +1440,8 @@ export const RefUpdateRules = (fields:string = '') => `
 * }
 */
 
-export const Statuses = (first:number = 10,after:string = '', before: string = '', last:number = 0,fields:string = '') => `
-    authors(first: ${first} ${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} ${last?`, last: ${last}`:''}) {
+export const Statuses = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number,) => `
+    authors(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1477,7 +1480,7 @@ export const Statuses = (first:number = 10,after:string = '', before: string = '
  * }
  */
 
- export const File = (path:string = "",fields:string = '') => `
+export const File = (path: string, fields: string = "") => `
     file(path: ${path}) {
         name
         type
@@ -1488,7 +1491,7 @@ export const Statuses = (first:number = 10,after:string = '', before: string = '
 /**
  * @description Github Graphql History  
  * @defaultVariables totalCount  first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -1513,8 +1516,8 @@ export const Statuses = (first:number = 10,after:string = '', before: string = '
 * }
 */
 
-export const History = (author:string = "",path:string = "",since:string = "", until:string = "",after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    history(${author&&author}${path?`, path: ${path}`:''}${since?`, since: ${since}`:''},${until?`, until: ${until}`:''},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const History = (first: number = 10, fields: string = "", author: string, path: string, since: string, until: string, after: string = "", before: string = "", last: number) => `
+    history(first: ${first} ${author && `, author: ${author}`} ${path && `, path: ${path}`} ${since && `, since: ${since}`} ${until && `, until: ${until}`} ${after && `, after: ${after} `} ${before && `, before: ${before}`}  ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1523,7 +1526,7 @@ export const History = (author:string = "",path:string = "",since:string = "", u
 /**
  * @description Github Graphql Parents
  * @defaultVariables totalCount first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments 
  * after string
  * before string
  * first number
@@ -1544,8 +1547,8 @@ export const History = (author:string = "",path:string = "",since:string = "", u
 * }
 */
 
-export const Parents = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    parents(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const Parents = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    parents( first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1602,7 +1605,7 @@ export const Parents = (after:string = '', before: string = '', first:number = 1
  * }
  */
 
- export const  Signature = (fields:string = '') => `
+export const Signature = (fields: string = "") => `
      id
      ${fields}        
 `
@@ -1610,7 +1613,7 @@ export const Parents = (after:string = '', before: string = '', first:number = 1
 /**
  * @description Github Graphql CombinedContexts
  * @defaultVariables totalCount first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments 
  * after string
  * before string
  * first number
@@ -1633,8 +1636,8 @@ export const Parents = (after:string = '', before: string = '', first:number = 1
 * }
 */
 
-export const CombinedContexts = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    combinedContexts(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const CombinedContexts = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    combinedContexts(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1643,7 +1646,7 @@ export const CombinedContexts = (after:string = '', before: string = '', first:n
 /**
  * @description Github Graphql Annotations
  * @defaultVariables totalCount first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments
  * after string
  * before string
  * first number
@@ -1696,8 +1699,8 @@ export const CombinedContexts = (after:string = '', before: string = '', first:n
 * }
 */
 
-export const Annotations = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    annotations(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const Annotations = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    annotations(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1746,7 +1749,7 @@ export const Annotations = (after:string = '', before: string = '', first:number
  * url
  */
 
- export const CheckSuite = (fields:string = '') => `
+export const CheckSuite = (fields: string = "") => `
      id
      conclusion
      ${fields}        
@@ -1780,7 +1783,7 @@ export const Annotations = (after:string = '', before: string = '', first:number
  * resourcePath
  */
 
- export const CheckRun = (fields:string = '') => `
+export const CheckRun = (fields: string = "") => `
      id
      name
      ${fields}        
@@ -1810,8 +1813,8 @@ export const Annotations = (after:string = '', before: string = '', first:number
 * }
 */
 
-export const CheckRuns = (filterBy:string = "", after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    checkRuns(${filterBy&&`${filterBy},`}${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const CheckRuns = (first: number = 10, fields: string = "", filterBy: string, after: string = "", before: string = "", last: number) => `
+    checkRuns(first: ${first} ${filterBy && `, filter: ${filterBy},`} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1822,7 +1825,7 @@ export const CheckRuns = (filterBy:string = "", after:string = '', before: strin
  * CheckRun
  */
 
- export const onCheckRun = (fields:string = '') => `
+export const onCheckRun = (fields: string = "") => `
  ... on CheckRun {
      ${fields}        
  }
@@ -1843,7 +1846,7 @@ export const CheckRuns = (filterBy:string = "", after:string = '', before: strin
  * targetUrl
  */
 
- export const StatusContext = (fields:string = '') => `
+export const StatusContext = (fields: string = "") => `
      id
      state
      ${fields}        
@@ -1855,7 +1858,7 @@ export const CheckRuns = (filterBy:string = "", after:string = '', before: strin
  * StatusContext
  */
 
- export const onStatusContext = (fields:string = '') => `
+export const onStatusContext = (fields: string = "") => `
  ... on StatusContext {
      ${fields}        
  }
@@ -1880,7 +1883,7 @@ export const CheckRuns = (filterBy:string = "", after:string = '', before: strin
  * targetUrl
  */
 
- export const Context = (name:string = "",fields:string = '') => `
+export const Context = (name: string, fields: string = "") => `
     context(name: ${name}) {
         ${fields}
     }
@@ -1917,8 +1920,8 @@ export const CheckRuns = (filterBy:string = "", after:string = '', before: strin
 * }
 */
 
-export const Submodules = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    submodules(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const Submodules = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    submodules(first: ${first}  ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -1949,7 +1952,7 @@ export const Submodules = (after:string = '', before: string = '', first:number 
  * url
  */
 
- export const Milestone = (fields:string = '') => `
+export const Milestone = (fields: string = "") => `
     id
     description
     ${fields}        
@@ -1981,8 +1984,8 @@ export const Submodules = (after:string = '', before: string = '', first:number 
 * }
 */
 
-export const Milestones = (query:string = "",state:string = "OPEN",after:string = '', before: string = '', first:number = 10, last:number = 0,orderBy:string = "DUE_DATE", direction: "ASC",fields:string = '') => `
-    milestones(query: ${query},state: ${state},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const Milestones = (query: string, first: number = 10, fields: string = "", orderBy: string = "DUE_DATE", direction: "ASC", state: string = "", after: string = "", before: string = "", last: number) => `
+    milestones(query: ${query} first: ${first} ${state && `state: ${state}`} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -1992,8 +1995,8 @@ export const Milestones = (query:string = "",state:string = "OPEN",after:string 
 /**
  * @description Github Graphql ReviewRequests
  * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
- * orderBy 'LOGIN' | 'CREATED_AT'
+ * @queryArguments direction "ASC" | "DESC" 
+ * orderBy "LOGIN" | "CREATED_AT"
  * after string
  * before string
  * first number
@@ -2035,8 +2038,8 @@ export const Milestones = (query:string = "",state:string = "OPEN",after:string 
 * }
 */
 
-export const ReviewRequests = (after:string = '', before: string = '', first:number = 10, last:number = 0, fields:string = '') => `
-    reviewRequests(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last ?`, last: ${last}`:''}) {
+export const ReviewRequests = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    reviewRequests(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -2117,8 +2120,8 @@ export const ReviewRequests = (after:string = '', before: string = '', first:num
 * }
 */
 
-export const ReviewThreads = (after:string = '', before: string = '', first:number = 10, last:number = 0, fields:string = '') => `
-    reviewThreads(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last ?`, last: ${last}`:''}) {
+export const ReviewThreads = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    reviewThreads(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -2150,8 +2153,8 @@ export const ReviewThreads = (after:string = '', before: string = '', first:numb
 * }
 */
 
-export const Reviews = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    reviews(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const Reviews = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    reviews(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3061,8 +3064,8 @@ export const Reviews = (after:string = '', before: string = '', first:number = 1
 * }
 */
 
-export const Timeline = (since:string = "",after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    timeline(${after ? `, after: ${after} ` : ''} ${since?`, since: ${since}`:''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const Timeline = (first: number = 10, fields: string = "", since: string, after: string = "", before: string = "", last: number) => `
+    timeline(${after && `, after: ${after} `} ${since && `, since: ${since}`} ${before && `, before: ${before}`}, first: ${first} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3103,9 +3106,9 @@ export const Timeline = (since:string = "",after:string = '', before: string = '
  * }
 */
 
-export const TimelineItems = (itemsTypes:string = "PULL_REQUEST_COMMIT",after:string = '', before: string = '', first:number = 10, last:number = 0, skip:string, since:string = "",fields:string = '') => `
-    timelineItems(itemsTypes:${itemsTypes},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last ?`, last: ${last}`:''}${skip ?`, skip: ${skip}`:''}
-    ${since ?`, since: ${since}`:''}) {
+export const TimelineItems = (itemsTypes: string = "PULL_REQUEST_COMMIT", after: string = "", before: string = "", first: number = 10, last: number, skip: string, since: string, fields: string = "") => `
+    timelineItems(first: ${first} ${itemsTypes && `, itemsTypes: ${itemsTypes}`} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}${skip && `, skip: ${skip}`}
+    ${since && `, since: ${since}`}) {
         ${fields}
         totalCount
     }
@@ -3138,8 +3141,8 @@ export const TimelineItems = (itemsTypes:string = "PULL_REQUEST_COMMIT",after:st
 * }
 */
 
-export const Assignees = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    assignees(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const Assignees = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    assignees(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3157,7 +3160,7 @@ export const Assignees = (after:string = '', before: string = '', first:number =
  * onMilestone
 */
 
-export const Closable = (fields:string = '') => `
+export const Closable = (fields: string = "") => `
     ${fields}
 `
 
@@ -3202,7 +3205,7 @@ export const Closable = (fields:string = '') => `
  * 
 */
 
-export const Project = (number:number = 10,fields:string = '') => `
+export const Project = (number: number = 10, fields: string = "") => `
     project(number:${number}) {
         id
         name
@@ -3213,7 +3216,7 @@ export const Project = (number:number = 10,fields:string = '') => `
 /**
  * @description Github Graphql Projects
  * @defaultVariables totalCount first = 10
- * @queryArguments direction 'ASC' | 'DESC' orderBy = "CREATED_AT" states "OPEN"
+ * @queryArguments direction "ASC" | "DESC" orderBy = "CREATED_AT"
  * after string
  * before string
  * first number
@@ -3236,8 +3239,8 @@ export const Project = (number:number = 10,fields:string = '') => `
  * }
 */
 
-export const Projects = (search:string = "",states:string = "OPEN",after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy:string = 'CREATED_AT', direction:string = 'ASC',fields: string = '') => `
-    projects(search: ${search},state: ${states},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const Projects = (search: string, first: number = 10, fields: string = "", orderBy: string = "CREATED_AT", direction: string = "ASC", states: string, after: string = "", before: string = "", last: number) => `
+    projects(search: ${search}, first: ${first} ${states && `, state: ${states}`} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -3262,7 +3265,7 @@ export const Projects = (search:string = "",states:string = "OPEN",after: string
  * }
  */
 
-export const Column = (fields:string = '') => `
+export const Column = (fields: string = "") => `
     id
     name
     ${fields}
@@ -3294,8 +3297,8 @@ export const Column = (fields:string = '') => `
 * }
 */
 
-export const Columns = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    columns(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const Columns = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    columns(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3328,7 +3331,7 @@ export const Columns = (after:string = '', before: string = '', first:number = 1
  * url
 */
 
-export const Card = (fields:string = '') => `
+export const Card = (fields: string = "") => `
     id 
     state
     ${fields}
@@ -3336,7 +3339,7 @@ export const Card = (fields:string = '') => `
 
 /**
  * @description Github Graphql Cards  
- * @defaultVariables totalCount first = 10 archivedStates = ARCHIVED
+ * @defaultVariables totalCount first = 10 
  * @queryArguments 
  * after string
  * before string
@@ -3358,8 +3361,8 @@ export const Card = (fields:string = '') => `
 * }
 */
 
-export const Cards = (archivedStates:string = "ARCHIVED",after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    cards(archivedStates: ${archivedStates},${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} , first: ${first} ${last?`, last: ${last}`:''}) {
+export const Cards = (archivedStates: string, after: string = "", before: string = "", first: number = 10, last: number, fields: string = "") => `
+    cards( first: ${first} ${archivedStates && `archivedStates: ${archivedStates}`} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3425,7 +3428,7 @@ export const Cards = (archivedStates:string = "ARCHIVED",after:string = '', befo
  * viewerDidAuthor
  */
 
- export const Review = (fields:string = '') => `
+export const Review = (fields: string = "") => `
     id
     ${fields}        
 `
@@ -3433,7 +3436,7 @@ export const Cards = (archivedStates:string = "ARCHIVED",after:string = '', befo
 /**
  * @description Github Graphql onBehalfOf 
  * @defaultVariables totalCount first = 10
- * @queryArguments direction 'ASC' | 'DESC' 
+ * @queryArguments direction "ASC" | "DESC" 
  * after string
  * before string
  * first number
@@ -3454,8 +3457,8 @@ export const Cards = (archivedStates:string = "ARCHIVED",after:string = '', befo
 * }
 */
 
-export const onBehalfOf = (after:string = '', before: string = '', first:number = 10, last:number = 0,fields:string = '') => `
-    onBehalfOf(${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, first: ${first} ${last?`, last: ${last}`:''}) {
+export const onBehalfOf = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    onBehalfOf(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3479,7 +3482,7 @@ export const onBehalfOf = (after:string = '', before: string = '', first:number 
  * onCommit
 */
 
-export const Subscribable = (fields:string = '') => `
+export const Subscribable = (fields: string = "") => `
     id
     ${fields}
 `
@@ -3507,8 +3510,8 @@ export const Subscribable = (fields:string = '') => `
  * }
  */
 
- export const Collaborators = (query: string = "", after: string = "",before: string = "",first: number = 10,last?: number,fields:string = "") => `
-    collaborators(query: ${query}, ${after ? `, after: ${after} ` : ''}, ${before ? `, before: ${before}`: ''} first: ${first}, ${last? ', last=${last}': ''}) {
+export const Collaborators = (query: string, first: number = 10, fields: string, after: string, before: string, last?: number) => `
+    collaborators(query: ${query}, first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before}`} ${last && `, last:${last}`}) {
         ${fields}
     }
 `
@@ -3548,8 +3551,8 @@ export const Subscribable = (fields:string = '') => `
  * }
 */
 
-export const DeployKeys = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    deployKeys(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
+export const DeployKeys = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    deployKeys(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3579,8 +3582,8 @@ export const DeployKeys = (first: number = 10,after: string = '', before: string
  * }
 */
 
-export const CommitComments = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    commitComments(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
+export const CommitComments = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    commitComments(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3604,7 +3607,7 @@ export const CommitComments = (first: number = 10,after: string = '', before: st
  * publishedAt
  */
 
- export const Release = (fields:string = '') => `
+export const Release = (fields: string = "") => `
     id
     name
     ${fields}
@@ -3663,8 +3666,8 @@ export const CommitComments = (first: number = 10,after: string = '', before: st
  * }
 */
 
-export const ReleaseAssets = (name:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    commitComments(name: ${name},${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
+export const ReleaseAssets = (name: string, first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    commitComments(name: ${name}, first: ${first} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3703,7 +3706,7 @@ export const ReleaseAssets = (name:string = "",first: number = 10,after: string 
  * url
  */
 
- export const LicenseInfo = (fields:string = '') => `
+export const LicenseInfo = (fields: string = "") => `
     id
     name
     ${fields}
@@ -3726,7 +3729,7 @@ export const ReleaseAssets = (name:string = "",first: number = 10,after: string 
  * version
  */
 
- export const Version = (fields:string = '') => `
+export const Version = (fields: string = "") => `
     id
     ${fields}
 `
@@ -3757,8 +3760,8 @@ export const ReleaseAssets = (name:string = "",first: number = 10,after: string 
  * }
 */
 
-export const Versions = (first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy:string = "CREATE_AT",direction:string = "ASC", fields: string = '') => `
-    versions(${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''},orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const Versions = (first: number = 10, fields: string = "", orderBy: string = "CREATE_AT", direction: string = "ASC", after: string = "", before: string = "", last: number) => `
+    versions(first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -3783,7 +3786,7 @@ export const Versions = (first: number = 10,after: string = '', before: string =
  * 
  */
 
- export const Package = (fields:string = '') => `
+export const Package = (fields: string = "") => `
     id
     name
     ${fields}
@@ -3819,8 +3822,8 @@ export const Versions = (first: number = 10,after: string = '', before: string =
  * }
 */
 
-export const Packages = (names:string = "",packageType:string = "",first: number = 10,after: string = '', before: string = '', last: number = 0,orderBy:string = "CREATE_AT",direction:string = "ASC", fields: string = '') => `
-    packages(names:${names},${after ? `, after: ${after} ` : ''}${packageType ? `, package: ${packageType} ` : ''} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''},orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const Packages = (names: string, first: number = 10, fields: string = "", orderBy: string = "CREATE_AT", direction: string = "ASC", packageType: string, after: string = "", before: string = "", last: number) => `
+    packages(names:${names}, first: ${first} ${after && `, after: ${after} `} ${packageType && `, package: ${packageType} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -3872,8 +3875,8 @@ export const Packages = (names:string = "",packageType:string = "",first: number
  * }
 */
 
-export const VulnerabilityAlerts = (first: number = 10,after: string = '', before: string = '', last: number = 0, fields: string = '') => `
-    vulnerabilityAlerts(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
+export const VulnerabilityAlerts = (first: number = 10, after: string = "", before: string = "", last: number, fields: string = "") => `
+    vulnerabilityAlerts( first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }
@@ -3932,7 +3935,7 @@ export const VulnerabilityAlerts = (first: number = 10,after: string = '', befor
  */
 
 
- export const SecurityAdvisory = (fields:string = '') => `
+export const SecurityAdvisory = (fields: string = "") => `
     databaseId
     description
     ${fields}        
@@ -3963,8 +3966,9 @@ export const VulnerabilityAlerts = (first: number = 10,after: string = '', befor
  * }
  */
 
- export const Vulnerabilities = (severities:string = "LOW",ecosystem:string = "NPM",first: number = 10,after: string = "",before: string = "",last?: number, orderBy:string = 'UPDATED_AT', direction:string = 'ASC',fields:string = "") => `
-    vulnerabilities(first: ${first} ${severities ? `, severities: ${severities}`:''} ${after ? `, after: ${after}`: ''} ${before ? `, before: ${before}`: ''}  ${last? ', last=${last}': ''},orderBy: {field: ${orderBy}, direction: ${direction}},) {
+export const Vulnerabilities = (first: number = 10, fields: string = "", severities: string, ecosystem: string = "NPM", after: string, before: string, last?: number, orderBy: string = "UPDATED_AT", direction: string = "ASC") => `
+    vulnerabilities(first: ${first} ${ecosystem && `, ecosystem: ${ecosystem}`} ${severities && `, severities: ${severities}`} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last:${last}`}, 
+    orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
     }
 `
@@ -3988,7 +3992,7 @@ export const VulnerabilityAlerts = (first: number = 10,after: string = '', befor
  * vulnerableVersionRange
  */
 
- export const Vulnerability = (fields:string = '') => `
+export const Vulnerability = (fields: string = "") => `
     severity
     ${fields}        
 `
@@ -4017,8 +4021,8 @@ export const VulnerabilityAlerts = (first: number = 10,after: string = '', befor
  * }
 */
 
-export const Watchers = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    watchers(after: ${after} ${before ? `, before: ${before} ` : ''}, first: ${first} ${last ? `last: ${last}` : ''}) {
+export const Watchers = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    watchers(after: ${after} ${before && `, before: ${before} `}, first: ${first} ${last && `, last: ${last}`}) {
         ${fields}
         totalCount
     }

@@ -85,8 +85,8 @@
 
 
 
-export const Discussions = (isPinned:boolean = false,after:string = '', before: string = '', first:number = 10, last:number = 0, orderBy:string = "CREATED_AT", direction:string = 'ASC',fields:string = '') => `
-    discussions(isPinned:${isPinned},${after ? `, after: ${after} ` : ''}${before?`, before: ${before}`:''}, ${first ? `, first: ${first} ` : ''}${last?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const Discussions = (isPinned:boolean = false, first:number = 10, after:string = '', before: string = '',  last:number = 0, orderBy:string = "CREATED_AT", direction:string = 'ASC', fields:string = '') => `
+    discussions(isPinned:${isPinned}, first: ${first} ${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''} ${last?`, last: ${last}`:''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -124,8 +124,8 @@ export const Discussions = (isPinned:boolean = false,after:string = '', before: 
  * }
  */
 
-export const Comment = (fromComment:number = 10,after: string = '', before: string = '', first: number = 10, last: number = 0,orderBy: string = "NUMBER",direction:string =  "ASC", fields: string = '') => `
-    comments(fromComment: ${fromComment},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const Comment = (fromComment:number = 10, first: number = 10, fields: string = '', orderBy: string = "NUMBER" ,direction:string =  "ASC",after: string = '', before: string = '', last: number = 0) => `
+    comments(fromComment: ${fromComment},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first}${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -156,8 +156,8 @@ export const Comment = (fromComment:number = 10,after: string = '', before: stri
 * }
 */
 
-export const Comments = (after:string = '', before: string = '', first:number = 10, last:number = 0, skip:string, fields:string = '') => `
-    comments(${after ? `, after: ${after} ` : ''}${before?`, before: ${before}`:''}, ${first ? `, first: ${first} ` : ''}${last ?`, last: ${last}`:''}${skip ?`, skip: ${skip}`:''}) {
+export const Comments = (first:number = 10, fields:string = '', after:string = '', before: string = '',  last:number = 0, skip:string) => `
+    comments(first: ${first} ${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, ${last ?`, last: ${last}`:''}${skip ?`, skip: ${skip}`:''}) {
         ${fields}
         totalCount
     }
@@ -196,12 +196,13 @@ export const ReactionGroups = (fields: string = '') => `
 `
 /**
  * @description Github Graphql Reactions  
- * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10 immediateOnly = false
+ * @defaultVariables totalCount orderBy = CREATED_AT direction = "ASC" first = 10
  * @queryArguments direction 'ASC' | 'DESC' 
  * after String
  * before String
  * first number
  * last number
+ * content string
  * @queryVariables 
  * edges {
  *      cursor
@@ -224,8 +225,8 @@ export const ReactionGroups = (fields: string = '') => `
  * }
 */
 
-export const Reactions = (content:string = "",after: string = '', before: string = '', first: number = 10, last: number = 0,orderBy: string = "CREATED_AT",direction:string =  "ASC", fields: string = '') => `
-    reactions(content: ${content},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const Reactions = (content:string = "", fields: string = '', orderBy: string = "CREATED_AT", direction:string =  "ASC", first: number = 10, after: string = '', before: string = '', last: number = 0) => `
+    reactions(content: ${content},first: ${first} ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
@@ -299,8 +300,8 @@ export const Reaction = (fields: string = "") => `
  * }
 */
 
-export const Invitations = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    invitations(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const Invitations = (first: number = 10, fields: string = '', after: string = '', before: string = '',  last: number) => `
+    invitations(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first}${last ? `, last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -331,8 +332,8 @@ export const Invitations = (after: string = '', before: string = '', first: numb
  * }
 */
 
-export const LatestOpinionatedReviews = (writersOnly:boolean = false,after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    latestOpinionatedReviews(writersOnly: ${writersOnly},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const LatestOpinionatedReviews = (writersOnly:boolean = false, fields: string = '', first: number = 10, after: string = '', before: string = '', last: number = 0) => `
+    latestOpinionatedReviews(writersOnly: ${writersOnly},  first: ${first} ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, ${last ? `, last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -362,8 +363,8 @@ export const LatestOpinionatedReviews = (writersOnly:boolean = false,after: stri
  * }
 */
 
-export const LatestReviews = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    latestOpinionatedReviews(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const LatestReviews = (first: number = 10, after: string = '', before: string = '', last: number = 0, fields: string = '') => `
+    latestOpinionatedReviews(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first}${last ? `, last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -393,8 +394,8 @@ export const LatestReviews = (after: string = '', before: string = '', first: nu
  * }
 */
 
-export const CommitComments = (after: string = '', before: string = '', first: number = 10, last: number = 0, fields: string = '') => `
-    commitComments(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''}) {
+export const CommitComments = (first: number = 10, fields: string = '', after: string = '', before: string = '', last: number = 0) => `
+    commitComments(first: ${first} ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} ${last ? `, last: ${last}` : ''}) {
         ${fields}
         totalCount
     }
@@ -430,8 +431,8 @@ export const CommitComments = (after: string = '', before: string = '', first: n
  * }
 */
 
-export const Languages = (after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = "SIZE", direction:string = "ASC",fields: string = '') => `
-    labels(${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction}) {
+export const Languages = (first: number = 10, fields: string = '', orderBy: string = "SIZE", direction:string = "ASC", after: string = '', before: string = '', last: number = 0) => `
+    labels(first: ${first} ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${direction}) {
         ${fields}
         totalCount
     }
@@ -575,8 +576,8 @@ export const Languages = (after: string = '', before: string = '', first: number
  * 
 */
 
-export const AuditLog = (query:string = "",after: string = '', before: string = '', first: number = 10, last: number = 0, orderBy: string = "CREATED_AT", directions: string = "ASC",fields: string = '') => `
-    auditLog(query:${query},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, ${first ? `, first: ${first} ` : ''}${last ? `last: ${last}` : ''},orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
+export const AuditLog = (query:string = "", first: number = 10, fields: string = '', orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = '', before: string = '', last: number = 0) => `
+    auditLog(query:${query}, first: ${first} ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
         ${fields}
         totalCount
     }
