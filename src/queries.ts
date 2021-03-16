@@ -2,37 +2,8 @@
  * @description Github Graphql Query for viewer details
  */
 export const Viewer = `
-    query {
-        viewer {
-          id
-          email
-          login
-          url
-          createdAt
-          updatedAt
-          databaseId
-          location
-          companyHTML
-          company
-          avatarUrl
-          bio
-          websiteUrl
-          isHireable
-          isDeveloperProgramMember
-          anyPinnableItems
-          isSiteAdmin
-          isViewer
-          viewerCanFollow
-          viewerIsFollowing
-          viewerCanCreateProjects
-          isEmployee
-          isBountyHunter
-          isCampusExpert
-          pinnedItemsRemaining
-          projectsUrl
-        }
-    }
-`
+    
+`;
 
 /**
  * @description Github Graphql Query for repository content (files and directories)
