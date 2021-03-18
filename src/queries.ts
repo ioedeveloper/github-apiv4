@@ -1,4 +1,29 @@
 /**
+ * @description Github Graphql Query for Sponsorables
+ * fields onOrganization onUser
+ */
+
+
+export const Sponsorables = (dependencyEcosystem: string, first: number = 10, fields: string, pageInfo?: string, orderBy: string = "LOGIN", direction: string = "ASC", onlyDependencies?: boolean, orgLoginForDependencies?: string, after?: string, before?: string, last?: string) => `
+ 	{
+		sponsorables(first: ${first}, dependencyEcosystem: ${dependencyEcosystem} ${onlyDependencies ? `, ${onlyDependencies}` : ""} ${after ? `, ${after}` : ""} ${before ? `, ${before}` : ""}, orderBy: {field: ${orderBy} direction: ${direction}} ${last ? `, ${last}` : ""} ${orgLoginForDependencies ? `, ${orgLoginForDependencies}` : ""}) {
+			edges {
+				cursor
+				node {
+					${fields}
+				}
+			}
+			nodes {
+				${fields}
+			}
+			${pageInfo ? pageInfo : ""}
+			totalCount
+		}
+	}
+`
+
+
+/**
  * @description Github Graphql Query for viewer details
  */
 export const Viewer = `

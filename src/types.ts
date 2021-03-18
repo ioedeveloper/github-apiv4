@@ -384,3 +384,18 @@ export declare interface UserIssues {
         };
     };
 }
+
+export declare interface Sponsorables {
+    sponsorables: {
+        edges: [{
+            cursor: string;
+            node:{}
+        }]
+        nodes: [];
+        totalCount: number;
+    }
+}
+
+export declare interface Organization{
+
+}
