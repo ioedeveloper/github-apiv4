@@ -18,9 +18,31 @@ export const TopicQuery = (name: string, fields: string) => `
 `
 
 /**
- * @description Github Graphql Query for Viewer
- * @fields
- ** User
+ * @description Github Graphql Query for SponsorsListing
+ * activeGoal {
+ * 		Goal
+ * }
+ * createdAt
+ * fullDescription
+ * fullDescriptionHTML
+ * id
+ * name
+ * shortDescription
+ * slug
+ * Tiers
+ */
+
+export const SponsorsListing = (slug:string,fields:string) =>`
+	{
+		sponsorsListing(slug: "${slug}") {
+			${fields}
+		}
+	}
+
+`
+
+/**
+ * @description Github Graphql Query for viewer details
  */
 export const Viewer = (fields: string) => `
     query {
