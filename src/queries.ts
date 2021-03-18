@@ -1,3 +1,5 @@
+export {User} from "./user"
+
 /**
  * @description Github Graphql Query for viewer details
  */
@@ -894,39 +896,16 @@ export const ViewerFollowers = `
 
 /**
  * @description Github Graphql Query for Github User
- * @queryVariable username: String!
+ * @queryVariable 
+ * login username
+ * fields User 
  */
-export const User = `
-  query($username: String!){
-    user(login: $username){
-      id
-      email
-      login
-      url
-      createdAt
-      updatedAt
-      databaseId
-      location
-      companyHTML
-      company
-      avatarUrl
-      bio
-      websiteUrl
-      isHireable
-      isDeveloperProgramMember
-      anyPinnableItems
-      isSiteAdmin
-      isViewer
-      viewerCanFollow
-      viewerIsFollowing
-      viewerCanCreateProjects
-      isEmployee
-      isBountyHunter
-      isCampusExpert
-      pinnedItemsRemaining
-      projectsUrl
-    }
-  }
+export const UserQuery = (login: string, fields:string) => `
+	{
+		user (login: "${login}") {
+			${fields}
+		}
+	}
 `;
 
 /**
