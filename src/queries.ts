@@ -1,3 +1,39 @@
+import * as Repository from "./respository"
+export * from "./respository"
+
+/**
+ * @description Github Graphql Query for SecurityVulnerabilities
+ * @queryArguments 
+ * ecosystem "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP"
+ * severities "LOW" | "MODERATE" | "HIGH" | "CRITICAL"
+ * after string
+ * before string
+ * first number
+ * last number
+ * @queryVariables
+ * fields Vulnerability
+ * }
+ */
+
+export const  SecurityVulnerabilities = (ecosystem: string = "NPM", first: number = 10, fields: string = "", pageInfo?:string,severities?: string, after?: string, before?: string, last?: number, orderBy: string = "UPDATED_AT", direction: string = "ASC") => `
+	{
+		securityVulnerabilities(first: ${first} ${ecosystem ? `, ecosystem: ${ecosystem}`:""} ${severities ? `, severities: ${severities}`: ""} ${after ? `, after: ${after}`: ""} ${before ? `, before: ${before}`:""} ${last ? `, last:${last}`:""}, 
+			orderBy: {field: ${orderBy}, direction: ${direction}}) {
+				edges {
+					node {
+						${fields}
+					}
+				}
+				nodes {
+					${fields}
+				}
+				${pageInfo? pageInfo: ""}
+				totalCount
+		}
+	}
+	
+`
+
 /**
  * @description Github Graphql Query for viewer details
  */
@@ -500,61 +536,6 @@ export const BranchDirectories = `
             }
         }
     }
-`;
-
-/**
- * @description Github Graphql Query for repository details
- * @type string
- */
-export const Repository = `
-  query($repositoryOwner: String!, $repositoryName: String!){
-    repository(owner: $repositoryOwner, name: $repositoryName){
-      createdAt
-      databaseId
-      description
-      descriptionHTML
-      diskUsage
-      forkCount
-      hasIssuesEnabled
-      hasProjectsEnabled
-      hasWikiEnabled
-      homepageUrl
-      id
-      isArchived
-      isDisabled
-      isFork
-      isLocked
-      isMirror
-      isPrivate
-      isTemplate
-      lockReason
-      mergeCommitAllowed
-      mirrorUrl
-      name
-      nameWithOwner
-      openGraphImageUrl
-      projectsResourcePath
-      projectsUrl
-      pushedAt
-      rebaseMergeAllowed
-      resourcePath
-      shortDescriptionHTML
-      squashMergeAllowed
-      sshUrl
-      tempCloneToken
-      updatedAt
-      url
-      usesCustomOpenGraphImage
-      viewerCanAdminister
-      viewerCanCreateProjects
-      viewerCanAdminister
-      viewerCanSubscribe
-      viewerCanUpdateTopics
-      viewerHasStarred
-      viewerPermission
-      viewerSubscription
-    }
-  }
 `;
 
 /**
