@@ -384,3 +384,21 @@ export declare interface UserIssues {
         };
     };
 }
+
+
+export declare interface Topic {
+    topic: {
+        name: string | null;
+        id: string | null;
+        relatedTopics: Topic[];
+        stargazerCount: number
+        stargazers: Stargazers;
+        totalCount: number;
+    }
+}
+
+export declare interface Stargazers {
+    edges: UserInfo[];
+    nodes: UserInfo[];
+    totalCount: string;
+}
