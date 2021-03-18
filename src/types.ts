@@ -945,245 +945,88 @@ export declare interface SponsorShip {
     tier: Tier
 }
 
-export declare interface SponsorsListing {
-    activeGoal: Goal;
-    createdAt: string;
-    fullDescription: string;
-    fullDescriptionHTML: string;
-    id: string;
-    name: string
-    shortDescription: string;
-    slug: string;
-    tiers: {
-        edges: [{
-            cursor: string;
-            node: Tier;
-        }];
-        nodes: Tier[];
-        pageInfo: PageInfo;
-        totalCount: number;
-    }
-}
 
-export declare interface RelevantTeams {
-    edges: [{
-        cursor: string;
-        node: Team;
-    }];
-    nodes: Team[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface RelevantOrganizations {
-    edges: [{
-        cursor: string;
-        node: Organization;
-    }];
-    nodes: Organization[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface ContributionsCollection {
-    commitContributionsByRepository: [{
-        contributions: Contributions;
-        repository: Repository;
-        resourcePath: string;
-        url: string;
-    }]
-    contributionCalendar: ContributionCalendar;
-    contributionYears: number[];
-    doesEndInCurrentMonth: boolean;
-    earliestRestrictedContributionDate: string;
-    endedAt: string;
-    firstIssueContribution: {};
-    firstPullRequestContribution: {}
-    firstRepositoryContribution: {}
-    hasActivityInThePast: boolean;
-    hasAnyContributions: boolean;
-    hasAnyRestrictedContributions: boolean;
-    isSingleDay: boolean;
-    issueContributions: {
-        edges: [{
-            cursor: string;
-            node: {
-                isRestricted: boolean;
-                issue: Issue;
-                occurredAt: string;
-                resourcePath: string;
-                url: string;
-            };
-        }];
+export declare interface SecurityVulnerabilities {
+    securityVulnerabilities: {
+        edges: {
+            cursor: string | null;
+            node: [{
+                advisory: SecurityAdvisory;
+                firstPatchedVersion: {
+                    identifier: string;
+                }
+                package: {
+                    ecosystem: string;
+                    name: string;
+                }
+                severity: string;
+                updatedAt: string;
+                vulnerableVersionRange: string;
+            }];
+        }
         nodes: [{
-            isRestricted: boolean;
-            issue: Issue;
-            occurredAt: string;
-            resourcePath: string;
-            url: string;
+            advisory: SecurityAdvisory;
+            firstPatchedVersion: {
+                identifier: string;
+            }
+            package: {
+                ecosystem: string;
+                name: string;
+            }
+            severity: string;
+            updatedAt: string;
+            vulnerableVersionRange: string;
         }];
-        pageInfo: PageInfo;
         totalCount: number;
     }
-    issueContributionsByRepository: [{
-        contributions: Contributions;
-        repository: Repository;
+}
+
+export declare interface SecurityAdvisory {
+    cvss: {
+        score: string;
+        vectorString: string;
+    }
+    cwes: CWES;
+    databaseId: string;
+    description: string;
+    ghsaId: string;
+    id: string;
+    identifiers: [{
+        type: string;
+        value: string;
     }]
-    joinedGitHubContribution: {
-        isRestricted: boolean;
-        occurredAt: string;
-        resourcePath: string;
+    notificationsPermalink: string;
+    origin: string;
+    permalink: string;
+    publishedAt: string;
+    references: [{
         url: string;
-        user: UserInfo;
-    }
-    latestRestrictedContributionDate: string
-    mostRecentCollectionWithActivity: ContributionsCollection;
-    mostRecentCollectionWithoutActivity: ContributionsCollection;
-    popularIssueContribution: IssueContribution;
-    popularPullRequestContribution: PullRequestContribution;
-    pullRequestContributions: PullRequestContributions;
-    pullRequestContributionsByRepository: PullRequestContributionsByRepository[];
-    pullRequestReviewContributions: PullRequestReviewContributions;
-    pullRequestReviewContributionsByRepository: PullRequestReviewContributionsByRepository[];
-    repositoryContributions: RepositoryContributions;
-    restrictedContributionsCount: number;
-    startedAt: string;
-    totalCommitContributions: number;
-    totalIssueContributions: number;
-    totalPullRequestContributions: number;
-    totalPullRequestReviewContributions: number;
-    totalRepositoriesWithContributedCommits: number;
-    totalRepositoriesWithContributedIssues: number;
-    totalRepositoriesWithContributedPullRequestReviews: number;
-    totalRepositoriesWithContributedPullRequests: number;
-    totalRepositoryContributions: number;
-    user: UserInfo;
-}
-
-export declare interface IssueContribution {
-    isRestricted: boolean;
-    issue: Issue;
-    occurredAt: string;
-    resourcePath: string;
-    url: string;
-    user: UserInfo;
-}
-
-export declare interface PullRequestContribution {
-    isRestricted: boolean;
-    occurredAt: string;
-    pullRequest: PullRequest;
-    resourcePath: string;
-    url: string;
-    user: UserInfo;
-}
-
-export declare interface PullRequestContributions {
-    edges: [{
-        cursor: string;
-        node: PullRequestContribution;
-    }];
-    nodes: PullRequestContribution[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface PullRequestContributionsByRepository {
-    contributions: Contributions;
-    repository: Repository;
-}
-
-export declare interface PullRequestReviewContribution {
-    isRestricted: boolean;
-    occurredAt: string;
-    pullRequest: PullRequest;
-    pullRequestReview: PullRequestReview;
-    repository: Repository;
-    resourcePath: string;
-    url: string;
-    user: UserInfo;
-}
-
-export declare interface PullRequestReviewContributions {
-    edges: [{
-        cursor: string;
-        node: PullRequestReviewContribution;
-    }];
-    nodes: PullRequestReviewContribution[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface PullRequestReviewContributionsByRepository {
-    contribution: Contribution;
-    repository: Repository;
-}
-
-export declare interface RepositoryContributions {
-    edges: [{
-        cursor: string;
-        node: Contribution;
-    }];
-    nodes: Contribution[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface Contributions {
-    edges: [{
-        cursor: string;
-        node: Contribution;
-    }];
-    nodes: Contribution[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Contribution {
-    commitCount: number;
-    isRestricted: boolean;
-    occurredAt: string;
-    repository: Repository;
-    resourcePath: string;
-    url: string;
-    user: UserInfo;
-}
-
-export declare interface ContributionCalendar {
-    colors: string[];
-    isHalloween: boolean;
-    months: [{
-        firstDay: string;
-        name: string;
-        totalWeeks: number;
-        year: number;
     }]
-    totalContributions: number;
-    weeks: [{
-        contributionDays: [{
-            color: string;
-            contributionCount: number;
-            contributionLevel: string;
-            date: string;
-            weekday: number;
-        }]
-        firstDay: string;
-    }]
-}
-
-export declare interface Sponsorables {
-    sponsorables: {
+    severity: string;
+    summary: string;
+    updatedAt: string;
+    vulnerabilities: {
         edges: [{
-            cursor: string;
-            node:Sponsorable;
+            cursor:string;
+            node:[]
         }]
-        nodes: Sponsorable[];
-        totalCount: number;
     }
+    withdrawnAt: string;
 }
-
-export declare interface Sponsorable extends Organization, UserInfo {
-
-}
-
-export declare interface Organization{
-
+export declare interface CWES {
+    edges: [{
+        cursor: string;
+        node: [{
+            cweId: string;
+            description: string;
+            id: string;
+            name: string
+        }]
+    }]
+    nodes: [{
+        cweId: string;
+        description: string;
+        id: string;
+        name: string
+    }]
 }
