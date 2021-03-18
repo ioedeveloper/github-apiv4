@@ -384,3 +384,21 @@ export declare interface UserIssues {
         };
     };
 }
+
+
+export declare interface SponsorsListing {
+    sponsorsListing: {
+        createdAt: string;
+        fullDescription:string;
+        fullDescriptionHTML: string;
+        id:string;
+        name:string;
+        shortDescription:string
+        slug:string;
+        tiers: Tiers;
+    }
+}
+
+export declare interface Tiers{
+
+}
