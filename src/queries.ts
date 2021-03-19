@@ -1,4 +1,20 @@
-export {User} from "./user"
+export * from "./user"
+export * from "./discussion"
+
+/**
+ * @description Github Graphql Query for TopicQuery
+ * fields Topic
+ */
+
+export const TopicQuery = (name: string, fields: string) => `
+ 	{
+		topic (name: "${name}"){
+			${fields}
+		}
+ 	}
+
+`
+
 
 /**
  * @description Github Graphql Query for Viewer

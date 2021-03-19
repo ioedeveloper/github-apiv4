@@ -70,207 +70,77 @@
  * SponsorshipsAsSponsor
  * StarredRepositoriesonUser
  * status {
- *      message
- *      indicatesLimitedAvailability
- *      id
- *      expiresAt
- *      emojiHTML
- *      emoji
- *      createdAt
- *      updatedAt
- *      User
- *      Oganisation
- *      TopRepositories
- *      twitterUsername
- *      updatedAt
- *      url
- *      viewerCanChangePinnedItems
- *      viewerCanCreateProjects
- *      viewerCanFollow
- *      viewerCanSponsor
- *      viewerIsFollowing
- *      viewerIsSponsoring
- *      Watching
- *      websiteUrl
+ *  message
+ *  indicatesLimitedAvailability
+ *  id
+ *  expiresAt
+ *  emojiHTML
+ *  emoji
+ *  createdAt
+ *  updatedAt
+ *  User
+ *  Oganisation
+ *  TopRepositories
+ *  twitterUsername
+ *  updatedAt
+ *  url
+ *  viewerCanChangePinnedItems
+ *  viewerCanCreateProjects
+ *  viewerCanFollow
+ *  viewerCanSponsor
+ *  viewerIsFollowing
+ *  viewerIsSponsoring
+ *  Watching
+ *  websiteUrl
  * }
  *}
  */
 
 export const User = (fields: string) => `
-   id
-   name
-   ${fields}
-`
-/**
-* @description Github Graphql onUser
-* @defaultVariables teamsUrl message totalTeamCount
-* @queryVariables
-*   __typename
-*   octicon
-*   RelevantTeams
-*   teamsResourcePath
-*/
-
-
-export const onGenericHovercardContext = (fields: string) => `
-    ... on GenericHovercardContext {
-        teamsUrl 
-        message
-        ${fields}
-        totalTeamCount
-    }
-`
-
-/**
-* @description Github Graphql onOrganizationTeamsHovercardContext
-* @defaultVariables teamsUrl totalTeamCount
-* @queryVariables 
-* __typename
-* teamsResourcePath
-* RelevantOrganizations
-*/
-
-
-export const onOrganizationTeamsHovercardContext = (fields: string) => `
- ... on OrganizationTeamsHovercardContext {
-    teamsUrl
+    id
+    name
     ${fields}
-    totalTeamCount
- }
 `
 /**
-* @description Github Graphql onReviewStatusHovercardContext
-* @defaultVariables message
-* @queryVariables
- *  reviewDecision
- *  octicon
-*/
-
-
-export const onReviewStatusHovercardContext = (fields: string) => `
- ... on User {
-    message
-    ${fields}
- }
-`
-/**
-* @description Github Graphql onViewerHovercardContext
-* @defaultVariables message
-* @queryVariables
-*  __typename
-*  octicon
-*  viewer
-*/
-
-
-export const onViewerHovercardContext = (fields: string) => `
- ... on ViewerHovercardContext{
-    message
-    ${fields}
- }
-`
-/**
-* @description Github Graphql onUser
-* @defaultVariables id email
-* @queryVariables User
-*/
+ * @description Github Graphql onUser
+ * @defaultVariables id email
+ * @queryVariables User
+ */
 
 
 export const onUser = (fields: string) => `
- ... on User {
-     id
-     email
-     ${fields}
- }
+    ... on User {
+        id
+        email
+        ${fields}
+    }
 `
 
 /**
-* @description Github Graphql RelevantTeams
-* @defaultVariables totalCount
-* @queryVariables 
-* after string 
-* before string
-* first number
-* last number
-* @fields Teams
-* pageInfo PageInfo
-*/
+ * @description Github Graphql RelevantTeams
+ * @defaultVariables totalcount
+ * @queryVariables after 
+ * befor
+ * first
+ * last
+ * edges {
+ *      cursor
+ *      node {
+ *         Teams                                                 
+ *      }
+ *  }
+ * nodes {
+ *      Teams 
+ *      PageInfo
+ * }
+ */
 
-export const RelevantTeams = (first: number = 10, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
- relevantTeams(${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} first: ${first}, last: ${last}) {
-     edges {
-       cursor
-       node {
-          ${fields}
-       }
+export const RelevantTeams = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
+    relevantTeams(${after ? `, ${after && `, after: ${after}`}` : ""} ${before ? `, before: ${before}` : ""} first: ${first}, last: ${last}) {
+        ${fields}
+        totalcount
     }
-
-    nodes {
-       ${fields}
-    }
-    ${pageInfo ? pageInfo : ""}
-    totalCount
- }
-`
-
-/**
-* @description Github Graphql Followers
-* @defaultVariables totalCount
-* @queryVariables 
-* after string
-* before string
-* first number
-* last number
-* @fields User
-*/
-
-export const Followers = (first: number, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
-   followers(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
-     edges {
-       cursor
-       node {
-          ${fields}
-       }
-    }
-
-    nodes {
-       ${fields}
-    }
-    ${pageInfo ? pageInfo : ""}
-    totalCount
- }
-`
-
-/**
-* @description Github Graphql Following
-* @defaultVariables totalCount
-* @queryVariables 
-* after string
-* before string
-* first number
-* last number
-* @fields User
-* pageInfo PageInfo
-*/
-
-export const Following = (first: number = 10, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
-   following(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `last: ${last}` : ""}) {
-    edges {
-       cursor
-       node {
-          ${fields}
-       }
-    }
-
-    nodes {
-       ${fields}
-        
-    }
-   ${pageInfo ? pageInfo : ""}
-   totalCount
- }
-`
-
+ `
 
 /**
 * @description Github Graphql EnterpriseUserAccount  
@@ -292,10 +162,10 @@ export const Following = (first: number = 10, fields?: string, pageInfo?: string
 * }
 */
 
-export const EnterpriseUserAccount = (fields?: string) => `
-   id
-   name
-   ${fields}
+export const EnterpriseUserAccount = (fields: string = "") => `
+    id
+    name
+    ${fields}
 `
 
 /**
@@ -303,10 +173,10 @@ export const EnterpriseUserAccount = (fields?: string) => `
 * * @queryVariables EnterpriseUserAccount 
 */
 
-export const onEnterpriseUserAccount = (fields?: string) => `
- ... on EnterpriseUserAccount {
-     ${fields}
- }
+export const onEnterpriseUserAccount = (fields: string = "") => `
+    ... on EnterpriseUserAccount {
+        ${fields}
+    }
 `
 
 /**
