@@ -1,3 +1,4 @@
+import { queryVariables } from ".";
 import * as Repository from "./respository"
 export * from "./respository"
 
@@ -15,24 +16,25 @@ export * from "./respository"
  * }
  */
 
-export const  SecurityVulnerabilities = (ecosystem: string = "NPM", first: number = 10, fields: string = "", pageInfo?:string,severities?: string, after?: string, before?: string, last?: number, orderBy: string = "UPDATED_AT", direction: string = "ASC") => `
+export const  SecurityVulnerabilities = (params: queryVariables.VulnerabilitiesFields) => `
 	{
-		securityVulnerabilities(first: ${first} ${ecosystem ? `, ecosystem: ${ecosystem}`:""} ${severities ? `, severities: ${severities}`: ""} ${after ? `, after: ${after}`: ""} ${before ? `, before: ${before}`:""} ${last ? `, last:${last}`:""}, 
-			orderBy: {field: ${orderBy}, direction: ${direction}}) {
+		securityVulnerabilities(first: ${params.first} ${params.ecosystem ? `, ecosystem: ${params.ecosystem}`:""} ${params.severities ? `, severities: ${params.severities}`: ""} ${params.after ? `, after: ${params.after}`: ""} ${params.before ? `, after: "${params.before}"`:""} ${params.last ? `, last:${params.last}`:""}, 
+			orderBy: {field: ${params.orderBy}, direction: ${params.direction}}) {
 				edges {
 					node {
-						${fields}
+						${params.fields}
 					}
 				}
 				nodes {
-					${fields}
+					${params.fields}
 				}
-				${pageInfo? pageInfo: ""}
+				${params.pageInfo? params.pageInfo: ""}
 				totalCount
 		}
 	}
 	
 `
+
 
 /**
  * @description Github Graphql Query for viewer details

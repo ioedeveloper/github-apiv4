@@ -44,6 +44,8 @@
  * }
 */
 
+import { queryVariables } from "."
+
 export const VulnerabilityAlerts = (first: number = 10, after: string = "", before: string = "", last: number, fields: string = "") => `
     vulnerabilityAlerts( first: ${first} ${after ? `, after: ${after} `:""} ${before ? `, before: ${before} `:""} ${last ? `, last: ${last}`:""}) {
         ${fields}
@@ -126,17 +128,17 @@ export const SecurityAdvisory = (fields: string = "") => `
  * Vulnerability
  */
 
-export const Vulnerabilities = (first: number = 10, fields: string = "", severities?: string, ecosystem?: string, after?: string, before?: string, last?: number, orderBy: string = "UPDATED_AT", direction: string = "ASC") => `
-    vulnerabilities(first: ${first} ${ecosystem ? `, ecosystem: ${ecosystem}`:""} ${severities ? `, severities: ${severities}`:""} ${after ? `, after: ${after}`:""} ${before ? `, before: ${before}`:""} ${last ? `, last:${last}`:""}, 
-    orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const Vulnerabilities = (params: queryVariables.VulnerabilitiesFields) => `
+    vulnerabilities(first: ${params.first} ${params.ecosystem ? `, ecosystem: ${params.ecosystem}`:""} ${params.severities ? `, severities: ${params.severities}`:""} ${params.after ? `, after: ${params.after}`:""} ${params.before ? `, after: "${params.before}"`:""} ${params.last ? `, last:${params.last}`:""}, 
+    orderBy: {field: ${params.orderBy}, direction: ${params.direction}}) {
         edges {
             cursor
             node {
-                ${fields}
+                ${params.fields}
             }
         }
         nodes {
-            ${fields}
+            ${params.fields}
         }
         totalCount
     }
@@ -182,16 +184,16 @@ export const Vulnerability = (fields: string = "") => `
  * }
 */
  
-export const CWES = (first: number = 10, fields: string = "", after?: string, before?: string, last?: number) => `
-    cwes(first: ${first} ${after?`, after`:""} ${before ? `, before: ${before} `: ""} ${last ? `, last: ${last}`:""}) { 
+export const CWES = (params: queryVariables.BasicFields) => `
+    cwes(first: ${params.first} ${params.after?`, after`:""} ${params.before ? `, after: "${params.before}" `: ""} ${params.last ? `, last: ${params.last}`:""}) { 
         edges {
             cursor
             node {
-                ${fields}
+                ${params.fields}
             }
         }
         nodes {
-            ${fields}
+            ${params.fields}
         }
         totalCount
     }
@@ -209,18 +211,18 @@ export const CWES = (first: number = 10, fields: string = "", after?: string, be
  * User
 */
 
-export const Watchers = (first: number = 10, fields: string = "", pageInfo?:string,after?: string, before?: string, last?: number) => `
-    watchers(first: ${first}  ${before ? `, before: ${before} `:""}${after?`, after: `: ""}  ${last ? `, last: ${last}`:""}) {
+export const Watchers = (params: queryVariables.BasicFields) => `
+    watchers(first: ${params.first}  ${params.before ? `, after: "${params.before}" `:""} ${params.after?`, after: ${params.after}`: ""}  ${params.last ? `, last: ${params.last}`:""}) {
         edges {
             cursor
             node {
-                ${fields}
+                ${params.fields}
             }
         }
         nodes {
-            ${fields}
+            ${params.fields}
         }
-        ${pageInfo? pageInfo:""}
+        ${params.pageInfo? params.pageInfo:""}
         totalCount
         viewerHasReacted
     }
