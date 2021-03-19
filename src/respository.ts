@@ -45,7 +45,7 @@
 */
 
 export const VulnerabilityAlerts = (first: number = 10, after: string = "", before: string = "", last: number, fields: string = "") => `
-    vulnerabilityAlerts( first: ${first} ${after && `, after: ${after} `} ${before && `, before: ${before} `} ${last && `, last: ${last}`}) {
+    vulnerabilityAlerts( first: ${first} ${after ? `, after: ${after} `:""} ${before ? `, before: ${before} `:""} ${last ? `, last: ${last}`:""}) {
         ${fields}
         totalCount
     }
@@ -123,24 +123,22 @@ export const SecurityAdvisory = (fields: string = "") => `
  * first number
  * last number
  * @queryVariables
- * edges {
- *      cursor
- *      node {
- *          Vulnerability
- *      }
- *  }
- * nodes {
- *      Vulnerability
- * }
- * PageInfo
- * totalCount
- * }
+ * Vulnerability
  */
 
-export const Vulnerabilities = (first: number = 10, fields: string = "", severities: string, ecosystem: string = "NPM", after: string, before: string, last?: number, orderBy: string = "UPDATED_AT", direction: string = "ASC") => `
-    vulnerabilities(first: ${first} ${ecosystem && `, ecosystem: ${ecosystem}`} ${severities && `, severities: ${severities}`} ${after && `, after: ${after}`} ${before && `, before: ${before}`} ${last && `, last:${last}`}, 
+export const Vulnerabilities = (first: number = 10, fields: string = "", severities?: string, ecosystem?: string, after?: string, before?: string, last?: number, orderBy: string = "UPDATED_AT", direction: string = "ASC") => `
+    vulnerabilities(first: ${first} ${ecosystem ? `, ecosystem: ${ecosystem}`:""} ${severities ? `, severities: ${severities}`:""} ${after ? `, after: ${after}`:""} ${before ? `, before: ${before}`:""} ${last ? `, last:${last}`:""}, 
     orderBy: {field: ${orderBy}, direction: ${direction}}) {
-        ${fields}
+        edges {
+            cursor
+            node {
+                ${fields}
+            }
+        }
+        nodes {
+            ${fields}
+        }
+        totalCount
     }
 `
 
@@ -208,25 +206,23 @@ export const CWES = (first: number = 10, fields: string = "", after?: string, be
  * first number
  * last number
  * @queryVariables 
- * edges {
- *      cursor
- *      node {
- *         User                                                   
- *      }
- *  }
- * nodes {
- *      User
- *      PageInfo
- *      totalCount
- * }
- * viewerHasReacted
- * }
+ * User
 */
 
-export const Watchers = (first: number = 10, fields: string = "", after: string = "", before: string = "", last: number) => `
-    watchers(after: ${after} ${before && `, before: ${before} `}, first: ${first} ${last && `, last: ${last}`}) {
-        ${fields}
+export const Watchers = (first: number = 10, fields: string = "", pageInfo?:string,after?: string, before?: string, last?: number) => `
+    watchers(first: ${first}  ${before ? `, before: ${before} `:""}${after?`, after: `: ""}  ${last ? `, last: ${last}`:""}) {
+        edges {
+            cursor
+            node {
+                ${fields}
+            }
+        }
+        nodes {
+            ${fields}
+        }
+        ${pageInfo? pageInfo:""}
         totalCount
+        viewerHasReacted
     }
 `
 

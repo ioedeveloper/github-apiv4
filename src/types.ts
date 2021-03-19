@@ -439,13 +439,18 @@ export declare interface SecurityAdvisory {
     origin: string;
     permalink: string;
     publishedAt: string;
-    references: {
+    references: [{
         url: string;
-    }
+    }]
     severity: string;
     summary: string;
     updatedAt: string;
-    vulnerabilities: SecurityVulnerabilities[]
+    vulnerabilities: {
+        edges: [{
+            cursor:string;
+            node:[]
+        }]
+    }
     withdrawnAt: string;
 }
 export declare interface CWES {
