@@ -508,7 +508,7 @@ export const DefaultRepositoryPermissionSettingOrganizations = (first: number = 
 */
 
 export const EnterpriseServerInstallations = (first: number = 10, fields?: string, pageInfo?: string, connectedOnly: boolean = false, after?: string, before?: string, last?: number) => `
- enterpriseServerInstallations(first: ${first} ${connectedOnly && `connectedOnly: ${connectedOnly}`} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} 
+ enterpriseServerInstallations(first: ${first} ${connectedOnly ? `connectedOnly: ${connectedOnly}`:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} 
  ${last ? `, last: ${last}` : ""}) {
    edges {
       cursor
@@ -547,7 +547,7 @@ export const EnterpriseServerInstallations = (first: number = 10, fields?: strin
 */
 
 export const UserAccounts = (first: number = 10, fields?: string, pageInfo?: string, connectedOnly: boolean = false, after?: string, before?: string, last?: number) => `
- userAccounts(first: ${first} ${connectedOnly && `, connectedOnly: `} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+ userAccounts(first: ${first} ${connectedOnly ? `, connectedOnly: `:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
      edges {
       cursor
       node {
@@ -950,7 +950,7 @@ export const OrganizationProjectsSettingOrganizations = (value: boolean = false,
 */
 
 export const OutsideCollaborators = (query?: string, fields?: string, pageInfo?: string,orderBy: string = "CREATED_AT", directions: string = "ASC", first: number = 10, visibility: string = "PUBLIC", after?: string, before?: string, last?: number) => `
- outsideCollaborators(query: ${query}, first: ${first} ${visibility && `, visibility: ${visibility}`} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+ outsideCollaborators(query: ${query}, first: ${first} ${visibility ? `, visibility: ${visibility}`:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -1471,7 +1471,7 @@ export const ExternalIdentities = (first: number = 10, fields?: string, pageInfo
 */
 
 export const SamlIdentityProviderSettingOrganizations = (value: string, first: number = 10, fields?: string, pageInfo?:string,after?: string, before?: string, last?: number) => `
- samlIdentityProviderSettingOrganizations(first: ${first} ${value && `, value: ${value}`} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+ samlIdentityProviderSettingOrganizations(first: ${first} ${value ? `, value: ${value}`:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
      edges {
        cursor
        node {
@@ -1504,7 +1504,7 @@ export const SamlIdentityProviderSettingOrganizations = (value: string, first: n
 
 
 export const SupportEntitlements = (first: number = 10, fields?: string, pageInfo?: string,orderBy: string = "DUE_DATE", direction?: "ASC", after?: string, before?: string, last?: number) => `
- supportEntitlements( first: ${first} ${after && `, ${after} `} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+ supportEntitlements( first: ${first} ${after ? `, ${after} `:""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
@@ -1535,7 +1535,7 @@ export const SupportEntitlements = (first: number = 10, fields?: string, pageInf
 
 
 export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fields?: string, pageInfo?:string,orderBy: string = "DUE_DATE", direction?: "ASC", first: number = 10, after?: string, before?: string, last?: number) => `
- teamDiscussionsSettingOrganizations(value: ${value}, first: ${first} ${after && `,  ${after} `} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+ teamDiscussionsSettingOrganizations(value: ${value}, first: ${first} ${after ? `,  ${after} `:""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
@@ -1568,7 +1568,7 @@ export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fiel
 
 
 export const TwoFactorRequiredSettingOrganizations = (value: boolean = false, first: number = 10, pageInfo?:string,after?: string, fields?: string, orderBy: string = "DUE_DATE", direction?: "ASC", before?: string, last?: number) => `
- twoFactorRequiredSettingOrganizations(value: ${value}, first: ${first} ${after && `,  ${after} `} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+ twoFactorRequiredSettingOrganizations(value: ${value}, first: ${first} ${after ? `,  ${after} `:""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
