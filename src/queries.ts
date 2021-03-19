@@ -1,4 +1,4 @@
-export * from "./user"
+export {User} from "./user"
 
 /**
  * @description Github Graphql Query for Viewer
@@ -868,7 +868,21 @@ export const ViewerFollowers = `
       }
     }
   }
-`
+`;
+
+/**
+ * @description Github Graphql Query for Github User
+ * @queryVariable 
+ * login username
+ * fields User 
+ */
+export const UserQuery = (login: string, fields:string) => `
+	{
+		user (login: "${login}") {
+			${fields}
+		}
+	}
+`;
 
 /**
  * @description Github Graphql Query for All User Repositories
