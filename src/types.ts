@@ -390,33 +390,9 @@ export declare interface SecurityVulnerabilities {
     securityVulnerabilities: {
         edges: {
             cursor: string | null;
-            node: [{
-                advisory: SecurityAdvisory;
-                firstPatchedVersion: {
-                    identifier: string;
-                }
-                package: {
-                    ecosystem: string;
-                    name: string;
-                }
-                severity: string;
-                updatedAt: string;
-                vulnerableVersionRange: string;
-            }];
+            node: [Vulnerability];
         }
-        nodes: [{
-            advisory: SecurityAdvisory;
-            firstPatchedVersion: {
-                identifier: string;
-            }
-            package: {
-                ecosystem: string;
-                name: string;
-            }
-            severity: string;
-            updatedAt: string;
-            vulnerableVersionRange: string;
-        }];
+        nodes: [Vulnerability];
         totalCount: number;
     }
 }
@@ -447,9 +423,10 @@ export declare interface SecurityAdvisory {
     updatedAt: string;
     vulnerabilities: {
         edges: [{
-            cursor:string;
-            node:[]
-        }]
+            cursor: string;
+            node: Vulnerability
+        }];
+        nodes: [Vulnerability];
     }
     withdrawnAt: string;
 }
@@ -469,4 +446,18 @@ export declare interface CWES {
         id: string;
         name: string
     }]
+}
+
+export declare interface Vulnerability {
+    advisory: SecurityAdvisory;
+    firstPatchedVersion: {
+        identifier: string;
+    }
+    package: {
+        ecosystem: string;
+        name: string;
+    }
+    severity: string;
+    updatedAt: string;
+    vulnerableVersionRange: string;
 }
