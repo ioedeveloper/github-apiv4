@@ -486,12 +486,12 @@ export declare interface User {
 }
 
 export declare interface Repositories {
-    user: {
-        repositories: {
+    
             edges: [{
                 node: RepositoryInfo;
                 cursor: string;
             }];
+            nodes: [RepositoryInfo]
             pageInfo: {
                 endCursor: string;
                 hasNextPage: string;
@@ -499,8 +499,6 @@ export declare interface Repositories {
                 startCursor: string;
             }
             totalCount: number;
-        };
-    };
 }
 
 export declare interface Author {
@@ -917,5 +915,17 @@ export declare interface SponsorsListing{
         nodes: [Tier];
         pageInfo: PageInfo;
         totalCount: number;
+    }
+}
+
+export declare interface RepositoryOwner {
+    repositoryOwner :{
+        avatarUrl:string;
+        id:string;
+        resourcePath:string;
+        url: string;
+        login: string;
+        repository: Repository;
+        repositories: Repositories;
     }
 }

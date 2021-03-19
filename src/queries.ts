@@ -13,6 +13,27 @@ export const Viewer = (fields: string) =>  `
 `;
 
 /**
+ * @description Github Graphql Query for RepositoryOwner
+ * @fields onOrganization onUser
+ * Repository
+ * Repositories
+ * avatarUrl
+ * id
+ * login
+ * resourcePath
+ * url
+ */
+ export const RepositoryOwner = (login: string,fields: string) =>  `
+ 	{
+		 repositoryOwner (login: "${login}") {
+			${fields}
+ 		}
+	}
+`;
+
+
+
+/**
  * @description Github Graphql Query for repository content (files and directories)
  */
 export const RepositoryContent = `
