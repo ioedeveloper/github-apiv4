@@ -125,9 +125,9 @@ export const onGenericHovercardContext = (fields: string) => `
 * @description Github Graphql onOrganizationTeamsHovercardContext
 * @defaultVariables teamsUrl totalTeamCount
 * @queryVariables 
-*   __typename
-*   teamsResourcePath
-*   RelevantOrganizations
+* __typename
+* teamsResourcePath
+* RelevantOrganizations
 */
 
 
@@ -192,7 +192,7 @@ export const onUser = (fields: string) => `
 * before string
 * first number
 * last number
-* fields Teams
+* @fields Teams
 * pageInfo PageInfo
 */
 
@@ -221,8 +221,7 @@ export const RelevantTeams = (first: number = 10, fields?: string, pageInfo?: st
 * before string
 * first number
 * last number
-* fields User
-* pageInfo PageInfo
+* @fields User
 */
 
 export const Followers = (first: number, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
@@ -250,7 +249,7 @@ export const Followers = (first: number, fields?: string, pageInfo?: string, aft
 * before string
 * first number
 * last number
-* fields User
+* @fields User
 * pageInfo PageInfo
 */
 
@@ -379,7 +378,7 @@ export const OwnerInfo = (fields?: string) => `
 * last number
 * query: string
 * @queryVariables 
-* fields User
+* @fields User
 * pageInfo PageInfo 
 */
 
@@ -409,7 +408,7 @@ export const Admins = (query?: string, first: number = 10, fields?: string, page
 * first number
 * last number
 * @queryVariables 
-* fields User
+* @fields User
 * pageInfo PageInfo
 */
 
@@ -439,7 +438,7 @@ export const AffiliatedUsersWithTwoFactorDisabled = (first: number = 10, fields?
 * first number
 * last number
 * @queryVariables 
-* fields Organization
+* @fields Organization
 * pageInfo PageInfo
 */
 
@@ -468,7 +467,7 @@ export const AllowPrivateRepositoryForkingSettingOrganizations = (first: number 
 * first number
 * last number
 * @queryVariables 
-* fields Organization
+* @fields Organization
 * pageInfo PageInfo
 */
 
@@ -1054,7 +1053,7 @@ export const PendingCollaboratorInvitations = (query?: string, first: number = 1
 */
 
 export const PendingCollaborators = (query?: string, first: number = 10, fields?: string, pageInfo?:string,orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- pendingCollaborators(query: ${query}, ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} , first: ${first} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${directions}}) {
+ pendingCollaborators(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -1569,7 +1568,7 @@ export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fiel
 
 
 export const TwoFactorRequiredSettingOrganizations = (value: boolean = false, first: number = 10, pageInfo?:string,after?: string, fields?: string, orderBy: string = "DUE_DATE", direction?: "ASC", before?: string, last?: number) => `
- twoFactorRequiredSettingOrganizations(value: ${value},${after && `,  ${after} `} ${before ? `, before: ${before}` : ""}, first: ${first} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+ twoFactorRequiredSettingOrganizations(value: ${value}, first: ${first} ${after && `,  ${after} `} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
