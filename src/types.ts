@@ -919,3 +919,7 @@ export declare interface SponsorsListing{
         totalCount: number;
     }
 }
+
+export declare interface Resource {
+    resource: {}
+}
