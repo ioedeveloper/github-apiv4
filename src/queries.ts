@@ -1,4 +1,29 @@
 export * from "./user"
+export * from "./respository"
+
+/**
+ * @description Github Graphql SecurityAdvisories  
+ *  SecurityAdvisory
+*/
+
+export const SecurityAdvisories = (first:number = 10,fields:string, after?:string, pageInfo?:string,before?:string,last?:number) => `
+    {
+		securityAdvisories(first: ${first} ${after ? `, after: ${after} `:""} ${before ? `, before: ${before} `:""} ${last ? `, last: ${last}`:""}) {
+			edges {
+				cursor
+				node {
+					${fields}
+				}
+			}
+			nodes {
+				${fields}
+			}
+			${pageInfo? pageInfo:""}
+			totalCount
+		}
+	}
+`
+
 
 /**
  * @description Github Graphql Query for Viewer
