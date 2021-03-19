@@ -197,7 +197,7 @@ export const onUser = (fields: string) => `
 */
 
 export const RelevantTeams = (first: number = 10, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
- relevantTeams(${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} first: ${first}, last: ${last}) {
+ relevantTeams(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""}  ${last ? `, last: ${last}`:""}) {
      edges {
        cursor
        node {

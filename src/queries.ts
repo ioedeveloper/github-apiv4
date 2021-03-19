@@ -13,6 +13,47 @@ export const Viewer = (fields: string) =>  `
 `;
 
 /**
+* @description Github Graphql Query for Search
+* @defaultVariables totalCount
+* @queryVariables 
+* after string 
+* before string
+* first number
+* last number
+* query string
+* @fields onApp onIssue onMarketplaceListing onOrganization onPullRequest onRepository onUser
+* type "ISSUE" | "REPOSITORY" | "USER"
+* codeCount
+* issueCount
+* repositoryCount
+* userCount
+* wikiCount
+*/
+
+ export const Search = (query:string,first: number = 10, fields?: string, type?: string,pageInfo?: string, after?: string, before?: string, last?: number) =>  `
+ 	{
+		search(query: "${query}", first: ${first} ${type ? `, type: ${type}` : ""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}`:""}) {
+			edges {
+				cursor
+				node {
+				   ${fields}
+				}
+			 }
+		 
+			 nodes {
+				${fields}
+			 }
+			 ${pageInfo ? pageInfo : ""}
+			codeCount
+			issueCount
+			repositoryCount
+			userCount
+			wikiCount
+		}
+   }
+`;
+
+/**
  * @description Github Graphql Query for repository content (files and directories)
  */
 export const RepositoryContent = `

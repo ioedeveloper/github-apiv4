@@ -919,3 +919,18 @@ export declare interface SponsorsListing{
         totalCount: number;
     }
 }
+
+export declare interface Search {
+    search :{
+        edges: [{
+            cursor: string;
+            node: {};
+        }];
+        nodes: [];
+        codeCount: number;
+        issueCount: number;
+        repositoryCount: number;
+        userCount: number;
+        wikiCount: number;
+    }
+}
