@@ -125,9 +125,9 @@ export const onGenericHovercardContext = (fields: string) => `
 * @description Github Graphql onOrganizationTeamsHovercardContext
 * @defaultVariables teamsUrl totalTeamCount
 * @queryVariables 
-*   __typename
-*   teamsResourcePath
-*   RelevantOrganizations
+* __typename
+* teamsResourcePath
+* RelevantOrganizations
 */
 
 
@@ -192,7 +192,7 @@ export const onUser = (fields: string) => `
 * before string
 * first number
 * last number
-* fields Teams
+* @fields Teams
 * pageInfo PageInfo
 */
 
@@ -221,8 +221,7 @@ export const RelevantTeams = (first: number = 10, fields?: string, pageInfo?: st
 * before string
 * first number
 * last number
-* fields User
-* pageInfo PageInfo
+* @fields User
 */
 
 export const Followers = (first: number, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
@@ -250,7 +249,7 @@ export const Followers = (first: number, fields?: string, pageInfo?: string, aft
 * before string
 * first number
 * last number
-* fields User
+* @fields User
 * pageInfo PageInfo
 */
 
@@ -379,7 +378,7 @@ export const OwnerInfo = (fields?: string) => `
 * last number
 * query: string
 * @queryVariables 
-* fields User
+* @fields User
 * pageInfo PageInfo 
 */
 
@@ -409,7 +408,7 @@ export const Admins = (query?: string, first: number = 10, fields?: string, page
 * first number
 * last number
 * @queryVariables 
-* fields User
+* @fields User
 * pageInfo PageInfo
 */
 
@@ -439,7 +438,7 @@ export const AffiliatedUsersWithTwoFactorDisabled = (first: number = 10, fields?
 * first number
 * last number
 * @queryVariables 
-* fields Organization
+* @fields Organization
 * pageInfo PageInfo
 */
 
@@ -468,7 +467,7 @@ export const AllowPrivateRepositoryForkingSettingOrganizations = (first: number 
 * first number
 * last number
 * @queryVariables 
-* fields Organization
+* @fields Organization
 * pageInfo PageInfo
 */
 
@@ -509,7 +508,7 @@ export const DefaultRepositoryPermissionSettingOrganizations = (first: number = 
 */
 
 export const EnterpriseServerInstallations = (first: number = 10, fields?: string, pageInfo?: string, connectedOnly: boolean = false, after?: string, before?: string, last?: number) => `
- enterpriseServerInstallations(first: ${first} ${connectedOnly && `connectedOnly: ${connectedOnly}`} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} 
+ enterpriseServerInstallations(first: ${first} ${connectedOnly ? `connectedOnly: ${connectedOnly}`:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} 
  ${last ? `, last: ${last}` : ""}) {
    edges {
       cursor
@@ -548,7 +547,7 @@ export const EnterpriseServerInstallations = (first: number = 10, fields?: strin
 */
 
 export const UserAccounts = (first: number = 10, fields?: string, pageInfo?: string, connectedOnly: boolean = false, after?: string, before?: string, last?: number) => `
- userAccounts(first: ${first} ${connectedOnly && `, connectedOnly: `} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+ userAccounts(first: ${first} ${connectedOnly ? `, connectedOnly: `:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
      edges {
       cursor
       node {
@@ -951,7 +950,7 @@ export const OrganizationProjectsSettingOrganizations = (value: boolean = false,
 */
 
 export const OutsideCollaborators = (query?: string, fields?: string, pageInfo?: string,orderBy: string = "CREATED_AT", directions: string = "ASC", first: number = 10, visibility: string = "PUBLIC", after?: string, before?: string, last?: number) => `
- outsideCollaborators(query: ${query}, first: ${first} ${visibility && `, visibility: ${visibility}`} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+ outsideCollaborators(query: ${query}, first: ${first} ${visibility ? `, visibility: ${visibility}`:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -1054,7 +1053,7 @@ export const PendingCollaboratorInvitations = (query?: string, first: number = 1
 */
 
 export const PendingCollaborators = (query?: string, first: number = 10, fields?: string, pageInfo?:string,orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- pendingCollaborators(query: ${query}, ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} , first: ${first} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${directions}}) {
+ pendingCollaborators(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -1472,7 +1471,7 @@ export const ExternalIdentities = (first: number = 10, fields?: string, pageInfo
 */
 
 export const SamlIdentityProviderSettingOrganizations = (value: string, first: number = 10, fields?: string, pageInfo?:string,after?: string, before?: string, last?: number) => `
- samlIdentityProviderSettingOrganizations(first: ${first} ${value && `, value: ${value}`} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+ samlIdentityProviderSettingOrganizations(first: ${first} ${value ? `, value: ${value}`:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
      edges {
        cursor
        node {
@@ -1505,7 +1504,7 @@ export const SamlIdentityProviderSettingOrganizations = (value: string, first: n
 
 
 export const SupportEntitlements = (first: number = 10, fields?: string, pageInfo?: string,orderBy: string = "DUE_DATE", direction?: "ASC", after?: string, before?: string, last?: number) => `
- supportEntitlements( first: ${first} ${after && `, ${after} `} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+ supportEntitlements( first: ${first} ${after ? `, ${after} `:""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
@@ -1536,7 +1535,7 @@ export const SupportEntitlements = (first: number = 10, fields?: string, pageInf
 
 
 export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fields?: string, pageInfo?:string,orderBy: string = "DUE_DATE", direction?: "ASC", first: number = 10, after?: string, before?: string, last?: number) => `
- teamDiscussionsSettingOrganizations(value: ${value}, first: ${first} ${after && `,  ${after} `} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+ teamDiscussionsSettingOrganizations(value: ${value}, first: ${first} ${after ? `,  ${after} `:""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
@@ -1569,7 +1568,7 @@ export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fiel
 
 
 export const TwoFactorRequiredSettingOrganizations = (value: boolean = false, first: number = 10, pageInfo?:string,after?: string, fields?: string, orderBy: string = "DUE_DATE", direction?: "ASC", before?: string, last?: number) => `
- twoFactorRequiredSettingOrganizations(value: ${value},${after && `,  ${after} `} ${before ? `, before: ${before}` : ""}, first: ${first} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+ twoFactorRequiredSettingOrganizations(value: ${value}, first: ${first} ${after ? `,  ${after} `:""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
