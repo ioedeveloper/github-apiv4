@@ -1,38 +1,16 @@
+export * from "./user"
+
 /**
- * @description Github Graphql Query for viewer details
+ * @description Github Graphql Query for Viewer
+ * @fields User
  */
-export const Viewer = `
+export const Viewer = (fields: string) =>  `
     query {
-        viewer {
-          id
-          email
-          login
-          url
-          createdAt
-          updatedAt
-          databaseId
-          location
-          companyHTML
-          company
-          avatarUrl
-          bio
-          websiteUrl
-          isHireable
-          isDeveloperProgramMember
-          anyPinnableItems
-          isSiteAdmin
-          isViewer
-          viewerCanFollow
-          viewerIsFollowing
-          viewerCanCreateProjects
-          isEmployee
-          isBountyHunter
-          isCampusExpert
-          pinnedItemsRemaining
-          projectsUrl
-        }
+      viewer {
+        ${fields}
+      }
     }
-`
+`;
 
 /**
  * @description Github Graphql Query for repository content (files and directories)
@@ -888,43 +866,6 @@ export const ViewerFollowers = `
         }
         totalCount
       }
-    }
-  }
-`
-
-/**
- * @description Github Graphql Query for Github User
- * @queryVariable username: String!
- */
-export const User = `
-  query($username: String!){
-    user(login: $username){
-      id
-      email
-      login
-      url
-      createdAt
-      updatedAt
-      databaseId
-      location
-      companyHTML
-      company
-      avatarUrl
-      bio
-      websiteUrl
-      isHireable
-      isDeveloperProgramMember
-      anyPinnableItems
-      isSiteAdmin
-      isViewer
-      viewerCanFollow
-      viewerIsFollowing
-      viewerCanCreateProjects
-      isEmployee
-      isBountyHunter
-      isCampusExpert
-      pinnedItemsRemaining
-      projectsUrl
     }
   }
 `
