@@ -1,3 +1,19 @@
+export * from "./respository"
+
+/**
+ * @description Github Graphql Query for SecurityAdvisory
+ * @field SecurityAdvisory
+ */
+
+ export const SecurityAdvisoryQuery = (ghsaId: string, fields: string) => `
+    {
+		securityAdvisory(ghsaId: "${ghsaId}") {
+			${fields}
+		}
+	}
+ `
+
+
 /**
  * @description Github Graphql Query for viewer details
  */

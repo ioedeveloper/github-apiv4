@@ -384,3 +384,82 @@ export declare interface UserIssues {
         };
     };
 }
+
+export declare interface SecurityVulnerabilities {
+    securityVulnerabilities: {
+        edges: {
+            cursor: string | null;
+            node: [Vulnerability];
+        }
+        nodes: [Vulnerability];
+        totalCount: number;
+    }
+}
+
+export declare interface Advisory {
+    cvss: {
+        score: string;
+        vectorString: string;
+    }
+    cwes: CWES;
+    databaseId: string;
+    description: string;
+    ghsaId: string;
+    id: string;
+    identifiers: [{
+        type: string;
+        value: string;
+    }]
+    notificationsPermalink: string;
+    origin: string;
+    permalink: string;
+    publishedAt: string;
+    references: [{
+        url: string;
+    }]
+    severity: string;
+    summary: string;
+    updatedAt: string;
+    vulnerabilities: {
+        edges: [{
+            cursor: string;
+            node: Vulnerability
+        }];
+        nodes: [Vulnerability];
+    }
+    withdrawnAt: string;
+}
+export declare interface CWES {
+    edges: [{
+        cursor: string;
+        node: [{
+            cweId: string;
+            description: string;
+            id: string;
+            name: string
+        }]
+    }]
+    nodes: [{
+        cweId: string;
+        description: string;
+        id: string;
+        name: string
+    }]
+}
+
+export declare interface SecurityAdvisory {
+    securityAdvisory: Advisory;
+}
+export declare interface Vulnerability {
+    advisory: Advisory;
+    firstPatchedVersion: {
+        identifier: string;
+    }
+    package: {
+        ecosystem: string;
+        name: string;
+    }
+    severity: string;
+    updatedAt: string;
+    vulnerableVersionRange: string;
+}
