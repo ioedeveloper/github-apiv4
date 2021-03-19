@@ -110,6 +110,22 @@ export const Viewer = (fields: string) => `
 `;
 
 /**
+ * @description Github Graphql Query for Resource
+ * @fields url resourcePath 
+ * onOrganization onRelease onUser onIssue onPullRequest onRepository onTeamDiscussion onTeamDiscussionComment onCommit onCheckRun onMillestone onRepositoryTopic onPullRequestCommit
+ * onMannequin onBot onClosedEvent onCrossReferencedEvent onMergedEvent onReviewDismissedEvent onConvertToDraftEvent onReadyForReviewEvent onGist
+ * 
+ */
+ export const Resource = (url:string, fields: string) =>  `
+ 	{
+		resource(url: "${url}") {
+			${fields}
+		}
+ 	}
+`;
+
+
+/**
  * @description Github Graphql Query for repository content (files and directories)
  */
 export const RepositoryContent = `
