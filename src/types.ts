@@ -2,7 +2,7 @@
  * @description Github Graphql API response type for Viewer query
  */
 export declare interface Viewer {
-    viewer: UserInfo; // eslint-disable-line
+    viewer: UserInfo; // eslint-disable-line 
 }
 
 export declare interface UserInfo {
