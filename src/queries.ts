@@ -1,38 +1,14 @@
-export {User} from "./user"
+export * from "./user"
 
 /**
- * @description Github Graphql Query for viewer details
+ * @description Github Graphql Query for Viewer
+ * @fields User
  */
-export const Viewer = `
+export const Viewer = (fields: string) =>  `
     query {
-        viewer {
-          id
-          email
-          login
-          url
-          createdAt
-          updatedAt
-          databaseId
-          location
-          companyHTML
-          company
-          avatarUrl
-          bio
-          websiteUrl
-          isHireable
-          isDeveloperProgramMember
-          anyPinnableItems
-          isSiteAdmin
-          isViewer
-          viewerCanFollow
-          viewerIsFollowing
-          viewerCanCreateProjects
-          isEmployee
-          isBountyHunter
-          isCampusExpert
-          pinnedItemsRemaining
-          projectsUrl
-        }
+      viewer {
+        ${fields}
+      }
     }
 `;
 
@@ -157,7 +133,7 @@ export const RepositoryContent = `
             }
         }
     }
-`;
+`
 
 /**
  * @description Github Graphql Query for repository directories only (content excluded)
@@ -253,7 +229,7 @@ export const RepositoryDirectories = `
             }
         }
     }
-`;
+`
 
 /**
  * @description Github Graphql Query for list of repository branches
@@ -281,7 +257,7 @@ export const Branches = `
       }
     }
   }
-`;
+`
 
 /**
  * @description Github Graphql Query for repository branch content (files and directories)
@@ -405,7 +381,7 @@ export const BranchContent = `
             }
         }
     }
-`;
+`
 
 /**
  * @description Github Graphql Query for repository branch directories only (content excluded)
@@ -502,7 +478,7 @@ export const BranchDirectories = `
             }
         }
     }
-`;
+`
 
 /**
  * @description Github Graphql Query for repository details
@@ -557,7 +533,7 @@ export const Repository = `
       viewerSubscription
     }
   }
-`;
+`
 
 /**
  * @description Github Graphql Query for commit content (files and directories)
@@ -677,7 +653,7 @@ query($repositoryOwner: String!, $repositoryName: String!, $expression: String!)
     }
   }
 }
-`;
+`
 
 /**
  * @description Github Graphql Query for commit directories only (content excluded)
@@ -770,7 +746,7 @@ export const CommitDirectories = `
       }
     }
   }
-`;
+`
 
 /**
  * @description Github Graphql Query for branch details
@@ -786,7 +762,7 @@ export const Branch = `
       }
     }
   }
-`;
+`
 
 /**
  * @description Github Graphql Query for commit details
@@ -824,7 +800,7 @@ query($repositoryOwner: String!, $repositoryName: String!, $expression: String!)
     }
   }
 }
-`;
+`
 
 /**
  * @description Github Graphql Query for code of conduct
@@ -832,7 +808,7 @@ query($repositoryOwner: String!, $repositoryName: String!, $expression: String!)
  */
 export const CodeOfConduct = `
 query($key: String!){
-	codeOfConduct(key: $key){
+  codeOfConduct(key: $key){
     name
     id
     body
@@ -841,7 +817,7 @@ query($key: String!){
     url
   }
 }
-`;
+`
 
 /**
  * @description Github Graphql Query for Viewer Followers
@@ -892,21 +868,7 @@ export const ViewerFollowers = `
       }
     }
   }
-`;
-
-/**
- * @description Github Graphql Query for Github User
- * @queryVariable 
- * login username
- * fields User 
- */
-export const UserQuery = (login: string, fields:string) => `
-	{
-		user (login: "${login}") {
-			${fields}
-		}
-	}
-`;
+`
 
 /**
  * @description Github Graphql Query for All User Repositories
@@ -976,7 +938,7 @@ export const Repositories = `
       }
     }
   }
-`;
+`
 
 /**
  * @description Github Graphql Query for CommitComments
@@ -984,7 +946,7 @@ export const Repositories = `
  */
 export const UserCommitComments = `
 query($username: String!, $after: String, $before: String, $first: Int, $last: Int){
-	user(login: $username){
+  user(login: $username){
     commitComments(after: $after, before: $before, first: $first, last: $last){
       edges{
         cursor
@@ -1036,7 +998,7 @@ query($username: String!, $after: String, $before: String, $first: Int, $last: I
     }
   }
 }
-`;
+`
 
 /**
  * @description Github Graphql Query for User Issues
@@ -1111,4 +1073,4 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
     }
   }
 }
-`;
+`
