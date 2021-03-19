@@ -16,11 +16,14 @@ export declare interface Sponsorables extends BasicFields{
     orderBy: "LOGIN";
     direction: "ASC" | "DESC"
 }
+export declare interface Search extends BasicFields{
+    type: "ISSUE" | "REPOSITORY" | "USER"
+    query: string;
+}
 export declare interface Repository {
     repositoryOwner: string;
     repositoryName: string;
 }
-
 export declare interface RepositoryContent {
     repositoryOwner: string;
     repositoryName: string;
@@ -34,6 +37,14 @@ export declare interface VulnerabilitiesFields extends BasicFields {
     direction?: "DESC" | "ASC"
 }
 
+
+export declare interface SecurityAdvisoriesFields extends BasicFields {
+    type?: "CVE" | "GHSA"
+    value?: string;
+    orderBy?: "PUBLISHED_AT" | "UPDATED_AT"
+    publishedSince?: string;
+    updatedSince?: string;
+}
 
 export declare interface RepositoryDirectories {
     repositoryOwner: string;

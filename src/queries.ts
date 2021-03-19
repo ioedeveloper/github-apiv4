@@ -1,6 +1,44 @@
 import { queryVariables } from ".";
-import * as Repository from "./respository"
+
+export * from "./user"
 export * from "./respository"
+
+/**
+ * @description Github Graphql SecurityAdvisories  
+ * @queryVariables
+ * first number
+ * 
+ * last: number
+ * 
+ * after string
+ * 
+ * before string
+ * 
+ * identify 
+ * @field 
+ * SecurityAdvisory
+*/
+
+export const SecurityAdvisories = (params: queryVariables.SecurityAdvisoriesFields) => `
+    {
+		securityAdvisories(first: ${params.first} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, after: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
+		${params.publishedSince ? `, publishedSince: "${params.publishedSince}" ` : ""} ${params.updatedSince ? `, updatedSince: "${params.updatedSince}" ` : ""} 
+		${params.value || params.type ? `, identifier: {type: ${params.type}, value: "${params.value}"}` : ""}) {
+			edges {
+				cursor
+				node {
+					${params.fields}
+				}
+			}
+			nodes {
+				${params.fields}
+			}
+			${params.pageInfo ? params.pageInfo : ""}
+			totalCount
+		}
+	}
+`
+
 
 /**
  * @description Github Graphql Query for SecurityVulnerabilities
@@ -15,30 +53,6 @@ export * from "./respository"
  * fields Vulnerability
  * }
  */
-
-export const  SecurityVulnerabilities = (params: queryVariables.VulnerabilitiesFields) => `
-	{
-		securityVulnerabilities(first: ${params.first} ${params.ecosystem ? `, ecosystem: ${params.ecosystem}`:""} ${params.severities ? `, severities: ${params.severities}`: ""} ${params.after ? `, after: ${params.after}`: ""} ${params.before ? `, after: "${params.before}"`:""} ${params.last ? `, last:${params.last}`:""}, 
-			orderBy: {field: ${params.orderBy}, direction: ${params.direction}}) {
-				edges {
-					node {
-						${params.fields}
-					}
-				}
-				nodes {
-					${params.fields}
-				}
-				${params.pageInfo? params.pageInfo: ""}
-				totalCount
-		}
-	}
-	
-`
-
-
-/**
- * @description Github Graphql Query for viewer details
- */
 export const Viewer = (fields: string) => `
     query {
       viewer {
@@ -46,6 +60,54 @@ export const Viewer = (fields: string) => `
       }
     }
 `
+
+/**
+* @description Github Graphql Query for Search
+* @defaultVariables totalCount
+* @queryVariables 
+** after string 
+** before string
+** first number
+** last number
+** query string
+* @fields 
+** onApp
+** onIssue 
+** onMarketplaceListing
+** onOrganization 
+** onPullRequest
+** onRepository 
+** onUser
+** type "ISSUE" | "REPOSITORY" | "USER"
+** codeCount
+** issueCount
+** repositoryCount
+** userCount
+** wikiCount
+*/
+
+ export const Search = (params: queryVariables.Search) =>  `
+ 	{
+		search(query: "${params.query}", first: ${params.first} ${params.type ? `, type: ${params.type}` : ""} ${params.after ? `, after: ${params.after}` : ""} ${params.before ? `, before: ${params.before}` : ""} ${params.last ? `, last: ${params.last}`:""}) {
+			edges {
+				cursor
+				node {
+				   ${params.fields}
+				}
+			 }
+		 
+			 nodes {
+				${params.fields}
+			 }
+			 ${params.pageInfo ? params.pageInfo : ""}
+			codeCount
+			issueCount
+			repositoryCount
+			userCount
+			wikiCount
+		}
+   }
+`;
 
 /**
  * @description Github Graphql Query for repository content (files and directories)

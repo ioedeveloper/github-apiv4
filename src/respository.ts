@@ -12,7 +12,7 @@
  * first number
  * last number
  * orderBy "CREATE_AT"
- * direction "ASC"
+ * direction "ASC" 
  * @queryVariables 
  * edges {
  *      cursor
@@ -44,8 +44,6 @@
  * }
 */
 
-import { queryVariables } from "."
-
 export const VulnerabilityAlerts = (first: number = 10, after: string = "", before: string = "", last: number, fields: string = "") => `
     vulnerabilityAlerts( first: ${first} ${after ? `, after: ${after} `:""} ${before ? `, before: ${before} `:""} ${last ? `, last: ${last}`:""}) {
         ${fields}
@@ -54,31 +52,14 @@ export const VulnerabilityAlerts = (first: number = 10, after: string = "", befo
 `
 
 /**
- * @description Github Graphql SecurityAdvisory
+ * @description Github Graphql Advisory
  * @defaultVariables databaseId description
  * @queryVariables 
  * cvss {
  *      score
  *      vectorString
  * }
- * cwes(last: number, first: number, before: string, after: string) {
- *  totalCount
- *      nodes {
- *      cweId
- *      description
- *      id
- *      name
- * }
- * edges {
- *      cursor
- *      node {
- *          cweId
- *          description
- *          id
- *          name
- *      }
- * }
- * }
+ * CWES
  * databaseId
  * description
  * ghsaId
@@ -106,17 +87,27 @@ export const VulnerabilityAlerts = (first: number = 10, after: string = "", befo
  */
 
 
+export const Advisory = (fields: string = "") => `
+    databaseId
+    description
+    ${fields}
+`
+
+
+/**
+ * @description Github Graphql SecurityAdvisory
+ * @fields Advisory 
+ */
+
+
 export const SecurityAdvisory = (fields: string = "") => `
     advisory {
-        databaseId
-        description
         ${fields}
     }    
 `
-
 /**
  * @description Github Graphql Vulnerabilities
- * @defaultVariables totalCount field = "UPDATED_AT" direction = "ASC" first = 10 ecosystem = "NPM" severities = "LOW"
+ * @defaultVariables totalCount
  * @queryArguments 
  * ecosystem "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP"
  * severities "LOW" | "MODERATE" | "HIGH" | "CRITICAL"
@@ -227,4 +218,3 @@ export const Watchers = (params: queryVariables.BasicFields) => `
         viewerHasReacted
     }
 `
-

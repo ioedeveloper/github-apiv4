@@ -109,7 +109,7 @@ export declare interface UserInfo {
                 accessedAt: string
                 createdAt: string
                 fingerprint: string
-                id: string;
+                id: number;
                 isReadOnly: boolean
                 key: string
                 updatedAt: string
@@ -119,7 +119,7 @@ export declare interface UserInfo {
             accessedAt: string
             createdAt: string
             fingerprint: string
-            id: string;
+            id: number;
             isReadOnly: boolean
             key: string
             updatedAt: string
@@ -348,7 +348,7 @@ export declare interface Repository {
 export declare interface RepositoryInfo {
     createdAt: string;
     databaseId: number;
-    description: string | null;
+    description: string;
     descriptionHTML: string;
     diskUsage: number;
     forkCount: number;
@@ -908,7 +908,7 @@ export declare interface Sponsor {
 }
 export declare interface SponsorShip {
     createdAt: string;
-    id: string;
+    id: number;
     maintainer: User;
     privacyLevel: string;
     sponsor: User
@@ -945,43 +945,16 @@ export declare interface SponsorShip {
     tier: Tier
 }
 
-
-export declare interface SecurityVulnerabilities {
-    securityVulnerabilities: {
-        edges: {
-            cursor: string | null;
-            node: Vulnerability[];
-        }
-        nodes: Vulnerability[];
-        totalCount: number;
-    }
-}
-
-export declare interface SecurityAdvisory {
-    cvss: {
-        score: string;
-        vectorString: string;
-    }
-    cwes: CWES;
-    databaseId: string;
-    description: string;
-    ghsaId: string;
-    id: string;
-    identifiers: [{
-        type: string;
-        value: string;
-    }]
-    notificationsPermalink: string;
-    origin: string;
-    permalink: string;
-    publishedAt: string;
-    references: [{
-        url: string;
-    }]
-    severity: string;
-    summary: string;
-    updatedAt: string;
-    vulnerabilities: {
+export declare interface SponsorsListing {
+    activeGoal: Goal;
+    createdAt: string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
+    id: number;
+    name: string
+    shortDescription: string;
+    slug: string;
+    tiers: {
         edges: [{
             cursor: string;
             node: Vulnerability
@@ -1013,6 +986,80 @@ export declare interface Vulnerability {
     firstPatchedVersion: {
         identifier: string;
     }
+}
+
+export declare interface SecurityVulnerabilities {
+    securityVulnerabilities: {
+        edges: {
+            cursor: string | null;
+            node: [Vulnerability];
+        }
+        nodes: [Vulnerability];
+        totalCount: number;
+    }
+}
+
+export declare interface Advisory {
+    cvss: {
+        score: string;
+        vectorString: string;
+    }
+    cwes: CWES;
+    databaseId: string;
+    description: string;
+    ghsaId: string;
+    id: string;
+    identifiers: [{
+        type: string;
+        value: string;
+    }]
+    notificationsPermalink: string;
+    origin: string;
+    permalink: string;
+    publishedAt: string;
+    references: [{
+        url: string;
+    }]
+    severity: string;
+    summary: string;
+    updatedAt: string;
+    vulnerabilities: {
+        edges: [{
+            cursor: string;
+            node: Vulnerability
+        }];
+        nodes: [Vulnerability];
+        totalCount: number;
+    }
+    withdrawnAt: string;
+}
+export declare interface CWES {
+    edges: [{
+        cursor: string;
+        node: {
+            cweId: string;
+            description: string;
+            id: string;
+            name: string
+        }
+    }]
+    nodes: [{
+        cweId: string;
+        description: string;
+        id: string;
+        name: string
+    }]
+    totalCount: number;
+}
+
+export declare interface SecurityAdvisory {
+    securityAdvisory: Advisory;
+}
+export declare interface Vulnerability {
+    advisory: Advisory;
+    firstPatchedVersion: {
+        identifier: string;
+    }
     package: {
         ecosystem: string;
         name: string;
@@ -1020,4 +1067,124 @@ export declare interface Vulnerability {
     severity: string;
     updatedAt: string;
     vulnerableVersionRange: string;
+}
+
+export declare interface SecurityAdvisories {
+    securityAdvisories: {
+        edges: [{
+            cursor: string;
+            node: Advisory
+        }]
+        nodes: Advisory[]
+        totalCount: number;
+    }
+}
+
+export declare interface Search {
+    search: {
+        edges: [{
+            cursor: string;
+            node: SearchType;
+        }];
+        nodes: SearchType[];
+        codeCount: number;
+        issueCount: number;
+        repositoryCount: number;
+        userCount: number;
+        wikiCount: number;
+    }
+}
+
+export declare interface SearchType extends App, Issue, MarketplaceListing, Organization, PullRequest, RepositoryInfo, UserInfo{
+
+}
+export declare interface App {
+    createdAt: string;
+    databaseId: number;
+    description: string;
+    id: number;
+    logoBackgroundColor: string;
+    logoUrl: string;
+    name: string;
+    slug: string;
+    updatedAt: string;
+    url: string;
+}
+export declare interface MarketplaceListing {
+    app: App;
+    name: string;
+    companyUrl: string;
+    configurationResourcePath: string;
+    configurationUrl: string;
+    documentationUrl: string;
+    extendedDescription: string;
+    extendedDescriptionHTML: string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
+    hasPublishedFreeTrialPlans: boolean;
+    hasTermsOfService: boolean;
+    hasVerifiedOwner: boolean;
+    howItWorks: string;
+    howItWorksHTML: string;
+    id: number;
+    installationUrl: string;
+    installedForViewer: boolean;
+    isArchived: boolean;
+    isDraft: boolean;
+    isPaid: boolean;
+    isPublic: boolean;
+    isRejected: boolean;
+    isUnverified: boolean;
+    isUnverifiedPending: boolean;
+    isVerificationPendingFromDraft: boolean;
+    isVerificationPendingFromUnverified: boolean;
+    isVerified: boolean;
+    logoBackgroundColor: string;
+    logoUrl: string;
+    normalizedShortDescription: string;
+    pricingUrl: string;
+    primaryCategory: {
+        description: string;
+        howItWorksstring: string;
+        id: number;
+        name: string;
+        primaryListingCount: number;
+        resourcePath: string;
+        secondaryListingCount: number;
+        slug: string;
+        url: string;
+    }
+    privacyPolicyUrl: string;
+    resourcePath: string;
+    screenshotUrls: string;
+    secondaryCategory: {
+        description: string;
+        howItWorksstring: string;
+        id: number;
+        name: string;
+        primaryListingCount: number;
+        resourcePath: string;
+        secondaryListingCount: number;
+        slug: string;
+        url: string;
+    }
+    shortDescription: string;
+    slug: string;
+    statusUrl: string;
+    supportEmail: string;
+    supportUrl: string;
+    termsOfServiceUrl: string;
+    url: string;
+    viewerCanAddPlans: boolean;
+    viewerCanApprove: boolean;
+    viewerCanDelist: boolean;
+    viewerCanEdit: boolean;
+    viewerCanEditCategories: boolean;
+    viewerCanEditPlans: boolean;
+    viewerCanRedraft: boolean;
+    viewerCanReject: boolean;
+    viewerCanRequestApproval: boolean;
+    viewerHasPurchased: boolean;
+    viewerHasPurchasedForAllOrganizations: boolean;
+    viewerIsListingAdmin: boolean;
 }
