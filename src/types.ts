@@ -13,7 +13,7 @@ export declare interface UserInfo {
     commitComments: UserCommitContents;
     company: string | null;
     companyHTML: string | null;
-    contributionCollection: any;
+    contributionsCollection: any;
     createdAt: string;
     databaseId: string;
     email: string;
@@ -918,4 +918,8 @@ export declare interface SponsorsListing{
         pageInfo: PageInfo;
         totalCount: number;
     }
+}
+
+export declare interface ContributionsCollection {
+    
 }

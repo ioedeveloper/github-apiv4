@@ -1,4 +1,4 @@
-export {User} from "./user"
+export * from "./user"
 
 /**
  * @description Github Graphql Query for Viewer

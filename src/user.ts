@@ -1580,6 +1580,20 @@ export const TwoFactorRequiredSettingOrganizations = (value: boolean = false, fi
        ${fields}  
     }
 	${pageInfo?pageInfo:""}
-    totalCount
+   totalCount
  }
+`
+
+export const ContributionsCollection = (from?: string, organizationID?: string, to?: string) => `
+   contributionsCollection(from: ${from}, organizationID: ${organizationID}, to: ${to}) {
+      edges {
+         cursor
+         node {
+            ${fields}
+         }
+      }
+      nodes {
+         ${fields}  
+      }
+   }
 `
