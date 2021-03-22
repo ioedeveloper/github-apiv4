@@ -1409,3 +1409,25 @@ export declare interface Card {
     updatedAt: string;
     url: string;
 }
+
+export declare interface Topic {
+    id: string;
+    name: string;
+    relatedTopics: Topic[];
+    stargazerCount: number;
+    stargazers: {
+        edges: [{
+            cursor: string;
+            node: UserInfo;
+        }];
+        nodes: UserInfo[];
+        pageInfo: PageInfo;
+        totalCount: number;
+    }
+    viewerHasStarred: boolean;
+}
+
+export declare interface TopicQuery {
+    topic: Topic
+
+}

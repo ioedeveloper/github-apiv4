@@ -30,15 +30,14 @@ export const RelatedTopics = (first: number = 10, field: string) => `
 
 /**
 * @description Github Graphql Stargazers
+* @fields User
 * @defaultVariables
-** first number
-** last number
-** after string
-** before string
-** orderBy "STARRED_AT"
-** direction "ASC" | "DESC"
-* @fields
-** User
+* first number
+* last number
+* after string
+* before string
+* orderBy "STARRED_AT"
+* direction "ASC" | "DESC"
 */
 
 export const Stargazers = (first: number = 10, field: string, pageInfo?: string, orderBy: string = 'STARRED_AT', direction: string = 'ASC', after?: string, before?: string, last?: string) => `
