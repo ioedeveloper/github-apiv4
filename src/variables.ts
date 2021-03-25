@@ -1,3 +1,66 @@
+import { PageInfo } from "./types";
+
+export declare interface BasicFields {
+    first: number;
+    last?: number;
+    after?: string;
+    before?: string;
+    fields?: string;
+    pageInfo?: PageInfo;
+}
+export declare interface BasicFieldsWithOrder {
+    first: number;
+    last?: number;
+    after?: string;
+    before?: string;
+    orderBy?: string;
+    direction?: "ASC" | "DESC";
+    fields?: string;
+    pageInfo?: string;
+
+}
+export declare interface BasicFieldsWithOrderAndQuery {
+    first: number;
+    last?: number;
+    after?: string;
+    before?: string;
+    orderBy?: string;
+    direction?: "ASC" | "DESC";
+    query?: string;
+    fields: string;
+    pageInfo?: string;
+}
+
+export declare interface CustomFields {
+    first?: number;
+    last?: number;
+    after?: string;
+    before?: string;
+    orderBy?: string;
+    direction?: "ASC" | "DESC";
+    query?: string;
+    fields: string;
+    pageInfo?: string;
+    connectedOnly?: boolean;
+    value?: string;
+    booleanValue?: boolean;
+    visibility?: string;
+    excludeFirst?: boolean;
+    excludePopular?: boolean;
+    maxRepositories?: number;
+    repositoryId?: string;
+    packageType?: "NPM" | "RUBYGEMS" | "MAVEN" | "DOCKER" | "DEBIAN" | "NUGET" | "PYPI";
+    names?: string;
+    types?: "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM";
+    states?: "OPEN" | "CLOSED"
+    search?: string;
+    contributionTypes?: "COMMIT" | "ISSUE" | "PULL_REQUEST" | "REPOSITORY" | "PULL_REQUEST_REVIEW"
+    includeUserRepositories?: boolean;
+    isLocked?: boolean;
+    privacy?: "PUBLIC" | "PRIVATE";
+    ownedByViewer?: boolean;
+    ownerAffiliations?: "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
+}
 export declare interface Repository {
     repositoryOwner: string;
     repositoryName: string;

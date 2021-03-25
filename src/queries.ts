@@ -4,7 +4,7 @@ export * from "./user"
  * @description Github Graphql Query for Viewer
  * @fields User
  */
-export const Viewer = (fields: string) =>  `
+export const Viewer = (fields: string) => `
     query {
       viewer {
         ${fields}
@@ -876,7 +876,7 @@ export const ViewerFollowers = `
  * login username
  * fields User 
  */
-export const UserQuery = (login: string, fields:string) => `
+export const UserQuery = (login: string, fields: string) => `
 	{
 		user (login: "${login}") {
 			${fields}
