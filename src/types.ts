@@ -929,9 +929,9 @@ export declare interface Topic {
     stargazers: {
         edges: [{
             cursor: string;
-            node: Topic;
+            node: UserInfo;
         }];
-        nodes: [Topic];
+        nodes: UserInfo[];
         pageInfo: PageInfo;
         totalCount: number;
     }
