@@ -1,3 +1,5 @@
+import { queryVariables } from ".";
+
 export * from "./user"
 
 /**
@@ -17,33 +19,57 @@ export const Viewer = (fields: string) =>  `
 * @defaultVariables totalCount
 * @queryVariables 
 * after string 
+
 * before string
+
 * first number
+
 * last number
+
 * query string
-* @fields onApp onIssue onMarketplaceListing onOrganization onPullRequest onRepository onUser
+
+* @fields 
+* onApp
+
+* onIssue 
+
+* onMarketplaceListing
+
+* onOrganization 
+
+* onPullRequest
+
+* onRepository 
+
+* onUser
+
 * type "ISSUE" | "REPOSITORY" | "USER"
+
 * codeCount
+
 * issueCount
+
 * repositoryCount
+
 * userCount
+
 * wikiCount
 */
 
- export const Search = (query:string,first: number = 10, fields?: string, type?: string,pageInfo?: string, after?: string, before?: string, last?: number) =>  `
+ export const Search = (params: queryVariables.Search) =>  `
  	{
-		search(query: "${query}", first: ${first} ${type ? `, type: ${type}` : ""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}`:""}) {
+		search(query: "${params.query}", first: ${params.first} ${params.type ? `, type: ${params.type}` : ""} ${params.after ? `, after: ${params.after}` : ""} ${params.before ? `, before: ${params.before}` : ""} ${params.last ? `, last: ${params.last}`:""}) {
 			edges {
 				cursor
 				node {
-				   ${fields}
+				   ${params.fields}
 				}
 			 }
 		 
 			 nodes {
-				${fields}
+				${params.fields}
 			 }
-			 ${pageInfo ? pageInfo : ""}
+			 ${params.pageInfo ? params.pageInfo : ""}
 			codeCount
 			issueCount
 			repositoryCount

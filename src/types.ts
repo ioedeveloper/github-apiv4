@@ -15,7 +15,7 @@ export declare interface UserInfo {
     companyHTML: string | null;
     contributionCollection: any;
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     email: string;
     followers: Followers;
     following: Following;
@@ -24,7 +24,7 @@ export declare interface UserInfo {
     gists: Commit[];
     hasSponsorsListing: boolean;
     hovercard: HoverCard;
-    id: string;
+    id: number;
     isBountyHunter: boolean;
     isCampusExpert: boolean;
     isDeveloperProgramMember: boolean;
@@ -72,7 +72,7 @@ export declare interface UserInfo {
             cursor: string;
             node: [
                 Gist, Repositories
-            ] 
+            ]
         }]
         nodes: [
             Gist, Repositories
@@ -85,7 +85,7 @@ export declare interface UserInfo {
             cursor: string;
             node: [
                 Gist, Repositories
-            ] 
+            ]
         }]
         nodes: [
             Gist, Repositories
@@ -106,7 +106,7 @@ export declare interface UserInfo {
         totalCount: number
     }
     projectsResourcePath: string;
-    projectsUrl:string;
+    projectsUrl: string;
     publicKeys: {
         edges: [{
             cursor: string;
@@ -114,20 +114,20 @@ export declare interface UserInfo {
                 accessedAt: string
                 createdAt: string
                 fingerprint: string
-                id:string;
+                id: number;
                 isReadOnly: boolean
                 key: string
                 updatedAt: string
-              };
+            };
         }]
         nodes: [{
-          accessedAt: string
-          createdAt: string
-          fingerprint: string
-          id:string;
-          isReadOnly: boolean
-          key: string
-          updatedAt: string
+            accessedAt: string
+            createdAt: string
+            fingerprint: string
+            id: number;
+            isReadOnly: boolean
+            key: string
+            updatedAt: string
         }]
         pageInfo: PageInfo;
         totalCount: number;
@@ -204,9 +204,9 @@ export declare interface UserInfo {
     status: {
         createdAt: string;
         emoji: string;
-        emojiHTML:string;
+        emojiHTML: string;
         expiresAt: string;
-        id: string;
+        id: number;
         indicatesLimitedAvailability: boolean;
         message: string;
         organization: Organization;
@@ -222,7 +222,7 @@ export declare interface UserInfo {
         pageInfo: PageInfo;
         totalCount: number;
     }
-    twitterUsername:string;
+    twitterUsername: string;
     updatedAt: string;
     watching: {
         edges: [{
@@ -262,7 +262,7 @@ export declare interface File {
     isTruncated: boolean;
     language: {
         color: string
-        id: string;
+        id: number;
         name: string;
     }
     name: string;
@@ -299,7 +299,7 @@ export declare interface Branches {
         branches: null | {
             edges: [{
                 node: {
-                    id: string;
+                    id: number;
                     name: string;
                     prefix: string;
                 };
@@ -346,8 +346,8 @@ export declare interface Repository {
 
 export declare interface RepositoryInfo {
     createdAt: string;
-    databaseId: string;
-    description: string | null;
+    databaseId: number;
+    description: string;
     descriptionHTML: string;
     diskUsage: number;
     forkCount: number;
@@ -355,7 +355,7 @@ export declare interface RepositoryInfo {
     hasProjectsEnabled: boolean;
     hasWikiEnabled: boolean;
     homepageUrl: string | null;
-    id: string;
+    id: number;
     isArchived: boolean;
     isDisabled: boolean;
     isFork: boolean;
@@ -430,7 +430,7 @@ export declare interface Commit {
             committedDate: string;
             committedViaWeb: boolean;
             deletions: number;
-            id: string;
+            id: number;
             message: string;
             messageBody: string;
             messageBodyHTML: string;
@@ -453,7 +453,7 @@ export declare interface Commit {
 export declare interface CodeOfConduct {
     codeOfConduct: null | {
         name: string;
-        id: string;
+        id: number;
         body: string;
         key: string;
         resourcePath: string;
@@ -466,7 +466,7 @@ export declare interface Followers {
         node: UserInfo;
         cursor: string;
     }];
-    nodes:[UserInfo];
+    nodes: [UserInfo];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -476,7 +476,7 @@ export declare interface Following {
         node: UserInfo;
         cursor: string;
     }];
-    nodes:[UserInfo]
+    nodes: [UserInfo]
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -525,7 +525,7 @@ export declare interface UserCommitContents {
                     createdViaEmail: string;
                     databaseId: number;
                     editor: Author | null;
-                    id: string;
+                    id: number;
                     includesCreatedEdit: boolean;
                     isMinimized: boolean;
                     lastEditedAt: string | null;
@@ -561,11 +561,8 @@ export declare interface Issue {
     createdViaEmail: boolean;
     databaseId: number;
     editor: Author | null;
-    hovercard: [{
-        message: string;
-        octicon: string;
-    }];
-    id: string;
+    hovercard: HoverCard;
+    id: number;
     includesCreatedEdit: boolean;
     lastEditedAt: string | null;
     locked: boolean;
@@ -605,7 +602,7 @@ export declare interface Team {
     childTeams: Team[]
     combinedSlug: string;
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     description: string;
 
 }
@@ -622,9 +619,9 @@ export declare interface Discussion {
     commentsUrl: string;
     createdAt: string;
     createdViaEmail: boolean;
-    databaseId: string;
+    databaseId: number;
     editor: Owner;
-    id: string;
+    id: number;
     includesCreatedEdit: boolean;
     isPinned: boolean;
     isPrivate: boolean;
@@ -651,7 +648,7 @@ export declare interface EnterpriseUserAccount {
     avatarUrl: string;
     createdAt: string;
     enterprise: Enterprise;
-    id: string;
+    id: number;
     login: string;
     name: string;
     organization: Organization;
@@ -671,9 +668,9 @@ export declare interface Organization {
 export declare interface Mannequin {
     avatarUrl: string;
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     email: string;
-    id: string;
+    id: number;
     login: string;
     resourcePath: string;
     updatedAt: string;
@@ -683,8 +680,8 @@ export declare interface Mannequin {
 export declare interface Bot {
     avatarUrl: string;
     createdAt: string;
-    databaseId: string;
-    id: string;
+    databaseId: number;
+    id: number;
     login: string;
     resourcePath: string
     updatedAt: string;
@@ -713,7 +710,7 @@ export declare interface Reaction {
     content: string;
     createdAt: string;
     databaseId: string
-    id: string;
+    id: number;
     reactable: string;
 }
 
@@ -754,7 +751,7 @@ export declare interface Gist {
     description: string;
     files: File[];
     forks: Fork[];
-    id: string;
+    id: number;
     isFork: boolean;
     isPublic: boolean;
     name: string;
@@ -781,7 +778,7 @@ export declare interface Release {
 }
 export declare interface Version {
     files: File[];
-    id: string;
+    id: number;
     package: Package;
     platform: string;
     preRelease: boolean;
@@ -795,7 +792,7 @@ export declare interface Version {
 }
 
 export declare interface Package {
-    id: string;
+    id: number;
     latestVersion: Version;
     name: string;
     packageType: string;
@@ -821,8 +818,8 @@ export declare interface Project {
 export declare interface Reply {
     body: string;
     bodyHTML: string;
-    databaseId: string;
-    id: string;
+    databaseId: number;
+    id: number;
     title: string;
     user: Owner
 }
@@ -835,8 +832,8 @@ export declare interface Goal {
     title: string;
 }
 
-export declare interface Tier{
-    adminInfo:{
+export declare interface Tier {
+    adminInfo: {
         sponsorShips: {
             edges: [{
                 cursor: string;
@@ -847,10 +844,10 @@ export declare interface Tier{
         };
 
     }
-    createdAt:string;
+    createdAt: string;
     description: string;
     descriptionHTML: string;
-    id: string;
+    id: number;
     monthlyPriceInCents: number;
     monthlyPriceInDollars: number;
     name: number;
@@ -862,14 +859,14 @@ export declare interface Sponsor {
     user: User;
 }
 export declare interface SponsorShip {
-    createdAt:string;
-    id: string;
+    createdAt: string;
+    id: number;
     maintainer: User;
     privacyLevel: string;
     sponsor: User
     sponsorEntity: Sponsor
     sponsorable: {
-        hasSponsorsListing:  boolean;
+        hasSponsorsListing: boolean;
         isSponsoredBy: string;
         isSponsoringViewer: boolean;
         sponsorsListing: SponsorsListing;
@@ -900,12 +897,12 @@ export declare interface SponsorShip {
     tier: Tier
 }
 
-export declare interface SponsorsListing{
+export declare interface SponsorsListing {
     activeGoal: Goal;
     createdAt: string;
-    fullDescription:string;
-    fullDescriptionHTML:string;
-    id: string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
+    id: number;
     name: string
     shortDescription: string;
     slug: string;
@@ -921,16 +918,110 @@ export declare interface SponsorsListing{
 }
 
 export declare interface Search {
-    search :{
+    search: {
         edges: [{
             cursor: string;
-            node: {};
+            node: SearchType;
         }];
-        nodes: [];
+        nodes: SearchType[];
         codeCount: number;
         issueCount: number;
         repositoryCount: number;
         userCount: number;
         wikiCount: number;
     }
+}
+
+export declare interface SearchType extends App, Issue, MarketplaceListing, Organization, PullRequest, RepositoryInfo, UserInfo{
+
+}
+export declare interface App {
+    createdAt: string;
+    databaseId: number;
+    description: string;
+    id: number;
+    logoBackgroundColor: string;
+    logoUrl: string;
+    name: string;
+    slug: string;
+    updatedAt: string;
+    url: string;
+}
+export declare interface MarketplaceListing {
+    app: App;
+    name: string;
+    companyUrl: string;
+    configurationResourcePath: string;
+    configurationUrl: string;
+    documentationUrl: string;
+    extendedDescription: string;
+    extendedDescriptionHTML: string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
+    hasPublishedFreeTrialPlans: boolean;
+    hasTermsOfService: boolean;
+    hasVerifiedOwner: boolean;
+    howItWorks: string;
+    howItWorksHTML: string;
+    id: number;
+    installationUrl: string;
+    installedForViewer: boolean;
+    isArchived: boolean;
+    isDraft: boolean;
+    isPaid: boolean;
+    isPublic: boolean;
+    isRejected: boolean;
+    isUnverified: boolean;
+    isUnverifiedPending: boolean;
+    isVerificationPendingFromDraft: boolean;
+    isVerificationPendingFromUnverified: boolean;
+    isVerified: boolean;
+    logoBackgroundColor: string;
+    logoUrl: string;
+    normalizedShortDescription: string;
+    pricingUrl: string;
+    primaryCategory: {
+        description: string;
+        howItWorksstring: string;
+        id: number;
+        name: string;
+        primaryListingCount: number;
+        resourcePath: string;
+        secondaryListingCount: number;
+        slug: string;
+        url: string;
+    }
+    privacyPolicyUrl: string;
+    resourcePath: string;
+    screenshotUrls: string;
+    secondaryCategory: {
+        description: string;
+        howItWorksstring: string;
+        id: number;
+        name: string;
+        primaryListingCount: number;
+        resourcePath: string;
+        secondaryListingCount: number;
+        slug: string;
+        url: string;
+    }
+    shortDescription: string;
+    slug: string;
+    statusUrl: string;
+    supportEmail: string;
+    supportUrl: string;
+    termsOfServiceUrl: string;
+    url: string;
+    viewerCanAddPlans: boolean;
+    viewerCanApprove: boolean;
+    viewerCanDelist: boolean;
+    viewerCanEdit: boolean;
+    viewerCanEditCategories: boolean;
+    viewerCanEditPlans: boolean;
+    viewerCanRedraft: boolean;
+    viewerCanReject: boolean;
+    viewerCanRequestApproval: boolean;
+    viewerHasPurchased: boolean;
+    viewerHasPurchasedForAllOrganizations: boolean;
+    viewerIsListingAdmin: boolean;
 }

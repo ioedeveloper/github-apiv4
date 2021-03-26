@@ -1,3 +1,18 @@
+import { PageInfo } from "./types";
+
+export declare interface BasicFields {
+    first: number;
+    last?: number;
+    after?: string;
+    before?: string;
+    fields?: string;
+    pageInfo?: PageInfo;
+}
+
+export declare interface Search extends BasicFields{
+    type: "ISSUE" | "REPOSITORY" | "USER"
+    query: string;
+}
 export declare interface Repository {
     repositoryOwner: string;
     repositoryName: string;
