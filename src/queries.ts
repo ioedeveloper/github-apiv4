@@ -21,9 +21,9 @@ export * from "./respository"
 
 export const SecurityAdvisories = (params: queryVariables.SecurityAdvisoriesFields) => `
     {
-		securityAdvisories(first: ${params.first} ${params.after ? `, after: ${params.after} ` : ""} ${params.before ? `, before: ${params.before} ` : ""} ${params.last ? `, last: ${params.last}` : ""}
-		${params.publishedSince ? `, publishedSince: ${params.publishedSince} ` : ""} ${params.updatedSince ? `, updatedSince: ${params.updatedSince} ` : ""} 
-		${params.value || params.type ? `, identifier: {type: ${params.type}, value: ${params.value}}` : ""}) {
+		securityAdvisories(first: ${params.first} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, after: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
+		${params.publishedSince ? `, publishedSince: "${params.publishedSince}" ` : ""} ${params.updatedSince ? `, updatedSince: "${params.updatedSince}" ` : ""} 
+		${params.value || params.type ? `, identifier: {type: ${params.type}, value: "${params.value}"}` : ""}) {
 			edges {
 				cursor
 				node {
