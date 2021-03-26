@@ -402,3 +402,16 @@ export declare interface SponsorsListing {
 export declare interface Tiers{
 
 }
+
+
+export declare interface SponsorsListing {
+    activeGoal: Goal;
+    createdAt: string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
+    id: number;
+    name: string;
+    shortDescription: string;
+    slug: string;
+    tier: Tier;
+}
