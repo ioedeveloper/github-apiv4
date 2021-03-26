@@ -129,7 +129,7 @@ export const SecurityAdvisory = (fields: string = "") => `
  */
 
 export const Vulnerabilities = (params: queryVariables.VulnerabilitiesFields) => `
-    vulnerabilities(first: ${params.first} ${params.ecosystem ? `, ecosystem: ${params.ecosystem}`:""} ${params.severities ? `, severities: ${params.severities}`:""} ${params.after ? `, after: ${params.after}`:""} ${params.before ? `, before: ${params.before}`:""} ${params.last ? `, last:${params.last}`:""}, 
+    vulnerabilities(first: ${params.first} ${params.ecosystem ? `, ecosystem: ${params.ecosystem}`:""} ${params.severities ? `, severities: ${params.severities}`:""} ${params.after ? `, after: ${params.after}`:""} ${params.before ? `, after: "${params.before}"`:""} ${params.last ? `, last:${params.last}`:""}, 
     orderBy: {field: ${params.orderBy}, direction: ${params.direction}}) {
         edges {
             cursor
@@ -185,7 +185,7 @@ export const Vulnerability = (fields: string = "") => `
 */
  
 export const CWES = (params: queryVariables.BasicFields) => `
-    cwes(first: ${params.first} ${params.after?`, after`:""} ${params.before ? `, before: ${params.before} `: ""} ${params.last ? `, last: ${params.last}`:""}) { 
+    cwes(first: ${params.first} ${params.after?`, after`:""} ${params.before ? `, after: "${params.before}" `: ""} ${params.last ? `, last: ${params.last}`:""}) { 
         edges {
             cursor
             node {
@@ -212,7 +212,7 @@ export const CWES = (params: queryVariables.BasicFields) => `
 */
 
 export const Watchers = (params: queryVariables.BasicFields) => `
-    watchers(first: ${params.first}  ${params.before ? `, before: ${params.before} `:""} ${params.after?`, after: ${params.after}`: ""}  ${params.last ? `, last: ${params.last}`:""}) {
+    watchers(first: ${params.first}  ${params.before ? `, after: "${params.before}" `:""} ${params.after?`, after: ${params.after}`: ""}  ${params.last ? `, last: ${params.last}`:""}) {
         edges {
             cursor
             node {

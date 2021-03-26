@@ -18,7 +18,7 @@ export * from "./respository"
 
 export const  SecurityVulnerabilities = (params: queryVariables.VulnerabilitiesFields) => `
 	{
-		securityVulnerabilities(first: ${params.first} ${params.ecosystem ? `, ecosystem: ${params.ecosystem}`:""} ${params.severities ? `, severities: ${params.severities}`: ""} ${params.after ? `, after: ${params.after}`: ""} ${params.before ? `, before: ${params.before}`:""} ${params.last ? `, last:${params.last}`:""}, 
+		securityVulnerabilities(first: ${params.first} ${params.ecosystem ? `, ecosystem: ${params.ecosystem}`:""} ${params.severities ? `, severities: ${params.severities}`: ""} ${params.after ? `, after: ${params.after}`: ""} ${params.before ? `, after: "${params.before}"`:""} ${params.last ? `, last:${params.last}`:""}, 
 			orderBy: {field: ${params.orderBy}, direction: ${params.direction}}) {
 				edges {
 					node {
