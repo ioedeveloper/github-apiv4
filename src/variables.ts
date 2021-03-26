@@ -1,7 +1,26 @@
+import { PageInfo } from "./types";
+
+export declare interface BasicFields {
+    first: number;
+    last?: number;
+    after?: string;
+    before?: string;
+    fields?: string;
+    pageInfo?: PageInfo;
+}
+
+export declare interface Sponsorables extends BasicFields{
+    dependencyEcosystem: "RUBYGEMS" | "NPM" | "PIP" | "MAVEN" | "NUGET" | "COMPOSER"
+    onlyDependencies: boolean;
+    orgLoginForDependencies: string;
+    orderBy: "LOGIN";
+    direction: "ASC" | "DESC"
+}
 export declare interface Repository {
     repositoryOwner: string;
     repositoryName: string;
 }
+
 export declare interface RepositoryContent {
     repositoryOwner: string;
     repositoryName: string;
