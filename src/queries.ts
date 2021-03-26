@@ -1,24 +1,39 @@
+import { queryVariables } from ".";
+
 export * from "./user"
 export * from "./respository"
 
 /**
  * @description Github Graphql SecurityAdvisories  
- *  SecurityAdvisory
+ * @queryVariables
+ * first number
+ * 
+ * last: number
+ * 
+ * after string
+ * 
+ * before string
+ * 
+ * identify 
+ * @field 
+ * SecurityAdvisory
 */
 
-export const SecurityAdvisories = (first:number = 10,fields:string, after?:string, pageInfo?:string,before?:string,last?:number) => `
+export const SecurityAdvisories = (params: queryVariables.SecurityAdvisoriesFields) => `
     {
-		securityAdvisories(first: ${first} ${after ? `, after: ${after} `:""} ${before ? `, before: ${before} `:""} ${last ? `, last: ${last}`:""}) {
+		securityAdvisories(first: ${params.first} ${params.after ? `, after: ${params.after} ` : ""} ${params.before ? `, before: ${params.before} ` : ""} ${params.last ? `, last: ${params.last}` : ""}
+		${params.publishedSince ? `, publishedSince: ${params.publishedSince} ` : ""} ${params.updatedSince ? `, updatedSince: ${params.updatedSince} ` : ""} 
+		${params.value || params.type ? `, identifier: {type: ${params.type}, value: ${params.value}}` : ""}) {
 			edges {
 				cursor
 				node {
-					${fields}
+					${params.fields}
 				}
 			}
 			nodes {
-				${fields}
+				${params.fields}
 			}
-			${pageInfo? pageInfo:""}
+			${params.pageInfo ? params.pageInfo : ""}
 			totalCount
 		}
 	}
@@ -29,7 +44,7 @@ export const SecurityAdvisories = (first:number = 10,fields:string, after?:strin
  * @description Github Graphql Query for Viewer
  * @fields User
  */
-export const Viewer = (fields: string) =>  `
+export const Viewer = (fields: string) => `
     query {
       viewer {
         ${fields}

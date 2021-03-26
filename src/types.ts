@@ -1008,7 +1008,7 @@ export declare interface SecurityAdvisories {
             cursor: string;
             node: Advisory
         }]
-        nodes: [Advisory]
+        nodes: Advisory[]
         totalCount: number;
     }
 }

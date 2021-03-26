@@ -1,10 +1,28 @@
+import { PageInfo } from "./types";
+
 export declare interface Repository {
     repositoryOwner: string;
     repositoryName: string;
 }
+export declare interface BasicFields {
+    first: number;
+    last?: number;
+    after?: string;
+    before?: string;
+    fields: string;
+    pageInfo?: PageInfo;
+}
 export declare interface RepositoryContent {
     repositoryOwner: string;
     repositoryName: string;
+}
+
+export declare interface SecurityAdvisoriesFields extends BasicFields {
+    type?: "CVE" | "GHSA"
+    value?: string;
+    orderBy?: "PUBLISHED_AT" | "UPDATED_AT"
+    publishedSince?: string;
+    updatedSince?: string;
 }
 
 export declare interface RepositoryDirectories {

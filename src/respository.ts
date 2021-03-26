@@ -52,7 +52,7 @@ export const VulnerabilityAlerts = (first: number = 10, after: string = "", befo
 `
 
 /**
- * @description Github Graphql SecurityAdvisory
+ * @description Github Graphql Advisory
  * @defaultVariables databaseId description
  * @queryVariables 
  * cvss {
@@ -87,17 +87,27 @@ export const VulnerabilityAlerts = (first: number = 10, after: string = "", befo
  */
 
 
+export const Advisory = (fields: string = "") => `
+    databaseId
+    description
+    ${fields}
+`
+
+
+/**
+ * @description Github Graphql SecurityAdvisory
+ * @fields Advisory 
+ */
+
+
 export const SecurityAdvisory = (fields: string = "") => `
     advisory {
-        databaseId
-        description
         ${fields}
     }    
 `
-
 /**
  * @description Github Graphql Vulnerabilities
- * @defaultVariables totalCount field = "UPDATED_AT" direction = "ASC" first = 10 ecosystem = "NPM" severities = "LOW"
+ * @defaultVariables totalCount
  * @queryArguments 
  * ecosystem "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP"
  * severities "LOW" | "MODERATE" | "HIGH" | "CRITICAL"
