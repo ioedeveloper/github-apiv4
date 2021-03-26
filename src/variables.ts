@@ -7,6 +7,15 @@ export declare interface RepositoryContent {
     repositoryName: string;
 }
 
+
+export declare interface VulnerabilitiesFields extends BasicFields {
+    orderBy?: "UPDATED_AT";
+    ecosystem?: "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP";
+    severities?: "LOW" | "MODERATE" | "HIGH" | "CRITICAL";
+    direction?: "DESC" | "ASC"
+}
+
+
 export declare interface RepositoryDirectories {
     repositoryOwner: string;
     repositoryName: string;

@@ -390,9 +390,9 @@ export declare interface SecurityVulnerabilities {
     securityVulnerabilities: {
         edges: {
             cursor: string | null;
-            node: [Vulnerability];
+            node: Vulnerability[];
         }
-        nodes: [Vulnerability];
+        nodes: Vulnerability[];
         totalCount: number;
     }
 }
@@ -426,7 +426,7 @@ export declare interface SecurityAdvisory {
             cursor: string;
             node: Vulnerability
         }];
-        nodes: [Vulnerability];
+        nodes: Vulnerability[];
     }
     withdrawnAt: string;
 }
