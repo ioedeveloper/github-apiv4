@@ -267,7 +267,6 @@ export const onViewerHovercardContext = (fields: string) => `
  ... on ViewerHovercardContext{
     message
     ${fields}
- }
 `
 /**
 * @description Github Graphql onUser
@@ -410,10 +409,10 @@ export const Following = (params: queryVariables.BasicFields) => `
 * }
 */
 
-export const EnterpriseUserAccount = (fields?: string) => `
-   id
-   name
-   ${fields}
+export const EnterpriseUserAccount = (fields: string = "") => `
+    id
+    name
+    ${fields}
 `
 
 /**
@@ -421,10 +420,10 @@ export const EnterpriseUserAccount = (fields?: string) => `
 * * @fields EnterpriseUserAccount 
 */
 
-export const onEnterpriseUserAccount = (fields?: string) => `
- ... on EnterpriseUserAccount {
-     ${fields}
- }
+export const onEnterpriseUserAccount = (fields: string = "") => `
+    ... on EnterpriseUserAccount {
+        ${fields}
+    }
 `
 
 /**
