@@ -435,6 +435,33 @@ export const Languages = (first: number = 10, fields: string = '', orderBy: stri
     labels(first: ${first} ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''}, ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${direction}) {
         ${fields}
         totalCount
+
+`
+/**
+* @description Github Graphql Topic
+* @defaultVariables 
+* id 
+* name
+* RelatedTopics
+* stargazerCount
+* Stargazers
+* viewerHasStarred
+*/
+
+export const Topic = (field: string) => `
+    ${field}
+`
+
+/**
+* @description Github Graphql RelatedTopics
+* @defaultVariables
+* first number
+* field Topic
+*/
+
+export const RelatedTopics = (first: number = 10, field: string) => `
+    relatedTopics(first: ${first}) {
+        ${field}
     }
 `
 
@@ -579,6 +606,30 @@ export const Languages = (first: number = 10, fields: string = '', orderBy: stri
 export const AuditLog = (query:string = "", first: number = 10, fields: string = '', orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = '', before: string = '', last: number = 0) => `
     auditLog(query:${query}, first: ${first} ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
         ${fields}
+
+`
+/** @description Github Graphql Stargazers
+* @defaultVariables
+* first number
+* last number
+* after string
+* before string
+* orderBy "STARRED_AT"
+* direction "ASC" | "DESC"
+* field User
+*/
+
+export const Stargazers = (first: number = 10, field: string, pageInfo?: string, orderBy: string = "STARRED_AT", direction: string = "ASC", after?: string, before?: string, last?: string) => `
+    stargazers(first: ${first} ${after ? `, ${after}` : ""} ${before ? `, ${before}` : ""} ${last ? `, ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+        edges {
+            cursor
+            node {
+                ${field}
+            }
+            starredAt
+        }
+        nodes {${field}}
+        ${pageInfo ? pageInfo : ""}
         totalCount
     }
 `

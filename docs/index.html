@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>github-apiv4 - v2.2.0</title>
+	<title>github-apiv4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -24,7 +24,7 @@
 					</ul>
 					<ul class="results-priority" style="display:none">
 					</ul>
-					<a href="index.html" class="title">github-apiv4 - v2.2.0</a>
+					<a href="index.html" class="title">github-apiv4</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -64,12 +64,12 @@
 			<nav class="tsd-navigation outline primary">
 				<a style="margin-left:0em" href="globals.html">Globals</a>
 				<ul style="display:none">
-					{&quot;Queries&quot;:&quot;_queries_&quot;,&quot;Types&quot;:&quot;_types_&quot;,&quot;Query Variables&quot;:&quot;_variables_&quot;}
+					{&quot;Queries&quot;:&quot;queries&quot;,&quot;Types&quot;:&quot;types&quot;,&quot;Query Variables&quot;:&quot;queryvariables&quot;}
 				</ul>
 			</nav>
 		</div>
 		<div class="col-7 offset-3 col-content">
-			<h1> github-apiv4 - v2.2.0</h1>
+			<h1>Project github-apiv4</h1>
 			<div class="tsd-panel tsd-typography">
 				<a href="#github-apiv4" id="github-apiv4" style="color: inherit; text-decoration: none;">
 					<h1>Github-APIv4</h1>
@@ -79,7 +79,7 @@
 					<a href="https://badge.fury.io/js/github-apiv4"><img src="https://badge.fury.io/js/github-apiv4.svg" alt="npm version"></a>
 				<a href="https://www.codetriage.com/ioedeveloper/github-apiv4"><img src="https://www.codetriage.com/ioedeveloper/github-apiv4/badges/users.svg" alt="Open Source Helpers"></a></p>
 				<!-- [END badges] -->
-				<a href="#a-hrefhttpsgithub-apiv4netlifycomapia--a-hrefcontributecontributea--a-hreffaqfaqa" id="a-hrefhttpsgithub-apiv4netlifycomapia--a-hrefcontributecontributea--a-hreffaqfaqa" style="color: inherit; text-decoration: none;">
+				<a href="#api--contribute--faq" id="api--contribute--faq" style="color: inherit; text-decoration: none;">
 					<h6><a href="https://github-apiv4.netlify.com/">API</a> | <a href="#contribute">Contribute</a> | <a href="#faq">FAQ</a></h6>
 				</a>
 				<blockquote>
@@ -93,106 +93,113 @@
 					<h3>Installation</h3>
 				</a>
 				<p>To use Github-APIv4, run:</p>
-				<pre><code class="language-bash">npm i github-apiv4
-<span class="hljs-comment"># or "yarn add github-apiv4"</span></code></pre>
+				<pre><code class="language-bash"><span style="color: #000000">npm i github-apiv4</span>
+<span style="color: #008000"># or &quot;yarn add github-apiv4&quot;</span>
+</code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h3>Usage</h3>
 				</a>
 				<p><strong>Javascript Example - query Viewer:</strong></p>
 				<p>Save file as <strong>exampleJS.js</strong></p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> githubApiv4 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'github-apiv4'</span>);
-<span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'isomorphic-fetch'</span>);
-<span class="hljs-keyword">const</span> accessCode = <span class="hljs-string">'YOUR_GITHUB_ACCESS_CODE'</span>;
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">githubApiv4</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;github-apiv4&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fetch</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isomorphic-fetch&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">accessCode</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;YOUR_GITHUB_ACCESS_CODE&#039;</span><span style="color: #000000">;</span>
 
-fetch(<span class="hljs-string">'https://api.github.com/graphql'</span>, {
-  <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>,
-  <span class="hljs-attr">headers</span>: { 
-      <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
-      <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">`bearer <span class="hljs-subst">${accessCode}</span>`</span>
-  },
-  <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">query</span>: githubApiv4.queries.Viewer }),
-})
-  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())
-  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res.data));</code></pre>
+<span style="color: #795E26">fetch</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://api.github.com/graphql&#039;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">  </span><span style="color: #001080">method:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;POST&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">headers:</span><span style="color: #000000"> { </span>
+<span style="color: #000000">      </span><span style="color: #A31515">&#039;Content-Type&#039;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;application/json&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&#039;Authorization&#039;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">`bearer </span><span style="color: #0000FF">${</span><span style="color: #001080">accessCode</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #267F99">JSON</span><span style="color: #000000">.</span><span style="color: #795E26">stringify</span><span style="color: #000000">({ </span><span style="color: #001080">query:</span><span style="color: #000000"> </span><span style="color: #001080">githubApiv4</span><span style="color: #000000">.</span><span style="color: #001080">queries</span><span style="color: #000000">.</span><span style="color: #001080">Viewer</span><span style="color: #000000"> }),</span>
+<span style="color: #000000">})</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #795E26">json</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">));</span>
+</code></pre>
 				<p>Github API response (res.data is) of type <a href="https://github-apiv4.netlify.com/interfaces/_types_.viewer.html">githubApiv4.types.Viewer</a></p>
 				<p>Execute script on the command line</p>
-				<pre><code class="language-bash">node exampleJS.js</code></pre>
+				<pre><code class="language-bash"><span style="color: #000000">node exampleJS.js</span>
+</code></pre>
 				<p><strong>Typescript Example - query Viewer:</strong></p>
 				<p>Save file as <strong>exampleTS.ts</strong></p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> githubApiv4 <span class="hljs-keyword">from</span> <span class="hljs-string">'github-apiv4'</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fetch <span class="hljs-keyword">from</span> <span class="hljs-string">'isomorphic-fetch'</span>;
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">githubApiv4</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;github-apiv4&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">fetch</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;isomorphic-fetch&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> accessCode = <span class="hljs-string">'YOUR_GITHUB_ACCESS_CODE'</span>;
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">accessCode</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;YOUR_GITHUB_ACCESS_CODE&#039;</span><span style="color: #000000">;</span>
 
-fetch(<span class="hljs-string">'https://api.github.com/graphql'</span>, {
-  method: <span class="hljs-string">'POST'</span>,
-  headers: { 
-      <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
-      <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">`bearer <span class="hljs-subst">${accessCode}</span>`</span>
-  },
-  body: <span class="hljs-built_in">JSON</span>.stringify({ query: githubApiv4.queries.Viewer }),
-})
-  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())
-  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
-      <span class="hljs-keyword">if</span>((res.data <span class="hljs-keyword">as</span> githubApiv4.types.Viewer).viewer){
-        <span class="hljs-built_in">console</span>.log(res.data)
-      }<span class="hljs-keyword">else</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Type Mismatch!'</span>);
-      }
-  })</code></pre>
+<span style="color: #795E26">fetch</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://api.github.com/graphql&#039;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">  </span><span style="color: #001080">method:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;POST&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">headers:</span><span style="color: #000000"> { </span>
+<span style="color: #000000">      </span><span style="color: #A31515">&#039;Content-Type&#039;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;application/json&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&#039;Authorization&#039;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">`bearer </span><span style="color: #0000FF">${</span><span style="color: #001080">accessCode</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #267F99">JSON</span><span style="color: #000000">.</span><span style="color: #795E26">stringify</span><span style="color: #000000">({ </span><span style="color: #001080">query:</span><span style="color: #000000"> </span><span style="color: #001080">githubApiv4</span><span style="color: #000000">.</span><span style="color: #001080">queries</span><span style="color: #000000">.</span><span style="color: #001080">Viewer</span><span style="color: #000000"> }),</span>
+<span style="color: #000000">})</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #795E26">json</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000">((</span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">githubApiv4</span><span style="color: #000000">.</span><span style="color: #267F99">types</span><span style="color: #000000">.</span><span style="color: #267F99">Viewer</span><span style="color: #000000">).</span><span style="color: #001080">viewer</span><span style="color: #000000">){</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">)</span>
+<span style="color: #000000">      }</span><span style="color: #AF00DB">else</span><span style="color: #000000">{</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Type Mismatch!&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">  })</span>
+</code></pre>
 				<p>Github API response (res.data is) of type <a href="https://github-apiv4.netlify.com/interfaces/_types_.viewer.html">githubApiv4.types.Viewer</a></p>
 				<p>Execute script on the command line</p>
-				<pre><code class="language-bash">tsc exampleTS.ts
-node exampleTS.js</code></pre>
+				<pre><code class="language-bash"><span style="color: #000000">tsc exampleTS.ts</span>
+<span style="color: #000000">node exampleTS.js</span>
+</code></pre>
 				<p><strong>Apollo Client Example - query Repository:</strong></p>
 				<p>Save file as <strong>apolloClient.ts</strong></p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> githubApiV4 <span class="hljs-keyword">from</span> <span class="hljs-string">'github-apiv4'</span>;
-<span class="hljs-keyword">import</span> { HttpLink } <span class="hljs-keyword">from</span> <span class="hljs-string">'apollo-link-http'</span>;
-<span class="hljs-keyword">import</span> ApolloClient <span class="hljs-keyword">from</span> <span class="hljs-string">'apollo-client'</span>;
-<span class="hljs-keyword">import</span> { InMemoryCache, IntrospectionFragmentMatcher, NormalizedCacheObject } <span class="hljs-keyword">from</span> <span class="hljs-string">'apollo-cache-inmemory'</span>;
-<span class="hljs-keyword">import</span> { fetch } <span class="hljs-keyword">from</span> <span class="hljs-string">'cross-fetch'</span>;
-<span class="hljs-keyword">import</span> gql <span class="hljs-keyword">from</span> <span class="hljs-string">"graphql-tag"</span>;
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">githubApiV4</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;github-apiv4&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">HttpLink</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;apollo-link-http&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">ApolloClient</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;apollo-client&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">InMemoryCache</span><span style="color: #000000">, </span><span style="color: #001080">IntrospectionFragmentMatcher</span><span style="color: #000000">, </span><span style="color: #001080">NormalizedCacheObject</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;apollo-cache-inmemory&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">fetch</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;cross-fetch&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">gql</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;graphql-tag&quot;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> accessCode = <span class="hljs-string">'YOUR_GITHUB_ACCESS_CODE'</span>;
-<span class="hljs-keyword">const</span> client: ApolloClient&lt;NormalizedCacheObject&gt; = <span class="hljs-keyword">new</span> ApolloClient({
-    link: <span class="hljs-keyword">new</span> HttpLink({ uri: <span class="hljs-string">'https://api.github.com/graphql'</span>, fetch }),
-    cache: <span class="hljs-keyword">new</span> InMemoryCache({
-        fragmentMatcher: <span class="hljs-keyword">new</span> IntrospectionFragmentMatcher({
-          introspectionQueryResultData: {
-            __schema: {
-              types: [],
-            },
-          },
-        }),
-      }),
-});
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">accessCode</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;YOUR_GITHUB_ACCESS_CODE&#039;</span><span style="color: #000000">;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000">: </span><span style="color: #267F99">ApolloClient</span><span style="color: #000000">&lt;</span><span style="color: #267F99">NormalizedCacheObject</span><span style="color: #000000">&gt; = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">ApolloClient</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">link:</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">HttpLink</span><span style="color: #000000">({ </span><span style="color: #001080">uri:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://api.github.com/graphql&#039;</span><span style="color: #000000">, </span><span style="color: #001080">fetch</span><span style="color: #000000"> }),</span>
+<span style="color: #000000">    </span><span style="color: #001080">cache:</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">InMemoryCache</span><span style="color: #000000">({</span>
+<span style="color: #000000">        </span><span style="color: #001080">fragmentMatcher:</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">IntrospectionFragmentMatcher</span><span style="color: #000000">({</span>
+<span style="color: #000000">          </span><span style="color: #001080">introspectionQueryResultData:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #001080">__schema:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">              </span><span style="color: #001080">types:</span><span style="color: #000000"> [],</span>
+<span style="color: #000000">            },</span>
+<span style="color: #000000">          },</span>
+<span style="color: #000000">        }),</span>
+<span style="color: #000000">      }),</span>
+<span style="color: #000000">});</span>
 
-<span class="hljs-comment">// query variables used in repository query (githubApiV4.queryVariables.Repository)</span>
-<span class="hljs-keyword">const</span> queryVariables: githubApiV4.queryVariables.Repository = {
-    repositoryName: <span class="hljs-string">'github-apiv4'</span>,
-    repositoryOwner: <span class="hljs-string">'community'</span>
-};
+<span style="color: #008000">// query variables used in repository query (githubApiV4.queryVariables.Repository)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">queryVariables</span><span style="color: #000000">: </span><span style="color: #267F99">githubApiV4</span><span style="color: #000000">.</span><span style="color: #267F99">queryVariables</span><span style="color: #000000">.</span><span style="color: #267F99">Repository</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #001080">repositoryName:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;github-apiv4&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">repositoryOwner:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;community&#039;</span>
+<span style="color: #000000">};</span>
 
-<span class="hljs-comment">// query with apollo-client</span>
-client.query({
-    query: gql<span class="hljs-string">`<span class="hljs-subst">${githubApiV4.queries.Repository}</span>`</span>,
-    variables: queryVariables,
-    context: {
-        headers: {
-            Authorization: <span class="hljs-string">`bearer <span class="hljs-subst">${accessCode}</span>`</span>
-        }
-    }
-}).then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>{
-    <span class="hljs-keyword">if</span>(res.data <span class="hljs-keyword">as</span> githubApiV4.types.Repository){
-        <span class="hljs-built_in">console</span>.log(res.data);
-    }<span class="hljs-keyword">else</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Type Mismatch!'</span>);
-    }
-});</code></pre>
+<span style="color: #008000">// query with apollo-client</span>
+<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">query:</span><span style="color: #000000"> </span><span style="color: #795E26">gql</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">githubApiV4</span><span style="color: #000000FF">.</span><span style="color: #001080">queries</span><span style="color: #000000FF">.</span><span style="color: #001080">Repository</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">variables:</span><span style="color: #000000"> </span><span style="color: #001080">queryVariables</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">context:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">headers:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #001080">Authorization:</span><span style="color: #000000"> </span><span style="color: #A31515">`bearer </span><span style="color: #0000FF">${</span><span style="color: #001080">accessCode</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #0000FF">=&gt;</span><span style="color: #000000">{</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">githubApiV4</span><span style="color: #000000">.</span><span style="color: #267F99">types</span><span style="color: #000000">.</span><span style="color: #267F99">Repository</span><span style="color: #000000">){</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span><span style="color: #AF00DB">else</span><span style="color: #000000">{</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Type Mismatch!&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<p>Github API response (res.data is) of type <a href="https://github-apiv4.netlify.com/interfaces/_types_.repository.html">githubApiv4.types.Repository</a></p>
 				<p>Execute script on the command line</p>
-				<pre><code class="language-bash">tsc apolloClient.ts
-node apolloClient.js</code></pre>
+				<pre><code class="language-bash"><span style="color: #000000">tsc apolloClient.ts</span>
+<span style="color: #000000">node apolloClient.js</span>
+</code></pre>
 				<a href="#resources" id="resources" style="color: inherit; text-decoration: none;">
 					<h1>Resources</h1>
 				</a>
@@ -217,7 +224,7 @@ node apolloClient.js</code></pre>
 					<li><a href="https://github.com/ioedeveloper/github-apiv4/issues">bugtracker</a></li>
 				</ul>
 			</div>
-			<!--{&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;exclude&quot;:[&quot;**/*+(index).ts&quot;],&quot;outline&quot;:[{&quot;Queries&quot;:&quot;_queries_&quot;,&quot;Types&quot;:&quot;_types_&quot;,&quot;Query Variables&quot;:&quot;_variables_&quot;}]}-->
+			<!--{&quot;options&quot;:&quot;/Users/mac/Public/repos/github-apiv4&quot;,&quot;tsconfig&quot;:&quot;/Users/mac/Public/repos/github-apiv4&quot;,&quot;entryPoints&quot;:[&quot;./src/index.ts&quot;],&quot;exclude&quot;:[&quot;**/*+(index).ts&quot;],&quot;externalPattern&quot;:[&quot;**/node_modules/**&quot;],&quot;excludeExternals&quot;:false,&quot;excludeNotDocumented&quot;:false,&quot;excludeInternal&quot;:false,&quot;excludePrivate&quot;:false,&quot;excludeProtected&quot;:false,&quot;disableSources&quot;:false,&quot;includes&quot;:&quot;&quot;,&quot;media&quot;:&quot;&quot;,&quot;watch&quot;:false,&quot;preserveWatchOutput&quot;:false,&quot;emit&quot;:false,&quot;out&quot;:&quot;docs&quot;,&quot;json&quot;:&quot;&quot;,&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;highlightTheme&quot;:&quot;light-plus&quot;,&quot;name&quot;:&quot;&quot;,&quot;includeVersion&quot;:false,&quot;excludeTags&quot;:[],&quot;readme&quot;:&quot;&quot;,&quot;defaultCategory&quot;:&quot;Other&quot;,&quot;categoryOrder&quot;:[],&quot;categorizeByGroup&quot;:true,&quot;gitRevision&quot;:&quot;&quot;,&quot;gitRemote&quot;:&quot;origin&quot;,&quot;gaID&quot;:&quot;&quot;,&quot;gaSite&quot;:&quot;auto&quot;,&quot;hideGenerator&quot;:false,&quot;toc&quot;:[],&quot;disableOutputCheck&quot;:false,&quot;help&quot;:false,&quot;version&quot;:false,&quot;showConfig&quot;:false,&quot;plugin&quot;:[],&quot;logger&quot;:&quot;console&quot;,&quot;logLevel&quot;:1,&quot;listInvalidSymbolLinks&quot;:false,&quot;outline&quot;:[{&quot;Queries&quot;:&quot;queries&quot;,&quot;Types&quot;:&quot;types&quot;,&quot;Query Variables&quot;:&quot;queryvariables&quot;}]}-->
 		</div>
 		<div class="col-2 col-menu secondary-menu">
 			<nav class="tsd-navigation secondary menu-sticky">
@@ -234,6 +241,5 @@ node apolloClient.js</code></pre>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
