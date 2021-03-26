@@ -19,17 +19,16 @@ export const TopicQuery = (name: string, fields: string) => `
 
 /**
  * @description Github Graphql Query for SponsorsListing
- * activeGoal {
- * 		Goal
- * }
- * createdAt
- * fullDescription
- * fullDescriptionHTML
- * id
- * name
- * shortDescription
- * slug
- * Tiers
+ * @fields
+ ** activeGoal {	Goal }
+ ** createdAt
+ ** fullDescription
+ ** fullDescriptionHTML
+ ** id
+ ** name
+ ** shortDescription
+ ** slug
+ ** Tiers
  */
 
 export const SponsorsListing = (slug:string,fields:string) =>`
@@ -40,6 +39,33 @@ export const SponsorsListing = (slug:string,fields:string) =>`
 	}
 
 `
+
+/**
+ * @description Github Graphql Query for Sponsorables
+ * fields onOrganization onUser
+ */
+
+import { queryVariables } from ".";
+
+
+export const Sponsorables = (params: queryVariables.CustomFields) => `
+ 	{
+		sponsorables(first: ${params.first}, dependencyEcosystem: ${params.dependencyEcosystem} ${params.onlyDependencies ? `, ${params.onlyDependencies}` : ""} ${params.after ? `, ${params.after}` : ""} ${params.before ? `, ${params.before}` : ""}, orderBy: {field: ${params.orderBy} direction: ${params.direction}} ${params.last ? `, ${params.last}` : ""} ${params.orgLoginForDependencies ? `, ${params.orgLoginForDependencies}` : ""}) {
+			edges {
+				cursor
+				node {
+					${params.fields}
+				}
+			}
+			nodes {
+				${params.fields}
+			}
+			${params.pageInfo ? params.pageInfo : ""}
+			totalCount
+		}
+	}
+`
+
 
 /**
  * @description Github Graphql Query for viewer details
