@@ -389,11 +389,15 @@ export declare interface Sponsorables {
     sponsorables: {
         edges: [{
             cursor: string;
-            node:{}
+            node:Sponsorable;
         }]
-        nodes: [];
+        nodes: Sponsorable[];
         totalCount: number;
     }
+}
+
+export declare interface Sponsorable extends Organization, UserInfo {
+
 }
 
 export declare interface Organization{

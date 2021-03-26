@@ -7,6 +7,12 @@ export declare interface RepositoryContent {
     repositoryName: string;
 }
 
+export declare interface CustomFields{
+    dependencyEcosystem?: "RUBYGEMS" | "NPM" | "PIP" | "MAVEN" | "NUGET" | "COMPOSER"
+    onlyDependencies?: boolean;
+    orgLoginForDependencies?: string;
+}
+
 export declare interface RepositoryDirectories {
     repositoryOwner: string;
     repositoryName: string;

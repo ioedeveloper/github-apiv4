@@ -3,20 +3,22 @@
  * fields onOrganization onUser
  */
 
+import { queryVariables } from ".";
 
-export const Sponsorables = (dependencyEcosystem: string, first: number = 10, fields: string, pageInfo?: string, orderBy: string = "LOGIN", direction: string = "ASC", onlyDependencies?: boolean, orgLoginForDependencies?: string, after?: string, before?: string, last?: string) => `
+
+export const Sponsorables = (params: queryVariables.CustomFields) => `
  	{
-		sponsorables(first: ${first}, dependencyEcosystem: ${dependencyEcosystem} ${onlyDependencies ? `, ${onlyDependencies}` : ""} ${after ? `, ${after}` : ""} ${before ? `, ${before}` : ""}, orderBy: {field: ${orderBy} direction: ${direction}} ${last ? `, ${last}` : ""} ${orgLoginForDependencies ? `, ${orgLoginForDependencies}` : ""}) {
+		sponsorables(first: ${params.first}, dependencyEcosystem: ${params.dependencyEcosystem} ${params.onlyDependencies ? `, ${params.onlyDependencies}` : ""} ${params.after ? `, ${params.after}` : ""} ${params.before ? `, ${params.before}` : ""}, orderBy: {field: ${params.orderBy} direction: ${params.direction}} ${params.last ? `, ${params.last}` : ""} ${params.orgLoginForDependencies ? `, ${params.orgLoginForDependencies}` : ""}) {
 			edges {
 				cursor
 				node {
-					${fields}
+					${params.fields}
 				}
 			}
 			nodes {
-				${fields}
+				${params.fields}
 			}
-			${pageInfo ? pageInfo : ""}
+			${params.pageInfo ? params.pageInfo : ""}
 			totalCount
 		}
 	}
