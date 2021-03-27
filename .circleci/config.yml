@@ -1,7 +1,20 @@
-version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+version: 2
+jobs:
+  github-apiv4:
+    docker:
+      - image: circleci/node:10.18.0-browsers
+    environment:
+      - COMMIT_AUTHOR_EMAIL: "daviddisu8@gmail.com"
+      - COMMIT_AUTHOR: "Circle CI"
+    working_directory: ~/github-apiv4
+
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run lint
+
 workflows:
-  node-tests:
+  version: 2
+  build_all:
     jobs:
-      - node/test
+      - github-apiv4

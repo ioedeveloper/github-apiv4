@@ -1,5 +1,5 @@
-export * from "./user"
-export * from "./discussion"
+export * from './user'
+export * from './discussion'
 
 /**
  * @description Github Graphql Query for TopicQuery
@@ -7,26 +7,25 @@ export * from "./discussion"
  */
 
 export const TopicQuery = (name: string, fields: string) => `
- 	{
-		topic (name: "${name}"){
-			${fields}
-		}
- 	}
+{
+  topic (name: "${name}"){
+    ${fields}
+  }
+}
 
 `
-
 
 /**
  * @description Github Graphql Query for Viewer
  * @fields User
  */
-export const Viewer = (fields: string) =>  `
+export const Viewer = (fields: string) => `
     query {
       viewer {
         ${fields}
       }
     }
-`;
+`
 
 /**
  * @description Github Graphql Query for repository content (files and directories)
@@ -884,21 +883,21 @@ export const ViewerFollowers = `
       }
     }
   }
-`;
+`
 
 /**
  * @description Github Graphql Query for Github User
- * @queryVariable 
+ * @queryVariable
  * login username
- * fields User 
+ * fields User
  */
 export const UserQuery = (login: string, fields:string) => `
-	{
-		user (login: "${login}") {
-			${fields}
-		}
-	}
-`;
+{
+  user (login: "${login}") {
+    ${fields}
+  }
+}
+`
 
 /**
  * @description Github Graphql Query for All User Repositories
