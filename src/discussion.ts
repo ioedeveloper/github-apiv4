@@ -1,7 +1,7 @@
 /**
 * @description Github Graphql Topic
-* @defaultVariables 
-* id 
+* @defaultVariables
+* id
 * name
 * RelatedTopics
 * stargazerCount
@@ -38,8 +38,8 @@ export const RelatedTopics = (first: number = 10, field: string) => `
 * field User
 */
 
-export const Stargazers = (first: number = 10, field: string, pageInfo?: string, orderBy: string = "STARRED_AT", direction: string = "ASC", after?: string, before?: string, last?: string) => `
-    stargazers(first: ${first} ${after ? `, ${after}` : ""} ${before ? `, ${before}` : ""} ${last ? `, ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const Stargazers = (first: number = 10, field: string, pageInfo?: string, orderBy: string = 'STARRED_AT', direction: string = 'ASC', after?: string, before?: string, last?: string) => `
+    stargazers(first: ${first} ${after ? `, ${after}` : ''} ${before ? `, ${before}` : ''} ${last ? `, ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
         edges {
             cursor
             node {
@@ -48,7 +48,7 @@ export const Stargazers = (first: number = 10, field: string, pageInfo?: string,
             starredAt
         }
         nodes {${field}}
-        ${pageInfo ? pageInfo : ""}
+        ${pageInfo || ''}
         totalCount
     }
 `

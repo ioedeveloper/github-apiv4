@@ -72,7 +72,7 @@ export declare interface UserInfo {
             cursor: string;
             node: [
                 Gist, Repositories
-            ] 
+            ]
         }]
         nodes: [
             Gist, Repositories
@@ -85,7 +85,7 @@ export declare interface UserInfo {
             cursor: string;
             node: [
                 Gist, Repositories
-            ] 
+            ]
         }]
         nodes: [
             Gist, Repositories
@@ -243,7 +243,6 @@ export declare interface FileEntries {
         entries: FileEntries[];
     };
 }
-
 
 export declare interface FileEntriesContent {
     name: string;
@@ -870,7 +869,7 @@ export declare interface SponsorShip {
     sponsor: User
     sponsorEntity: Sponsor
     sponsorable: {
-        hasSponsorsListing:  boolean;
+        hasSponsorsListing: boolean;
         isSponsoredBy: string;
         isSponsoringViewer: boolean;
         sponsorsListing: SponsorsListing;
