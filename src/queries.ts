@@ -1,3 +1,6 @@
+
+export * from './user'
+export * from './discussion'
 export * from "./respository"
 
 /**
@@ -15,38 +18,28 @@ export * from "./respository"
 
 
 /**
- * @description Github Graphql Query for viewer details
+ * @description Github Graphql Query for TopicQuery
+ * fields Topic
  */
-export const Viewer = `
+
+export const TopicQuery = (name: string, fields: string) => `
+{
+  topic (name: "${name}"){
+    ${fields}
+  }
+}
+
+`
+
+/**
+ * @description Github Graphql Query for Viewer
+ * @fields User
+ */
+export const Viewer = (fields: string) => `
     query {
-        viewer {
-          id
-          email
-          login
-          url
-          createdAt
-          updatedAt
-          databaseId
-          location
-          companyHTML
-          company
-          avatarUrl
-          bio
-          websiteUrl
-          isHireable
-          isDeveloperProgramMember
-          anyPinnableItems
-          isSiteAdmin
-          isViewer
-          viewerCanFollow
-          viewerIsFollowing
-          viewerCanCreateProjects
-          isEmployee
-          isBountyHunter
-          isCampusExpert
-          pinnedItemsRemaining
-          projectsUrl
-        }
+      viewer {
+        ${fields}
+      }
     }
 `
 
@@ -910,39 +903,16 @@ export const ViewerFollowers = `
 
 /**
  * @description Github Graphql Query for Github User
- * @queryVariable username: String!
+ * @queryVariable
+ * login username
+ * fields User
  */
-export const User = `
-  query($username: String!){
-    user(login: $username){
-      id
-      email
-      login
-      url
-      createdAt
-      updatedAt
-      databaseId
-      location
-      companyHTML
-      company
-      avatarUrl
-      bio
-      websiteUrl
-      isHireable
-      isDeveloperProgramMember
-      anyPinnableItems
-      isSiteAdmin
-      isViewer
-      viewerCanFollow
-      viewerIsFollowing
-      viewerCanCreateProjects
-      isEmployee
-      isBountyHunter
-      isCampusExpert
-      pinnedItemsRemaining
-      projectsUrl
-    }
+export const UserQuery = (login: string, fields:string) => `
+{
+  user (login: "${login}") {
+    ${fields}
   }
+}
 `
 
 /**
