@@ -1,3 +1,28 @@
+
+/**
+ * @description Github Graphql Topic
+ * @fields
+ * 
+ * id
+ * 
+ * name
+ * 
+ * RelatedTopics
+ * 
+ * stargazerCount
+ * 
+ * Stargazers
+ * 
+ * viewerHasStarred
+ */
+
+ export const Topic = (fields:string = "") => `
+ topic {
+     name
+     ${fields}
+ }
+`
+
 /**
 * @description Github Graphql Topic
 * @defaultVariables
@@ -602,9 +627,20 @@ export const Languages = (first: number = 10, fields: string = '', orderBy: stri
  * 
 */
 
-export const AuditLog = (query:string = "", first: number = 10, fields: string = '', orderBy: string = "CREATED_AT", directions: string = "ASC", after: string = '', before: string = '', last: number = 0) => `
-    auditLog(query:${query}, first: ${first} ${after ? `, after: ${after} ` : ''} ${before ? `, before: ${before} ` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${directions}}) {
-        ${fields}
-        totalCount
-    }
+export const AuditLog = (params: queryVariables.AuditLog) => `
+    auditLog(query:${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""},
+        ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+        edges {
+			cursor
+			node {
+				${params.fields}
+			}
+		}
+		nodes {
+			${params.fields}  
+		}
+		${params.pageInfo ? params.pageInfo : ""}
+		totalCount
+	}
+
 `

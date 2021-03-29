@@ -1,5 +1,58 @@
 import { queryVariables } from ".";
 
+export * from './user'
+export * from './discussion'
+export * from './nodes'
+export * from './enterprise'
+export * from "./respository"
+
+/**
+ * @description Github Graphql Query for SecurityVulnerabilities
+ * @queryArguments 
+ ** ecosystem "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP"
+ ** severities "LOW" | "MODERATE" | "HIGH" | "CRITICAL"
+ ** after string
+ ** before string
+ ** first number
+ ** last number
+ * @queryVariables
+ ** @fields
+ ** Vulnerability
+ */
+
+export const  SecurityVulnerabilities = (params: queryVariables.VulnerabilitiesFields) => `
+	{
+		securityVulnerabilities(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, 
+    ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+				edges {
+					node {
+						${params.fields}
+					}
+				}
+				nodes {
+					${params.fields}
+				}
+				${params.pageInfo? params.pageInfo: ""}
+				totalCount
+		}
+	}
+	
+`
+
+/**
+ * @description Github Graphql Query for SecurityAdvisory
+ * @field
+ ** SecurityAdvisory
+ */
+
+ export const SecurityAdvisoryQuery = (ghsaId: string, fields: string) => `
+    {
+		securityAdvisory (ghsaId: "${ghsaId}") {
+			${fields}
+		}
+	}
+ `
+
 export * from "./user"
 export * from "./respository"
 
@@ -110,20 +163,23 @@ export const Viewer = (fields: string) => `
 `;
 
 /**
- * @description Github Graphql Query for Resource
- * @fields url resourcePath 
- * onOrganization onRelease onUser onIssue onPullRequest onRepository onTeamDiscussion onTeamDiscussionComment onCommit onCheckRun onMillestone onRepositoryTopic onPullRequestCommit
- * onMannequin onBot onClosedEvent onCrossReferencedEvent onMergedEvent onReviewDismissedEvent onConvertToDraftEvent onReadyForReviewEvent onGist
+ * @description Github Graphql Query for Repository
  * 
- */
- export const Resource = (url:string, fields: string) =>  `
- 	{
-		resource(url: "${url}") {
-			${fields}
-		}
- 	}
-`;
-
+ * @queryVariables 
+ * name string
+ * 
+ * owner string 
+ * 
+ * @fields Repository 
+ * 
+*/
+ export const RepositoryQuery = (name:string, owner: string, fields: string) => `
+    {
+      repository(name: "${name}", owner: "${owner}") {
+        ${fields}
+      }
+    }
+ `
 
 /**
  * @description Github Graphql Query for repository content (files and directories)
@@ -591,7 +647,7 @@ export const BranchDirectories = `
             }
         }
     }
-`;
+`
 
 /**
  * @description Github Graphql Query for commit content (files and directories)
@@ -804,77 +860,6 @@ export const CommitDirectories = `
       }
     }
   }
-`
-
-/**
- * @description Github Graphql Query for branch details
- * @queryVariable qualifiedName: "refs/heads/master"
- */
-export const Branch = `
-  query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){
-    repository(owner: $repositoryOwner, name: $repositoryName){
-      branch: ref(qualifiedName: $qualifiedName){
-        id
-        name
-        prefix
-      }
-    }
-  }
-`
-
-/**
- * @description Github Graphql Query for commit details
- * @queryVariable expression: "refs/heads/master" OR commit hash
- */
-export const Commit = `
-query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
-  repository(owner: $repositoryOwner, name: $repositoryName){
-    commit: object(expression: $expression){
-      ... on Commit{
-        authoredByCommitter
-        authoredDate
-        changedFiles
-        commitUrl
-        committedDate
-        committedViaWeb
-        deletions
-        id
-        message
-        messageBody
-        messageBodyHTML
-        messageHeadline
-        messageHeadlineHTML
-        oid
-        pushedDate
-        resourcePath
-        tarballUrl
-        treeResourcePath
-        treeUrl
-        url
-        viewerCanSubscribe
-        viewerSubscription
-        zipballUrl
-      }
-    }
-  }
-}
-`
-
-/**
- * @description Github Graphql Query for code of conduct
- * @queryVariable key: String!
- */
-export const CodeOfConduct = `
-query($key: String!){
-  codeOfConduct(key: $key){
-    name
-    id
-    body
-    key
-    resourcePath
-    url
-  }
-}
 `
 
 /**
