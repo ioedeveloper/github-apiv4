@@ -19,7 +19,7 @@
  * Gists
  * hasSponsorsListing
  * hovercard(primarySubjectId: "") {
- *  contexts {  
+ *  contexts {
  *      message
  *      octicon
  *      onGenericHovercardContext
@@ -52,7 +52,7 @@
  * Organization
  * Packages
  * PinnableItems
- * PinnedItemsRemaining  
+ * PinnedItemsRemaining
  * Project
  * Projects
  * projectsResourcePath
@@ -70,210 +70,79 @@
  * SponsorshipsAsSponsor
  * StarredRepositoriesonUser
  * status {
- *      message
- *      indicatesLimitedAvailability
- *      id
- *      expiresAt
- *      emojiHTML
- *      emoji
- *      createdAt
- *      updatedAt
- *      User
- *      Oganisation
- *      TopRepositories
- *      twitterUsername
- *      updatedAt
- *      url
- *      viewerCanChangePinnedItems
- *      viewerCanCreateProjects
- *      viewerCanFollow
- *      viewerCanSponsor
- *      viewerIsFollowing
- *      viewerIsSponsoring
- *      Watching
- *      websiteUrl
+ *  message
+ *  indicatesLimitedAvailability
+ *  id
+ *  expiresAt
+ *  emojiHTML
+ *  emoji
+ *  createdAt
+ *  updatedAt
+ *  User
+ *  Oganisation
+ *  TopRepositories
+ *  twitterUsername
+ *  updatedAt
+ *  url
+ *  viewerCanChangePinnedItems
+ *  viewerCanCreateProjects
+ *  viewerCanFollow
+ *  viewerCanSponsor
+ *  viewerIsFollowing
+ *  viewerIsSponsoring
+ *  Watching
+ *  websiteUrl
  * }
  *}
  */
 
 export const User = (fields: string) => `
-   id
-   name
-   ${fields}
-`
-/**
-* @description Github Graphql onUser
-* @defaultVariables teamsUrl message totalTeamCount
-* @queryVariables
-*   __typename
-*   octicon
-*   RelevantTeams
-*   teamsResourcePath
-*/
-
-
-export const onGenericHovercardContext = (fields: string) => `
-    ... on GenericHovercardContext {
-        teamsUrl 
-        message
-        ${fields}
-        totalTeamCount
-    }
-`
-
-/**
-* @description Github Graphql onOrganizationTeamsHovercardContext
-* @defaultVariables teamsUrl totalTeamCount
-* @queryVariables 
-* __typename
-* teamsResourcePath
-* RelevantOrganizations
-*/
-
-
-export const onOrganizationTeamsHovercardContext = (fields: string) => `
- ... on OrganizationTeamsHovercardContext {
-    teamsUrl
+    id
+    name
     ${fields}
-    totalTeamCount
- }
 `
 /**
-* @description Github Graphql onReviewStatusHovercardContext
-* @defaultVariables message
-* @queryVariables
- *  reviewDecision
- *  octicon
-*/
-
-
-export const onReviewStatusHovercardContext = (fields: string) => `
- ... on User {
-    message
-    ${fields}
- }
-`
-/**
-* @description Github Graphql onViewerHovercardContext
-* @defaultVariables message
-* @queryVariables
-*  __typename
-*  octicon
-*  viewer
-*/
-
-
-export const onViewerHovercardContext = (fields: string) => `
- ... on ViewerHovercardContext{
-    message
-    ${fields}
- }
-`
-/**
-* @description Github Graphql onUser
-* @defaultVariables id email
-* @queryVariables User
-*/
-
+ * @description Github Graphql onUser
+ * @defaultVariables id email
+ * @queryVariables User
+ */
 
 export const onUser = (fields: string) => `
- ... on User {
-     id
-     email
-     ${fields}
- }
+    ... on User {
+        id
+        email
+        ${fields}
+    }
 `
 
 /**
-* @description Github Graphql RelevantTeams
-* @defaultVariables totalCount
-* @queryVariables 
-* after string 
-* before string
-* first number
-* last number
-* @fields Teams
-* pageInfo PageInfo
-*/
+ * @description Github Graphql RelevantTeams
+ * @defaultVariables totalcount
+ * @queryVariables after
+ * befor
+ * first
+ * last
+ * edges {
+ *      cursor
+ *      node {
+ *         Teams
+ *      }
+ *  }
+ * nodes {
+ *      Teams
+ *      PageInfo
+ * }
+ */
 
-export const RelevantTeams = (first: number = 10, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
- relevantTeams(${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} first: ${first}, last: ${last}) {
-     edges {
-       cursor
-       node {
-          ${fields}
-       }
+export const RelevantTeams = (first: number = 10, fields: string = '', after: string = '', before: string = '', last: number) => `
+    relevantTeams(${after ? `, ${after && `, after: ${after}`}` : ''} ${before ? `, before: ${before}` : ''} first: ${first}, last: ${last}) {
+        ${fields}
+        totalcount
     }
-
-    nodes {
-       ${fields}
-    }
-    ${pageInfo ? pageInfo : ""}
-    totalCount
- }
-`
+ `
 
 /**
-* @description Github Graphql Followers
-* @defaultVariables totalCount
-* @queryVariables 
-* after string
-* before string
-* first number
-* last number
-* @fields User
-*/
-
-export const Followers = (first: number, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
-   followers(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
-     edges {
-       cursor
-       node {
-          ${fields}
-       }
-    }
-
-    nodes {
-       ${fields}
-    }
-    ${pageInfo ? pageInfo : ""}
-    totalCount
- }
-`
-
-/**
-* @description Github Graphql Following
-* @defaultVariables totalCount
-* @queryVariables 
-* after string
-* before string
-* first number
-* last number
-* @fields User
-* pageInfo PageInfo
-*/
-
-export const Following = (first: number = 10, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
-   following(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `last: ${last}` : ""}) {
-    edges {
-       cursor
-       node {
-          ${fields}
-       }
-    }
-
-    nodes {
-       ${fields}
-        
-    }
-   ${pageInfo ? pageInfo : ""}
-   totalCount
- }
-`
-
-
-/**
-* @description Github Graphql EnterpriseUserAccount  
+* @description Github Graphql EnterpriseUserAccount
 * @defaultVariables id name
 * @queryVariables avatarUrl
 * createdAt
@@ -292,25 +161,25 @@ export const Following = (first: number = 10, fields?: string, pageInfo?: string
 * }
 */
 
-export const EnterpriseUserAccount = (fields?: string) => `
-   id
-   name
-   ${fields}
+export const EnterpriseUserAccount = (fields: string = '') => `
+    id
+    name
+    ${fields}
 `
 
 /**
-* @description Github Graphql onEnterpriseUserAccount 
-* * @queryVariables EnterpriseUserAccount 
+* @description Github Graphql onEnterpriseUserAccount
+* * @queryVariables EnterpriseUserAccount
 */
 
-export const onEnterpriseUserAccount = (fields?: string) => `
- ... on EnterpriseUserAccount {
-     ${fields}
- }
+export const onEnterpriseUserAccount = (fields: string = '') => `
+    ... on EnterpriseUserAccount {
+        ${fields}
+    }
 `
 
 /**
-* @description Github Graphql OwnerInfo 
+* @description Github Graphql OwnerInfo
 * @queryVariables Admins
 * AffiliatedUsersWithTwoFactorDisabled
 * affiliatedUsersWithTwoFactorDisabledExist
@@ -368,22 +237,22 @@ export const OwnerInfo = (fields?: string) => `
 `
 
 /**
-* @description Github Graphql Admins  
+* @description Github Graphql Admins
 * @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
-* @queryArguments direction "ASC" | "DESC" 
+* @queryArguments direction "ASC" | "DESC"
 * orderBy "LOGIN" | "CREATED_AT"
 * after string
 * before string
 * first number
 * last number
 * query: string
-* @queryVariables 
+* @queryVariables
 * @fields User
-* pageInfo PageInfo 
+* pageInfo PageInfo
 */
 
-export const Admins = (query?: string, first: number = 10, fields?: string, pageInfo?: string, orderBy: string = "CREATED_AT", direction: string = "ASC", after?: string, before?: string, last?: number) => `
- members(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const Admins = (query?: string, first: number = 10, fields?: string, pageInfo?: string, orderBy: string = 'CREATED_AT', direction: string = 'ASC', after?: string, before?: string, last?: number) => `
+ members(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
@@ -394,26 +263,26 @@ export const Admins = (query?: string, first: number = 10, fields?: string, page
     nodes {
        ${fields}  
     }
-    ${pageInfo ? pageInfo : ""}
+    ${pageInfo || ''}
     totalCount
  }
 `
 
 /**
-* @description Github Graphql AffiliatedUsersWithTwoFactorDisabled  
+* @description Github Graphql AffiliatedUsersWithTwoFactorDisabled
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
-* @queryVariables 
+* @queryVariables
 * @fields User
 * pageInfo PageInfo
 */
 
 export const AffiliatedUsersWithTwoFactorDisabled = (first: number = 10, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
- affiliatedUsersWithTwoFactorDisabled(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""}, ${last ? `, last: ${last}` : ""}) {
+ affiliatedUsersWithTwoFactorDisabled(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''}, ${last ? `, last: ${last}` : ''}) {
      edges {
        cursor
        node {
@@ -424,26 +293,26 @@ export const AffiliatedUsersWithTwoFactorDisabled = (first: number = 10, fields?
     nodes {
        ${fields}  
     }
-    ${pageInfo ? pageInfo : ""}
+    ${pageInfo || ''}
     totalCount
  }
 `
 
 /**
-* @description Github Graphql AllowPrivateRepositoryForkingSettingOrganizations  
+* @description Github Graphql AllowPrivateRepositoryForkingSettingOrganizations
 * @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
-* @queryVariables 
+* @queryVariables
 * @fields Organization
 * pageInfo PageInfo
 */
 
 export const AllowPrivateRepositoryForkingSettingOrganizations = (first: number = 10, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
- AllowPrivateRepositoryForkingSettingOrganizations(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+ AllowPrivateRepositoryForkingSettingOrganizations(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
    edges {
       cursor
       node {
@@ -453,26 +322,26 @@ export const AllowPrivateRepositoryForkingSettingOrganizations = (first: number 
    nodes {
       ${fields}
    }
-   ${pageInfo ? pageInfo : ""}
+   ${pageInfo || ''}
    totalCount
  }
 `
 
 /**
-* @description Github Graphql DefaultRepositoryPermissionSettingOrganizations  
+* @description Github Graphql DefaultRepositoryPermissionSettingOrganizations
 * @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
-* @queryVariables 
+* @queryVariables
 * @fields Organization
 * pageInfo PageInfo
 */
 
 export const DefaultRepositoryPermissionSettingOrganizations = (first: number = 10, fields?: string, pageInfo?: string, after?: string, before?: string, last?: number) => `
- defaultRepositoryPermissionSettingOrganizations(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+ defaultRepositoryPermissionSettingOrganizations(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
    edges {
       cursor
       node {
@@ -482,21 +351,21 @@ export const DefaultRepositoryPermissionSettingOrganizations = (first: number = 
    nodes {
       ${fields}  
    }
-   ${pageInfo ? pageInfo : ""}
+   ${pageInfo || ''}
    totalCount
  }
 `
 
 /**
-* @description Github Graphql EnterpriseServerInstallations  
+* @description Github Graphql EnterpriseServerInstallations
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * connectedOnly boolean
-* @queryVariables 
+* @queryVariables
 * UserAccounts
 * UserAccountsUploads
 * createdAt
@@ -508,8 +377,8 @@ export const DefaultRepositoryPermissionSettingOrganizations = (first: number = 
 */
 
 export const EnterpriseServerInstallations = (first: number = 10, fields?: string, pageInfo?: string, connectedOnly: boolean = false, after?: string, before?: string, last?: number) => `
- enterpriseServerInstallations(first: ${first} ${connectedOnly ? `connectedOnly: ${connectedOnly}`:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} 
- ${last ? `, last: ${last}` : ""}) {
+ enterpriseServerInstallations(first: ${first} ${connectedOnly ? `connectedOnly: ${connectedOnly}` : ''} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} 
+ ${last ? `, last: ${last}` : ''}) {
    edges {
       cursor
       node {
@@ -519,20 +388,19 @@ export const EnterpriseServerInstallations = (first: number = 10, fields?: strin
    nodes {
       ${fields}
    }
-   ${pageInfo ? pageInfo : ""}
+   ${pageInfo || ''}
    totalCount
 `
-
 
 /**
 * @description Github Graphql UserAccounts
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
-* @queryVariables 
+* @queryVariables
 * email
 * enterpriseServerInstallation
 * organization
@@ -547,7 +415,7 @@ export const EnterpriseServerInstallations = (first: number = 10, fields?: strin
 */
 
 export const UserAccounts = (first: number = 10, fields?: string, pageInfo?: string, connectedOnly: boolean = false, after?: string, before?: string, last?: number) => `
- userAccounts(first: ${first} ${connectedOnly ? `, connectedOnly: `:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+ userAccounts(first: ${first} ${connectedOnly ? ', connectedOnly: ' : ''} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
      edges {
       cursor
       node {
@@ -558,7 +426,7 @@ export const UserAccounts = (first: number = 10, fields?: string, pageInfo?: str
     nodes {
       ${fields}
     }
-    ${pageInfo ? pageInfo : ""}
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -566,13 +434,13 @@ export const UserAccounts = (first: number = 10, fields?: string, pageInfo?: str
 /**
 * @description Github Graphql Emails
 * @defaultVariables totalCount orderBy = "EMAIL" direction = "ASC" first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * orderBy "EMAIL"
-* @queryVariables 
+* @queryVariables
 * createdAt
 * email
 * id
@@ -581,8 +449,8 @@ export const UserAccounts = (first: number = 10, fields?: string, pageInfo?: str
 * UserAccount
 */
 
-export const Emails = (first: number = 10, fields?: string, pageInfo?: string, orderBy: string = "EMAIL", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- emails(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const Emails = (first: number = 10, fields?: string, pageInfo?: string, orderBy: string = 'EMAIL', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ emails(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -593,7 +461,7 @@ export const Emails = (first: number = 10, fields?: string, pageInfo?: string, o
     nodes {
        ${fields}  
     }
-    ${pageInfo ? pageInfo : ""}
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -619,13 +487,13 @@ export const EnterpriseServerInstallation = (fields?: string) => `
 /**
 * @description Github Graphql UserAccountsUploads
 * @defaultVariables totalCount orderBy = "EMAIL" direction = "ASC" first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * orderBy "EMAIL"
-* @queryVariables 
+* @queryVariables
 * createdAt
 * EnterpriseServerInstallation
 * id
@@ -634,19 +502,19 @@ export const EnterpriseServerInstallation = (fields?: string) => `
 * updatedAt
 */
 
-export const UserAccountsUploads = (first: number = 10, fields?: string, pageInfo?: string, orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- userAccountsUploads(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const UserAccountsUploads = (first: number = 10, fields?: string, pageInfo?: string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ userAccountsUploads(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
     edges {
        cursor
        node {
           ${fields}
        }
-   	}
+   }
 
    nodes {
        ${fields}  
     }
-   ${pageInfo ? pageInfo : ""} 
+   ${pageInfo || ''} 
    totalCount
  }
 `
@@ -654,13 +522,13 @@ export const UserAccountsUploads = (first: number = 10, fields?: string, pageInf
 /**
 * @description Github Graphql IpAllowListEntries
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * orderBy "CREATED_AT" | "ALLOW_LIST_VALUE"
-* @queryVariables 
+* @queryVariables
 * allowListValue
 * createdAt
 * id
@@ -670,8 +538,8 @@ export const UserAccountsUploads = (first: number = 10, fields?: string, pageInf
 * updatedAt
 */
 
-export const IpAllowListEntries = (first: number = 10, pageInfo:string,orderBy: string = "CREATED_AT", directions: string = "ASC", fields?: string, after?: string, before?: string, last?: number) => `
- ipAllowListEntries(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const IpAllowListEntries = (first: number = 10, pageInfo:string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', fields?: string, after?: string, before?: string, last?: number) => `
+ ipAllowListEntries(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -682,7 +550,7 @@ export const IpAllowListEntries = (first: number = 10, pageInfo:string,orderBy: 
     nodes {
        ${fields}  
     }
-    ${pageInfo?pageInfo:""}
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -690,99 +558,7 @@ export const IpAllowListEntries = (first: number = 10, pageInfo:string,orderBy: 
 /**
 * @description Github Graphql MembersCanChangeRepositoryVisibilitySettingOrganizations
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
-* @queryArguments 
-* after string
-* before string
-* first number
-* last number
-* orderBy "CREATED_AT" | "LOGIN"
-* value boolean
-* @queryVariables  
-* Organization
-*/
-
-export const MembersCanChangeRepositoryVisibilitySettingOrganizations = (first: number = 10, fields?: string, pageInfo?:string,orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- membersCanChangeRepositoryVisibilitySettingOrganizations(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
-     edges {
-       cursor
-       node {
-          ${fields}
-       }
-    }
-
-    nodes {
-       ${fields}  
-    }
-    ${pageInfo?pageInfo:""}
-    totalCount
- }
-`
-/**
-* @description Github Graphql MembersCanCreateRepositoriesSettingOrganizations
-* @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
-* @queryArguments 
-* after string
-* before string
-* first number
-* last number
-* orderBy "CREATED_AT" | "LOGIN"
-* value "ALL" | "PRIVATE" | "DISABLED"
-* @queryVariables 
-* Organization
-*/
-
-export const MembersCanCreateRepositoriesSettingOrganizations = (first: number = 10, value: string = "ALL", fields?: string, pageInfo?:string,orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- membersCanCreateRepositoriesSettingOrganizations(value:${value}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
-     edges {
-       cursor
-       node {
-          ${fields}
-       }
-    }
-
-    nodes {
-       ${fields}  
-    }
-    ${pageInfo?pageInfo:""}
-    totalCount
- }
-`
-
-/**
-* @description Github Graphql MembersCanDeleteIssuesSettingOrganizations
-* @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
-* @queryArguments 
-* after string
-* before string
-* first number
-* last number
-* orderBy "CREATED_AT" | "LOGIN"
-* value boolean
-* @queryVariables  
-* Organization
-*/
-
-export const MembersCanDeleteIssuesSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?: string,orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- membersCanDeleteIssuesSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
-     edges {
-       cursor
-       node {
-          ${fields}
-       }
-    }
-
-    nodes {
-       ${fields}  
-    }
-    totalCount
-    ${pageInfo?pageInfo:""}
- }
-`
-
-/**
-* @description Github Graphql MembersCanDeleteRepositoriesSettingOrganizations
-* @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -793,8 +569,8 @@ export const MembersCanDeleteIssuesSettingOrganizations = (value: boolean = fals
 * Organization
 */
 
-export const MembersCanDeleteRepositoriesSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?: string,orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- membersCanDeleteRepositoriesSettingOrganizations(value: ${value}, ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} , first: ${first} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const MembersCanChangeRepositoryVisibilitySettingOrganizations = (first: number = 10, fields?: string, pageInfo?:string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ membersCanChangeRepositoryVisibilitySettingOrganizations(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -805,7 +581,99 @@ export const MembersCanDeleteRepositoriesSettingOrganizations = (value: boolean 
     nodes {
        ${fields}  
     }
-    ${pageInfo?pageInfo:""}
+    ${pageInfo || ''}
+    totalCount
+ }
+`
+/**
+* @description Github Graphql MembersCanCreateRepositoriesSettingOrganizations
+* @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
+* @queryArguments
+* after string
+* before string
+* first number
+* last number
+* orderBy "CREATED_AT" | "LOGIN"
+* value "ALL" | "PRIVATE" | "DISABLED"
+* @queryVariables
+* Organization
+*/
+
+export const MembersCanCreateRepositoriesSettingOrganizations = (first: number = 10, value: string = 'ALL', fields?: string, pageInfo?:string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ membersCanCreateRepositoriesSettingOrganizations(value:${value}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+     edges {
+       cursor
+       node {
+          ${fields}
+       }
+    }
+
+    nodes {
+       ${fields}  
+    }
+    ${pageInfo || ''}
+    totalCount
+ }
+`
+
+/**
+* @description Github Graphql MembersCanDeleteIssuesSettingOrganizations
+* @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
+* @queryArguments
+* after string
+* before string
+* first number
+* last number
+* orderBy "CREATED_AT" | "LOGIN"
+* value boolean
+* @queryVariables
+* Organization
+*/
+
+export const MembersCanDeleteIssuesSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?: string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ membersCanDeleteIssuesSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+     edges {
+       cursor
+       node {
+          ${fields}
+       }
+    }
+
+    nodes {
+       ${fields}  
+    }
+    totalCount
+    ${pageInfo || ''}
+ }
+`
+
+/**
+* @description Github Graphql MembersCanDeleteRepositoriesSettingOrganizations
+* @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
+* @queryArguments
+* after string
+* before string
+* first number
+* last number
+* orderBy "CREATED_AT" | "LOGIN"
+* value boolean
+* @queryVariables
+* Organization
+*/
+
+export const MembersCanDeleteRepositoriesSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?: string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ membersCanDeleteRepositoriesSettingOrganizations(value: ${value}, ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} , first: ${first} ${last ? `, last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${directions}}) {
+     edges {
+       cursor
+       node {
+          ${fields}
+       }
+    }
+
+    nodes {
+       ${fields}  
+    }
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -813,19 +681,19 @@ export const MembersCanDeleteRepositoriesSettingOrganizations = (value: boolean 
 /**
 * @description Github Graphql MembersCanInviteCollaboratorsSettingOrganizations
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * orderBy "CREATED_AT" | "LOGIN"
 * value boolean
-* @queryVariables 
+* @queryVariables
 * Organization
 */
 
-export const MembersCanInviteCollaboratorsSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?:string,orderBy: string = "CREATED_AT", direction: string = "ASC", after?: string, before?: string, last?: number) => `
- membersCanInviteCollaboratorsSettingOrganizations(value: ${value}, ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} , first: ${first} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const MembersCanInviteCollaboratorsSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?:string, orderBy: string = 'CREATED_AT', direction: string = 'ASC', after?: string, before?: string, last?: number) => `
+ membersCanInviteCollaboratorsSettingOrganizations(value: ${value}, ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} , first: ${first} ${last ? `, last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
@@ -835,7 +703,7 @@ export const MembersCanInviteCollaboratorsSettingOrganizations = (value: boolean
     nodes {
        ${fields}  
     }
-    ${pageInfo?pageInfo:""}
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -843,19 +711,19 @@ export const MembersCanInviteCollaboratorsSettingOrganizations = (value: boolean
 /**
 * @description Github Graphql MembersCanUpdateProtectedBranchesSettingOrganizations
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * orderBy "CREATED_AT" | "LOGIN"
 * value boolean
-* @queryVariables 
+* @queryVariables
 * Organization
 */
 
-export const MembersCanUpdateProtectedBranchesSettingOrganizations = (value: boolean = false, first: number = 10, pageInfo?:string,orderBy: string = "CREATED_AT", directions: string = "ASC", fields?: string, after?: string, before?: string, last?: number) => `
- membersCanUpdateProtectedBranchesSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const MembersCanUpdateProtectedBranchesSettingOrganizations = (value: boolean = false, first: number = 10, pageInfo?:string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', fields?: string, after?: string, before?: string, last?: number) => `
+ membersCanUpdateProtectedBranchesSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -866,7 +734,7 @@ export const MembersCanUpdateProtectedBranchesSettingOrganizations = (value: boo
     nodes {
        ${fields}  
     }
-    ${pageInfo?pageInfo:""}
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -874,19 +742,19 @@ export const MembersCanUpdateProtectedBranchesSettingOrganizations = (value: boo
 /**
 * @description Github Graphql MembersCanViewDependencyInsightsSettingOrganizations
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * orderBy "CREATED_AT" | "LOGIN"
 * value boolean
-* @queryVariables 
+* @queryVariables
 * Organization
 */
 
-export const MembersCanViewDependencyInsightsSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?:string,orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- membersCanViewDependencyInsightsSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const MembersCanViewDependencyInsightsSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?:string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ membersCanViewDependencyInsightsSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -897,7 +765,7 @@ export const MembersCanViewDependencyInsightsSettingOrganizations = (value: bool
     nodes {
        ${fields}  
     }
-    ${pageInfo?pageInfo:""}
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -905,19 +773,19 @@ export const MembersCanViewDependencyInsightsSettingOrganizations = (value: bool
 /**
 * @description Github Graphql OrganizationProjectsSettingOrganizations
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * orderBy "CREATED_AT" | "LOGIN"
 * value boolean
-* @queryVariables 
+* @queryVariables
 * Organization
 */
 
-export const OrganizationProjectsSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?:string,orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- organizationProjectsSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const OrganizationProjectsSettingOrganizations = (value: boolean = false, first: number = 10, fields?: string, pageInfo?:string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ organizationProjectsSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -928,7 +796,7 @@ export const OrganizationProjectsSettingOrganizations = (value: boolean = false,
     nodes {
        ${fields}  
     }
-    ${pageInfo?pageInfo:""}
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -936,7 +804,7 @@ export const OrganizationProjectsSettingOrganizations = (value: boolean = false,
 /**
 * @description Github Graphql OutsideCollaborators
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -945,12 +813,12 @@ export const OrganizationProjectsSettingOrganizations = (value: boolean = false,
 * orderBy "CREATED_AT" | "LOGIN"
 * query string
 * visibility "PRIVATE" | "PUBLIC" | "INTERNAL"
-* @queryVariables 
+* @queryVariables
 * User
 */
 
-export const OutsideCollaborators = (query?: string, fields?: string, pageInfo?: string,orderBy: string = "CREATED_AT", directions: string = "ASC", first: number = 10, visibility: string = "PUBLIC", after?: string, before?: string, last?: number) => `
- outsideCollaborators(query: ${query}, first: ${first} ${visibility ? `, visibility: ${visibility}`:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const OutsideCollaborators = (query?: string, fields?: string, pageInfo?: string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', first: number = 10, visibility: string = 'PUBLIC', after?: string, before?: string, last?: number) => `
+ outsideCollaborators(query: ${query}, first: ${first} ${visibility ? `, visibility: ${visibility}` : ''} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -961,7 +829,7 @@ export const OutsideCollaborators = (query?: string, fields?: string, pageInfo?:
     nodes {
        ${fields}  
     }
-    ${pageInfo?pageInfo:""}
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -969,7 +837,7 @@ export const OutsideCollaborators = (query?: string, fields?: string, pageInfo?:
 /**
 * @description Github Graphql PendingAdminInvitations
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -983,8 +851,8 @@ export const OutsideCollaborators = (query?: string, fields?: string, pageInfo?:
 * Invitation
 * */
 
-export const PendingAdminInvitations = (query?: string, first: number = 10, fields?: string, pageInfo?: string,orderBy: string = "CREATED_AT", directions: string = "ASC", visibility: string = "PUBLIC", after?: string, before?: string, last?: number) => `
- pendingAdminInvitations(query: ${query} ${visibility ?`, ${visibility}`:""}, ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} , first: ${first} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const PendingAdminInvitations = (query?: string, first: number = 10, fields?: string, pageInfo?: string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', visibility: string = 'PUBLIC', after?: string, before?: string, last?: number) => `
+ pendingAdminInvitations(query: ${query} ${visibility ? `, ${visibility}` : ''}, ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} , first: ${first} ${last ? `, last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -995,7 +863,7 @@ export const PendingAdminInvitations = (query?: string, first: number = 10, fiel
     nodes {
        ${fields}  
     }
-    ${pageInfo?pageInfo:""}
+    ${pageInfo || ''}
     totalCount
  }
 `
@@ -1003,7 +871,7 @@ export const PendingAdminInvitations = (query?: string, first: number = 10, fiel
 /**
 * @description Github Graphql PendingCollaboratorInvitations
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -1017,8 +885,8 @@ export const PendingAdminInvitations = (query?: string, first: number = 10, fiel
 * Invitation
 */
 
-export const PendingCollaboratorInvitations = (query?: string, first: number = 10, fields?: string, pageInfo?: "", orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- pendingCollaboratorInvitations(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const PendingCollaboratorInvitations = (query?: string, first: number = 10, fields?: string, pageInfo?: '', orderBy: string = 'CREATED_AT', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ pendingCollaboratorInvitations(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -1029,16 +897,15 @@ export const PendingCollaboratorInvitations = (query?: string, first: number = 1
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `
 
-
 /**
 * @description Github Graphql PendingCollaborators
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -1052,8 +919,8 @@ export const PendingCollaboratorInvitations = (query?: string, first: number = 1
 * Invitation
 */
 
-export const PendingCollaborators = (query?: string, first: number = 10, fields?: string, pageInfo?:string,orderBy: string = "CREATED_AT", directions: string = "ASC", after?: string, before?: string, last?: number) => `
- pendingCollaborators(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""},orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const PendingCollaborators = (query?: string, first: number = 10, fields?: string, pageInfo?:string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', after?: string, before?: string, last?: number) => `
+ pendingCollaborators(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''},orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -1064,7 +931,7 @@ export const PendingCollaborators = (query?: string, first: number = 10, fields?
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `
@@ -1072,7 +939,7 @@ export const PendingCollaborators = (query?: string, first: number = 10, fields?
 /**
 * @description Github Graphql PendingMemberInvitations
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false visibility = "PUBLIC"
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -1086,8 +953,8 @@ export const PendingCollaborators = (query?: string, first: number = 10, fields?
 * Invitation
 */
 
-export const PendingMemberInvitations = (query?: string, fields?: string, pageInfo?:string,orderBy: string = "CREATED_AT", directions: string = "ASC", first: number = 10, after?: string, before?: string, last?: number) => `
- pendingMemberInvitations(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
+export const PendingMemberInvitations = (query?: string, fields?: string, pageInfo?:string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', first: number = 10, after?: string, before?: string, last?: number) => `
+ pendingMemberInvitations(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
      edges {
        cursor
        node {
@@ -1098,7 +965,7 @@ export const PendingMemberInvitations = (query?: string, fields?: string, pageIn
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
     totalUniqueUserCount
  }
@@ -1107,7 +974,7 @@ export const PendingMemberInvitations = (query?: string, fields?: string, pageIn
 /**
 * @description Github Graphql AssignableUsers
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false affiliations "OWNER" isFork = false isLocked = false privacy = "PUBLIC"
-* @queryArguments 
+* @queryArguments
 * affiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
 * ownerAffiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
 * after string
@@ -1122,21 +989,21 @@ export const PendingMemberInvitations = (query?: string, fields?: string, pageIn
 */
 
 export const AssignableUsers = (query?: string, first: number = 10, fields?: string, pageInfo?:string, after?: string, before?: string, last?: number) => `
- 	assignableUsers(query: ${query}, ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} first: ${first}, ${last ? ", last:${last}" : ""}) {
-		edges {
-			cursor
-			node {
-			   ${fields}
-			}
-		 }
-	 
-		 nodes {
-			${fields}  
-		 }
-		 ${pageInfo?pageInfo:""}
-		 totalCount
-	  }
- 	}
+assignableUsers(query: ${query}, ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} first: ${first}, ${last ? `, last:${last}` : ''}) {
+   edges {
+      cursor
+      node {
+         ${fields}
+      }
+      }
+   
+      nodes {
+      ${fields}  
+      }
+      ${pageInfo || ''}
+      totalCount
+   }
+}
 `
 
 /**
@@ -1150,7 +1017,6 @@ export const AssignableUsers = (query?: string, first: number = 10, fields?: str
 * updatedAt
 * url
 */
-
 
 export const onMannequin = (fields?: string) => `
  ... on Mannequin {
@@ -1171,7 +1037,6 @@ export const onMannequin = (fields?: string) => `
 * url
 */
 
-
 export const onBot = (fields?: string) => `
 ... on Bot {
   id
@@ -1183,7 +1048,7 @@ export const onBot = (fields?: string) => `
 /**
 * @description Github Graphql Author
 * @defaultVariables id
-* @queryVariables 
+* @queryVariables
 *  avatarUrl
 *  login
 *  resourcePath
@@ -1201,20 +1066,20 @@ export const Author = (fields?: string) => `
 `
 
 /**
-* @description Github Graphql Author  
+* @description Github Graphql Author
 * @defaultVariables totalCount first = 10
-* @queryArguments direction "ASC" | "DESC" 
+* @queryArguments direction "ASC" | "DESC"
 * after string
 * before string
 * first number
 * last number
-* 
-* @queryVariables 
+*
+* @queryVariables
 * Author
 */
 
-export const Authors = (first: number = 10, fields?: string, pageInfo?:string,after?: string, before?: string, last?: number) => `
- authors(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+export const Authors = (first: number = 10, fields?: string, pageInfo?:string, after?: string, before?: string, last?: number) => `
+ authors(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
      edges {
        cursor
        node {
@@ -1225,7 +1090,7 @@ export const Authors = (first: number = 10, fields?: string, pageInfo?:string,af
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}	
+${pageInfo || ''}
     totalCount
  }
 `
@@ -1233,7 +1098,7 @@ export const Authors = (first: number = 10, fields?: string, pageInfo?:string,af
 /**
 * @description Github Graphql Editor
 * @defaultVariables id
-* @queryVariables 
+* @queryVariables
 * avatarUrl
 * login
 * resourcePath
@@ -1246,36 +1111,36 @@ export const Authors = (first: number = 10, fields?: string, pageInfo?:string,af
 */
 
 export const Editor = (fields?: string) => `
- 	id
- 	${fields}        
+id
+${fields}        
 `
 
 /**
-* @description Github Graphql UserContentEdits  
+* @description Github Graphql UserContentEdits
 * @defaultVariables totalCount first = 10
-* @queryArguments direction "ASC" | "DESC" 
+* @queryArguments direction "ASC" | "DESC"
 * after string
 * before string
 * first number
 * last number
-* 
-* @queryVariables 
+*
+* @queryVariables
 * createdAt
 * deletedAt
 * deletedBy {
-* 	Owner
+* Owner
 * }
 * diff
 * editedAt
 * editor {
-* 	Owner
+* Owner
 * }
 * id
 * updatedAt
 */
 
-export const UserContentEdits = (first: number = 10, fields?: string, pageInfo?:string,after?: string, before?: string, last?: number) => `
- userContentEdits(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+export const UserContentEdits = (first: number = 10, fields?: string, pageInfo?:string, after?: string, before?: string, last?: number) => `
+ userContentEdits(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
      edges {
        cursor
        node {
@@ -1286,26 +1151,26 @@ export const UserContentEdits = (first: number = 10, fields?: string, pageInfo?:
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `
 
 /**
-* @description Github Graphql MentionableUsers  
+* @description Github Graphql MentionableUsers
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * query string
-* @queryVariables 
+* @queryVariables
 *  User
 */
 
-export const MentionableUsers = (query?: string, first: number = 10, fields?: string, pageInfo?:string,after?: string, before?: string, last?: number) => `
- mentionableUsers(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+export const MentionableUsers = (query?: string, first: number = 10, fields?: string, pageInfo?:string, after?: string, before?: string, last?: number) => `
+ mentionableUsers(query: ${query}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
      edges {
        cursor
        node {
@@ -1316,25 +1181,25 @@ export const MentionableUsers = (query?: string, first: number = 10, fields?: st
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `
 /**
 * @description Github Graphql RepositoryProjectsSettingOrganizations
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
 * query string
-* @queryVariables 
+* @queryVariables
 * User
 */
 
-export const RepositoryProjectsSettingOrganizations = (value: boolean = false, pageInfo?:string,first: number = 10, fields?: string, after?: string, before?: string, last?: number) => `
- repositoryProjectsSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+export const RepositoryProjectsSettingOrganizations = (value: boolean = false, pageInfo?:string, first: number = 10, fields?: string, after?: string, before?: string, last?: number) => `
+ repositoryProjectsSettingOrganizations(value: ${value}, first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
      edges {
        cursor
        node {
@@ -1345,7 +1210,7 @@ export const RepositoryProjectsSettingOrganizations = (value: boolean = false, p
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `
@@ -1366,8 +1231,8 @@ export const RepositoryProjectsSettingOrganizations = (value: boolean = false, p
 */
 
 export const SamlIdentityProvider = (fields: string) => `
- 	id
- 	${fields}
+id
+${fields}
 `
 
 /**
@@ -1386,12 +1251,10 @@ export const SamlIdentityProvider = (fields: string) => `
 * username
 */
 
-
 export const Identity = (fields: string) => `
  givenName
  ${fields}
 `
-
 
 /**
 * @description Github Graphql ExternalIdenty
@@ -1421,27 +1284,25 @@ export const Identity = (fields: string) => `
 * ssoUrl
 */
 
-
-
 export const ExternalIdenty = (fields: string) => `
- 	id
- 	${fields}
+id
+${fields}
 `
 
 /**
 * @description Github Graphql ExternalIdentities
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
 * last number
-* @queryVariables 
+* @queryVariables
 * ExternalIdenty
 */
 
-export const ExternalIdentities = (first: number = 10, fields?: string, pageInfo?:string,after?: string, before?: string, last?: number) => `
- externalIdentities(first: ${first} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+export const ExternalIdentities = (first: number = 10, fields?: string, pageInfo?:string, after?: string, before?: string, last?: number) => `
+ externalIdentities(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
      edges {
        cursor
        node {
@@ -1452,7 +1313,7 @@ export const ExternalIdentities = (first: number = 10, fields?: string, pageInfo
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `
@@ -1460,7 +1321,7 @@ export const ExternalIdentities = (first: number = 10, fields?: string, pageInfo
 /**
 * @description Github Graphql SamlIdentityProviderSettingOrganizations
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -1470,8 +1331,8 @@ export const ExternalIdentities = (first: number = 10, fields?: string, pageInfo
 * Organization
 */
 
-export const SamlIdentityProviderSettingOrganizations = (value: string, first: number = 10, fields?: string, pageInfo?:string,after?: string, before?: string, last?: number) => `
- samlIdentityProviderSettingOrganizations(first: ${first} ${value ? `, value: ${value}`:""} ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}) {
+export const SamlIdentityProviderSettingOrganizations = (value: string, first: number = 10, fields?: string, pageInfo?:string, after?: string, before?: string, last?: number) => `
+ samlIdentityProviderSettingOrganizations(first: ${first} ${value ? `, value: ${value}` : ''} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
      edges {
        cursor
        node {
@@ -1482,15 +1343,15 @@ export const SamlIdentityProviderSettingOrganizations = (value: string, first: n
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `
 
 /**
-* @description Github Graphql SupportEntitlements  
+* @description Github Graphql SupportEntitlements
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -1502,9 +1363,8 @@ export const SamlIdentityProviderSettingOrganizations = (value: string, first: n
 * onUser
 */
 
-
-export const SupportEntitlements = (first: number = 10, fields?: string, pageInfo?: string,orderBy: string = "DUE_DATE", direction?: "ASC", after?: string, before?: string, last?: number) => `
- supportEntitlements( first: ${first} ${after ? `, ${after} `:""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const SupportEntitlements = (first: number = 10, fields?: string, pageInfo?: string, orderBy: string = 'DUE_DATE', direction?: 'ASC', after?: string, before?: string, last?: number) => `
+ supportEntitlements( first: ${first} ${after ? `, ${after} ` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
@@ -1515,14 +1375,14 @@ export const SupportEntitlements = (first: number = 10, fields?: string, pageInf
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `
 /**
 * @description Github Graphql TeamDiscussionsSettingOrganizations
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -1533,9 +1393,8 @@ export const SupportEntitlements = (first: number = 10, fields?: string, pageInf
 * Organization
 */
 
-
-export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fields?: string, pageInfo?:string,orderBy: string = "DUE_DATE", direction?: "ASC", first: number = 10, after?: string, before?: string, last?: number) => `
- teamDiscussionsSettingOrganizations(value: ${value}, first: ${first} ${after ? `,  ${after} `:""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fields?: string, pageInfo?:string, orderBy: string = 'DUE_DATE', direction?: 'ASC', first: number = 10, after?: string, before?: string, last?: number) => `
+ teamDiscussionsSettingOrganizations(value: ${value}, first: ${first} ${after ? `,  ${after} ` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
@@ -1546,7 +1405,7 @@ export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fiel
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `
@@ -1554,7 +1413,7 @@ export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fiel
 /**
 * @description Github Graphql TwoFactorRequiredSettingOrganizations
 * @defaultVariables totalCount value = false first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 * before string
 * first number
@@ -1562,13 +1421,12 @@ export const TeamDiscussionsSettingOrganizations = (value: boolean = false, fiel
 * value boolean
 * orderBy "LOGIN" | "CREATED_AT"
 * direction "ASC" | "DESC"
-* @queryVariables 
+* @queryVariables
 * Organization
 */
 
-
-export const TwoFactorRequiredSettingOrganizations = (value: boolean = false, first: number = 10, pageInfo?:string,after?: string, fields?: string, orderBy: string = "DUE_DATE", direction?: "ASC", before?: string, last?: number) => `
- twoFactorRequiredSettingOrganizations(value: ${value}, first: ${first} ${after ? `,  ${after} `:""} ${before ? `, before: ${before}` : ""} ${last ? `, last: ${last}` : ""}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
+export const TwoFactorRequiredSettingOrganizations = (value: boolean = false, first: number = 10, pageInfo?:string, after?: string, fields?: string, orderBy: string = 'DUE_DATE', direction?: 'ASC', before?: string, last?: number) => `
+ twoFactorRequiredSettingOrganizations(value: ${value}, first: ${first} ${after ? `,  ${after} ` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
      edges {
        cursor
        node {
@@ -1579,7 +1437,7 @@ export const TwoFactorRequiredSettingOrganizations = (value: boolean = false, fi
     nodes {
        ${fields}  
     }
-	${pageInfo?pageInfo:""}
+${pageInfo || ''}
     totalCount
  }
 `

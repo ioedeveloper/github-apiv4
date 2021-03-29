@@ -39,6 +39,19 @@ export const SecurityAdvisories = (params: queryVariables.SecurityAdvisoriesFiel
 	}
 `
 
+/**
+ * @description Github Graphql Query for TopicQuery
+ * fields Topic
+ */
+
+export const TopicQuery = (name: string, fields: string) => `
+{
+  topic (name: "${name}"){
+    ${fields}
+  }
+}
+
+`
 
 /**
  * @description Github Graphql Query for Viewer
@@ -50,7 +63,7 @@ export const Viewer = (fields: string) => `
         ${fields}
       }
     }
-`;
+`
 
 /**
  * @description Github Graphql Query for repository content (files and directories)
@@ -908,6 +921,20 @@ export const ViewerFollowers = `
       }
     }
   }
+`
+
+/**
+ * @description Github Graphql Query for Github User
+ * @queryVariable
+ * login username
+ * fields User
+ */
+export const UserQuery = (login: string, fields:string) => `
+{
+  user (login: "${login}") {
+    ${fields}
+  }
+}
 `
 
 /**
