@@ -242,7 +242,6 @@ export declare interface FileEntries {
     };
 }
 
-
 export declare interface FileEntriesContent {
     name: string;
     type: string;

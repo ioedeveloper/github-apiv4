@@ -274,7 +274,6 @@ export const onViewerHovercardContext = (fields: string) => `
 * @fields User
 */
 
-
 export const onUser = (fields: string) => `
  ... on User {
      id
@@ -382,7 +381,7 @@ export const Following = (params: queryVariables.BasicFields) => `
 
 
 /**
-* @description Github Graphql EnterpriseUserAccount  
+* @description Github Graphql EnterpriseUserAccount
 * @defaultVariables id name
 * @fields avatarUrl
 
@@ -409,7 +408,7 @@ export const Following = (params: queryVariables.BasicFields) => `
 * }
 */
 
-export const EnterpriseUserAccount = (fields: string = "") => `
+export const EnterpriseUserAccount = (fields: string = '') => `
     id
     name
     ${fields}
@@ -420,7 +419,7 @@ export const EnterpriseUserAccount = (fields: string = "") => `
 * * @fields EnterpriseUserAccount 
 */
 
-export const onEnterpriseUserAccount = (fields: string = "") => `
+export const onEnterpriseUserAccount = (fields: string = '') => `
     ... on EnterpriseUserAccount {
         ${fields}
     }
@@ -573,9 +572,9 @@ export const Admins = (params: queryVariables.AdminFields) => `
 `
 
 /**
-* @description Github Graphql AffiliatedUsersWithTwoFactorDisabled  
+* @description Github Graphql AffiliatedUsersWithTwoFactorDisabled
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 
 * before string
@@ -583,7 +582,6 @@ export const Admins = (params: queryVariables.AdminFields) => `
 * first number
 
 * last number
-
 * @fields User
 
 * pageInfo PageInfo
@@ -607,9 +605,9 @@ export const AffiliatedUsersWithTwoFactorDisabled = (params: queryVariables.Basi
 `
 
 /**
-* @description Github Graphql AllowPrivateRepositoryForkingSettingOrganizations  
+* @description Github Graphql AllowPrivateRepositoryForkingSettingOrganizations
 * @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 
 * before string
@@ -617,7 +615,6 @@ export const AffiliatedUsersWithTwoFactorDisabled = (params: queryVariables.Basi
 * first number
 
 * last number
-
 * @fields Organization
 
 * pageInfo PageInfo
@@ -640,9 +637,9 @@ export const AllowPrivateRepositoryForkingSettingOrganizations = (params: queryV
 `
 
 /**
-* @description Github Graphql DefaultRepositoryPermissionSettingOrganizations  
+* @description Github Graphql DefaultRepositoryPermissionSettingOrganizations
 * @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 
 * before string
@@ -650,7 +647,6 @@ export const AllowPrivateRepositoryForkingSettingOrganizations = (params: queryV
 * first number
 
 * last number
-
 * @fields Organization
 
 * pageInfo PageInfo
@@ -673,9 +669,9 @@ export const DefaultRepositoryPermissionSettingOrganizations = (params: queryVar
 `
 
 /**
-* @description Github Graphql EnterpriseServerInstallations  
+* @description Github Graphql EnterpriseServerInstallations
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 
 * before string
@@ -721,11 +717,10 @@ export const EnterpriseServerInstallations = (params: queryVariables.EnterpriseS
    totalCount
 `
 
-
 /**
 * @description Github Graphql UserAccounts
 * @defaultVariables totalCount first = 10
-* @queryArguments 
+* @queryArguments
 * after string
 
 * before string
@@ -882,7 +877,7 @@ export const UserAccountsUploads = (params: queryVariables.Emails) => `
        node {
           ${params.fields}
        }
-   	}
+   }
 
    nodes {
        ${params.fields}  
@@ -1355,7 +1350,6 @@ export const PendingCollaboratorInvitations = (params: queryVariables.Collaborat
  }
 `
 
-
 /**
 * @description Github Graphql PendingCollaborators
 * @defaultVariables totalCount
@@ -1504,7 +1498,6 @@ export const AssignableUsers = (params: queryVariables.AdminFields) => `
 * url
 */
 
-
 export const onMannequin = (fields?: string) => `
  ... on Mannequin {
      id
@@ -1529,7 +1522,6 @@ export const onMannequin = (fields?: string) => `
 
 * url
 */
-
 
 export const onBot = (fields?: string) => `
 ... on Bot {
@@ -1568,9 +1560,9 @@ export const Owner = (fields?: string) => `
 `
 
 /**
-* @description Github Graphql Author  
+* @description Github Graphql Author
 * @defaultVariables totalCount first = 10
-* @queryArguments direction "ASC" | "DESC" 
+* @queryArguments direction "ASC" | "DESC"
 * after string
 
 * before string
@@ -1624,8 +1616,8 @@ export const Authors = (params: queryVariables.BasicFields) => `
 */
 
 export const Editor = (fields?: string) => `
- 	id
- 	${fields}        
+id
+${fields}        
 `
 
 
@@ -2027,8 +2019,8 @@ export const PinnedItems = (params: queryVariables.PinItems) => `
 */
 
 export const SamlIdentityProvider = (fields: string) => `
- 	id
- 	${fields}
+id
+${fields}
 `
 
 /**
@@ -2052,12 +2044,10 @@ export const SamlIdentityProvider = (fields: string) => `
 * username
 */
 
-
 export const Identity = (fields: string) => `
  givenName
  ${fields}
 `
-
 
 /**
 * @description Github Graphql ExternalIdenty
@@ -2100,11 +2090,9 @@ export const Identity = (fields: string) => `
 
 */
 
-
-
 export const ExternalIdenty = (fields: string) => `
- 	id
- 	${fields}
+id
+${fields}
 `
 
 /**
