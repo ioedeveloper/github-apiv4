@@ -63,7 +63,7 @@ export declare interface UserInfo {
             cursor: string;
             node: Package;
         }];
-        nodes: [Package];
+        nodes: Package[];
         pageInfo: PageInfo;
         totalCount: number;
     }
@@ -72,7 +72,7 @@ export declare interface UserInfo {
             cursor: string;
             node: [
                 Gist, Repositories
-            ] 
+            ]
         }]
         nodes: [
             Gist, Repositories
@@ -85,7 +85,7 @@ export declare interface UserInfo {
             cursor: string;
             node: [
                 Gist, Repositories
-            ] 
+            ]
         }]
         nodes: [
             Gist, Repositories
@@ -106,7 +106,7 @@ export declare interface UserInfo {
         totalCount: number
     }
     projectsResourcePath: string;
-    projectsUrl:string;
+    projectsUrl: string;
     publicKeys: {
         edges: [{
             cursor: string;
@@ -114,20 +114,20 @@ export declare interface UserInfo {
                 accessedAt: string
                 createdAt: string
                 fingerprint: string
-                id:string;
+                id: string;
                 isReadOnly: boolean
                 key: string
                 updatedAt: string
-              };
+            };
         }]
         nodes: [{
-          accessedAt: string
-          createdAt: string
-          fingerprint: string
-          id:string;
-          isReadOnly: boolean
-          key: string
-          updatedAt: string
+            accessedAt: string
+            createdAt: string
+            fingerprint: string
+            id: string;
+            isReadOnly: boolean
+            key: string
+            updatedAt: string
         }]
         pageInfo: PageInfo;
         totalCount: number;
@@ -141,16 +141,7 @@ export declare interface UserInfo {
         pageInfo: PageInfo;
         totalCount: number;
     }
-    repositories: {
-        edges: [{
-            cursor: string,
-            node: Repository
-        }]
-        nodes: [Repository]
-        pageInfo: PageInfo;
-        totalCount: number;
-        totalDiskUsage: number
-    }
+    repositories: Repositories
     repositoriesContributedTo: {
         edges: [{
             cursor: string,
@@ -204,7 +195,7 @@ export declare interface UserInfo {
     status: {
         createdAt: string;
         emoji: string;
-        emojiHTML:string;
+        emojiHTML: string;
         expiresAt: string;
         id: string;
         indicatesLimitedAvailability: boolean;
@@ -222,7 +213,7 @@ export declare interface UserInfo {
         pageInfo: PageInfo;
         totalCount: number;
     }
-    twitterUsername:string;
+    twitterUsername: string;
     updatedAt: string;
     watching: {
         edges: [{
@@ -466,7 +457,7 @@ export declare interface Followers {
         node: UserInfo;
         cursor: string;
     }];
-    nodes:[UserInfo];
+    nodes: [UserInfo];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -476,7 +467,7 @@ export declare interface Following {
         node: UserInfo;
         cursor: string;
     }];
-    nodes:[UserInfo]
+    nodes: [UserInfo]
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -486,19 +477,19 @@ export declare interface User {
 }
 
 export declare interface Repositories {
-    
-            edges: [{
-                node: RepositoryInfo;
-                cursor: string;
-            }];
-            nodes: [RepositoryInfo]
-            pageInfo: {
-                endCursor: string;
-                hasNextPage: string;
-                hasPreviousPage: string;
-                startCursor: string;
-            }
-            totalCount: number;
+
+    edges: [{
+        node: RepositoryInfo;
+        cursor: string;
+    }];
+    nodes: RepositoryInfo[];
+    pageInfo: {
+        endCursor: string;
+        hasNextPage: string;
+        hasPreviousPage: string;
+        startCursor: string;
+    }
+    totalCount: number;
 }
 
 export declare interface Author {
@@ -833,8 +824,8 @@ export declare interface Goal {
     title: string;
 }
 
-export declare interface Tier{
-    adminInfo:{
+export declare interface Tier {
+    adminInfo: {
         sponsorShips: {
             edges: [{
                 cursor: string;
@@ -845,7 +836,7 @@ export declare interface Tier{
         };
 
     }
-    createdAt:string;
+    createdAt: string;
     description: string;
     descriptionHTML: string;
     id: string;
@@ -860,14 +851,14 @@ export declare interface Sponsor {
     user: User;
 }
 export declare interface SponsorShip {
-    createdAt:string;
+    createdAt: string;
     id: string;
     maintainer: User;
     privacyLevel: string;
     sponsor: User
     sponsorEntity: Sponsor
     sponsorable: {
-        hasSponsorsListing:  boolean;
+        hasSponsorsListing: boolean;
         isSponsoredBy: string;
         isSponsoringViewer: boolean;
         sponsorsListing: SponsorsListing;
@@ -898,11 +889,11 @@ export declare interface SponsorShip {
     tier: Tier
 }
 
-export declare interface SponsorsListing{
+export declare interface SponsorsListing {
     activeGoal: Goal;
     createdAt: string;
-    fullDescription:string;
-    fullDescriptionHTML:string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
     id: string;
     name: string
     shortDescription: string;
@@ -912,20 +903,22 @@ export declare interface SponsorsListing{
             cursor: string;
             node: Tier;
         }];
-        nodes: [Tier];
+        nodes: Tier[];
         pageInfo: PageInfo;
         totalCount: number;
     }
 }
 
 export declare interface RepositoryOwner {
-    repositoryOwner :{
-        avatarUrl:string;
-        id:string;
-        resourcePath:string;
-        url: string;
-        login: string;
-        repository: Repository;
-        repositories: Repositories;
-    }
+    repositoryOwner: RepositoryOwnerItem;
+}
+
+declare interface RepositoryOwnerItem extends UserInfo, Organization {
+    avatarUrl: string;
+    id: string;
+    resourcePath: string;
+    url: string;
+    login: string;
+    repository: Repository;
+    repositories: Repositories;
 }
