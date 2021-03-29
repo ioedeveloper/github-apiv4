@@ -15,6 +15,17 @@ export const Viewer = (fields: string) =>  `
 /**
  * @description Github Graphql Query for repository content (files and directories)
  */
+ export const Repository = (name:string, owner: string, fields: string) => `
+    {
+      repository(name: ${name}, owner: ${owner}) {
+        ${fields}
+      }
+    }
+ `
+
+/**
+ * @description Github Graphql Query for repository content (files and directories)
+ */
 export const RepositoryContent = `
     query($repositoryOwner: String!, $repositoryName: String!){
         repository(owner: $repositoryOwner, name: $repositoryName){
@@ -478,61 +489,6 @@ export const BranchDirectories = `
             }
         }
     }
-`
-
-/**
- * @description Github Graphql Query for repository details
- * @type string
- */
-export const Repository = `
-  query($repositoryOwner: String!, $repositoryName: String!){
-    repository(owner: $repositoryOwner, name: $repositoryName){
-      createdAt
-      databaseId
-      description
-      descriptionHTML
-      diskUsage
-      forkCount
-      hasIssuesEnabled
-      hasProjectsEnabled
-      hasWikiEnabled
-      homepageUrl
-      id
-      isArchived
-      isDisabled
-      isFork
-      isLocked
-      isMirror
-      isPrivate
-      isTemplate
-      lockReason
-      mergeCommitAllowed
-      mirrorUrl
-      name
-      nameWithOwner
-      openGraphImageUrl
-      projectsResourcePath
-      projectsUrl
-      pushedAt
-      rebaseMergeAllowed
-      resourcePath
-      shortDescriptionHTML
-      squashMergeAllowed
-      sshUrl
-      tempCloneToken
-      updatedAt
-      url
-      usesCustomOpenGraphImage
-      viewerCanAdminister
-      viewerCanCreateProjects
-      viewerCanAdminister
-      viewerCanSubscribe
-      viewerCanUpdateTopics
-      viewerHasStarred
-      viewerPermission
-      viewerSubscription
-    }
-  }
 `
 
 /**
