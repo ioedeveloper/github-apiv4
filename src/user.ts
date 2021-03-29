@@ -1121,7 +1121,7 @@ export const PendingMemberInvitations = (query?: string, fields?: string, pageIn
 * User
 */
 
-export const AssignableUsers = (query?: string, first: number = 10, fields?: string, pageInfo?:string, after?: string, before?: string, last?: number) => `
+export const AssignableUsers = ({}) => `
  	assignableUsers(query: ${query}, ${after ? `, after: ${after}` : ""} ${before ? `, before: ${before}` : ""} first: ${first}, ${last ? ", last:${last}" : ""}) {
 		edges {
 			cursor

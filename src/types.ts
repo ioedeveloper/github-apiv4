@@ -342,6 +342,7 @@ export declare interface Repository {
 }
 
 export declare interface RepositoryInfo {
+    assignableUsers: AssignableUsers; 
     createdAt: string;
     databaseId: number;
     description: string | null;
@@ -1404,4 +1405,13 @@ export declare interface Card {
     state: string;
     updatedAt: string;
     url: string;
+}
+export declare interface AssignableUsers {
+    edges: [{
+        cursor: string;
+        node: UserInfo;
+    }],
+    nodes: UserInfo[]
+    pageInfo: PageInfo;
+    totalCount: number;
 }

@@ -1,4 +1,5 @@
 export * from "./user"
+export * from "./respository"
 
 /**
  * @description Github Graphql Query for Viewer
@@ -14,8 +15,16 @@ export const Viewer = (fields: string) =>  `
 
 /**
  * @description Github Graphql Query for repository content (files and directories)
- */
- export const Repository = (name:string, owner: string, fields: string) => `
+ * 
+ * @queryVariables 
+ * name string
+ * 
+ * owner string 
+ * 
+ * @fields Repository 
+ * 
+*/
+ export const RepositoryQuery = (name:string, owner: string, fields: string) => `
     {
       repository(name: ${name}, owner: ${owner}) {
         ${fields}
