@@ -14,7 +14,7 @@ export const Viewer = (fields: string) =>  `
 `;
 
 /**
- * @description Github Graphql Query for repository content (files and directories)
+ * @description Github Graphql Query for Repository
  * 
  * @queryVariables 
  * name string
@@ -26,7 +26,7 @@ export const Viewer = (fields: string) =>  `
 */
  export const RepositoryQuery = (name:string, owner: string, fields: string) => `
     {
-      repository(name: ${name}, owner: ${owner}) {
+      repository(name: "${name}", owner: "${owner}") {
         ${fields}
       }
     }
@@ -727,61 +727,6 @@ export const Branch = `
       }
     }
   }
-`
-
-/**
- * @description Github Graphql Query for commit details
- * @queryVariable expression: "refs/heads/master" OR commit hash
- */
-export const Commit = `
-query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
-  repository(owner: $repositoryOwner, name: $repositoryName){
-    commit: object(expression: $expression){
-      ... on Commit{
-        authoredByCommitter
-        authoredDate
-        changedFiles
-        commitUrl
-        committedDate
-        committedViaWeb
-        deletions
-        id
-        message
-        messageBody
-        messageBodyHTML
-        messageHeadline
-        messageHeadlineHTML
-        oid
-        pushedDate
-        resourcePath
-        tarballUrl
-        treeResourcePath
-        treeUrl
-        url
-        viewerCanSubscribe
-        viewerSubscription
-        zipballUrl
-      }
-    }
-  }
-}
-`
-
-/**
- * @description Github Graphql Query for code of conduct
- * @queryVariable key: String!
- */
-export const CodeOfConduct = `
-query($key: String!){
-  codeOfConduct(key: $key){
-    name
-    id
-    body
-    key
-    resourcePath
-    url
-  }
-}
 `
 
 /**
