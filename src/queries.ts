@@ -1,5 +1,6 @@
 export * from './user'
 export * from './discussion'
+export * from './nodes'
 
 /**
  * @description Github Graphql Query for TopicQuery
