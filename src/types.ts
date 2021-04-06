@@ -41,9 +41,9 @@ export declare interface UserInfo {
     itemShowcase: {
         hasPinnedItems: boolean;
         items: {
-            edges: [{
+            edges: {
                 node: UserItems
-            }];
+            }[];
             nodes: UserItems[];
             pageInfo: PageInfo;
             totalCount: number;
@@ -57,19 +57,19 @@ export declare interface UserInfo {
     organizations: Organizations;
     packages: Packages;
     pinnableItems: {
-        edges: [{
+        edges: {
             cursor: string;
             node: UserItems
-        }]
+        }[]
         nodes: UserItems[];
         pageInfo: PageInfo;
         totalCount: number
     };
     pinnedItems: {
-        edges: [{
+        edges: {
             cursor: string;
             node: UserItems
-        }]
+        }[]
         nodes: UserItems[]
         pageInfo: PageInfo;
         totalCount: number
@@ -78,10 +78,10 @@ export declare interface UserInfo {
     url: string;
     project: Project;
     projects: {
-        edges: [{
+        edges: {
             cursor: string;
             node: Project;
-        }]
+        }[]
         nodes: Project[];
         pageInfo: PageInfo;
         totalCount: number
@@ -89,7 +89,7 @@ export declare interface UserInfo {
     projectsResourcePath: string;
     projectsUrl: string;
     publicKeys: {
-        edges: [{
+        edges: {
             cursor: string;
             node: {
                 accessedAt: string
@@ -100,8 +100,8 @@ export declare interface UserInfo {
                 key: string
                 updatedAt: string
             };
-        }]
-        nodes: [{
+        }[]
+        nodes: {
             accessedAt: string
             createdAt: string
             fingerprint: string
@@ -109,25 +109,25 @@ export declare interface UserInfo {
             isReadOnly: boolean
             key: string
             updatedAt: string
-        }]
+        }[]
         pageInfo: PageInfo;
         totalCount: number;
     }
     pullRequests: {
-        edges: [{
+        edges: {
             cursor: string,
             node: PullRequest
-        }]
+        }[]
         nodes: PullRequest[]
         pageInfo: PageInfo;
         totalCount: number;
     }
     repositories: Repositories;
     repositoriesContributedTo: {
-        edges: [{
+        edges: {
             cursor: string,
             node: RepositoryInfo
-        }]
+        }[]
         nodes: RepositoryInfo[]
         pageInfo: PageInfo;
         totalCount: number;
@@ -136,10 +136,10 @@ export declare interface UserInfo {
     repository: RepositoryInfo;
     resourcePath: string;
     savedReplies: {
-        edges: [{
+        edges: {
             cursor: string,
             node: Reply
-        }]
+        }[]
         nodes: Reply[]
         pageInfo: PageInfo;
         totalCount: number;
@@ -147,28 +147,28 @@ export declare interface UserInfo {
     sponsorsListing: SponsorsListing;
     sponsorshipForViewerAsSponsor: SponsorShip;
     sponsorshipsAsMaintainer: {
-        edges: [{
+        edges: {
             cursor: string;
             node: SponsorShip;
-        }]
+        }[]
         nodes: SponsorShip[];
         pageInfo: PageInfo;
         totalCount: number;
     }
     sponsorshipsAsSponsor: {
-        edges: [{
+        edges: {
             cursor: string;
             node: SponsorShip;
-        }]
+        }[]
         nodes: SponsorShip[];
         pageInfo: PageInfo;
         totalCount: number;
     }
     starredRepositories: {
-        edges: [{
+        edges: {
             cursor: string;
             node: RepositoryInfo;
-        }]
+        }[]
         nodes: RepositoryInfo[];
         pageInfo: PageInfo;
         isOverLimit: boolean;
@@ -187,10 +187,10 @@ export declare interface UserInfo {
         user: User
     }
     topRepositories: {
-        edges: [{
+        edges: {
             cursor: string;
             node: RepositoryInfo;
-        }]
+        }[]
         nodes: RepositoryInfo[];
         pageInfo: PageInfo;
         totalCount: number;
@@ -204,10 +204,10 @@ export declare interface UserInfo {
     viewerIsFollowing: boolean
     viewerIsSponsoring: boolean
     watching: {
-        edges: [{
+        edges: {
             cursor: string;
             node: RepositoryInfo;
-        }]
+        }[]
         nodes: RepositoryInfo[];
         pageInfo: PageInfo;
         totalCount: number;
@@ -289,14 +289,14 @@ export declare interface RepositoryInfoDirectories {
 export declare interface Branches {
     repository: null | {
         branches: null | {
-            edges: [{
+            edges: {
                 node: {
                     id: number;
                     name: string;
                     prefix: string;
                 };
                 cursor: string;
-            }];
+            }[];
             pageInfo: {
                 endCursor: string;
                 hasNextPage: string;
@@ -384,12 +384,12 @@ export declare interface RepositoryInfo {
     isUserConfigurationRepository: boolean;
     issue: Issue;
     issueOrPullRequest: Source;
-    issueTemplates: [{
+    issueTemplates: {
         about: string;
         body: string;
         name: string;
         title: string;
-    }]
+    }[]
     issues: Issues;
     label: Label;
     labels: Labels;
@@ -451,38 +451,38 @@ export declare interface RepositoryInfo {
 }
 export declare interface License {
     body: string;
-    conditions: [{
+    conditions: {
         description: string;
         key: string;
         label: string;
-    }]
+    }[]
     description: string;
     featured: boolean;
     hidden: boolean;
     id: number;
     implementation: string;
     key: string;
-    limitations: [{
+    limitations: {
         description: string;
         key: string;
         label: string;
-    }]
+    }[]
     name: string;
     nickname: string;
-    permissions: [{
+    permissions: {
         description: string;
         key: string;
         label: string;
-    }]
+    }[]
     pseudoLicense: string;
     spdxId: string;
     url: string;
 }
 export declare interface Collaborators {
-    edges: [{
+    edges: {
         node: UserInfo;
         cursor: string;
-    }];
+    }[];
     nodes: UserInfo[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -503,10 +503,10 @@ export declare interface VulnerabilityAlert {
 }
 
 export declare interface VulnerabilityAlerts {
-    edges: [{
+    edges: {
         node: VulnerabilityAlert;
         cursor: string;
-    }];
+    }[];
     nodes: VulnerabilityAlert[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -522,17 +522,17 @@ export declare interface SecurityAdvisory {
     description: string;
     ghsaId: string;
     id: number;
-    identifiers: [{
+    identifiers: {
         type: string;
         value: string;
-    }]
+    }[]
     notificationsPermalink: string;
     origin: string;
     permalink: string;
     publishedAt: string;
-    references: [{
+    references: {
         url: string;
-    }]
+    }[]
     severity: string;
     summary: string;
     updatedAt: string;
@@ -555,17 +555,17 @@ export declare interface Vulnerability {
 }
 
 export declare interface Vulnerabilities {
-    edges: [{
+    edges: {
         node: Vulnerability;
         cursor: string;
-    }];
+    }[];
     nodes: Vulnerability;
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface CWES {
-    edges: [{
+    edges: {
         node: {
             cweId: string;
             description: string;
@@ -573,13 +573,13 @@ export declare interface CWES {
             name: string;
         };
         cursor: string;
-    }];
-    nodes: [{
+    }[];
+    nodes: {
         cweId: string;
         description: string;
         id: number;
         name: string;
-    }];
+    }[];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -594,7 +594,7 @@ export declare interface Topic {
 }
 
 export declare interface Topics {
-    edges: [{
+    edges: {
         node: {
             id: number;
             resourcePath: string;
@@ -602,32 +602,32 @@ export declare interface Topics {
             url: string;
         };
         cursor: string;
-    }];
-    nodes: [{
+    }[];
+    nodes: {
         id: number;
         resourcePath: string;
         topic: Topic;
         url: string;
-    }];
+    }[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface CommitComments {
-    edges: [{
+    edges: {
         node: Comment;
         cursor: string;
-    }];
+    }[];
     nodes: Comment[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface Watchers {
-    edges: [{
+    edges: {
         node: UserInfo;
         cursor: string;
-    }];
+    }[];
     nodes: UserInfo[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -730,20 +730,21 @@ export declare interface Languege {
 }
 
 export declare interface Langueges {
-    edges: [{
+    edges: {
         node: Languege;
         cursor: string;
-    }];
+    }[];
     nodes: Languege[];
     pageInfo: PageInfo;
     totalCount: number;
+    totalSize: number;
 }
 
 export declare interface Commits {
-    edges: [{
+    edges: {
         node: Commit;
         cursor: string;
-    }];
+    }[];
     nodes: Commit[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -759,20 +760,20 @@ export declare interface CodeOfConduct {
 }
 
 export declare interface Followers {
-    edges: [{
+    edges: {
         node: UserInfo;
         cursor: string;
-    }];
+    }[];
     nodes: UserInfo[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface Following {
-    edges: [{
+    edges: {
         node: UserInfo;
         cursor: string;
-    }];
+    }[];
     nodes: UserInfo[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -783,10 +784,10 @@ export declare interface User {
 }
 
 export declare interface Repositories {
-    edges: [{
+    edges: {
         node: RepositoryInfo;
         cursor: string;
-    }];
+    }[];
     nodes: RepositoryInfo[]
     pageInfo: {
         endCursor: string;
@@ -806,10 +807,10 @@ export declare interface Author {
 }
 
 export declare interface Authors {
-    edges: [{
+    edges: {
         cursor: string;
         node: Author;
-    }],
+    }[],
     nodes: Author[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -817,7 +818,7 @@ export declare interface Authors {
 export declare interface UserCommitContents {
     user: {
         commitComments: {
-            edges: [{
+            edges: {
                 cursor: string;
                 node: {
                     author: Author;
@@ -846,7 +847,7 @@ export declare interface UserCommitContents {
                     viewerCanUpdate: boolean;
                     viewerCannotUpdateReasons: string[];
                 }
-            }] | [];
+            }[] | [];
             pageInfo: PageInfo;
             totalCount: number;
         };
@@ -881,16 +882,17 @@ export declare interface Issue {
     milestone: Milestone;
     number: number;
     participants: {
-        edges: [{
+        edges: {
             cursor: string;
             node: UserInfo;
-        }]
+        }[]
         nodes: UserInfo[];
         pageInfo: PageInfo;
         totalCount: number;
     }
     projectCards: ProjectCards;
     publishedAt: string;
+    reactionGroups: ReactionGroups[];
     repository: RepositoryInfo;
     resourcePath: string;
     state: string;
@@ -909,20 +911,20 @@ export declare interface Issue {
 }
 
 export declare interface Issues {
-    edges: [{
+    edges: {
         cursor: string;
         node: Issue;
-    }];
+    }[];
     nodes: Issue[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface PinnedIssues {
-    edges: [{
+    edges: {
         cursor: string;
         node: Issue;
-    }];
+    }[];
     nodes: Issue[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -945,17 +947,17 @@ export declare interface ProjectCard {
 }
 
 export declare interface ProjectCards {
-    edges: [{
+    edges: {
         cursor: string;
         node: ProjectCard;
-    }]
+    }[]
     nodes: ProjectCard[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface HoverCard {
-    contexts: [{
+    contexts: {
         message: string;
         octicon: string
         relevantOrganizations: RelevantOrganizations;
@@ -967,7 +969,7 @@ export declare interface HoverCard {
         totalOrganizationCount: number;
         totalTeamCount: number;
         viewer: UserInfo
-    }]
+    }[]
 }
 export declare interface Team {
     ancestors: Team[]
@@ -1136,7 +1138,7 @@ export declare interface PullRequest {
     projectCards: ProjectCards;
     repository: RepositoryInfo;
     reactions: Reactions;
-    reactionGroups: ReactionGroups;
+    reactionGroups: ReactionGroups[];
     resourcePath: string;
     revertResourcePath: string;
     revertUrl: string;
@@ -1187,10 +1189,10 @@ export declare interface PullRequestReviewComment {
 }
 
 export declare interface Forks {
-    edges: [{
+    edges: {
         cursor: string;
         node: RepositoryInfo;
-    }]
+    }[]
     nodes: RepositoryInfo[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1217,20 +1219,20 @@ export declare interface Gist {
 }
 
 export declare interface GistComments {
-    edges: [{
+    edges: {
         cursor: string;
         node: Comment;
-    }]
+    }[]
     nodes: Comment[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface Stargazers {
-    edges: [{
+    edges: {
         cursor: string;
         node: UserInfo;
-    }]
+    }[]
     nodes: UserInfo[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1273,20 +1275,20 @@ export declare interface ReleaseAsset {
 }
 
 export declare interface ReleaseAssets {
-    edges: [{
+    edges: {
         cursor: string;
         node: ReleaseAsset;
-    }]
+    }[]
     nodes: ReleaseAsset[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface Releases {
-    edges: [{
+    edges: {
         cursor: string;
         node: Release;
-    }]
+    }[]
     nodes: Release[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1317,18 +1319,18 @@ export declare interface Package {
     };
     version: Version;
     versions: {
-        edges: [{
+        edges: {
             node: Version
-        }]
+        }[]
         nodes: Version[]
         pageInfo: PageInfo;
         totalCount: number;
     }
 }
 export declare interface Packages {
-    edges: [{
+    edges: {
         node: Package;
-    }]
+    }[]
     nodes: Package[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -1365,10 +1367,10 @@ export declare interface Project {
 }
 
 export declare interface Projects {
-    edges: [{
+    edges: {
         cursor: string;
         node: Project;
-    }];
+    }[];
     nodes: Project[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1394,10 +1396,10 @@ export declare interface Goal {
 export declare interface Tier {
     adminInfo: {
         sponsorShips: {
-            edges: [{
+            edges: {
                 cursor: string;
                 node: SponsorShip;
-            }]
+            }[]
             nodes: SponsorShip[];
             pageInfo: PageInfo;
         };
@@ -1432,19 +1434,19 @@ export declare interface SponsorShip {
         sponsorsListing: SponsorsListing;
         sponsorshipForViewerAsSponsor: SponsorShip;
         sponsorshipsAsMaintainer: {
-            edges: [{
+            edges: {
                 cursor: string;
                 node: SponsorShip;
-            }];
+            }[];
             nodes: SponsorShip[];
             pageInfo: PageInfo;
             totalCount: number;
         }
         sponsorshipsAsSponsor: {
-            edges: [{
+            edges: {
                 cursor: string;
                 node: SponsorShip;
-            }];
+            }[];
             nodes: SponsorShip[];
             pageInfo: PageInfo;
             totalCount: number;
@@ -1467,10 +1469,10 @@ export declare interface SponsorsListing {
     shortDescription: string;
     slug: string;
     tiers: {
-        edges: [{
+        edges: {
             cursor: string;
             node: Tier;
-        }];
+        }[];
         nodes: Tier[];
         pageInfo: PageInfo;
         totalCount: number;
@@ -1478,31 +1480,31 @@ export declare interface SponsorsListing {
 }
 
 export declare interface RelevantTeams {
-    edges: [{
+    edges: {
         cursor: string;
         node: Team;
-    }];
+    }[];
     nodes: Team[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface RelevantOrganizations {
-    edges: [{
+    edges: {
         cursor: string;
         node: Organization;
-    }];
+    }[];
     nodes: Organization[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 export declare interface ContributionsCollection {
-    commitContributionsByRepository: [{
+    commitContributionsByRepository: {
         contributions: Contributions;
         repository: RepositoryInfo;
         resourcePath: string;
         url: string;
-    }]
+    }[]
     contributionCalendar: ContributionCalendar;
     contributionYears: number[];
     doesEndInCurrentMonth: boolean;
@@ -1516,7 +1518,7 @@ export declare interface ContributionsCollection {
     hasAnyRestrictedContributions: boolean;
     isSingleDay: boolean;
     issueContributions: {
-        edges: [{
+        edges: {
             cursor: string;
             node: {
                 isRestricted: boolean;
@@ -1525,21 +1527,21 @@ export declare interface ContributionsCollection {
                 resourcePath: string;
                 url: string;
             };
-        }];
-        nodes: [{
+        }[];
+        nodes: {
             isRestricted: boolean;
             issue: Issue;
             occurredAt: string;
             resourcePath: string;
             url: string;
-        }];
+        }[];
         pageInfo: PageInfo;
         totalCount: number;
     }
-    issueContributionsByRepository: [{
+    issueContributionsByRepository: {
         contributions: Contributions;
         repository: RepositoryInfo;
-    }]
+    }[]
     joinedGitHubContribution: {
         isRestricted: boolean;
         occurredAt: string;
@@ -1590,10 +1592,10 @@ export declare interface PullRequestContribution {
 }
 
 export declare interface PullRequestContributions {
-    edges: [{
+    edges: {
         cursor: string;
         node: PullRequestContribution;
-    }];
+    }[];
     nodes: PullRequestContribution[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1616,10 +1618,10 @@ export declare interface PullRequestReviewContribution {
 }
 
 export declare interface PullRequestReviewContributions {
-    edges: [{
+    edges: {
         cursor: string;
         node: PullRequestReviewContribution;
-    }];
+    }[];
     nodes: PullRequestReviewContribution[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1631,19 +1633,19 @@ export declare interface PullRequestReviewContributionsByRepository {
 }
 
 export declare interface RepositoryInfoContributions {
-    edges: [{
+    edges: {
         cursor: string;
         node: Contribution;
-    }];
+    }[];
     nodes: Contribution[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 export declare interface Contributions {
-    edges: [{
+    edges: {
         cursor: string;
         node: Contribution;
-    }];
+    }[];
     nodes: Contribution[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1662,23 +1664,23 @@ export declare interface Contribution {
 export declare interface ContributionCalendar {
     colors: string[];
     isHalloween: boolean;
-    months: [{
+    months: {
         firstDay: string;
         name: string;
         totalWeeks: number;
         year: number;
-    }]
+    }[]
     totalContributions: number;
-    weeks: [{
-        contributionDays: [{
+    weeks: {
+        contributionDays: {
             color: string;
             contributionCount: number;
             contributionLevel: string;
             date: string;
             weekday: number;
-        }]
+        }[]
         firstDay: string;
-    }]
+    }[]
 }
 
 export declare interface Gist {
@@ -1702,10 +1704,10 @@ export declare interface Gist {
 }
 
 export declare interface Gists {
-    edges: [{
+    edges: {
         cursor: string;
         node: Gist;
-    }];
+    }[];
     nodes: Gist[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1734,7 +1736,7 @@ export declare interface Comment {
     publishedAt: string;
     pullRequest: PullRequest;
     reactionGroup: ReactionGroup;
-    reactionGroups: ReactionGroups;
+    reactionGroups: ReactionGroups[];
     reactions: Reactions;
     repository: RepositoryInfo;
     resourcePath: string;
@@ -1749,10 +1751,10 @@ export declare interface Comment {
 }
 
 export declare interface Comments {
-    edges: [{
+    edges: {
         cursor: string;
         node: Comment[];
-    }];
+    }[];
     nodes: Comment[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1770,10 +1772,10 @@ export declare interface ContentEdit {
 
 }
 export declare interface UserContentEdits {
-    edges: [{
+    edges: {
         cursor: string;
         node: ContentEdit;
-    }];
+    }[];
     nodes: ContentEdit[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1797,15 +1799,15 @@ export declare interface IssueComment {
     minimizedReason: string;
     publishedAt: string;
     pullRequest: PullRequest;
-    reactionGroups: ReactionGroups;
+    reactionGroups: ReactionGroups[];
     reactions: Reactions;
 }
 
 export declare interface IssueComments {
-    edges: [{
+    edges: {
         cursor: string;
         node: IssueComment;
-    }];
+    }[];
     nodes: IssueComment[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1821,10 +1823,10 @@ export declare interface Reaction {
 }
 
 export declare interface Reactions {
-    edges: [{
+    edges: {
         cursor: string;
         node: Reaction;
-    }],
+    }[],
     nodes: Reaction[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -1838,10 +1840,10 @@ export declare interface Reactable {
     viewerHasReacted: boolean;
 }
 export declare interface Users {
-    edges: [{
+    edges: {
         cursor: string;
         node: UserInfo;
-    }];
+    }[];
     nodes: UserInfo[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1857,27 +1859,27 @@ export declare interface TeamDiscussionComment {
 declare interface Subject extends PullRequest, Issue, TeamDiscussion, TeamDiscussionComment, CommitComment, IssueComment, PullRequestReview, PullRequestReviewComment {
     databaseId: number;
     id: number;
-    reactionGroups: ReactionGroups;
+    reactionGroups: ReactionGroups[];
     reactions: Reactions
     viewerCanReact: boolean;
 }
 
 
 export declare interface Organizations {
-    edges: [{
+    edges: {
         cursor: string;
         node: Organization;
-    }];
+    }[];
     nodes: Organization[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface Columns {
-    edges: [{
+    edges: {
         cursor: string;
         node: Column;
-    }];
+    }[];
     nodes: Column[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1885,10 +1887,10 @@ export declare interface Columns {
 }
 
 export declare interface Cards {
-    edges: [{
+    edges: {
         cursor: string;
         node: Card;
-    }];
+    }[];
     nodes: Card[];
     pageInfo: PageInfo;
     totalCount: number;
@@ -1927,10 +1929,10 @@ export declare interface Card {
     url: string;
 }
 export declare interface AssignableUsers {
-    edges: [{
+    edges: {
         cursor: string;
         node: UserInfo;
-    }],
+    }[],
     nodes: UserInfo[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -1943,20 +1945,20 @@ export declare interface BranchProtectionRule {
 }
 
 export declare interface BranchProtectionRules {
-    edges: [{
+    edges: {
         cursor: string;
         node: BranchProtectionRule;
-    }],
+    }[],
     nodes: BranchProtectionRule[]
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface BranchProtectionRuleConflicts {
-    edges: [{
+    edges: {
         cursor: string;
         node: BranchProtectionRule;
-    }],
+    }[],
     nodes: BranchProtectionRule[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -1979,29 +1981,29 @@ export declare interface Ref {
     target: Target;
 }
 export declare interface Refs {
-    edges: [{
+    edges: {
         cursor: string;
         node: Ref;
-    }],
+    }[],
     nodes: Ref[]
     pageInfo: PageInfo;
     totalCount: number;
 }
 export declare interface PullRequests {
-    edges: [{
+    edges: {
         cursor: string;
         node: PullRequest;
-    }],
+    }[],
     nodes: PullRequest[]
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface Assignees {
-    edges: [{
+    edges: {
         cursor: string;
         node: UserInfo;
-    }],
+    }[],
     nodes: UserInfo[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2110,10 +2112,10 @@ export declare interface CheckSuite {
 }
 
 export declare interface CheckSuites {
-    edges: [{
+    edges: {
         cursor: string;
         node: CheckSuite;
-    }],
+    }[],
     nodes: CheckSuite[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2165,10 +2167,10 @@ export declare interface Annotation {
 }
 
 export declare interface Annotations {
-    edges: [{
+    edges: {
         cursor: string;
         node: Annotation;
-    }],
+    }[],
     nodes: Annotation[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2195,10 +2197,10 @@ export declare interface CheckRun {
     url: string;
 }
 export declare interface CheckRuns {
-    edges: [{
+    edges: {
         cursor: string;
         node: CheckRun;
-    }],
+    }[],
     nodes: CheckRun[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2241,19 +2243,19 @@ export declare interface DeployKey {
     verified: boolean;
 }
 export declare interface DeployKeys {
-    edges: [{
+    edges: {
         cursor: string;
         node: DeployKey;
-    }],
+    }[],
     nodes: DeployKey[]
     pageInfo: PageInfo;
     totalCount: number;
 }
 export declare interface Deployments {
-    edges: [{
+    edges: {
         cursor: string;
         node: Deployment;
-    }],
+    }[],
     nodes: Deployment[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2275,20 +2277,20 @@ export declare interface Status {
 }
 
 export declare interface Statuses {
-    edges: [{
+    edges: {
         cursor: string;
         node: Status;
-    }],
+    }[],
     nodes: Status[]
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface History {
-    edges: [{
+    edges: {
         cursor: string;
         node: Commit;
-    }],
+    }[],
     nodes: Commit[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2299,10 +2301,10 @@ export declare interface CombinedContext extends CheckRun, Status {
 }
 
 export declare interface CombinedContexts {
-    edges: [{
+    edges: {
         cursor: string;
         node: CombinedContext;
-    }],
+    }[],
     nodes: CombinedContext[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2332,20 +2334,20 @@ export declare interface Submodule {
     subprojectCommitOid: string;
 }
 export declare interface Submodules {
-    edges: [{
+    edges: {
         cursor: string;
         node: Submodule;
-    }],
+    }[],
     nodes: Submodule[]
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface Files {
-    edges: [{
+    edges: {
         cursor: string;
         node: File;
-    }],
+    }[],
     nodes: File[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2377,10 +2379,10 @@ export declare interface Label {
 }
 
 export declare interface Labels {
-    edges: [{
+    edges: {
         cursor: string;
         node: Label;
-    }],
+    }[],
     nodes: Label[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2408,7 +2410,7 @@ export declare interface Review {
     publishedAt: string;
     pullRequest: PullRequest;
     reactionGroup: ReactionGroup;
-    reactionGroups: ReactionGroups;
+    reactionGroups: ReactionGroups[];
     reactions: Reactions;
     repository: RepositoryInfo;
     resourcePath: string;
@@ -2425,20 +2427,20 @@ export declare interface Review {
 }
 
 export declare interface Reviews {
-    edges: [{
+    edges: {
         cursor: string;
         node: Review;
-    }],
+    }[],
     nodes: Review[]
     pageInfo: PageInfo;
     totalCount: number;
 }
 
 export declare interface Teams {
-    edges: [{
+    edges: {
         cursor: string;
         node: Team;
-    }],
+    }[],
     nodes: Team[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2466,10 +2468,10 @@ export declare interface Milestone {
 }
 
 export declare interface Milestones {
-    edges: [{
+    edges: {
         cursor: string;
         node: Milestone;
-    }],
+    }[],
     nodes: Milestone[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2483,10 +2485,10 @@ export declare interface ReviewRequest {
 }
 
 export declare interface ReviewRequests {
-    edges: [{
+    edges: {
         cursor: string;
         node: ReviewRequest;
-    }],
+    }[],
     nodes: ReviewRequest[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2518,10 +2520,10 @@ export declare interface PullRequestReview {
 }
 
 export declare interface PullRequestReviews {
-    edges: [{
+    edges: {
         cursor: string;
         node: PullRequestReview;
-    }],
+    }[],
     nodes: PullRequestReview[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2534,10 +2536,10 @@ export declare interface TimelineItem extends AddedToProjectEvent, AssignedEvent
 }
 
 export declare interface TimelineItems {
-    edges: [{
+    edges: {
         cursor: string;
         node: TimelineItem;
-    }],
+    }[],
     nodes: TimelineItem[]
     pageInfo: PageInfo;
     totalCount: number;
@@ -2687,10 +2689,10 @@ export declare interface AutomaticBaseChangeSucceededEvent {
 }
 
 export declare interface Timeline {
-    edges: [{
+    edges: {
         cursor: string;
         node: Timeline;
-    }],
+    }[],
     nodes: Timeline[]
     pageInfo: PageInfo;
     totalCount: number;

@@ -195,13 +195,13 @@ export declare interface Milestones extends BasicFields {
 }
 
 export declare interface Timeline extends BasicFields {
-    since: string;
+    since?: string;
 }
 
 export declare interface TimelineItems extends BasicFields {
-    since: string;
-    skip: number;
-    itemsTypes: "PULL_REQUEST_COMMIT" | "PULL_REQUEST_COMMIT_COMMENT_THREAD" | "PULL_REQUEST_REVIEW" | "PULL_REQUEST_REVIEW_THREAD" | "PULL_REQUEST_REVISION_MARKER" | "AUTOMATIC_BASE_CHANGE_FAILED_EVENT" | "AUTOMATIC_BASE_CHANGE_SUCCEEDED_EVENT" |
+    since?: string;
+    skip?: number;
+    itemTypes?: "PULL_REQUEST_COMMIT" | "PULL_REQUEST_COMMIT_COMMENT_THREAD" | "PULL_REQUEST_REVIEW" | "PULL_REQUEST_REVIEW_THREAD" | "PULL_REQUEST_REVISION_MARKER" | "AUTOMATIC_BASE_CHANGE_FAILED_EVENT" | "AUTOMATIC_BASE_CHANGE_SUCCEEDED_EVENT" |
     "AUTO_MERGE_DISABLED_EVENT" | "AUTO_MERGE_ENABLED_EVENT" | "AUTO_REBASE_ENABLED_EVENT" | "AUTO_SQUASH_ENABLED_EVENT" | "BASE_REF_CHANGED_EVENT" | "BASE_REF_FORCE_PUSHED_EVENT" | "BASE_REF_DELETED_EVENT" | "DEPLOYED_EVENT" | "DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT" |
     "HEAD_REF_DELETED_EVENT" | "HEAD_REF_FORCE_PUSHED_EVENT" | "HEAD_REF_RESTORED_EVENT" | "MERGED_EVENT" | "REVIEW_DISMISSED_EVENT" | "REVIEW_REQUESTED_EVENT" | "REVIEW_REQUEST_REMOVED_EVENT" | "READY_FOR_REVIEW_EVENT" | "CONVERT_TO_DRAFT_EVENT" | 
     "ISSUE_COMMENT" | "CROSS_REFERENCED_EVENT" | "ADDED_TO_PROJECT_EVENT" | "ASSIGNED_EVENT" | "CLOSED_EVENT" | "COMMENT_DELETED_EVENT" | "CONNECTED_EVENT" | "CONVERTED_NOTE_TO_ISSUE_EVENT" | "DEMILESTONED_EVENT" | "DISCONNECTED_EVENT" | "LABELED_EVENT" |
@@ -210,7 +210,7 @@ export declare interface TimelineItems extends BasicFields {
 }
 
 export declare interface Cards extends BasicFields {
-    archivedStates: "ARCHIVED" | "NOT_ARCHIVED";
+    archivedStates?: "ARCHIVED" | "NOT_ARCHIVED";
 }
 
 export declare interface Collaborators extends BasicFields {
@@ -224,15 +224,15 @@ export declare interface ReleaseAssets extends BasicFields {
 export declare interface VulnerabilityAlerts extends BasicFields {
     direction?: "ASC" | "DESC";
     orderBy?: "CREATED_AT";
-    packageType: "NPM" | "RUBYGEMS" | "MAVEN" | "DOCKER" | "DEBIAN" | "NUGET" | "PYPI";
-    repositoryId: string;
-    names: string;
+    packageType?: "NPM" | "RUBYGEMS" | "MAVEN" | "DOCKER" | "DEBIAN" | "NUGET" | "PYPI";
+    repositoryId?: string;
+    names?: string;
 
 }
 
 export declare interface Vulnerabilities extends BasicFields {
-    ecosystem: "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP";
-    severities: "LOW" | "MODERATE" | "HIGH" | "CRITICAL";
+    ecosystem?: "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP";
+    severities?: "LOW" | "MODERATE" | "HIGH" | "CRITICAL";
     orderBy?: "UPDATED_AT";
     direction?: "ASC" | "DESC";
 
@@ -244,12 +244,12 @@ export declare interface Watching extends BasicFields {
 }
 
 export declare interface Repository {
-    repositoryOwner: string;
-    repositoryName: string;
+    repositoryOwner?: string;
+    repositoryName?: string;
 }
 export declare interface RepositoryContent {
-    repositoryOwner: string;
-    repositoryName: string;
+    repositoryOwner?: string;
+    repositoryName?: string;
 }
 
 export declare interface RepositoryDirectories {

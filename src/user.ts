@@ -37,23 +37,7 @@ import { BasicFields } from "./variables"
 
  * hasSponsorsListing
 
- * hovercard(primarySubjectId: "") {
-
- *  contexts {
-
- *      message
-
- *      octicon
-
- *      onGenericHovercardContext
-
- *      onOrganizationTeamsHovercardContext
-
- *      onReviewStatusHovercardContext
-
- *      onViewerHovercardContext
-
- *   }
+ * UserHoverCard 
 
  * interactionAbility {
 
@@ -192,82 +176,7 @@ export const User = (fields: string) => `
    name
    ${fields}
 `
-/**
-* @description Github Graphql onUser
-* @defaultVariables teamsUrl message totalTeamCount
-* @fields
-*   __typename
-*   octicon
 
-*   RelevantTeams
-
-*   teamsResourcePath
-
-*/
-
-
-export const onGenericHovercardContext = (fields: string) => `
-    ... on GenericHovercardContext {
-        teamsUrl 
-        message
-        ${fields}
-        totalTeamCount
-    }
-`
-
-/**
-* @description Github Graphql onOrganizationTeamsHovercardContext
-* @defaultVariables teamsUrl totalTeamCount
-* @fields 
-* __typename
-
-* teamsResourcePath
-
-* RelevantOrganizations
-
-*/
-
-
-export const onOrganizationTeamsHovercardContext = (fields: string) => `
- ... on OrganizationTeamsHovercardContext {
-    teamsUrl
-    ${fields}
-    totalTeamCount
- }
-`
-/**
-* @description Github Graphql onReviewStatusHovercardContext
-* @defaultVariables message
-* @fields
- *  reviewDecision
- * 
- *  octicon
-*/
-
-
-export const onReviewStatusHovercardContext = (fields: string) => `
- ... on User {
-    message
-    ${fields}
- }
-`
-/**
-* @description Github Graphql onViewerHovercardContext
-* @defaultVariables message
-* @fields
-*  __typename
-
-*  octicon
-
-*  viewer
-*/
-
-
-export const onViewerHovercardContext = (fields: string) => `
- ... on ViewerHovercardContext{
-    message
-    ${fields}
-`
 /**
 * @description Github Graphql onUser
 * @defaultVariables id email
@@ -282,6 +191,31 @@ export const onUser = (fields: string) => `
  }
 `
 
+/**
+* @description UserHoverCard
+
+*  contexts {
+
+*      message
+
+*      octicon
+
+*      onGenericHovercardContext
+
+*      onOrganizationTeamsHovercardContext
+
+*      onReviewStatusHovercardContext
+
+*      onViewerHovercardContext
+
+*   }
+*/
+export const UserHoverCard = (fields: string, primarySubjectId?:string) => `
+   hovercard ${primarySubjectId?`(primarySubjectId: "${primarySubjectId}")`:""} {
+      ${fields}
+   }
+`
+  
 /**
 * @description Github Graphql RelevantTeams
 * @defaultVariables totalCount
