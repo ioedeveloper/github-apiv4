@@ -742,10 +742,22 @@ export declare interface Langueges {
 
 export declare interface Commits {
     edges: {
-        node: Commit;
+        node: {
+            commit: Commit;
+            id: number;
+            pullRequest: PullRequest;
+            resourcePath: string;
+            url: string;
+        };
         cursor: string;
     }[];
-    nodes: Commit[];
+    nodes: {
+        commit: Commit;
+        id: number;
+        pullRequest: PullRequest;
+        resourcePath: string;
+        url: string;
+    }[];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -1971,7 +1983,7 @@ export declare interface BranchProtectionRuleConflict {
 }
 
 export declare interface Ref {
-    associatedPullRequests: PullRequest;
+    associatedPullRequests: PullRequests;
     branchProtectionRule: BranchProtectionRule;
     id: number;
     name: string;

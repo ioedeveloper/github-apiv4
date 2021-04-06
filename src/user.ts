@@ -210,12 +210,12 @@ export const onUser = (fields: string) => `
 
 *   }
 */
-export const UserHoverCard = (fields: string, primarySubjectId?:string) => `
-   hovercard ${primarySubjectId?`(primarySubjectId: "${primarySubjectId}")`:""} {
+export const UserHoverCard = (fields: string, primarySubjectId?: string) => `
+   hovercard ${primarySubjectId ? `(primarySubjectId: "${primarySubjectId}")` : ""} {
       ${fields}
    }
 `
-  
+
 /**
 * @description Github Graphql RelevantTeams
 * @defaultVariables totalCount
@@ -228,8 +228,6 @@ export const UserHoverCard = (fields: string, primarySubjectId?:string) => `
 
 * last number
 * @fields Teams
-
-* pageInfo PageInfo
 */
 
 export const RelevantTeams = (params: queryVariables.BasicFields) => `
@@ -1492,48 +1490,7 @@ export const Owner = (fields?: string) => `
   	${fields}        
 `
 
-/**
-* @description Github Graphql Author
-* @defaultVariables totalCount first = 10
-* @queryArguments direction "ASC" | "DESC"
-* after string
 
-* before string
-
-* first number
-
-* last number
-* 
-* @fields 
-* avatarUrl
-
-* date
-
-* email
-
-* name
-
-* user {
-   User
-}
-*/
-
-export const Authors = (params: queryVariables.BasicFields) => `
- authors(first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
-     edges {
-       cursor
-       node {
-          ${params.fields}
-       }
-    }
-
-    nodes {
-       ${params.fields}  
-    }
-	${params.pageInfo ? params.pageInfo : ""}	
-    totalCount
- }
-`
 
 /**
 * @description Github Graphql Editor
@@ -1677,7 +1634,7 @@ export const ItemShowcase = (params: queryVariables.BasicFields) => `
 */
 
 export const MentionableUsers = (params: queryVariables.Query) => `
- mentionableUsers(query: ${params.query}, first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+ mentionableUsers(${params.query ? `query: ${params.query}` : ""} first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
      edges {
        cursor
        node {

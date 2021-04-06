@@ -457,8 +457,11 @@ export const Forks = (params: queryVariables.Repositories) => `
 */
 
 export const BranchProtectionRule = (fields: string = "") => `
-    id
-    ${fields}
+    branchProtectionRule {
+        id
+        ${fields}
+    }
+    
 `
 
 
@@ -628,11 +631,8 @@ export const BranchProtectionRuleConflicts = (params: queryVariables.BasicFields
  * 
  * }
  * 
- * baseRef {
  * 
- *      BaseRef
- * 
- * }
+ * BaseRef
  * 
  * baseRefName
  * 
@@ -978,7 +978,6 @@ export const PullRequests = (params: queryVariables.PullRequests) => `
 		}
 		${params.pageInfo ? params.pageInfo : ""}
 		totalCount
- 	}
     }
 `
 
@@ -1432,7 +1431,7 @@ export const Labels = (params: queryVariables.Labels) => `
  */
 
 
-export const Label = (name: string,fields: string = "") => `
+export const Label = (name: string, fields: string = "") => `
     label (name: "${name}") {
         id
         ${fields}
@@ -1468,6 +1467,39 @@ export const Issues = (params: queryVariables.Issues) => `
         ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}` : ""}
         ${params.filterBy ? `, filterBy:{${params.filterBy}}` : ""}) {
 
+        edges {
+            cursor
+            node {
+                ${params.fields}
+            }
+        }
+    
+        nodes {
+            ${params.fields}  
+        }
+        ${params.pageInfo ? params.pageInfo : ""}
+        totalCount
+    }
+`
+
+/**
+ * @description Github Graphql PinnedIssues  
+ * @defaultVariables totalCount
+ * @queryArguments direction "ASC" | "DESC" 
+ * 
+ * after string
+ * 
+ * before string
+ * 
+ * first number
+ * 
+ * last number
+ * @fields 
+ * Issue
+*/
+
+export const PinnedIssues = (params: queryVariables.BasicFields) => `
+    pinnedIssues(first: ${params.first} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -1550,7 +1582,9 @@ export const Participants = (params: queryVariables.BasicFields) => `
  */
 
 export const BaseRef = (fields: string = "") => `
-    ${fields}
+    baseRef {
+        ${fields}
+    }
 `
 
 /**
@@ -1708,8 +1742,107 @@ export const Branch = (fields: string = "") => `
  */
 
 export const Commit = (fields: string = "") => `
-    id
-    ${fields}
+    commit {
+        id
+        ${fields}
+    }    
+`
+
+/**
+* @description Github Graphql Author
+* @fields 
+* avatarUrl
+
+* date
+
+* email
+
+* name
+
+* user {
+   User
+}
+*/
+
+export const Author = (fields: string = "") => `
+    author {
+        name
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql Authors
+* @defaultVariables totalCount first = 10
+* @queryArguments direction "ASC" | "DESC"
+* after string
+
+* before string
+
+* first number
+
+* last number
+* 
+* @fields 
+* Author
+*/
+
+export const Authors = (params: queryVariables.BasicFields) => `
+ authors(first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+     edges {
+       cursor
+       node {
+          ${params.fields}
+       }
+    }
+
+    nodes {
+       ${params.fields}  
+    }
+	${params.pageInfo ? params.pageInfo : ""}	
+    totalCount
+ }
+`
+/**
+* @description Github Graphql Commits
+* @defaultVariables totalCount
+* @queryArguments
+* after string 
+
+* before string
+
+* first number
+
+* last number
+* @fields
+* Commit
+
+* id
+
+* pullRequest {
+    PullRequest
+}
+
+* resourcePath
+
+* url
+*/
+
+export const Commits = (params: queryVariables.BasicFields) => `
+    commits(first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}  ${params.last ? `, last: ${params.last}` : ""}) {
+        edges {
+            cursor
+            node {
+                ${params.fields}
+            }
+        }
+
+        nodes {
+           ${params.fields}
+        }
+        ${params.pageInfo ? params.pageInfo : ""}
+        totalCount
+    }
 `
 /**
 * @description Github Graphql CommitStatus
@@ -2073,9 +2206,11 @@ export const Ref = (fields: string = "") => `
  * viewerCanPush
 */
 
-export const RefUpdateRules = (fields: string = "") => `
-    id
-    ${fields}
+export const RefUpdateRule = (fields: string = "") => `
+    refUpdateRule {
+        ${fields}
+    }
+    
 `
 
 /**
@@ -2870,8 +3005,8 @@ export const Submodules = (params: queryVariables.BasicFields) => `
  * url
  */
 
-export const Milestone = (fields: string = "") => `
-    milestone {
+export const Milestone = (number: number,fields: string = "") => `
+    milestone (number: ${number}) {
         id
         description
         ${fields}
@@ -2904,7 +3039,8 @@ export const Milestone = (fields: string = "") => `
 */
 
 export const Milestones = (params: queryVariables.Milestones) => `
-    milestones(${params.query ? `query: ${params.query}` : ""} first: ${params.first} ${params.state ? `state: ${params.state}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}) {
+    milestones(${params.query ? `query: ${params.query}` : ""} first: ${params.first} ${params.state ? `state: ${params.state}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ${params.orderBy || params.direction? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}`:""}) {
         edges {
             cursor
             node {
@@ -4926,8 +5062,8 @@ export const Closable = (fields: string = "") => `
 * viewerCanUpdate boolean
 */
 
-export const Project = (fields: string = "") => `
-    project {
+export const Project = (number: number,fields: string = "") => `
+    project (number: ${number}) {
         id
         name
         ${fields}
@@ -5010,7 +5146,8 @@ export const ProjectCards = (params: queryVariables.Cards) => `
 */
 
 export const Projects = (params: queryVariables.Projects) => `
-    projects(first: ${params.first} ${params.excludePopular ? `, excludeFirst: ${params.excludeFirst}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}  ${params.last ? `, last: ${params.last}` : ""}, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}) {
+    projects(first: ${params.first} ${params.excludePopular ? `, excludeFirst: ${params.excludeFirst}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}  ${params.last ? `, last: ${params.last}` : ""} 
+    ${params.orderBy || params.direction? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}`:""}) {
         edges {
             cursor
             node {
@@ -5784,6 +5921,20 @@ export const Release = (fields: string = "") => `
 `
 
 /**
+ * @description Github Graphql LatestRelease
+ * @fields Realease
+ */
+
+export const LatestRelease = (fields: string = "") => `
+    latestRelease {
+        id
+        name
+        ${fields}
+    }   
+ 
+`
+
+/**
  * @description Github Graphql ReleaseAssets
  * @defaultVariables totalCount
  * @queryArguments 
@@ -5890,9 +6041,11 @@ commitComments(name: ${params.name}, first: ${params.first} ${params.after ? `, 
  */
 
 export const LicenseInfo = (fields: string = "") => `
-    id
-    name
-    ${fields}
+    licenseInfo {
+        id
+        name
+        ${fields}
+    }    
 `
 
 
@@ -6160,7 +6313,7 @@ export const SecurityAdvisory = (fields: string = "") => `
 
 export const Vulnerabilities = (params: queryVariables.Vulnerabilities) => `
 vulnerabilities(first: ${params.first} ${params.ecosystem ? `, ecosystem: ${params.ecosystem}` : ""} ${params.severities ? `, severities: ${params.severities}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last:${params.last}` : ""},
-    orderBy: { field: ${params.orderBy}, direction: ${params.direction}}) {
+    ${params.orderBy || params.direction? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}`:""}) {
         edges {
 			cursor
 			node {

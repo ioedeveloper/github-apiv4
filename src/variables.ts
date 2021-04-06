@@ -71,7 +71,7 @@ export declare interface AssignableUsers extends BasicFields {
 }
 
 export declare interface Query extends BasicFields {
-    query: string;
+    query?: string;
 }
 
 export declare interface Packages extends BasicFields {
