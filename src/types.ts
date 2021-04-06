@@ -235,7 +235,6 @@ export declare interface FileEntries {
     };
 }
 
-
 export declare interface FileEntriesContent {
     name: string;
     type: string;
@@ -846,6 +845,7 @@ export declare interface Tier {
     sponsorsListing: SponsorsListing;
     updatedAt: string;
 }
+
 export declare interface Sponsor {
     organization: Organization;
     user: User;
