@@ -731,8 +731,7 @@ export const BranchProtectionRuleConflicts = (params: queryVariables.BasicFields
  * publishedAt
  * 
  * reactionGroups {
- * 
- *      Groups
+ *      reactionGroups
  * }
  * 
  * Reactions
@@ -5173,11 +5172,65 @@ export const Review = (fields: string = "") => `
     id
     ${fields}
 `
+/**
+* @description Github Graphql Reactable
+*   databaseId
+
+*   id
+
+*   onIssue
+
+*   onPullRequest
+
+*   onTeamDiscussion
+
+*   onTeamDiscussionComment
+
+*   onCommitComment
+
+*   onIssueComment
+
+*   onPullRequestReview
+
+*   onPullRequestReviewComment
+*/
+
+export const Reactable = (fields: string = "") => `
+    id
+    ${fields}
+`
+/**
+* @description Github Graphql ReactionGroups 
+* @defaultVariables totalCount
+
+* @fields
+* content
+          
+* createdAt
+
+* subject {
+* Reactable
+
+* }
+
+* Users
+
+* viewerHasReacted
+*/
+
+export const ReactionGroups = (fields:string = "") => `
+    reactionGroups {
+        content
+        createdAt
+        ${fields}
+    }
+`
 
 /**
  * @description Github Graphql onBehalfOf 
  * @defaultVariables totalCount
- * @queryArguments direction "ASC" | "DESC" 
+ * @queryArguments 
+ * direction "ASC" | "DESC" 
  * after string
  * 
  * before string
@@ -5316,11 +5369,63 @@ deployKeys(first: ${params.first} ${params.after ? `, after: "${params.after}" `
     }
     ${params.pageInfo ? params.pageInfo : ""}
     totalCount
-    viewerHasReacted
-
-}
+    }
 `
 
+/**
+ * @description Github Graphql Reaction
+ * @fields
+ * content
+ * 
+ * createdAt
+ * 
+ * databaseId
+ * 
+ * id
+ * 
+ * reactable {
+ *      Reactable
+ * }
+ * User
+ */
+
+export const Reaction = (fields: string = "") => `
+    id
+    content
+    ${fields}
+`
+/**
+ * @description Github Graphql Reactions
+ * @defaultVariables totalCount
+ * @queryArguments 
+ * after string
+ * 
+ * before string
+ * 
+ * first number
+ * 
+ * last number
+ * @fields
+ * Reaction
+ * 
+*/
+
+export const Reactions = (params: queryVariables.BasicFields) => `
+    reactions(first: ${params.first} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+        edges {
+            cursor
+            node {
+                ${params.fields}
+            }
+        }
+    
+        nodes {
+            ${params.fields}  
+        }
+        ${params.pageInfo ? params.pageInfo : ""}
+        totalCount
+    }
+`
 /**
  * @description Github Graphql CommitComments
  * @defaultVariables totalCount

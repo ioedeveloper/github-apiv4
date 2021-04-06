@@ -340,13 +340,14 @@ export declare interface RepositoryInfo {
     codeOfConduct: CodeOfConduct;
     collaborators: Collaborators;
     commitComments: CommitComments;
-    contactLinks: [{
+    contactLinks: {
         about: string;
         name: string;
         url: string
-    }]
+    }[]
     createdAt: string;
     databaseId: number;
+    defaultBranchRef: Ref;
     description: string;
     descriptionHTML: string;
     diskUsage: number;
