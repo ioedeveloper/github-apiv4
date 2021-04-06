@@ -79,8 +79,8 @@ import { queryVariables } from "."
  * isDisabled
  * 
  * isEmpty
- * 
  * isFork
+ * 
  * 
  * isInOrganization
  * 
@@ -359,6 +359,49 @@ export const Repositories = (params: queryVariables.Repositories) => `
  	}
     }
 `
+
+/**
+ * @description Github Graphql Forks
+ * @defaultVariables totalCount 
+ * @queryArguments 
+ * affiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
+ * 
+ * ownerAffiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
+ * 
+ * after string
+ * 
+ * before string
+ * 
+ * first number
+ * 
+ * last number
+ * 
+ * isLocked boolean
+ * 
+ * privacy "PUBLIC" | "PRIVATE"
+ * 
+ * @fields
+ * Repository
+ */
+
+ export const Forks = (params: queryVariables.Repositories) => `
+    forks(first: ${params.first} ${params.affiliations ? `affiliations: ${params.affiliations}` : ""} ${params.ownerAffiliations ? `, ownerAffiliations: ${params.ownerAffiliations}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.isFork ? `isFork: ${params.isFork}` : ""} ${params.isLocked ? `, isLocked: ${params.isLocked}` : ""} 
+    ${params.last ? `, last:${params.last}` : ""}, ${params.orderBy ||params.direction? `${params.orderBy ||params.direction? `${params.orderBy ||params.direction? `${params.orderBy ||params.direction? `${params.orderBy ||params.direction? `${params.orderBy ||params.direction? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}`:""}`:""}`:""}`:""}`:""}`:""} ${params.privacy ? `, privacy: ${params.privacy}` : ""}) {
+        edges {
+            cursor
+            node { 
+                ${params.fields}
+            }
+        }
+    
+        nodes {
+            ${params.fields}  
+        }
+        ${params.pageInfo ? params.pageInfo : ""}
+        totalCount
+    }
+`
+
 
 /**
 * @description Github Graphql BranchProtectionRule
@@ -1147,9 +1190,11 @@ export const onApp = (fields: string = "") => `
  */
 
 
-export const Issue = (fields: string = "") => `
-    id
-    ${fields}
+export const Issue = (issueNumber: number,fields: string = "") => `
+    issue (number: ${issueNumber}) {
+        id
+        ${fields}
+    }
 `
 
 /**

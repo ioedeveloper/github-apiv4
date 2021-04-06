@@ -348,15 +348,18 @@ export declare interface RepositoryInfo {
     createdAt: string;
     databaseId: number;
     defaultBranchRef: Ref;
+    deleteBranchOnMerge: boolean;
+    deployKeys: DeployKeys;
+    deployments: Deployments;
     description: string;
     descriptionHTML: string;
     diskUsage: number;
     forkCount: number;
     forks: Forks;
-    fundingLinks: [{
+    fundingLinks: {
         platform: string;
         url: string
-    }]
+    }[]
     hasIssuesEnabled: boolean;
     hasProjectsEnabled: boolean;
     hasWikiEnabled: boolean;
@@ -421,6 +424,7 @@ export declare interface RepositoryInfo {
     rebaseMergeAllowed: boolean;
     ref: Ref;
     refs: Refs;
+    release: Release;
     releases: Releases;
     repositoryTopics: Topics;
     resourcePath: string;
@@ -1281,9 +1285,9 @@ export declare interface ReleaseAssets {
 export declare interface Releases {
     edges: [{
         cursor: string;
-        node: UserInfo;
+        node: Release;
     }]
-    nodes: UserInfo[];
+    nodes: Release[];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -2228,6 +2232,23 @@ export declare interface Deployment {
     updatedAt: string;
 }
 
+export declare interface DeployKey {
+    createdAt: string;
+    id: number;
+    key: string;
+    readOnly: boolean;
+    title: string;
+    verified: boolean;
+}
+export declare interface DeployKeys {
+    edges: [{
+        cursor: string;
+        node: DeployKey;
+    }],
+    nodes: DeployKey[]
+    pageInfo: PageInfo;
+    totalCount: number;
+}
 export declare interface Deployments {
     edges: [{
         cursor: string;
