@@ -1120,8 +1120,10 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
  * used
 */
 export const RateLimit = (dryRun: boolean,fields: string) => `
+  {
     rateLimit (dryRun: ${dryRun}) {
       ${fields}
     }
+  }
 `
 
