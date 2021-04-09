@@ -238,6 +238,23 @@ export declare interface Vulnerabilities extends BasicFields {
 
 }
 
+export declare interface Refs extends BasicFields {
+    direction?: "ASC" | "DESC";
+    orderBy?: "TAG_COMMIT_DATE" | "ALPHABETICAL";
+    query?: string;
+    refPrefix: string; 
+}
+
+export declare interface Releases extends BasicFields {
+    orderBy?: "CREATED_AT" | "NAME";
+    direction?: "ASC" | "DESC";
+
+}
+
+export declare interface Stargazers extends BasicFields {
+    orderBy?: "STARRED_AT"
+    direction?: "ASC" | "DESC";
+}
 
 export declare interface Watching extends BasicFields {
 

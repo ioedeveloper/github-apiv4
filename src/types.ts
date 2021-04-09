@@ -439,12 +439,15 @@ export declare interface RepositoryInfo {
     updatedAt: string;
     url: string;
     usesCustomOpenGraphImage: boolean;
-    viewerCanAdminister: boolean;
+    viewerCanAdminister:boolean;
     viewerCanCreateProjects: boolean;
     viewerCanSubscribe: boolean;
-    viewerCanUpdateTopics: boolean;
+    viewerCanUpdateTopics:boolean;
+    viewerDefaultCommitEmail: string;
+    viewerDefaultMergeMethod: string;
     viewerHasStarred: boolean;
     viewerPermission: string;
+    viewerPossibleCommitEmails: [];
     viewerSubscription: string;
     vulnerabilityAlerts: VulnerabilityAlerts;
 
@@ -587,7 +590,7 @@ export declare interface CWES {
 export declare interface Topic {
     id: number;
     name: string;
-    relatedTopics: Topic;
+    relatedTopics: Topic[];
     stargazerCount: number;
     stargazers: Stargazers;
     viewerHasStarred: boolean;
@@ -1155,7 +1158,7 @@ export declare interface PullRequest {
     revertResourcePath: string;
     revertUrl: string;
     reviewDecision: string;
-    reviewRequest: ReviewRequests;
+    reviewRequests: ReviewRequests;
     reviewThreads: PullRequestReviews;
     reviews: Reviews;
     state: string;
@@ -1163,7 +1166,7 @@ export declare interface PullRequest {
         isAuthor: boolean;
         isCommenter: boolean;
         reviewer: UserInfo;
-    }
+    }[]
     timeline: Timeline;
     timelineItems: TimelineItems;
     title: string;

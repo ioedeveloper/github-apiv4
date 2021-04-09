@@ -714,22 +714,6 @@ export const CommitDirectories = `
 `
 
 /**
- * @description Github Graphql Query for branch details
- * @queryVariable qualifiedName: "refs/heads/master"
- */
-export const Branch = `
-  query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){
-    repository(owner: $repositoryOwner, name: $repositoryName){
-      branch: ref(qualifiedName: $qualifiedName){
-        id
-        name
-        prefix
-      }
-    }
-  }
-`
-
-/**
  * @description Github Graphql Query for Viewer Followers
  * @queryVariable after: String! //Cursor , before: String! //Cursor
  */
