@@ -1173,3 +1173,24 @@ export const Relay = (fields: string = "") => `
     }
   }
 `
+* @description Github Graphql RateLimit
+ * cost
+ * 
+ * limit
+ * 
+ * nodeCount
+ * 
+ * remaining
+ * 
+ * resetAt
+ * 
+ * used
+*/
+export const RateLimit = (dryRun: boolean,fields: string) => `
+  {
+    rateLimit (dryRun: ${dryRun}) {
+      ${fields}
+    }
+  }
+`
+
