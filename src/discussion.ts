@@ -1,54 +1,48 @@
-/**
-* @description Github Graphql Topic
-* @defaultVariables
-* id
-* name
-* RelatedTopics
-* stargazerCount
-* Stargazers
-* viewerHasStarred
-*/
 
-export const Topic = (field: string) => `
-    ${field}
+/**
+ * @description Github Graphql Topic
+ * @fields
+ * 
+ * id
+ * 
+ * name
+ * 
+ * RelatedTopics
+ * 
+ * stargazerCount
+ * 
+ * Stargazers
+ * 
+ * viewerHasStarred
+ */
+
+ export const Topic = (fields:string = "") => `
+ topic {
+     name
+     ${fields}
+ }
 `
 
 /**
 * @description Github Graphql RelatedTopics
-* @defaultVariables
-* first number
-* field Topic
+* 
+* @fields
+* id
+* 
+* name
+* 
+* RelatedTopics
+* 
+* stargazerCount
+* 
+* Stargazers
+* 
+* viewerHasStarred
 */
 
-export const RelatedTopics = (first: number = 10, field: string) => `
-    relatedTopics(first: ${first}) {
-        ${field}
-    }
-`
-
-/**
-* @description Github Graphql Stargazers
-* @defaultVariables
-* first number
-* last number
-* after string
-* before string
-* orderBy "STARRED_AT"
-* direction "ASC" | "DESC"
-* field User
-*/
-
-export const Stargazers = (first: number = 10, field: string, pageInfo?: string, orderBy: string = 'STARRED_AT', direction: string = 'ASC', after?: string, before?: string, last?: string) => `
-    stargazers(first: ${first} ${after ? `, ${after}` : ''} ${before ? `, ${before}` : ''} ${last ? `, ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${direction}}) {
-        edges {
-            cursor
-            node {
-                ${field}
-            }
-            starredAt
-        }
-        nodes {${field}}
-        ${pageInfo || ''}
-        totalCount
-    }
+export const RelatedTopics = (first: number,fields:string = "") => `
+ relatedTopics (first: ${first}) {
+     name
+     ${fields}
+ }
 `
