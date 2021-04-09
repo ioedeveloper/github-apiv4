@@ -188,99 +188,13 @@ import { BasicFields } from "./variables"
  */
 
 export const User = (fields: string) => `
-   id
-   name
-   ${fields}
-`
-/**
-* @description Github Graphql onUser
-* @defaultVariables teamsUrl message totalTeamCount
-* @fields
-*   __typename
-*   octicon
-
-*   RelevantTeams
-
-*   teamsResourcePath
-
-*/
-
-
-export const onGenericHovercardContext = (fields: string) => `
-    ... on GenericHovercardContext {
-        teamsUrl 
-        message
-        ${fields}
-        totalTeamCount
-    }
+   user {
+      id
+      name
+      ${fields}
+   }
 `
 
-/**
-* @description Github Graphql onOrganizationTeamsHovercardContext
-* @defaultVariables teamsUrl totalTeamCount
-* @fields 
-* __typename
-
-* teamsResourcePath
-
-* RelevantOrganizations
-
-*/
-
-
-export const onOrganizationTeamsHovercardContext = (fields: string) => `
- ... on OrganizationTeamsHovercardContext {
-    teamsUrl
-    ${fields}
-    totalTeamCount
- }
-`
-/**
-* @description Github Graphql onReviewStatusHovercardContext
-* @defaultVariables message
-* @fields
- *  reviewDecision
- * 
- *  octicon
-*/
-
-
-export const onReviewStatusHovercardContext = (fields: string) => `
- ... on User {
-    message
-    ${fields}
- }
-`
-/**
-* @description Github Graphql onViewerHovercardContext
-* @defaultVariables message
-* @fields
-*  __typename
-
-*  octicon
-
-*  viewer
-*/
-
-
-export const onViewerHovercardContext = (fields: string) => `
- ... on ViewerHovercardContext{
-    message
-    ${fields}
-`
-/**
-* @description Github Graphql onUser
-* @defaultVariables id email
-* @fields User
-*/
-
-export const onUser = (fields: string) => `
- ... on User {
-     id
-     email
-     ${fields}
- }
-`
 
 /**
 * @description Github Graphql RelevantTeams
@@ -409,20 +323,11 @@ export const Following = (params: queryVariables.BasicFields) => `
 */
 
 export const EnterpriseUserAccount = (fields: string = '') => `
-    id
-    name
-    ${fields}
-`
-
-/**
-* @description Github Graphql onEnterpriseUserAccount 
-* * @fields EnterpriseUserAccount 
-*/
-
-export const onEnterpriseUserAccount = (fields: string = '') => `
-    ... on EnterpriseUserAccount {
-        ${fields}
-    }
+   enterpriseUserAccount {
+      id
+      name
+      ${fields}
+   }    
 `
 
 /**
@@ -1481,55 +1386,7 @@ export const AssignableUsers = (params: queryVariables.AdminFields) => `
  	}
 `
 
-/**
-* @description Github Graphql onMannequin
-* @defaultVariables id email
-* @fields avatarUrl
-* createdAt
 
-* databaseId
-
-* login
-
-* resourcePath
-
-* updatedAt
-
-* url
-*/
-
-export const onMannequin = (fields?: string) => `
- ... on Mannequin {
-     id
-     email
-     ${fields}        
- }
-`
-/**
-* @description Github Graphql onBot
-* @defaultVariables id
-* @fields avatarUrl
-
-* createdAt
-
-* databaseId
-
-* login
-
-* resourcePath
-
-* updatedAt
-
-* url
-*/
-
-export const onBot = (fields?: string) => `
-... on Bot {
-  id
-  email
-  ${fields}        
-}
-`
 
 /**
 * @description Github Graphql Owner
@@ -1556,7 +1413,9 @@ export const onBot = (fields?: string) => `
 */
 
 export const Owner = (fields?: string) => `
-  	${fields}        
+   owner {
+      ${fields}        
+   }  	
 `
 
 /**
@@ -1594,7 +1453,7 @@ export const Authors = (params: queryVariables.BasicFields) => `
 
 /**
 * @description Github Graphql Editor
-* @defaultVariables id
+* @defaultVariables login
 * @fields 
 * avatarUrl
 
@@ -1616,8 +1475,10 @@ export const Authors = (params: queryVariables.BasicFields) => `
 */
 
 export const Editor = (fields?: string) => `
-id
-${fields}        
+   editor {
+      login
+      ${fields}
+   }
 `
 
 
@@ -1648,9 +1509,7 @@ ${fields}
 
 * editedAt
 
-* editor {
-    Owner
-* }
+* Editor
 
 * id
 
@@ -2019,8 +1878,10 @@ export const PinnedItems = (params: queryVariables.PinItems) => `
 */
 
 export const SamlIdentityProvider = (fields: string) => `
-id
-${fields}
+   samlIdentityProvider {
+      id
+      ${fields}
+   }
 `
 
 /**
@@ -2045,8 +1906,11 @@ ${fields}
 */
 
 export const Identity = (fields: string) => `
- givenName
- ${fields}
+   identity {
+      givenName
+      ${fields}
+   }
+
 `
 
 /**
@@ -2091,14 +1955,15 @@ export const Identity = (fields: string) => `
 */
 
 export const ExternalIdenty = (fields: string) => `
-id
-${fields}
+   externalIdenty {
+      id
+      ${fields}      
+   }
 `
 
 /**
 * @description Github Graphql ExternalIdentities
-* @defaultVariables totalCount 
-   first = 10
+* @defaultVariables totalCount
 * @queryArguments 
 * after string
 
@@ -2390,7 +2255,9 @@ export const TwoFactorRequiredSettingOrganizations = (value: boolean, params: qu
 */
 
 export const Contribution = (fields: string) => `
-   ${fields}
+   contribution {
+      ${fields}
+   }
 `
 
 /**
@@ -2506,17 +2373,6 @@ export const ContributionCalendar = () => `
 `
 
 /**
-* @description Github Graphql onCreatedIssueContribution
-* @fields IssueContribution
-*/
-
-export const onCreatedIssueContribution = (fields: string) => `
-   ... on CreatedIssueContribution {
-      __typename
-      ${fields}
-   }
-`
-/**
 * @description Github Graphql IssueContribution
 * @fields isRestricted
 * issue {
@@ -2535,28 +2391,6 @@ export const onCreatedIssueContribution = (fields: string) => `
 
 export const IssueContribution = (fields: string) => `
    ${fields}
-`
-
-/**
-* @description Github Graphql onRestrictedContribution 
-* isRestricted
-
-* occurredAt
-
-* resourcePath
-
-* url
-
-* user {
-   User
-}
-*/
-
-export const onRestrictedContribution = (fields: string) => `
-   ... on RestrictedContribution  {
-      __typename
-      ${fields}
-   }
 `
 
 /**
@@ -2605,43 +2439,6 @@ export const PopularPullRequestContribution = (fields: string) => `
 
 export const PullRequestContribution = (fields: string) => `
    ${fields}
-`
-
-/**
-* @description Github Graphql onCreatedPullRequestContribution 
-* @fields PullRequestContribution
-*/
-
-export const onCreatedPullRequestContribution = (fields: string) => `
-   ... on CreatedPullRequestContribution {
-      __typename
-      ${fields}
-   }
-`
-
-/**
-* @description Github Graphql CreatedRepositoryContribution
-* isRestricted
-
-* occurredAt
-
-* repository {
-   Repository
-}
-* resourcePath
-
-* url
-
-* user {
-   User
-}
-*/
-
-export const onCreatedRepositoryContribution = (fields: string) => `
-   ... on onCreatedRepositoryContribution {
-      __typename
-      ${fields}
-   }
 `
 
 /**
@@ -3224,9 +3021,11 @@ export const StarredRepositories = (params: queryVariables.StarredRepositories) 
 */
 
 export const Status = (fields: string) => `
-	id
-	message
-	${fields}
+   status {
+      id
+      message
+      ${fields}
+   }
 `
 
 
