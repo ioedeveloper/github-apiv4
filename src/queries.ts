@@ -1104,3 +1104,70 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
+
+/**
+* @description Github Graphql Relay
+ * @fields
+ * CodeofConduct
+ * 
+ * CodesofConduct
+ * 
+ * Enterprise
+ * 
+ * EnterpriseAdministratorInvitation 
+ * 
+ * EnterpriseAdministratorInvitationByToken
+ * 
+ * License
+ * 
+ * Licenses
+ * 
+ * MarketplaceCategories
+ * 
+ * MarketplaceCategory
+ * 
+ * MarketplaceListing
+ * 
+ * MarketplaceListings
+ * 
+ * Meta
+ * 
+ * Node
+ * 
+ * Nodes
+ * 
+ * Organization
+ * 
+ * RateLimit
+ * 
+ * Relay
+ * 
+ * Repository
+ * 
+ * RepositoryOwner
+ * 
+ * Resource
+ * 
+ * Search
+ * 
+ * SecurityAdvisories
+ * 
+ * SecurityAdvisory
+ * 
+ * SecurityVulnerabilities
+ * 
+ * Sponsorables
+ * 
+ * SponsorsListing
+ * 
+ * Topic
+ * 
+ * User
+ * 
+ * Viewer
+*/ 
+export const Relay = (fields: string = "") => `
+    relay {
+      ${fields}
+    }
+`
