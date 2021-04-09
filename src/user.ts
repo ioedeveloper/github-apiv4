@@ -1491,7 +1491,6 @@ export const Owner = (fields?: string) => `
 `
 
 
-
 /**
 * @description Github Graphql Editor
 * @defaultVariables id
