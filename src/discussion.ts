@@ -176,45 +176,11 @@ export const Discussions = (isPinned:boolean = false, first:number = 10, after:s
  */
 
 export const Comment = (fromComment:number = 10, first: number = 10, fields: string = '', orderBy: string = "NUMBER" ,direction:string =  "ASC",after: string = '', before: string = '', last: number = 0) => `
-    comments(fromComment: ${fromComment},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first}${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+    comment(fromComment: ${fromComment},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first}${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
     }
 `
-
-/**
- * @description Github Graphql Comments
- * @defaultVariables totalCount  first = 10
- * @queryArguments 
- * after String
- * before String
- * first number
- * last number
- * skip number
- * @queryVariables 
- *  edges {
- *      cursor
- *      node {
- *          Comment
- *      }
- *      nodes {
- *          Comment
- *          PageInfo
- *          totalCount
- *      }
- *  }
-*   PageInfo
-* }
-*/
-
-export const Comments = (first:number = 10, fields:string = '', after:string = '', before: string = '',  last:number = 0, skip:string) => `
-    comments(first: ${first} ${after ? `, after: ${after} ` : ''} ${before?`, before: ${before}`:''}, ${last ?`, last: ${last}`:''}${skip ?`, skip: ${skip}`:''}) {
-        ${fields}
-        totalCount
-    }
-`
-
-
 
 /**
  * @description Github Graphql ReactionGroups
@@ -643,4 +609,33 @@ export const AuditLog = (params: queryVariables.AuditLog) => `
 		totalCount
 	}
 
+`
+
+/**
+* @description Github Graphql Comments
+* @defaultVariables totalCount
+* @queryArguments 
+** after string
+** before string
+** first number
+** last number
+* @fields
+** Comment 
+*/
+
+export const Comments = (params: queryVariables.BasicFields) => `
+    comments(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+        edges {
+            cursor
+            node {
+                ${params.fields}
+            }
+        }
+    
+        nodes {
+            ${params.fields}  
+        }
+        ${params.pageInfo ? params.pageInfo : ""}
+        totalCount
+    }
 `

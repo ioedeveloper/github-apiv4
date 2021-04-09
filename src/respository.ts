@@ -2983,35 +2983,6 @@ export const CommitComments = (params: queryVariables.BasicFields) => `
 `
 
 /**
-* @description Github Graphql Comments
-* @defaultVariables totalCount
-* @queryArguments 
-** after string
-** before string
-** first number
-** last number
-* @fields
-** Comment 
-*/
-
-export const Comments = (params: queryVariables.BasicFields) => `
-    comments(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
-        edges {
-            cursor
-            node {
-                ${params.fields}
-            }
-        }
-    
-        nodes {
-            ${params.fields}  
-        }
-        ${params.pageInfo ? params.pageInfo : ""}
-        totalCount
-    }
-`
-
-/**
 * @description Github Graphql Release
 * @defaultVariables id name
 * @fields
