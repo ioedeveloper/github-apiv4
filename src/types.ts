@@ -919,3 +919,12 @@ export declare interface SponsorsListing{
         totalCount: number;
     }
 }
+
+export declare interface RateLimit {
+    cost: number;
+    limit: number;
+    nodeCount: number;
+    remaining: number;
+    resetAt: string;
+    used: number;
+}
