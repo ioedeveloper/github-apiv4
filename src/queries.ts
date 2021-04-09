@@ -1167,7 +1167,9 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
  * Viewer
 */ 
 export const Relay = (fields: string = "") => `
+  {
     relay {
       ${fields}
     }
+  }
 `

@@ -919,3 +919,35 @@ export declare interface SponsorsListing{
         totalCount: number;
     }
 }
+
+export declare interface Relay {
+    codeofConduct: CodeofConduct;
+    codesofConduct: CodesofConduct;
+    enterprise: Enterprise;
+    enterpriseAdministratorInvitation: EnterpriseAdministratorInvitation;
+    enterpriseAdministratorInvitationByToken: EnterpriseAdministratorInvitationByToken
+    license: License;
+    licenses: Licenses;
+    marketplaceCategories:MarketplaceCategories;
+    marketplaceCategory: MarketplaceCategory;
+    marketplaceListing: MarketplaceListing;
+    marketplaceListings: MarketplaceListings;
+    meta: Meta;
+    node: Node;
+    nodes: Nodes;
+    organization: Organization;
+    rateLimit: RateLimit;
+    relay: Relay;
+    repository: Repository;
+    repositoryOwner: RepositoryOwner;
+    resource: Resource;
+    search: Search;
+    securityAdvisories: SecurityAdvisories;
+    securityAdvisory: SecurityAdvisory;
+    securityVulnerabilities: SecurityVulnerabilities;
+    sponsorables: Sponsorables;
+    sponsorsListing: SponsorsListing;
+    topic: Topic;
+    user: User;
+    viewer: Viewer;
+}
