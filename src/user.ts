@@ -209,50 +209,31 @@ import { BasicFields } from "./variables"
 
  * status {
 
- *      message
+import { queryVariables } from "."
 
- *      indicatesLimitedAvailability
+export const User = (fields: string) => `
+    id
+    name
+    ${fields}
+`
 
- *      id
-
- *      expiresAt
-
- *      emojiHTML
-
- *      emoji
-
- *      createdAt
-
- *      updatedAt
-
- *      User
-
- *      Oganisation
-
- *      TopRepositories
-
- *      twitterUsername
-
- *      updatedAt
-
- *      url
-
- *      viewerCanChangePinnedItems
-
- *      viewerCanCreateProjects
-
- *      viewerCanFollow
-
- *      viewerCanSponsor
-
- *      viewerIsFollowing
-
- *      viewerIsSponsoring
-
- *      Watching
-
- *      websiteUrl
-
+/**
+ * @description Github Graphql RelevantTeams
+ * @defaultVariables totalcount
+ * @queryVariables after
+ * befor
+ * first
+ * last
+ * edges {
+ *      cursor
+ *      node {
+ *         Teams
+ *      }
+ *  }
+ * nodes {
+ *      Teams
+ *      PageInfo
+ * }
  */
 
 export const User = (fields: string) => `
@@ -300,19 +281,18 @@ export const UserHoverCard = (fields: string, primarySubjectId?: string) => `
 
 export const RelevantTeams = (params: queryVariables.BasicFields) => `
    relevantTeams(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
-      edges {
-         cursor
-         node {
-            ${params.fields}
-         }
-      }
-
-      nodes {
-         ${params.fields}
-      }
-      ${params.pageInfo ? params.pageInfo : ""}
-      totalCount
-   }
+      	edges {
+         	cursor
+         	node {
+            	${params.fields}
+         	}
+      	}
+      	nodes {
+         	${params.fields}
+      	}
+      	${params.pageInfo ? params.pageInfo : ""}
+      	totalCount
+   	}
 `
 
 /**
@@ -613,89 +593,17 @@ export const EnterpriseServerInstallations = (params: queryVariables.EnterpriseS
 `
 
 /**
-* @description Github Graphql UserAccounts
-* @defaultVariables totalCount
+* @description Github Graphql MembersCanChangeRepositoryVisibilitySettingOrganizations
+* @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
 * @queryArguments
-** after string
-** before string
-** first number
-** last number
-* @fields 
-** email
-** enterpriseServerInstallation
-** organization
-** createdAt
-** id
-** isSiteAdmin
-** login
-** profileName
-** remoteCreatedAt
-** remoteUserId
-** updatedAt
-*/
-
-export const UserAccounts = (params: queryVariables.UserAccounts) => `
-	userAccounts(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.connectedOnly ? `, connectedOnly: ` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
-		edges {
-			cursor
-			node {
-				${params.fields}
-			}
-		}
-
-		nodes {
-			${params.fields}
-		}
-		${params.pageInfo ? params.pageInfo : ""}
-		totalCount
-	}
-`
-
-/**
-* @description Github Graphql Emails
-* @defaultVariables totalCount
-* @queryArguments 
-** after string
-** before string
-** first number
-** last number
-** orderBy "EMAIL"
-* @fields 
-** createdAt
-** email
-** id
-** isPrimary
-** updatedAt
-** UserAccount
-
-*/
-
-export const Emails = (params: queryVariables.Emails) => `
-	emails(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
-		edges {
-			cursor
-			node {
-				${params.fields}
-			}
-		}
-		nodes {
-			${params.fields}  
-		}
-		${params.pageInfo ? params.pageInfo : ""}
-		totalCount
-	}
-`
-
-/**
-* @description Github Graphql EnterpriseServerInstallation
-* @defaultVariables totalCount 
-* @fields
-** createdAt
-** customerName
-** hostName
-** id
-** isConnected
-** UserAccounts
+* after string
+* before string
+* first number
+* last number
+* orderBy "CREATED_AT" | "LOGIN"
+* value boolean
+* @queryVariables
+* Organization
 */
 
 export const EnterpriseServerInstallation = (fields?: string) => `
@@ -1551,26 +1459,32 @@ export const PinnedItems = (params: queryVariables.PinItems) => `
  	}
 `
 
+
+
 /**
 * @description Github Graphql SamlIdentityProvider
-* @defaultVariables id
-* @fields
-** digestMethod
-** externalIdentities {
-	 ExternalIdentities
-** }
-** idpCertificate
-** issuer
-** recoveryCodes
-** signatureMethod
-** ssoUrl
+
+* @fields digestMethod
+
+* ExternalIdentities
+
+* id
+
+* idpCertificate
+      
+* issuer
+
+* Organization
+
+* signatureMethod
+      
+* ssoUrl
 */
 
-export const SamlIdentityProvider = (fields: string) => `
-   samlIdentityProvider {
-      id
-      ${fields}
-   }
+export const SamlIdentityProvider = (fields:string = "") => `
+    samlIdentityProvider {
+        ${fields}
+    }
 `
 
 /**
@@ -1623,34 +1537,49 @@ export const ExternalIdenty = (fields: string) => `
       ${fields}      
    }
 `
-
 /**
 * @description Github Graphql ExternalIdentities
 * @defaultVariables totalCount
 * @queryArguments 
-** after string
-** before string
-** first number
-** last number
-* @fields 
-** ExternalIdenty
+* after string
+
+* before string
+
+* first number
+
+* last number
+
+* @fields
+* guid
+          
+* id
+
+* organizationInvitation {
+    Invitation
+}
+* SamlIdentity
+
+* ScimIdentity
+
+* User
 */
 
 export const ExternalIdentities = (params: queryVariables.BasicFields) => `
-	externalIdentities(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
-		edges {
-			cursor
-			node {
-				${params.fields}
-			}
-		}
-		nodes {
-			${params.fields}  
-		}
-		${params.pageInfo ? params.pageInfo : ""}
-		totalCount
-	}
+    externalIdentities (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `,first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+        edges {
+            cursor
+            node {
+                ${params.fields}
+            }
+        }
+        nodes {
+            totalCount
+            ${params.fields}  
+        }
+        ${params.pageInfo ? params.pageInfo : ""}
+    }
 `
+
 
 /**
 * @description Github Graphql SamlIdentityProviderSettingOrganizations

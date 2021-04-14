@@ -11,23 +11,18 @@ export declare interface UserInfo {
     commitComments: UserCommitContents;
     company: string;
     companyHTML: string;
-    contributionsCollection: ContributionsCollection;
+    contributionCollection: any;
     createdAt: string;
     databaseId: number;
     email: string;
     followers: Followers;
     following: Following;
-    gist: Gist;
-    gistComments: GistComments;
-    gists: Gists;
+    gist: Commit;
+    gistComments: Comments;
+    gists: Commit[];
     hasSponsorsListing: boolean;
     hovercard: HoverCard;
     id: number;
-    interactionAbility: {
-        expiresAt: string;
-        limit: number;
-        origin: string;
-    }
     isBountyHunter: boolean;
     isCampusExpert: boolean;
     isDeveloperProgramMember: boolean;
@@ -36,56 +31,35 @@ export declare interface UserInfo {
     isSponsoringViewer: boolean;
     isHireable: boolean;
     isViewer: boolean;
-    issueComments: IssueComments;
-    issues: Issues;
+    isssueComments: Comments;
+    issues: Issue[]
     itemShowcase: {
         hasPinnedItems: boolean;
-        items: {
-            edges: {
-                node: UserItems
-            }[];
-            nodes: UserItems[];
-            pageInfo: PageInfo;
-            totalCount: number;
-        }
+        items: Items;
     }
     location: string;
     login: string;
     name: string;
-    organization: Organization
-    organizationVerifiedDomainEmails: string[];
-    organizations: Organizations;
-    packages: Packages;
-    pinnableItems: {
-        edges: {
-            cursor: string;
-            node: UserItems
-        }[]
-        nodes: UserItems[];
-        pageInfo: PageInfo;
-        totalCount: number
+    organization: OrganizationInfo
+    organizationVerifiedDomainEmails: (login: string) => {
+
     };
-    pinnedItems: {
-        edges: {
+    organizations: OrganizationInfo[];
+    packages: {
+        edges: [{
             cursor: string;
-            node: UserItems
-        }[]
-        nodes: UserItems[]
+            node: Package;
+        }];
+        nodes: [Package];
         pageInfo: PageInfo;
-        totalCount: number
-    };
+        totalCount: number;
+    }
+    pinnableItems: Items;
+    pinnedItems: Items;
     pinnedItemsRemaining: number;
     url: string;
     project: Project;
-    projects: {
-        edges: {
-            cursor: string;
-            node: Project;
-        }[]
-        nodes: Project[];
-        pageInfo: PageInfo;
-        totalCount: number
-    }
+    projects: Projects;
     projectsResourcePath: string;
     projectsUrl: string;
     publicKeys: {
@@ -95,21 +69,21 @@ export declare interface UserInfo {
                 accessedAt: string
                 createdAt: string
                 fingerprint: string
-                id: number;
+                id: string;
                 isReadOnly: boolean
                 key: string
                 updatedAt: string
             };
-        }[]
-        nodes: {
+        }]
+        nodes: [{
             accessedAt: string
             createdAt: string
             fingerprint: string
-            id: number;
+            id: string;
             isReadOnly: boolean
             key: string
             updatedAt: string
-        }[]
+        }]
         pageInfo: PageInfo;
         totalCount: number;
     }
@@ -117,12 +91,12 @@ export declare interface UserInfo {
         edges: {
             cursor: string,
             node: PullRequest
-        }[]
-        nodes: PullRequest[]
+        }]
+        nodes: [PullRequest]
         pageInfo: PageInfo;
         totalCount: number;
     }
-    repositories: Repositories
+    repositories: Repositories;
     repositoriesContributedTo: {
         edges: {
             cursor: string,
@@ -145,31 +119,15 @@ export declare interface UserInfo {
         totalCount: number;
     }
     sponsorsListing: SponsorsListing;
-    sponsorshipForViewerAsSponsor: SponsorShip;
-    sponsorshipsAsMaintainer: {
-        edges: {
-            cursor: string;
-            node: SponsorShip;
-        }[]
-        nodes: SponsorShip[];
-        pageInfo: PageInfo;
-        totalCount: number;
-    }
-    sponsorshipsAsSponsor: {
-        edges: {
-            cursor: string;
-            node: SponsorShip;
-        }[]
-        nodes: SponsorShip[];
-        pageInfo: PageInfo;
-        totalCount: number;
-    }
+    sponsorshipForViewerAsSponsor: SponsorshipForViewerAsSponsor;
+    sponsorshipsAsMaintainer: SponsorshipsAsMaintainer
+    sponsorshipsAsSponsor: SponsorshipsAsSponsor;
     starredRepositories: {
         edges: {
             cursor: string;
             node: RepositoryInfo;
         }[]
-        nodes: RepositoryInfo[];
+        nodes: Repository[];
         pageInfo: PageInfo;
         isOverLimit: boolean;
         totalCount: number;
@@ -182,7 +140,7 @@ export declare interface UserInfo {
         id: number;
         indicatesLimitedAvailability: boolean;
         message: string;
-        organization: Organization;
+        organization: OrganizationInfo;
         updatedAt: string;
         user: User
     }
@@ -347,10 +305,6 @@ export declare interface RepositoryInfo {
     }[]
     createdAt: string;
     databaseId: number;
-    defaultBranchRef: Ref;
-    deleteBranchOnMerge: boolean;
-    deployKeys: DeployKeys;
-    deployments: Deployments;
     description: string;
     descriptionHTML: string;
     diskUsage: number;
@@ -365,11 +319,6 @@ export declare interface RepositoryInfo {
     hasWikiEnabled: boolean;
     homepageUrl: string;
     id: number;
-    interactionAbility: {
-        expiresAt: string;
-        limit: number;
-        origin: string;
-    }
     isArchived: boolean;
     isBlankIssuesEnabled: boolean;
     isEmpty: boolean;
@@ -381,26 +330,8 @@ export declare interface RepositoryInfo {
     isPrivate: boolean;
     isSecurityPolicyEnabled: boolean;
     isTemplate: boolean;
-    isUserConfigurationRepository: boolean;
-    issue: Issue;
-    issueOrPullRequest: Source;
-    issueTemplates: {
-        about: string;
-        body: string;
-        name: string;
-        title: string;
-    }[]
-    issues: Issues;
-    label: Label;
-    labels: Labels;
-    languages: Langueges;
-    latestRelease: Release;
-    licenseInfo: License;
     lockReason: string;
-    mentionableUsers: Collaborators
     mergeCommitAllowed: boolean;
-    milestone: Milestone;
-    milestones: Milestones;
     mirrorUrl: string;
     name: string;
     nameWithOwner: string;
@@ -667,88 +598,23 @@ export declare interface Branch {
 }
 
 export declare interface Commit {
-    abbreviatedOid: string;
-    additions: number;
-    associatedPullRequests: PullRequests;
-    author: Owner;
-    authoredByCommitter: boolean;
-    authoredDate: string;
-    authors: Authors;
-    blame: {
-        ranges: BlameRange[];
-    }
-    changedFiles: number;
-    checkSuites: CheckSuites;
-    comments: Comments;
-    commitResourcePath: string;
-    commitUrl: string;
-    committedDate: string;
-    committedViaWeb: string;
-    committer: {
-        avatarUrl: string;
-        date: string;
-        email: string;
-        name: string;
-        user: UserInfo;
-    }
-    deletions: number;
-    deployments: Deployments;
-    file: File;
-    history: History;
-    id: number;
-    message: string;
-    messageBody: string;
-    messageBodyHTML: string;
-    messageHeadline: string;
-    messageHeadlineHTML: string;
-    oid: string;
-    onBehalfOf: Organization;
-    parents: Commits;
-    pushedDate: string;
-    repository: RepositoryInfo;
-    status: CommitStatus;
-    statusCheckRollup: StatusCheckRollup;
-    submodules: Submodules;
-    tarballUrl: string;
-    tree: Tree;
-    treeResourcePath: string;
-    treeUrl: string;
-    url: string;
-    viewerCanSubscribe: boolean;
-    viewerSubscription: string;
-    zipballUrl: string;
-}
-
-export declare interface BlameRange {
-    age: number;
-    commit: Commit;
-    endingLine: number;
-    startingLine: number;
-}
-
-export declare interface Languege {
-    color: string;
-    id: number;
-    name: string;
-}
-
-export declare interface Langueges {
-    edges: {
-        node: Languege;
-        cursor: string;
-    }[];
-    nodes: Languege[];
-    pageInfo: PageInfo;
-    totalCount: number;
-    totalSize: number;
-}
-
-export declare interface Commits {
-    edges: {
-        node: {
-            commit: Commit;
+    repository: null | {
+        commit: null | {
+            authoredByCommitter: boolean;
+            authoredDate: string;
+            changedFiles: number;
+            commitUrl: string;
+            committedDate: string;
+            committedViaWeb: boolean;
+            deletions: number;
             id: number;
-            pullRequest: PullRequest;
+            message: string;
+            messageBody: string;
+            messageBodyHTML: string;
+            messageHeadline: string;
+            messageHeadlineHTML: string;
+            oid: string;
+            pushedDate: string;
             resourcePath: string;
             url: string;
         };
@@ -766,20 +632,22 @@ export declare interface Commits {
 }
 
 export declare interface CodeOfConduct {
-    name: string;
-    id: number;
-    body: string;
-    key: string;
-    resourcePath: string;
-    url: string;
+    codeOfConduct: null | {
+        name: string;
+        id: number;
+        body: string;
+        key: string;
+        resourcePath: string;
+        url: string;
+    };
 }
 
 export declare interface Followers {
     edges: {
         node: UserInfo;
         cursor: string;
-    }[];
-    nodes: UserInfo[];
+    }];
+    nodes: [UserInfo];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -788,8 +656,8 @@ export declare interface Following {
     edges: {
         node: UserInfo;
         cursor: string;
-    }[];
-    nodes: UserInfo[]
+    }];
+    nodes: [UserInfo]
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -871,9 +739,7 @@ export declare interface UserCommitContents {
 
 export declare interface Issue {
     activeLockReason: string;
-    assignees: Assignees;
-    author: Owner;
-    authorAssociation: string;
+    author: Author;
     body: string;
     bodyHTML: string;
     bodyResourcePath: string;
@@ -885,13 +751,13 @@ export declare interface Issue {
     createdAt: string;
     createdViaEmail: boolean;
     databaseId: number;
-    editor: Owner;
-    hovercard: HoverCard;
+    editor: Author;
+    hovercard: [{
+        message: string;
+        octicon: string;
+    }];
     id: number;
     includesCreatedEdit: boolean;
-    isPinned: boolean;
-    isReadByViewer: boolean;
-    labels: Labels;
     lastEditedAt: string;
     locked: boolean;
     milestone: Milestone;
@@ -974,27 +840,55 @@ export declare interface ProjectCards {
 export declare interface HoverCard {
     contexts: {
         message: string;
-        octicon: string
-        relevantOrganizations: RelevantOrganizations;
-        relevantTeams: RelevantTeams;
-        reviewDecision: string;
-        __typename: string;
-        teamsResourcePath: string;
-        teamsUrl: string;
-        totalOrganizationCount: number;
-        totalTeamCount: number;
-        viewer: UserInfo
-    }[]
+        GenericHovercardContext: {
+            message: string;
+            octicon: string;
+        }
+        OrganizationInfoTeamsHovercardContext: {
+            message: string;
+            octicon: string;
+            relevantTeams: Team[]
+        }
+    }
 }
 export declare interface Team {
-    ancestors: Team[]
+    ancestors: Teams;
     avatarUrl: string;
-    childTeams: Team[]
+    childTeams: Teams
     combinedSlug: string;
     createdAt: string;
     databaseId: number;
     description: string;
-
+    discussion: Discussion;
+    discussions: Discussions;
+    discussionsResourcePath: string;
+    discussionsUrl: string;
+    editTeamResourcePath: string;
+    editTeamUrl: string;
+    id: number;
+    invitations: Invitations;
+    memberStatuses: MemberStatuses;
+    members: Members;
+    membersResourcePath: string;
+    membersUrl: string;
+    name: string;
+    newTeamResourcePath: string;
+    newTeamUrl: string;
+    organization: Organization;
+    parentTeam: Team;
+    privacy: string;
+    repositories: Repositories;
+    repositoriesResourcePath: string;
+    repositoriesUrl: string;
+    resourcePath: string;
+    slug: string;
+    teamsResourcePath: string;
+    teamsUrl: string;
+    updatedAt: string;
+    url: string;
+    viewerCanAdminister: boolean;
+    viewerCanSubscribe: boolean;
+    viewerSubscription: boolean;
 }
 
 export declare interface Discussion {
@@ -1004,12 +898,13 @@ export declare interface Discussion {
     bodyHTML: string;
     bodyText: string;
     bodyVersion: string;
-    comments: Comments
+    comments: Comments;
     commentsResourcePath: string;
     commentsUrl: string;
     createdAt: string;
     createdViaEmail: boolean;
     databaseId: number;
+    discussion: Discussion;
     editor: Owner;
     id: number;
     includesCreatedEdit: boolean;
@@ -1018,7 +913,19 @@ export declare interface Discussion {
     lastEditedAt: string;
     number: number;
     publishedAt: string;
-    reactionGroups: ReactionGroup[];
+    reactionGroups: ReactionGroups;
+    reactions: Reactions;
+    team: Team;
+    title: string;
+    resourcePath: string;
+    updatedAt: string;
+    url: string;
+    userContentEdits: UserContentEdits;
+    viewerCanDelete: boolean;
+    viewerCanReact: boolean;
+    viewerCanUpdate: boolean;
+    viewerCannotUpdateReasons: boolean;
+    viewerDidAuthor: boolean;
 }
 
 export declare interface Owner extends EnterpriseUserAccount, Organization, UserInfo, Mannequin, Bot {
@@ -1026,6 +933,12 @@ export declare interface Owner extends EnterpriseUserAccount, Organization, User
     login: string;
     resourcePath: string;
     url: string;
+    enterpriseUserAccount: EnterpriseUserAccount;
+    organization: OrganizationInfo
+    user: User;
+    bannequin: Mannequin;
+    bot: Bot;
+
 }
 
 
@@ -1036,7 +949,7 @@ export declare interface EnterpriseUserAccount {
     id: number;
     login: string;
     name: string;
-    organization: Organization;
+    organization: OrganizationInfo;
     resourcePath: string;
     updatedAt: string;
     url: string;
@@ -1047,7 +960,76 @@ export declare interface Enterprise {
 }
 
 export declare interface Organization {
+    organization: OrganizationInfo;
+}
 
+export declare interface OrganizationInfo {
+    anyPinnableItems: boolean;
+    auditLog: AuditLog;
+    avatarUrl: string;
+    createdAt: string;
+    databaseId: number;
+    description: string;
+    descriptionHTML: string;
+    domains: Domains;
+    email: string;
+    hasSponsorsListing: boolean;
+    id: number;
+    interactionAbility: {
+        expiresAt: string;
+        limit: number;
+        origin: string;
+    }
+    ipAllowListEnabledSetting: string;
+    isSponsoredBy: boolean;
+    isSponsoringViewer: boolean;
+    isVerified: boolean;
+    itemShowcase: {
+        hasPinnedItems: boolean;
+        items: Items;
+    }
+    location: string;
+    login: string;
+    memberStatuses: MemberStatuses;
+    membersWithRole: MembersWithRole;
+    name: string;
+    newTeamResourcePath: string;
+    newTeamUrl: string;
+    notificationDeliveryRestrictionEnabledSetting: string;
+    organizationBillingEmail: string;
+    pendingMembers: PendingMembers;
+    pinnableItems: Items;
+    pinnedItems: Items;
+    pinnedItemsRemaining: number;
+    project: Project;
+    projects: Projects;
+    projectsResourcePath: string;
+    projectsUrl: string;
+    repositories: Repositories;
+    repository: RepositoryInfo;
+    requiresTwoFactorAuthentication: boolean;
+    resourcePath: string;
+    samlIdentityProvider: SamlIdentityProvider;
+    sponsorsListing: SponsorsListing;
+    sponsorshipForViewerAsSponsor: SponsorshipForViewerAsSponsor;
+    sponsorshipsAsMaintainer: SponsorshipsAsMaintainer;
+    sponsorshipsAsSponsor: SponsorshipsAsSponsor;
+    team: Team;
+    teams: Teams;
+    teamsResourcePath: string;
+    teamsUrl: string;
+    twitterUsername: string;
+    updatedAt: string;
+    url: string;
+    viewerCanAdminister: boolean;
+    viewerCanChangePinnedItems: boolean;
+    viewerCanCreateProjects: boolean;
+    viewerCanCreateRepositories: boolean;
+    viewerCanCreateTeams: boolean;
+    viewerCanSponsor: boolean;
+    viewerIsAMember: boolean;
+    viewerIsSponsoring: boolean;
+    websiteUrl: string;
 }
 
 export declare interface Mannequin {
@@ -1076,17 +1058,26 @@ export declare interface Bot {
 export declare interface ReactionGroup {
     content: string;
     createdAt: string;
-    subject: Subject;
-    users: Users;
-    viewerHasReacted: boolean;
+    reactionGroups: ReactionGroup[]
+    viewerCanReact: boolean;
+    issue: Issue;
+    pullRequest: PullRequest;
+    teamDiscussion: Discussion;
+    teamDiscussionComment: Discussion;
+    commitComment: CommitComment;
+    issueComment: IssueComment;
+    pullRequestReview: PullRequestReview;
+    pullRequestReviewComment: PullRequestReviewComment;
+    users: User[]
+    viewerHasReacted: boolean
 }
 
 export declare interface Reaction {
     content: string;
     createdAt: string;
-    databaseId: number
+    databaseId: string
     id: number;
-    reactable: Reactable;
+    reactable: string;
 }
 
 export declare interface PageInfo {
@@ -1097,120 +1088,26 @@ export declare interface PageInfo {
 }
 
 export declare interface PullRequest {
-    activeLockReason: string;
-    additions: number;
-    assignees: Assignees;
-    author: Owner;
-    authorAssociation: string;
-    autoMergeRequest: AutoMergeRequest;
-    baseRef: Ref;
-    baseRefName: string;
-    baseRefOid: string;
-    baseRepository: RepositoryInfo;
-    body: string;
-    bodyHTML: string;
-    bodyText: string;
-    changedFiles: number;
-    checksResourcePath: string;
-    checksUrl: string;
-    closed: boolean;
-    closedAt: string;
-    comments: Comments;
-    commits: Commits;
-    createdAt: string;
-    createdViaEmail: boolean;
-    databaseId: number;
-    deletions: number;
-    editor: Owner;
-    files: Files;
-    headRef: Ref;
-    headRefName: string;
-    headRefOid: string;
-    headRepository: RepositoryInfo;
-    headRepositoryOwner: HeadRepositoryOwner;
-    hoverCard: HoverCard;
-    id: number;
-    includesCreatedEdit: boolean;
-    isCrossRepository: boolean;
-    isReadByViewer: boolean;
-    isDraft: boolean;
-    labels: Labels;
-    lastEditedAt: string;
-    latestOpinionatedReviews: Reviews;
-    latestReviews: Reviews;
-    locked: boolean;
-    maintainerCanModify: boolean;
-    mergeCommit: Commit;
-    mergeable: string;
-    merged: boolean;
-    mergedAt: string;
-    mergedBy: Owner;
-    milestone: Milestone;
-    number: number;
-    participants: Users;
-    permalink: string;
-    potentialMergeCommit: Commit;
-    projectCards: ProjectCards;
-    repository: RepositoryInfo;
-    reactions: Reactions;
-    reactionGroups: ReactionGroups[];
-    resourcePath: string;
-    revertResourcePath: string;
-    revertUrl: string;
-    reviewDecision: string;
-    reviewRequests: ReviewRequests;
-    reviewThreads: PullRequestReviews;
-    reviews: Reviews;
-    state: string;
-    suggestedReviewers: {
-        isAuthor: boolean;
-        isCommenter: boolean;
-        reviewer: UserInfo;
-    }[]
-    timeline: Timeline;
-    timelineItems: TimelineItems;
-    title: string;
-    updatedAt: string;
-    url: string
-    userContentEdits: UserContentEdits;
-    viewerCanApplySuggestion: boolean;
-    viewerCanDeleteHeadRef: boolean;
-    viewerCanDisableAutoMerge: boolean;
-    viewerCanEnableAutoMerge: boolean;
-    viewerCanReact: boolean;
-    viewerCanSubscribe: boolean;
-    viewerCanUpdate: boolean;
-    viewerCannotUpdateReasons: string[];
-    viewerDidAuthor: boolean;
-    viewerLatestReview: PullRequestReview;
-    viewerLatestReviewRequest: ReviewRequest;
-    viewerMergeBodyText: string;
-    viewerMergeHeadlineText: string;
-    viewerSubscription: string;
 }
 
 export declare interface CommitComment {
 
 }
 
-
-export declare interface PullRequestReview extends Review {
+export declare interface IssueComment {
 
 }
 
+export declare interface PullRequestReview {
+
+}
 
 export declare interface PullRequestReviewComment {
 
 }
 
-export declare interface Forks {
-    edges: {
-        cursor: string;
-        node: RepositoryInfo;
-    }[]
-    nodes: RepositoryInfo[];
-    pageInfo: PageInfo;
-    totalCount: number;
+export declare interface Fork {
+
 }
 
 export declare interface Gist {
@@ -1218,7 +1115,7 @@ export declare interface Gist {
     createdAt: string;
     description: string;
     files: File[];
-    forks: Forks;
+    forks: Fork[];
     id: number;
     isFork: boolean;
     isPublic: boolean;
@@ -1413,9 +1310,9 @@ export declare interface Tier {
         sponsorShips: {
             edges: {
                 cursor: string;
-                node: SponsorShip;
+                node: Sponsorships;
             }[]
-            nodes: SponsorShip[];
+            nodes: Sponsorships[];
             pageInfo: PageInfo;
         };
 
@@ -1424,6 +1321,7 @@ export declare interface Tier {
     description: string;
     descriptionHTML: string;
     id: number;
+    isCustomAmount: boolean;
     monthlyPriceInCents: number;
     monthlyPriceInDollars: number;
     name: number;
@@ -1432,12 +1330,12 @@ export declare interface Tier {
 }
 
 export declare interface Sponsor {
-    organization: Organization;
+    organization: OrganizationInfo;
     user: User;
 }
 export declare interface SponsorShip {
     createdAt: string;
-    id: number;
+    id: string;
     maintainer: User;
     privacyLevel: string;
     sponsor: User
@@ -1447,28 +1345,12 @@ export declare interface SponsorShip {
         isSponsoredBy: string;
         isSponsoringViewer: boolean;
         sponsorsListing: SponsorsListing;
-        sponsorshipForViewerAsSponsor: SponsorShip;
-        sponsorshipsAsMaintainer: {
-            edges: {
-                cursor: string;
-                node: SponsorShip;
-            }[];
-            nodes: SponsorShip[];
-            pageInfo: PageInfo;
-            totalCount: number;
-        }
-        sponsorshipsAsSponsor: {
-            edges: {
-                cursor: string;
-                node: SponsorShip;
-            }[];
-            nodes: SponsorShip[];
-            pageInfo: PageInfo;
-            totalCount: number;
-        }
+        sponsorshipForViewerAsSponsor: SponsorshipForViewerAsSponsor;
+        sponsorshipsAsMaintainer: SponsorshipsAsSponsor;
+        sponsorshipsAsSponsor: SponsorshipsAsSponsor;
         viewerCanSponsor: boolean;
         viewerIsSponsoring: boolean;
-        organizatio: Organization;
+        organizatio: OrganizationInfo;
         user: User;
     }
     tier: Tier
@@ -1479,7 +1361,7 @@ export declare interface SponsorsListing {
     createdAt: string;
     fullDescription: string;
     fullDescriptionHTML: string;
-    id: number;
+    id: string;
     name: string
     shortDescription: string;
     slug: string;
@@ -1775,1376 +1657,13 @@ export declare interface Comments {
     totalCount: number;
 }
 
-export declare interface ContentEdit {
-    createdAt: string;
-    deletedAt: string;
-    deletedBy: Owner;
-    diff: string;
-    editedAt: string;
-    editor: Owner;
-    id: number;
-    updatedAt: string;
-
-}
-export declare interface UserContentEdits {
-    edges: {
-        cursor: string;
-        node: ContentEdit;
-    }[];
-    nodes: ContentEdit[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface IssueComment {
-    author: Owner;
-    authorAssociation: string;
-    body: string;
-    bodyHTML: string;
-    bodyText: string;
-    createdAt: string;
-    createdViaEmail: boolean;
-    databaseId: number;
-    editor: Owner;
-    id: number;
-    includesCreatedEdit: boolean;
-    isMinimized: boolean;
-    issue: Issue;
-    lastEditedAt: string;
-    minimizedReason: string;
-    publishedAt: string;
-    pullRequest: PullRequest;
-    reactionGroups: ReactionGroups[];
-    reactions: Reactions;
-}
-
-export declare interface IssueComments {
-    edges: {
-        cursor: string;
-        node: IssueComment;
-    }[];
-    nodes: IssueComment[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Reaction {
-    content: string;
-    createdAt: string;
-    databaseId: number;
-    id: number;
-    reactable: Reactable;
-    user: UserInfo;
-}
-
-export declare interface Reactions {
-    edges: {
-        cursor: string;
-        node: Reaction;
-    }[],
-    nodes: Reaction[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Reactable {
-    content: string;
-    createdAt: string;
-    subject: Subject;
-    users: Users;
-    viewerHasReacted: boolean;
-}
-export declare interface Users {
-    edges: {
-        cursor: string;
-        node: UserInfo;
-    }[];
-    nodes: UserInfo[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface TeamDiscussion {
-
-}
-
-export declare interface TeamDiscussionComment {
-
-}
-
-declare interface Subject extends PullRequest, Issue, TeamDiscussion, TeamDiscussionComment, CommitComment, IssueComment, PullRequestReview, PullRequestReviewComment {
-    databaseId: number;
-    id: number;
-    reactionGroups: ReactionGroups[];
-    reactions: Reactions
-    viewerCanReact: boolean;
-}
-
-
-export declare interface Organizations {
-    edges: {
-        cursor: string;
-        node: Organization;
-    }[];
-    nodes: Organization[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Columns {
-    edges: {
-        cursor: string;
-        node: Column;
-    }[];
-    nodes: Column[];
-    pageInfo: PageInfo;
-    totalCount: number;
-
-}
-
-export declare interface Cards {
-    edges: {
-        cursor: string;
-        node: Card;
-    }[];
-    nodes: Card[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface UserItems extends Gist, RepositoryInfo {
-
-}
-export declare interface CardItems extends Issue, PullRequest {
-
-}
-export declare interface Column {
-    cards: Cards;
-    createdAt: string;
-    databaseid: number
-    id: number;
-    name: string;
-    project: Project;
-    purpose: string;
-    resourcePath: string;
-    updatedAt: string;
-    url: string;
-}
-export declare interface Card {
-    column: Column;
-    content: CardItems;
-    createdAt: string;
-    creator: Owner;
-    databaseId: number;
-    id: number
-    isArchived: boolean;
-    note: string;
-    project: Project;
-    resourcePath: string;
-    state: string;
-    updatedAt: string;
-    url: string;
-}
-export declare interface AssignableUsers {
-    edges: {
-        cursor: string;
-        node: UserInfo;
-    }[],
-    nodes: UserInfo[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface BranchProtectionRule {
-    allowsDeletions: boolean;
-    allowsForcePushes: boolean;
-    branchProtectionRuleConflicts: BranchProtectionRuleConflicts;
-}
-
-export declare interface BranchProtectionRules {
-    edges: {
-        cursor: string;
-        node: BranchProtectionRule;
-    }[],
-    nodes: BranchProtectionRule[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface BranchProtectionRuleConflicts {
-    edges: {
-        cursor: string;
-        node: BranchProtectionRule;
-    }[],
-    nodes: BranchProtectionRule[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface BranchProtectionRuleConflict {
-    branchProtectionRule: BranchProtectionRule;
-    conflictingBranchProtectionRule: BranchProtectionRule;
-    ref: Ref;
-}
-
-export declare interface Ref {
-    associatedPullRequests: PullRequests;
-    branchProtectionRule: BranchProtectionRule;
-    id: number;
-    name: string;
-    prefix: string;
-    refUpdateRule: RefUpdateRule;
-    repository: RepositoryInfo;
-    target: Target;
-}
-export declare interface Refs {
-    edges: {
-        cursor: string;
-        node: Ref;
-    }[],
-    nodes: Ref[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface PullRequests {
-    edges: {
-        cursor: string;
-        node: PullRequest;
-    }[],
-    nodes: PullRequest[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Assignees {
-    edges: {
-        cursor: string;
-        node: UserInfo;
-    }[],
-    nodes: UserInfo[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface AutoMergeRequest {
-    authorEmail: string;
-    commitBody: string;
-    commitHeadline: string;
-    enabledAt: string;
-    enabledBy: Owner;
-    mergeMethod: string;
-    pullRequest: PullRequest;
-}
-
-export declare interface Target extends Commit, Tree, Blob, Tag {
-    abbreviatedOid: string;
-    commitResourcePath: string;
-    commitUrl: string;
-    id: number;
-    oid: string;
-    repository: RepositoryInfo;
-}
-
-export declare interface Tree {
-    abbreviatedOid: string;
-    commitResourcePath: string;
-    commitUrl: string;
-    id: number;
-    entries: Entries[]
-    oid: string;
-    repository: RepositoryInfo;
-}
-
-export declare interface Blob {
-    abbreviatedOid: string;
-    byteSize: number;
-    commitResourcePath: string;
-    commitUrl: string;
-    id: number;
-    isBinary: boolean;
-    isTruncated: boolean;
-    oid: string;
-    repository: RepositoryInfo;
-    text: string;
-}
-export declare interface Entries {
-    extension: string;
-    isGenerated: boolean;
-    mode: number;
-    name: string;
-    object: Target;
-    oid: string;
-    path: string;
-    repository: RepositoryInfo;
-    submodule: {
-        branch: string;
-        gitUrl: string;
-        name: string;
-        path: string;
-        subprojectCommitOid: string;
+export declare interface Meta {
+    meta: {
+        gitHubServicesSha: string;
+        gitIpAddresses: string[];
+        hookIpAddresses: string[];
+        importerIpAddresses: string[];
+        isPasswordAuthenticationVerifiable: boolean;
+        pagesIpAddresses: string[];
     }
-    type: string;
-}
-export declare interface Tag {
-    abbreviatedOid: string;
-    commitResourcePath: string;
-    commitUrl: string;
-    id: number;
-    message: string;
-    name: string;
-    oid: string;
-    repository: RepositoryInfo;
-    tagger: {
-        avatarUrl: string;
-        date: string;
-        email: string;
-        name: string
-        user: UserInfo;
-        target: Target;
-    }
-}
-
-export declare interface CheckSuite {
-    app: App;
-    branch: Branch;
-    checkRun: CheckRuns;
-    commit: Commit;
-    conclusion: string;
-    createdAt: string
-    databaseId: number
-    id: number;
-    matchingPullRequests: PullRequests;
-    push: {
-        nextSha: string;
-        permalink: string;
-        previousSha: string;
-        pusher: UserInfo;
-        repository: RepositoryInfo;
-    }
-    repository: RepositoryInfo;
-    resourcePath: string;
-    status: string;
-    updatedAt: string;
-    url: string;
-}
-
-export declare interface CheckSuites {
-    edges: {
-        cursor: string;
-        node: CheckSuite;
-    }[],
-    nodes: CheckSuite[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface App {
-    createdAt: string;
-    databaseId: number;
-    description: string;
-    id: number;
-    logoBackgroundColor: string;
-    logoUrl: string;
-    name: string;
-    slug: string;
-    updatedAt: string;
-    url: string;
-}
-
-export declare interface RefUpdateRule {
-    allowsDeletions: boolean;
-    allowsForcePushes: boolean;
-    pattern: string;
-    requiredApprovingReviewCount: number;
-    requiredStatusCheckContexts: string;
-    requiresCodeOwnerReviews: boolean;
-    requiresLinearHistory: boolean;
-    requiresSignatures: boolean;
-    viewerAllowedToDismissReviews: boolean;
-    viewerCanPush: boolean;
-}
-
-export declare interface Annotation {
-    annotationLevel: string;
-    blobUrl: string;
-    databaseId: number;
-    location: {
-        end: {
-            column: number;
-            line: number;
-        }
-        start: {
-            column: number;
-            line: number;
-        }
-    }
-    message: string;
-    path: string
-    rawDetails: string;
-    title: string;
-}
-
-export declare interface Annotations {
-    edges: {
-        cursor: string;
-        node: Annotation;
-    }[],
-    nodes: Annotation[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface CheckRun {
-    annotations: Annotations;
-    checkSuite: CheckSuite;
-    completedAt: string;
-    conclusion: string;
-    databaseId: number;
-    detailsUrl: string;
-    externalId: string;
-    id: number;
-    isRequired: boolean;
-    name: string;
-    permalink: string;
-    repository: RepositoryInfo;
-    resourcePath: string;
-    startedAt: string;
-    status: string;
-    summary: string;
-    text: string;
-    title: string;
-    url: string;
-}
-export declare interface CheckRuns {
-    edges: {
-        cursor: string;
-        node: CheckRun;
-    }[],
-    nodes: CheckRun[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface ReactionGroups {
-    content: string;
-    createdAt: string;
-    subject: Subject;
-    user: UserInfo;
-    viewerHasReacted: boolean;
-};
-export declare interface Deployment {
-    commit: Commit;
-    commitOid: string;
-    createdAt: string;
-    creator: string;
-    databaseId: number;
-    description: string;
-    environment: string;
-    id: number;
-    latestEnvironment: string;
-    latestStatus: Status;
-    originalEnvironment: string;
-    payload: string;
-    ref: Ref;
-    repository: RepositoryInfo;
-    state: string;
-    statuses: Statuses
-    task: string;
-    updatedAt: string;
-}
-
-export declare interface DeployKey {
-    createdAt: string;
-    id: number;
-    key: string;
-    readOnly: boolean;
-    title: string;
-    verified: boolean;
-}
-export declare interface DeployKeys {
-    edges: {
-        cursor: string;
-        node: DeployKey;
-    }[],
-    nodes: DeployKey[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface Deployments {
-    edges: {
-        cursor: string;
-        node: Deployment;
-    }[],
-    nodes: Deployment[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Status {
-    createdAt: string;
-    creator: Owner;
-    avatarUrl: string;
-    commit: Commit;
-    updatedAt: string;
-    isRequired: boolean;
-    state: string;
-    logUrl: string;
-    id: number;
-    environmentUrl: string;
-    description: string;
-    deployment: Deployment;
-}
-
-export declare interface Statuses {
-    edges: {
-        cursor: string;
-        node: Status;
-    }[],
-    nodes: Status[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface History {
-    edges: {
-        cursor: string;
-        node: Commit;
-    }[],
-    nodes: Commit[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface CombinedContext extends CheckRun, Status {
-
-}
-
-export declare interface CombinedContexts {
-    edges: {
-        cursor: string;
-        node: CombinedContext;
-    }[],
-    nodes: CombinedContext[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface CommitStatus {
-    combinedContexts: CombinedContexts;
-    commit: Commit;
-    context: Status;
-    contexts: Status[]
-    id: number;
-    state: string;
-}
-
-export declare interface StatusCheckRollup {
-    commit: Commit;
-    contexts: Statuses
-    id: number;
-    state: string;
-}
-
-export declare interface Submodule {
-    branch: string;
-    gitUrl: string;
-    name: string;
-    path: string;
-    subprojectCommitOid: string;
-}
-export declare interface Submodules {
-    edges: {
-        cursor: string;
-        node: Submodule;
-    }[],
-    nodes: Submodule[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Files {
-    edges: {
-        cursor: string;
-        node: File;
-    }[],
-    nodes: File[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface HeadRepositoryOwner extends UserInfo, Organization {
-    avatarUrl: string;
-    id: number;
-    login: string;
-    repositories: Repositories;
-    repository: RepositoryInfo;
-    resourcePath: string;
-    url: string;
-}
-
-export declare interface Label {
-    color: string;
-    createdAt: string;
-    description: string;
-    id: number;
-    isDefault: boolean;
-    issues: Issues;
-    name: string;
-    pullRequests: PullRequests;
-    repository: RepositoryInfo;
-    resourcePath: string;
-    updatedAt: string;
-    url: string;
-}
-
-export declare interface Labels {
-    edges: {
-        cursor: string;
-        node: Label;
-    }[],
-    nodes: Label[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Review {
-    author: Owner;
-    authorAssociation: string;
-    body: string;
-    bodyHTML: string;
-    bodyText: string;
-    comments: Comments
-    commit: Commit;
-    createdAt: string;
-    createdViaEmail: boolean;
-    databaseId: number;
-    editor: Owner;
-    id: number;
-    includesCreatedEdit: boolean;
-    lastEditedAt: string;
-    onBehalfOf: Organization;
-    minimizedReason: string;
-    path: string;
-    position: number;
-    publishedAt: string;
-    pullRequest: PullRequest;
-    reactionGroup: ReactionGroup;
-    reactionGroups: ReactionGroups[];
-    reactions: Reactions;
-    repository: RepositoryInfo;
-    resourcePath: string;
-    state: string;
-    submittedAt: string;
-    updatedAt: string;
-    url: string;
-    userContentEdits: UserContentEdits;
-    viewerCanDelete: boolean;
-    viewerCanMinimize: boolean;
-    viewerCanUpdate: boolean;
-    viewerCannotUpdateReasons: string[];
-    viewerDidAuthor: boolean;
-}
-
-export declare interface Reviews {
-    edges: {
-        cursor: string;
-        node: Review;
-    }[],
-    nodes: Review[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Teams {
-    edges: {
-        cursor: string;
-        node: Team;
-    }[],
-    nodes: Team[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Milestone {
-    closed: boolean;
-    closedAt: string;
-    createdAt: string;
-    creator: Owner;
-    description: string;
-    dueOn: string;
-    id: number;
-    issues: Issues;
-    number: number;
-    progressPercentage: number;
-    pullRequests: PullRequests;
-    repository: RepositoryInfo;
-    resourcePath: string;
-    state: string;
-    title: string;
-    updatedAt: string;
-    url: string;
-
-}
-
-export declare interface Milestones {
-    edges: {
-        cursor: string;
-        node: Milestone;
-    }[],
-    nodes: Milestone[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface ReviewRequest {
-    asCodeOwner: boolean;
-    databaseId: number;
-    id: number;
-    pullRequest: PullRequest;
-    requestedReviewer: RequestedReviewer
-}
-
-export declare interface ReviewRequests {
-    edges: {
-        cursor: string;
-        node: ReviewRequest;
-    }[],
-    nodes: ReviewRequest[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface RequestedReviewer extends Mannequin, Team, UserInfo {
-
-}
-
-export declare interface PullRequestReview {
-    comment: Comments;
-    diffSide: string;
-    id: number;
-    isCollapsed: boolean;
-    isOutdated: boolean;
-    isResolved: boolean;
-    line: number;
-    originalLine: number;
-    originalStartLine: number;
-    path: string;
-    pullRequest: PullRequest;
-    repository: RepositoryInfo;
-    resolvedBy: UserInfo;
-    startDiffSide: string;
-    startLine: number;
-    viewerCanReply: boolean;
-    viewerCanResolve: boolean;
-    viewerCanUnresolve: boolean;
-}
-
-export declare interface PullRequestReviews {
-    edges: {
-        cursor: string;
-        node: PullRequestReview;
-    }[],
-    nodes: PullRequestReview[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface TimelineItem extends AddedToProjectEvent, AssignedEvent, AutoMergeDisabledEvent, AutoMergeEnabledEvent, AutoRebaseEnabledEvent, AutoSquashEnabledEvent, AutomaticBaseChangeFailedEvent, AutomaticBaseChangeSucceededEvent, BaseRefChangedEvent, BaseRefDeletedEvent, BaseRefForcePushedEvent, ClosedEvent,
-    CommentDeletedEvent, ConnectedEvent, ConvertToDraftEvent, ConvertedNoteToIssueEvent, CrossReferencedEvent, DemilestonedEvent, DeployedEvent, DeploymentEnvironmentChangedEvent, DisconnectedEvent, HeadRefDeletedEvent, HeadRefDeletedEvent, HeadRefForcePushedEvent, HeadRefRestoredEvent, IssueComment, LabeledEvent, LockedEvent,
-    MarkedAsDuplicateEvent, MentionedEvent, MilestonedEvent, MovedColumnsInProjectEvent, PinnedEvent, PullRequestCommit, PullRequestCommitCommentThread, PullRequestReview, PullRequestReviewThread, PullRequestRevisionMarker, ReadyForReviewEvent, ReferencedEvent, RemovedFromProjectEvent, RenamedTitleEvent, ReopenedEvent, ReviewDismissedEvent,
-    ReviewDismissedEvent, ReopenedEvent, ReviewDismissedEvent, ReviewRequestRemovedEvent, ReviewRequestedEvent, SubscribedEvent, TransferredEvent, UnassignedEvent, UnlabeledEvent, UnlockedEvent, UnmarkedAsDuplicateEvent, UnpinnedEvent, UnsubscribedEvent, UserBlockedEvent {
-}
-
-export declare interface TimelineItems {
-    edges: {
-        cursor: string;
-        node: TimelineItem;
-    }[],
-    nodes: TimelineItem[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Timeline extends AssignedEvent, BaseRefDeletedEvent, BaseRefForcePushedEvent, ClosedEvent, Commit, CommitCommentThread, CrossReferencedEvent, DemilestonedEvent, DeployedEvent, DeploymentEnvironmentChangedEvent, HeadRefDeletedEvent, HeadRefForcePushedEvent, HeadRefRestoredEvent, IssueComment,
-    LabeledEvent, LockedEvent, MilestonedEvent, PullRequestReview, PullRequestReviewComment, PullRequestReviewThread, ReferencedEvent, RenamedTitleEvent, ReopenedEvent, ReviewDismissedEvent, ReviewRequestRemovedEvent, ReviewRequestedEvent, SubscribedEvent, UnassignedEvent, UnlabeledEvent, UnlockedEvent, UserBlockedEvent {
-
-}
-
-export declare interface AutoMergeDisabledEvent {
-    actor: Owner;
-    createdAt: string;
-    disabler: UserInfo;
-    id: number;
-    pullRequest: PullRequest;
-    reason: string;
-    reasonCode: string;
-}
-
-export declare interface AutoMergeEnabledEvent {
-    actor: Owner;
-    createdAt: string;
-    disabler: UserInfo;
-    id: number;
-    pullRequest: PullRequest;
-    reason: string;
-    reasonCode: string;
-}
-
-export declare interface AutoRebaseEnabledEvent {
-    actor: Owner;
-    createdAt: string;
-    enabler: UserInfo;
-    id: number;
-    pullRequest: PullRequest;
-}
-
-export declare interface AutoSquashEnabledEvent {
-    actor: Owner;
-    createdAt: string;
-    enabler: UserInfo;
-    id: number;
-    pullRequest: PullRequest;
-}
-
-export declare interface AutomaticBaseChangeFailedEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    pullRequest: PullRequest;
-    newBase: string;
-    oldBase: string;
-}
-
-export declare interface BaseRefChangedEvent {
-    actor: Owner;
-    createdAt: string;
-    currentRefName: string;
-    databaseId: number;
-    id: number;
-    previousRefName: string;
-    pullRequest: PullRequest;
-
-}
-
-export declare interface BaseRefDeletedEvent {
-    actor: Owner;
-    id: number;
-    baseRefName: string
-    createdAt: string;
-    pullRequest: PullRequest;
-}
-
-export declare interface BaseRefForcePushedEvent {
-    actor: Owner;
-    afterCommit: Commit;
-    beforeCommit: Commit;
-    createdAt: string;
-    id: number;
-    ref: Ref;
-    pullRequest: PullRequest;
-}
-
-export declare interface CommentDeletedEvent {
-    actor: Owner;
-    createdAt: string;
-    databaseId: number;
-    deletedCommentAuthor: Owner;
-    id: number;
-}
-
-export declare interface ConnectedEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    isCrossRepository: boolean;
-    source: Source;
-    subject: Source;
-}
-
-export declare interface ConvertToDraftEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    pullRequest: PullRequest;
-    resourcePath: string;
-    url: string;
-}
-
-export declare interface ConvertedNoteToIssueEvent {
-    actor: Owner;
-    createdAt: string
-    databaseId: number;
-    id: number;
-}
-
-export declare interface CrossReferencedEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    isCrossRepository: boolean;
-    referencedAt: string;
-    resourcePath: string;
-    source: Source;
-    target: Source;
-    url: string;
-    willCloseTarget: boolean;
-}
-
-export declare interface DisconnectedEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    isCrossRepository: boolean;
-    source: Source;
-    subject: Source;
-}
-
-export declare interface AutomaticBaseChangeSucceededEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    pullRequest: PullRequest;
-    newBase: string;
-    oldBase: string;
-}
-
-export declare interface Timeline {
-    edges: {
-        cursor: string;
-        node: Timeline;
-    }[],
-    nodes: Timeline[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface AddedToProjectEvent {
-    actor: Owner;
-    createdAt: string;
-    databaseId: number;
-    id: number;
-}
-
-export declare interface AssignedEvent {
-    actor: Owner
-    assignable: Assignable
-    assignee: Assignee;
-    createdAt: string;
-    id: number;
-    user: UserInfo
-}
-
-
-
-export declare interface AssignedEvent {
-    actor: Owner
-    createdAt: string;
-    assignable: Assignable;
-    assignee: Assignee;
-    id: number;
-}
-
-export declare interface BaseRefDeletedEvent {
-    id: number;
-    baseRefName: string;
-    actor: Owner
-    createdAt: string;
-    pullRequest: PullRequest
-}
-
-
-export declare interface BaseRefForcePushedEvent {
-    id: number;
-    afterCommit: Commit;
-    beforeCommit: Commit
-    createdAt: string;
-    pullRequest: PullRequest
-    ref: Ref
-}
-declare interface Closer extends Commit, PullRequest {
-
-}
-
-declare interface Closable extends Project, Issue, PullRequest, Milestone {
-    closed: boolean;
-    closedAt: string;
-}
-export declare interface ClosedEvent {
-    actor: Owner;
-    closable: Closable;
-    closer: Closer;
-    createdAt: string;
-    id: number;
-    resourcePath: string;
-    url: string;
-}
-
-export declare interface CommitCommentThread {
-    comments: Comments
-    commit: Commit
-    id: number;
-    path: string;
-    position: number;
-    repository: RepositoryInfo
-}
-export declare interface Source extends Issues, PullRequest {
-
-}
-
-export declare interface CrossReferencedEvent {
-    id: number;
-    actor: Owner
-    createdAt: string;
-    isCrossRepository: boolean;
-    referencedAt: string;
-    resourcePath: string;
-    source: Source
-    target: Source;
-    url: string;
-    willCloseTarget: boolean;
-}
-
-export declare interface DemilestonedEvent {
-    id: number;
-    actor: Owner;
-    createdAt: string;
-    milestoneTitle: string;
-    subject: Source
-}
-export declare interface DeployedEvent {
-    id: number;
-    actor: Owner;
-    createdAt: string;
-    databaseId: number;
-    deployment: Deployment
-    pullRequest: PullRequest
-    ref: Ref
-}
-
-export declare interface DeploymentEnvironmentChangedEvent {
-    id: number;
-    actor: Owner;
-    createdAt: string
-    deploymentStatus: {
-        createdAt: string
-        creator: Owner
-        deployment: Deployment
-        description: string
-        environmentUrl: string;
-        id: number
-        logurl: string
-        state: string
-        updatedAt: string
-    }
-    pullRequest: PullRequest
-}
-
-export declare interface HeadRefDeletedEvent {
-    id: number;
-    actor: Owner
-    createdAt: string
-    headRefName: string;
-    headRef: Ref;
-    pullRequest: PullRequest
-}
-
-export declare interface HeadRefForcePushedEvent {
-    actor: Owner
-    afterCommit: Commit
-    beforeCommit: Commit
-    id: number
-    pullRequest: PullRequest
-    ref: Ref
-}
-
-export declare interface HeadRefRestoredEvent {
-    actor: Owner
-    createdAt: string;
-    id: number
-    pullRequest: PullRequest
-}
-
-export declare interface MarkedAsDuplicateEvent {
-    actor: Owner;
-    canonical: Source;
-    createdAt: string;
-    duplicate: Source;
-    id: number;
-    isCrossRepository: boolean;
-}
-
-export declare interface MentionedEvent {
-    actor: Owner;
-    createdAt: string;
-    databaseId: number
-    id: number;
-}
-
-export declare interface MovedColumnsInProjectEvent {
-    actor: Owner;
-    createdAt: string;
-    databaseId: number;
-    id: number;
-}
-
-export declare interface PinnedEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    issue: Issue;
-}
-
-export declare interface PullRequestCommit {
-    commit: Commit;
-    id: number;
-    pullRequest: PullRequest;
-    resourcePath: string;
-    url: string;
-}
-
-export declare interface PullRequestCommitCommentThread {
-    comments: Comments;
-    commit: Commit;
-    id: number;
-    path: string;
-    position: number;
-    pullRequest: PullRequest;
-    repository: RepositoryInfo;
-}
-
-export declare interface PullRequestRevisionMarker {
-    __typename: string;
-    createdAt: string;
-    lastSeenCommit: Commit;
-    pullRequest: PullRequest;
-}
-
-export declare interface ReadyForReviewEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    pullRequest: PullRequest;
-}
-
-export declare interface RemovedFromProjectEvent {
-    actor: Owner;
-    createdAt: string;
-    databaseId: number;
-    id: number;
-}
-
-export declare interface TransferredEvent {
-    id: number;
-    actor: Owner;
-    createdAt: string;
-    fromRepository: RepositoryInfo;
-    issue: Issue;
-}
-
-export declare interface UnmarkedAsDuplicateEvent {
-    actor: Owner;
-    canonical: Source;
-    createdAt: string;
-    duplicate: Source;
-    id: number;
-    isCrossRepository: boolean;
-}
-
-export declare interface UnpinnedEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    issue: Issue;
-}
-
-export declare interface UnsubscribedEvent {
-    subscribable: Subscribable;
-    actor: Owner;
-    createdAt: string;
-    id: number;
-}
-
-export declare interface Labelable extends Labels, Issue, PullRequest {
-
-}
-
-export declare interface LabeledEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    label: Label
-    labelable: Labelable
-}
-
-export declare interface LockedEvent {
-    createdAt: string
-    creator: Owner;
-    id: number;
-    lockReason: string;
-    lockable: Lockable;
-}
-
-
-export declare interface MergedEvent {
-    actor: Owner;
-    commit: Commit;
-    createdAt: string;
-    id: number;
-    mergeRef: Ref
-    mergeName: string;
-    pullRequest: PullRequest
-    resourcePath: string
-    url: string
-}
-export declare interface MilestonedEvent {
-    id: number;
-    actor: Owner;
-    createdAt: string;
-    milestoneTitle: string;
-
-    subject: Source;
-}
-export declare interface ReferencedEvent {
-    actor: Owner;
-    commit: Commit
-    commitRepository: RepositoryInfo
-    createdAt: string
-    id: number
-    isCrossRepository: boolean;
-    isDirectReference: boolean
-    subject: Source;
-}
-
-export declare interface RenamedTitleEvent {
-    actor: Owner;
-    createdAt: string
-    id: number
-    currentTitle: string;
-    subject: Source;
-    previousTitle: string;
-}
-
-export declare interface ReopenedEvent {
-    actor: Owner
-    id: number
-    createdAt: string
-    closable: Closable
-}
-
-
-
-export declare interface ReviewDismissedEvent {
-    actor: Owner
-    createdAt: string
-    databaseId: number;
-    dismissalMessage: string;
-    dismissalMessageHTML: string;
-    id: number;
-    previousReviewstate: string
-    pullRequest: PullRequest
-    pullRequestCommit: PullRequestCommit;
-    resourcePath: string
-    review: Review
-    url: string
-
-}
-export declare interface PullRequestReviewer extends Mannequin, UserInfo, Team {
-
-}
-export declare interface ReviewRequestRemovedEvent {
-    actor: Owner
-    createdAt: string
-    id: number
-    pullRequest: PullRequest
-    requestedReviewer: PullRequestReviewer;
-}
-
-export declare interface ReviewRequestedEvent {
-    actor: Owner
-    createdAt: string
-    id: number
-    pullRequest: PullRequest
-    requestedReviewer: PullRequestReviewer;
-}
-export declare interface Subscribable extends Issue, PullRequest, RepositoryInfo, Team, TeamDiscussion, Commit {
-    id: number;
-    viewerCanSubscribe: boolean;
-    viewerSubscription: string;
-}
-export declare interface SubscribedEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number;
-    subscribable: Subscribable;
-}
-export declare interface Assignable extends Assignee, Issue, PullRequest {
-
-}
-export declare interface Assignee extends Bot, Mannequin, Organization, UserInfo {
-
-}
-export declare interface UnassignedEvent {
-    id: number
-    actor: Owner;
-    assignable: Assignable;
-    assignee: Assignee
-    createdAt: string
-    user: UserInfo;
-}
-
-export declare interface UnlabeledEvent {
-    actor: Owner
-    createdAt: string
-    id: number
-    label: Label;
-    labelable: Labelable
-}
-export declare interface Lockable extends Issue, PullRequest {
-    activeLockReason: string;
-    locked: boolean;
-}
-export declare interface UnlockedEvent {
-    actor: Owner;
-    createdAt: string;
-    id: number
-    lockable: Lockable
-}
-
-
-export declare interface UserBlockedEvent {
-    actor: Owner;
-    blockDuration: number;
-    createdAt: string;
-    id: number
-    subject: Source
-}
-
-export declare interface PullRequestReviewThread extends PullRequestReview {
-
-}
-
-export declare interface Relay {
-    codeofConduct: CodeofConduct;
-    codesofConduct: CodesofConduct;
-    enterprise: Enterprise;
-    enterpriseAdministratorInvitation: EnterpriseAdministratorInvitation;
-    enterpriseAdministratorInvitationByToken: EnterpriseAdministratorInvitationByToken
-    license: License;
-    licenses: Licenses;
-    marketplaceCategories:MarketplaceCategories;
-    marketplaceCategory: MarketplaceCategory;
-    marketplaceListing: MarketplaceListing;
-    marketplaceListings: MarketplaceListings;
-    meta: Meta;
-    node: Node;
-    nodes: Nodes;
-    organization: Organization;
-    rateLimit: RateLimit;
-    relay: Relay;
-    repository: Repository;
-    repositoryOwner: RepositoryOwner;
-    resource: Resource;
-    search: Search;
-    securityAdvisories: SecurityAdvisories;
-    securityAdvisory: SecurityAdvisory;
-    securityVulnerabilities: SecurityVulnerabilities;
-    sponsorables: Sponsorables;
-    sponsorsListing: SponsorsListing;
-    topic: Topic;
-    user: User;
-    viewer: Viewer;
 }

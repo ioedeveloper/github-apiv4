@@ -3,9 +3,7 @@ import { queryVariables } from ".";
 export * from './user'
 export * from './discussion'
 export * from './nodes'
-export * from './enterprise'
-export * from "./respository"
-
+export * from "./organization"
 /**
  * @description Github Graphql Query for SecurityVulnerabilities
  * @queryArguments 
@@ -115,71 +113,18 @@ export const Viewer = (fields: string) => `
 `
 
 /**
-* @description Github Graphql Query for Search
-* @defaultVariables totalCount
-* @queryVariables 
-** after string 
-** before string
-** first number
-** last number
-** query string
-* @fields 
-** onApp
-** onIssue 
-** onMarketplaceListing
-** onOrganization 
-** onPullRequest
-** onRepository 
-** onUser
-** type "ISSUE" | "REPOSITORY" | "USER"
-** codeCount
-** issueCount
-** repositoryCount
-** userCount
-** wikiCount
-*/
+ * @description Github Graphql Query for Organization
+ * @fields
+ ** OrganizationFields
+ */
 
- export const Search = (params: queryVariables.Search) =>  `
- 	{
-		search(query: "${params.query}", first: ${params.first} ${params.type ? `, type: ${params.type}` : ""} ${params.after ? `, after: ${params.after}` : ""} ${params.before ? `, before: ${params.before}` : ""} ${params.last ? `, last: ${params.last}`:""}) {
-			edges {
-				cursor
-				node {
-				   ${params.fields}
-				}
-			 }
-		 
-			 nodes {
-				${params.fields}
-			 }
-			 ${params.pageInfo ? params.pageInfo : ""}
-			codeCount
-			issueCount
-			repositoryCount
-			userCount
-			wikiCount
-		}
-   }
-`;
-
-/**
- * @description Github Graphql Query for Repository
- * 
- * @queryVariables 
- * name string
- * 
- * owner string 
- * 
- * @fields Repository 
- * 
-*/
- export const RepositoryQuery = (name:string, owner: string, fields: string) => `
+export const OrganisationQuery = (login: string,fields: string) => `
     {
-      repository(name: "${name}", owner: "${owner}") {
+      organization (login: "${login}"){
         ${fields}
       }
     }
- `
+`
 
 /**
  * @description Github Graphql Query for repository content (files and directories)
@@ -920,7 +865,7 @@ export const ViewerFollowers = `
  * @fields
  **  User
  */
-export const UserQuery = (login: string, fields:string) => `
+export const UserQuery = (login: string, fields: string) => `
 {
   user (login: "${login}") {
     ${fields}
@@ -1132,65 +1077,20 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
-
 /**
-* @description Github Graphql Relay
- * @fields
- ** CodeofConduct
- ** CodesofConduct
- ** Enterprise
- ** EnterpriseAdministratorInvitation 
- ** EnterpriseAdministratorInvitationByToken
- ** License
- ** Licenses
- ** MarketplaceCategories
- ** MarketplaceCategory
- ** MarketplaceListing
- ** MarketplaceListings
- ** Meta
- ** Node
- ** Nodes
- ** Organization
- ** RateLimit
- ** Relay
- ** RepositoryQuery
- ** RepositoryOwner
- ** Resource
- ** Search
- ** SecurityAdvisories
- ** SecurityAdvisory
- ** SecurityVulnerabilities
- ** Sponsorables
- ** SponsorsListing
- ** TopicQuery
- ** UserQuery
- ** Viewer
-*/ 
-export const Relay = (fields: string = "") => `
-  {
-    relay {
-      ${fields}
-    }
-  }
-`
-* @description Github Graphql RateLimit
- * cost
- * 
- * limit
- * 
- * nodeCount
- * 
- * remaining
- * 
- * resetAt
- * 
- * used
+* @description Github Graphql Query Meta 
+* @fields
+** gitHubServicesSha
+** gitIpAddresses
+** hookIpAddresses
+** importerIpAddresses
+** isPasswordAuthenticationVerifiable
+** pagesIpAddresses
 */
-export const RateLimit = (dryRun: boolean,fields: string) => `
+export const Meta =(fields:string) => `
   {
-    rateLimit (dryRun: ${dryRun}) {
+    meta {
       ${fields}
     }
   }
 `
-

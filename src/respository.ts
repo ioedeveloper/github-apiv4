@@ -2732,58 +2732,6 @@ export const Review = (fields: string = "") => `
     }    
 
 `
-/**
-* @description Github Graphql Reactable
-* @fields
-** databaseId
-** id
-** onIssue
-** onPullRequest
-** onTeamDiscussion
-** onTeamDiscussionComment
-** onCommitComment
-** onIssueComment
-** onPullRequestReview
-** onPullRequestReviewComment
-*/
-
-export const Reactable = (fields: string = "") => `
-    reactable {
-        id
-        ${fields}
-    }    
-`
-/**
-* @description Github Graphql ReactionGroups 
-* @defaultVariables totalCount
-* @fields
-** content
-** createdAt
-** subject {
-    ** databaseId
-    ** id
-    ** ReactionGroups
-    ** Reactions
-    ** onIssue
-    ** onPullRequest
-    ** onTeamDiscussion
-    ** onTeamDiscussionComment
-    ** onCommitComment
-    ** onIssueComment
-    ** onPullRequestReview
-    ** onPullRequestReviewComment
-* }
-** Users
-** viewerHasReacted
-*/
-
-export const ReactionGroups = (fields: string = "") => `
-    reactionGroups {
-        content
-        createdAt
-        ${fields}
-    }
-`
 
 /**
 * @description Github Graphql onBehalfOf 
@@ -2907,25 +2855,6 @@ export const DeployKeys = (params: queryVariables.BasicFields) => `
 `
 
 /**
-* @description Github Graphql Reaction
-* @fields
-** content
-** createdAt
-** databaseId
-** id
-** Reactable
-** User
-*/
-
-export const Reaction = (fields: string = "") => `
-    reaction {
-        id
-        content
-        ${fields}
-    }    
-
-`
-/**
 * @description Github Graphql Reactions
 * @defaultVariables totalCount
 * @queryArguments 
@@ -2938,7 +2867,7 @@ export const Reaction = (fields: string = "") => `
 */
 
 export const Reactions = (params: queryVariables.BasicFields) => `
-    reactions(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    reactions(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
         edges {
             cursor
             node {
