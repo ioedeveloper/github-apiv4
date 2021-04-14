@@ -96,6 +96,8 @@
  *}
  */
 
+import { queryVariables } from "."
+
 export const User = (fields: string) => `
     id
     name
@@ -492,42 +494,6 @@ export const UserAccountsUploads = (first: number = 10, fields?: string, pageInf
     }
    ${pageInfo || ''} 
    totalCount
- }
-`
-
-/**
-* @description Github Graphql IpAllowListEntries
-* @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10
-* @queryArguments
-* after string
-* before string
-* first number
-* last number
-* orderBy "CREATED_AT" | "ALLOW_LIST_VALUE"
-* @queryVariables
-* allowListValue
-* createdAt
-* id
-* isActive
-* name
-* Owner
-* updatedAt
-*/
-
-export const IpAllowListEntries = (first: number = 10, pageInfo:string, orderBy: string = 'CREATED_AT', directions: string = 'ASC', fields?: string, after?: string, before?: string, last?: number) => `
- ipAllowListEntries(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}, orderBy: {field: ${orderBy}, direction: ${directions}}) {
-     edges {
-       cursor
-       node {
-          ${fields}
-       }
-    }
-
-    nodes {
-       ${fields}  
-    }
-    ${pageInfo || ''}
-    totalCount
  }
 `
 
@@ -1152,24 +1118,32 @@ ${pageInfo || ''}
  }
 `
 
+
+
 /**
 * @description Github Graphql SamlIdentityProvider
-* @defaultVariables id
-* @queryVariables
-* digestMethod
-* externalIdentities {
-*      ExternalIdentities
-* }
+
+* @fields digestMethod
+
+* ExternalIdentities
+
+* id
+
 * idpCertificate
+      
 * issuer
-* recoveryCodes
+
+* Organization
+
 * signatureMethod
+      
 * ssoUrl
 */
 
-export const SamlIdentityProvider = (fields: string) => `
-id
-${fields}
+export const SamlIdentityProvider = (fields:string = "") => `
+    samlIdentityProvider {
+        ${fields}
+    }
 `
 
 /**
@@ -1225,35 +1199,49 @@ export const ExternalIdenty = (fields: string) => `
 id
 ${fields}
 `
-
 /**
 * @description Github Graphql ExternalIdentities
-* @defaultVariables totalCount first = 10
-* @queryArguments
+* @defaultVariables totalCount
+* @queryArguments 
 * after string
+
 * before string
+
 * first number
+
 * last number
-* @queryVariables
-* ExternalIdenty
+
+* @fields
+* guid
+          
+* id
+
+* organizationInvitation {
+    Invitation
+}
+* SamlIdentity
+
+* ScimIdentity
+
+* User
 */
 
-export const ExternalIdentities = (first: number = 10, fields?: string, pageInfo?:string, after?: string, before?: string, last?: number) => `
- externalIdentities(first: ${first} ${after ? `, after: ${after}` : ''} ${before ? `, before: ${before}` : ''} ${last ? `, last: ${last}` : ''}) {
-     edges {
-       cursor
-       node {
-          ${fields}
-       }
+export const ExternalIdentities = (params: queryVariables.BasicFields) => `
+    externalIdentities (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `,first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+        edges {
+            cursor
+            node {
+                ${params.fields}
+            }
+        }
+        nodes {
+            totalCount
+            ${params.fields}  
+        }
+        ${params.pageInfo ? params.pageInfo : ""}
     }
-
-    nodes {
-       ${fields}  
-    }
-${pageInfo || ''}
-    totalCount
- }
 `
+
 
 /**
 * @description Github Graphql SamlIdentityProviderSettingOrganizations

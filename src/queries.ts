@@ -1,7 +1,7 @@
 export * from './user'
 export * from './discussion'
 export * from './nodes'
-
+export * from "./organization"
 /**
  * @description Github Graphql Query for TopicQuery
  * fields Topic
@@ -23,6 +23,19 @@ export const TopicQuery = (name: string, fields: string) => `
 export const Viewer = (fields: string) => `
     query {
       viewer {
+        ${fields}
+      }
+    }
+`
+
+/**
+ * @description Github Graphql Query for Organization
+ * @fields OrganizationFields
+ */
+
+export const OrganisationQuery = (login: string,fields: string) => `
+    {
+      organization (login: "${login}"){
         ${fields}
       }
     }

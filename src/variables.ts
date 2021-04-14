@@ -1,3 +1,96 @@
+import { PageInfo } from "./types";
+
+export declare interface BasicFields {
+    first: number;
+    last?: number;
+    after?: string;
+    before?: string;
+    fields?: string;
+    pageInfo?: PageInfo;
+}
+
+export declare interface AuditLog extends BasicFields {
+    query?: string;
+    orderBy?: "CREATED_AT";
+    direction?: "ASC" | "DESC";
+}
+
+export declare interface Domains extends BasicFields {
+    query?: string;
+    orderBy?: "DOMAIN" | "CREATED_AT";
+    direction?: "ASC" | "DESC";
+    isVerified?: boolean;
+}
+
+export declare interface IpAllowListEntries extends BasicFields {
+    orderBy?: "ALLOW_LIST_VALUE" | "CREATED_AT";
+    direction?: "ASC" | "DESC";
+}
+
+export declare interface MemberStatuses extends BasicFields {
+    orderBy?: "UPDATED_AT";
+    direction?: "ASC" | "DESC";
+}
+
+export declare interface Item extends BasicFields {
+    types?: "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM" 
+}
+
+export declare interface Sponsorships extends BasicFields {
+    orderBy?: "CREATED_AT";
+    direction?: "ASC" | "DESC";
+    includePrivate?: boolean;
+}
+
+
+export declare interface Tiers extends BasicFields {
+    orderBy?: "CREATED_AT" | "MONTHLY_PRICE_IN_CENTS";
+    direction?: "ASC" | "DESC";
+}
+
+export declare interface ChildTeams extends BasicFields {
+    immediateOnly?: boolean;
+    orderBy?: "NAME";
+    direction?: "ASC" | "DESC";
+    userLogins?: string; 
+}
+
+export declare interface Comments extends BasicFields {
+    fromComment?: number;
+    orderBy?: "NUMBER";
+    direction?: "ASC" | "DESC";
+}
+
+export declare interface Discussions extends BasicFields {
+    orderBy?: "CREATED_AT";
+    direction?: "ASC" | "DESC";
+    isPinned?: boolean;
+}
+
+export declare interface SponsorshipsAsSponsor extends BasicFields {
+    orderBy?: "CREATED_AT";
+    direction?: "ASC" | "DESC";
+}
+
+export declare interface Members extends BasicFields {
+    orderBy?: "LOGIN" | "IMMEDIATE";
+    direction?: "ASC" | "DESC";
+    membership?: "IMMEDIATE" | "CHILD_TEAM" | "ALL";
+    query?: string;
+    role?: "MAINTAINER" | "MEMBER";
+}
+
+export declare interface Teams extends BasicFields {
+    orderBy?: "NAME";
+    direction?: "ASC" | "DESC";
+    ldapMapped?: boolean;
+    privacy?: "SECRET" | "VISIBLE";
+    query?: string;
+    role?: "ADMIN" | "MEMBER";
+    rootTeamsOnly?: boolean;
+    userLogins?: string;
+}
+
 export declare interface Repository {
     repositoryOwner: string;
     repositoryName: string;

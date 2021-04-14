@@ -7,57 +7,46 @@ export declare interface Viewer {
 
 export declare interface UserInfo {
     anyPinnableItems: boolean;
-    avatarUrl: string | null;
-    bio: string | null;
-    bioHTML: string | null;
+    avatarUrl: string;
+    bio: string;
+    bioHTML: string;
     commitComments: UserCommitContents;
-    company: string | null;
-    companyHTML: string | null;
+    company: string;
+    companyHTML: string;
     contributionCollection: any;
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     email: string;
     followers: Followers;
     following: Following;
     gist: Commit;
-    gistComments: Comment[];
+    gistComments: Comments;
     gists: Commit[];
     hasSponsorsListing: boolean;
     hovercard: HoverCard;
-    id: string;
+    id: number;
     isBountyHunter: boolean;
     isCampusExpert: boolean;
     isDeveloperProgramMember: boolean;
     isEmployee: boolean;
-    isSponsoredBy: any;
-    isSponsoringViewer: any;
+    isSponsoredBy: boolean;
+    isSponsoringViewer: boolean;
     isHireable: boolean;
     isViewer: boolean;
-    isssueComments: IssueComment[]
+    isssueComments: Comments;
     issues: Issue[]
     itemShowcase: {
         hasPinnedItems: boolean;
-        items: {
-            edges: [{
-                node: [
-                    Gist, Repositories
-                ]
-            }];
-            nodes: [
-                Gist, Repositories
-            ];
-            pageInfo: PageInfo;
-            totalCount: number;
-        }
+        items: Items;
     }
     location: string;
     login: string;
     name: string;
-    organization: Organization
+    organization: OrganizationInfo
     organizationVerifiedDomainEmails: (login: string) => {
 
     };
-    organizations: Organization[];
+    organizations: OrganizationInfo[];
     packages: {
         edges: [{
             cursor: string;
@@ -67,46 +56,14 @@ export declare interface UserInfo {
         pageInfo: PageInfo;
         totalCount: number;
     }
-    pinnableItems: {
-        edges: [{
-            cursor: string;
-            node: [
-                Gist, Repositories
-            ]
-        }]
-        nodes: [
-            Gist, Repositories
-        ]
-        pageInfo: PageInfo;
-        totalCount: number
-    };
-    pinnedItems: {
-        edges: [{
-            cursor: string;
-            node: [
-                Gist, Repositories
-            ]
-        }]
-        nodes: [
-            Gist, Repositories
-        ]
-        pageInfo: PageInfo;
-        totalCount: number
-    };
+    pinnableItems: Items;
+    pinnedItems: Items;
     pinnedItemsRemaining: number;
     url: string;
     project: Project;
-    projects: {
-        edges: [{
-            cursor: string;
-            node: Project;
-        }]
-        nodes: Project;
-        pageInfo: PageInfo;
-        totalCount: number
-    }
+    projects: Projects;
     projectsResourcePath: string;
-    projectsUrl:string;
+    projectsUrl: string;
     publicKeys: {
         edges: [{
             cursor: string;
@@ -114,20 +71,20 @@ export declare interface UserInfo {
                 accessedAt: string
                 createdAt: string
                 fingerprint: string
-                id:string;
+                id: string;
                 isReadOnly: boolean
                 key: string
                 updatedAt: string
-              };
+            };
         }]
         nodes: [{
-          accessedAt: string
-          createdAt: string
-          fingerprint: string
-          id:string;
-          isReadOnly: boolean
-          key: string
-          updatedAt: string
+            accessedAt: string
+            createdAt: string
+            fingerprint: string
+            id: string;
+            isReadOnly: boolean
+            key: string
+            updatedAt: string
         }]
         pageInfo: PageInfo;
         totalCount: number;
@@ -141,16 +98,7 @@ export declare interface UserInfo {
         pageInfo: PageInfo;
         totalCount: number;
     }
-    repositories: {
-        edges: [{
-            cursor: string,
-            node: Repository
-        }]
-        nodes: [Repository]
-        pageInfo: PageInfo;
-        totalCount: number;
-        totalDiskUsage: number
-    }
+    repositories: Repositories;
     repositoriesContributedTo: {
         edges: [{
             cursor: string,
@@ -161,7 +109,7 @@ export declare interface UserInfo {
         totalCount: number;
         totalDiskUsage: number;
     }
-    repository: Repository;
+    repository: RepositoryInfo;
     resourcePath: string;
     savedReplies: {
         edges: [{
@@ -173,43 +121,27 @@ export declare interface UserInfo {
         totalCount: number;
     }
     sponsorsListing: SponsorsListing;
-    sponsorshipForViewerAsSponsor: SponsorShip;
-    sponsorshipsAsMaintainer: {
-        edges: [{
-            cursor: string;
-            node: SponsorShip;
-        }]
-        nodes: [SponsorShip];
-        pageInfo: PageInfo;
-        totalCount: number;
-    }
-    sponsorshipsAsSponsor: {
-        edges: [{
-            cursor: string;
-            node: SponsorShip;
-        }]
-        nodes: [SponsorShip];
-        pageInfo: PageInfo;
-        totalCount: number;
-    }
+    sponsorshipForViewerAsSponsor: SponsorshipForViewerAsSponsor;
+    sponsorshipsAsMaintainer: SponsorshipsAsMaintainer
+    sponsorshipsAsSponsor: SponsorshipsAsSponsor;
     starredRepositories: {
-        edges: [{
+        edges: {
             cursor: string;
-            node: Repository;
-        }]
-        nodes: [Repository];
+            node: RepositoryInfo;
+        }[]
+        nodes: Repository[];
         pageInfo: PageInfo;
         totalCount: number;
     }
     status: {
         createdAt: string;
         emoji: string;
-        emojiHTML:string;
+        emojiHTML: string;
         expiresAt: string;
         id: string;
         indicatesLimitedAvailability: boolean;
         message: string;
-        organization: Organization;
+        organization: OrganizationInfo;
         updatedAt: string;
         user: User
     }
@@ -222,7 +154,7 @@ export declare interface UserInfo {
         pageInfo: PageInfo;
         totalCount: number;
     }
-    twitterUsername:string;
+    twitterUsername: string;
     updatedAt: string;
     watching: {
         edges: [{
@@ -248,7 +180,7 @@ export declare interface FileEntriesContent {
     name: string;
     type: string;
     child: {
-        text?: Blob | null;
+        text?: Blob;
         entries?: FileEntriesContent[];
     };
 }
@@ -345,16 +277,16 @@ export declare interface Repository {
 
 export declare interface RepositoryInfo {
     createdAt: string;
-    databaseId: string;
-    description: string | null;
+    databaseId: number;
+    description: string;
     descriptionHTML: string;
     diskUsage: number;
     forkCount: number;
     hasIssuesEnabled: boolean;
     hasProjectsEnabled: boolean;
     hasWikiEnabled: boolean;
-    homepageUrl: string | null;
-    id: string;
+    homepageUrl: string;
+    id: number;
     isArchived: boolean;
     isDisabled: boolean;
     isFork: boolean;
@@ -362,9 +294,9 @@ export declare interface RepositoryInfo {
     isMirror: boolean;
     isPrivate: boolean;
     isTemplate: boolean;
-    lockReason: string | null;
+    lockReason: string;
     mergeCommitAllowed: boolean;
-    mirrorUrl: string | null;
+    mirrorUrl: string;
     name: string;
     nameWithOwner: string;
     openGraphImageUrl: string;
@@ -429,7 +361,7 @@ export declare interface Commit {
             committedDate: string;
             committedViaWeb: boolean;
             deletions: number;
-            id: string;
+            id: number;
             message: string;
             messageBody: string;
             messageBodyHTML: string;
@@ -452,7 +384,7 @@ export declare interface Commit {
 export declare interface CodeOfConduct {
     codeOfConduct: null | {
         name: string;
-        id: string;
+        id: number;
         body: string;
         key: string;
         resourcePath: string;
@@ -465,7 +397,7 @@ export declare interface Followers {
         node: UserInfo;
         cursor: string;
     }];
-    nodes:[UserInfo];
+    nodes: [UserInfo];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -475,7 +407,7 @@ export declare interface Following {
         node: UserInfo;
         cursor: string;
     }];
-    nodes:[UserInfo]
+    nodes: [UserInfo]
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -523,14 +455,14 @@ export declare interface UserCommitContents {
                     createdAt: string;
                     createdViaEmail: string;
                     databaseId: number;
-                    editor: Author | null;
-                    id: string;
+                    editor: Author;
+                    id: number;
                     includesCreatedEdit: boolean;
                     isMinimized: boolean;
-                    lastEditedAt: string | null;
-                    minimizedReason: string | null;
-                    path: string | null;
-                    position: number | null;
+                    lastEditedAt: string;
+                    minimizedReason: string;
+                    path: string;
+                    position: number;
                     publishedAt: string;
                     resourcePath: string;
                     updatedAt: string;
@@ -549,7 +481,7 @@ export declare interface UserCommitContents {
 }
 
 export declare interface Issue {
-    activeLockReason: string | null;
+    activeLockReason: string;
     author: Author;
     body: string;
     bodyHTML: string;
@@ -559,14 +491,14 @@ export declare interface Issue {
     createdAt: string;
     createdViaEmail: boolean;
     databaseId: number;
-    editor: Author | null;
+    editor: Author;
     hovercard: [{
         message: string;
         octicon: string;
     }];
-    id: string;
+    id: number;
     includesCreatedEdit: boolean;
-    lastEditedAt: string | null;
+    lastEditedAt: string;
     locked: boolean;
     number: number;
     publishedAt: string;
@@ -590,7 +522,7 @@ export declare interface HoverCard {
             message: string;
             octicon: string;
         }
-        OrganizationTeamsHovercardContext: {
+        OrganizationInfoTeamsHovercardContext: {
             message: string;
             octicon: string;
             relevantTeams: Team[]
@@ -599,14 +531,43 @@ export declare interface HoverCard {
 }
 
 export declare interface Team {
-    ancestors: Team[]
+    ancestors: Teams;
     avatarUrl: string;
-    childTeams: Team[]
+    childTeams: Teams
     combinedSlug: string;
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     description: string;
-
+    discussion: Discussion;
+    discussions: Discussions;
+    discussionsResourcePath: string;
+    discussionsUrl: string;
+    editTeamResourcePath: string;
+    editTeamUrl: string;
+    id: number;
+    invitations: Invitations;
+    memberStatuses: MemberStatuses;
+    members: Members;
+    membersResourcePath: string;
+    membersUrl: string;
+    name: string;
+    newTeamResourcePath: string;
+    newTeamUrl: string;
+    organization: Organization;
+    parentTeam: Team;
+    privacy: string;
+    repositories: Repositories;
+    repositoriesResourcePath: string;
+    repositoriesUrl: string;
+    resourcePath: string;
+    slug: string;
+    teamsResourcePath: string;
+    teamsUrl: string;
+    updatedAt: string;
+    url: string;
+    viewerCanAdminister: boolean;
+    viewerCanSubscribe: boolean;
+    viewerSubscription: boolean;
 }
 
 export declare interface Discussion {
@@ -616,21 +577,34 @@ export declare interface Discussion {
     bodyHTML: string;
     bodyText: string;
     bodyVersion: string;
-    comments: Comment[]
+    comments: Comments;
     commentsResourcePath: string;
     commentsUrl: string;
     createdAt: string;
     createdViaEmail: boolean;
-    databaseId: string;
+    databaseId: number;
+    discussion: Discussion;
     editor: Owner;
-    id: string;
+    id: number;
     includesCreatedEdit: boolean;
     isPinned: boolean;
     isPrivate: boolean;
     lastEditedAt: string;
     number: number;
     publishedAt: string;
-    reactionGroups: ReactionGroup[];
+    reactionGroups: ReactionGroups;
+    reactions: Reactions;
+    team: Team;
+    title: string;
+    resourcePath: string;
+    updatedAt: string;
+    url: string;
+    userContentEdits: UserContentEdits;
+    viewerCanDelete: boolean;
+    viewerCanReact: boolean;
+    viewerCanUpdate: boolean;
+    viewerCannotUpdateReasons: boolean;
+    viewerDidAuthor: boolean;
 }
 
 export declare interface Owner {
@@ -639,7 +613,7 @@ export declare interface Owner {
     resourcePath: string;
     url: string;
     enterpriseUserAccount: EnterpriseUserAccount;
-    organization: Organization
+    organization: OrganizationInfo
     user: User;
     bannequin: Mannequin;
     bot: Bot;
@@ -650,10 +624,10 @@ export declare interface EnterpriseUserAccount {
     avatarUrl: string;
     createdAt: string;
     enterprise: Enterprise;
-    id: string;
+    id: number;
     login: string;
     name: string;
-    organization: Organization;
+    organization: OrganizationInfo;
     resourcePath: string;
     updatedAt: string;
     url: string;
@@ -664,15 +638,84 @@ export declare interface Enterprise {
 }
 
 export declare interface Organization {
+    organization: OrganizationInfo;
+}
 
+export declare interface OrganizationInfo {
+    anyPinnableItems: boolean;
+    auditLog: AuditLog;
+    avatarUrl: string;
+    createdAt: string;
+    databaseId: number;
+    description: string;
+    descriptionHTML: string;
+    domains: Domains;
+    email: string;
+    hasSponsorsListing: boolean;
+    id: number;
+    interactionAbility: {
+        expiresAt: string;
+        limit: number;
+        origin: string;
+    }
+    ipAllowListEnabledSetting: string;
+    isSponsoredBy: boolean;
+    isSponsoringViewer: boolean;
+    isVerified: boolean;
+    itemShowcase: {
+        hasPinnedItems: boolean;
+        items: Items;
+    }
+    location: string;
+    login: string;
+    memberStatuses: MemberStatuses;
+    membersWithRole: MembersWithRole;
+    name: string;
+    newTeamResourcePath: string;
+    newTeamUrl: string;
+    notificationDeliveryRestrictionEnabledSetting: string;
+    organizationBillingEmail: string;
+    pendingMembers: PendingMembers;
+    pinnableItems: Items;
+    pinnedItems: Items;
+    pinnedItemsRemaining: number;
+    project: Project;
+    projects: Projects;
+    projectsResourcePath: string;
+    projectsUrl: string;
+    repositories: Repositories;
+    repository: RepositoryInfo;
+    requiresTwoFactorAuthentication: boolean;
+    resourcePath: string;
+    samlIdentityProvider: SamlIdentityProvider;
+    sponsorsListing: SponsorsListing;
+    sponsorshipForViewerAsSponsor: SponsorshipForViewerAsSponsor;
+    sponsorshipsAsMaintainer: SponsorshipsAsMaintainer;
+    sponsorshipsAsSponsor: SponsorshipsAsSponsor;
+    team: Team;
+    teams: Teams;
+    teamsResourcePath: string;
+    teamsUrl: string;
+    twitterUsername: string;
+    updatedAt: string;
+    url: string;
+    viewerCanAdminister: boolean;
+    viewerCanChangePinnedItems: boolean;
+    viewerCanCreateProjects: boolean;
+    viewerCanCreateRepositories: boolean;
+    viewerCanCreateTeams: boolean;
+    viewerCanSponsor: boolean;
+    viewerIsAMember: boolean;
+    viewerIsSponsoring: boolean;
+    websiteUrl: string;
 }
 
 export declare interface Mannequin {
     avatarUrl: string;
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     email: string;
-    id: string;
+    id: number;
     login: string;
     resourcePath: string;
     updatedAt: string;
@@ -682,8 +725,8 @@ export declare interface Mannequin {
 export declare interface Bot {
     avatarUrl: string;
     createdAt: string;
-    databaseId: string;
-    id: string;
+    databaseId: number;
+    id: number;
     login: string;
     resourcePath: string
     updatedAt: string;
@@ -696,10 +739,10 @@ export declare interface ReactionGroup {
     createdAt: string;
     reactionGroups: ReactionGroup[]
     viewerCanReact: boolean;
-    issue: Issue | null;
-    pullRequest: PullRequest | null;
-    teamDiscussion: Discussion | null;
-    teamDiscussionComment: Discussion | null;
+    issue: Issue;
+    pullRequest: PullRequest;
+    teamDiscussion: Discussion;
+    teamDiscussionComment: Discussion;
     commitComment: CommitComment;
     issueComment: IssueComment;
     pullRequestReview: PullRequestReview;
@@ -712,15 +755,15 @@ export declare interface Reaction {
     content: string;
     createdAt: string;
     databaseId: string
-    id: string;
+    id: number;
     reactable: string;
 }
 
 export declare interface PageInfo {
-    endCursor: string | null;
+    endCursor: string;
     hasNextPage: boolean;
     hasPreviousPage: boolean;
-    startCursor: string | null;
+    startCursor: string;
 }
 
 export declare interface PullRequest {
@@ -748,12 +791,12 @@ export declare interface Fork {
 }
 
 export declare interface Gist {
-    comments: Comment[];
+    comments: Comments;
     createdAt: string;
     description: string;
     files: File[];
     forks: Fork[];
-    id: string;
+    id: number;
     isFork: boolean;
     isPublic: boolean;
     name: string;
@@ -780,7 +823,7 @@ export declare interface Release {
 }
 export declare interface Version {
     files: File[];
-    id: string;
+    id: number;
     package: Package;
     platform: string;
     preRelease: boolean;
@@ -794,7 +837,7 @@ export declare interface Version {
 }
 
 export declare interface Package {
-    id: string;
+    id: number;
     latestVersion: Version;
     name: string;
     packageType: string;
@@ -820,8 +863,8 @@ export declare interface Project {
 export declare interface Reply {
     body: string;
     bodyHTML: string;
-    databaseId: string;
-    id: string;
+    databaseId: number;
+    id: number;
     title: string;
     user: Owner
 }
@@ -834,22 +877,24 @@ export declare interface Goal {
     title: string;
 }
 
-export declare interface Tier{
-    adminInfo:{
+export declare interface Tier {
+    adminInfo: {
         sponsorShips: {
-            edges: [{
+            edges: {
                 cursor: string;
-                node: SponsorShip;
-            }]
-            nodes: [SponsorShip];
+                node: Sponsorships;
+            }[]
+            nodes: Sponsorships[];
             pageInfo: PageInfo;
         };
 
     }
-    createdAt:string;
+    closestLesserValueTier: Tier;
+    createdAt: string;
     description: string;
     descriptionHTML: string;
-    id: string;
+    id: number;
+    isCustomAmount: boolean;
     monthlyPriceInCents: number;
     monthlyPriceInDollars: number;
     name: number;
@@ -858,12 +903,12 @@ export declare interface Tier{
 }
 
 export declare interface Sponsor {
-    organization: Organization;
+    organization: OrganizationInfo;
     user: User;
 }
 export declare interface SponsorShip {
-    createdAt:string;
-    id: string;
+    createdAt: string;
+    id: number;
     maintainer: User;
     privacyLevel: string;
     sponsor: User
@@ -873,39 +918,23 @@ export declare interface SponsorShip {
         isSponsoredBy: string;
         isSponsoringViewer: boolean;
         sponsorsListing: SponsorsListing;
-        sponsorshipForViewerAsSponsor: SponsorShip;
-        sponsorshipsAsMaintainer: {
-            edges: [{
-                cursor: string;
-                node: SponsorShip;
-            }];
-            nodes: [SponsorShip];
-            pageInfo: PageInfo;
-            totalCount: number;
-        }
-        sponsorshipsAsSponsor: {
-            edges: [{
-                cursor: string;
-                node: SponsorShip;
-            }];
-            nodes: [SponsorShip];
-            pageInfo: PageInfo;
-            totalCount: number;
-        }
+        sponsorshipForViewerAsSponsor: SponsorshipForViewerAsSponsor;
+        sponsorshipsAsMaintainer: SponsorshipsAsSponsor;
+        sponsorshipsAsSponsor: SponsorshipsAsSponsor;
         viewerCanSponsor: boolean;
         viewerIsSponsoring: boolean;
-        organizatio: Organization;
+        organizatio: OrganizationInfo;
         user: User;
     }
     tier: Tier
 }
 
-export declare interface SponsorsListing{
+export declare interface SponsorsListing {
     activeGoal: Goal;
     createdAt: string;
-    fullDescription:string;
-    fullDescriptionHTML:string;
-    id: string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
+    id: number;
     name: string
     shortDescription: string;
     slug: string;
@@ -918,4 +947,687 @@ export declare interface SponsorsListing{
         pageInfo: PageInfo;
         totalCount: number;
     }
+}
+
+
+export declare interface Actor extends Bot, User, OrganizationInfo {
+
+}
+
+export declare interface MemberNodeFields {
+    id: number;
+    action: string;
+    actor: Actor;
+    actorIp: string;
+    actorLocation: {
+        city: string;
+        country: string;
+        countryCode: string;
+        region: string;
+        regionCode: string;
+    }
+    actorLogin: string;
+    actorResourcePath: string;
+    actorUrl: string;
+    createdAt: string;
+    enterpriseResourcePath: string;
+    enterpriseSlug: string;
+    enterpriseUrl: string;
+    organization: OrganizationInfo;
+    operationType: string;
+    organizationName: string;
+    organizationResourcePath: string;
+    organizationUrl: string;
+    user: User;
+    userLogin: string;
+    userResourcePath: string;
+    userUrl: string;
+}
+
+export declare interface onMembersCanDeleteReposDisableAuditEntry extends MemberNodeFields {
+
+}
+export declare interface onMembersCanDeleteReposClearAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onMembersCanDeleteReposEnableAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOauthApplicationCreateAuditEntry extends MemberNodeFields {
+    oauthApplicationName: string;
+    oauthApplicationResourcePath: string;
+    oauthApplicationUrl: string;
+    rateLimit: number;
+    state: string;
+}
+
+export declare interface onOrgAddBillingManagerAuditEntry extends MemberNodeFields {
+    invitationEmail: string;
+    organization: OrganizationInfo;
+}
+
+export declare interface onOrgAddMemberAuditEntry extends MemberNodeFields {
+    permission: string;
+}
+
+export declare interface onOrgBlockUserAuditEntry extends MemberNodeFields {
+    blockedUser: UserInfo;
+    blockedUserName: string;
+    blockedUserResourcePath: string;
+    blockedUserUrl: string;
+}
+
+export declare interface onOrgConfigDisableCollaboratorsOnlyAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOrgConfigEnableCollaboratorsOnlyAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOrgCreateAuditEntry extends MemberNodeFields {
+    billingPlan: string;
+}
+
+
+export declare interface onOrgDisableOauthAppRestrictionsAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOrgDisableSamlAuditEntry extends MemberNodeFields {
+    digestMethodUrl: string;
+    issuerUrl: string;
+    signatureMethodUrl: string;
+    singleSignOnUrl: string;
+}
+
+export declare interface onOrgEnableOauthAppRestrictionsAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOrgEnableSamlAuditEntry extends MemberNodeFields {
+    digestMethodUrl: string;
+    issuerUrl: string;
+    signatureMethodUrl: string;
+    singleSignOnUrl: string;
+}
+
+export declare interface onOrgEnableTwoFactorRequirementAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOrgInviteMemberAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOrgInviteToBusinessAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOrgOauthAppAccessApprovedAuditEntry extends MemberNodeFields {
+    oauthApplicationName: string;
+    oauthApplicationResourcePath: string;
+    oauthApplicationUrl: string;
+}
+
+export declare interface onOrgOauthAppAccessDeniedAuditEntry extends MemberNodeFields {
+    oauthApplicationName: string;
+    oauthApplicationResourcePath: string;
+    oauthApplicationUrl: string;
+}
+
+
+export declare interface onOrgOauthAppAccessRequestedAuditEntry extends MemberNodeFields {
+    oauthApplicationName: string;
+    oauthApplicationResourcePath: string;
+    oauthApplicationUrl: string;
+}
+
+export declare interface onOrgRemoveBillingManagerAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOrgRemoveMemberAuditEntry extends MemberNodeFields {
+    membershipTypes: []
+    reason: string;
+}
+
+export declare interface onOrgRemoveOutsideCollaboratorAuditEntry extends MemberNodeFields {
+    membershipTypes: []
+    reason: string;
+}
+
+export declare interface onOrgRestoreMemberAuditEntry extends MemberNodeFields {
+    restoredCustomEmailRoutingsCount: number;
+    restoredIssueAssignmentsCount: number;
+    restoredMemberships: RestoredMemberships;
+    restoredMembershipsCount: number;
+    restoredRepositoriesCount: number;
+    restoredRepositoryStarsCount: number;
+    restoredRepositoryWatchesCount: number;
+}
+
+export declare interface RestoredMemberships extends onOrgRestoreMemberMembershipOrganizationInfoAuditEntryData, onOrgRestoreMemberMembershipRepositoryAuditEntryData,
+    onOrgRestoreMemberMembershipTeamAuditEntryData {
+
+}
+
+export declare interface onOrgRestoreMemberMembershipTeamAuditEntryData {
+    team: Team;
+    teamName: string;
+    teamResourcePath: string;
+}
+
+export declare interface onOrgRestoreMemberMembershipRepositoryAuditEntryData {
+    repository: Repository;
+    organizationName: string;
+    organizationResourcePath: string;
+    organizationUrl: string;
+}
+
+export declare interface onOrgRestoreMemberMembershipOrganizationInfoAuditEntryData {
+    repository: Repository;
+    organizationName: string;
+    organizationResourcePath: string;
+    organizationUrl: string;
+}
+
+export declare interface onOrgBlockUserAuditEntry extends MemberNodeFields {
+    blockedUser: UserInfo;
+    blockedUserName: string;
+    blockedUserResourcePath: string;
+    blockedUserUrl: string;
+}
+
+export declare interface onOrgAddMemberAuditEntry extends MemberNodeFields {
+    permission: string;
+    permissionWas: string;
+}
+
+export declare interface onOrgUpdateMemberAuditEntry extends MemberNodeFields {
+    permission: string;
+    permissionWas: string;
+}
+
+export declare interface onOrgUpdateMemberRepositoryCreationPermissionAuditEntry extends MemberNodeFields {
+    canCreateRepositories: boolean;
+    visibility: string;
+}
+
+export declare interface onOrgUpdateMemberRepositoryInvitationPermissionAuditEntry extends MemberNodeFields {
+    canInviteOutsideCollaboratorsToRepositories: boolean;
+}
+
+export declare interface onPrivateRepositoryForkingDisableAuditEntry extends MemberNodeFields {
+    repository: Repository;
+    repositoryName: string;
+    repositoryResourcePath: string;
+    repositoryUrl: string;
+}
+
+export declare interface onPrivateRepositoryForkingEnableAuditEntry extends MemberNodeFields {
+    repository: Repository;
+    repositoryName: string;
+    repositoryResourcePath: string;
+    repositoryUrl: string;
+}
+
+export declare interface onRepoAccessAuditEntry extends MemberNodeFields {
+    visibility: string;
+}
+
+export declare interface onRepoAddMemberAuditEntry extends MemberNodeFields {
+    visibility: string;
+}
+
+
+export declare interface onRepoAddTopicAuditEntry extends MemberNodeFields {
+    repository: Repository;
+    repositoryName: string;
+    repositoryResourcePath: string;
+    repositoryUrl: string;
+    topic: Topic;
+    topicName: string;
+}
+export declare interface Topic {
+
+}
+
+export declare interface onRepoArchivedAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoChangeMergeSettingAuditEntry extends MemberNodeFields {
+    isEnabled: boolean;
+    mergeType: string;
+}
+
+export declare interface onRepoConfigDisableAnonymousGitAccessAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoConfigDisableCollaboratorsOnlyAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoConfigDisableSockpuppetDisallowedAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoConfigEnableAnonymousGitAccessAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoConfigEnableCollaboratorsOnlyAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoConfigEnableContributorsOnlyAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoConfigEnableSockpuppetDisallowedAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoConfigUnlockAnonymousGitAccessAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoCreateAuditEntry extends MemberNodeFields {
+    forkParentName: string;
+    forkSourceName: string;
+    visibility: string;
+}
+
+export declare interface onRepoDestroyAuditEntry extends MemberNodeFields {
+    visibility: string;
+
+}
+
+export declare interface onRepoRemoveMemberAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoRemoveTopicAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepositoryVisibilityChangeDisableAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepositoryVisibilityChangeEnableAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onTeamAddMemberAuditEntry extends MemberNodeFields {
+    isLdapMapped: boolean;
+    team: Team;
+    teamName: string;
+    teamResourcePath: string;
+    teamUrl: string;
+}
+
+export declare interface onTeamAddRepositoryAuditEntry extends MemberNodeFields {
+    isLdapMapped: boolean;
+    team: Team;
+    teamName: string;
+    teamResourcePath: string;
+    teamUrl: string;
+}
+
+export declare interface onTeamChangeParentTeamAuditEntry extends MemberNodeFields {
+    isLdapMapped: boolean;
+    parentTeam: Team;
+    parentTeamName: string;
+    parentTeamNameWas: string;
+    parentTeamResourcePath: string;
+    parentTeamUrl: string;
+    parentTeamWas: Team;
+    parentTeamWasResourcePath: string;
+    parentTeamWasUrl: string;
+    team: Team;
+    teamName: string;
+    teamResourcePath: string;
+    teamUrl: string;
+}
+
+
+export declare interface onTeamRemoveMemberAuditEntry extends MemberNodeFields {
+    isLdapMapped: boolean;
+    team: Team;
+    teamName: string;
+    teamResourcePath: string;
+    teamUrl: string;
+}
+
+export declare interface onTeamRemoveRepositoryAuditEntry extends MemberNodeFields {
+    isLdapMapped: boolean;
+    team: Team;
+    teamName: string;
+    teamResourcePath: string;
+    teamUrl: string;
+}
+
+export declare interface onOrgUnblockUserAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onOrgUpdateDefaultRepositoryPermissionAuditEntry extends MemberNodeFields {
+
+}
+
+export declare interface onRepoConfigDisableContributorsOnlyAuditEntry extends MemberNodeFields {
+
+}
+
+
+export declare interface AuditLogNode extends onMembersCanDeleteReposDisableAuditEntry, onMembersCanDeleteReposClearAuditEntry, onOauthApplicationCreateAuditEntry, onOrgAddMemberAuditEntry, onOrgAddBillingManagerAuditEntry,
+    onOrgBlockUserAuditEntry, onOrgConfigDisableCollaboratorsOnlyAuditEntry, onOrgConfigEnableCollaboratorsOnlyAuditEntry, onOrgConfigEnableCollaboratorsOnlyAuditEntry, onOrgCreateAuditEntry, onOrgDisableOauthAppRestrictionsAuditEntry,
+    onOrgDisableSamlAuditEntry, onOrgEnableOauthAppRestrictionsAuditEntry, onOrgEnableSamlAuditEntry, onOrgEnableTwoFactorRequirementAuditEntry, onOrgInviteMemberAuditEntry, onOrgInviteToBusinessAuditEntry, onOrgOauthAppAccessApprovedAuditEntry,
+    onOrgOauthAppAccessDeniedAuditEntry, onOrgOauthAppAccessRequestedAuditEntry, onOrgRemoveBillingManagerAuditEntry, onOrgRemoveMemberAuditEntry, onOrgRemoveOutsideCollaboratorAuditEntry, onOrgRestoreMemberAuditEntry, onOrgUnblockUserAuditEntry,
+    onOrgUpdateDefaultRepositoryPermissionAuditEntry, onOrgUpdateMemberAuditEntry, onOrgUpdateMemberRepositoryCreationPermissionAuditEntry, onOrgUpdateMemberRepositoryInvitationPermissionAuditEntry, onPrivateRepositoryForkingDisableAuditEntry,
+    onPrivateRepositoryForkingEnableAuditEntry, onRepoAccessAuditEntry, onRepoAddMemberAuditEntry, onRepoAddTopicAuditEntry, onRepoChangeMergeSettingAuditEntry, onRepoConfigDisableAnonymousGitAccessAuditEntry, onRepoConfigDisableCollaboratorsOnlyAuditEntry,
+    onRepoConfigDisableContributorsOnlyAuditEntry, onRepoConfigDisableSockpuppetDisallowedAuditEntry, onRepoConfigEnableAnonymousGitAccessAuditEntry, onRepoConfigEnableCollaboratorsOnlyAuditEntry, onRepoConfigEnableContributorsOnlyAuditEntry, onRepoConfigEnableSockpuppetDisallowedAuditEntry,
+    onRepoConfigUnlockAnonymousGitAccessAuditEntry, onRepoCreateAuditEntry, onRepoDestroyAuditEntry, onRepoRemoveTopicAuditEntry, onRepositoryVisibilityChangeDisableAuditEntry, onRepositoryVisibilityChangeEnableAuditEntry, onTeamAddMemberAuditEntry,
+    onTeamAddRepositoryAuditEntry, onTeamChangeParentTeamAuditEntry, onTeamRemoveMemberAuditEntry, onTeamRemoveRepositoryAuditEntry {
+
+}
+
+export declare interface AuditLog {
+    edges: {
+        cursor: string;
+        node: AuditLogNode;
+    }[];
+    nodes: AuditLogNode[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+export declare interface Domain {
+    createdAt: string;
+    databaseId: number;
+    dnsHostName: string;
+    domain: string;
+    hasFoundHostName: string;
+    hasFoundVerificationToken: string;
+    id: number;
+    isRequiredForPolicyEnforcement: boolean;
+    isVerified: boolean;
+    owner: Owner;
+    punycodeEncodedDomain: string;
+    tokenExpirationTime: string;
+    updatedAt: string;
+    verificationToken: string;
+}
+export declare interface Domains {
+    edges: {
+        cursor: string;
+        node: Domain;
+    }[];
+    nodes: Domain[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface Item extends Gist, Repository {
+
+}
+
+export declare interface Items {
+    edges: {
+        cursor: string;
+        node: Item;
+    }[];
+    nodes: Item[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface MemberStatus {
+    createdAt: string;
+    emoji: string;
+    emojiHTML: string;
+    expiresAt: string;
+    id: number;
+    indicatesLimitedAvailability: boolean;
+    message: string;
+    organization: OrganizationInfo;
+    updatedAt: string;
+    user: UserInfo;
+}
+
+export declare interface MemberStatuses {
+    edges: {
+        cursor: string;
+        node: MemberStatus;
+    }[];
+    nodes: MemberStatus[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface MembersWithRole {
+    edges: {
+        cursor: string;
+        node: UserInfo;
+    }[];
+    nodes: UserInfo[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface PendingMembers {
+    edges: {
+        cursor: string;
+        node: UserInfo;
+    }[];
+    nodes: UserInfo[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface OrganizationItem extends Gist, RepositoryInfo {
+
+}
+
+export declare interface SamlIdentity {
+    emails: {
+        primary: boolean;
+        type: string;
+        value: string;
+    }[];
+    familyName: string;
+    givenName: string;
+    groups: string[]
+    nameId: string;
+    username: string;
+}
+
+export declare interface ScimIdentity {
+    emails: {
+        primary: boolean;
+        type: string;
+        value: string;
+    }[];
+    familyName: string;
+    givenName: string;
+    groups: string[]
+    nameId: string;
+    username: string;
+}
+
+export declare interface ExternalIdentity {
+    guid: string;
+    id: string;
+    organizationInvitation: Invitation;
+    samlIdentity: SamlIdentity;
+    scimIdentity: ScimIdentity;
+    user: UserInfo;
+}
+
+export declare interface ExternalIdentities {
+    edges: {
+        cursor: string;
+        node: ExternalIdentity;
+    }[];
+    nodes: ExternalIdentity[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface SamlIdentityProvider {
+    digestMethod: string;
+    id: string;
+    idpCertificate: string;
+    issuer: string;
+    organizaiton: OrganizationInfo;
+    signatureMethod: string;
+    ssoUrl: string;
+}
+
+export declare interface SponsorshipForViewerAsSponsor {
+    createdAt: string;
+    id: string;
+    isOneTimePayment: boolean;
+    maintainer: UserInfo;
+    privacyLevel: string;
+    sponsor: UserInfo;
+    sponsorEntity: SponsorEntity;
+    sponsorable: Sponsorable;
+    tier: Tier;
+    tierSelectedAt: string;
+}
+
+export declare interface SponsorEntity extends OrganizationInfo, UserInfo {
+
+}
+
+export declare interface Projects {
+    edges: {
+        cursor: string;
+        node: Project;
+    }[]
+    nodes: Project[];
+    pageInfo: PageInfo;
+    totalCount: number
+}
+
+export declare interface Sponsorable {
+    hasSponsorsListing: boolean;
+    isSponsoredBy: boolean;
+    isSponsoringViewer: boolean;
+    sponsorsListing: SponsorsListing;
+    sponsorshipForViewerAsSponsor: SponsorshipForViewerAsSponsor;
+    sponsorshipsAsMaintainer: SponsorshipsAsMaintainer;
+
+}
+
+export declare interface Sponsorships {
+    createdAt: string;
+    id: string;
+    isOneTimePayment: boolean;
+    maintainer: UserInfo;
+    privacyLevel: string;
+    sponsor: UserInfo;
+    sponsorEntity: SponsorEntity;
+    sponsorable: Sponsorable;
+    tier: Tier;
+    tierSelectedAt: string;
+}
+
+
+export declare interface SponsorshipsAsMaintainer {
+    edges: {
+        cursor: string;
+        node: Sponsorships;
+    }[]
+    nodes: Sponsorships[];
+    pageInfo: PageInfo;
+    totalCount: number
+}
+
+export declare interface SponsorshipsAsSponsor {
+    edges: {
+        cursor: string;
+        node: Sponsorships;
+    }[]
+    nodes: Sponsorships[];
+    pageInfo: PageInfo;
+    totalCount: number
+}
+
+export declare interface Teams {
+    edges: {
+        cursor: string;
+        node: Team;
+    }[]
+    nodes: Team[];
+    pageInfo: PageInfo;
+    totalCount: number
+}
+
+export declare interface Discussions {
+    edges: {
+        cursor: string;
+        node: Discussion;
+    }[]
+    nodes: Discussion[];
+    pageInfo: PageInfo;
+    totalCount: number
+}
+
+export declare interface Invitation {
+    createdAt: string;
+    email: string;
+    id: number;
+    invitationType: string;
+    invitee: UserInfo;
+    inviter: UserInfo;
+    organization: Organization;
+    role: string;
+}
+
+export declare interface Invitations {
+    edges: {
+        cursor: string;
+        node: Invitation;
+    }[]
+    nodes: Invitation[];
+    pageInfo: PageInfo;
+    totalCount: number
+}
+
+export declare interface Members {
+    edges: {
+        cursor: string;
+        node: UserInfo;
+    }[]
+    nodes: UserInfo[];
+    pageInfo: PageInfo;
+    totalCount: number
+}
+
+export declare interface Comments {
+    edges: {
+        cursor: string;
+        node: Discussion;
+    }[]
+    nodes: Discussion[];
+    pageInfo: PageInfo;
+    totalCount: number
+}
+
+export declare interface ReactionGroups {
+
+}
+
+export declare interface Reactions {
+
+}
+
+export declare interface UserContentEdits {
+
 }
