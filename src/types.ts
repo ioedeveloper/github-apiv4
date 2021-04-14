@@ -920,7 +920,7 @@ export declare interface SponsorsListing {
     }
 }
 
-export declare interface Node extends CodeOfConduct, Enterprise, EnterpriseUserAccount, Organization, Package, PackageVersion, PackageFile, Release, User, Project, ProjectColumn, ProjectCard, Issue, UserContentEdit, Label, PullRequest,
+export declare interface NodeTypes extends CodeOfConduct, Enterprise, EnterpriseUserAccount, Organization, Package, PackageVersion, PackageFile, Release, User, Project, ProjectColumn, ProjectCard, Issue, UserContentEdit, Label, PullRequest,
     Reaction, Repository, License, BranchProtectionRule, Ref, PushAllowance, App, Team, UserStatus, TeamDiscussion, TeamDiscussionComment, OrganizationInvitation, ReviewDismissalAllowance, CommitComment, Commit, CheckSuite, CheckRun, Push, Deployment,
     DeploymentStatus, Status, StatusContext, StatusCheckRollup, Tree, DeployKey, Language, Milestone, PinnedIssue, RepositoryTopic, Topic, RepositoryVulnerabilityAlert, SecurityAdvisory, CWE, IssueComment, PullRequestCommit, PullRequestReview,
     PullRequestReviewComment, ReviewRequest, Mannequin, PullRequestReviewThread, AssignedEvent, Bot, BaseRefDeletedEvent, BaseRefForcePushedEvent, ClosedEvent, CommitCommentThread, CrossReferencedEvent, DemilestonedEvent, DeployedEvent, DeploymentEnvironmentChangedEvent,
@@ -937,4 +937,12 @@ export declare interface Node extends CodeOfConduct, Enterprise, EnterpriseUserA
     TeamAddRepositoryAuditEntry, TeamChangeParentTeamAuditEntry, TeamRemoveMemberAuditEntry, TeamRemoveRepositoryAuditEntry, VerifiableDomain, IpAllowListEntry, OrganizationIdentityProvider, ExternalIdentity, EnterpriseServerInstallation, EnterpriseServerUserAccount, EnterpriseServerUserAccountEmail,
     EnterpriseServerUserAccountsUpload, EnterpriseRepositoryInfo, EnterpriseAdministratorInvitation, RepositoryInvitation, EnterpriseIdentityProvider, MarketplaceCategory, MarketplaceListing, Blob, PackageTag, Tag {
 
+}
+
+export declare interface Node {
+    node: NodeTypes;
+}
+
+export declare interface Nodes {
+    nodes: NodeTypes;
 }
