@@ -1104,3 +1104,20 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
+/**
+* @description Github Graphql Query Meta 
+* @fields
+** gitHubServicesSha
+** gitIpAddresses
+** hookIpAddresses
+** importerIpAddresses
+** isPasswordAuthenticationVerifiable
+** pagesIpAddresses
+*/
+export const Meta =(fields:string) => `
+  {
+    meta {
+      ${fields}
+    }
+  }
+`
