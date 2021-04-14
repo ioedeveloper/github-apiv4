@@ -106,7 +106,7 @@ export declare interface UserInfo {
         totalCount: number
     }
     projectsResourcePath: string;
-    projectsUrl:string;
+    projectsUrl: string;
     publicKeys: {
         edges: [{
             cursor: string;
@@ -114,20 +114,20 @@ export declare interface UserInfo {
                 accessedAt: string
                 createdAt: string
                 fingerprint: string
-                id:string;
+                id: string;
                 isReadOnly: boolean
                 key: string
                 updatedAt: string
-              };
+            };
         }]
         nodes: [{
-          accessedAt: string
-          createdAt: string
-          fingerprint: string
-          id:string;
-          isReadOnly: boolean
-          key: string
-          updatedAt: string
+            accessedAt: string
+            createdAt: string
+            fingerprint: string
+            id: string;
+            isReadOnly: boolean
+            key: string
+            updatedAt: string
         }]
         pageInfo: PageInfo;
         totalCount: number;
@@ -204,7 +204,7 @@ export declare interface UserInfo {
     status: {
         createdAt: string;
         emoji: string;
-        emojiHTML:string;
+        emojiHTML: string;
         expiresAt: string;
         id: string;
         indicatesLimitedAvailability: boolean;
@@ -222,7 +222,7 @@ export declare interface UserInfo {
         pageInfo: PageInfo;
         totalCount: number;
     }
-    twitterUsername:string;
+    twitterUsername: string;
     updatedAt: string;
     watching: {
         edges: [{
@@ -465,7 +465,7 @@ export declare interface Followers {
         node: UserInfo;
         cursor: string;
     }];
-    nodes:[UserInfo];
+    nodes: [UserInfo];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -475,7 +475,7 @@ export declare interface Following {
         node: UserInfo;
         cursor: string;
     }];
-    nodes:[UserInfo]
+    nodes: [UserInfo]
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -834,8 +834,8 @@ export declare interface Goal {
     title: string;
 }
 
-export declare interface Tier{
-    adminInfo:{
+export declare interface Tier {
+    adminInfo: {
         sponsorShips: {
             edges: [{
                 cursor: string;
@@ -846,7 +846,7 @@ export declare interface Tier{
         };
 
     }
-    createdAt:string;
+    createdAt: string;
     description: string;
     descriptionHTML: string;
     id: string;
@@ -862,7 +862,7 @@ export declare interface Sponsor {
     user: User;
 }
 export declare interface SponsorShip {
-    createdAt:string;
+    createdAt: string;
     id: string;
     maintainer: User;
     privacyLevel: string;
@@ -900,11 +900,11 @@ export declare interface SponsorShip {
     tier: Tier
 }
 
-export declare interface SponsorsListing{
+export declare interface SponsorsListing {
     activeGoal: Goal;
     createdAt: string;
-    fullDescription:string;
-    fullDescriptionHTML:string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
     id: string;
     name: string
     shortDescription: string;
@@ -918,4 +918,23 @@ export declare interface SponsorsListing{
         pageInfo: PageInfo;
         totalCount: number;
     }
+}
+
+export declare interface Node extends CodeOfConduct, Enterprise, EnterpriseUserAccount, Organization, Package, PackageVersion, PackageFile, Release, User, Project, ProjectColumn, ProjectCard, Issue, UserContentEdit, Label, PullRequest,
+    Reaction, Repository, License, BranchProtectionRule, Ref, PushAllowance, App, Team, UserStatus, TeamDiscussion, TeamDiscussionComment, OrganizationInvitation, ReviewDismissalAllowance, CommitComment, Commit, CheckSuite, CheckRun, Push, Deployment,
+    DeploymentStatus, Status, StatusContext, StatusCheckRollup, Tree, DeployKey, Language, Milestone, PinnedIssue, RepositoryTopic, Topic, RepositoryVulnerabilityAlert, SecurityAdvisory, CWE, IssueComment, PullRequestCommit, PullRequestReview,
+    PullRequestReviewComment, ReviewRequest, Mannequin, PullRequestReviewThread, AssignedEvent, Bot, BaseRefDeletedEvent, BaseRefForcePushedEvent, ClosedEvent, CommitCommentThread, CrossReferencedEvent, DemilestonedEvent, DeployedEvent, DeploymentEnvironmentChangedEvent,
+    HeadRefDeletedEvent, HeadRefForcePushedEvent, HeadRefRestoredEvent, LabeledEvent, LockedEvent, MergedEvent, MilestonedEvent, ReferencedEvent, RenamedTitleEvent, ReopenedEvent, ReviewDismissedEvent, ReviewRequestRemovedEvent, ReviewRequestedEvent,
+    SubscribedEvent, UnassignedEvent, UnlabeledEvent, UnlockedEvent, UnsubscribedEvent, UserBlockedEvent, AddedToProjectEvent, AutoMergeDisabledEvent, AutoMergeEnabledEvent, AutoRebaseEnabledEvent, AutoSquashEnabledEvent, AutomaticBaseChangeFailedEvent, AutomaticBaseChangeSucceededEvent,
+    BaseRefChangedEvent, CommentDeletedEvent, ConnectedEvent, ConvertToDraftEvent, ConvertedNoteToIssueEvent, DisconnectedEvent, MarkedAsDuplicateEvent, MentionedEvent, MovedColumnsInProjectEvent, PinnedEvent, PullRequestCommitCommentThread, ReadyForReviewEvent,
+    RemovedFromProjectEvent, TransferredEvent, UnmarkedAsDuplicateEvent, UnpinnedEvent, Gist, GistComment, SponsorsListing, SponsorsTier, Sponsorship, PublicKey, SavedReply, ReleaseAsset, MembersCanDeleteReposClearAuditEntry, MembersCanDeleteReposDisableAuditEntry, MembersCanDeleteReposEnableAuditEntry,
+    OauthApplicationCreateAuditEntry, OrgAddBillingManagerAuditEntry, OrgAddMemberAuditEntry, OrgBlockUserAuditEntry, OrgConfigDisableCollaboratorsOnlyAuditEntry, OrgConfigEnableCollaboratorsOnlyAuditEntry, OrgCreateAuditEntry, OrgDisableOauthAppRestrictionsAuditEntry, OrgDisableSamlAuditEntry,
+    OrgDisableTwoFactorRequirementAuditEntry, OrgEnableOauthAppRestrictionsAuditEntry, OrgEnableSamlAuditEntry, OrgEnableTwoFactorRequirementAuditEntry, OrgInviteMemberAuditEntry, OrgInviteToBusinessAuditEntry, OrgOauthAppAccessApprovedAuditEntry, OrgOauthAppAccessDeniedAuditEntry,
+    OrgOauthAppAccessRequestedAuditEntry, OrgRemoveBillingManagerAuditEntry, OrgRemoveMemberAuditEntry, OrgRemoveOutsideCollaboratorAuditEntry, OrgRestoreMemberAuditEntry, OrgUnblockUserAuditEntry, OrgUpdateDefaultRepositoryPermissionAuditEntry, OrgUpdateMemberAuditEntry, OrgUpdateMemberRepositoryCreationPermissionAuditEntry,
+    OrgUpdateMemberRepositoryInvitationPermissionAuditEntry, PrivateRepositoryForkingDisableAuditEntry, PrivateRepositoryForkingEnableAuditEntry, RepoAccessAuditEntry, RepoAddMemberAuditEntry, RepoAddTopicAuditEntry, RepoArchivedAuditEntry, RepoChangeMergeSettingAuditEntry, RepoConfigDisableAnonymousGitAccessAuditEntry,
+    RepoConfigDisableCollaboratorsOnlyAuditEntry, RepoConfigDisableContributorsOnlyAuditEntry, RepoConfigDisableSockpuppetDisallowedAuditEntry, RepoConfigEnableAnonymousGitAccessAuditEntry, RepoConfigEnableCollaboratorsOnlyAuditEntry, RepoConfigEnableContributorsOnlyAuditEntry, RepoConfigEnableSockpuppetDisallowedAuditEntry,
+    RepoConfigLockAnonymousGitAccessAuditEntry, RepoConfigUnlockAnonymousGitAccessAuditEntry, RepoCreateAuditEntry, RepoDestroyAuditEntry, RepoRemoveMemberAuditEntry, RepoRemoveTopicAuditEntry, RepositoryVisibilityChangeDisableAuditEntry, RepositoryVisibilityChangeEnableAuditEntry, TeamAddMemberAuditEntry,
+    TeamAddRepositoryAuditEntry, TeamChangeParentTeamAuditEntry, TeamRemoveMemberAuditEntry, TeamRemoveRepositoryAuditEntry, VerifiableDomain, IpAllowListEntry, OrganizationIdentityProvider, ExternalIdentity, EnterpriseServerInstallation, EnterpriseServerUserAccount, EnterpriseServerUserAccountEmail,
+    EnterpriseServerUserAccountsUpload, EnterpriseRepositoryInfo, EnterpriseAdministratorInvitation, RepositoryInvitation, EnterpriseIdentityProvider, MarketplaceCategory, MarketplaceListing, Blob, PackageTag, Tag {
+
 }
