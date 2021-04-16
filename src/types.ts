@@ -919,30 +919,95 @@ export declare interface SponsorsListing {
         totalCount: number;
     }
 }
+export declare interface MarketplaceListing {
+    app: App;
+    companyUrl: string;
+    configurationResourcePath: string;
+    configurationUrl: string;
+    documentationUrl: string;
+    extendedDescription: string;
+    extendedDescriptionHTML: string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
+    hasPublishedFreeTrialPlans: boolean;
+    hasTermsOfService: boolean;
+    hasVerifiedOwner: boolean;
+    howItWorks: string;
+    howItWorksHTML: string;
+    id: string;
+    installationUrl: string;
+    installedForViewer: boolean;
+    isArchived: boolean;
+    isDraft: boolean;
+    isPaid: boolean;
+    isPublic: boolean;
+    isRejected: boolean;
+    isUnverified: boolean;
+    isUnverifiedPending: boolean;
+    isVerificationPendingFromDraft: boolean;
+    isVerificationPendingFromUnverified: boolean;
+    isVerified: boolean;
+    logoBackgroundColor: string;
+    logoUrl: string;
+    name: string;
+    normalizedShortDescription: string;
+    pricingUrl: string;
+    primaryCategory: Category;
+    privacyPolicyUrl: string;
+    resourcePath: string;
+    screenshotUrls: string;
+    secondaryCategory: Category;
+    shortDescription: string;
+    slug: string;
+    statusUrl: string;
+    supportEmail: string;
+    supportUrl: string;
+    termsOfServiceUrl: string;
+    url: string;
+    viewerCanAddPlans: boolean;
+    viewerCanApprove: boolean;
+    viewerCanDelist: boolean;
+    viewerCanEdit: boolean;
+    viewerCanEditCategories: boolean;
+    viewerCanEditPlans: boolean;
+    viewerCanRedraft: boolean;
+    viewerCanReject: boolean;
+    viewerCanRequestApproval: boolean;
+    viewerHasPurchased: boolean;
+    viewerHasPurchasedForAllOrganizations: boolean;
+    viewerIsListingAdmin: boolean;
+}
 
-/**
- * @description Github Graphql Query for MarketplaceListings
- * @fields
- ** MarketplaceListings 
- */
+export declare interface MarketplaceListingsQuery {
+    marketplaceListings: MarketplaceListings;
+}
 
- export const MarketplaceListingsQuery = (fields: string) => `
- {
-    ${fields}
- }
- `
- 
- /**
- * @description Github Graphql Query for MarketplaceListing
- * @fields
- ** MarketplaceListing
- */
+export declare interface MarketplaceListings{
+    edges: {
+        cursor: string;
+        node: MarketplaceListing;
+    }[];
+    nodes: MarketplaceListing[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
 
- export const MarketplaceListingQuery = (slug: string,fields: string) => `
- {
-  marketplaceListing(slug: "${slug}") {
-    ${fields}
-  }
- }
- `
- 
+export declare interface MarketplaceListingQuery {
+    marketplaceListing: MarketplaceListing;
+}
+
+export declare interface App {
+
+}
+
+export declare interface Category {
+    description: string;
+    howItWorks: string;
+    id: number;
+    name: string;
+    primaryListingCount: number;
+    resourcePath: string;
+    secondaryListingCount: number;
+    slug: string;
+    url: string;
+}

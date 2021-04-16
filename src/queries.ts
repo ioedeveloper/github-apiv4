@@ -1105,3 +1105,30 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
+
+/**
+ * @description Github Graphql Query for MarketplaceListings
+ * @fields
+ ** MarketplaceListings 
+ */
+
+ export const MarketplaceListingsQuery = (fields: string) => `
+  {
+      ${fields}
+  }
+ `
+ 
+ /**
+ * @description Github Graphql Query for MarketplaceListing
+ * @fields
+ ** MarketplaceListing
+ */
+
+ export const MarketplaceListingQuery = (slug: string,fields: string) => `
+  {
+    marketplaceListing(slug: "${slug}") {
+      ${fields}
+    }
+  }
+ `
+ 
