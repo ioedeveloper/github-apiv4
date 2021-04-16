@@ -1467,3 +1467,7 @@ export declare interface Category {
     slug: string;
     url: string;
 }
+
+export declare interface MarketplaceCategoryQuery {
+    marketplaceCategory: Category;
+}

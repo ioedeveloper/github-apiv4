@@ -1013,23 +1013,46 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
  ** MarketplaceListings 
  */
 
- export const MarketplaceListingsQuery = (fields: string) => `
+export const MarketplaceListingsQuery = (fields: string) => `
   {
       ${fields}
   }
  `
- 
- /**
- * @description Github Graphql Query for MarketplaceListing
- * @fields
- ** MarketplaceListing
- */
 
- export const MarketplaceListingQuery = (slug: string,fields: string) => `
+/**
+* @description Github Graphql Query for MarketplaceListing
+* @fields
+** MarketplaceListing
+*/
+
+export const MarketplaceListingQuery = (slug: string, fields: string) => `
   {
     marketplaceListing(slug: "${slug}") {
       ${fields}
     }
   }
  `
- 
+/**
+* @description Github Graphql Query for MarketplaceCategory
+* @queryVariable
+** slug string
+** useTopicAliases boolean
+* @fields
+** description
+** howItWorks
+** id
+** name
+** primaryListingCount
+** resourcePath
+** secondaryListingCount
+** slug
+** url
+*/
+
+export const MarketplaceCategory = (slug: string, fields: string, useTopicAliases?: boolean) => `
+  {
+    marketplaceCategory(slug: "${slug}", ${useTopicAliases? `useTopicAliases: ${useTopicAliases}`:""}) {
+      ${fields}
+    }
+  }
+ `
