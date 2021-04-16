@@ -1,6 +1,7 @@
 export * from './user'
 export * from './discussion'
 export * from './nodes'
+export * from './enterprise'
 
 /**
  * @description Github Graphql Query for TopicQuery
@@ -13,8 +14,8 @@ export const TopicQuery = (name: string, fields: string) => `
     ${fields}
   }
 }
-
 `
+
 
 /**
  * @description Github Graphql Query for Viewer
