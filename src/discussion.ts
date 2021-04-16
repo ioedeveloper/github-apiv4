@@ -1,6 +1,174 @@
 import { queryVariables } from "."
 
 /**
+ * @description Github Graphql Comment
+ * @defaultVariables id
+ * @fields 
+ ** author { Author }
+ ** authorAssociation
+ ** body
+ ** bodyHTML
+ ** bodyText
+ ** bodyVersion
+ ** createdAt
+ ** createdViaEmail
+ ** Commit
+ ** databaseId
+ ** Discussion
+ ** editor { Editor }
+ ** id
+ ** includesCreatedEdit
+ ** lastEditedAt
+ ** number
+ ** path
+ ** position
+ ** publishedAt
+ ** ReactionGroups
+ ** subject { databaseId id }
+ */
+
+export const Comment = (fromComment:number = 10, first: number = 10, fields: string = '', orderBy: string = "NUMBER" ,direction:string =  "ASC",after: string = '', before: string = '', last: number = 0) => `
+    comment(fromComment: ${fromComment},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first}${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+        ${fields}
+        totalCount
+    }
+`
+
+/**
+* @description Github Graphql ReactionGroups 
+* @defaultVariables totalCount
+* @fields
+** content
+** createdAt
+** subject {
+    ** databaseId
+    ** id
+    ** ReactionGroups
+    ** Reactions
+    ** onIssue
+    ** onPullRequest
+    ** onTeamDiscussion
+    ** onTeamDiscussionComment
+    ** onCommitComment
+    ** onIssueComment
+    ** onPullRequestReview
+    ** onPullRequestReviewComment
+* }
+** Users
+** viewerHasReacted
+*/
+
+export const ReactionGroups = (fields: string = "") => `
+    reactionGroups {
+        content
+        createdAt
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql Reactable
+* @fields
+** databaseId
+** id
+** onIssue
+** onPullRequest
+** onTeamDiscussion
+** onTeamDiscussionComment
+** onCommitComment
+** onIssueComment
+** onPullRequestReview
+** onPullRequestReviewComment
+*/
+
+export const Reactable = (fields: string = "") => `
+    reactable {
+        id
+        ${fields}
+    }    
+`
+
+/**
+* @description Github Graphql Reactions  
+* @defaultVariables totalCount
+* @queryArguments
+** direction 'ASC' | 'DESC' 
+** after string
+** before string
+** first number
+** last number
+** content string
+** @fields 
+** Reaction
+*/
+
+export const Reactions = (params: queryVariables.Reactions) => `
+    reactions(${params.content ? `content: "${params.content}"` : "" }${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""},
+    ${params.orderBy || params.direction ?` orderBy: {orderBy: ${params.orderBy}, direction: ${params.direction}`:""}) {
+        edges {
+			cursor
+			node {
+				${params.fields}
+			}
+		}
+		nodes {
+			${params.fields}  
+		}
+		${params.pageInfo ? params.pageInfo : ""}
+		totalCount
+    }
+`
+/**
+* @description Github Graphql Reaction
+* @fields
+** content
+** createdAt
+** databaseId
+** id
+** Reactable
+** User
+*/
+
+export const Reaction = (fields: string = "") => `
+    reaction {
+        id
+        content
+        ${fields}
+    }    
+
+`
+
+
+/**
+ * @description Github Graphql LatestOpinionatedReviews 
+ * @defaultVariables totalCount
+ * @queryArguments 
+ ** after string
+ ** before string
+ ** first number
+ ** last number
+ ** writersOnly boolean
+ * @fields 
+ ** Review
+*/
+
+export const LatestOpinionatedReviews = (params: queryVariables.LatestOpinionatedReviews) => `
+    latestOpinionatedReviews(${params.writersOnly ? `writersOnly: ${params.writersOnly}`:""}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
+        edges {
+            cursor
+            node {
+                ${params.fields}
+            }
+        } 
+        nodes {
+            ${params.fields}  
+        }
+        ${params.pageInfo ? params.pageInfo : ""}
+        totalCount
+    }
+`
+
+/**
 * @description Github Graphql Topic
 * @fields
 ** id
@@ -11,8 +179,10 @@ import { queryVariables } from "."
 ** viewerHasStarred
 */
 
-export const Topic = (fields: string) => `
-    ${fields}
+export const Topic = (fields: string, name?: string) => `
+    topic ${name ? `(name: "${name}")`:""} {
+        ${fields}
+    }
 `
 
 /**
@@ -27,7 +197,6 @@ export const RelatedTopics = (first: number = 10, fields: string) => `
         ${fields}
     }
 `
-
 /**
 * @description Github Graphql Discussion
 * @fields

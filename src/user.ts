@@ -1,5 +1,6 @@
 import { queryVariables } from "."
 import { BasicFields } from "./variables"
+import { queryVariables } from "."
 
 /**
  * @description Github Graphql User
@@ -94,175 +95,12 @@ import { BasicFields } from "./variables"
 ** viewerIsSponsoring
 ** Watching
 ** websiteUrl
-
- * CommitComments
-
- * company
-
- * companyHTML
-
- * ContributionCollection
-
- * createdAt
-
- * databaseId
-
- * email
-
- * Followers
-
- * Following
-
- * Gist
-
- * GistComments
-
- * Gists
-
- * hasSponsorsListing
-
- * UserHoverCard 
-
- * interactionAbility {
-
- *  expiresAt
-
- *  limit
-
- *  origin
-
- * }
-
- * isBountyHunter
-
- * isCampusExpert
-
- * isDeveloperProgramMember
-
- * isEmployee
-
- * isGitHubStar
-
- * isHireable
-
- * isSiteAdmin
-
- * isSponsoredBy(accountLogin: "")
-
- * isSponsoringViewer
-
- * isViewer
-
- * IssueComments
-
- * Issues
-
- * ItemShowcase
-
- * location
-
- * login
-
- * Organisation
-
- * organizationVerifiedDomainEmails(login: "")
-
- * Organization
-
- * Packages
-
- * PinnableItems
-
- * PinnedItemsRemaining  
-
- * Project
-
- * Projects
-
- * projectsResourcePath
-
- * projectsUrl
-
- * PublicKeys
-
- * PullRequests
-
- * Repositories
-
- * RepositoriesContributedTo
-
- * Repo
-
- * resourcePath
-
- * SavedReplies
-
- * SponsorListing
-
- * SponsorshipForViewerAsSponsor
-
- * SponsorshipsAsMaintainer
-
- * SponsorshipsAsSponsor
-
- * StarredRepositoriesonUser
-
- * status {
-
-import { queryVariables } from "."
-
-export const User = (fields: string) => `
-    id
-    name
-    ${fields}
-`
-
-/**
- * @description Github Graphql RelevantTeams
- * @defaultVariables totalcount
- * @queryVariables after
- * befor
- * first
- * last
- * edges {
- *      cursor
- *      node {
- *         Teams
- *      }
- *  }
- * nodes {
- *      Teams
- *      PageInfo
- * }
- */
-
-export const User = (fields: string) => `
-   id
-   name
-   ${fields}
-`
-
-/**
-* @description UserHoverCard
-
-*  contexts {
-
-*      message
-
-*      octicon
-
-*      onGenericHovercardContext
-
-*      onOrganizationTeamsHovercardContext
-
-*      onReviewStatusHovercardContext
-
-*      onViewerHovercardContext
-
-*   }
 */
-export const UserHoverCard = (fields: string, primarySubjectId?: string) => `
-   hovercard ${primarySubjectId ? `(primarySubjectId: "${primarySubjectId}")` : ""} {
+
+export const User = (fields: string, login?: string) => `
+   user ${login ? `(login: "${login}")` : ""} {
+      id
+      name
       ${fields}
    }
 `
@@ -454,7 +292,7 @@ export const OwnerInfo = (fields?: string) => `
 */
 
 export const Admins = (params: queryVariables.AdminFields) => `
-   members(query: ${params.query} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+   members(query: ${params.query} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
       edges {
          cursor
          node {
@@ -596,14 +434,86 @@ export const EnterpriseServerInstallations = (params: queryVariables.EnterpriseS
 * @description Github Graphql MembersCanChangeRepositoryVisibilitySettingOrganizations
 * @defaultVariables totalCount orderBy = "CREATED_AT" direction = "ASC" first = 10 value = false
 * @queryArguments
-* after string
-* before string
-* first number
-* last number
-* orderBy "CREATED_AT" | "LOGIN"
-* value boolean
-* @queryVariables
-* Organization
+** after string
+** before string
+** first number
+** last number
+* @fields 
+** email
+** enterpriseServerInstallation
+** organization
+** createdAt
+** id
+** isSiteAdmin
+** login
+** profileName
+** remoteCreatedAt
+** remoteUserId
+** updatedAt
+*/
+
+export const UserAccounts = (params: queryVariables.UserAccounts) => `
+	userAccounts(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.connectedOnly ? `, connectedOnly: ` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
+		edges {
+			cursor
+			node {
+				${params.fields}
+			}
+		}
+
+		nodes {
+			${params.fields}
+		}
+		${params.pageInfo ? params.pageInfo : ""}
+		totalCount
+	}
+`
+
+/**
+* @description Github Graphql Emails
+* @defaultVariables totalCount
+* @queryArguments 
+** after string
+** before string
+** first number
+** last number
+** orderBy "EMAIL"
+* @fields 
+** createdAt
+** email
+** id
+** isPrimary
+** updatedAt
+** UserAccount
+
+*/
+
+export const Emails = (params: queryVariables.Emails) => `
+	emails(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
+		edges {
+			cursor
+			node {
+				${params.fields}
+			}
+		}
+		nodes {
+			${params.fields}  
+		}
+		${params.pageInfo ? params.pageInfo : ""}
+		totalCount
+	}
+`
+
+/**
+* @description Github Graphql EnterpriseServerInstallation
+* @defaultVariables totalCount 
+* @fields
+** createdAt
+** customerName
+** hostName
+** id
+** isConnected
+** UserAccounts
 */
 
 export const EnterpriseServerInstallation = (fields?: string) => `
@@ -632,7 +542,7 @@ export const EnterpriseServerInstallation = (fields?: string) => `
 */
 
 export const UserAccountsUploads = (params: queryVariables.Emails) => `
-	userAccountsUploads(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	userAccountsUploads(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -647,40 +557,6 @@ export const UserAccountsUploads = (params: queryVariables.Emails) => `
 	}
 `
 
-/**
-* @description Github Graphql IpAllowListEntries
-* @defaultVariables totalCount
-* @queryArguments 
-** after string
-** before string
-** first number
-** last number
-** orderBy "CREATED_AT" | "ALLOW_LIST_VALUE"
-* @fields 
-** allowListValue
-** createdAt
-** id
-** isActive
-** name
-** Owner
-** updatedAt
-*/
-
-export const IpAllowListEntries = (params: queryVariables.IpAllowListEntries) => `
-	ipAllowListEntries(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
-		edges {
-			cursor
-			node {
-				${params.fields}
-			}
-		}
-		nodes {
-			${params.fields}  
-		}
-		${params.pageInfo ? params.pageInfo : ""}
-		totalCount
-	}
-`
 
 /**
 * @description Github Graphql MembersCanChangeRepositoryVisibilitySettingOrganizations
@@ -697,7 +573,7 @@ export const IpAllowListEntries = (params: queryVariables.IpAllowListEntries) =>
 */
 
 export const MembersCanChangeRepositoryVisibilitySettingOrganizations = (params: queryVariables.Member) => `
-	membersCanChangeRepositoryVisibilitySettingOrganizations(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	membersCanChangeRepositoryVisibilitySettingOrganizations(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 		cursor
 			node {
@@ -726,7 +602,7 @@ export const MembersCanChangeRepositoryVisibilitySettingOrganizations = (params:
 */
 
 export const MembersCanCreateRepositoriesSettingOrganizations = (params: queryVariables.MembersCanCreateRepositoriesSettingOrganizations) => `
-	membersCanCreateRepositoriesSettingOrganizations(value:${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	membersCanCreateRepositoriesSettingOrganizations(value:${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -756,7 +632,7 @@ export const MembersCanCreateRepositoriesSettingOrganizations = (params: queryVa
 */
 
 export const MembersCanDeleteIssuesSettingOrganizations = (params: queryVariables.Member) => `
-	membersCanDeleteIssuesSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	membersCanDeleteIssuesSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -787,7 +663,7 @@ export const MembersCanDeleteIssuesSettingOrganizations = (params: queryVariable
 */
 
 export const MembersCanDeleteRepositoriesSettingOrganizations = (params: queryVariables.Member) => `
-	membersCanDeleteRepositoriesSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	membersCanDeleteRepositoriesSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -817,7 +693,7 @@ export const MembersCanDeleteRepositoriesSettingOrganizations = (params: queryVa
 */
 
 export const MembersCanInviteCollaboratorsSettingOrganizations = (params: queryVariables.Member) => `
-	membersCanInviteCollaboratorsSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	membersCanInviteCollaboratorsSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -847,7 +723,7 @@ export const MembersCanInviteCollaboratorsSettingOrganizations = (params: queryV
 */
 
 export const MembersCanUpdateProtectedBranchesSettingOrganizations = (params: queryVariables.Member) => `
-	membersCanUpdateProtectedBranchesSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	membersCanUpdateProtectedBranchesSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -878,7 +754,7 @@ export const MembersCanUpdateProtectedBranchesSettingOrganizations = (params: qu
 */
 
 export const MembersCanViewDependencyInsightsSettingOrganizations = (params: queryVariables.Member) => `
-	membersCanViewDependencyInsightsSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	membersCanViewDependencyInsightsSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -908,7 +784,7 @@ export const MembersCanViewDependencyInsightsSettingOrganizations = (params: que
 */
 
 export const OrganizationProjectsSettingOrganizations = (params: queryVariables.Member) => `
-	organizationProjectsSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	organizationProjectsSettingOrganizations(value: ${params.value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -941,7 +817,7 @@ export const OrganizationProjectsSettingOrganizations = (params: queryVariables.
 */
 
 export const OutsideCollaborators = (params: queryVariables.Collaborators) => `
-	outsideCollaborators(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.visibility ? `, visibility: ${params.visibility}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	outsideCollaborators(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.visibility ? `, visibility: ${params.visibility}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -974,7 +850,7 @@ export const OutsideCollaborators = (params: queryVariables.Collaborators) => `
 */
 
 export const PendingAdminInvitations = (params: queryVariables.Invitations) => `
-	pendingAdminInvitations(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""}  ${params.visibility ? `, ${params.visibility}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }
+	pendingAdminInvitations(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""}  ${params.visibility ? `, ${params.visibility}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}
 	${params.role ? `, ${params.role}` : ""}) {
 		edges {
 			cursor
@@ -1008,7 +884,7 @@ export const PendingAdminInvitations = (params: queryVariables.Invitations) => `
 */
 
 export const PendingCollaboratorInvitations = (params: queryVariables.Collaborators) => `
-	pendingCollaboratorInvitations(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	pendingCollaboratorInvitations(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -1041,7 +917,7 @@ export const PendingCollaboratorInvitations = (params: queryVariables.Collaborat
 */
 
 export const PendingCollaborators = (params: queryVariables.Invitations) => `
-	pendingCollaborators(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	pendingCollaborators(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -1074,7 +950,7 @@ export const PendingCollaborators = (params: queryVariables.Invitations) => `
 */
 
 export const PendingMemberInvitations = (params: queryVariables.Invitations) => `
-	pendingMemberInvitations(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	pendingMemberInvitations(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -1108,7 +984,7 @@ export const PendingMemberInvitations = (params: queryVariables.Invitations) => 
 */
 
 export const AssignableUsers = (params: queryVariables.AdminFields) => `
- 	assignableUsers(query: ${params.query}, ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} first: ${params.first}, ${params.last ? ", last:${params.last}" : ""}) {
+ 	assignableUsers( ${params.query ? `query: ${params.query}` : ""}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last:${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
 		edges {
 			cursor
 			node {
@@ -1121,7 +997,6 @@ export const AssignableUsers = (params: queryVariables.AdminFields) => `
 		 ${params.pageInfo ? params.pageInfo : ""}
 		 totalCount
 	  }
- 	}
 `
 
 /**
@@ -1143,6 +1018,53 @@ export const Owner = (fields?: string) => `
    owner {
       ${fields}        
    }  	
+`
+
+/**
+* @description Github Graphql Author
+* @fields 
+** avatarUrl
+** date
+** email
+** name
+** login
+** user { User }
+*/
+
+export const Author = (fields: string = "") => `
+    author {
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql Authors
+* @defaultVariables totalCount
+* @queryArguments
+** after string
+** before string
+** first number
+** last number
+** direction "ASC" | "DESC"
+* @fields 
+** Author
+*/
+
+export const Authors = (params: queryVariables.BasicFields) => `
+ authors(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ) {
+     edges {
+       cursor
+       node {
+          ${params.fields}
+       }
+    }
+
+    nodes {
+       ${params.fields}  
+    }
+	${params.pageInfo ? params.pageInfo : ""}	
+    totalCount
+ }
 `
 
 
@@ -1205,7 +1127,6 @@ export const UserContentEdits = (params: queryVariables.BasicFields) => `
 	}
 `
 
-
 /**
 * @description Github Graphql ItemShowcase  
 * @defaultVariables totalCount 
@@ -1252,11 +1173,11 @@ export const ItemShowcase = (params: queryVariables.BasicFields) => `
 ** last number
 ** query string
 * @fields 
-**  User
+* User
 */
 
 export const MentionableUsers = (params: queryVariables.Query) => `
-	mentionableUsers(query: ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
+	mentionableUsers(${params.query ? `query: ${params.query}` : ""}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
 		edges {
 			cursor
 			node {
@@ -1270,105 +1191,6 @@ export const MentionableUsers = (params: queryVariables.Query) => `
 		totalCount
 	}
 `
-
-/**
-* @description Github Graphql Packages  
-* @defaultVariables totalCount 
-* @queryArguments 
-** after string
-** before string
-** first number
-** last number
-** orderBy "CREATED_AT"
-** names string
-** packageType "NPM" | "RUBYGEMS" | "MAVEN" | "DOCKER" | "DEBIAN" | "NUGET" | "PYPI"
-** repositoryId string
-* @fields 
-** LatestVersion
-** Repository
-** Version
-** Versions
-*/
-
-export const Packages = (params: queryVariables.Packages) => `
- 	packages(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
-		edges {
-			cursor
-			node {
-				${params.fields}
-			}
-		}
-		nodes {
-			${params.fields}  
-		}
-		${params.pageInfo ? params.pageInfo : ""}
-		totalCount
-   }
-`
-
-/**
-* @description Github Graphql Version
-* @defaultVariables id statistics
-* @fields
-** Files
-** Package
-** plaform
-** preRelease
-** readme
-** Release
-** summary
-** version
-*/
-
-export const Version = (fields: string) => `
-   version {
-      id
-      statistics {
-         downloadsTotalCount
-      }
-      ${fields}
-   }
-`
-
-/**
-* @description Github Graphql LatestVersion
-* @fields 
-** Version
-*/
-export const LatestVersion = (fields: string) => `
-	latestVersion {
-		${fields}
-	}
-`
-
-/**
-* @description Github Graphql Versions
-* @queryArguments 
-** after string
-** before string
-** first number
-** last number
-* @fields 
-** Version
-
-*/
-export const Versions = (params: queryVariables.BasicFields) => `
-	versions (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
-		edges {
-			cursor
-			node {
-			   ${params.fields}
-			}
-		}
-		nodes {
-			${params.fields}  
-		}
-		${params.pageInfo ? params.pageInfo : ""}
-		totalCount
-	}
-`
-
-
 
 /**
 * @description Github Graphql RepositoryProjectsSettingOrganizations
@@ -1627,7 +1449,7 @@ export const SamlIdentityProviderSettingOrganizations = (value: string, params: 
 
 
 export const SupportEntitlements = (params: queryVariables.Login) => `
-	supportEntitlements( ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, ${params.after} ` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	supportEntitlements( ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, ${params.after} ` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -1657,7 +1479,7 @@ export const SupportEntitlements = (params: queryVariables.Login) => `
 
 
 export const TeamDiscussionsSettingOrganizations = (value: boolean = false, params: queryVariables.Login) => `
-	teamDiscussionsSettingOrganizations(value: ${value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `,  ${params.after} ` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	teamDiscussionsSettingOrganizations(value: ${value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `,  ${params.after} ` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -1689,7 +1511,7 @@ export const TeamDiscussionsSettingOrganizations = (value: boolean = false, para
 
 
 export const TwoFactorRequiredSettingOrganizations = (value: boolean, params: queryVariables.Login) => `
-	twoFactorRequiredSettingOrganizations(value: ${value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `,  ${params.after} ` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	twoFactorRequiredSettingOrganizations(value: ${value}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `,  ${params.after} ` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -2119,80 +1941,6 @@ export const RepositoryContributions = (params: queryVariables.Contributions) =>
 `
 
 /**
-* @description Github Graphql Project
-* @defaultVariables 
-** id 
-** name
-* @fields
-** body
-** bodyHTML
-** closed
-** closedAt
-** columns
-** createdAt
-** creator
-** databaseId
-** id
-** name
-** number
-** owner
-** pendingCards
-** progress {   
-	  ** doneCount
-	  ** donePercentage
-	  ** enabled
-	  ** inProgressCount
-	  ** inProgressPercentage
-	  ** todoCount
-	  ** todoPercentage
-** }
-** resourcePath
-** state
-** updatedAt
-** url
-* viewerCanUpdate
-*/
-
-export const Project = (number: number, fields: string) => `
-	project(number: ${number}) {
-		id
-		name
-		${fields}
-	}
-`
-
-/**
-* @description Github Graphql Projects
-* @defaultVariables totalCount direction = "ASC"
-* @queryArguments
-** after string 
-** before string
-** first number
-** last number
-** direction "ASC" | "DESC"
-** orderBy "UPDATED_AT" | "CREATED_AT" | "NAME"
-** search string
-** states "OPEN" | "CLOSED"
-* @fields
-** Project
-*/
-
-export const Projects = (params: queryVariables.Projects) => `
-	projects (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.excludePopular ? `, excludeFirst: ${params.excludeFirst}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, orderBy: {field: ${params.orderBy},direction: ${params.direction}}) {
-		edges {
-			cursor
-			node {
-				${params.fields}
-			}
-		}
-		nodes {
-			${params.fields}
-		}
-		${params.pageInfo ? params.pageInfo : ""}
-		totalCount
-	}
-`
-/**
 * @description Github Graphql PublicKeys
 * @defaultVariables totalCount direction = "ASC"
 * @queryArguments
@@ -2274,7 +2022,7 @@ export const RepositoriesContributedTo = (params: BasicFields) => `
 */
 
 export const SavedReplies = (params: queryVariables.SavedReplies) => `
-	savedReplies (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""},${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	savedReplies (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""},${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
       edges {
          cursor
          node {
@@ -2305,7 +2053,7 @@ export const SavedReplies = (params: queryVariables.SavedReplies) => `
 */
 
 export const StarredRepositories = (params: queryVariables.StarredRepositories) => `
-	starredRepositories (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	starredRepositories (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -2361,7 +2109,7 @@ export const Status = (fields: string) => `
 */
 
 export const TopRepositories = (params: queryVariables.TopRepositories) => `
-	topRepositories (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.since ? `, since: "${params.since}"` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
+	topRepositories (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.since ? `, since: "${params.since}"` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
 		edges {
 			cursor
 			node {
@@ -2392,7 +2140,7 @@ export const TopRepositories = (params: queryVariables.TopRepositories) => `
 */
 
 export const Watching = (params: queryVariables.Watching) => `
-	watching (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }
+	watching (${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}
 	${params.privacy ? `, privacy: "${params.privacy}"` : ""} ${params.isLocked ? `, isLocked: "${params.isLocked}"` : ""} ${params.ownerAffiliations ? `, ownerAffiliations: "${params.ownerAffiliations}"` : ""}) {
 		edges {
 			cursor

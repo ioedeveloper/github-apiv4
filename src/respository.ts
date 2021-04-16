@@ -106,8 +106,8 @@ import { queryVariables } from "."
  */
 
 
-export const Repository = (fields: string = "") => `
-    repository {
+export const Repository = (fields: string = "", name?: "", owner?: "") => `
+    repository ${name || owner ? `(${name ? `name: "${name}"` : ""} ${owner ? `, owner: "${owner}"` : ""})` : ""} {
         id
         ${fields}
     }    
@@ -152,7 +152,7 @@ export const RepoObject = (expression: string, oid: string, fields: string) => `
 */
 
 export const Repositories = (params: queryVariables.Repositories) => `
-    repositories(${params.first ? `${params.first ? `first: ${params.first}` : "" }` : "" } ${params.affiliations ? `affiliations: ${params.affiliations}` : ""} ${params.ownerAffiliations ? `, ownerAffiliations: ${params.ownerAffiliations}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.isFork ? `isFork: ${params.isFork}` : ""} ${params.isLocked ? `, isLocked: ${params.isLocked}` : ""} 
+    repositories(${params.first ? `${params.first ? `first: ${params.first}` : ""}` : ""} ${params.affiliations ? `affiliations: ${params.affiliations}` : ""} ${params.ownerAffiliations ? `, ownerAffiliations: ${params.ownerAffiliations}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.isFork ? `isFork: ${params.isFork}` : ""} ${params.isLocked ? `, isLocked: ${params.isLocked}` : ""} 
     ${params.last ? `, last:${params.last}` : ""}, ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""} ${params.privacy ? `, privacy: ${params.privacy}` : ""}) {
         edges {
 			cursor
@@ -187,7 +187,7 @@ export const Repositories = (params: queryVariables.Repositories) => `
 */
 
 export const Forks = (params: queryVariables.Repositories) => `
-    forks(${params.first ? `${params.first ? `first: ${params.first}` : "" }` : "" } ${params.affiliations ? `affiliations: ${params.affiliations}` : ""} ${params.ownerAffiliations ? `, ownerAffiliations: ${params.ownerAffiliations}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.isFork ? `isFork: ${params.isFork}` : ""} ${params.isLocked ? `, isLocked: ${params.isLocked}` : ""} 
+    forks(${params.first ? `${params.first ? `first: ${params.first}` : ""}` : ""} ${params.affiliations ? `affiliations: ${params.affiliations}` : ""} ${params.ownerAffiliations ? `, ownerAffiliations: ${params.ownerAffiliations}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.isFork ? `isFork: ${params.isFork}` : ""} ${params.isLocked ? `, isLocked: ${params.isLocked}` : ""} 
     ${params.last ? `, last:${params.last}` : ""}, ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""} ${params.privacy ? `, privacy: ${params.privacy}` : ""}) {
         edges {
             cursor
@@ -257,7 +257,7 @@ export const BranchProtectionRule = (fields: string = "") => `
 */
 
 export const ReviewDismissalAllowances = (params: queryVariables.BasicFields) => `
-    reviewDismissalAllowances( ${params.first ? `first: ${params.first}` : "" }, ${params.after ? `, after: "${params.after}" ` : ""} ${before ? `, before: "${before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    reviewDismissalAllowances( ${params.first ? `first: ${params.first}` : ""}, ${params.after ? `, after: "${params.after}" ` : ""} ${before ? `, before: "${before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -286,7 +286,7 @@ export const ReviewDismissalAllowances = (params: queryVariables.BasicFields) =>
 */
 
 export const BranchProtectionRules = (params: queryVariables.BasicFields) => `
-    branchProtectionRules( ${params.first ? `first: ${params.first}` : "" }, ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    branchProtectionRules( ${params.first ? `first: ${params.first}` : ""}, ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -320,7 +320,7 @@ export const BranchProtectionRules = (params: queryVariables.BasicFields) => `
 */
 
 export const BranchProtectionRuleConflicts = (params: queryVariables.BasicFields) => `
-    branchProtectionRuleConflicts(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    branchProtectionRuleConflicts(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -491,7 +491,7 @@ export const PullRequestReviewThread = (fields: string = "") => `
 */
 
 export const PullRequests = (params: queryVariables.PullRequests) => `
-    pullRequests(${params.first ? `first: ${params.first}` : "" } ${params.baseRefName ? `, baseRefName: "${params.baseRefName}"` : ""} ${params.headRefName ? `, headRefName: "${params.headRefName}"` : ""} ${params.labels ? `, labels: "${params.labels}"` : ""} 
+    pullRequests(${params.first ? `first: ${params.first}` : ""} ${params.baseRefName ? `, baseRefName: "${params.baseRefName}"` : ""} ${params.headRefName ? `, headRefName: "${params.headRefName}"` : ""} ${params.labels ? `, labels: "${params.labels}"` : ""} 
         ${params.states ? `, states: ${params.states}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}, ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""},) {
         edges {
 			cursor
@@ -528,7 +528,7 @@ export const PullRequests = (params: queryVariables.PullRequests) => `
 */
 
 export const AssociatedPullRequests = (params: queryVariables.PullRequests) => `
-    associatedPullRequests(${params.first ? `first: ${params.first}` : "" } ${params.baseRefName ? `, baseRefName : "${params.baseRefName}"` : ""} ${params.headRefName ? `, headRefName: "${params.headRefName}"` : ""} ${params.labels ? `, labels: "${params.labels}"` : ""} ${params.states ? `, states: ${params.states}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}
+    associatedPullRequests(${params.first ? `first: ${params.first}` : ""} ${params.baseRefName ? `, baseRefName : "${params.baseRefName}"` : ""} ${params.headRefName ? `, headRefName: "${params.headRefName}"` : ""} ${params.labels ? `, labels: "${params.labels}"` : ""} ${params.states ? `, states: ${params.states}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}
     ${params.last ? `, last: ${params.last}` : ""}, ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
 			cursor
@@ -559,7 +559,7 @@ export const AssociatedPullRequests = (params: queryVariables.PullRequests) => `
 */
 
 export const MatchingRefs = (params: queryVariables.Query) => `
-    matchingRefs(query : ${params.query}, ${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    matchingRefs(query : ${params.query}, ${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         ${params.fields}
         totalCount
     }
@@ -580,7 +580,7 @@ export const MatchingRefs = (params: queryVariables.Query) => `
 */
 
 export const PushAllowances = (params: queryVariables.BasicFields) => `
-    pushAllowances(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    pushAllowances(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -714,7 +714,7 @@ export const RepositoryHoverCard = (fields: string = "", includeNotificationCont
 */
 
 export const Labels = (params: queryVariables.Labels) => `
-    labels(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    labels(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
     ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
 			cursor
@@ -773,7 +773,7 @@ export const Label = (name: string, fields: string = "") => `
 */
 
 export const Issues = (params: queryVariables.Issues) => `
-    issues(${params.first ? `first: ${params.first}` : "" } ${params.labels ? `, labels: ${params.labels}` : ""} ${params.state ? `, state: ${params.state}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    issues(${params.first ? `first: ${params.first}` : ""} ${params.labels ? `, labels: ${params.labels}` : ""} ${params.state ? `, state: ${params.state}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
         ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}` : ""}
         ${params.filterBy ? `, filterBy:{${params.filterBy}}` : ""}) {
 
@@ -806,7 +806,7 @@ export const Issues = (params: queryVariables.Issues) => `
 */
 
 export const PinnedIssues = (params: queryVariables.BasicFields) => `
-    pinnedIssues(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    pinnedIssues(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -828,7 +828,7 @@ export const PinnedIssues = (params: queryVariables.BasicFields) => `
  */
 
 export const Participants = (params: queryVariables.BasicFields) => `
-    participants(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    participants(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
 
         edges {
             cursor
@@ -952,52 +952,6 @@ export const Commit = (fields: string = "") => `
 `
 
 /**
-* @description Github Graphql Author
-* @fields 
-** avatarUrl
-** date
-** email
-** name
-** user { User }
-*/
-
-export const Author = (fields: string = "") => `
-    author {
-        name
-        ${fields}
-    }
-`
-
-/**
-* @description Github Graphql Authors
-* @defaultVariables totalCount
-* @queryArguments
-** after string
-** before string
-** first number
-** last number
-** direction "ASC" | "DESC"
-* @fields 
-** Author
-*/
-
-export const Authors = (params: queryVariables.BasicFields) => `
- authors(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
-     edges {
-       cursor
-       node {
-          ${params.fields}
-       }
-    }
-
-    nodes {
-       ${params.fields}  
-    }
-	${params.pageInfo ? params.pageInfo : ""}	
-    totalCount
- }
-`
-/**
 * @description Github Graphql Commits
 * @defaultVariables totalCount
 * @queryArguments
@@ -1014,7 +968,7 @@ export const Authors = (params: queryVariables.BasicFields) => `
 */
 
 export const Commits = (params: queryVariables.BasicFields) => `
-    commits(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}  ${params.last ? `, last: ${params.last}` : ""}) {
+    commits(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}  ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -1073,7 +1027,7 @@ export const Blame = (path: string, fields: string) => `
  * @fields
  * Commit 
  */
- export const MergeCommit = (fields: string = "") => `
+export const MergeCommit = (fields: string = "") => `
     mergeCommit {
         ${fields}
     }
@@ -1192,7 +1146,7 @@ export const Tag = (fields: string = "") => `
 */
 
 export const Deployments = (params: queryVariables.Deployments) => `
-    deployments(${params.first ? `first: ${params.first}` : "" } ${params.environments ? `, environments: ${params.environments}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.deployment ? `deployment: ${params.deployment}` : ""} ${params.last ? `, last: ${params.last}` : ""}, 
+    deployments(${params.first ? `first: ${params.first}` : ""} ${params.environments ? `, environments: ${params.environments}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.deployment ? `deployment: ${params.deployment}` : ""} ${params.last ? `, last: ${params.last}` : ""}, 
     ${params.orderBy || params.direction ? `orderBy: { field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
 			cursor
@@ -1287,8 +1241,8 @@ export const Ref = (qualifiedName: string, fields: string = "") => `
 */
 
 export const Refs = (params: queryVariables.Refs) => `
-    refs(refPrefix: "${params.refPrefix}", ${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
-    ${params.orderBy || params.direction? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}`:""} ${params.direction ? `, direction: "${params.direction}" ` : ""}
+    refs(refPrefix: "${params.refPrefix}", ${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ${params.orderBy || params.direction ? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}` : ""} ${params.direction ? `, direction: "${params.direction}" ` : ""}
     ${params.query ? `, query: "${params.query}" ` : ""}) {
         edges {
             cursor
@@ -1338,7 +1292,7 @@ export const RefUpdateRule = (fields: string = "") => `
 */
 
 export const Statuses = (params: queryVariables.BasicFields) => `
-    statuses(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    statuses(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -1369,7 +1323,7 @@ export const Statuses = (params: queryVariables.BasicFields) => `
 */
 
 export const Languages = (params: queryVariables.BasicFields) => `
-    languages(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    languages(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -1417,7 +1371,7 @@ export const File = (path: string, fields: string = "") => `
 */
 
 export const Files = (params: queryVariables.BasicFields) => `
-    files(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}
+    files(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}
     ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
@@ -1450,7 +1404,7 @@ export const Files = (params: queryVariables.BasicFields) => `
 */
 
 export const History = (params: queryVariables.History) => `
-    history(${params.first ? `first: ${params.first}` : "" } ${params.author ? `, author: ${params.author}` : ""} ${params.path ? `, path: ${params.path}` : ""} ${params.since ? `, since: ${params.since}` : ""} ${params.until ? `, until: ${params.until}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}
+    history(${params.first ? `first: ${params.first}` : ""} ${params.author ? `, author: ${params.author}` : ""} ${params.path ? `, path: ${params.path}` : ""} ${params.since ? `, since: ${params.since}` : ""} ${params.until ? `, until: ${params.until}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}
     ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
@@ -1480,7 +1434,7 @@ export const History = (params: queryVariables.History) => `
 */
 
 export const Parents = (params: queryVariables.BasicFields) => `
-    parents(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    parents(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -1533,7 +1487,7 @@ export const Signature = (fields: string = "") => `
 */
 
 export const CombinedContexts = (params: queryVariables.BasicFields) => `
-    combinedContexts(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    combinedContexts(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -1572,7 +1526,7 @@ export const CombinedContexts = (params: queryVariables.BasicFields) => `
 */
 
 export const Annotations = (params: queryVariables.BasicFields) => `
-    annotations(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    annotations(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -1631,7 +1585,7 @@ export const Push = (fields: string = "") => `
         id
         ${fields}
     }
-` 
+`
 /**
 * @description Github Graphql Pusher
 * @fields
@@ -1643,7 +1597,7 @@ export const Pusher = (fields: string = "") => `
         id
         ${fields}
     }
-` 
+`
 /**
 * @description Github Graphql Pusher
 @fields
@@ -1659,7 +1613,7 @@ export const Committer = (fields: string = "") => `
         name
         ${fields}
     }
-` 
+`
 /**
 * @description Github Graphql MatchingPullRequests
 * @defaultVariables totalCount
@@ -1673,7 +1627,7 @@ export const Committer = (fields: string = "") => `
 */
 
 export const MatchingPullRequests = (params: queryVariables.BasicFields) => `
-    matchingPullRequests(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    matchingPullRequests(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -1703,7 +1657,7 @@ export const MatchingPullRequests = (params: queryVariables.BasicFields) => `
 */
 
 export const CheckSuites = (params: queryVariables.CheckRuns) => `
-    checkSuites(${params.first ? `first: ${params.first}` : "" } ${params.filterBy ? `, filter: ${params.filterBy},` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    checkSuites(${params.first ? `first: ${params.first}` : ""} ${params.filterBy ? `, filter: ${params.filterBy},` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -1763,7 +1717,7 @@ export const CheckRun = (fields: string = "") => `
 */
 
 export const CheckRuns = (params: queryVariables.CheckRuns) => `
-    checkRuns(${params.first ? `first: ${params.first}` : "" } ${params.filterBy ? `, filter: ${params.filterBy},` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    checkRuns(${params.first ? `first: ${params.first}` : ""} ${params.filterBy ? `, filter: ${params.filterBy},` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -1875,7 +1829,7 @@ export const StatusCheckRollup = (fields: string = "") => `
 */
 
 export const Submodules = (params: queryVariables.BasicFields) => `
-    submodules(${params.first ? `first: ${params.first}` : "" }  ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    submodules(${params.first ? `first: ${params.first}` : ""}  ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -1914,8 +1868,8 @@ export const Submodules = (params: queryVariables.BasicFields) => `
 ** url
  */
 
-export const Milestone = (number?: number,fields: string = "") => `
-    milestone ${number? `(number: ${number})`:""} {
+export const Milestone = (number?: number, fields: string = "") => `
+    milestone ${number ? `(number: ${number})` : ""} {
         id
         description
         ${fields}
@@ -1940,8 +1894,8 @@ export const Milestone = (number?: number,fields: string = "") => `
 */
 
 export const Milestones = (params: queryVariables.Milestones) => `
-    milestones(${params.query ? `query: ${params.query}` : ""} ${params.first ? `first: ${params.first}` : "" } ${params.state ? `state: ${params.state}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
-    ${params.orderBy || params.direction? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}`:""}) {
+    milestones(${params.query ? `query: ${params.query}` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.state ? `state: ${params.state}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ${params.orderBy || params.direction ? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
             node {
@@ -1977,7 +1931,7 @@ export const Milestones = (params: queryVariables.Milestones) => `
 */
 
 export const ReviewRequests = (params: queryVariables.BasicFields) => `
-    reviewRequests(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    reviewRequests(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -2025,7 +1979,7 @@ export const ReviewRequests = (params: queryVariables.BasicFields) => `
 */
 
 export const ReviewThreads = (params: queryVariables.BasicFields) => `
-    reviewThreads(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    reviewThreads(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -2054,7 +2008,7 @@ export const ReviewThreads = (params: queryVariables.BasicFields) => `
 */
 
 export const Reviews = (params: queryVariables.BasicFields) => `
-    reviews(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    reviews(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -2116,7 +2070,7 @@ export const ViewerLatestReviewRequest = (fields: string = "") => `
 */
 
 export const LatestReviews = (params: queryVariables.BasicFields) => `
-    latestReviews(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}
+    latestReviews(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}
         ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
@@ -2208,7 +2162,7 @@ export const Labelable = (fields: string = "") => `
 */
 
 export const Timeline = (params: queryVariables.Timeline) => `
-timeline(${params.after ? `, after: "${params.after}" ` : ""} ${params.since ? `, since: ${params.since}` : ""} ${params.before ? `, before: "${params.before}" ` : ""}, ${params.first ? `first: ${params.first}` : "" } ${params.last ? `, last: ${params.last}` : ""}) {
+timeline(${params.after ? `, after: "${params.after}" ` : ""} ${params.since ? `, since: ${params.since}` : ""} ${params.before ? `, before: "${params.before}" ` : ""}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
     edges {
         cursor
         node {
@@ -2302,7 +2256,7 @@ timeline(${params.after ? `, after: "${params.after}" ` : ""} ${params.since ? `
 */
 
 export const TimelineItems = (params: queryVariables.TimelineItems) => `
-    timelineItems(${params.first ? `first: ${params.first}` : "" } ${params.itemTypes ? `, itemTypes: ${params.itemTypes}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""} ${params.skip ? `, skip: ${params.skip}` : ""}
+    timelineItems(${params.first ? `first: ${params.first}` : ""} ${params.itemTypes ? `, itemTypes: ${params.itemTypes}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""} ${params.skip ? `, skip: ${params.skip}` : ""}
         ${params.since ? `, since: ${params.since}` : ""}) {
             edges {
                 cursor
@@ -2333,7 +2287,7 @@ export const TimelineItems = (params: queryVariables.TimelineItems) => `
 */
 
 export const Assignees = (params: queryVariables.BasicFields) => `
-    assignees(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    assignees(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
 			cursor
 			node {
@@ -2403,7 +2357,7 @@ export const Closable = (fields: string = "") => `
 ** viewerCanUpdate
 */
 
-export const Project = (number: number,fields: string = "") => `
+export const Project = (number: number, fields: string = "") => `
     project (number: ${number}) {
         id
         name
@@ -2430,7 +2384,7 @@ export const Project = (number: number,fields: string = "") => `
 */
 
 export const ProjectCards = (params: queryVariables.Cards) => `
-    projectCards(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}  ${params.last ? `, last: ${params.last}` : ""}) {
+    projectCards(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}  ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -2444,6 +2398,7 @@ export const ProjectCards = (params: queryVariables.Cards) => `
         totalCount
     }
 `
+
 
 
 /**
@@ -2463,8 +2418,8 @@ export const ProjectCards = (params: queryVariables.Cards) => `
 */
 
 export const Projects = (params: queryVariables.Projects) => `
-    projects(${params.first ? `first: ${params.first}` : "" } ${params.excludePopular ? `, excludeFirst: ${params.excludeFirst}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}  ${params.last ? `, last: ${params.last}` : ""} 
-    ${params.orderBy || params.direction? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}`:""}) {
+    projects(${params.first ? `first: ${params.first}` : ""} ${params.excludePopular ? `, excludeFirst: ${params.excludeFirst}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}  ${params.last ? `, last: ${params.last}` : ""} 
+    ${params.orderBy || params.direction ? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
             node {
@@ -2526,7 +2481,7 @@ export const LatestVersion = (fields: string = "") => `
 
 */
 export const Versions = (params: queryVariables.BasicFields) => `
-    versions(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    versions(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -2579,7 +2534,7 @@ export const Column = (fields: string = "") => `
 */
 
 export const Columns = (params: queryVariables.BasicFields) => `
-columns(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+columns(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
     edges {
         cursor
         node {
@@ -2669,7 +2624,7 @@ export const IssueComment = (fields: string = "") => `
 */
 
 export const Cards = (params: queryVariables.Cards) => `
-    cards(${params.first ? `first: ${params.first}` : "" } ${params.archivedStates ? `archivedStates: ${params.archivedStates}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    cards(${params.first ? `first: ${params.first}` : ""} ${params.archivedStates ? `archivedStates: ${params.archivedStates}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -2747,7 +2702,7 @@ export const Review = (fields: string = "") => `
 */
 
 export const onBehalfOf = (params: queryVariables.BasicFields) => `
-    onBehalfOf(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    onBehalfOf(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -2802,7 +2757,7 @@ export const Subscribable = (fields: string = "") => `
  */
 
 export const Collaborators = (params: queryVariables.Collaborators) => `
-    collaborators(${params.query ? `query: ${params.query}` : ""} ${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last:${params.last}` : ""},
+    collaborators(${params.query ? `query: ${params.query}` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last:${params.last}` : ""},
     ${params.affiliation ? `, affiliation: ${params.affiliation}` : ""}) {
         edges {
 			cursor
@@ -2838,7 +2793,7 @@ export const Collaborators = (params: queryVariables.Collaborators) => `
 */
 
 export const DeployKeys = (params: queryVariables.BasicFields) => `
-    deployKeys(${params.first? `${params.first ? `first: ${params.first}` : "" }`:""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    deployKeys(${params.first ? `${params.first ? `first: ${params.first}` : ""}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -2854,34 +2809,6 @@ export const DeployKeys = (params: queryVariables.BasicFields) => `
     }
 `
 
-/**
-* @description Github Graphql Reactions
-* @defaultVariables totalCount
-* @queryArguments 
-** after string
-** before string
-** first number
-** last number
-* @fields
-** Reaction
-*/
-
-export const Reactions = (params: queryVariables.BasicFields) => `
-    reactions(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
-        edges {
-            cursor
-            node {
-                ${params.fields}
-            }
-        }
-    
-        nodes {
-            ${params.fields}  
-        }
-        ${params.pageInfo ? params.pageInfo : ""}
-        totalCount
-    }
-`
 /**
 * @description Github Graphql CommitComments
 * @defaultVariables totalCount
@@ -2895,7 +2822,7 @@ export const Reactions = (params: queryVariables.BasicFields) => `
 */
 
 export const CommitComments = (params: queryVariables.BasicFields) => `
-    commitComments(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    commitComments(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -2926,7 +2853,7 @@ export const CommitComments = (params: queryVariables.BasicFields) => `
 ** publishedAt
  */
 
-export const Release = (tagName: string,fields: string = "") => `\
+export const Release = (tagName: string, fields: string = "") => `\
     release (tagName: "${tagName}") {
         name
         ${fields}
@@ -2940,8 +2867,8 @@ export const Release = (tagName: string,fields: string = "") => `\
  */
 
 export const Releases = (params: queryVariables.Releases) => `
-    releases(${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.first ? `first: ${params.first}` : "" } ${params.last ? `, last: ${params.last}` : ""}
-    ${params.orderBy || params.direction? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}`:""}) {
+    releases(${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ${params.orderBy || params.direction ? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
             node {
@@ -2995,7 +2922,7 @@ export const LatestRelease = (fields: string = "") => `
 */
 
 export const ReleaseAssets = (params: queryVariables.ReleaseAssets) => `
-commitComments(name: ${params.name}, ${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+commitComments(name: ${params.name}, ${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
     edges {
         cursor
         node {
@@ -3081,7 +3008,7 @@ export const Package = (fields: string = "") => `
 */
 
 export const Packages = (params: queryVariables.Packages) => `
-    packages(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    packages(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -3125,7 +3052,7 @@ export const Packages = (params: queryVariables.Packages) => `
 */
 
 export const VulnerabilityAlerts = (params: queryVariables.VulnerabilityAlerts) => `
-    vulnerabilityAlerts(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""},
+    vulnerabilityAlerts(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""},
         ${params.packageType ? `, packageType: ${params.packageType}` : ""} ${params.repositoryId ? `, repositoryId: ${params.repositoryId}` : ""} ${params.names ? `, names: ${params.names}` : ""}) {
         edges {
             cursor
@@ -3151,8 +3078,8 @@ export const VulnerabilityAlerts = (params: queryVariables.VulnerabilityAlerts) 
 ** name
 */
 
- export const CWES = (params: queryVariables.BasicFields) => `
-    cwes(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+export const CWES = (params: queryVariables.BasicFields) => `
+    cwes(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
     edges {
         cursor
         node {
@@ -3166,7 +3093,7 @@ export const VulnerabilityAlerts = (params: queryVariables.VulnerabilityAlerts) 
     ${params.pageInfo ? params.pageInfo : ""}
     totalCount
     }
- ` 
+ `
 /**
 * @description Github Graphql SecurityAdvisory
 * @defaultVariables databaseId description
@@ -3192,8 +3119,8 @@ export const VulnerabilityAlerts = (params: queryVariables.VulnerabilityAlerts) 
 */
 
 
-export const SecurityAdvisory = (fields: string = "") => `
-    securityAdvisory {
+export const SecurityAdvisory = (fields: string = "", ghsaId?: string) => `
+    securityAdvisory ${ghsaId ? `(ghsaId: "${ghsaId}")` : ""} {
         databaseId
         description
         ${fields}
@@ -3228,8 +3155,8 @@ export const SecurityAdvisory = (fields: string = "") => `
 */
 
 export const Vulnerabilities = (params: queryVariables.Vulnerabilities) => `
-    vulnerabilities(${params.first ? `first: ${params.first}` : "" } ${params.ecosystem ? `, ecosystem: ${params.ecosystem}` : ""} ${params.severities ? `, severities: ${params.severities}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last:${params.last}` : ""},
-        ${params.orderBy || params.direction? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}`:""}) {
+    vulnerabilities(${params.first ? `first: ${params.first}` : ""} ${params.ecosystem ? `, ecosystem: ${params.ecosystem}` : ""} ${params.severities ? `, severities: ${params.severities}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last:${params.last}` : ""},
+        ${params.orderBy || params.direction ? `, orderBy: { field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
 			cursor
 			node {
@@ -3277,7 +3204,7 @@ export const Vulnerability = (fields: string = "") => `
 */
 
 export const Watchers = (params: queryVariables.BasicFields) => `
-    watchers(${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}, ${params.first ? `first: ${params.first}` : "" } ${params.last ? `, last: ${params.last}` : ""}) {
+    watchers(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""}, ) {
         edges {
             cursor
             node {
@@ -3293,25 +3220,6 @@ export const Watchers = (params: queryVariables.BasicFields) => `
     }
 `
 
-
-/**
-* @description Github Graphql CodeOfConduct 
-* @fields
-** body
-** key
-** id
-** name
-** resourcePath
-** url
-*/
-
-export const CodeOfConduct = (fields: string = "") => `
-    codeOfConduct {
-        id
-        name
-        ${fields}
-    }
-`
 /**
 * @description Github Graphql RepositoryTopics
 * @defaultVariables totalCount
@@ -3327,8 +3235,8 @@ export const CodeOfConduct = (fields: string = "") => `
 ** resourcePath
 */
 
- export const RepositoryTopics = (params: queryVariables.BasicFields) => `
-    repositoryTopics(${params.first ? `first: ${params.first}` : "" } ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last:${params.last}` : ""}){
+export const RepositoryTopics = (params: queryVariables.BasicFields) => `
+    repositoryTopics(${params.first ? `first: ${params.first}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last:${params.last}` : ""}){
             edges {
                 cursor
                 node {
@@ -3343,6 +3251,7 @@ export const CodeOfConduct = (fields: string = "") => `
             totalCount
     }
  `
+
 /**
 * @description Github Graphql Stargazers
 * @defaultVariables totalCount
@@ -3356,7 +3265,7 @@ export const CodeOfConduct = (fields: string = "") => `
 */
 
 export const Stargazers = (params: queryVariables.Stargazers) => `
-    stargazers(${params.first ? `${params.first ? `first: ${params.first}` : "" }` : "" } ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last:${params.last}` : ""}
+    stargazers(${params.first ? `${params.first ? `first: ${params.first}` : ""}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `, last:${params.last}` : ""}
     ){
             edges {
                 cursor
@@ -3372,4 +3281,24 @@ export const Stargazers = (params: queryVariables.Stargazers) => `
             totalCount
     }
 `
- 
+
+/**
+* @description Github Graphql ExternalIdentity
+* @defaultVariables
+* @fields 
+** guid
+** id
+** organizationInvitation
+** SamlIdentity
+** ScimIdentity
+** User
+*/
+
+
+export const ExternalIdentity = (fields: string = "") => `
+    externalIdentity {
+        ${fields}
+    }    
+
+`
+

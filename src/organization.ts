@@ -14,11 +14,7 @@ import { queryVariables } from "."
  ** email
  ** hasSponsorsListing
  ** id
- ** interactionAbility {
-    * expiresAt
-    * limit
-    * origin
-* }
+ ** interactionAbility { expiresAt limit origin }
 ** ipAllowListEnabledSetting
 ** isSponsoredBy (accountLogin: "")
 ** isSponsoringViewer
@@ -44,11 +40,9 @@ import { queryVariables } from "."
 ** Repositories
 ** Repository
 ** SamlIdentityProvider
-** SponsorsListing
+** OrgSponsorsListing
 ** SponsorshipForViewerAsSponsor
-** team {
-    * Team
-* }
+** team { Team }
 ** Teams
 ** teamsResourcePath
 ** teamsUrl
@@ -67,8 +61,8 @@ import { queryVariables } from "."
 */
 
 
-export const Organisation = (fields: string) => `
-    organization {
+export const Organization = (fields: string, login?: string) => `
+    organization ${login ? `(login: "${login}")` : ""} {
         name
         ${fields}
     }
@@ -141,7 +135,7 @@ export const Organisation = (fields: string) => `
 */
 
 export const AuditLog = (params: queryVariables.AuditLog) => `
-    auditLog (${params.query ? `query: "${params.query}"` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    auditLog (${params.query ? `query: "${params.query}"` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
     ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
@@ -177,10 +171,7 @@ export const AuditLog = (params: queryVariables.AuditLog) => `
 ** id
 ** isRequiredForPolicyEnforcement
 ** isVerified
-** owner {
-    **  onEnterprise
-    **  onOrganization** 
-* }
+** owner { onEnterprise onOrganization }
 ** punycodeEncodedDomain
 ** tokenExpirationTime
 ** updatedAt
@@ -188,7 +179,7 @@ export const AuditLog = (params: queryVariables.AuditLog) => `
 */
 
 export const Domains = (params: queryVariables.Domains) => `
-    domains (${params.query ? `query: "${params.query}"` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    domains (${params.query ? `query: "${params.query}"` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
         ${params.isVerified ? `isVerified: "${params.isVerified}"` : ""} ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
@@ -204,7 +195,7 @@ export const Domains = (params: queryVariables.Domains) => `
     }
 `
 
-/** @description Github Graphql 
+/** @description Github Graphql IpAllowListEntries
 * @defaultVariables totalCount
 * @queryArguments 
 *** after string
@@ -218,15 +209,12 @@ export const Domains = (params: queryVariables.Domains) => `
 ** id
 ** isActive
 ** name
-** owner {
-    * onEnterprise
-    * onOrganization
-* }
+** owner { onEnterprise onOrganization }
 ** updatedAt
 */
 
 export const IpAllowListEntries = (params: queryVariables.IpAllowListEntries) => `
-    ipAllowListEntries (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ipAllowListEntries (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
         ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
@@ -255,7 +243,7 @@ export const IpAllowListEntries = (params: queryVariables.IpAllowListEntries) =>
 */
 
 export const Items = (params: queryVariables.BasicFields) => `
-    items (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    items (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -291,7 +279,7 @@ export const Items = (params: queryVariables.BasicFields) => `
 */
 
 export const MemberStatuses = (params: queryVariables.MemberStatuses) => `
-    memberStatuses (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    memberStatuses (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -317,7 +305,7 @@ export const MemberStatuses = (params: queryVariables.MemberStatuses) => `
 */
 
 export const MembersWithRole = (params: queryVariables.BasicFields) => `
-    membersWithRole (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    membersWithRole (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -344,7 +332,7 @@ export const MembersWithRole = (params: queryVariables.BasicFields) => `
 */
 
 export const PendingMembers = (params: queryVariables.BasicFields) => `
-    pendingMembers (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    pendingMembers (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -371,7 +359,7 @@ export const PendingMembers = (params: queryVariables.BasicFields) => `
 */
 
 export const OrganizationPinnableItems = (params: queryVariables.Item) => `
-    pinnableItems (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    pinnableItems (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -399,7 +387,7 @@ export const OrganizationPinnableItems = (params: queryVariables.Item) => `
 */
 
 export const OrganizationPinnedItems = (params: queryVariables.Item) => `
-    pinnedItems (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    pinnedItems (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
     ${params.types ? `, types: ${params.types}` : ""}) {
         edges {
             cursor
@@ -418,11 +406,7 @@ export const OrganizationPinnedItems = (params: queryVariables.Item) => `
 
 /** @description Github Graphql SamlIdentity
 * @fields
-** emails {
-    * primary
-    * type
-    * value
-* }
+** emails { primary type value }
 ** familyName
 ** givenName
 ** groups
@@ -430,7 +414,7 @@ export const OrganizationPinnedItems = (params: queryVariables.Item) => `
 ** username
 */
 
-export const SamlIdentity = (fields:string = "") => `
+export const SamlIdentity = (fields: string = "") => `
     samlIdentity {
         givenName
         ${fields}
@@ -439,18 +423,15 @@ export const SamlIdentity = (fields:string = "") => `
 
 /** @description Github Graphql ScimIdentity
 * @fields
-** emails {
-    * primary
-    * type
-    * value
-* }
+** emails { primary type value }
 ** familyName
 ** givenName
 ** groups
 ** nameId
 ** username
 */
-export const ScimIdentity = (fields:string = "") => `
+
+export const ScimIdentity = (fields: string = "") => `
     scimIdentity {
         givenName
         ${fields}
@@ -462,25 +443,16 @@ export const ScimIdentity = (fields:string = "") => `
 * @fields
 ** createdAt
 ** id
-** maintainer {
-    * User
-* }
+** maintainer { User }
 ** privacyLevel
-** sponsor {
-    * User
-* }
-** sponsorEntity {
-    * onOrganization
-    * onUser
-* }
+** sponsor { User }
+** sponsorEntity { onOrganization onUser }
 ** Sponsorable
-** tier {
-    * Tier
-* }
+** tier { Tier }
 ** tierSelectedAt
 */
 
-export const SponsorshipForViewerAsSponsor = (fields:string = "") => `
+export const SponsorshipForViewerAsSponsor = (fields: string = "") => `
     sponsorshipForViewerAsSponsor {
         ${fields}
     }
@@ -492,7 +464,7 @@ export const SponsorshipForViewerAsSponsor = (fields:string = "") => `
 ** isSponsoredBy(accountLogin: "")
 ** isSponsoringViewer
 */
-export const Sponsorable = (fields:string = "") => `
+export const Sponsorable = (fields: string = "") => `
     sponsorable {
         ${fields}
     }
@@ -510,28 +482,19 @@ export const Sponsorable = (fields:string = "") => `
 ** createdAt
 ** id
 ** isOneTimePayment
-** maintainer {
-    * User
-* }
+** maintainer { User }
 ** privacyLevel
-** sponsor {
-    * User
-* }
-** sponsorEntity {
-    * onOrganization
-    * onuser
-* }
+** sponsor { User }
+** sponsorEntity { onOrganization onuser }
 ** Sponsorable
-** tier {
-    * Tier
-* }
+** tier { Tier }
 ** tierSelectedAt
 */
 
 
 export const SponsorshipsAsMaintainer = (params: queryVariables.Sponsorships) => `
-    sponsorshipsAsMaintainer (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
-    ${params.includePrivate? `,includePrivate: ${params.includePrivate}` : ""} ) {
+    sponsorshipsAsMaintainer (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ${params.includePrivate ? `,includePrivate: ${params.includePrivate}` : ""} ) {
         edges {
             cursor
             node {
@@ -592,28 +555,19 @@ export const AdminInfo = (fields: string = "") => `
 ** createdAt
 ** id
 ** isOneTimePayment
-** maintainer {
-    * User
-* }
+** maintainer { User }
 ** privacyLevel
-** sponsor {
-   * User
-* }
-** sponsorEntity {
-    * onOrganization
-    * onuser
-* }
+** sponsor { User }
+** sponsorEntity { onOrganization onuser }
 ** Sponsorable
-** tier {
-    * Tier
-* }
+** tier { Tier }
 ** tierSelectedAt
 */
 
 
 export const Sponsorships = (params: queryVariables.Sponsorships) => `
-    sponsorships (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
-    ${params.includePrivate? `,includePrivate: ${params.includePrivate}` : ""} ) {
+    sponsorships (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ${params.includePrivate ? `,includePrivate: ${params.includePrivate}` : ""} ) {
         edges {
             cursor
             node {
@@ -653,9 +607,7 @@ export const ClosestLesserValueTier = (fields: string = "") => `
 `
 /** @description Github Graphql SponsorsListing 
 * @fields
-** activeGoal {
-    * Goal
-* }
+** activeGoal { Goal }
 ** createdAt
 ** fullDescription
 ** fullDescriptionHTML
@@ -666,8 +618,8 @@ export const ClosestLesserValueTier = (fields: string = "") => `
 ** Tiers
 */
 
-export const SponsorsListing = (fields: string = "") => `
-    sponsorsListing {
+export const OrgSponsorsListing = (fields: string = "", slug?: string) => `
+    sponsorsListing ${slug ? `(slug: "${slug}")` : ""} {
         ${fields}
     }
 `
@@ -702,7 +654,7 @@ export const Goal = (fields: string = "") => `
 
 
 export const Tiers = (params: queryVariables.Tiers) => `
-    tiers (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    tiers (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
     ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
@@ -744,12 +696,8 @@ export const Tiers = (params: queryVariables.Tiers) => `
 ** name
 ** newTeamResourcePath
 ** newTeamUrl
-** organization {
-    * Organization
-* }
-** parentTeam {
-    * Team
-* }
+** organization { Organization }
+** parentTeam { Team }
 ** privacy
 ** Repositories
 ** privacy
@@ -766,7 +714,7 @@ export const Tiers = (params: queryVariables.Tiers) => `
 ** viewerSubscription
 */
 
-export const Team = (slug: string,fields: string = "") => `
+export const Team = (slug: string, fields: string = "") => `
     team (slug: "${slug}") {
         ${fields}
     }
@@ -780,12 +728,12 @@ export const Team = (slug: string,fields: string = "") => `
 ** first number
 ** last number
 @fields
-**  Team
+** Team
 */
 
 
 export const Ancestors = (params: queryVariables.BasicFields) => `
-    ancestors (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    ancestors (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -816,8 +764,8 @@ export const Ancestors = (params: queryVariables.BasicFields) => `
 
 
 export const ChildTeams = (params: queryVariables.ChildTeams) => `
-    childTeams (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
-    ${params.immediateOnly? `,immediateOnly: ${params.immediateOnly}` : ""} ${params.userLogins? `, userLogins: ${params.userLogins}` : ""}   
+    childTeams (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ${params.immediateOnly ? `,immediateOnly: ${params.immediateOnly}` : ""} ${params.userLogins ? `, userLogins: ${params.userLogins}` : ""}   
     ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""} ) {
         edges {
             cursor
@@ -830,7 +778,6 @@ export const ChildTeams = (params: queryVariables.ChildTeams) => `
         }
         ${params.pageInfo ? params.pageInfo : ""}
         totalCount
-
     }
 `
 
@@ -841,24 +788,17 @@ export const ChildTeams = (params: queryVariables.ChildTeams) => `
 ** email
 ** id
 ** invitationType
-** invitee {
-    * User
-* }
-** inviter {
-    * User
-* }
-** organization {
-    * Organization
-}
+** invitee { User }
+** inviter { User }
+** organization { Organization }
 ** role
 */
 
-export const Invitation = (slug: string,fields: string = "") => `
+export const Invitation = (slug: string, fields: string = "") => `
     invitation (slug: "${slug}") {
         ${fields}
     }
 `
-
 
 /** @description Github Graphql Invitations
 * @defaultVariables totalCount
@@ -867,14 +807,13 @@ export const Invitation = (slug: string,fields: string = "") => `
 ** before string
 ** first number
 ** last number
-
 * @fields
 ** Invitation
 */
 
 
 export const Invitations = (params: queryVariables.BasicFields) => `
-    invitations (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+    invitations (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
         edges {
             cursor
             node {
@@ -905,8 +844,8 @@ export const Invitations = (params: queryVariables.BasicFields) => `
 
 
 export const Members = (params: queryVariables.Members) => `
-    members (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
-    ${params.membership? `, membership: ${params.membership}` : ""} ${params.query? `, query: ${params.query}` : ""} ${params.role? `, role: ${params.role}` : ""}
+    members (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ${params.membership ? `, membership: ${params.membership}` : ""} ${params.query ? `, query: ${params.query}` : ""} ${params.role ? `, role: ${params.role}` : ""}
     ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
@@ -919,7 +858,6 @@ export const Members = (params: queryVariables.Members) => `
         }
         ${params.pageInfo ? params.pageInfo : ""}
         totalCount
-
     }
 `
 
@@ -933,14 +871,14 @@ export const Members = (params: queryVariables.Members) => `
 ** membership "IMMEDIATE" | "CHILD_TEAM" | "ALL"
 ** query string
 ** role "MAINTAINER" | "MEMBER"
- @fields Team
+* @fields
+** Team
 */
 
-
 export const Teams = (params: queryVariables.Teams) => `
-    teams (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
-    ${params.ldapMapped? `, ldapMapped: ${params.ldapMapped}` : ""} ${params.query? `, query: ${params.query}` : ""} ${params.role? `, role: ${params.role}` : ""} ${params.privacy? `, privacy: ${params.privacy}` : ""}
-    ${params.role? `, role: ${params.role}` : ""} ${params.rootTeamsOnly? `, rootTeamsOnly: ${params.rootTeamsOnly}` : ""}${params.userLogins? `, userLogins: ${params.userLogins}` : ""}
+    teams (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    ${params.ldapMapped ? `, ldapMapped: ${params.ldapMapped}` : ""} ${params.query ? `, query: ${params.query}` : ""} ${params.role ? `, role: ${params.role}` : ""} ${params.privacy ? `, privacy: ${params.privacy}` : ""}
+    ${params.role ? `, role: ${params.role}` : ""} ${params.rootTeamsOnly ? `, rootTeamsOnly: ${params.rootTeamsOnly}` : ""}${params.userLogins ? `, userLogins: ${params.userLogins}` : ""}
     ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
@@ -962,7 +900,7 @@ export const Teams = (params: queryVariables.Teams) => `
 ** hasPinnedItems
 ** Items
 */
-export const ItemShowcase = (fields: string) => `
+export const OrgItemShowcase = (fields: string) => `
     itemShowcase {
         ${fields}
     }
@@ -979,27 +917,18 @@ export const ItemShowcase = (fields: string) => `
 * @fields
 ** createdAt
 ** id
-** maintainer {
-    * User
-* }
+** maintainer { User }
 ** privacyLevel
-** sponsor {
-    * User
-* }
-** sponsorEntity {
-    * onOrganization
-    * onUser
-* }
+** sponsor { User }
+** sponsorEntity { onOrganization onUser }
 ** Sponsorable
-** tier {
-    * Tier
-* }
+** tier { Tier }
 ** tierSelectedAt
 */
 
 
 export const SponsorshipsAsSponsor = (params: queryVariables.SponsorshipsAsSponsor) => `
-    sponsorshipsAsSponsor (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
+    sponsorshipsAsSponsor (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
     ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
         edges {
             cursor
