@@ -1,4 +1,3 @@
-
 import { queryVariables } from "."
 
 /**
@@ -132,5 +131,29 @@ export const PrimaryCategory = (fields: string = "") => `
 export const SecondaryCategory = (fields: string = "") => `
 	secondaryCategory {
 		${fields}
+	}
+`
+
+/**
+* @description Github Graphql Query for MarketplaceCategories
+* @queryVariable
+** slug string
+** useTopicAliases boolean
+* @fields
+** description
+** howItWorks
+** id
+** name
+** primaryListingCount
+** resourcePath
+** secondaryListingCount
+** slug
+** url
+*/
+
+export const MarketplaceCategories = (params: queryVariables.MarketplaceCategories) => `
+	marketplaceCategories ${params.excludeEmpty || params.excludeSubcategories || params.includeCategories ?`(${params.excludeEmpty? `excludeEmpty: ${params.excludeEmpty},`:""} ${params.excludeSubcategories? `excludeSubcategories: ${params.excludeSubcategories},`:""}
+	${params.includeCategories? `includeCategories: "${params.includeCategories}",`:""})`:""} {
+		${params.fields}
 	}
 `
