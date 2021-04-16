@@ -820,23 +820,6 @@ query($repositoryOwner: String!, $repositoryName: String!, $expression: String!)
 `
 
 /**
- * @description Github Graphql Query for code of conduct
- * @queryVariable key: String!
- */
-export const CodeOfConduct = `
-query($key: String!){
-  codeOfConduct(key: $key){
-    name
-    id
-    body
-    key
-    resourcePath
-    url
-  }
-}
-`
-
-/**
  * @description Github Graphql Query for Viewer Followers
  * @queryVariable after: String! //Cursor , before: String! //Cursor
  */
@@ -1104,4 +1087,28 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
     }
   }
 }
+`
+
+/**
+ * @description Github Graphql Query for CodeOfConduct
+ * @fields
+ ** CodeOfConduct
+ */
+
+export const CodeOfConductQuery = (fields: string) => `
+  {
+    ${fields}
+  }
+`
+
+/**
+ * @description Github Graphql Query for CodesOfConduct
+ * @fields
+ ** CodesOfConduct
+ */
+
+ export const CodesOfConductQuery = (fields: string) => `
+ {
+   ${fields}
+ }
 `

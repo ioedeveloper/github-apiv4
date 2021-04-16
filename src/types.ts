@@ -919,3 +919,20 @@ export declare interface SponsorsListing {
         totalCount: number;
     }
 }
+
+export declare interface CodeOfConduct{
+    body: string;
+    id: number | string;
+    key: string;
+    name: string;
+    resourcePath: string;
+    url: string;
+}
+
+export declare interface CodeOfConductQuery {
+    codeOfConduct: CodeOfConduct;
+}
+
+export declare interface CodesOfConductQuery {
+    codesOfConduct: CodeOfConduct[];
+}
