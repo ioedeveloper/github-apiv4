@@ -127,3 +127,10 @@ export declare interface UserIssues {
     orderBy?: string;
     includeNotificationContexts?: boolean;
 }
+
+export declare interface EnterpriseAdministratorInvitation {
+    enterpriseSlug?: string;
+    role?: "OWNER" | "BILLING_MANAGER";
+    userLogin?: string;
+    fields: string;
+}

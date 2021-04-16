@@ -919,3 +919,11 @@ export declare interface SponsorsListing {
         totalCount: number;
     }
 }
+
+export declare interface EnterpriseAdministratorInvitation {
+    enterpriseAdministratorInvitation: Invitation
+}
+
+export declare interface EnterpriseAdministratorInvitationByToken {
+    enterpriseAdministratorInvitationByToken: Invitation
+}
