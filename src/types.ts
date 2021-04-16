@@ -1015,3 +1015,7 @@ export declare interface Category {
 export declare interface MarketplaceCategoryQuery {
     marketplaceCategory: Category;
 }
+
+export declare interface MarketplaceCategoriesQuery {
+    marketplaceCategories: Category[];
+}

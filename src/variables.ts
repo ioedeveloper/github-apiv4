@@ -21,6 +21,13 @@ export declare interface MarketplaceListings extends BasicFields {
     withFreeTrialsOnly?: boolean;
 }
 
+export declare interface MarketplaceCategories {
+    excludeEmpty?: boolean;
+    excludeSubcategories?: boolean;
+    includeCategories?: string;
+    fields: string
+}
+
 export declare interface Repository {
     repositoryOwner: string;
     repositoryName: string;

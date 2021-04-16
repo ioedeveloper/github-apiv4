@@ -1155,3 +1155,26 @@ export const MarketplaceCategory = (slug: string, fields: string, useTopicAliase
     }
   }
  `
+
+ /**
+* @description Github Graphql Query for MarketplaceCategory
+* @queryVariable
+** slug string
+** useTopicAliases boolean
+* @fields
+** description
+** howItWorks
+** id
+** name
+** primaryListingCount
+** resourcePath
+** secondaryListingCount
+** slug
+** url
+*/
+
+export const MarketplaceCategoriesQuery = (fields: string) => `
+{
+  ${fields}
+}
+`
