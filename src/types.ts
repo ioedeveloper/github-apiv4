@@ -920,29 +920,40 @@ export declare interface SponsorsListing {
     }
 }
 
-/**
- * @description Github Graphql Query for MarketplaceListings
- * @fields
- ** MarketplaceListings 
- */
+export declare interface License {
+    body: string;
+    conditions: {
+        description: string;
+        key: string;
+        label: string;
+    }[]
+    description: string;
+    featured: string;
+    hidden: string;
+    id: string | number;
+    implementation: string;
+    key: string;
+    limitations: {
+        description: string;
+        key: string;
+        label: string;
+    }[]
+    name: string;
+    nickname: string;
+    permissions: {
+        description: string;
+        key: string;
+        label: string;
+    }[]
+    pseudoLicense: string;
+    spdxId: string;
+    url: string;
+}
 
- export const MarketplaceListingsQuery = (fields: string) => `
- {
-    ${fields}
- }
- `
- 
- /**
- * @description Github Graphql Query for MarketplaceListing
- * @fields
- ** MarketplaceListing
- */
+export declare interface LicensesQuery {
+    licenses: License[]
+}
 
- export const MarketplaceListingQuery = (slug: string,fields: string) => `
- {
-  marketplaceListing(slug: "${slug}") {
-    ${fields}
-  }
- }
- `
- 
+export declare interface LicenseQuery {
+    license: License
+}

@@ -1105,3 +1105,25 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
+/**
+ * @description Github Graphql Query for LicensesQuery 
+ * @fields 
+ ** Licenses
+*/
+
+export const LicensesQuery = (fields: string) => `
+  {
+    ${fields}
+  }
+`
+/**
+ * @description Github Graphql Query for LicenseQuery 
+ * @fields 
+ ** License
+*/
+
+export const LicenseQuery = (fields: string) => `
+  {
+    ${fields}
+  }
+`
