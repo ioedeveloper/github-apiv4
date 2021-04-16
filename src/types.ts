@@ -1375,295 +1375,95 @@ export declare interface SponsorsListing {
         totalCount: number;
     }
 }
-
-export declare interface RelevantTeams {
-    edges: {
-        cursor: string;
-        node: Team;
-    }[];
-    nodes: Team[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface RelevantOrganizations {
-    edges: {
-        cursor: string;
-        node: Organization;
-    }[];
-    nodes: Organization[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface ContributionsCollection {
-    commitContributionsByRepository: {
-        contributions: Contributions;
-        repository: RepositoryInfo;
-        resourcePath: string;
-        url: string;
-    }[]
-    contributionCalendar: ContributionCalendar;
-    contributionYears: number[];
-    doesEndInCurrentMonth: boolean;
-    earliestRestrictedContributionDate: string;
-    endedAt: string;
-    firstIssueContribution: {};
-    firstPullRequestContribution: {}
-    firstRepositoryContribution: {}
-    hasActivityInThePast: boolean;
-    hasAnyContributions: boolean;
-    hasAnyRestrictedContributions: boolean;
-    isSingleDay: boolean;
-    issueContributions: {
-        edges: {
-            cursor: string;
-            node: {
-                isRestricted: boolean;
-                issue: Issue;
-                occurredAt: string;
-                resourcePath: string;
-                url: string;
-            };
-        }[];
-        nodes: {
-            isRestricted: boolean;
-            issue: Issue;
-            occurredAt: string;
-            resourcePath: string;
-            url: string;
-        }[];
-        pageInfo: PageInfo;
-        totalCount: number;
-    }
-    issueContributionsByRepository: {
-        contributions: Contributions;
-        repository: RepositoryInfo;
-    }[]
-    joinedGitHubContribution: {
-        isRestricted: boolean;
-        occurredAt: string;
-        resourcePath: string;
-        url: string;
-        user: UserInfo;
-    }
-    latestRestrictedContributionDate: string
-    mostRecentCollectionWithActivity: ContributionsCollection;
-    mostRecentCollectionWithoutActivity: ContributionsCollection;
-    popularIssueContribution: IssueContribution;
-    popularPullRequestContribution: PullRequestContribution;
-    pullRequestContributions: PullRequestContributions;
-    pullRequestContributionsByRepository: PullRequestContributionsByRepository[];
-    pullRequestReviewContributions: PullRequestReviewContributions;
-    pullRequestReviewContributionsByRepository: PullRequestReviewContributionsByRepository[];
-    repositoryContributions: RepositoryInfoContributions;
-    restrictedContributionsCount: number;
-    startedAt: string;
-    totalCommitContributions: number;
-    totalIssueContributions: number;
-    totalPullRequestContributions: number;
-    totalPullRequestReviewContributions: number;
-    totalRepositoriesWithContributedCommits: number;
-    totalRepositoriesWithContributedIssues: number;
-    totalRepositoriesWithContributedPullRequestReviews: number;
-    totalRepositoriesWithContributedPullRequests: number;
-    totalRepositoryContributions: number;
-    user: UserInfo;
-}
-
-export declare interface IssueContribution {
-    isRestricted: boolean;
-    issue: Issue;
-    occurredAt: string;
-    resourcePath: string;
-    url: string;
-    user: UserInfo;
-}
-
-export declare interface PullRequestContribution {
-    isRestricted: boolean;
-    occurredAt: string;
-    pullRequest: PullRequest;
-    resourcePath: string;
-    url: string;
-    user: UserInfo;
-}
-
-export declare interface PullRequestContributions {
-    edges: {
-        cursor: string;
-        node: PullRequestContribution;
-    }[];
-    nodes: PullRequestContribution[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface PullRequestContributionsByRepository {
-    contributions: Contributions;
-    repository: RepositoryInfo;
-}
-
-export declare interface PullRequestReviewContribution {
-    isRestricted: boolean;
-    occurredAt: string;
-    pullRequest: PullRequest;
-    pullRequestReview: PullRequestReview;
-    repository: RepositoryInfo;
-    resourcePath: string;
-    url: string;
-    user: UserInfo;
-}
-
-export declare interface PullRequestReviewContributions {
-    edges: {
-        cursor: string;
-        node: PullRequestReviewContribution;
-    }[];
-    nodes: PullRequestReviewContribution[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface PullRequestReviewContributionsByRepository {
-    contribution: Contribution;
-    repository: RepositoryInfo;
-}
-
-export declare interface RepositoryInfoContributions {
-    edges: {
-        cursor: string;
-        node: Contribution;
-    }[];
-    nodes: Contribution[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-export declare interface Contributions {
-    edges: {
-        cursor: string;
-        node: Contribution;
-    }[];
-    nodes: Contribution[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Contribution {
-    commitCount: number;
-    isRestricted: boolean;
-    occurredAt: string;
-    repository: RepositoryInfo;
-    resourcePath: string;
-    url: string;
-    user: UserInfo;
-}
-
-export declare interface ContributionCalendar {
-    colors: string[];
-    isHalloween: boolean;
-    months: {
-        firstDay: string;
-        name: string;
-        totalWeeks: number;
-        year: number;
-    }[]
-    totalContributions: number;
-    weeks: {
-        contributionDays: {
-            color: string;
-            contributionCount: number;
-            contributionLevel: string;
-            date: string;
-            weekday: number;
-        }[]
-        firstDay: string;
-    }[]
-}
-
-export declare interface Gist {
-    comments: Comments;
-    createdAt: string;
-    description: string;
-    files: File[];
-    forks: Forks;
-    id: number;
-    isFork: boolean;
+export declare interface MarketplaceListing {
+    app: App;
+    companyUrl: string;
+    configurationResourcePath: string;
+    configurationUrl: string;
+    documentationUrl: string;
+    extendedDescription: string;
+    extendedDescriptionHTML: string;
+    fullDescription: string;
+    fullDescriptionHTML: string;
+    hasPublishedFreeTrialPlans: boolean;
+    hasTermsOfService: boolean;
+    hasVerifiedOwner: boolean;
+    howItWorks: string;
+    howItWorksHTML: string;
+    id: string;
+    installationUrl: string;
+    installedForViewer: boolean;
+    isArchived: boolean;
+    isDraft: boolean;
+    isPaid: boolean;
     isPublic: boolean;
+    isRejected: boolean;
+    isUnverified: boolean;
+    isUnverifiedPending: boolean;
+    isVerificationPendingFromDraft: boolean;
+    isVerificationPendingFromUnverified: boolean;
+    isVerified: boolean;
+    logoBackgroundColor: string;
+    logoUrl: string;
     name: string;
-    owner: Owner;
-    pushedAt: string;
+    normalizedShortDescription: string;
+    pricingUrl: string;
+    primaryCategory: Category;
+    privacyPolicyUrl: string;
     resourcePath: string;
-    stargazerCount: number;
-    stargazers: Stargazers;
-    updatedAt: string;
+    screenshotUrls: string;
+    secondaryCategory: Category;
+    shortDescription: string;
+    slug: string;
+    statusUrl: string;
+    supportEmail: string;
+    supportUrl: string;
+    termsOfServiceUrl: string;
     url: string;
-    viewerHasStarred: boolean;
+    viewerCanAddPlans: boolean;
+    viewerCanApprove: boolean;
+    viewerCanDelist: boolean;
+    viewerCanEdit: boolean;
+    viewerCanEditCategories: boolean;
+    viewerCanEditPlans: boolean;
+    viewerCanRedraft: boolean;
+    viewerCanReject: boolean;
+    viewerCanRequestApproval: boolean;
+    viewerHasPurchased: boolean;
+    viewerHasPurchasedForAllOrganizations: boolean;
+    viewerIsListingAdmin: boolean;
 }
 
-export declare interface Gists {
+export declare interface MarketplaceListingsQuery {
+    marketplaceListings: MarketplaceListings;
+}
+
+export declare interface MarketplaceListings{
     edges: {
         cursor: string;
-        node: Gist;
+        node: MarketplaceListing;
     }[];
-    nodes: Gist[];
+    nodes: MarketplaceListing[];
     pageInfo: PageInfo;
     totalCount: number;
 }
 
-export declare interface Comment {
-    author: Owner;
-    authorAssociation: string;
-    body: string;
-    bodyHTML: string;
-    bodyText: string;
-    commit: Commit;
-    createdAt: string;
-    createdViaEmail: string;
-    databaseId: number;
-    editor: Owner;
-    gist: Gist;
+export declare interface MarketplaceListingQuery {
+    marketplaceListing: MarketplaceListing;
+}
+
+export declare interface App {
+
+}
+
+export declare interface Category {
+    description: string;
+    howItWorks: string;
     id: number;
-    includesCreatedEdit: boolean;
-    isMinimized: boolean;
-    issue: Issue;
-    lastEditedAt: string;
-    minimizedReason: string;
-    path: string;
-    position: number;
-    publishedAt: string;
-    pullRequest: PullRequest;
-    reactionGroup: ReactionGroup;
-    reactionGroups: ReactionGroups[];
-    reactions: Reactions;
-    repository: RepositoryInfo;
+    name: string;
+    primaryListingCount: number;
     resourcePath: string;
-    updatedAt: string;
+    secondaryListingCount: number;
+    slug: string;
     url: string;
-    userContentEdits: UserContentEdits;
-    viewerCanDelete: boolean;
-    viewerCanMinimize: boolean;
-    viewerCanUpdate: boolean;
-    viewerCannotUpdateReasons: string[];
-    viewerDidAuthor: boolean;
-}
-
-export declare interface Comments {
-    edges: {
-        cursor: string;
-        node: Comment[];
-    }[];
-    nodes: Comment[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
-export declare interface Meta {
-    meta: {
-        gitHubServicesSha: string;
-        gitIpAddresses: string[];
-        hookIpAddresses: string[];
-        importerIpAddresses: string[];
-        isPasswordAuthenticationVerifiable: boolean;
-        pagesIpAddresses: string[];
-    }
 }

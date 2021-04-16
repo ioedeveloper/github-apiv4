@@ -3,39 +3,7 @@ import { queryVariables } from ".";
 export * from './user'
 export * from './discussion'
 export * from './nodes'
-export * from "./organization"
-/**
- * @description Github Graphql Query for SecurityVulnerabilities
- * @queryArguments 
- ** ecosystem "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP"
- ** severities "LOW" | "MODERATE" | "HIGH" | "CRITICAL"
- ** after string
- ** before string
- ** first number
- ** last number
- * @queryVariables
- ** @fields
- ** Vulnerability
- */
-
-export const  SecurityVulnerabilities = (params: queryVariables.VulnerabilitiesFields) => `
-	{
-		securityVulnerabilities(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, 
-    ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : "" }) {
-				edges {
-					node {
-						${params.fields}
-					}
-				}
-				nodes {
-					${params.fields}
-				}
-				${params.pageInfo? params.pageInfo: ""}
-				totalCount
-		}
-	}
-	
-`
+export * from './enterprise'
 
 /**
  * @description Github Graphql Query for SecurityAdvisory
@@ -43,51 +11,12 @@ export const  SecurityVulnerabilities = (params: queryVariables.VulnerabilitiesF
  ** SecurityAdvisory
  */
 
- export const SecurityAdvisoryQuery = (ghsaId: string, fields: string) => `
-    {
-		securityAdvisory (ghsaId: "${ghsaId}") {
-			${fields}
-		}
-	}
- `
-
-export * from "./user"
-export * from "./respository"
-
-/**
- * @description Github Graphql SecurityAdvisories  
- * @queryVariables
- * first number
- * 
- * last: number
- * 
- * after string
- * 
- * before string
- * 
- * identify 
- * @field 
- * SecurityAdvisory
-*/
-
-export const SecurityAdvisories = (params: queryVariables.SecurityAdvisoriesFields) => `
-    {
-		securityAdvisories(first: ${params.first} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, after: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
-		${params.publishedSince ? `, publishedSince: "${params.publishedSince}" ` : ""} ${params.updatedSince ? `, updatedSince: "${params.updatedSince}" ` : ""} 
-		${params.value || params.type ? `, identifier: {type: ${params.type}, value: "${params.value}"}` : ""}) {
-			edges {
-				cursor
-				node {
-					${params.fields}
-				}
-			}
-			nodes {
-				${params.fields}
-			}
-			${params.pageInfo ? params.pageInfo : ""}
-			totalCount
-		}
-	}
+export const TopicQuery = (name: string, fields: string) => `
+{
+  topic (name: "${name}"){
+    ${fields}
+  }
+}
 `
 
 
@@ -1077,20 +1006,30 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
+
 /**
-* @description Github Graphql Query Meta 
-* @fields
-** gitHubServicesSha
-** gitIpAddresses
-** hookIpAddresses
-** importerIpAddresses
-** isPasswordAuthenticationVerifiable
-** pagesIpAddresses
-*/
-export const Meta =(fields:string) => `
+ * @description Github Graphql Query for MarketplaceListings
+ * @fields
+ ** MarketplaceListings 
+ */
+
+ export const MarketplaceListingsQuery = (fields: string) => `
   {
-    meta {
+      ${fields}
+  }
+ `
+ 
+ /**
+ * @description Github Graphql Query for MarketplaceListing
+ * @fields
+ ** MarketplaceListing
+ */
+
+ export const MarketplaceListingQuery = (slug: string,fields: string) => `
+  {
+    marketplaceListing(slug: "${slug}") {
       ${fields}
     }
   }
-`
+ `
+ 
