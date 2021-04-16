@@ -1006,76 +1006,25 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
-
 /**
- * @description Github Graphql Query for MarketplaceListings
- * @fields
- ** MarketplaceListings 
- */
-
-export const MarketplaceListingsQuery = (fields: string) => `
-  {
-      ${fields}
-  }
- `
-
-/**
-* @description Github Graphql Query for MarketplaceListing
-* @fields
-** MarketplaceListing
+ * @description Github Graphql Query for LicensesQuery 
+ * @fields 
+ ** Licenses
 */
 
-export const MarketplaceListingQuery = (slug: string, fields: string) => `
+export const LicensesQuery = (fields: string) => `
   {
-    marketplaceListing(slug: "${slug}") {
-      ${fields}
-    }
+    ${fields}
   }
- `
+`
 /**
-* @description Github Graphql Query for MarketplaceCategory
-* @queryVariable
-** slug string
-** useTopicAliases boolean
-* @fields
-** description
-** howItWorks
-** id
-** name
-** primaryListingCount
-** resourcePath
-** secondaryListingCount
-** slug
-** url
+ * @description Github Graphql Query for LicenseQuery 
+ * @fields 
+ ** License
 */
 
-export const MarketplaceCategory = (slug: string, fields: string, useTopicAliases?: boolean) => `
+export const LicenseQuery = (fields: string) => `
   {
-    marketplaceCategory(slug: "${slug}", ${useTopicAliases? `useTopicAliases: ${useTopicAliases}`:""}) {
-      ${fields}
-    }
+    ${fields}
   }
- `
-
- /**
-* @description Github Graphql Query for MarketplaceCategory
-* @queryVariable
-** slug string
-** useTopicAliases boolean
-* @fields
-** description
-** howItWorks
-** id
-** name
-** primaryListingCount
-** resourcePath
-** secondaryListingCount
-** slug
-** url
-*/
-
-export const MarketplaceCategoriesQuery = (fields: string) => `
-{
-  ${fields}
-}
 `

@@ -1,4 +1,69 @@
+
+
+/**
+* @description Github Graphql MarketplaceListing
+* @defaultVariables totalCount
+* @fields 
+** app { App }
+** name 
+** companyUrl 
+** configurationResourcePath 
+** configurationUrl 
+** documentationUrl 
+** extendedDescription 
+** extendedDescriptionHTML 
+** fullDescription 
+** fullDescriptionHTML 
+** hasPublishedFreeTrialPlans 
+** hasTermsOfService 
+** hasVerifiedOwner 
+** howItWorks 
+** howItWorksHTML 
+** id 
+** installationUrl 
+** installedForViewer 
+** isArchived 
+** isDraft 
+** isPaid 
+** isPublic 
+** isRejected 
+** isUnverified 
+** isUnverifiedPending 
+** isVerificationPendingFromDraft 
+** isVerificationPendingFromUnverified 
+** isVerified 
+** logoBackgroundColor 
+** logoUrl 
+** normalizedShortDescription 
+** pricingUrl 
+** primaryCategory { description howItWorks id name  primaryListingCount resourcePath secondaryListingCount slug url  }
+** privacyPolicyUrl 
+** resourcePath 
+** screenshotUrls 
+** secondaryCategory { description howItWorks id name  primaryListingCount resourcePath secondaryListingCount slug url  }
+** viewerCanAddPlans 
+** viewerCanApprove 
+** viewerCanDelist 
+** viewerCanEdit 
+** viewerCanEditCategories 
+** viewerCanEditPlans 
+** viewerCanRedraft 
+** viewerCanReject 
+** viewerCanRequestApproval 
+** viewerHasPurchased 
+** viewerHasPurchasedForAllOrganizations 
+** viewerIsListingAdmin 
+*/
+
 import { queryVariables } from "."
+
+export const MarketplaceListing = (fields: string ) => `
+    marketplaceListing {
+		name
+		id
+		${fields}
+	}
+`
 
 /**
  * @description Github Graphql MarketplaceListings  
@@ -156,4 +221,55 @@ export const MarketplaceCategories = (params: queryVariables.MarketplaceCategori
 	${params.includeCategories? `includeCategories: "${params.includeCategories}",`:""})`:""} {
 		${params.fields}
 	}
+`
+/**
+ * @description Github Graphql Licenses
+ * @fields
+ ** body
+ ** conditions { description key label }
+ ** description
+ ** featured
+ ** hidden
+ ** id
+ ** implementation
+ ** key
+ ** limitations { description key label }
+ ** name
+ ** nickname
+ ** permissions { description key label }
+ ** pseudoLicense
+ ** spdxId
+ ** url
+*/
+
+export const Licenses = (fields: string) => `
+  licenses {
+      ${fields}
+  }
+`
+
+/**
+ * @description Github Graphql License
+ * @fields
+ ** body
+ ** conditions { description key label }
+ ** description
+ ** featured
+ ** hidden
+ ** id
+ ** implementation
+ ** key
+ ** limitations { description key label }
+ ** name
+ ** nickname
+ ** permissions { description key label }
+ ** pseudoLicense
+ ** spdxId
+ ** url
+*/
+
+export const License = (key: string,fields: string) => `
+    license(key: "${key}") {
+      ${fields}
+  }
 `
