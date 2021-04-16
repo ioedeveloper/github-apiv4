@@ -127,3 +127,9 @@ export declare interface UserIssues {
     orderBy?: string;
     includeNotificationContexts?: boolean;
 }
+
+export declare interface Enterprise{
+    invitationToken?: string;
+    slug?: string;
+    fields: string;
+}

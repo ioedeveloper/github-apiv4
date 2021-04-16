@@ -1105,3 +1105,14 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
+
+/**
+ * @description Github Graphql Query EnterpriseQuery
+ * @fields
+ ** Enterprise 
+ */
+ export const EnterpriseQuery = (fields: string) => `
+    {
+      ${fields}
+    }
+ `

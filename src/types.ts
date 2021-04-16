@@ -660,6 +660,24 @@ export declare interface EnterpriseUserAccount {
 }
 
 export declare interface Enterprise {
+    avatarUrl: string;
+    createdAt: string;
+    billingInfo: BillingInfo;
+    databaseId: number;
+    description: string;
+    descriptionHTML: string;
+    id: string|number;
+    location: string;
+    members: Members;
+    name: string;
+    organizations: Organizations;
+    ownerInfo: Owner;
+    resourcePath: string;
+    slug: string;
+    url: string;
+    userAccounts: UserAccounts;
+    viewerIsAdmin: string;
+    websiteUrl: string;
 
 }
 
@@ -919,3 +937,22 @@ export declare interface SponsorsListing {
         totalCount: number;
     }
 }
+
+export declare interface EnterpriseQuery {
+    enterprise: Enterprise;
+}
+
+export declare interface BillingInfo {
+    allLicensableUsersCount: number;
+    assetPacks: number;
+    availableSeats: number;
+    bandwidthQuota: number;
+    bandwidthUsage: number;
+    bandwidthUsagePercentage: number;
+    seats: number;
+    storageQuota: number;
+    storageUsage: number;
+    storageUsagePercentage: number;
+    totalAvailableLicenses: number;
+    totalLicenses: number;
+  }
