@@ -1,3 +1,26 @@
+import { PageInfo } from "./types";
+
+export declare interface BasicFields {
+    first: number;
+    last?: number;
+    after?: string;
+    before?: string;
+    fields?: string;
+    pageInfo?: PageInfo;
+}
+
+export declare interface MarketplaceListings extends BasicFields {
+    adminId?: string;
+    allStates?: boolean;
+    categorySlug?: string; 
+    organizationId?: string;
+    primaryCategoryOnly?: boolean;
+    slugs?: boolean;
+    useTopicAliases?: boolean;
+    viewerCanAdmin?: boolean;
+    withFreeTrialsOnly?: boolean;
+}
+
 export declare interface Repository {
     repositoryOwner: string;
     repositoryName: string;

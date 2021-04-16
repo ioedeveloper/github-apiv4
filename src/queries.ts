@@ -1,6 +1,7 @@
 export * from './user'
 export * from './discussion'
 export * from './nodes'
+export * from './enterprise'
 
 /**
  * @description Github Graphql Query for TopicQuery
@@ -13,8 +14,8 @@ export const TopicQuery = (name: string, fields: string) => `
     ${fields}
   }
 }
-
 `
+
 
 /**
  * @description Github Graphql Query for Viewer
@@ -1104,3 +1105,29 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
+/**
+ * @description Github Graphql Query for MarketplaceListings
+ * @fields
+ ** MarketplaceListings 
+ */
+
+ export const MarketplaceListingsQuery = (fields: string) => `
+ {
+    ${fields}
+ }
+ `
+ 
+ /**
+ * @description Github Graphql Query for MarketplaceListing
+ * @fields
+ ** MarketplaceListing
+ */
+
+ export const MarketplaceListingQuery = (slug: string,fields: string) => `
+ {
+  marketplaceListing(slug: "${slug}") {
+    ${fields}
+  }
+ }
+ `
+ 
