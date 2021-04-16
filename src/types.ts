@@ -4137,3 +4137,11 @@ export declare interface LicensesQuery {
 export declare interface LicenseQuery {
     license: License
 }
+
+export declare interface EnterpriseAdministratorInvitation {
+    enterpriseAdministratorInvitation: Invitation
+}
+
+export declare interface EnterpriseAdministratorInvitationByToken {
+    enterpriseAdministratorInvitationByToken: Invitation
+}

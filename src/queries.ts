@@ -1006,25 +1006,25 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
   }
 }
 `
-/**
- * @description Github Graphql Query for LicensesQuery 
- * @fields 
- ** Licenses
-*/
 
-export const LicensesQuery = (fields: string) => `
+/**
+ * @description Github Graphql Query for EnterpriseAdministratorInvitation
+ * @fields 
+ ** EnterpriseAdministratorInvitation 
+ */
+ export const EnterpriseAdministratorInvitationQuery = (fields: string) => `
   {
     ${fields}
   }
-`
-/**
- * @description Github Graphql Query for LicenseQuery 
- * @fields 
- ** License
-*/
+ `
 
-export const LicenseQuery = (fields: string) => `
+ /**
+ * @description Github Graphql Query for EnterpriseAdministratorInvitationByToken
+ * @fields 
+ ** EnterpriseAdministratorInvitationByToken 
+ */
+ export const EnterpriseAdministratorInvitationByTokenQuery = (fields: string) => `
   {
     ${fields}
   }
-`
+ `
