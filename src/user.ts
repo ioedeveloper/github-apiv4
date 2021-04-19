@@ -3,189 +3,105 @@ import { BasicFields } from "./variables"
 
 /**
  * @description Github Graphql User
- * @defaultVariables id name
- * @fields anyPinnableItems(type: "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM")
- * avatarUrl
- 
- * bio
- 
- * bioHTML
-
- * CommitComments
-
- * company
-
- * companyHTML
-
- * ContributionCollection
-
- * createdAt
-
- * databaseId
-
- * email
-
- * Followers
-
- * Following
-
- * Gist
-
- * GistComments
-
- * Gists
-
- * hasSponsorsListing
-
- * hovercard(primarySubjectId: "") {
-
- *  contexts {
-
- *      message
-
- *      octicon
-
- *      onGenericHovercardContext
-
- *      onOrganizationTeamsHovercardContext
-
- *      onReviewStatusHovercardContext
-
- *      onViewerHovercardContext
-
- *   }
-
- * interactionAbility {
-
- *  expiresAt
-
- *  limit
-
- *  origin
-
- * }
-
- * isBountyHunter
-
- * isCampusExpert
-
- * isDeveloperProgramMember
-
- * isEmployee
-
- * isGitHubStar
-
- * isHireable
-
- * isSiteAdmin
-
- * isSponsoredBy(accountLogin: "")
-
- * isSponsoringViewer
-
- * isViewer
-
- * IssueComments
-
- * Issues
-
- * ItemShowcase
-
- * location
-
- * login
-
- * Organisation
-
- * organizationVerifiedDomainEmails(login: "")
-
- * Organization
-
- * Packages
-
- * PinnableItems
-
- * PinnedItemsRemaining  
-
- * Project
-
- * Projects
-
- * projectsResourcePath
-
- * projectsUrl
-
- * PublicKeys
-
- * PullRequests
-
- * Repositories
-
- * RepositoriesContributedTo
-
- * Repo
-
- * resourcePath
-
- * SavedReplies
-
- * SponsorListing
-
- * SponsorshipForViewerAsSponsor
-
- * SponsorshipsAsMaintainer
-
- * SponsorshipsAsSponsor
-
- * StarredRepositoriesonUser
-
- * status {
-
- *      message
-
- *      indicatesLimitedAvailability
-
- *      id
-
- *      expiresAt
-
- *      emojiHTML
-
- *      emoji
-
- *      createdAt
-
- *      updatedAt
-
- *      User
-
- *      Oganisation
-
- *      TopRepositories
-
- *      twitterUsername
-
- *      updatedAt
-
- *      url
-
- *      viewerCanChangePinnedItems
-
- *      viewerCanCreateProjects
-
- *      viewerCanFollow
-
- *      viewerCanSponsor
-
- *      viewerIsFollowing
-
- *      viewerIsSponsoring
-
- *      Watching
-
- *      websiteUrl
-
- */
+ * @defaultVariables
+ ** id
+ ** name
+ * @fields
+ ** anyPinnableItems(type: "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM")
+ ** avatarUrl
+ ** bio
+ ** bioHTML
+**  CommitComments
+**  company
+**  companyHTML
+**  ContributionCollection
+**  createdAt
+**  databaseId
+**  email
+**  Followers
+**  Following
+**  Gist
+**  GistComments
+**  Gists
+**  hasSponsorsListing
+**  hovercard(primarySubjectId: "") {
+   ** contexts {
+      ** message
+      ** octicon
+      ** onGenericHovercardContext
+      ** onOrganizationTeamsHovercardContext
+      ** onReviewStatusHovercardContext
+      **  onViewerHovercardContext
+   ** }
+** }
+**  interactionAbility {
+      ** expiresAt
+      ** limit
+      ** origin
+**  }
+**  isBountyHunter
+**  isCampusExpert
+**  isDeveloperProgramMember
+**  isEmployee
+**  isGitHubStar
+**  isHireable
+**  isSiteAdmin
+**  isSponsoredBy(accountLogin: "")
+**  isSponsoringViewer
+**  isViewer
+**  IssueComments
+**  Issues
+**  ItemShowcase
+**  location
+**  login
+**  Organisation
+**  organizationVerifiedDomainEmails(login: "")
+**  Organization
+**  Packages
+**  PinnableItems
+**  PinnedItemsRemaining  
+**  Project
+**  Projects
+**  projectsResourcePath
+**  projectsUrl
+**  PublicKeys
+**  PullRequests
+**  Repositories
+**  RepositoriesContributedTo
+**  Repo
+**  resourcePath
+**  SavedReplies
+**  SponsorListing
+**  SponsorshipForViewerAsSponsor
+**  SponsorshipsAsMaintainer
+**  SponsorshipsAsSponsor
+**  StarredRepositoriesonUser
+**  status {
+      ** message
+      ** indicatesLimitedAvailability
+      ** id
+      ** expiresAt
+      ** emojiHTML
+      ** emoji
+      ** createdAt
+      ** updatedAt
+      ** User
+      ** Oganisation
+** }
+** TopRepositories
+** twitterUsername
+** updatedAt
+** url
+** viewerCanChangePinnedItems
+** viewerCanCreateProjects
+** viewerCanFollow
+** viewerCanSponsor
+** viewerIsFollowing
+** viewerIsSponsoring
+** Watching
+** websiteUrl
+
+*/
 
 export const User = (fields: string) => `
    user {
@@ -200,16 +116,12 @@ export const User = (fields: string) => `
 * @description Github Graphql RelevantTeams
 * @defaultVariables totalCount
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
-* @fields Teams
-
-* pageInfo PageInfo
+** after string 
+** before string
+** first number
+** last number
+* @fields 
+** Teams
 */
 
 export const RelevantTeams = (params: queryVariables.BasicFields) => `
@@ -233,14 +145,12 @@ export const RelevantTeams = (params: queryVariables.BasicFields) => `
 * @description Github Graphql Followers
 * @defaultVariables totalCount
 *  @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-* @fields User
+** after string
+** before string
+** first number
+** last number
+* @fields
+** User
 */
 
 export const Followers = (params: queryVariables.BasicFields) => `
@@ -264,15 +174,12 @@ export const Followers = (params: queryVariables.BasicFields) => `
 * @description Github Graphql Following
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-* @fields User
-* pageInfo PageInfo
+** after string
+** before string
+** first number
+** last number
+* @fields 
+** User
 */
 
 export const Following = (params: queryVariables.BasicFields) => `
@@ -296,30 +203,23 @@ export const Following = (params: queryVariables.BasicFields) => `
 
 /**
 * @description Github Graphql EnterpriseUserAccount
-* @defaultVariables id name
-* @fields avatarUrl
-
-* createdAt
-
-* enterprise {
-   Enterprise
-* }
-
-* login
-
-* organizations {
-   Organizations
-* }
-
-* resourcePath
-
-* updatedAt
-
-* url
-
-* user {
-   User
-* }
+* @defaultVariables
+** id
+** name
+* @fields
+** avatarUrl
+** createdAt
+** enterprise {
+      ** Enterprise
+** }
+** login
+** Organizations
+** resourcePath
+** updatedAt
+** url
+** user {
+      ** User
+** }
 */
 
 export const EnterpriseUserAccount = (fields: string = '') => `
@@ -332,101 +232,55 @@ export const EnterpriseUserAccount = (fields: string = '') => `
 
 /**
 * @description Github Graphql OwnerInfo 
-* @fields Admins
-
-* AffiliatedUsersWithTwoFactorDisabled
-
-* affiliatedUsersWithTwoFactorDisabledExist
-
-* allowPrivateRepositoryForkingSetting
-
-* AllowPrivateRepositoryForkingSettingOrganizations
-
-* defaultRepositoryPermissionSetting
-
-* DefaultRepositoryPermissionSettingOrganizations
-
-* Domains
-
-* EnterpriseServerInstallations
-
-* ipAllowListEnabledSetting
-
-* IpAllowListEntries
-
-* isUpdatingDefaultRepositoryPermission
-
-* isUpdatingTwoFactorRequirement
-
-* membersCanChangeRepositoryVisibilitySetting
-
-* MembersCanChangeRepositoryVisibilitySettingOrganizations
-
-*  membersCanCreateInternalRepositoriesSetting
-
-* membersCanCreatePrivateRepositoriesSetting
-
-* membersCanCreatePublicRepositoriesSetting
-
-* membersCanCreateRepositoriesSetting
-
-* MembersCanCreateRepositoriesSettingOrganizations
-
-* membersCanDeleteIssuesSetting
-
-* MembersCanDeleteIssuesSettingOrganizations
-
-* membersCanDeleteRepositoriesSetting
-
-* MembersCanDeleteRepositoriesSettingOrganizations
-
-* membersCanInviteCollaboratorsSetting
-
-* MembersCanInviteCollaboratorsSettingOrganizations
-
-* membersCanMakePurchasesSetting
-
-* membersCanUpdateProtectedBranchesSetting
-
-* MembersCanUpdateProtectedBranchesSettingOrganizations
-
-* membersCanViewDependencyInsightsSetting
-
-* MembersCanViewDependencyInsightsSettingOrganizations
-
-* notificationDeliveryRestrictionEnabledSetting
-
-* organizationProjectsSetting
-
-* OrganizationProjectsSettingOrganizations
-
-* OutsideCollaborators
-
-* PendingAdminInvitations
-
-* PendingCollaboratorInvitations
-
-* PendingCollaborators
-
-* PendingMemberInvitations
-
-* repositoryProjectsSetting
-
-* RepositoryProjectsSettingOrganizations
-
-* SamlIdentityProvider
-
-* SamlIdentityProviderSettingOrganizations
-
-* SupportEntitlements
-
-* teamDiscussionsSetting
-
-* TeamDiscussionsSettingOrganizations
-
-* twoFactorRequiredSetting
-
-* TwoFactorRequiredSettingOrganizations
+* @fields
+** Admins
+** AffiliatedUsersWithTwoFactorDisabled
+** affiliatedUsersWithTwoFactorDisabledExist
+** allowPrivateRepositoryForkingSetting
+** AllowPrivateRepositoryForkingSettingOrganizations
+** defaultRepositoryPermissionSetting
+** DefaultRepositoryPermissionSettingOrganizations
+** Domains
+** EnterpriseServerInstallations
+** ipAllowListEnabledSetting
+** IpAllowListEntries
+** isUpdatingDefaultRepositoryPermission
+** isUpdatingTwoFactorRequirement
+** membersCanChangeRepositoryVisibilitySetting
+** MembersCanChangeRepositoryVisibilitySettingOrganizations
+** membersCanCreateInternalRepositoriesSetting
+** membersCanCreatePrivateRepositoriesSetting
+** membersCanCreatePublicRepositoriesSetting
+** membersCanCreateRepositoriesSetting
+** MembersCanCreateRepositoriesSettingOrganizations
+** membersCanDeleteIssuesSetting
+** MembersCanDeleteIssuesSettingOrganizations
+** membersCanDeleteRepositoriesSetting
+** MembersCanDeleteRepositoriesSettingOrganizations
+** membersCanInviteCollaboratorsSetting
+** MembersCanInviteCollaboratorsSettingOrganizations
+** membersCanMakePurchasesSetting
+** membersCanUpdateProtectedBranchesSetting
+** MembersCanUpdateProtectedBranchesSettingOrganizations
+** membersCanViewDependencyInsightsSetting
+** MembersCanViewDependencyInsightsSettingOrganizations
+** notificationDeliveryRestrictionEnabledSetting
+** organizationProjectsSetting
+** OrganizationProjectsSettingOrganizations
+** OutsideCollaborators
+** PendingAdminInvitations
+** PendingCollaboratorInvitations
+** PendingCollaborators
+** PendingMemberInvitations
+** repositoryProjectsSetting
+** RepositoryProjectsSettingOrganizations
+** SamlIdentityProvider
+** SamlIdentityProviderSettingOrganizations
+** SupportEntitlements
+** teamDiscussionsSetting
+** TeamDiscussionsSettingOrganizations
+** twoFactorRequiredSetting
+** TwoFactorRequiredSettingOrganizations
 
 */
 
@@ -439,24 +293,16 @@ export const OwnerInfo = (fields?: string) => `
 /**
 * @description Github Graphql Admins  
 * @defaultVariables totalCount
-* @queryArguments direction "ASC" | "DESC" 
-
-* orderBy "LOGIN" | "CREATED_AT"
-
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* query: string
-
-
-* @fields User
-
-* pageInfo PageInfo 
+* @queryArguments
+** direction "ASC" | "DESC" 
+** orderBy "LOGIN" | "CREATED_AT"
+** after string
+** before string
+** first number
+** last number
+** query: string
+* @fields 
+** User
 */
 
 export const Admins = (params: queryVariables.AdminFields) => `
@@ -478,18 +324,14 @@ export const Admins = (params: queryVariables.AdminFields) => `
 
 /**
 * @description Github Graphql AffiliatedUsersWithTwoFactorDisabled
-* @defaultVariables totalCount first = 10
+* @defaultVariables totalCount
 * @queryArguments
-* after string
-
-* before string
-
-* first number
-
-* last number
-* @fields User
-
-* pageInfo PageInfo
+** after string
+** before string
+** first number
+** last number
+* @fields
+** User
 */
 
 export const AffiliatedUsersWithTwoFactorDisabled = (params: queryVariables.BasicFields) => `
@@ -511,18 +353,14 @@ export const AffiliatedUsersWithTwoFactorDisabled = (params: queryVariables.Basi
 
 /**
 * @description Github Graphql AllowPrivateRepositoryForkingSettingOrganizations
-* @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
+* @defaultVariables totalCount
 * @queryArguments
-* after string
-
-* before string
-
-* first number
-
-* last number
-* @fields Organization
-
-* pageInfo PageInfo
+** after string
+** before string
+** first number
+** last number
+* @fields
+** Organization
 */
 
 export const AllowPrivateRepositoryForkingSettingOrganizations = (params: queryVariables.BasicFields) => `
@@ -543,18 +381,14 @@ export const AllowPrivateRepositoryForkingSettingOrganizations = (params: queryV
 
 /**
 * @description Github Graphql DefaultRepositoryPermissionSettingOrganizations
-* @defaultVariables totalCount query = "" orderBy = CREATED_AT direction = "ASC" role = MEMBER first = 10
+* @defaultVariables totalCount
 * @queryArguments
-* after string
-
-* before string
-
-* first number
-
-* last number
-* @fields Organization
-
-* pageInfo PageInfo
+** after string
+** before string
+** first number
+** last number
+* @fields
+** Organization
 */
 
 export const DefaultRepositoryPermissionSettingOrganizations = (params: queryVariables.BasicFields) => `
@@ -575,34 +409,22 @@ export const DefaultRepositoryPermissionSettingOrganizations = (params: queryVar
 
 /**
 * @description Github Graphql EnterpriseServerInstallations
-* @defaultVariables totalCount first = 10
+* @defaultVariables totalCount
 * @queryArguments
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* connectedOnly boolean
-
+** after string
+** before string
+** first number
+** last number
+** connectedOnly boolean
 * @fields 
-* UserAccounts
-
-* UserAccountsUploads
-
-* createdAt
-
-* customerName
-
-* hostName
-
-* id
-
-* isConnected
-
-* updatedAt
+** UserAccounts
+** UserAccountsUploads
+** createdAt
+** customerName
+** hostName
+** id
+** isConnected
+** updatedAt
 
 */
 
@@ -624,39 +446,24 @@ export const EnterpriseServerInstallations = (params: queryVariables.EnterpriseS
 
 /**
 * @description Github Graphql UserAccounts
-* @defaultVariables totalCount first = 10
+* @defaultVariables totalCount
 * @queryArguments
-* after string
-
-* before string
-
-* first number
-
-* last number
-
+** after string
+** before string
+** first number
+** last number
 * @fields 
-* email
-
-* enterpriseServerInstallation
-
-* organization
-
-* createdAt
-
-* id
-
-* isSiteAdmin
-
-* login
-
-* profileName
-
-* remoteCreatedAt
-
-* remoteUserId
-
-* updatedAt
-
+** email
+** enterpriseServerInstallation
+** organization
+** createdAt
+** id
+** isSiteAdmin
+** login
+** profileName
+** remoteCreatedAt
+** remoteUserId
+** updatedAt
 */
 
 export const UserAccounts = (params: queryVariables.UserAccounts) => `
@@ -680,28 +487,18 @@ export const UserAccounts = (params: queryVariables.UserAccounts) => `
 * @description Github Graphql Emails
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "EMAIL"
-
+** after string
+** before string
+** first number
+** last number
+** orderBy "EMAIL"
 * @fields 
-* createdAt
-
-* email
-
-* id
-
-* isPrimary
-
-* updatedAt
-
-* UserAccount
+** createdAt
+** email
+** id
+** isPrimary
+** updatedAt
+** UserAccount
 
 */
 
@@ -725,17 +522,13 @@ export const Emails = (params: queryVariables.Emails) => `
 /**
 * @description Github Graphql EnterpriseServerInstallation
 * @defaultVariables totalCount 
-* @arguments direction "ASC" | "DESC" 
-
-* first 10
-
 * @fields
-* createdAt
-* customerName
-* hostName
-* id
-* isConnected
-* UserAccounts
+** createdAt
+** customerName
+** hostName
+** id
+** isConnected
+** UserAccounts
 */
 
 export const EnterpriseServerInstallation = (fields?: string) => `
@@ -748,30 +541,19 @@ export const EnterpriseServerInstallation = (fields?: string) => `
 * @description Github Graphql UserAccountsUploads
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "EMAIL"
-
-* direction  "ASC" | "DESC"
-
+** after string
+** before string
+** first number
+** last number
+** orderBy "EMAIL"
+** direction  "ASC" | "DESC"
 * @fields 
-* createdAt
-
-* EnterpriseServerInstallation
-
-* id
-
-* name
-
-* syncState
-
-* updatedAt
+** createdAt
+** EnterpriseServerInstallation
+** id
+** name
+** syncState
+** updatedAt
 
 */
 
@@ -794,34 +576,21 @@ export const UserAccountsUploads = (params: queryVariables.Emails) => `
 
 /**
 * @description Github Graphql IpAllowListEntries
-* @defaultVariables totalCount 
-   direction = "ASC" 
-   first = 10
+* @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "ALLOW_LIST_VALUE"
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "ALLOW_LIST_VALUE"
 * @fields 
-* allowListValue
-
-* createdAt
-
-* id
-
-* isActive
-
-* name
-
-* Owner
-
-* updatedAt
-
+** allowListValue
+** createdAt
+** id
+** isActive
+** name
+** Owner
+** updatedAt
 */
 
 export const IpAllowListEntries = (params: queryVariables.IpAllowListEntries) => `
@@ -845,19 +614,14 @@ export const IpAllowListEntries = (params: queryVariables.IpAllowListEntries) =>
 * @description Github Graphql MembersCanChangeRepositoryVisibilitySettingOrganizations
 * @defaultVariables totalCount 
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* value boolean
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "LOGIN"
+** value boolean
 * @fields  
-* Organization
+** Organization
 */
 
 export const MembersCanChangeRepositoryVisibilitySettingOrganizations = (params: queryVariables.Member) => `
@@ -880,19 +644,14 @@ export const MembersCanChangeRepositoryVisibilitySettingOrganizations = (params:
 * @description Github Graphql MembersCanCreateRepositoriesSettingOrganizations
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* value "ALL" | "PRIVATE" | "DISABLED"
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "LOGIN"
+** value "ALL" | "PRIVATE" | "DISABLED"
 * @fields 
-* Organization
+** Organization
 */
 
 export const MembersCanCreateRepositoriesSettingOrganizations = (params: queryVariables.MembersCanCreateRepositoriesSettingOrganizations) => `
@@ -916,19 +675,14 @@ export const MembersCanCreateRepositoriesSettingOrganizations = (params: queryVa
 * @description Github Graphql MembersCanDeleteIssuesSettingOrganizations
 * @defaultVariables totalCount 
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* value boolean
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "LOGIN"
+** value boolean
 * @fields  
-* Organization
+** Organization
 */
 
 export const MembersCanDeleteIssuesSettingOrganizations = (params: queryVariables.Member) => `
@@ -952,19 +706,14 @@ export const MembersCanDeleteIssuesSettingOrganizations = (params: queryVariable
 * @description Github Graphql MembersCanDeleteRepositoriesSettingOrganizations
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* value boolean
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "LOGIN"
+** value boolean
 * @fields
-* Organization
+** Organization
 */
 
 export const MembersCanDeleteRepositoriesSettingOrganizations = (params: queryVariables.Member) => `
@@ -988,19 +737,14 @@ export const MembersCanDeleteRepositoriesSettingOrganizations = (params: queryVa
 * @description Github Graphql MembersCanInviteCollaboratorsSettingOrganizations
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* value boolean
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "LOGIN"
+** value boolean
 * @fields 
-* Organization
+** Organization
 */
 
 export const MembersCanInviteCollaboratorsSettingOrganizations = (params: queryVariables.Member) => `
@@ -1023,55 +767,45 @@ export const MembersCanInviteCollaboratorsSettingOrganizations = (params: queryV
 * @description Github Graphql MembersCanUpdateProtectedBranchesSettingOrganizations
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* value boolean
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "LOGIN"
+** value boolean
 * @fields 
-* Organization
+** Organization
 */
 
 export const MembersCanUpdateProtectedBranchesSettingOrganizations = (params: queryVariables.Member) => `
- membersCanUpdateProtectedBranchesSettingOrganizations(value: ${params.value}, first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}) {
-     edges {
-       cursor
-       node {
-          ${params.fields}
-       }
-    }
+   membersCanUpdateProtectedBranchesSettingOrganizations(value: ${params.value}, first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}) {
+      edges {
+         cursor
+         node {
+            ${params.fields}
+         }
+      }
 
-    nodes {
-       ${params.fields}  
-    }
-    ${params.pageInfo ? params.pageInfo : ""}
-    totalCount
- }
+      nodes {
+         ${params.fields}  
+      }
+      ${params.pageInfo ? params.pageInfo : ""}
+      totalCount
+   }
 `
 
 /**
 * @description Github Graphql MembersCanViewDependencyInsightsSettingOrganizations
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* value boolean
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "LOGIN"
+** value boolean
 * @fields 
-* Organization
+** Organization
 */
 
 export const MembersCanViewDependencyInsightsSettingOrganizations = (params: queryVariables.Member) => `
@@ -1095,20 +829,14 @@ export const MembersCanViewDependencyInsightsSettingOrganizations = (params: que
 * @description Github Graphql OrganizationProjectsSettingOrganizations
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* value boolean
-
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "LOGIN"
+** value boolean
 * @fields 
-* Organization
+** Organization
 */
 
 export const OrganizationProjectsSettingOrganizations = (params: queryVariables.Member) => `
@@ -1132,23 +860,16 @@ export const OrganizationProjectsSettingOrganizations = (params: queryVariables.
 * @description Github Graphql OutsideCollaborators
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* login string
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* query string
-
-* visibility "PRIVATE" | "PUBLIC" | "INTERNAL"
-* @fields 
-* User
+** after string
+** before string
+** first number
+** last number
+** login string
+** orderBy "CREATED_AT" | "LOGIN"
+** query string
+** visibility "PRIVATE" | "PUBLIC" | "INTERNAL"
+* @fields
+** User
 */
 
 export const OutsideCollaborators = (params: queryVariables.Collaborators) => `
@@ -1172,27 +893,18 @@ export const OutsideCollaborators = (params: queryVariables.Collaborators) => `
 * @description Github Graphql PendingAdminInvitations
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* login string
-
-* orderBy "CREATED_AT" | "LOGIN"
-
-* direction "ASC" | "DESC"
-
-* query string
-
-* role "OWNER" | "BILLING_MANAGER"
-
+** after string
+** before string
+** first number
+** last number
+** login string
+** orderBy "CREATED_AT" | "LOGIN"
+** direction "ASC" | "DESC"
+** query string
+** role "OWNER" | "BILLING_MANAGER"
 * @fields
-* Invitation
-* */
+** Invitation
+*/
 
 export const PendingAdminInvitations = (params: queryVariables.Invitations) => `
  pendingAdminInvitations(query: ${params.query} ${params.visibility ? `, ${params.visibility}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} first: ${params.first} ${params.last ? `, last: ${params.last}` : ""}, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}
@@ -1216,26 +928,17 @@ export const PendingAdminInvitations = (params: queryVariables.Invitations) => `
 * @description Github Graphql PendingCollaboratorInvitations
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* login string
-
-* orderBy "CREATED_AT" | "INVITEE_LOGIN"
-
-* direction "ASC" | "DESC"
-
-* query string
-
-* role "OWNER" | "BILLING_MANAGER"
-
+** after string
+** before string
+** first number
+** last number
+** login string
+** orderBy "CREATED_AT" | "INVITEE_LOGIN"
+** direction "ASC" | "DESC"
+** query string
+** role "OWNER" | "BILLING_MANAGER"
 * @fields
-* Invitation
+** Invitation
 */
 
 export const PendingCollaboratorInvitations = (params: queryVariables.Collaborators) => `
@@ -1259,26 +962,17 @@ export const PendingCollaboratorInvitations = (params: queryVariables.Collaborat
 * @description Github Graphql PendingCollaborators
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* login string
-
-* orderBy "CREATED_AT" | "INVITEE_LOGIN"
-
-* direction "ASC" | "DESC"
-
-* query string
-
-* role "OWNER" | "BILLING_MANAGER"
-
+** after string
+** before string
+** first number
+** last number
+** login string
+** orderBy "CREATED_AT" | "INVITEE_LOGIN"
+** direction "ASC" | "DESC"
+** query string
+** role "OWNER" | "BILLING_MANAGER"
 * @fields
-* Invitation
+** Invitation
 */
 
 export const PendingCollaborators = (params: queryVariables.Invitations) => `
@@ -1302,26 +996,17 @@ export const PendingCollaborators = (params: queryVariables.Invitations) => `
 * @description Github Graphql PendingMemberInvitations
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* login string
-
-* orderBy "CREATED_AT" | "INVITEE_LOGIN"
-
-* direction "ASC" | "DESC"
-
-* query string
-
-* role "OWNER" | "BILLING_MANAGER"
-
+** after string
+** before string
+** first number
+** last number
+** login string
+** orderBy "CREATED_AT" | "INVITEE_LOGIN"
+** direction "ASC" | "DESC"
+** query string
+** role "OWNER" | "BILLING_MANAGER"
 * @fields
-* Invitation
+** Invitation
 */
 
 export const PendingMemberInvitations = (params: queryVariables.Invitations) => `
@@ -1346,26 +1031,17 @@ export const PendingMemberInvitations = (params: queryVariables.Invitations) => 
 * @description Github Graphql AssignableUsers
 * @defaultVariables totalCount
 * @queryArguments 
-* affiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
-
-* ownerAffiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
-
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* isFork boolean
-
-* isLocked boolean
-
-* privacy "PUBLIC" | "PRIVATE"
-
+** affiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
+** ownerAffiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
+** after string
+** before string
+** first number
+** last number
+** isFork boolean
+** isLocked boolean
+** privacy "PUBLIC" | "PRIVATE"
 * @fields
-* User
+** User
 */
 
 export const AssignableUsers = (params: queryVariables.AdminFields) => `
@@ -1392,24 +1068,15 @@ export const AssignableUsers = (params: queryVariables.AdminFields) => `
 * @description Github Graphql Owner
 * @defaultVariables id
 * @fields 
-*  avatarUrl
-
-*  login
-
-*  resourcePath
-
-*  url
-
-*  onEnterpriseUserAccount
-
-*  onOrganazation
-
-*  onUser
-
-*  onMannequin
-
-*  onBot
-
+** avatarUrl
+** login
+** resourcePath
+** url
+** onEnterpriseUserAccount
+** onOrganazation
+** onUser
+** onMannequin
+** onBot
 */
 
 export const Owner = (fields?: string) => `
@@ -1420,18 +1087,15 @@ export const Owner = (fields?: string) => `
 
 /**
 * @description Github Graphql Author
-* @defaultVariables totalCount first = 10
-* @queryArguments direction "ASC" | "DESC"
-* after string
-
-* before string
-
-* first number
-
-* last number
-* 
+* @defaultVariables totalCount
+* @queryArguments 
+** direction "ASC" | "DESC"
+** after string
+** before string
+** first number
+** last number
 * @fields 
-* Owner
+** Owner
 */
 
 export const Authors = (params: queryVariables.BasicFields) => `
@@ -1455,23 +1119,15 @@ export const Authors = (params: queryVariables.BasicFields) => `
 * @description Github Graphql Editor
 * @defaultVariables login
 * @fields 
-* avatarUrl
-
-* login
-
-* resourcePath
-
-* url
-
-* onEnterpriseUserAccount
-
-* onOrganazation
-
-* onUser
-
-* onMannequin
-
-* onBot
+** avatarUrl
+** login
+** resourcePath
+** url
+** onEnterpriseUserAccount
+** onOrganazation
+** onUser
+** onMannequin
+** onBot
 */
 
 export const Editor = (fields?: string) => `
@@ -1485,38 +1141,24 @@ export const Editor = (fields?: string) => `
 
 /**
 * @description Github Graphql UserContentEdits  
-* @defaultVariables totalCount 
-   first = 10
+* @defaultVariables totalCount
 * @queryArguments direction "ASC" | "DESC" 
-
-* after string
-
-* before string
-
-* first number
-
-* last number
-* 
+** after string
+** before string
+** first number
+** last number
 * @fields 
-* createdAt
-
-* deletedAt
-
-* deletedBy {
-    Owner
-* }
-* diff
-
-* editedAt
-
-* Editor
-
-* id
-
-* updatedAt
+** createdAt
+** deletedAt
+** deletedBy {
+    ** Owner
+** }
+** diff
+** editedAt
+** Editor
+** id
+** updatedAt
 */
-
-
 
 export const UserContentEdits = (params: queryVariables.BasicFields) => `
  userContentEdits(first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
@@ -1539,21 +1181,15 @@ export const UserContentEdits = (params: queryVariables.BasicFields) => `
 /**
 * @description Github Graphql ItemShowcase  
 * @defaultVariables totalCount 
-   hasPinnedItems
+** hasPinnedItems
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
+** after string
+** before string
+** first number
+** last number
 * @fields 
-
-* onGist
-
-* onRespository	
+** onGist
+** onRespository	
 */
 
 export const ItemShowcase = (params: queryVariables.BasicFields) => `
@@ -1578,18 +1214,13 @@ export const ItemShowcase = (params: queryVariables.BasicFields) => `
 * @description Github Graphql MentionableUsers  
 * @defaultVariables totalCount 
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* query string
-
+** after string
+** before string
+** first number
+** last number
+** query string
 * @fields 
-*  User
+**  User
 */
 
 export const MentionableUsers = (params: queryVariables.Query) => `
@@ -1612,103 +1243,67 @@ export const MentionableUsers = (params: queryVariables.Query) => `
 /**
 * @description Github Graphql Packages  
 * @defaultVariables totalCount 
-
-* id
-
-* name
-
-* packageType
-
-* statistics
-
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT"
-
-* names string
-
-* packageType "NPM" | "RUBYGEMS" | "MAVEN" | "DOCKER" | "DEBIAN" | "NUGET" | "PYPI"
-
-* repositoryId string
-
+** after string
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT"
+** names string
+** packageType "NPM" | "RUBYGEMS" | "MAVEN" | "DOCKER" | "DEBIAN" | "NUGET" | "PYPI"
+** repositoryId string
 * @fields 
-* LatestVersion
-
-* Repository
-
-* Version
-
-* Versions
+** LatestVersion
+** Repository
+** Version
+** Versions
 
 */
 
 export const Packages = (params: queryVariables.Packages) => `
  	packages(first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
-     edges {
-       cursor
-       node {
-			id
-			name
-			packageType
-			statistics {
-				downloadsTotalCount
-			}
-          	${params.fields}
-       }
-    }
-    nodes {
-		id
-        name
-        packageType
-		statistics {
-			downloadsTotalCount
-		}
-       	${params.fields}  
-    }
-	${params.pageInfo ? params.pageInfo : ""}
-    totalCount
- }
+      edges {
+         cursor
+         node {
+            ${params.fields}
+         }
+      }
+      nodes {
+      ${params.fields}  
+      }
+	   ${params.pageInfo ? params.pageInfo : ""}
+      totalCount
+   }
 `
 
 /**
 * @description Github Graphql Version
 * @defaultVariables id statistics
 * @fields
-* Files
-
-* Package
-
-* plaform
-
-* preRelease
-
-* readme
-
-* Release
-
-* summary
-
-* version
+** Files
+** Package
+** plaform
+** preRelease
+** readme
+** Release
+** summary
+** version
 */
 
 export const Version = (fields: string) => `
-	id
-	statistics {
-		downloadsTotalCount
-	}
-	${fields}
+   version {
+      id
+      statistics {
+         downloadsTotalCount
+      }
+      ${fields}
+   }
 `
 
 /**
 * @description Github Graphql LatestVersion
-* @fields Version
+* @fields 
+** Version
 */
 export const LatestVersion = (fields: string) => `
 	latestVersion {
@@ -1719,15 +1314,12 @@ export const LatestVersion = (fields: string) => `
 /**
 * @description Github Graphql Versions
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* @fields Version
+** after string
+** before string
+** first number
+** last number
+* @fields 
+** Version
 
 */
 export const Versions = (params: queryVariables.BasicFields) => `
@@ -1737,13 +1329,12 @@ export const Versions = (params: queryVariables.BasicFields) => `
 			node {
 			   ${params.fields}
 			}
-		 }
-	 
-		 nodes {
+		}
+		nodes {
 			${params.fields}  
-			${params.pageInfo ? params.pageInfo : ""}
-		 }
-		 totalCount
+		}
+		${params.pageInfo ? params.pageInfo : ""}
+		totalCount
 	}
 `
 
@@ -1753,54 +1344,43 @@ export const Versions = (params: queryVariables.BasicFields) => `
 * @description Github Graphql RepositoryProjectsSettingOrganizations
 * @defaultVariables totalCount 
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* query string
-
+** after string
+** before string
+** first number
+** last number
+** query string
 * @fields 
-* User
+** User
 */
 
 export const RepositoryProjectsSettingOrganizations = (value: boolean = false, params: queryVariables.Query) => `
- repositoryProjectsSettingOrganizations(value: ${value}, first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
-     edges {
-       cursor
-       node {
-          ${params.fields}
-       }
-    }
-
-    nodes {
-       ${params.fields}  
-	   ${params.pageInfo ? params.pageInfo : ""}
-    }
-    totalCount
- }
+   repositoryProjectsSettingOrganizations(value: ${value}, first: ${params.first} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+      edges {
+         cursor
+         node {
+            ${params.fields}
+         }
+      }
+      nodes {
+         ${params.fields}  
+      }
+      ${params.pageInfo ? params.pageInfo : ""}
+      totalCount
+   }
 `
 
 /**
 * @description Github Graphql PinnableItems
 * @defaultVariables totalCount 
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* types "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM"
+** after string
+** before string
+** first number
+** last number
+** types "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM"
 * @fields 
-* onGist
-
-* onRepository
+** onGist
+** onRepository
 */
 
 export const PinnableItems = (params: queryVariables.PinItems) => `
@@ -1814,8 +1394,8 @@ export const PinnableItems = (params: queryVariables.PinItems) => `
 
 		nodes {
 			${params.fields}  
-			${params.pageInfo ? params.pageInfo : ""}
 		}
+		${params.pageInfo ? params.pageInfo : ""}
 		totalCount
  	}
 `
@@ -1824,19 +1404,14 @@ export const PinnableItems = (params: queryVariables.PinItems) => `
 * @description Github Graphql PinnedItems
 * @defaultVariables totalCount 
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* type "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM"
+** after string
+** before string
+** first number
+** last number
+** type "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM"
 * @fields 
-* onGist
-
-* onRepository
+** onGist
+** onRepository
 */
 
 export const PinnedItems = (params: queryVariables.PinItems) => `
@@ -1847,11 +1422,10 @@ export const PinnedItems = (params: queryVariables.PinItems) => `
 				${params.fields}
 			}
 		}
-
 		nodes {
 			${params.fields}  
-			${params.pageInfo ? params.pageInfo : ""}
 		}
+		${params.pageInfo ? params.pageInfo : ""}
 		totalCount
  	}
 `
@@ -1860,21 +1434,15 @@ export const PinnedItems = (params: queryVariables.PinItems) => `
 * @description Github Graphql SamlIdentityProvider
 * @defaultVariables id
 * @fields
-* digestMethod
-
-* externalIdentities {
+** digestMethod
+** externalIdentities {
      ExternalIdentities
-* }
-
-* idpCertificate
-
-* issuer
-
-* recoveryCodes
-
-* signatureMethod
-
-* ssoUrl
+** }
+** idpCertificate
+** issuer
+** recoveryCodes
+** signatureMethod
+** ssoUrl
 */
 
 export const SamlIdentityProvider = (fields: string) => `
@@ -1888,21 +1456,16 @@ export const SamlIdentityProvider = (fields: string) => `
 * @description Github Graphql Identity
 * @defaultVariables givenName
 * @fields
-* emails {
-     primary
-     type
-     value
-* }
-
-* familyName
-
-* givenName
-
-* groups
-
-* nameId
-
-* username
+** emails {
+     ** primary
+     ** type
+     ** value
+** }
+** familyName
+** givenName
+** groups
+** nameId
+** username
 */
 
 export const Identity = (fields: string) => `
@@ -1917,41 +1480,28 @@ export const Identity = (fields: string) => `
 * @description Github Graphql ExternalIdenty
 * @defaultVariables id
 * @fields
-* digestMethod
-
-* externalIdentities {
-     guid
-
-     id
-
-     organizationInvitation {
-       Invitation
-     }
-
-     scimIdentity {
-
-       Identity
-     }
-
-     scimIdentity {
-       Identity
-     }
-
-     user {
-       User
-     }
-* }
-
-* idpCertificate
-
-* issuer
-
-* recoveryCodes
-
-* signatureMethod
-
-* ssoUrl
-
+** digestMethod
+** externalIdentities {
+     ** guid
+     ** id
+     ** organizationInvitation {
+       ** Invitation
+     ** }
+     ** scimIdentity {
+         ** Identity
+     ** }
+     ** scimIdentity {
+      ** Identity
+     ** }
+     ** user {
+         ** User
+     ** }
+** }
+** idpCertificate
+** issuer
+** recoveryCodes
+** signatureMethod
+** ssoUrl
 */
 
 export const ExternalIdenty = (fields: string) => `
@@ -1965,16 +1515,12 @@ export const ExternalIdenty = (fields: string) => `
 * @description Github Graphql ExternalIdentities
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
+** after string
+** before string
+** first number
+** last number
 * @fields 
-* ExternalIdenty
+** ExternalIdenty
 */
 
 export const ExternalIdentities = (params: queryVariables.BasicFields) => `
@@ -1997,19 +1543,14 @@ export const ExternalIdentities = (params: queryVariables.BasicFields) => `
 /**
 * @description Github Graphql SamlIdentityProviderSettingOrganizations
 * @defaultVariables totalCount 
-   first = 10
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* value "ENFORCED" | "CONFIGURED" | "UNCONFIGURED"
+** after string
+** before string
+** first number
+** last number
+** value "ENFORCED" | "CONFIGURED" | "UNCONFIGURED"
 * @fields
-* Organization
+** Organization
 */
 
 export const SamlIdentityProviderSettingOrganizations = (value: string, params: queryVariables.BasicFields) => `
@@ -2033,22 +1574,15 @@ export const SamlIdentityProviderSettingOrganizations = (value: string, params: 
 * @description Github Graphql SupportEntitlements  
 * @defaultVariables totalCount 
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "LOGIN" | "CREATED_AT"
-
-* direction "ASC" | "DESC"
-
+** after string
+** before string
+** first number
+** last number
+** orderBy "LOGIN" | "CREATED_AT"
+** direction "ASC" | "DESC"
 * @fields
-* onEnterpriseUserAccount
-
-* onUser
+** onEnterpriseUserAccount
+** onUser
 */
 
 
@@ -2072,20 +1606,14 @@ export const SupportEntitlements = (params: queryVariables.Login) => `
 * @description Github Graphql TeamDiscussionsSettingOrganizations
 * @defaultVariables totalCount 
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "LOGIN" | "CREATED_AT"
-
-* direction "ASC" | "DESC"
-
+** after string
+** before string
+** first number
+** last number
+** orderBy "LOGIN" | "CREATED_AT"
+** direction "ASC" | "DESC"
 * @fields
-* Organization
+** Organization
 */
 
 
@@ -2110,21 +1638,15 @@ export const TeamDiscussionsSettingOrganizations = (value: boolean = false, para
 * @description Github Graphql TwoFactorRequiredSettingOrganizations
 * @defaultVariables totalCount 
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* value boolean
-
-* orderBy "LOGIN" | "CREATED_AT"
-
-* direction "ASC" | "DESC"
+** after string
+** before string
+** first number
+** last number
+** value boolean
+** orderBy "LOGIN" | "CREATED_AT"
+** direction "ASC" | "DESC"
 * @fields 
-* Organization
+** Organization
 */
 
 
@@ -2147,111 +1669,66 @@ export const TwoFactorRequiredSettingOrganizations = (value: boolean, params: qu
 /**
 * @description Github Graphql Contribution
 * @queryArguments 
-* from string
-
-* organizationID string
-
-* to string
-
+** from string
+** organizationID string
+** to string
 * @fields
-* CommitContributionsByRepository
-
-* ContributionCalendar
-
-* contributionYears
-
-* doesEndInCurrentMonth
-
-* earliestRestrictedContributionDate
-
-* endedAt
-
-* firstIssueContribution {
-   onCreatedIssueContribution
-   onRestrictedContribution
-}
-
-* firstPullRequestContribution {
-   onCreatedPullRequestContribution
-   onRestrictedContribution
-}
-
-* firstRepositoryContribution {
-   onCreatedRepositoryContribution
-   onRestrictedContribution
-}
-
-* hasActivityInThePast
-
-* hasAnyContributions
-
-* hasAnyRestrictedContributions
-
-* isSingleDay
-
-* IssueContributions
-
-* IssueContributionsByRepository
-
-* latestRestrictedContributionDate
-
-* mostRecentCollectionWithActivity {
-   ContributionsCollection
-}
-
-* mostRecentCollectionWithoutActivity {
-   ContributionsCollection
-}
-
-* popularIssueContribution {
-
-   IssueContribution
-
-}
-
-* popularPullRequestContribution {
-
-   PopularPullRequestContribution
-
-}
-
-* PullRequestContributions
-
-* PullRequestContributionsByRepository
-
-* PullRequestReviewContributions
-
-* PullRequestReviewContributionsByRepository
-
-* RepositoryContributions
-
-* restrictedContributionsCount
-
-* startedAt
-
-* totalCommitContributions
-
-* totalIssueContributions(excludeFirst: boolean, excludePopular: boolean)
-
-* totalPullRequestContributions(excludeFirst: boolean, excludePopular: boolean)
-
-* totalPullRequestReviewContributions
-
-* totalRepositoriesWithContributedCommits
-
-* totalRepositoriesWithContributedIssues(excludeFirst: boolean, excludePopular: boolean)
-
-* totalRepositoriesWithContributedPullRequestReviews
-
-* totalRepositoriesWithContributedPullRequests(excludeFirst: boolean, excludePopular: boolean)
-
-* totalRepositoryContributions(excludeFirst: boolean)
-
-* user {
-
-   User
-
-}
+** CommitContributionsByRepository
+** ContributionCalendar
+** contributionYears
+** doesEndInCurrentMonth
+** earliestRestrictedContributionDate
+** endedAt
+** firstIssueContribution {
+      ** onCreatedIssueContribution
+      ** onRestrictedContribution
+** }
+** firstPullRequestContribution {
+      ** onCreatedPullRequestContribution
+      ** onRestrictedContribution
+** }
+** firstRepositoryContribution {
+      ** onCreatedRepositoryContribution
+      ** onRestrictedContribution
+** }
+** hasActivityInThePast
+** hasAnyContributions
+** hasAnyRestrictedContributions
+** isSingleDay
+** IssueContributions
+** IssueContributionsByRepository
+** latestRestrictedContributionDate
+** mostRecentCollectionWithActivity {
+      ** ContributionsCollection
+** }
+** mostRecentCollectionWithoutActivity {
+      ** ContributionsCollection 
+** }
+** popularIssueContribution {
+      ** IssueContribution
+** }
+** popularPullRequestContribution {
+      ** PopularPullRequestContribution
+** }
+** PullRequestContributions
+** PullRequestContributionsByRepository
+** PullRequestReviewContributions
+** PullRequestReviewContributionsByRepository
+** RepositoryContributions
+** restrictedContributionsCount
+** startedAt
+** totalCommitContributions
+** totalIssueContributions(excludeFirst: boolean, excludePopular: boolean)
+** totalPullRequestContributions(excludeFirst: boolean, excludePopular: boolean)
+** totalPullRequestReviewContributions
+** totalRepositoriesWithContributedCommits
+** totalRepositoriesWithContributedIssues(excludeFirst: boolean, excludePopular: boolean)
+** totalRepositoriesWithContributedPullRequestReviews
+** totalRepositoriesWithContributedPullRequests(excludeFirst: boolean, excludePopular: boolean)
+** totalRepositoryContributions(excludeFirst: boolean)
+** user {
+      ** User
+** }
 */
 
 export const Contribution = (fields: string) => `
@@ -2263,9 +1740,9 @@ export const Contribution = (fields: string) => `
 /**
 * @description Github Graphql ContributionsCollection
 * @queryArguments 
-* maxRepositories number
+** maxRepositories number
 * @fields
-* Contribution
+** Contribution
 */
 export const ContributionsCollection = (fields: string, from?: string, organizationID?: string, to?: string) => `
    contributionsCollection${from || organizationID || to ? `(${from ? `from: ${from},` : ""} ${organizationID ? `organizationID: ${organizationID},` : ""} ${to ? `$to: ${to},` : ""})` : ""}{
@@ -2276,17 +1753,13 @@ export const ContributionsCollection = (fields: string, from?: string, organizat
 /**
 * @description Github Graphql CommitContributionsByRepository
 * @queryArguments 
-* maxRepositories number
+** maxRepositories number
 * @fields
-* CommitContributionsByRepository
-
-* Contributions
-
-* Repository
-
-* resourcePath
-
-* url
+** CommitContributionsByRepository
+** Contributions
+** Repository
+** resourcePath
+** url
 */
 
 export const CommitContributionsByRepository = (fields: string, maxRepositories?: number) => `
@@ -2298,34 +1771,22 @@ export const CommitContributionsByRepository = (fields: string, maxRepositories?
 /**
 * @description Github Graphql CommitContributionsByRepository
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "OCCURRED_AT" | "COMMIT_COUNT"
-
-* direction: "ASC" | "DESC"
-
+** after string
+** before string
+** first number
+** last number
+** orderBy "OCCURRED_AT" | "COMMIT_COUNT"
+** direction: "ASC" | "DESC"
 * @fields
-* commitCount
-
-* isRestricted
-
-* occurredAt
-
-* Repository
-
-* resourcePath
-
-* url
-
-* user {
-   User
-}
+** commitCount
+** isRestricted
+** occurredAt
+** Repository
+** resourcePath
+** url
+** user {
+      ** User
+** }
 */
 
 export const Contributions = (params: queryVariables.CommitContributionsByRepository) => `
@@ -2346,133 +1807,120 @@ export const Contributions = (params: queryVariables.CommitContributionsByReposi
 `
 /**
 * @description Github Graphql ContributionCalendar
+* @fields
+** colors
+** isHalloween
+** totalContributions
+** months {
+      ** firstDay
+      ** name
+      ** totalWeeks
+      ** year
+** }
+** weeks {
+      ** firstDay
+      ** contributionDays {
+         ** color
+         ** contributionCount
+         ** contributionLevel
+         ** date
+         ** weekday
+      ** }
+** }
 */
 
-export const ContributionCalendar = () => `
+export const ContributionCalendar = (fields: string = "") => `
    contributionCalendar {
-      colors
-      isHalloween
-      totalContributions
-      months {
-         firstDay
-         name
-         totalWeeks
-         year
-      }
-      weeks {
-         contributionDays {
-            color
-            contributionCount
-            contributionLevel
-            date
-            weekday
-         }
-         firstDay
-      }
+      ${fields}
    }
 `
 
 /**
 * @description Github Graphql IssueContribution
-* @fields isRestricted
-* issue {
-   Issue
-}
-* occurredAt
-
-* resourcePath
-
-* url
-
-* user {
-   User
-}
+* @fields 
+** isRestricted
+** issue {
+      ** Issue
+** }
+** occurredAt
+** resourcePath
+** url
+** user {
+      ** User
+** }
 */
 
 export const IssueContribution = (fields: string) => `
-   ${fields}
+   issueContribution {
+      ${fields}
+   }
 `
 
 /**
 * @description Github Graphql PopularPullRequestContribution 
-* @fields isRestricted
-
-* occurredAt
-
-* pullRequest {
-   PullRequest
-}
-* resourcePath
-
-* url
-
-* user {
-   User
-}
+* @fields 
+** isRestricted
+** occurredAt
+** pullRequest {
+      ** PullRequest
+** }
+** resourcePath
+** url
+** user {
+      ** User
+** }
 */
 
 export const PopularPullRequestContribution = (fields: string) => `
-   ${fields}
+   popularPullRequestContribution {
+      ${fields}
+   }
 `
 
 /**
 * @description Github Graphql onCreatedPullRequestContribution 
 * @fields 
-* isRestricted
-
-* occurredAt
-
-* pullRequest {
-
-   PullRequest
-
-}
-* resourcePath
-
-* url
-
-* user {
-   User
-}
+** isRestricted
+** occurredAt
+** pullRequest {
+      ** PullRequest
+** }
+** resourcePath
+** url
+** user {
+      ** User
+** }
 */
 
 
 export const PullRequestContribution = (fields: string) => `
-   ${fields}
+   pullRequestContribution{
+      ${fields}
+   }
 `
 
 /**
 * @description Github Graphql IssueContributions
 * @defaultVariables totalCount
 * @queryArguments 
-* after string
-
-* before string
-
-* first number
-
-* last number
-
-* excludeFirst boolean
-
-* excludePopular boolean
-
-* direction "ASC" | "DESC"
+** after string
+** before string
+** first number
+** last number
+** excludeFirst boolean
+** excludePopular boolean
+** direction "ASC" | "DESC"
 * @fields 
-* isRestricted
-
-* occurredAt
-
-* issue {
-   Issue
-}
-* resourcePath
-
-* url
-
-* user {
-   User
-}
+** isRestricted
+** occurredAt
+** issue {
+   ** Issue
+** }
+** resourcePath
+** url
+** user {
+   ** User
+** }
 */
 
 
@@ -2496,14 +1944,14 @@ export const IssueContributions = (params: queryVariables.Contributions) => `
 /**
 * @description Github Graphql IssueContributionsByRepository
 * @queryArguments 
-* maxRepositories number
+** maxRepositories number
 * @fields
-* contributions {
-   Contributions
+** contributions {
+   ** Contributions
 }
-* repository {
-   Repository
-}
+** repository {
+   ** Repository
+** }
 */
 
 export const IssueContributionsByRepository = (params: queryVariables.Contributions) => `
@@ -2514,17 +1962,13 @@ export const IssueContributionsByRepository = (params: queryVariables.Contributi
 
 /**
 * @description Github Graphql JoinedGitHubContribution
-* isRestricted
-
-* occurredAt
-
-* resourcePath
-
-* url
-
-* user {
-   User
-}
+** isRestricted
+** occurredAt
+** resourcePath
+** url
+** user {
+      ** User
+** }
 */
 
 export const JoinedGitHubContribution = (fields: string) => `
@@ -2535,7 +1979,7 @@ export const JoinedGitHubContribution = (fields: string) => `
 
 /**
 * @description Github Graphql MostRecentCollectionWithActivity
-* Contribution
+** Contribution
 */
 
 export const MostRecentCollectionWithActivity = (fields: string) => `
@@ -2546,7 +1990,7 @@ export const MostRecentCollectionWithActivity = (fields: string) => `
 
 /**
 * @description Github Graphql MostRecentCollectionWithoutActivity
-* Contribution
+** Contribution
 */
 
 export const MostRecentCollectionWithoutActivity = (fields: string) => `
@@ -2559,12 +2003,12 @@ export const MostRecentCollectionWithoutActivity = (fields: string) => `
 
 /**
 * @description Github Graphql PullRequestContributions
-* @queryArguments direction  = "ASC" | "DESC"
-
-* excludeFirst boolean 
-
-* excludePopular boolean
-* @fields PullRequestContribution
+* @queryArguments 
+** direction  = "ASC" | "DESC"
+** excludeFirst boolean 
+** excludePopular boolean
+* @fields 
+** PullRequestContribution
 */
 
 export const PullRequestContributions = (params: queryVariables.Contributions) => `
@@ -2586,14 +2030,13 @@ export const PullRequestContributions = (params: queryVariables.Contributions) =
 
 /**
 * @description Github Graphql PullRequestContributionsByRepository
-* @defaultarguments direction = "ASC" 
-* @queryArguments direction = "ASC" | "DESC"
-
-* excludeFirst boolean 
-
-* excludePopular boolean
-
-* @fields Contributions Repository
+* @queryArguments 
+** direction = "ASC" | "DESC"
+** excludeFirst boolean 
+** excludePopular boolean
+* @fields 
+** Contributions 
+** Repository
 */
 
 export const PullRequestContributionsByRepository = (params: queryVariables.Contributions) => `
@@ -2606,31 +2049,20 @@ export const PullRequestContributionsByRepository = (params: queryVariables.Cont
 
 /**
 * @description Github Graphql PullRequestReviewContributions
-* @defaultVariables totalCount direction = "ASC"
+* @defaultVariables totalCount
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
+** after string 
+** before string
+** first number
+** last number
 * @fields
-* direction "ASC" | "DESC"
-
-* isRestricted
-
-* occurredAt
-
-* PullRequest
-
-* PullRequestReview
-
-* Repository
-
-* resourcePath
-
-* url
+** isRestricted
+** occurredAt
+** PullRequest
+** PullRequestReview
+** Repository
+** resourcePath
+** url
 
 */
 
@@ -2654,7 +2086,9 @@ export const PullRequestReviewContributions = (params: queryVariables.CommitCont
 * @description Github Graphql PullRequestReviewContributionsByRepository
 * @defaultarguments maxRepositories number
 * @queryArguments 
-* @fields Contributions Repository
+* @fields 
+** Contributions
+** Repository
 */
 
 export const PullRequestReviewContributionsByRepository = (maxRepositories: number, fields: string) => `
@@ -2667,29 +2101,20 @@ export const PullRequestReviewContributionsByRepository = (maxRepositories: numb
 * @description Github Graphql RepositoryContributions
 * @defaultVariables totalCount
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
-
-* excludeFirst boolean
-
-* direction "ASC" | "DESC"
-
+** after string 
+** before string
+** first number
+** last number
+** excludeFirst boolean
+** direction "ASC" | "DESC"
 * @fields
-* isRestricted
-
-* occurredAt
-
-* repository {
-   Repository
-}
-* resourcePath
-
-* url
+** isRestricted
+** occurredAt
+** repository {
+      ** Repository
+** }
+** resourcePath
+** url
 */
 
 export const RepositoryContributions = (params: queryVariables.Contributions) => `
@@ -2710,105 +2135,61 @@ export const RepositoryContributions = (params: queryVariables.Contributions) =>
 
 /**
 * @description Github Graphql Project
-* @defaultVariables id name
+* @defaultVariables 
+** id 
+** name
 * @fields
-* body string
-
-* bodyHTML string
-
-* closed boolean
-
-* closedAt string
-
-* columns Columns
-
-* createdAt string
-
-* creator Owner
-
-* databaseId number
-
-* id number
-
-* name string
-
-* number number
-
-* owner Owner
-
-* pendingCards Cards
-
-* progress {
-
-   doneCount number
-
-   donePercentage number
-
-   enabled boolean
-
-   inProgressCount number
-
-   inProgressPercentage number
-
-   todoCount: number
-
-   todoPercentage: number
-
-}
-
-* resourcePath string
-
-* state string
-
-* updatedAt string
-
-* url string
-
-*viewerCanUpdate boolean
+** body
+** bodyHTML
+** closed
+** closedAt
+** columns
+** createdAt
+** creator
+** databaseId
+** id
+** name
+** number
+** owner
+** pendingCards
+** progress {   
+      ** doneCount
+      ** donePercentage
+      ** enabled
+      ** inProgressCount
+      ** inProgressPercentage
+      ** todoCount
+      ** todoPercentage
+** }
+** resourcePath string
+** state string
+** updatedAt string
+** url string
+* viewerCanUpdate boolean
 */
 
-export const Project = (fields: string) => `
-	id
-	name
-	${fields}
-`
-
-/**
-* @description Github Graphql UserProject
-* @defaultVariables id name
-* @queryArgument projectnumber 
-* @fields Project
-*/
-export const UserProject = (projectnumber: number, fields: string) => `
-	project (number: ${projectnumber}) {
-		id
-      	name
-		${fields}
-	}
+export const Project = (number: number,fields: string) => `
+   project(number: ${number}) {
+      id
+      name
+      ${fields}
+   }
 `
 
 /**
 * @description Github Graphql Projects
 * @defaultVariables totalCount direction = "ASC"
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
-
-* direction "ASC" | "DESC"
-
-* orderBy "UPDATED_AT" | "CREATED_AT" | "NAME"
-
-* search string
-
-* states "OPEN" | "CLOSED"
-
+** after string 
+** before string
+** first number
+** last number
+** direction "ASC" | "DESC"
+** orderBy "UPDATED_AT" | "CREATED_AT" | "NAME"
+** search string
+** states "OPEN" | "CLOSED"
 * @fields
-* Project
+** Project
 */
 
 export const Projects = (params: queryVariables.Projects) => `
@@ -2830,28 +2211,18 @@ export const Projects = (params: queryVariables.Projects) => `
 * @description Github Graphql PublicKeys
 * @defaultVariables totalCount direction = "ASC"
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
-
+** after string 
+** before string
+** first number
+** last number
 * @fields
-* accessedAt
-
-* createdAt
-
-* fingerprint
-
-* id
-
-* isReadOnly
-
-* key
-
-* updatedAt
+** accessedAt
+** createdAt
+** fingerprint
+** id
+** isReadOnly
+** key
+** updatedAt
 */
 
 export const PublicKeys = (params: BasicFields) => `
@@ -2876,23 +2247,16 @@ export const PublicKeys = (params: BasicFields) => `
 * @description Github Graphql RepositoriesContributedTo
 * @defaultVariables totalCount name 
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
-
-* contributionTypes "COMMIT" | "ISSUE" | "PULL_REQUEST" | "REPOSITORY" | "PULL_REQUEST_REVIEW"
-
-* includeUserRepositories boolean
-
-* isLocked boolean
-
-* privacy "PUBLIC" | "PRIVATE"
+** after string 
+** before string
+** first number
+** last number
+** contributionTypes "COMMIT" | "ISSUE" | "PULL_REQUEST" | "REPOSITORY" | "PULL_REQUEST_REVIEW"
+** includeUserRepositories boolean
+** isLocked boolean
+** privacy "PUBLIC" | "PRIVATE"
 * @fields
-* Repository
+** Repository
 */
 
 export const RepositoriesContributedTo = (params: BasicFields) => `
@@ -2900,14 +2264,10 @@ export const RepositoriesContributedTo = (params: BasicFields) => `
       edges {
          cursor
          node {
-			id
-			name
             ${params.fields}
          }
       }
       nodes {
-		id
-		name
         ${params.fields}
       }
       ${params.pageInfo ? params.pageInfo : ""}
@@ -2919,17 +2279,13 @@ export const RepositoriesContributedTo = (params: BasicFields) => `
 * @description Github Graphql SavedReplies
 * @defaultVariables totalCount title
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "UPDATED_AT"
+** after string 
+** before string
+** first number
+** last number
+** orderBy "UPDATED_AT"
 * @fields
-* Reply
+** Reply
 */
 
 export const SavedReplies = (params: queryVariables.SavedReplies) => `
@@ -2937,14 +2293,10 @@ export const SavedReplies = (params: queryVariables.SavedReplies) => `
       edges {
          cursor
          node {
-			id
-			title
             ${params.fields}
          }
       }
       nodes {
-		id
-		title
         ${params.fields}
       }
       ${params.pageInfo ? params.pageInfo : ""}
@@ -2956,22 +2308,15 @@ export const SavedReplies = (params: queryVariables.SavedReplies) => `
 * @description Github Graphql StarredRepositories
 * @defaultVariables totalCount 
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "STARRED_AT"
-
-* ownedByViewer boolean
-
-* isOverLimit boolean
-
+** after string 
+** before string
+** first number
+** last number
+** orderBy "STARRED_AT"
+** ownedByViewer boolean
+** isOverLimit boolean
 * @fields
-* Repository
+** Repository
 */
 
 export const StarredRepositories = (params: queryVariables.StarredRepositories) => `
@@ -2979,17 +2324,12 @@ export const StarredRepositories = (params: queryVariables.StarredRepositories) 
       edges {
          cursor
          node {
-			id
-			name
             ${params.fields}
          }
       }
       nodes {
-		id
-		name
         ${params.fields}
       }
-	  isOverLimit
       ${params.pageInfo ? params.pageInfo : ""}
       totalCount
    }
@@ -2997,27 +2337,21 @@ export const StarredRepositories = (params: queryVariables.StarredRepositories) 
 
 /**
 * @description Github Graphql Status
-* @defaultVariables id message
+* @defaultVariables 
+** id
+** message
 * @fields
-* createdAt
-
-* emoji
-
-* emojiHTML
-
-* expiresAt
-
-* id
-     
-* indicatesLimitedAvailability
-
-* Organization
-
-* updatedAt
-
-* user {
-   User
-}
+** createdAt
+** emoji
+** emojiHTML
+** expiresAt
+** id
+** indicatesLimitedAvailability
+** Organization
+** updatedAt
+** user {
+      ** User
+** }
 */
 
 export const Status = (fields: string) => `
@@ -3033,20 +2367,14 @@ export const Status = (fields: string) => `
 * @description Github Graphql TopRepositories
 * @defaultVariables totalCount 
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "UPDATED_AT" | "PUSHED_AT" | "NAME" | "STARGAZERS"
-
-* since string
-
+** after string 
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "UPDATED_AT" | "PUSHED_AT" | "NAME" | "STARGAZERS"
+** since string
 * @fields
-* Repository
+** Repository
 */
 
 export const TopRepositories = (params: queryVariables.TopRepositories) => `
@@ -3054,14 +2382,10 @@ export const TopRepositories = (params: queryVariables.TopRepositories) => `
       edges {
          cursor
          node {
-			id
-			name
             ${params.fields}
          }
       }
       nodes {
-		id
-		name
         ${params.fields}
       }
       ${params.pageInfo ? params.pageInfo : ""}
@@ -3072,24 +2396,16 @@ export const TopRepositories = (params: queryVariables.TopRepositories) => `
 * @description Github Graphql Watching
 * @defaultVariables totalCount 
 * @queryArguments
-* after string 
-
-* before string
-
-* first number
-
-* last number
-
-* orderBy "CREATED_AT" | "UPDATED_AT" | "PUSHED_AT" | "NAME" | "STARGAZERS"
-
-* isLocked boolean
-
-* ownerAffiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
-
-* privacy "PUBLIC" | "PRIVATE"
-
+** after string 
+** before string
+** first number
+** last number
+** orderBy "CREATED_AT" | "UPDATED_AT" | "PUSHED_AT" | "NAME" | "STARGAZERS"
+** isLocked boolean
+** ownerAffiliations "OWNER" | "COLLABORATOR" | "ORGANIZATION_MEMBER"
+** privacy "PUBLIC" | "PRIVATE"
 * @fields
-* Repository
+** Repository
 */
 
 export const Watching = (params: queryVariables.Watching) => `
@@ -3098,14 +2414,10 @@ export const Watching = (params: queryVariables.Watching) => `
       edges {
          cursor
          node {
-			id
-			name
             ${params.fields}
          }
       }
       nodes {
-		id
-		name
         ${params.fields}
       }
       ${params.pageInfo ? params.pageInfo : ""}
