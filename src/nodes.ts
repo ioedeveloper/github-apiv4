@@ -1,7 +1,8 @@
 /**
  * @description Github Graphql onUser
  * @defaultVariables id email
- * @queryVariables User
+ * @queryVariables
+ **  User
  */
 
  export const onUser = (fields: string) => `
@@ -14,7 +15,8 @@
 
 /**
 * @description Github Graphql onEnterpriseUserAccount
-* * @queryVariables EnterpriseUserAccount
+* @queryVariables
+** EnterpriseUserAccount
 */
 
 export const onEnterpriseUserAccount = (fields: string = '') => `
@@ -26,13 +28,14 @@ export const onEnterpriseUserAccount = (fields: string = '') => `
 /**
 * @description Github Graphql onMannequin
 * @defaultVariables id email
-* @queryVariables avatarUrl
-* createdAt
-* databaseId
-* login
-* resourcePath
-* updatedAt
-* url
+* @queryVariables
+** avatarUrl
+** createdAt
+** databaseId
+** login
+** resourcePath
+** updatedAt
+** url
 */
 
 export const onMannequin = (fields?: string) => `
@@ -47,12 +50,12 @@ export const onMannequin = (fields?: string) => `
 * @description Github Graphql onBot
 * @defaultVariables id
 * @queryVariables avatarUrl
-* createdAt
-* databaseId
-* login
-* resourcePath
-* updatedAt
-* url
+** createdAt
+** databaseId
+** login
+** resourcePath
+** updatedAt
+** url
 */
 
 export const onBot = (fields?: string) => `
@@ -65,7 +68,8 @@ export const onBot = (fields?: string) => `
 
 /**
 * @description Github Graphql onCreatedIssueContribution
-* @fields IssueContribution
+* @fields
+** IssueContribution
 */
 
 export const onCreatedIssueContribution = (fields: string) => `
@@ -77,17 +81,12 @@ export const onCreatedIssueContribution = (fields: string) => `
 
 /**
 * @description Github Graphql onRestrictedContribution 
-* isRestricted
-
-* occurredAt
-
-* resourcePath
-
-* url
-
-* user {
-   User
-}
+* @fields
+** isRestricted
+** occurredAt
+** resourcePath
+** url
+** user { User }
 */
 
 export const onRestrictedContribution = (fields: string) => `
@@ -99,7 +98,8 @@ export const onRestrictedContribution = (fields: string) => `
 
 /**
 * @description Github Graphql onCreatedPullRequestContribution 
-* @fields PullRequestContribution
+* @fields
+** PullRequestContribution
 */
 
 export const onCreatedPullRequestContribution = (fields: string) => `
@@ -112,20 +112,12 @@ export const onCreatedPullRequestContribution = (fields: string) => `
 
 /**
 * @description Github Graphql onCreatedRepositoryContribution
-* isRestricted
-
-* occurredAt
-
-* repository {
-   Repository
-}
-* resourcePath
-
-* url
-
-* user {
-   User
-}
+** isRestricted
+** occurredAt
+** repository { Repository }
+** resourcePath
+** url
+** user { User }
 */
 
 export const onCreatedRepositoryContribution = (fields: string) => `
@@ -139,13 +131,10 @@ export const onCreatedRepositoryContribution = (fields: string) => `
 * @description Github Graphql onGenericHovercardContext
 * @defaultVariables teamsUrl message totalTeamCount
 * @fields
-*   __typename
-*   octicon
-
-*   RelevantTeams
-
-*   teamsResourcePath
-
+** __typename
+** octicon
+** RelevantTeams
+** teamsResourcePath
 */
 
 
@@ -162,12 +151,9 @@ export const onGenericHovercardContext = (fields: string) => `
 * @description Github Graphql onOrganizationTeamsHovercardContext
 * @defaultVariables teamsUrl totalTeamCount
 * @fields 
-* __typename
-
-* teamsResourcePath
-
-* RelevantOrganizations
-
+** __typename
+** teamsResourcePath
+** RelevantOrganizations
 */
 
 
@@ -182,9 +168,8 @@ export const onOrganizationTeamsHovercardContext = (fields: string) => `
 * @description Github Graphql onReviewStatusHovercardContext
 * @defaultVariables message
 * @fields
- *  reviewDecision
- * 
- *  octicon
+** reviewDecision
+** octicon
 */
 
 
@@ -198,11 +183,9 @@ export const onReviewStatusHovercardContext = (fields: string) => `
 * @description Github Graphql onViewerHovercardContext
 * @defaultVariables message
 * @fields
-*  __typename
-
-*  octicon
-
-*  viewer
+** __typename
+** octicon
+** viewer
 */
 
 
