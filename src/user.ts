@@ -178,20 +178,6 @@ export const User = (fields: string) => `
 `
 
 /**
-* @description Github Graphql onUser
-* @defaultVariables id email
-* @fields User
-*/
-
-export const onUser = (fields: string) => `
- ... on User {
-     id
-     email
-     ${fields}
- }
-`
-
-/**
 * @description UserHoverCard
 
 *  contexts {
@@ -344,17 +330,6 @@ export const EnterpriseUserAccount = (fields: string = '') => `
     id
     name
     ${fields}
-`
-
-/**
-* @description Github Graphql onEnterpriseUserAccount 
-* * @fields EnterpriseUserAccount 
-*/
-
-export const onEnterpriseUserAccount = (fields: string = '') => `
-    ... on EnterpriseUserAccount {
-        ${fields}
-    }
 `
 
 /**
@@ -1410,56 +1385,6 @@ export const AssignableUsers = (params: queryVariables.AdminFields) => `
 		${params.pageInfo ? params.pageInfo : ""}
 		totalCount
  	}
-`
-
-/**
-* @description Github Graphql onMannequin
-* @defaultVariables id email
-* @fields avatarUrl
-* createdAt
-
-* databaseId
-
-* login
-
-* resourcePath
-
-* updatedAt
-
-* url
-*/
-
-export const onMannequin = (fields?: string) => `
- ... on Mannequin {
-     id
-     email
-     ${fields}        
- }
-`
-/**
-* @description Github Graphql onBot
-* @defaultVariables id
-* @fields avatarUrl
-
-* createdAt
-
-* databaseId
-
-* login
-
-* resourcePath
-
-* updatedAt
-
-* url
-*/
-
-export const onBot = (fields?: string) => `
-... on Bot {
-  id
-  email
-  ${fields}        
-}
 `
 
 /**

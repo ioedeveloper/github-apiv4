@@ -1,7 +1,7 @@
 import { PageInfo } from "./types";
 
 export declare interface BasicFields {
-    first: number;
+    first?: number;
     last?: number;
     after?: string;
     before?: string;
