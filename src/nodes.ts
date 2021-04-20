@@ -1,20 +1,22 @@
 /**
- * @description Github Graphql onUser
- * @defaultVariables id email
- * @queryVariables User
- */
+* @description Github Graphql onUser
+* @defaultVariables id email
+* @fields
+** User
+*/
 
  export const onUser = (fields: string) => `
- ... on User {
-     id
-     email
-     ${fields}
- }
+	... on User {
+		id
+		email
+		${fields}
+ 	}
 `
 
 /**
 * @description Github Graphql onEnterpriseUserAccount
-* * @queryVariables EnterpriseUserAccount
+* @fields
+** EnterpriseUserAccount
 */
 
 export const onEnterpriseUserAccount = (fields: string = '') => `
@@ -26,49 +28,50 @@ export const onEnterpriseUserAccount = (fields: string = '') => `
 /**
 * @description Github Graphql onMannequin
 * @defaultVariables id email
-* @queryVariables avatarUrl
-* createdAt
-* databaseId
-* login
-* resourcePath
-* updatedAt
-* url
+* @fields
+** avatarUrl
+** createdAt
+** databaseId
+** login
+** resourcePath
+** updatedAt
+** url
 */
 
 export const onMannequin = (fields?: string) => `
- ... on Mannequin {
-     id
-     email
-     ${fields}        
- }
+	... on Mannequin {
+		id
+		email
+		${fields}        
+	}
 `
 
 /**
 * @description Github Graphql onBot
 * @defaultVariables id
-* @queryVariables avatarUrl
-* createdAt
-* databaseId
-* login
-* resourcePath
-* updatedAt
-* url
+* @fields
+** avatarUrl
+** createdAt
+** databaseId
+** login
+** resourcePath
+** updatedAt
+** url
 */
 
 export const onBot = (fields?: string) => `
-... on Bot {
-  id
-  email
-  ${fields}        
-}
+	... on Bot {
+		id
+		email
+		${fields}        
+	}
 `
 
 /**
- * @description Github Graphql onPullRequest  
- * @queryArguments
- * PullRequest
+* @description Github Graphql onPullRequest  
+* @fields
+** PullRequest
 */
-
 
 export const onPullRequest = (fields: string = "") => `
     ... on PullRequest {
@@ -77,47 +80,48 @@ export const onPullRequest = (fields: string = "") => `
 `
 
 /**
- * @description Github Graphql onPullRequestReviewThread  
- * @queryArguments
- * PullRequestReviewThread
+* @description Github Graphql onPullRequestReviewThread  
+* @fields
+** PullRequestReviewThread
 */
+
 export const onPullRequestReviewThread = (fields: string = "") => `
     ... on PullRequestReviewThread {
         ${fields}
     }
 `
 
-
 /**
- * @description Github Graphql onApp
- * @defaultVariables id
- * @fields avatarUrl
- * App
- */
+* @description Github Graphql onApp
+* @defaultVariables id
+* @fields
+** avatarUrl
+** App
+*/
 
- export const onApp = (fields: string = "") => `
- ... on App {
-     ${fields}        
- }
+export const onApp = (fields: string = "") => `
+	... on App {
+		${fields}        
+	}
 `
 
 /**
- * @description Github Graphql onIssue  
- * @queryArguments
- * Issue
+* @description Github Graphql onIssue  
+* @fields
+** Issue
 */
+
 export const onIssue = (fields: string = "") => `
     ... on Issue {
         ${fields}
     }
 `
 
-
 /**
  * @description Github Graphql onGenericHovercardContext 
-* message
-* 
-* octicon
+* @fields
+** message
+** octicon
 */
 
 export const onGenericHovercardContext = (fields: string) => `
@@ -125,22 +129,17 @@ export const onGenericHovercardContext = (fields: string) => `
         __typename
         ${fields}        
     }
-
 `
 
 /**
- * @description Github Graphql onOrganizationTeamsHovercardContext 
-* message
-* 
-* octicon
-* 
-* RelevantTeams
-* 
-* teamsResourcePath
-* 
-* teamsUrl
-* 
-* totalTeamCount
+* @description Github Graphql onOrganizationTeamsHovercardContext 
+* @fields
+** message
+** octicon
+** RelevantTeams
+** teamsResourcePath
+** teamsUrl
+** totalTeamCount
 */
 
 export const onOrganizationTeamsHovercardContext = (fields: string) => `
@@ -151,14 +150,12 @@ export const onOrganizationTeamsHovercardContext = (fields: string) => `
 `
 
 /**
- * @description Github Graphql onOrganizationsHovercardContext 
-* message
-* 
-* octicon
-* 
-* RelevantOrganizations
-* 
-* totalOrganizationCount
+* @description Github Graphql onOrganizationsHovercardContext 
+* @fields
+** message
+** octicon
+** RelevantOrganizations
+** totalOrganizationCount
 */
 
 export const onOrganizationsHovercardContext = (fields: string) => `
@@ -170,11 +167,10 @@ export const onOrganizationsHovercardContext = (fields: string) => `
 
 /**
 * @description Github Graphql onReviewStatusHovercardContext 
-* reviewDecision
-* 
-* message
-* 
-* octicon
+* @fields
+** reviewDecision
+** message
+** octicon
 */
 
 export const onReviewStatusHovercardContext = (fields: string) => `
@@ -185,13 +181,10 @@ export const onReviewStatusHovercardContext = (fields: string) => `
 
 /**
 * @description Github Graphql onViewerHovercardContext 
-* message
-* 
-* octicon
-* 
-* viewer {
-*   User
-* }
+* @fields
+** message
+** octicon
+** viewer { User }
 */
 
 export const onViewerHovercardContext = (fields: string) => `
@@ -201,25 +194,16 @@ export const onViewerHovercardContext = (fields: string) => `
     }
 `
 
-
 /**
 * @description Github Graphql onUnknownSignature 
 * @fields
-* email
-* 
-* isValid
-* 
-* payload
-* 
-* signature
-* 
-* signer {
-*   User
-* }
-* 
-* state
-* 
-* wasSignedByGitHub
+** email
+** isValid
+** payload
+** signature
+** signer { User }
+** state
+** wasSignedByGitHub
 */
 
 export const onUnknownSignature = (fields:string = "" ) => `
@@ -227,26 +211,19 @@ export const onUnknownSignature = (fields:string = "" ) => `
         __typename
         ${fields}
     }
-` 
+`
+
 /**
 * @description Github Graphql onSmimeSignature 
-* __typename
-* 
-* email
-* 
-* isValid
-* 
-* payload
-* 
-* signature
-* 
-* signer {
-*   User
-* }
-* 
-* state
-* 
-* wasSignedByGitHub
+* @fields
+** __typename
+** email
+** isValid
+** payload
+** signature
+** signer { User }
+** state
+** wasSignedByGitHub
 */
 
 export const onSmimeSignature = (fields:string = "" ) => `
@@ -255,25 +232,18 @@ export const onSmimeSignature = (fields:string = "" ) => `
         ${fields}
     }
 `
+
 /**
 * @description Github Graphql onGpgSignature
-* keyId
-* 
-* email
-* 
-* isValid
-* 
-* payload
-* 
-* signature
-* 
-* signer {
-*   User
-* }
-* 
-* state
-* 
-* wasSignedByGitHub
+* @fields
+** keyId
+** email
+** isValid
+** payload
+** signature
+** signer { User }
+** state
+** wasSignedByGitHub
 */
 
 export const onGpgSignature = (fields:string = "" ) => `
@@ -285,15 +255,10 @@ export const onGpgSignature = (fields:string = "" ) => `
 /**
 * @description Github Graphql onAddedToProjectEvent
 * @fields
-* actor {
-    Owner
-}
-* 
-* createdAt
-
-* databaseId
-
-* id
+** actor { Owner }
+** createdAt
+** databaseId
+** id
 */
 
 export const onAddedToProjectEvent = (fields: string = "") => `
@@ -308,25 +273,13 @@ export const onAddedToProjectEvent = (fields: string = "") => `
 /**
 * @description Github Graphql onAutoMergeDisabledEvent
 * @fields 
-* actor {
-    Owner
-}
-
-* createdAt string
-
-* disabler {
-    UserInfo
-}
-
-* id
-    
-* pullRequest {
-    PullRequest
-}
-
-* reason
-
-* reasonCode
+** actor { Owner }
+** createdAt
+** disabler { User }
+** id
+** pullRequest { PullRequest }
+** reason
+** reasonCode
 */
 
 export const onAutoMergeDisabledEvent = (fields: string = "") => `
@@ -339,26 +292,14 @@ export const onAutoMergeDisabledEvent = (fields: string = "") => `
 
 /**
 * @description Github Graphql onAutoMergeEnabledEvent
-*@fields    
-* actor {
-    Owner
-}
-    
-* createdAt string
-
-* disabler {
-    User
-}
-    
-* id
-    
-* pullRequest {
-    PullRequest
-}
-
-* reason
-
-* reasonCode
+* @fields    
+** actor { Owner }
+** createdAt
+** disabler { User }
+** id
+** pullRequest { PullRequest }
+** reason
+** reasonCode
 */
 
 export const onAutoMergeEnabledEventt = (fields: string = "") => `
@@ -372,21 +313,11 @@ export const onAutoMergeEnabledEventt = (fields: string = "") => `
 /**
 * @description Github Graphql onAutoRebaseEnabledEvent 
 * @fields
-* actor {
-    Owner
-}
-
-* createdAt
-    
-* enabler {
-    User
-}
-
-* id
-    
-* pullRequest {
-    PullRequest
-}
+** actor { Owner }
+** createdAt
+** enabler { User }
+** id
+** pullRequest { PullRequest }
 */
 
 export const onAutoRebaseEnabledEvent = (fields: string = "") => `
@@ -400,22 +331,13 @@ export const onAutoRebaseEnabledEvent = (fields: string = "") => `
 /**
 * @description Github Graphql onAutoSquashEnabledEvent
 * @fields
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* enabler {
-    User
-}
-    
-* id
-    
-pullRequest {
-    PullRequest
-}
+** actor { Owner }
+** createdAt
+** enabler { User }
+** id
+** pullRequest { PullRequest }
 */
+
 export const onAutoSquashEnabledEvent = (fields: string = "") => `
     ... on AutoSquashEnabledEvent {
         createdAt
@@ -427,21 +349,12 @@ export const onAutoSquashEnabledEvent = (fields: string = "") => `
 /**
 * @description Github Graphql onAutomaticBaseChangeFailedEvent
 * @fields
-* actor{
-    Owner
-}
-    
-* createdAt
-    
-* id
-    
-* pullRequest {
-    PullRequest
-}
-    
-* newBase
-    
-* oldBase
+** actor{ Owner }
+** createdAt
+** id
+** pullRequest { PullRequest }
+** newBase
+** oldBase
 */
 
 
@@ -455,25 +368,13 @@ export const onAutomaticBaseChangeFailedEvent = (fields: string = "") => `
 
 /**
 * @description Github Graphql onAssignedEvent
-* actor {
-*   Owner
-* }
-*      
-* assignable {
-*   Assignees
-* }
-*      
-* assignee {
-*   Owner
-* }
-*              
-* createdAt
-*  
-* id
-*      
-* user {
-*   User
-* }
+* @fields
+** actor { Owner }
+** assignable { Assignable }
+** assignee { Owner }
+** createdAt
+** id
+** user { User }
 */
 
 
@@ -486,23 +387,15 @@ export const onAssignedEvent = (fields: string = "") => `
 `
 
 /**
- * @description Github Graphql onBaseRefDeletedEvent
- * actor {
- *      Owner
- * }
- * 
- * baseRefName
- * 
- * createdAt
- * 
- * ClosedEvent
- * 
- * id
- *
- * pullRequest {
- *      PullRequest
- * }
- */
+* @description Github Graphql onBaseRefDeletedEvent
+* @fields
+** actor { Owner }
+** baseRefName
+** createdAt
+** ClosedEvent
+** id
+** pullRequest { PullRequest }
+*/
 
 export const onBaseRefDeletedEvent = (fields: string = "") => `
     ... on BaseRefDeletedEvent {
@@ -514,23 +407,14 @@ export const onBaseRefDeletedEvent = (fields: string = "") => `
 
 /**
 * @description Github Graphql onBaseRefChangedEvent
-* @fields    
-* actor{ 
-    Owner
-}
-    
-* createdAt
-    
-* currentRefName
-
-* databaseId
-    
-* id
-    
-* previousRefName
-    
-* pullRequest
-
+* @fields
+** actor{ Owner }
+** createdAt
+** currentRefName
+** databaseId
+** id
+** previousRefName
+** pullRequest { PullRequest }
 */
 
 export const onBaseRefChangedEvent = (fields: string = "") => `
@@ -543,17 +427,11 @@ export const onBaseRefChangedEvent = (fields: string = "") => `
 /**
 * @description Github Graphql onCommentDeletedEvent 
 * @fields
-* actor {
-    Owner
-}
-    
-* id
-    
-* createdAt
-
-* databaseId
-
-* deletedCommentAuthor
+** actor { Owner }
+** id
+** createdAt
+** databaseId
+** deletedCommentAuthor
 */
 
 export const onCommentDeletedEvent = (fields: string = "") => `
@@ -566,24 +444,12 @@ export const onCommentDeletedEvent = (fields: string = "") => `
 /**
 * @description Github Graphql onConnectedEvent 
 * @fields
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* id
-    
-* isCrossRepository
-    
-source {
-    onIssue
-    onPullRequest
-}
-* subject {
-    onIssue
-    onPullRequest
-}
+** actor { Owner }
+** createdAt
+** id
+** isCrossRepository
+** source { onIssue onPullRequest }
+** subject { onIssue onPullRequest }
 */
 
 export const onConnectedEvent = (fields: string = "") => `
@@ -592,24 +458,16 @@ export const onConnectedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
 * @description Github Graphql onConvertToDraftEvent
 * @fields
-* actor {
-    Owner
-}
-    
-* createdAt
-
-* id
-
-* pullRequest{
-    PullRequest
-}
-    
-* resourcePath
-    
-* url
+** actor { Owner }
+** createdAt
+** id
+** pullRequest{ PullRequest }
+** resourcePath
+** url
 */
 
 export const onConvertToDraftEvent = (fields: string = "") => `
@@ -617,48 +475,31 @@ export const onConvertToDraftEvent = (fields: string = "") => `
         ${fields}    
     }
 `
+
 /**
 * @description Github Graphql onConvertedNoteToIssueEvent
-* @fields    
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* databaseId
-    
-* id
+* @fields
+** actor { Owner }
+** createdAt
+** databaseId
+** id
 */
-
 
 export const onConvertedNoteToIssueEvent = (fields: string = "") => `
     ... on ConvertedNoteToIssueEvent {
         ${fields}    
     }
 `
+
 /**
 * @description Github Graphql onDisconnectedEvent
 * @fields
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* id
-
-* isCrossRepository
-    
-* source {
-    onIssue
-    onPullRequest
-}
-    
-* subject {
-    onIssue
-    onPullRequest
-}
+** actor { Owner }
+** createdAt
+** id
+** isCrossRepository
+** source { onIssue onPullRequest }
+** subject { onIssue onPullRequest }
 */
 
 export const onDisconnectedEvent = (fields: string = "") => `
@@ -670,22 +511,13 @@ export const onDisconnectedEvent = (fields: string = "") => `
 
 /**
 * @description Github Graphql onAutomaticBaseChangeSucceededEvent
- * @fields   
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* id
-    
-* pullRequest {
-    PullRequest
-}
-    
-* newBase
-    
-* oldBase
+* @fields   
+** actor { Owner }
+** createdAt
+** id
+** pullRequest { PullRequest }
+** newBase
+** oldBase
 */
 
 export const onAutomaticBaseChangeSucceededEvent = (fields: string = "") => `
@@ -694,27 +526,16 @@ export const onAutomaticBaseChangeSucceededEvent = (fields: string = "") => `
         ${fields}    
     }
 `
+
 /**
 * @description Github Graphql onBaseRefForcePushedEvent
-* id
-
-* afterCommit {
-*   Commit   
-* }
-
-* beforeCommit {
-*   Commit   
-* }
-
-* createdAt
-
-* pullRequest {
-*   PullRequest
-* }
-
-* ref {
-*   Ref
-* }
+* @fields
+** id
+** afterCommit { Commit }
+** beforeCommit { Commit }
+** createdAt
+** pullRequest { PullRequest }
+** ref { Ref }
 */
 
 export const onBaseRefForcePushedEvent = (fields: string = "") => `
@@ -722,28 +543,17 @@ export const onBaseRefForcePushedEvent = (fields: string = "") => `
         ${fields}    
     }
 `
+
 /**
 * @description Github Graphql onClosedEvent
-* actor {
-    Owner
-* }
-
-* closable {
-*   Closable
-* }
-
-* closer {
-*   onCommit
-*   onPullRequest
-* }
-
-* createdAt
-
-* id
-
-* resourcePath
-
-* url
+* @fields
+** actor { Owner }
+** closable { Closable }
+** closer { onCommit onPullRequest }
+** createdAt
+** id
+** resourcePath
+** url
 */
 
 export const onClosedEvent = (fields: string = "") => `
@@ -753,21 +563,16 @@ export const onClosedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onCommitCommentThread
-* Comments
-
-* Commit
-
-* id
-
-* path
-
-* position
-
-* repository {
-*   Repository
-* }
+* @description Github Graphql onCommitCommentThread
+* @fields
+** Comments
+** Commit
+** id
+** path
+** position
+** repository { Repository }
 */
 
 export const onCommitCommentThread = (fields?: string) => `
@@ -779,34 +584,18 @@ export const onCommitCommentThread = (fields?: string) => `
 `
 
 /**
- * @description Github Graphql onCrossReferencedEvent
-* id
-
-* actor {
-*   Owner
-* }
-
-* createdAt
-
-* isCrossRepository
-
-* referencedAt
-
-* resourcePath
-
-* source {
-*   onIssue
-*   onPullRequest
-* }
-
-* target {
-*   onIssue
-*   onPullRequest
-* }
-
-* url
-
-* willCloseTarget
+* @description Github Graphql onCrossReferencedEvent
+* @fields
+** id
+** actor { Owner }
+** createdAt
+** isCrossRepository
+** referencedAt
+** resourcePath
+** source { onIssue onPullRequest }
+** target { onIssue onPullRequest }
+** url
+** willCloseTarget
 */
 
 export const onCrossReferencedEvent = (fields: string = "") => `
@@ -815,22 +604,14 @@ export const onCrossReferencedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
 * @description Github Graphql onDemilestonedEvent
-* id
-
-* actor {
-*   Owner
-* }
-
-* createdAt
-
-* milestoneTitle
-
-* subject {
-*   onIssue
-*   onPullRequest
-* }
+** id
+** actor { Owner }
+** createdAt
+** milestoneTitle
+** subject { onIssue onPullRequest }
 */
 
 export const onDemilestonedEvent = (fields: string = "") => `
@@ -840,30 +621,19 @@ export const onDemilestonedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onDeployedEvent
- * id
- * 
- * actor {
- *      Owner
- * }
- *              
- * createdAt
- *              
- * databaseId
- *              
- * deployment {
- *      Deployment
- * }
- * 
- * pullRequest {
- *      PullRequest
- * }
- * 
- * ref {
- *      Ref
- * }
- */
+* @description Github Graphql onDeployedEvent
+* @fields
+** id
+** actor { Owner }
+** createdAt
+** databaseId
+** deployment { Deployment }
+** pullRequest { PullRequest }
+** ref { Ref }
+*/
+
 export const onDeployedEvent = (fields: string = "") => `
     ... on DeployedEvent {
         id
@@ -873,40 +643,23 @@ export const onDeployedEvent = (fields: string = "") => `
 `
 
 /**
- * @description Github Graphql onDeploymentEnvironmentChangedEvent
-* id
-
-* actor
-
-* createdAt
-
-* deploymentStatus {
-*       createdAt
-
-*       creator {
-*           Owner
-*       }
-
-*       deployment {
-*           Deployment
-*       }
-
-*       description
-
-*       environmentUrl
-
-*       id
-
-*       logUrl
-
-*       state
-
-*       updatedAt
+* @description Github Graphql onDeploymentEnvironmentChangedEvent
+* @fields
+** id
+** actor
+** createdAt
+** deploymentStatus {
+	** createdAt
+	**  creator { Owner }
+	** deployment { Deployment }
+	** description
+	** environmentUrl
+	** id
+	** logUrl
+	** state
+	** updatedAt
 * }
-
-* pullRequest {
-*       PullRequest
-* }
+** pullRequest { PullRequest }
 */
 
 export const onDeploymentEnvironmentChangedEvent = (fields?: string) => `
@@ -916,24 +669,16 @@ export const onDeploymentEnvironmentChangedEvent = (fields?: string) => `
         ${fields}
     }
 `
+
 /**
  * @description Github Graphql onHeadRefDeletedEvent
-* id
-* actor {
-*       Owner
-* }
-
-* createdAt
-
-* headRefName
-
-* headRef {
-*       Ref
-* }
-
-* pullRequest {
-*       PullRequest
-* }
+* @fields
+** id
+** actor { Owner }
+** createdAt
+** headRefName
+** headRef { Ref }
+** pullRequest { PullRequest }
 */
 
 export const onHeadRefDeletedEvent = (fields: string = "") => `
@@ -943,29 +688,16 @@ export const onHeadRefDeletedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onHeadRefForcePushedEvent 
-* actor {
-*   Owner
-* }
-
-* afterCommit {
-*   Commit   
-* }
-
-* beforeCommit {
-*   Commit   
-* }
-
-* id
-
-* pullRequest {
-*   PullRequest
-* }
-
-* ref {
-*   Ref
-* }
+* @description Github Graphql onHeadRefForcePushedEvent 
+* @fields
+** actor { Owner }
+** afterCommit { Commit }
+** beforeCommit { Commit }
+** id
+** pullRequest { PullRequest }
+** ref { Ref }
 */
 
 export const onHeadRefForcePushedEvent = (fields: string = "") => `
@@ -974,21 +706,14 @@ export const onHeadRefForcePushedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onHeadRefRestoredEvent
-* actor {
-*   Owner
-* }
-
-* createAt
-
-* id
-
-* pullRequest {
-*   PullRequest
-* }
+* @description Github Graphql onHeadRefRestoredEvent
+* actor { Owner }
+** createAt
+** id
+** pullRequest { PullRequest }
 */
-
 
 export const onHeadRefRestoredEvent = (fields: string = "") => `
     ... on HeadRefRestoredEvent {
@@ -996,27 +721,14 @@ export const onHeadRefRestoredEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onLabeledEvent
-* actor {
-*   Ownwer
-* }
-
-* createdAt
-
-* id
-
-* label {
-*   label
-* }
-
-* labelable {
-*   Labels
-
-*   onIssue
-
-*   onPullRequest
-*   }
+* @description Github Graphql onLabeledEvent
+** actor { Owner }
+** createdAt
+** id
+** label { Label }
+** labelable { Labels onIssue onPullRequest }
 */
 
 export const onLabeledEvent = (fields: string = "") => `
@@ -1025,26 +737,15 @@ export const onLabeledEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
 * @description Github Graphql onLockedEvent
-* createdAt
-
-* creator {
-*   Owner
-* }
-
-* id
-
-* lockReason
-
-* lockable {
-*   activeLockReason
-
-*   locked {
-*       OnIssue
-*       onPullRequest
-*   }
-* }
+* @fields
+** createdAt
+** creator { Owner }
+** id
+** lockReason
+** lockable { activeLockReason locked { OnIssue onPullRequest } }
 */
 
 export const onLockedEvent = (fields: string = "") => `
@@ -1053,31 +754,19 @@ export const onLockedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onMergedEvent
-* actor {
-*   Owner
-* }
-
-* Commit
-
-* createdAt
-
-* id
-
-* mergeRef {
-*   Ref
-* }
-
-* mergeName
-
-* pullRequest {
-*   PullRequest
-* }
-
-* resourcePath
-
-* url
+* @description Github Graphql onMergedEvent
+* @fields
+** actor { Owner }
+** Commit
+** createdAt
+** id
+** mergeRef { Ref }
+** mergeName
+** pullRequest { PullRequest }
+** resourcePath
+** url
 */
 
 export const onMergedEvent = (fields: string = "") => `
@@ -1087,22 +776,15 @@ export const onMergedEvent = (fields: string = "") => `
         ${fields}
     }    
 `
+
 /**
- * @description Github Graphql onMilestonedEvent
-* id
-
-* actor {
-*   Owner
-* }
-
-* createdAt
-
-* milestoneTitle
-
-* subject {
-*   onIssue
-*   onPullRequest
-* }
+* @description Github Graphql onMilestonedEvent
+* @fields
+** id
+** actor { Owner }
+** createdAt
+** milestoneTitle
+** subject { onIssue onPullRequest }
 */
 
 export const onMilestonedEvent = (fields: string = "") => `
@@ -1112,32 +794,18 @@ export const onMilestonedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onReferencedEvent
-* actor {
-*   Owner
-* }
-
-* commit {
-*   Commit
-* }
-
-* commitRepository {
-*   Repository
-* }
-
-* createdAt
-
-* id
-
-* isCrossRepository
-
-* isDirectReference
-
-* subject {
-*   onIssue
-*   onPullRequest
-* }
+* @description Github Graphql onReferencedEvent
+* @fields
+** actor { Owner }
+** commit { Commit }
+** commitRepository { Repository }
+** createdAt
+** id
+** isCrossRepository
+** isDirectReference
+** subject { onIssue onPullRequest }
 */
 
 export const onReferencedEvent = (fields: string = "") => `
@@ -1146,24 +814,16 @@ export const onReferencedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onRenamedTitleEvent
-* actor {
-*   Owner
-* }
-
-* createdAt
-
-* id
-
-* currentTitle
-
-* subject {
-*   onIssue
-*   onPullRequest
-* }
-
-* previousTitle
+* @description Github Graphql onRenamedTitleEvent
+* @fields
+** actor { Owner }
+** createdAt
+** id
+** currentTitle
+** subject { onIssue onPullRequest }
+** previousTitle
 */
 
 export const onRenamedTitleEvent = (fields: string = "") => `
@@ -1174,18 +834,12 @@ export const onRenamedTitleEvent = (fields: string = "") => `
     }
 `
 /**
- * @description Github Graphql onReopenedEvent
-* actor {
-*   Owner
-* }
-
-* id
-
-* createdAt
-
-* closable {
-*   Closable
-* }
+* @description Github Graphql onReopenedEvent
+* @fields
+** actor { Owner }
+** id
+** createdAt
+** closable { Closable }
 */
 
 export const onReopenedEvent = (fields: string = "") => `
@@ -1196,48 +850,26 @@ export const onReopenedEvent = (fields: string = "") => `
 `
 
 /**
- * @description Github Graphql onReviewDismissedEvent
-* actor {
-*   Owner
+* @description Github Graphql onReviewDismissedEvent
+* @fields
+** actor { Owner }
+** createdAt
+** databaseId
+** dismissalMessage
+** dismissalMessageHTML
+** id
+** previousReviewState
+** pullRequest { PullRequest }
+** pullRequestCommit {
+	** Commit
+	** id
+	** pullRequest { PullRequest }
+	** resourcePath
+	** url
 * }
-
-* createdAt
-
-* databaseId
-
-* dismissalMessage
-
-* dismissalMessageHTML
-
-* id
-
-* previousReviewState
-
-* pullRequest {
-*   PullRequest
-* }
-
-* pullRequestCommit {
-*   Commit
-
-*   id
-
-*   pullRequest {
-*       PullRequest
-*   }
-
-*   resourcePath
-
-*   url
-* }
-
-* resourcePath
-
-* review {
-*   Review
-* }
-
-* url
+** resourcePath
+** review { Review }
+** url
 */
 
 export const onReviewDismissedEvent = (fields: string = "") => `
@@ -1249,24 +881,13 @@ export const onReviewDismissedEvent = (fields: string = "") => `
 `
 
 /**
- * @description Github Graphql onReviewRequestRemovedEvent
-* actor {
-*   Owner
-* }
-
-* createdAt
-
-* id
-
-* pullRequest {
-*   PullRequest
-* }
-
-* requestedReviewer {
-*   onMannequin
-*   onTeam
-*   onUser
-* }
+* @description Github Graphql onReviewRequestRemovedEvent
+* @fields
+** actor { Owner }
+** createdAt
+** id
+** pullRequest { PullRequest }
+** requestedReviewer { onMannequin onTeam onUser }
 */
 
 export const onReviewRequestRemovedEvent = (fields: string = "") => `
@@ -1275,27 +896,15 @@ export const onReviewRequestRemovedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onReviewRequestedEvent  
-* actor {
-*   Owner
-* }
-
-* createdAt
-
-* id
-
-* pullRequest {
-*   PullRequest
-* }
-
-* requestedReviewer {
-*   onMannequin
-
-*   onTeam
-
-*   onUser
-* }
+* @description Github Graphql onReviewRequestedEvent  
+* @fields
+**  actor { Owner }
+** createdAt
+** id
+** pullRequest { PullRequest }
+** requestedReviewer { onMannequin onTeam onUser }
 */
 
 export const onReviewRequestedEvent = (fields: string = "") => `
@@ -1305,18 +914,12 @@ export const onReviewRequestedEvent = (fields: string = "") => `
     }
 `
 /**
- * @description Github Graphql onSubscribedEvent  
-* actor {
-*   Owner
-* }
-
-* createdAt
-
-* id
-
-* subscribable {
-*   Subscribable
-* }
+* @description Github Graphql onSubscribedEvent  
+* @fields
+** actor { Owner }
+** createdAt
+** id
+** subscribable { Subscribable }
 */
 
 export const onSubscribedEvent = (fields: string = "") => `
@@ -1326,28 +929,14 @@ export const onSubscribedEvent = (fields: string = "") => `
     }
 `
 /**
- * @description Github Graphql onUnassignedEvent 
-* id
-
-* actor {
-*   Owner
-* }
-
-* assignable {
-*   Assignees
-*   onIssue
-*   onPullRequest
-* }
-* assignee {
-*   onBot
-*   onMannequin
-*   onOrganization
-*   onUser
-* }
+* @description Github Graphql onUnassignedEvent 
+* @fields
+** id
+** actor { Owner }
+** assignable { Assignees onIssue onPullRequest }
+* assignee { onBot onMannequin onOrganization onUser }
 * createdAt
-* user {
-*   User
-* }
+* user { User }
 */
 
 export const onUnassignedEvent = (fields: string = "") => `
@@ -1356,21 +945,15 @@ export const onUnassignedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onUnlabeledEvent
-* actor {
-*   Owner
-* }
-* createdAt
-* id
-* label {
-*   Label
-* }
-* labelable {
-*   Labels
-*   onIssue
-*   onPullRequest
-* }
+* @description Github Graphql onUnlabeledEvent
+* @fields
+** actor { Owner }
+** createdAt
+** id
+** label { Label }
+** labelable { Labels onIssue onPullRequest }
 */
 
 export const onUnlabeledEvent = (fields: string = "") => `
@@ -1379,19 +962,14 @@ export const onUnlabeledEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onUnlockedEvent 
-* actor {
-*   Owner
-* }
-* createdAt
-* id
-* lockable {
-*   activeLockReason
-*   locked
-*   onIssue
-*   onPullRequest
-* }
+* @description Github Graphql onUnlockedEvent 
+* @fields
+** actor { Owner }
+** createdAt
+** id
+** lockable { activeLockReason locked onIssue onPullRequest }
 */
 
 export const onUnlockedEvent = (fields: string = "") => `
@@ -1402,24 +980,14 @@ export const onUnlockedEvent = (fields: string = "") => `
 `
 
 /**
- * @description Github Graphql onMarkedAsDuplicateEvent
-* @fields    
-* actor {
-    Owner
-}
-
-* canonical {
-    onIssue
-    onPullRequest
-}
-    
-* createdAt
-    
-* duplicate
-
-* id
-    
-* isCrossRepository
+* @description Github Graphql onMarkedAsDuplicateEvent
+* @fields
+** actor { Owner}
+** canonical { onIssue onPullRequest }
+** createdAt
+** duplicate
+** id
+** isCrossRepository
 */
 
 export const onMarkedAsDuplicateEvent = (fields: string = "") => `
@@ -1428,19 +996,14 @@ export const onMarkedAsDuplicateEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
  * @description Github Graphql onMovedColumnsInProjectEvent
 * @fields
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* databaseId
-    
-* id
-
+* actor { Owner }
+** createdAt
+** databaseId
+** id
 */
 
 export const onMovedColumnsInProjectEvent = (fields: string = "") => `
@@ -1451,19 +1014,12 @@ export const onMovedColumnsInProjectEvent = (fields: string = "") => `
 `
 
 /**
- * @description Github Graphql onPinnedEvent
- * @fields
-* actor {
-    Owner
-}
-
-* createdAt
-    
-* id
-    
-* issue {
-    Issue
-}
+* @description Github Graphql onPinnedEvent
+* @fields
+** actor { Owner }
+** createdAt
+** id
+** issue { Issue }
 */
 
 export const onPinnedEvent = (fields: string = "") => `
@@ -1473,19 +1029,12 @@ export const onPinnedEvent = (fields: string = "") => `
     }
 `
 /**
- * @description Github Graphql onUnpinnedEvent
- * @fields
-* actor {
-    Owner
-}
-
-* createdAt
-    
-* id
-    
-* issue {
-    Issue
-}
+* @description Github Graphql onUnpinnedEvent
+* @fields
+** actor { Owner}
+** createdAt
+** id
+** issue { Issue }
 */
 
 export const onUnpinnedEvent = (fields: string = "") => `
@@ -1497,20 +1046,12 @@ export const onUnpinnedEvent = (fields: string = "") => `
 
 /**
 * @description Github Graphql onPullRequestCommit
-* @fields     
-* commit {
-    Commit
-}
-
-* id
-    
-* pullRequest {
-    PullRequest
-}
-    
-* resourcePath
-    
-* url
+* @fields 
+** commit { Commit }
+** id
+** pullRequest { PullRequest }
+** resourcePath
+** url
 */
 
 export const onPullRequestCommit = (fields: string = "") => `
@@ -1523,27 +1064,13 @@ export const onPullRequestCommit = (fields: string = "") => `
 /**
 * @description Github Graphql onPullRequestCommitCommentThread
 * @fields
-* comments {
-    Comments
-}
-
-* commit {
-    Commit
-}
-    
-* id
-    
-* path
-    
-* position
-    
-* pullRequest {
-    PullRequest
-}
-    
-* repository {
-    Repository
-}
+** comments { Comments }
+** commit { Commit }
+** id
+** path
+** position
+** pullRequest { PullRequest }
+** repository { Repository }
 */
 
 export const onPullRequestCommitCommentThread = (fields: string = "") => `
@@ -1555,28 +1082,23 @@ export const onPullRequestCommitCommentThread = (fields: string = "") => `
 /**
  * @description Github Graphql onPullRequestReview
  * @fields
- * PullRequestReview
+ ** PullRequestReview
  */
+
 export const onPullRequestReview = (fields: string = "") => `
     ... on PullRequestReview {
         id
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onPullRequestRevisionMarker
-* @fields    
-* __typename
-    
-* createdAt
-    
-* lastSeenCommit {
-    Commit
-}
-    
-* pullRequest {
-    PullRequest
-}
+* @description Github Graphql onPullRequestRevisionMarker
+* @fields
+** __typename
+** createdAt
+** lastSeenCommit { Commit }
+** pullRequest { PullRequest }
 */
 
 export const onPullRequestRevisionMarker = (fields: string = "") => `
@@ -1585,20 +1107,14 @@ export const onPullRequestRevisionMarker = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
 * @description Github Graphql onReadyForReviewEvent
-* @fields    
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* id
-    
-* pullRequest {
-    PullRequest
-}
+* @fields
+** actor { Owner }
+** createdAt
+** id
+** pullRequest { PullRequest }
 */
 
 export const onReadyForReviewEvent = (fields: string = "") => `
@@ -1610,17 +1126,13 @@ export const onReadyForReviewEvent = (fields: string = "") => `
 
 /**
 * @description Github Graphql onRemovedFromProjectEvent
-* @fields    
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* databaseId
-    
-* id
+* @fields
+** actor { Owner }
+** createdAt
+** databaseId
+** id
 */
+
 export const onRemovedFromProjectEvent = (fields: string = "") => `
     ... on RemovedFromProjectEvent {
         id
@@ -1630,22 +1142,12 @@ export const onRemovedFromProjectEvent = (fields: string = "") => `
 
 /**
 * @description Github Graphql onTransferredEvent
-* @fields    
-* id
-    
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* fromRepository {
-    Repository
-}
-    
-issue {
-    Issue
-}
+* @fields
+** id
+** actor { Owner }
+** createdAt
+** fromRepository { Repository }
+** issue { Issue }
 */
 
 export const onTransferredEvent = (fields: string = "") => `
@@ -1657,26 +1159,13 @@ export const onTransferredEvent = (fields: string = "") => `
 
 /**
 * @description Github Graphql onUnmarkedAsDuplicateEvent
-* @field
-* actor {
-    Owner
-}
-
-* canonical {
-    onIssue
-    onPullRequest
-}
-    
-* createdAt
-
-* duplicate {
-    onIssue
-    onPullRequest
-}
-    
-* id
-    
-* isCrossRepository
+* @fields
+** actor { Owner }
+** canonical { onIssue onPullRequest }
+** createdAt
+** duplicate { onIssue onPullRequest }
+** id
+** isCrossRepository
 */
 
 export const onUnmarkedAsDuplicateEvent = (fields: string = "") => `
@@ -1688,18 +1177,11 @@ export const onUnmarkedAsDuplicateEvent = (fields: string = "") => `
 
 /**
 * @description Github Graphql onUnsubscribedEvent
-* @field
-* subscribable {
-    Subscribable
-}
-    
-* actor {
-    Owner
-}
-    
-* createdAt
-    
-* id
+* @fields
+* subscribable { Subscribable }
+** actor { Owner }
+** createdAt
+** id
 */
 
 export const onUnsubscribedEvent = (fields: string = "") => `
@@ -1708,19 +1190,15 @@ export const onUnsubscribedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onUserBlockedEvent
-* actor
-
-* blockDuration
-
-* createdAt
-
-* id
-
-* subject {
-*   User
-* }
+* @description Github Graphql onUserBlockedEvent
+* @fields
+** actor
+** blockDuration
+** createdAt
+** id
+** subject { User }
 */
 
 export const onUserBlockedEvent = (fields: string = "") => `
@@ -1729,11 +1207,12 @@ export const onUserBlockedEvent = (fields: string = "") => `
         ${fields}
     }
 `
+
 /**
- * @description Github Graphql onIssueComment
- * @fields
- * IssueComment
- */
+* @description Github Graphql onIssueComment
+* @fields
+** IssueComment
+*/
 
  export const onIssueComment = (fields: string = "") => `
     ... on IssueComment {
@@ -1743,74 +1222,75 @@ export const onUserBlockedEvent = (fields: string = "") => `
 `
 
 /**
- * @description Github Graphql onCommit  
- * @queryArguments
- * Commit 
- */
+* @description Github Graphql onCommit  
+* @fields
+** Commit 
+*/
+
  export const onCommit = (fields: string = "") => `
     ... on Commit {
         ${fields}
     }
 `
 
-
 /**
- * @description Github Graphql onTree  
- * @queryArguments
- * Tree
- */
- export const onTree = (fields: string = "") => `
-    ... on Tree {
-        ${fields}
-    }
+* @description Github Graphql onTree  
+* @fields
+** Tree
+*/
+
+export const onTree = (fields: string = "") => `
+	... on Tree {
+		${fields}
+	}
 `
 
 /**
  * @description Github Graphql onBlob  
- * @queryArguments
- * Blob
+ * @fields
+ ** Blob
  */
+
  export const onBlob = (fields: string = "") => `
- ... on Blob {
-     ${fields}
- }
+	... on Blob {
+		${fields}
+	}
 `
 
-
 /**
- * @description Github Graphql onTag  
- * @queryArguments
- * Tag
- */
+* @description Github Graphql onTag  
+* @fields
+** Tag
+*/
+
  export const onTag = (fields: string = "") => `
- ... on Tag {
-     ${fields}
- }
+	... on Tag {
+		${fields}
+	}
+`
+
+/**
+* @description Github Graphql onCheckRun  
+* @fields 
+** CheckRun
+*/
+
+export const onCheckRun = (fields: string = "") => `
+	... on CheckRun {
+		${fields}
+	}
 `
 
 
 /**
- * @description Github Graphql onCheckRun  
- * @queryArguments 
- * CheckRun
- */
-
- export const onCheckRun = (fields: string = "") => `
- ... on CheckRun {
-     ${fields}
- }
-`
-
-
-/**
- * @description Github Graphql onStatusContext  
- * @defaultVariables totalCount
- * @queryArguments 
- * StatusContext
- */
+* @description Github Graphql onStatusContext  
+* @defaultVariables totalCount
+* @fields 
+** StatusContext
+*/
 
  export const onStatusContext = (fields: string = "") => `
- ... on StatusContext {
-     ${fields}
- }
+	... on StatusContext {
+		${fields}
+	}
 `
