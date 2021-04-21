@@ -3,7 +3,8 @@ export * from "./discussion"
 
 /**
  * @description Github Graphql Query for TopicQuery
- * fields Topic
+ * @fields
+ ** Topic
  */
 
 export const TopicQuery = (name: string, fields: string) => `
