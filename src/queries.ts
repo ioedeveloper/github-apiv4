@@ -29,14 +29,16 @@ export const Viewer = (fields: string) => `
 
 /**
  * @description Github Graphql Query for RepositoryOwner
- * @fields onOrganization onUser
- * Repository
- * Repositories
- * avatarUrl
- * id
- * login
- * resourcePath
- * url
+ * @queryVariables login string
+ * @fields
+ ** onOrganization onUser
+ ** Repository
+ ** Repositories
+ ** avatarUrl
+ ** id
+ ** login
+ ** resourcePath
+ ** url
  */
  export const RepositoryOwner = (login: string,fields: string) =>  `
  	{
