@@ -5,12 +5,13 @@ export * from "./respository"
 
 /**
  * @description Github Graphql Query for SecurityAdvisory
- * @field SecurityAdvisory
+ * @field
+ ** SecurityAdvisory
  */
 
  export const SecurityAdvisoryQuery = (ghsaId: string, fields: string) => `
     {
-		securityAdvisory(ghsaId: "${ghsaId}") {
+		securityAdvisory (ghsaId: "${ghsaId}") {
 			${fields}
 		}
 	}
