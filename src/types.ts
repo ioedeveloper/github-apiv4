@@ -13,39 +13,40 @@ export declare interface UserInfo {
     commitComments: UserCommitContents;
     company: string | null;
     companyHTML: string | null;
-    contributionCollection: any;
+    contributionsCollection: ContributionsCollection;
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     email: string;
     followers: Followers;
     following: Following;
-    gist: Commit;
-    gistComments: Comment[];
-    gists: Commit[];
+    gist: Gist;
+    gistComments: GistComments;
+    gists: Gists;
     hasSponsorsListing: boolean;
     hovercard: HoverCard;
-    id: string;
+    id: number;
+    interactionAbility: {
+        expiresAt: string;
+        limit: number;
+        origin: string;
+    }
     isBountyHunter: boolean;
     isCampusExpert: boolean;
     isDeveloperProgramMember: boolean;
     isEmployee: boolean;
-    isSponsoredBy: any;
-    isSponsoringViewer: any;
+    isSponsoredBy: boolean;
+    isSponsoringViewer: boolean;
     isHireable: boolean;
     isViewer: boolean;
-    isssueComments: IssueComment[]
-    issues: Issue[]
+    issueComments: IssueComments;
+    issues: Issues;
     itemShowcase: {
         hasPinnedItems: boolean;
         items: {
             edges: [{
-                node: [
-                    Gist, Repositories
-                ]
+                node: UserItems
             }];
-            nodes: [
-                Gist, Repositories
-            ];
+            nodes: UserItems[];
             pageInfo: PageInfo;
             totalCount: number;
         }
@@ -54,16 +55,14 @@ export declare interface UserInfo {
     login: string;
     name: string;
     organization: Organization
-    organizationVerifiedDomainEmails: (login: string) => {
-
-    };
-    organizations: Organization[];
+    organizationVerifiedDomainEmails: string[];
+    organizations: Organizations;
     packages: {
         edges: [{
             cursor: string;
             node: Package;
         }];
-        nodes: [Package];
+        nodes: Package[];
         pageInfo: PageInfo;
         totalCount: number;
     }
@@ -74,9 +73,7 @@ export declare interface UserInfo {
                 Gist, Repositories
             ]
         }]
-        nodes: [
-            Gist, Repositories
-        ]
+        nodes: UserItems[];
         pageInfo: PageInfo;
         totalCount: number
     };
@@ -87,9 +84,7 @@ export declare interface UserInfo {
                 Gist, Repositories
             ]
         }]
-        nodes: [
-            Gist, Repositories
-        ]
+        nodes: UserItems[]
         pageInfo: PageInfo;
         totalCount: number
     };
@@ -101,7 +96,7 @@ export declare interface UserInfo {
             cursor: string;
             node: Project;
         }]
-        nodes: Project;
+        nodes: Project[];
         pageInfo: PageInfo;
         totalCount: number
     }
@@ -137,7 +132,7 @@ export declare interface UserInfo {
             cursor: string,
             node: PullRequest
         }]
-        nodes: [PullRequest]
+        nodes: PullRequest[]
         pageInfo: PageInfo;
         totalCount: number;
     }
@@ -146,7 +141,7 @@ export declare interface UserInfo {
             cursor: string,
             node: Repository
         }]
-        nodes: [Repository]
+        nodes: Repository[]
         pageInfo: PageInfo;
         totalCount: number;
         totalDiskUsage: number
@@ -156,7 +151,7 @@ export declare interface UserInfo {
             cursor: string,
             node: Repository
         }]
-        nodes: [Repository]
+        nodes: Repository[]
         pageInfo: PageInfo;
         totalCount: number;
         totalDiskUsage: number;
@@ -168,7 +163,7 @@ export declare interface UserInfo {
             cursor: string,
             node: Reply
         }]
-        nodes: [Reply]
+        nodes: Reply[]
         pageInfo: PageInfo;
         totalCount: number;
     }
@@ -179,7 +174,7 @@ export declare interface UserInfo {
             cursor: string;
             node: SponsorShip;
         }]
-        nodes: [SponsorShip];
+        nodes: SponsorShip[];
         pageInfo: PageInfo;
         totalCount: number;
     }
@@ -188,7 +183,7 @@ export declare interface UserInfo {
             cursor: string;
             node: SponsorShip;
         }]
-        nodes: [SponsorShip];
+        nodes: SponsorShip[];
         pageInfo: PageInfo;
         totalCount: number;
     }
@@ -197,8 +192,9 @@ export declare interface UserInfo {
             cursor: string;
             node: Repository;
         }]
-        nodes: [Repository];
+        nodes: Repository[];
         pageInfo: PageInfo;
+        isOverLimit: boolean;
         totalCount: number;
     }
     status: {
@@ -206,7 +202,7 @@ export declare interface UserInfo {
         emoji: string;
         emojiHTML: string;
         expiresAt: string;
-        id: string;
+        id: number;
         indicatesLimitedAvailability: boolean;
         message: string;
         organization: Organization;
@@ -218,18 +214,24 @@ export declare interface UserInfo {
             cursor: string;
             node: Repository;
         }]
-        nodes: [Repository];
+        nodes: Repository[];
         pageInfo: PageInfo;
         totalCount: number;
     }
     twitterUsername: string;
     updatedAt: string;
+    viewerCanChangePinnedItems: boolean;
+    viewerCanCreateProjects: boolean;
+    viewerCanFollow: boolean
+    viewerCanSponsor: boolean
+    viewerIsFollowing: boolean
+    viewerIsSponsoring: boolean
     watching: {
         edges: [{
             cursor: string;
             node: Repository;
         }]
-        nodes: [Repository];
+        nodes: Repository[];
         pageInfo: PageInfo;
         totalCount: number;
     };
@@ -261,7 +263,7 @@ export declare interface File {
     isTruncated: boolean;
     language: {
         color: string
-        id: string;
+        id: number;
         name: string;
     }
     name: string;
@@ -298,7 +300,7 @@ export declare interface Branches {
         branches: null | {
             edges: [{
                 node: {
-                    id: string;
+                    id: number;
                     name: string;
                     prefix: string;
                 };
@@ -345,7 +347,7 @@ export declare interface Repository {
 
 export declare interface RepositoryInfo {
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     description: string | null;
     descriptionHTML: string;
     diskUsage: number;
@@ -354,7 +356,7 @@ export declare interface RepositoryInfo {
     hasProjectsEnabled: boolean;
     hasWikiEnabled: boolean;
     homepageUrl: string | null;
-    id: string;
+    id: number;
     isArchived: boolean;
     isDisabled: boolean;
     isFork: boolean;
@@ -412,7 +414,7 @@ export declare interface CommitContent {
 export declare interface Branch {
     repository: null | {
         branch: null | {
-            id: string,
+            id: number,
             name: string,
             prefix: string,
         };
@@ -429,13 +431,13 @@ export declare interface Commit {
             committedDate: string;
             committedViaWeb: boolean;
             deletions: number;
-            id: string;
+            id: number;
             message: string;
             messageBody: string;
             messageBodyHTML: string;
             messageHeadline: string;
             messageHeadlineHTML: string;
-            oid: string;
+            oid: number;
             pushedDate: string;
             resourcePath: string;
             tarballUrl: string;
@@ -452,7 +454,7 @@ export declare interface Commit {
 export declare interface CodeOfConduct {
     codeOfConduct: null | {
         name: string;
-        id: string;
+        id: number;
         body: string;
         key: string;
         resourcePath: string;
@@ -465,7 +467,7 @@ export declare interface Followers {
         node: UserInfo;
         cursor: string;
     }];
-    nodes: [UserInfo];
+    nodes: UserInfo[];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -475,7 +477,7 @@ export declare interface Following {
         node: UserInfo;
         cursor: string;
     }];
-    nodes: [UserInfo]
+    nodes: UserInfo[]
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -524,7 +526,7 @@ export declare interface UserCommitContents {
                     createdViaEmail: string;
                     databaseId: number;
                     editor: Author | null;
-                    id: string;
+                    id: number;
                     includesCreatedEdit: boolean;
                     isMinimized: boolean;
                     lastEditedAt: string | null;
@@ -550,7 +552,7 @@ export declare interface UserCommitContents {
 
 export declare interface Issue {
     activeLockReason: string | null;
-    author: Author;
+    author: Owner;
     body: string;
     bodyHTML: string;
     bodyText: string;
@@ -559,14 +561,11 @@ export declare interface Issue {
     createdAt: string;
     createdViaEmail: boolean;
     databaseId: number;
-    editor: Author | null;
-    hovercard: [{
-        message: string;
-        octicon: string;
-    }];
-    id: string;
+    editor: Owner;
+    hovercard: HoverCard;
+    id: number;
     includesCreatedEdit: boolean;
-    lastEditedAt: string | null;
+    lastEditedAt: string;
     locked: boolean;
     number: number;
     publishedAt: string;
@@ -584,27 +583,28 @@ export declare interface Issue {
 }
 
 export declare interface HoverCard {
-    contexts: {
+    contexts: [{
         message: string;
-        GenericHovercardContext: {
-            message: string;
-            octicon: string;
-        }
-        OrganizationTeamsHovercardContext: {
-            message: string;
-            octicon: string;
-            relevantTeams: Team[]
-        }
-    }
+        octicon: string
+        relevantOrganizations: RelevantOrganizations;
+        relevantTeams: RelevantTeams;
+        reviewDecision: string;
+        __typename: string;
+        teamsResourcePath: string;
+        teamsUrl: string;
+        totalOrganizationCount: number;
+        totalTeamCount: number;
+        viewer: UserInfo
+    }]
 }
-
+type TE = { name: 1, age: 2 }
 export declare interface Team {
     ancestors: Team[]
     avatarUrl: string;
     childTeams: Team[]
     combinedSlug: string;
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     description: string;
 
 }
@@ -616,14 +616,14 @@ export declare interface Discussion {
     bodyHTML: string;
     bodyText: string;
     bodyVersion: string;
-    comments: Comment[]
+    comments: Comments
     commentsResourcePath: string;
     commentsUrl: string;
     createdAt: string;
     createdViaEmail: boolean;
-    databaseId: string;
+    databaseId: number;
     editor: Owner;
-    id: string;
+    id: number;
     includesCreatedEdit: boolean;
     isPinned: boolean;
     isPrivate: boolean;
@@ -633,24 +633,19 @@ export declare interface Discussion {
     reactionGroups: ReactionGroup[];
 }
 
-export declare interface Owner {
+export declare interface Owner extends EnterpriseUserAccount, Organization, UserInfo, Mannequin, Bot {
     avatarUrl: string;
     login: string;
     resourcePath: string;
     url: string;
-    enterpriseUserAccount: EnterpriseUserAccount;
-    organization: Organization
-    user: User;
-    bannequin: Mannequin;
-    bot: Bot;
-
 }
+
 
 export declare interface EnterpriseUserAccount {
     avatarUrl: string;
     createdAt: string;
     enterprise: Enterprise;
-    id: string;
+    id: number;
     login: string;
     name: string;
     organization: Organization;
@@ -670,9 +665,9 @@ export declare interface Organization {
 export declare interface Mannequin {
     avatarUrl: string;
     createdAt: string;
-    databaseId: string;
+    databaseId: number;
     email: string;
-    id: string;
+    id: number;
     login: string;
     resourcePath: string;
     updatedAt: string;
@@ -682,8 +677,8 @@ export declare interface Mannequin {
 export declare interface Bot {
     avatarUrl: string;
     createdAt: string;
-    databaseId: string;
-    id: string;
+    databaseId: number;
+    id: number;
     login: string;
     resourcePath: string
     updatedAt: string;
@@ -692,28 +687,18 @@ export declare interface Bot {
 
 export declare interface ReactionGroup {
     content: string;
-    reactionGroup: ReactionGroup;
     createdAt: string;
-    reactionGroups: ReactionGroup[]
-    viewerCanReact: boolean;
-    issue: Issue | null;
-    pullRequest: PullRequest | null;
-    teamDiscussion: Discussion | null;
-    teamDiscussionComment: Discussion | null;
-    commitComment: CommitComment;
-    issueComment: IssueComment;
-    pullRequestReview: PullRequestReview;
-    pullRequestReviewComment: PullRequestReviewComment;
-    users: User[]
-    viewerHasReacted: boolean
+    subject: Subject;
+    users: Users;
+    viewerHasReacted: boolean;
 }
 
 export declare interface Reaction {
     content: string;
     createdAt: string;
-    databaseId: string
-    id: string;
-    reactable: string;
+    databaseId: number
+    id: number;
+    reactable: Reactable;
 }
 
 export declare interface PageInfo {
@@ -731,9 +716,6 @@ export declare interface CommitComment {
 
 }
 
-export declare interface IssueComment {
-
-}
 
 export declare interface PullRequestReview {
 
@@ -744,16 +726,12 @@ export declare interface PullRequestReviewComment {
 }
 
 export declare interface Fork {
-
-}
-
-export declare interface Gist {
-    comments: Comment[];
+    comment: Comment[]
     createdAt: string;
     description: string;
     files: File[];
     forks: Fork[];
-    id: string;
+    id: number;
     isFork: boolean;
     isPublic: boolean;
     name: string;
@@ -767,20 +745,61 @@ export declare interface Gist {
     viewerHasStarred: boolean;
 }
 
+export declare interface Forks {
+    edges: [{
+        cursor: string;
+        node: Fork;
+    }]
+    nodes: Fork[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface Gist {
+    comments: Comments;
+    createdAt: string;
+    description: string;
+    files: File[];
+    forks: Forks;
+    id: number;
+    isFork: boolean;
+    isPublic: boolean;
+    name: string;
+    owner: Owner;
+    pushedAt: string;
+    resourcePath: string;
+    stargazerCount: number;
+    stargazers: Stargazers;
+    updatedAt: string;
+    url: string;
+    viewerHasStarred: boolean;
+}
+
+export declare interface GistComments {
+    edges: [{
+        cursor: string;
+        node: Comment;
+    }]
+    nodes: Comment[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
 export declare interface Stargazers {
     edges: [{
         cursor: string;
-        node: User;
+        node: UserInfo;
     }]
-    nodes: [User];
-    starredAt: string;
+    nodes: UserInfo[];
+    pageInfo: PageInfo;
+    totalCount: number;
 }
 export declare interface Release {
 
 }
 export declare interface Version {
     files: File[];
-    id: string;
+    id: number;
     package: Package;
     platform: string;
     preRelease: boolean;
@@ -794,7 +813,7 @@ export declare interface Version {
 }
 
 export declare interface Package {
-    id: string;
+    id: number;
     latestVersion: Version;
     name: string;
     packageType: string;
@@ -807,21 +826,47 @@ export declare interface Package {
         edges: [{
             node: Version
         }]
-        nodes: [Version]
+        nodes: Version[]
         pageInfo: PageInfo;
         totalCount: number;
     }
 }
 
 export declare interface Project {
-
+    body: string;
+    bodyHTML: string;
+    closed: boolean;
+    closedAt: string;
+    columns: Columns;
+    createdAt: string;
+    creator: Owner;
+    databaseId: number;
+    id: number;
+    name: string;
+    number: number;
+    owner: Owner;
+    pendingCards: Cards;
+    progress: {
+        doneCount: number;
+        donePercentage: number;
+        enabled: boolean;
+        inProgressCount: number;
+        inProgressPercentage: number;
+        todoCount: number;
+        todoPercentage: number;
+    }
+    resourcePath: string;
+    state: string;
+    updatedAt: string;
+    url: string;
+    viewerCanUpdate: boolean;
 }
 
 export declare interface Reply {
     body: string;
     bodyHTML: string;
-    databaseId: string;
-    id: string;
+    databaseId: number;
+    id: number;
     title: string;
     user: Owner
 }
@@ -841,7 +886,7 @@ export declare interface Tier {
                 cursor: string;
                 node: SponsorShip;
             }]
-            nodes: [SponsorShip];
+            nodes: SponsorShip[];
             pageInfo: PageInfo;
         };
 
@@ -849,7 +894,7 @@ export declare interface Tier {
     createdAt: string;
     description: string;
     descriptionHTML: string;
-    id: string;
+    id: number;
     monthlyPriceInCents: number;
     monthlyPriceInDollars: number;
     name: number;
@@ -879,7 +924,7 @@ export declare interface SponsorShip {
                 cursor: string;
                 node: SponsorShip;
             }];
-            nodes: [SponsorShip];
+            nodes: SponsorShip[];
             pageInfo: PageInfo;
             totalCount: number;
         }
@@ -888,7 +933,7 @@ export declare interface SponsorShip {
                 cursor: string;
                 node: SponsorShip;
             }];
-            nodes: [SponsorShip];
+            nodes: SponsorShip[];
             pageInfo: PageInfo;
             totalCount: number;
         }
@@ -914,8 +959,453 @@ export declare interface SponsorsListing {
             cursor: string;
             node: Tier;
         }];
-        nodes: [Tier];
+        nodes: Tier[];
         pageInfo: PageInfo;
         totalCount: number;
     }
+}
+
+export declare interface RelevantTeams {
+    edges: [{
+        cursor: string;
+        node: Team;
+    }];
+    nodes: Team[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface RelevantOrganizations {
+    edges: [{
+        cursor: string;
+        node: Organization;
+    }];
+    nodes: Organization[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+export declare interface ContributionsCollection {
+    commitContributionsByRepository: [{
+        contributions: Contributions;
+        repository: Repository;
+        resourcePath: string;
+        url: string;
+    }]
+    contributionCalendar: ContributionCalendar;
+    contributionYears: number[];
+    doesEndInCurrentMonth: boolean;
+    earliestRestrictedContributionDate: string;
+    endedAt: string;
+    firstIssueContribution: {};
+    firstPullRequestContribution: {}
+    firstRepositoryContribution: {}
+    hasActivityInThePast: boolean;
+    hasAnyContributions: boolean;
+    hasAnyRestrictedContributions: boolean;
+    isSingleDay: boolean;
+    issueContributions: {
+        edges: [{
+            cursor: string;
+            node: {
+                isRestricted: boolean;
+                issue: Issue;
+                occurredAt: string;
+                resourcePath: string;
+                url: string;
+            };
+        }];
+        nodes: [{
+            isRestricted: boolean;
+            issue: Issue;
+            occurredAt: string;
+            resourcePath: string;
+            url: string;
+        }];
+        pageInfo: PageInfo;
+        totalCount: number;
+    }
+    issueContributionsByRepository: [{
+        contributions: Contributions;
+        repository: Repository;
+    }]
+    joinedGitHubContribution: {
+        isRestricted: boolean;
+        occurredAt: string;
+        resourcePath: string;
+        url: string;
+        user: UserInfo;
+    }
+    latestRestrictedContributionDate: string
+    mostRecentCollectionWithActivity: ContributionsCollection;
+    mostRecentCollectionWithoutActivity: ContributionsCollection;
+    popularIssueContribution: IssueContribution;
+    popularPullRequestContribution: PullRequestContribution;
+    pullRequestContributions: PullRequestContributions;
+    pullRequestContributionsByRepository: PullRequestContributionsByRepository[];
+    pullRequestReviewContributions: PullRequestReviewContributions;
+    pullRequestReviewContributionsByRepository: PullRequestReviewContributionsByRepository[];
+    repositoryContributions: RepositoryContributions;
+    restrictedContributionsCount: number;
+    startedAt: string;
+    totalCommitContributions: number;
+    totalIssueContributions: number;
+    totalPullRequestContributions: number;
+    totalPullRequestReviewContributions: number;
+    totalRepositoriesWithContributedCommits: number;
+    totalRepositoriesWithContributedIssues: number;
+    totalRepositoriesWithContributedPullRequestReviews: number;
+    totalRepositoriesWithContributedPullRequests: number;
+    totalRepositoryContributions: number;
+    user: UserInfo;
+}
+
+export declare interface IssueContribution {
+    isRestricted: boolean;
+    issue: Issue;
+    occurredAt: string;
+    resourcePath: string;
+    url: string;
+    user: UserInfo;
+}
+
+export declare interface PullRequestContribution {
+    isRestricted: boolean;
+    occurredAt: string;
+    pullRequest: PullRequest;
+    resourcePath: string;
+    url: string;
+    user: UserInfo;
+}
+
+export declare interface PullRequestContributions {
+    edges: [{
+        cursor: string;
+        node: PullRequestContribution;
+    }];
+    nodes: PullRequestContribution[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface PullRequestContributionsByRepository {
+    contributions: Contributions;
+    repository: Repository;
+}
+
+export declare interface PullRequestReviewContribution {
+    isRestricted: boolean;
+    occurredAt: string;
+    pullRequest: PullRequest;
+    pullRequestReview: PullRequestReview;
+    repository: Repository;
+    resourcePath: string;
+    url: string;
+    user: UserInfo;
+}
+
+export declare interface PullRequestReviewContributions {
+    edges: [{
+        cursor: string;
+        node: PullRequestReviewContribution;
+    }];
+    nodes: PullRequestReviewContribution[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface PullRequestReviewContributionsByRepository {
+    contribution: Contribution;
+    repository: Repository;
+}
+
+export declare interface RepositoryContributions {
+    edges: [{
+        cursor: string;
+        node: Contribution;
+    }];
+    nodes: Contribution[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+export declare interface Contributions {
+    edges: [{
+        cursor: string;
+        node: Contribution;
+    }];
+    nodes: Contribution[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface Contribution {
+    commitCount: number;
+    isRestricted: boolean;
+    occurredAt: string;
+    repository: Repository;
+    resourcePath: string;
+    url: string;
+    user: UserInfo;
+}
+
+export declare interface ContributionCalendar {
+    colors: string[];
+    isHalloween: boolean;
+    months: [{
+        firstDay: string;
+        name: string;
+        totalWeeks: number;
+        year: number;
+    }]
+    totalContributions: number;
+    weeks: [{
+        contributionDays: [{
+            color: string;
+            contributionCount: number;
+            contributionLevel: string;
+            date: string;
+            weekday: number;
+        }]
+        firstDay: string;
+    }]
+}
+
+export declare interface Gist {
+    comments: Comments;
+    createdAt: string;
+    description: string;
+    files: File[];
+    forks: Forks;
+    id: number;
+    isFork: boolean;
+    isPublic: boolean;
+    name: string;
+    owner: Owner;
+    pushedAt: string;
+    resourcePath: string;
+    stargazerCount: number;
+    stargazers: Stargazers;
+    updatedAt: string;
+    url: string;
+    viewerHasStarred: boolean;
+}
+
+export declare interface Gists {
+    edges: [{
+        cursor: string;
+        node: Gist;
+    }];
+    nodes: Gist[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface Comment {
+    author: Owner;
+    authorAssociation: string;
+    body: string;
+    bodyHTML: string;
+    bodyText: string;
+    createdAt: string;
+    createdViaEmail: string;
+    databaseId: number;
+    editor: Owner;
+    gist: Gist;
+    id: number;
+    includesCreatedEdit: boolean;
+    isMinimized: boolean;
+    issue: Issue;
+    lastEditedAt: string;
+    minimizedReason: string;
+    publishedAt: string;
+    pullRequest: PullRequest;
+    reactionGroup: ReactionGroup;
+    reactions: Reactions;
+    updatedAt: string;
+    userContentEdits: UserContentEdits;
+    viewerCanDelete: boolean;
+    viewerCanMinimize: boolean;
+    viewerCanUpdate: boolean;
+    viewerCannotUpdateReasons: string;
+    viewerDidAuthor: boolean;
+}
+
+export declare interface Comments {
+    edges: [{
+        cursor: string;
+        node: Comment[];
+    }];
+    nodes: Comment[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface ContentEdit {
+    createdAt: string;
+    deletedAt: string;
+    deletedBy: Owner;
+    diff: string;
+    editedAt: string;
+    editor: Owner;
+    id: number;
+    updatedAt: string;
+
+}
+export declare interface UserContentEdits {
+    edges: [{
+        cursor: string;
+        node: ContentEdit;
+    }];
+    nodes: ContentEdit[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface IssueComment {
+    author: Owner;
+    authorAssociation: string;
+    body: string;
+    bodyHTML: string;
+    bodyText: string;
+    createdAt: string;
+    createdViaEmail: boolean;
+    databaseId: number;
+    editor: Owner;
+    id: number;
+    includesCreatedEdit: boolean;
+    isMinimized: boolean;
+    issue: Issue;
+    lastEditedAt: string;
+    minimizedReason: string;
+    publishedAt: string;
+    pullRequest: PullRequest;
+    reactionGroups: ReactionGroup[];
+    reactions: Reactions;
+}
+
+export declare interface IssueComments {
+    edges: [{
+        cursor: string;
+        node: IssueComment;
+    }];
+    nodes: IssueComment[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface Reaction {
+    content: string;
+    createdAt: string;
+    databaseId: number;
+    id: number;
+    reactable: Reactable;
+    user: UserInfo;
+}
+export declare interface Reactions {
+
+}
+
+export declare interface Reactable {
+    content: string;
+    createdAt: string;
+    subject: Subject;
+    users: Users;
+    viewerHasReacted: boolean;
+}
+export declare interface Users {
+    edges: [{
+        cursor: string;
+        node: UserInfo;
+    }];
+    nodes: UserInfo[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+export declare interface TeamDiscussion {
+
+}
+
+export declare interface TeamDiscussionComment {
+
+}
+
+declare interface Subject extends PullRequest, Issue, TeamDiscussion, TeamDiscussionComment, CommitComment, IssueComment, PullRequestReview, PullRequestReviewComment {
+    databaseId: number;
+    id: number;
+    reactionGroups: ReactionGroup[];
+    reactions: Reactions
+    viewerCanReact: boolean;
+}
+
+export declare interface Issues {
+    edges: [{
+        cursor: string;
+        node: Issue;
+    }];
+    nodes: Issue[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface Organizations {
+    edges: [{
+        cursor: string;
+        node: Organization;
+    }];
+    nodes: Organization[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface Columns {
+    edges: [{
+        cursor: string;
+        node: Column;
+    }];
+    nodes: Column[];
+    pageInfo: PageInfo;
+    totalCount: number;
+
+}
+
+export declare interface Cards {
+    edges: [{
+        cursor: string;
+        node: Card;
+    }];
+    nodes: Card[];
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+export declare interface UserItems extends Gist, Repository {
+
+}
+export declare interface CardItems extends Issue, PullRequest {
+
+}
+export declare interface Column {
+    cards: Cards;
+    createdAt: string;
+    databaseid: number
+    id: number;
+    name: string;
+    project: Project;
+    purpose: string;
+    resourcePath: string;
+    updatedAt: string;
+    url: string;
+}
+export declare interface Card {
+    column: Column;
+    content: CardItems;
+    createdAt: string;
+    creator: Owner;
+    databaseId: number;
+    id: number
+    isArchived: boolean;
+    note: string;
+    project: Project;
+    resourcePath: string;
+    state: string;
+    updatedAt: string;
+    url: string;
 }

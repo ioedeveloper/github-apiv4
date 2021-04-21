@@ -16,10 +16,10 @@ export const TopicQuery = (name: string, fields: string) => `
 }
 `
 
-
 /**
  * @description Github Graphql Query for Viewer
- * @fields User
+ * @fields
+ ** User
  */
 export const Viewer = (fields: string) => `
     query {
@@ -498,61 +498,6 @@ export const BranchDirectories = `
 `
 
 /**
- * @description Github Graphql Query for repository details
- * @type string
- */
-export const Repository = `
-  query($repositoryOwner: String!, $repositoryName: String!){
-    repository(owner: $repositoryOwner, name: $repositoryName){
-      createdAt
-      databaseId
-      description
-      descriptionHTML
-      diskUsage
-      forkCount
-      hasIssuesEnabled
-      hasProjectsEnabled
-      hasWikiEnabled
-      homepageUrl
-      id
-      isArchived
-      isDisabled
-      isFork
-      isLocked
-      isMirror
-      isPrivate
-      isTemplate
-      lockReason
-      mergeCommitAllowed
-      mirrorUrl
-      name
-      nameWithOwner
-      openGraphImageUrl
-      projectsResourcePath
-      projectsUrl
-      pushedAt
-      rebaseMergeAllowed
-      resourcePath
-      shortDescriptionHTML
-      squashMergeAllowed
-      sshUrl
-      tempCloneToken
-      updatedAt
-      url
-      usesCustomOpenGraphImage
-      viewerCanAdminister
-      viewerCanCreateProjects
-      viewerCanAdminister
-      viewerCanSubscribe
-      viewerCanUpdateTopics
-      viewerHasStarred
-      viewerPermission
-      viewerSubscription
-    }
-  }
-`
-
-/**
  * @description Github Graphql Query for commit content (files and directories)
  * @queryVariable expression: "refs/heads/master" OR commit hash
  */
@@ -890,8 +835,9 @@ export const ViewerFollowers = `
 /**
  * @description Github Graphql Query for Github User
  * @queryVariable
- * login username
- * fields User
+ **  login username
+ * @fields
+ **  User
  */
 export const UserQuery = (login: string, fields:string) => `
 {
