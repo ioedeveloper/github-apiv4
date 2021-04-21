@@ -18,42 +18,25 @@ export const Viewer = (fields: string) =>  `
 * @description Github Graphql Query for Search
 * @defaultVariables totalCount
 * @queryVariables 
-* after string 
-
-* before string
-
-* first number
-
-* last number
-
-* query string
-
+** after string 
+** before string
+** first number
+** last number
+** query string
 * @fields 
-* onApp
-
-* onIssue 
-
-* onMarketplaceListing
-
-* onOrganization 
-
-* onPullRequest
-
-* onRepository 
-
-* onUser
-
-* type "ISSUE" | "REPOSITORY" | "USER"
-
-* codeCount
-
-* issueCount
-
-* repositoryCount
-
-* userCount
-
-* wikiCount
+** onApp
+** onIssue 
+** onMarketplaceListing
+** onOrganization 
+** onPullRequest
+** onRepository 
+** onUser
+** type "ISSUE" | "REPOSITORY" | "USER"
+** codeCount
+** issueCount
+** repositoryCount
+** userCount
+** wikiCount
 */
 
  export const Search = (params: queryVariables.Search) =>  `
