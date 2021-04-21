@@ -2,7 +2,8 @@ export * from "./user"
 
 /**
  * @description Github Graphql Query for Viewer
- * @fields User
+ * @fields
+ ** User
  */
 export const Viewer = (fields: string) =>  `
     query {
