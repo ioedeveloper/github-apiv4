@@ -1,3 +1,5 @@
+import { queryVariables } from "."
+
 /**
 * @description Github Graphql Topic
 * @defaultVariables
@@ -9,7 +11,6 @@
 ** viewerHasStarred
 */
 
-import { queryVariables } from "."
 
 export const Topic = (field: string) => `
     ${field}

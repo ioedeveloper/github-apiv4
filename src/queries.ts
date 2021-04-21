@@ -30,7 +30,8 @@ export const Viewer = (fields: string) => `
 
 /**
  * @description Github Graphql Query for Organization
- * @fields OrganizationFields
+ * @fields
+ ** OrganizationFields
  */
 
 export const OrganisationQuery = (login: string,fields: string) => `
