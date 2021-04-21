@@ -17,17 +17,16 @@ export const TopicQuery = (name: string, fields: string) => `
 
 /**
  * @description Github Graphql Query for SponsorsListing
- * activeGoal {
- * 		Goal
- * }
- * createdAt
- * fullDescription
- * fullDescriptionHTML
- * id
- * name
- * shortDescription
- * slug
- * Tiers
+ * @fields
+ ** activeGoal {	Goal }
+ ** createdAt
+ ** fullDescription
+ ** fullDescriptionHTML
+ ** id
+ ** name
+ ** shortDescription
+ ** slug
+ ** Tiers
  */
 
 export const SponsorsListing = (slug:string,fields:string) =>`
