@@ -7,6 +7,7 @@ import { queryVariables } from "."
  * @fields
  ** Invitation
  */
+
  export const EnterpriseAdministratorInvitationByToken = (invitationToken: string, fields: string ) => `
   enterpriseAdministratorInvitationByToken (invitationToken: "${invitationToken}") {
         ${fields}
@@ -15,8 +16,7 @@ import { queryVariables } from "."
 
  /**
  * @description Github Graphql Query for EnterpriseAdministratorInvitation
- * @queryVariable 
- **  invitationToken string
+ * @queryVariable invitationToken string
  * @fields
  ** Invitation
  */
