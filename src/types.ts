@@ -612,17 +612,6 @@ export declare interface Commit {
     totalCount: number;
 }
 
-export declare interface CodeOfConduct {
-    codeOfConduct: null | {
-        name: string;
-        id: number;
-        body: string;
-        key: string;
-        resourcePath: string;
-        url: string;
-    };
-}
-
 export declare interface Followers {
     edges: {
         node: UserInfo;
@@ -758,7 +747,7 @@ export declare interface Issue {
     repository: RepositoryInfo;
     resourcePath: string;
     state: string;
-    timeline: Timeline;
+    timeline: Timelines;
     timelineItems: TimelineItems;
     title: string;
     updatedAt: string;
@@ -922,7 +911,6 @@ export declare interface Owner extends EnterpriseUserAccount, Organization, User
 
 }
 
-
 export declare interface EnterpriseUserAccount {
     avatarUrl: string;
     createdAt: string;
@@ -976,7 +964,7 @@ export declare interface Organization {
     organization: OrganizationInfo;
 }
 
-export declare interface RateLimit {
+export declare interface RateLimitQuery {
     rateLimit: RateLimit;
 }
 
@@ -1089,14 +1077,6 @@ export declare interface ReactionGroup {
     viewerHasReacted: boolean
 }
 
-export declare interface Reaction {
-    content: Content;
-    createdAt: string;
-    databaseId: string
-    id: number;
-    reactable: string;
-}
-
 export declare interface PageInfo {
     endCursor: string;
     hasNextPage: boolean;
@@ -1105,17 +1085,99 @@ export declare interface PageInfo {
 }
 
 export declare interface PullRequest {
+    activeLockReason: string;
+    additions: number;
+    assignees: Assignees;
+    author: Owner;
+    authorAssociation: string;
+    autoMergeRequest: AutoMergeRequest;
+    baseRef: Ref;
+    baseRefName: string;
+    baseRefOid: string;
+    baseRepository: RepositoryInfo;
+    body: string;
+    bodyHTML: string;
+    bodyText: string;
+    changedFiles: number;
+    checksResourcePath: string;
+    checksUrl: string;
+    closed: boolean;
+    closedAt: string;
+    comments: Comments;
+    commits: Commits;
+    createdAt: string;
+    createdViaEmail: boolean;
+    databaseId: number;
+    deletions: number;
+    editor: Owner;
+    files: Files;
+    headRef: Ref;
+    headRefName: string;
+    headRefOid: string;
+    headRepository: RepositoryInfo;
+    headRepositoryOwner: HeadRepositoryOwner;
+    hoverCard: HoverCard;
+    id: number | string;
+    includesCreatedEdit: boolean;
+    isCrossRepository: boolean;
+    isReadByViewer: boolean;
+    isDraft: boolean;
+    labels: Labels;
+    lastEditedAt: string;
+    latestOpinionatedReviews: Reviews;
+    latestReviews: Reviews;
+    locked: boolean;
+    maintainerCanModify: boolean;
+    mergeCommit: Commit;
+    mergeable: string;
+    merged: boolean;
+    mergedAt: string;
+    mergedBy: Owner;
+    milestone: Milestone;
+    number: number;
+    participants: Users;
+    permalink: string;
+    potentialMergeCommit: Commit;
+    projectCards: ProjectCards;
+    repository: RepositoryInfo;
+    reactions: Reactions;
+    reactionGroups: ReactionGroups[];
+    resourcePath: string;
+    revertResourcePath: string;
+    revertUrl: string;
+    reviewDecision: string;
+    reviewRequests: ReviewRequests;
+    reviewThreads: PullRequestReviews;
+    reviews: Reviews;
+    state: string;
+    suggestedReviewers: {
+        isAuthor: boolean;
+        isCommenter: boolean;
+        reviewer: UserInfo;
+    }[]
+    timeline: Timelines;
+    timelineItems: TimelineItems;
+    title: string;
+    updatedAt: string;
+    url: string
+    userContentEdits: UserContentEdits;
+    viewerCanApplySuggestion: boolean;
+    viewerCanDeleteHeadRef: boolean;
+    viewerCanDisableAutoMerge: boolean;
+    viewerCanEnableAutoMerge: boolean;
+    viewerCanReact: boolean;
+    viewerCanSubscribe: boolean;
+    viewerCanUpdate: boolean;
+    viewerCannotUpdateReasons: string[];
+    viewerDidAuthor: boolean;
+    viewerLatestReview: PullRequestReview;
+    viewerLatestReviewRequest: ReviewRequest;
+    viewerMergeBodyText: string;
+    viewerMergeHeadlineText: string;
+    viewerSubscription: string;
 }
 
 export declare interface CommitComment {
-
-}
-
-export declare interface IssueComment {
-
-}
-
-export declare interface PullRequestReview {
 
 }
 
@@ -1125,26 +1187,6 @@ export declare interface PullRequestReviewComment {
 
 export declare interface Fork {
 
-}
-
-export declare interface Gist {
-    comments: Comments;
-    createdAt: string;
-    description: string;
-    files: File[];
-    forks: Fork[];
-    id: number;
-    isFork: boolean;
-    isPublic: boolean;
-    name: string;
-    owner: Owner;
-    pushedAt: string;
-    resourcePath: string;
-    stargazerCount: number;
-    stargazers: Stargazers;
-    updatedAt: string;
-    url: string;
-    viewerHasStarred: boolean;
 }
 
 export declare interface GistComments {
@@ -1423,7 +1465,7 @@ export declare interface UserIssues {
     };
 }
 
-export declare interface SponsorsListing {
+export declare interface SponsorsListingQuery {
     sponsorsListing: SponsorsListing;
 }
 
@@ -1445,7 +1487,6 @@ export declare interface Sponsorables {
 export declare interface Sponsorable extends OrganizationInfo, UserInfo {
 
 }
-
 
 export declare interface SponsorsListing {
     activeGoal: Goal;
@@ -1857,7 +1898,6 @@ declare interface Subject extends PullRequest, Issue, TeamDiscussion, TeamDiscus
     viewerCanReact: boolean;
 }
 
-
 export declare interface Organizations {
     edges: {
         cursor: string;
@@ -1988,7 +2028,7 @@ export declare interface Advisory {
     withdrawnAt: string;
 }
 
-export declare interface SecurityAdvisory {
+export declare interface SecurityAdvisoryQuery {
     securityAdvisory: SecurityAdvisory;
 }
 
@@ -2563,16 +2603,6 @@ export declare interface Reviews {
     totalCount: number;
 }
 
-export declare interface Teams {
-    edges: {
-        cursor: string;
-        node: Team;
-    }[],
-    nodes: Team[]
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
 export declare interface Milestone {
     closed: boolean;
     closedAt: string;
@@ -2733,14 +2763,6 @@ export declare interface BaseRefChangedEvent {
 
 }
 
-export declare interface BaseRefDeletedEvent {
-    actor: Actor;
-    id: number | string;
-    baseRefName: string
-    createdAt: string;
-    pullRequest: PullRequest;
-}
-
 export declare interface BaseRefForcePushedEvent {
     actor: Actor;
     afterCommit: Commit;
@@ -2815,7 +2837,7 @@ export declare interface AutomaticBaseChangeSucceededEvent {
     oldBase: string;
 }
 
-export declare interface Timeline {
+export declare interface Timelines {
     edges: {
         cursor: string;
         node: Timeline;
@@ -2841,29 +2863,12 @@ export declare interface AssignedEvent {
     user: UserInfo
 }
 
-export declare interface AssignedEvent {
-    actor: Actor;
-    createdAt: string;
-    assignable: Assignable;
-    assignee: Assignee;
-    id: number | string;
-}
-
 export declare interface BaseRefDeletedEvent {
     id: number | string;
     baseRefName: string;
     actor: Actor;
     createdAt: string;
     pullRequest: PullRequest
-}
-
-export declare interface BaseRefForcePushedEvent {
-    id: number | string;
-    afterCommit: Commit;
-    beforeCommit: Commit
-    createdAt: string;
-    pullRequest: PullRequest
-    ref: Ref
 }
 
 declare interface Closer extends Commit, PullRequest {
@@ -2896,19 +2901,6 @@ export declare interface CommitCommentThread {
 
 export declare interface Source extends Issues, PullRequest {
 
-}
-
-export declare interface CrossReferencedEvent {
-    id: number | string;
-    actor: Actor;
-    createdAt: string;
-    isCrossRepository: boolean;
-    referencedAt: string;
-    resourcePath: string;
-    source: Source
-    target: Target;
-    url: string;
-    willCloseTarget: boolean;
 }
 
 export declare interface DemilestonedEvent {
@@ -3251,28 +3243,6 @@ type StatusType = string | CommitStatus | {
     user: UserInfo
 }
 
-export declare interface Relay {
-    codeofConduct: CodeOfConduct;
-    codesofConduct: CodeOfConduct[];
-    enterprise: Enterprise;
-    enterpriseAdministratorInvitation: EnterpriseAdministratorInvitation;
-    enterpriseAdministratorInvitationByToken: EnterpriseAdministratorInvitationByToken
-    license: License;
-    licenses: License[];
-    marketplaceCategories: MarketplaceCategory[];
-    marketplaceCategory: MarketplaceCategory;
-    marketplaceListing: MarketplaceListing;
-    marketplaceListings: MarketplaceListings;
-    meta: Meta;
-    node: Node;
-    nodes: Nodes;
-    organization: OrganizationInfo | string;
-    rateLimit: RateLimit;
-    message: string;
-    updatedAt: string;
-    user: UserInfo
-}
-
 export declare interface MarketplaceCategory {
     app: App;
     companyUrl: string;
@@ -3363,6 +3333,17 @@ export declare interface Relay {
     topic: Topic;
     user: UserInfo;
     viewer: Viewer;
+    marketplaceCategories: MarketplaceCategory[];
+    marketplaceCategory: MarketplaceCategory;
+    marketplaceListing: MarketplaceListing;
+    marketplaceListings: MarketplaceListings;
+    meta: Meta;
+    node: Node;
+    nodes: Nodes;
+    organization: OrganizationInfo | string;
+    rateLimit: RateLimit;
+    message: string;
+    updatedAt: string;
 }
 
 export declare interface RateLimit {
@@ -3373,7 +3354,6 @@ export declare interface RateLimit {
     resetAt: string;
     used: number;
 }
-
 
 export declare interface Actor extends Bot, User, OrganizationInfo, App, Team, Enterprise {
 
@@ -3434,15 +3414,12 @@ export declare interface onOrgAddBillingManagerAuditEntry extends MemberNodeFiel
     organization: OrganizationInfo | string;
 }
 
-export declare interface onOrgAddMemberAuditEntry extends MemberNodeFields {
-    permission: string;
-}
-
 export declare interface onOrgBlockUserAuditEntry extends MemberNodeFields {
     blockedUser: UserInfo;
     blockedUserName: string;
     blockedUserResourcePath: string;
     blockedUserUrl: string;
+    permission: string;
 }
 
 export declare interface onOrgConfigDisableCollaboratorsOnlyAuditEntry extends MemberNodeFields {
@@ -3456,7 +3433,6 @@ export declare interface onOrgConfigEnableCollaboratorsOnlyAuditEntry extends Me
 export declare interface onOrgCreateAuditEntry extends MemberNodeFields {
     billingPlan: string;
 }
-
 
 export declare interface onOrgDisableOauthAppRestrictionsAuditEntry extends MemberNodeFields {
 
@@ -3503,7 +3479,6 @@ export declare interface onOrgOauthAppAccessDeniedAuditEntry extends MemberNodeF
     oauthApplicationResourcePath: string;
     oauthApplicationUrl: string;
 }
-
 
 export declare interface onOrgOauthAppAccessRequestedAuditEntry extends MemberNodeFields {
     oauthApplicationName: string;
@@ -3560,13 +3535,6 @@ export declare interface onOrgRestoreMemberMembershipOrganizationInfoAuditEntryD
     organizationUrl: string;
 }
 
-export declare interface onOrgBlockUserAuditEntry extends MemberNodeFields {
-    blockedUser: UserInfo;
-    blockedUserName: string;
-    blockedUserResourcePath: string;
-    blockedUserUrl: string;
-}
-
 export declare interface onOrgAddMemberAuditEntry extends MemberNodeFields {
     permission: string;
     permissionWas: string;
@@ -3615,10 +3583,6 @@ export declare interface onRepoAddTopicAuditEntry extends MemberNodeFields {
     repositoryUrl: string;
     topic: Topic;
     topicName: string;
-}
-
-export declare interface Topic {
-
 }
 
 export declare interface onRepoArchivedAuditEntry extends MemberNodeFields {
@@ -3747,7 +3711,6 @@ export declare interface onOrgUpdateDefaultRepositoryPermissionAuditEntry extend
 export declare interface onRepoConfigDisableContributorsOnlyAuditEntry extends MemberNodeFields {
 
 }
-
 
 export declare interface AuditLogNode extends onMembersCanDeleteReposDisableAuditEntry, onMembersCanDeleteReposClearAuditEntry, onOauthApplicationCreateAuditEntry, onOrgAddMemberAuditEntry, onOrgAddBillingManagerAuditEntry,
     onOrgBlockUserAuditEntry, onOrgConfigDisableCollaboratorsOnlyAuditEntry, onOrgConfigEnableCollaboratorsOnlyAuditEntry, onOrgConfigEnableCollaboratorsOnlyAuditEntry, onOrgCreateAuditEntry, onOrgDisableOauthAppRestrictionsAuditEntry,
@@ -3931,26 +3894,6 @@ export declare interface SponsorEntity extends OrganizationInfo, UserInfo {
 
 }
 
-export declare interface Projects {
-    edges: {
-        cursor: string;
-        node: Project;
-    }[]
-    nodes: Project[];
-    pageInfo: PageInfo;
-    totalCount: number
-}
-
-export declare interface Sponsorable {
-    hasSponsorsListing: boolean;
-    isSponsoredBy: boolean;
-    isSponsoringViewer: boolean;
-    sponsorsListing: SponsorsListing;
-    sponsorshipForViewerAsSponsor: SponsorshipForViewerAsSponsor;
-    sponsorshipsAsMaintainer: SponsorshipsAsMaintainer;
-
-}
-
 export declare interface Sponsorships {
     createdAt: string;
     id: string;
@@ -3963,7 +3906,6 @@ export declare interface Sponsorships {
     tier: Tier;
     tierSelectedAt: string;
 }
-
 
 export declare interface SponsorshipsAsMaintainer {
     edges: {
@@ -4034,18 +3976,6 @@ export declare interface Members {
     nodes: UserInfo[];
     pageInfo: PageInfo;
     totalCount: number
-}
-
-export declare interface ReactionGroups {
-
-}
-
-export declare interface Reactions {
-
-}
-
-export declare interface UserContentEdits {
-
 }
 
 type ItemShowcase = {
@@ -4331,10 +4261,6 @@ export declare interface OrgRemoveBillingManagerAuditEntry extends MembersReposT
     reason: string;
 }
 
-export declare interface OrgRemoveBillingManagerAuditEntry extends MembersReposType {
-    reason: string;
-}
-
 export declare interface OrgOauthAppAccessRequestedAuditEntry extends MembersReposType {
     oauthApplicationName: string;
     oauthApplicationResourcePath: string;
@@ -4364,10 +4290,6 @@ export declare interface OrgInviteMemberAuditEntry extends MembersReposType {
 }
 
 export declare interface OrgEnableTwoFactorRequirementAuditEntry extends MembersReposType {
-
-}
-
-export declare interface OrgEnableOauthAppRestrictionsAuditEntry extends MembersReposType {
 
 }
 
@@ -4473,7 +4395,6 @@ export declare interface Sponsorship {
     tier: Tier;
     tierSelectedAt: string;
 }
-
 
 export declare interface SponsorsTier extends Tier {
 
@@ -4740,22 +4661,8 @@ export declare interface MarketplaceListingsQuery {
     marketplaceListings: MarketplaceListings;
 }
 
-export declare interface MarketplaceListings {
-    edges: {
-        cursor: string;
-        node: MarketplaceListing;
-    }[];
-    nodes: MarketplaceListing[];
-    pageInfo: PageInfo;
-    totalCount: number;
-}
-
 export declare interface MarketplaceListingQuery {
     marketplaceListing: MarketplaceListing;
-}
-
-export declare interface App {
-
 }
 
 export declare interface Category {
@@ -4921,15 +4828,4 @@ export declare interface UserAccountsUploads {
     totalCount: number;
 }
 
-export declare interface EnterpriseServerInstallation {
-    createdAt: string;
-    customerName: string;
-    hostName: string;
-    id: string | number;
-    isConnected: boolean;
-    updatedAt: string;
-    userAccount: EnterpriseUserAccountNode;
-    userAccountsUploads: UserAccountsUploads;
-}
-
-type Content = string | CardItems | Source 
+type Content = string | CardItems | Source

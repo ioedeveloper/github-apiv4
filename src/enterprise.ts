@@ -1,61 +1,59 @@
-import { queryVariables } from "."
-
+import { queryVariables } from '.'
 
 /**
 * @description Github Graphql MarketplaceListing
 * @defaultVariables totalCount
-* @fields 
+* @fields
 ** app { App }
-** name 
-** companyUrl 
-** configurationResourcePath 
-** configurationUrl 
-** documentationUrl 
-** extendedDescription 
-** extendedDescriptionHTML 
-** fullDescription 
-** fullDescriptionHTML 
-** hasPublishedFreeTrialPlans 
-** hasTermsOfService 
-** hasVerifiedOwner 
-** howItWorks 
-** howItWorksHTML 
-** id 
-** installationUrl 
-** installedForViewer 
-** isArchived 
-** isDraft 
-** isPaid 
-** isPublic 
-** isRejected 
-** isUnverified 
-** isUnverifiedPending 
-** isVerificationPendingFromDraft 
-** isVerificationPendingFromUnverified 
-** isVerified 
-** logoBackgroundColor 
-** logoUrl 
-** normalizedShortDescription 
-** pricingUrl 
+** name
+** companyUrl
+** configurationResourcePath
+** configurationUrl
+** documentationUrl
+** extendedDescription
+** extendedDescriptionHTML
+** fullDescription
+** fullDescriptionHTML
+** hasPublishedFreeTrialPlans
+** hasTermsOfService
+** hasVerifiedOwner
+** howItWorks
+** howItWorksHTML
+** id
+** installationUrl
+** installedForViewer
+** isArchived
+** isDraft
+** isPaid
+** isPublic
+** isRejected
+** isUnverified
+** isUnverifiedPending
+** isVerificationPendingFromDraft
+** isVerificationPendingFromUnverified
+** isVerified
+** logoBackgroundColor
+** logoUrl
+** normalizedShortDescription
+** pricingUrl
 ** primaryCategory { description howItWorks id name  primaryListingCount resourcePath secondaryListingCount slug url  }
-** privacyPolicyUrl 
-** resourcePath 
-** screenshotUrls 
+** privacyPolicyUrl
+** resourcePath
+** screenshotUrls
 ** secondaryCategory { description howItWorks id name  primaryListingCount resourcePath secondaryListingCount slug url  }
-** viewerCanAddPlans 
-** viewerCanApprove 
-** viewerCanDelist 
-** viewerCanEdit 
-** viewerCanEditCategories 
-** viewerCanEditPlans 
-** viewerCanRedraft 
-** viewerCanReject 
-** viewerCanRequestApproval 
-** viewerHasPurchased 
-** viewerHasPurchasedForAllOrganizations 
-** viewerIsListingAdmin 
+** viewerCanAddPlans
+** viewerCanApprove
+** viewerCanDelist
+** viewerCanEdit
+** viewerCanEditCategories
+** viewerCanEditPlans
+** viewerCanRedraft
+** viewerCanReject
+** viewerCanRequestApproval
+** viewerHasPurchased
+** viewerHasPurchasedForAllOrganizations
+** viewerIsListingAdmin
 */
-
 
 export const MarketplaceListing = (fields: string) => `
     marketplaceListing {
@@ -66,16 +64,16 @@ export const MarketplaceListing = (fields: string) => `
 `
 
 /**
- * @description Github Graphql MarketplaceListings  
+ * @description Github Graphql MarketplaceListings
  * @defaultVariables totalCount
- * @queryArguments 
+ * @queryArguments
  ** after string
  ** before string
  ** first number
  ** last number
  ** adminId string
  ** allStates boolean
- ** categorySlug string 
+ ** categorySlug string
  ** query string
  ** organizationId string
  ** primaryCategoryOnly boolean
@@ -83,11 +81,11 @@ export const MarketplaceListing = (fields: string) => `
  ** useTopicAliases boolean
  ** viewerCanAdmin boolean
  ** withFreeTrialsOnly boolean
- * @fields  
+ * @fields
  ** App
  ** companyUrl
  ** configurationResourcePath
- ** configurationUrl   
+ ** configurationUrl
  ** documentationUrl
  ** extendedDescription
  ** extendedDescriptionHTML
@@ -143,10 +141,10 @@ export const MarketplaceListing = (fields: string) => `
 */
 
 export const MarketplaceListings = (params: queryVariables.MarketplaceListings) => `
-    marketplaceListings(${params.first ? ` first: ${params.first} ` : ""} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, before: "${params.before}" ` : ""} ${params.last ? `last: ${params.last}` : ""}
-	${params.adminId ? `, adminId: "${params.adminId}"` : ""} ${params.allStates ? `, allStates: ${params.allStates}` : ""} ${params.categorySlug ? `, categorySlug: "${params.categorySlug}"` : ""}
-	${params.organizationId ? `, organizationId: "${params.organizationId}"` : ""} ${params.organizationId ? `, organizationId: "${params.organizationId}"` : ""} ${params.primaryCategoryOnly ? `, primaryCategoryOnly: ${params.primaryCategoryOnly}` : ""}
-	${params.slugs ? `, slugs: ${params.slugs}` : ""} ${params.useTopicAliases ? `, useTopicAliases: ${params.useTopicAliases}` : ""} ${params.viewerCanAdmin ? `, viewerCanAdmin: ${params.viewerCanAdmin}` : ""} ${params.withFreeTrialsOnly ? `, withFreeTrialsOnly: ${params.withFreeTrialsOnly}` : ""}) {
+    marketplaceListings(${params.first ? ` first: ${params.first} ` : ''} ${params.after ? `, after: "${params.after}" ` : ''} ${params.before ? `, before: "${params.before}" ` : ''} ${params.last ? `last: ${params.last}` : ''}
+	${params.adminId ? `, adminId: "${params.adminId}"` : ''} ${params.allStates ? `, allStates: ${params.allStates}` : ''} ${params.categorySlug ? `, categorySlug: "${params.categorySlug}"` : ''}
+	${params.organizationId ? `, organizationId: "${params.organizationId}"` : ''} ${params.organizationId ? `, organizationId: "${params.organizationId}"` : ''} ${params.primaryCategoryOnly ? `, primaryCategoryOnly: ${params.primaryCategoryOnly}` : ''}
+	${params.slugs ? `, slugs: ${params.slugs}` : ''} ${params.useTopicAliases ? `, useTopicAliases: ${params.useTopicAliases}` : ''} ${params.viewerCanAdmin ? `, viewerCanAdmin: ${params.viewerCanAdmin}` : ''} ${params.withFreeTrialsOnly ? `, withFreeTrialsOnly: ${params.withFreeTrialsOnly}` : ''}) {
         edges {
 			cursor
 			node {
@@ -157,12 +155,12 @@ export const MarketplaceListings = (params: queryVariables.MarketplaceListings) 
 		nodes {
 			${params.fields}  
 		}
-		${params.pageInfo ? params.pageInfo : ""}
+		${params.pageInfo ? params.pageInfo : ''}
 		totalCount
     }
 `
 /**
- * @description Github Graphql PrimaryCategory 
+ * @description Github Graphql PrimaryCategory
  ** description
  ** howItWorks
  ** id
@@ -174,14 +172,14 @@ export const MarketplaceListings = (params: queryVariables.MarketplaceListings) 
  ** url
 */
 
-export const PrimaryCategory = (fields: string = "") => `
+export const PrimaryCategory = (fields: string = '') => `
 	primaryCategory {
 		${fields}
 	}
 `
 
 /**
- * @description Github Graphql SecondaryCategory 
+ * @description Github Graphql SecondaryCategory
  ** description
  ** howItWorks
  ** id
@@ -193,7 +191,7 @@ export const PrimaryCategory = (fields: string = "") => `
  ** url
 */
 
-export const SecondaryCategory = (fields: string = "") => `
+export const SecondaryCategory = (fields: string = '') => `
 	secondaryCategory {
 		${fields}
 	}
@@ -217,8 +215,10 @@ export const SecondaryCategory = (fields: string = "") => `
 */
 
 export const MarketplaceCategories = (params: queryVariables.MarketplaceCategories) => `
-	marketplaceCategories ${params.excludeEmpty || params.excludeSubcategories || params.includeCategories ? `(${params.excludeEmpty ? `excludeEmpty: ${params.excludeEmpty},` : ""} ${params.excludeSubcategories ? `excludeSubcategories: ${params.excludeSubcategories},` : ""}
-	${params.includeCategories ? `includeCategories: "${params.includeCategories}",` : ""})` : ""} {
+	marketplaceCategories ${params.excludeEmpty || params.excludeSubcategories || params.includeCategories
+? `(${params.excludeEmpty ? `excludeEmpty: ${params.excludeEmpty},` : ''} ${params.excludeSubcategories ? `excludeSubcategories: ${params.excludeSubcategories},` : ''}
+	${params.includeCategories ? `includeCategories: "${params.includeCategories}",` : ''})`
+: ''} {
 		${params.fields}
 	}
 `
@@ -276,7 +276,7 @@ export const License = (key: string, fields: string) => `
 
 /**
  * @description Github Graphql Query for EnterpriseAdministratorInvitationByToken
- * @queryVariable 
+ * @queryVariable
  **  invitationToken string
  * @fields
  ** Invitation
@@ -290,7 +290,7 @@ export const EnterpriseAdministratorInvitationByToken = (invitationToken: string
 
 /**
 * @description Github Graphql Enterprise
-* @queryVariable 
+* @queryVariable
 ** invitationToken string
 ** slug string
 * @fields
@@ -304,7 +304,7 @@ export const EnterpriseAdministratorInvitationByToken = (invitationToken: string
 ** location
 ** Members
 ** name
-** Organizations 
+** Organizations
 ** OwnerInfo
 ** resourcePath
 ** slug
@@ -314,7 +314,7 @@ export const EnterpriseAdministratorInvitationByToken = (invitationToken: string
 ** websiteUrl
 */
 export const Enterprise = (params: queryVariables.Enterprise) => `
-    enterprise ${params.invitationToken || params.slug ? `(${params.invitationToken ? `invitationToken: "${params.invitationToken}"` : ""} ${params.slug ? `slug: "${params.slug}"` : ""})` : ""} {
+    enterprise ${params.invitationToken || params.slug ? `(${params.invitationToken ? `invitationToken: "${params.invitationToken}"` : ''} ${params.slug ? `slug: "${params.slug}"` : ''})` : ''} {
         ${params.fields}
     }
 `
@@ -326,8 +326,8 @@ export const Enterprise = (params: queryVariables.Enterprise) => `
 ** Invitation
 */
 export const EnterpriseAdministratorInvitation = (params: queryVariables.EnterpriseAdministratorInvitation) => `
-    enterpriseAdministratorInvitation (${params.enterpriseSlug ? `enterpriseSlug: "${params.enterpriseSlug}",` : ""} ${params.role ? `role:${params.role}` : ""}
-    ${params.userLogin ? `userLogin: ${params.userLogin}` : ""}) {
+    enterpriseAdministratorInvitation (${params.enterpriseSlug ? `enterpriseSlug: "${params.enterpriseSlug}",` : ''} ${params.role ? `role:${params.role}` : ''}
+    ${params.userLogin ? `userLogin: ${params.userLogin}` : ''}) {
         ${params.fields}
     }
  `
@@ -356,7 +356,7 @@ export const BillingInfo = (fields: string) => `
 `
 /**
  * @description Github Graphql CodesOfConduct
- * @fields 
+ * @fields
  ** body
  ** id
  ** key
@@ -372,7 +372,7 @@ export const CodesOfConduct = (fields: string) => `
 
 /**
 * @description Github Graphql CodeOfConduct
-* @fields 
+* @fields
 ** body
 ** id
 ** key
@@ -381,8 +381,8 @@ export const CodesOfConduct = (fields: string) => `
 ** url
 */
 
-export const CodeOfConduct = (fields: string, key?: string,) => `
-    codeOfConduct ${key?`(key: "${key}")`:""} {
+export const CodeOfConduct = (fields: string, key?: string) => `
+    codeOfConduct ${key ? `(key: "${key}")` : ''} {
         ${fields}
     }
  `

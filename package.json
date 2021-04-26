@@ -9,7 +9,7 @@
     "test": "mocha -r ts-node/register test/**/*.test.ts",
     "dev": "NODE_ENV=development nodemon",
     "docs": "rm -rf ./docs && npx typedoc --theme ./node_modules/typedoc-neo-theme/bin/default",
-    "lint": "eslint ./**/*.ts"
+    "lint": "npx eslint ./**/*.ts"
   },
   "repository": {
     "type": "git",

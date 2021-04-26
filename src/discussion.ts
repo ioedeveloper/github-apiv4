@@ -1,9 +1,9 @@
-import { queryVariables } from "."
+import { queryVariables } from '.'
 
 /**
  * @description Github Graphql Comment
  * @defaultVariables id
- * @fields 
+ * @fields
  ** author { Author }
  ** authorAssociation
  ** body
@@ -27,7 +27,7 @@ import { queryVariables } from "."
  ** subject { databaseId id }
  */
 
-export const Comment = (fromComment:number = 10, first: number = 10, fields: string = '', orderBy: string = "NUMBER" ,direction:string =  "ASC",after: string = '', before: string = '', last: number = 0) => `
+export const Comment = (fromComment:number = 10, first: number = 10, fields: string = '', orderBy: string = 'NUMBER', direction:string = 'ASC', after: string = '', before: string = '', last: number = 0) => `
     comment(fromComment: ${fromComment},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first}${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
         ${fields}
         totalCount
@@ -35,7 +35,7 @@ export const Comment = (fromComment:number = 10, first: number = 10, fields: str
 `
 
 /**
-* @description Github Graphql ReactionGroups 
+* @description Github Graphql ReactionGroups
 * @defaultVariables totalCount
 * @fields
 ** content
@@ -58,7 +58,7 @@ export const Comment = (fromComment:number = 10, first: number = 10, fields: str
 ** viewerHasReacted
 */
 
-export const ReactionGroups = (fields: string = "") => `
+export const ReactionGroups = (fields: string = '') => `
     reactionGroups {
         content
         createdAt
@@ -81,7 +81,7 @@ export const ReactionGroups = (fields: string = "") => `
 ** onPullRequestReviewComment
 */
 
-export const Reactable = (fields: string = "") => `
+export const Reactable = (fields: string = '') => `
     reactable {
         id
         ${fields}
@@ -89,22 +89,22 @@ export const Reactable = (fields: string = "") => `
 `
 
 /**
-* @description Github Graphql Reactions  
+* @description Github Graphql Reactions
 * @defaultVariables totalCount
 * @queryArguments
-** direction 'ASC' | 'DESC' 
+** direction 'ASC' | 'DESC'
 ** after string
 ** before string
 ** first number
 ** last number
 ** content string
-** @fields 
+** @fields
 ** Reaction
 */
 
 export const Reactions = (params: queryVariables.Reactions) => `
-    reactions(${params.content ? `content: "${params.content}"` : "" }${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""},
-    ${params.orderBy || params.direction ?` orderBy: {orderBy: ${params.orderBy}, direction: ${params.direction}`:""}) {
+    reactions(${params.content ? `content: "${params.content}"` : ''}${params.first ? `first: ${params.first}` : ''} ${params.last ? `last: ${params.last}` : ''} ${params.after ? `, after: "${params.after}"` : ''} ${params.before ? `, before: "${params.before}"` : ''},
+    ${params.orderBy || params.direction ? ` orderBy: {orderBy: ${params.orderBy}, direction: ${params.direction}` : ''}) {
         edges {
 			cursor
 			node {
@@ -114,7 +114,7 @@ export const Reactions = (params: queryVariables.Reactions) => `
 		nodes {
 			${params.fields}  
 		}
-		${params.pageInfo ? params.pageInfo : ""}
+		${params.pageInfo ? params.pageInfo : ''}
 		totalCount
     }
 `
@@ -129,7 +129,7 @@ export const Reactions = (params: queryVariables.Reactions) => `
 ** User
 */
 
-export const Reaction = (fields: string = "") => `
+export const Reaction = (fields: string = '') => `
     reaction {
         id
         content
@@ -138,22 +138,21 @@ export const Reaction = (fields: string = "") => `
 
 `
 
-
 /**
- * @description Github Graphql LatestOpinionatedReviews 
+ * @description Github Graphql LatestOpinionatedReviews
  * @defaultVariables totalCount
- * @queryArguments 
+ * @queryArguments
  ** after string
  ** before string
  ** first number
  ** last number
  ** writersOnly boolean
- * @fields 
+ * @fields
  ** Review
 */
 
 export const LatestOpinionatedReviews = (params: queryVariables.LatestOpinionatedReviews) => `
-    latestOpinionatedReviews(${params.writersOnly ? `writersOnly: ${params.writersOnly}`:""}, ${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}) {
+    latestOpinionatedReviews(${params.writersOnly ? `writersOnly: ${params.writersOnly}` : ''}, ${params.first ? `first: ${params.first}` : ''} ${params.last ? `last: ${params.last}` : ''} ${params.after ? `, after: "${params.after}"` : ''} ${params.before ? `, before: "${params.before}"` : ''}) {
         edges {
             cursor
             node {
@@ -163,7 +162,7 @@ export const LatestOpinionatedReviews = (params: queryVariables.LatestOpinionate
         nodes {
             ${params.fields}  
         }
-        ${params.pageInfo ? params.pageInfo : ""}
+        ${params.pageInfo ? params.pageInfo : ''}
         totalCount
     }
 `
@@ -180,7 +179,7 @@ export const LatestOpinionatedReviews = (params: queryVariables.LatestOpinionate
 */
 
 export const Topic = (fields: string, name?: string) => `
-    topic ${name ? `(name: "${name}")`:""} {
+    topic ${name ? `(name: "${name}")` : ''} {
         ${fields}
     }
 `
@@ -251,7 +250,7 @@ export const Discussion = (number: number, fields: string) => `
 /**
 * @description Github Graphql Comments
 * @defaultVariables totalCount
-* @queryArguments 
+* @queryArguments
 * after string
 ** before string
 ** first number
@@ -263,11 +262,10 @@ export const Discussion = (number: number, fields: string) => `
 
 */
 
-
 export const Comments = (params: queryVariables.Comments) => `
-    comments (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `,first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
-    ${params.fromComment? `, fromComment: ${params.fromComment}` : ""}   
-    ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""} ) {
+    comments (${params.first ? `first: ${params.first}` : ''} ${params.last ? `last: ${params.last}` : ''} ${params.after ? `, after: "${params.after}"` : ''} ${params.before ? `, before: "${params.before}"` : ''}
+    ${params.fromComment ? `, fromComment: ${params.fromComment}` : ''}
+    ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ''} ) {
         edges {
             cursor
             node {
@@ -278,7 +276,7 @@ export const Comments = (params: queryVariables.Comments) => `
             totalCount
             ${params.fields}  
         }
-        ${params.pageInfo ? params.pageInfo : ""}
+        ${params.pageInfo ? params.pageInfo : ''}
     }
 `
 
@@ -297,7 +295,7 @@ export const Comment = (number: number, fields: string) => `
 /**
 * @description Github Graphql Discussions
 * @defaultVariables totalCount
-* @queryArguments 
+* @queryArguments
 ** after string
 ** before string
 ** first number
@@ -308,11 +306,10 @@ export const Comment = (number: number, fields: string) => `
 ** Discussion
 */
 
-
 export const Discussions = (params: queryVariables.Discussions) => `
-    discussions (${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""} ${params.first? `,first: ${params.first}` : ""} ${params.last ? `, last: ${params.last}` : ""}
-    ${params.isPinned? `, isPinned: ${params.isPinned}` : ""}   
-    ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""} ) {
+    discussions ( ${params.first ? `first: ${params.first}` : ''}  ${params.first ? `last: ${params.last}` : ''} ${params.after ? `, after: "${params.after}"` : ''} ${params.before ? `, before: "${params.before}"` : ''}
+    ${params.isPinned ? `, isPinned: ${params.isPinned}` : ''}   
+    ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ''} ) {
         edges {
             cursor
             node {
@@ -323,6 +320,6 @@ export const Discussions = (params: queryVariables.Discussions) => `
             totalCount
             ${params.fields}  
         }
-        ${params.pageInfo ? params.pageInfo : ""}
+        ${params.pageInfo ? params.pageInfo : ''}
     }
 `

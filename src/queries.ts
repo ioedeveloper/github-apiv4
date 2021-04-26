@@ -1,14 +1,15 @@
-import { queryVariables } from ".";
+import { queryVariables } from './index'
 
 export * from './user'
+export * from './respository'
 export * from './discussion'
 export * from './nodes'
 export * from './enterprise'
-export * from "./organization"
+export * from './organization'
 
 /**
  * @description Github Graphql Query for SecurityVulnerabilities
- * @queryArguments 
+ * @queryArguments
  ** ecosystem "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP"
  ** severities "LOW" | "MODERATE" | "HIGH" | "CRITICAL"
  ** after string
@@ -22,8 +23,8 @@ export * from "./organization"
 
 export const SecurityVulnerabilities = (params: queryVariables.VulnerabilitiesFields) => `
 	{
-		securityVulnerabilities(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.after ? `, after: "${params.after}"` : ""} ${params.before ? `, before: "${params.before}"` : ""}, 
-    ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ""}) {
+		securityVulnerabilities(${params.first ? `first: ${params.first}` : ''} ${params.last ? `last: ${params.last}` : ''} ${params.after ? `, after: "${params.after}"` : ''} ${params.before ? `, before: "${params.before}"` : ''}, 
+    ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ''}) {
 				edges {
 					node {
 						${params.fields}
@@ -32,7 +33,7 @@ export const SecurityVulnerabilities = (params: queryVariables.VulnerabilitiesFi
 				nodes {
 					${params.fields}
 				}
-				${params.pageInfo ? params.pageInfo : ""}
+				${params.pageInfo ? params.pageInfo : ''}
 				totalCount
 		}
 	}
@@ -53,26 +54,26 @@ export const SecurityAdvisoryQuery = (ghsaId: string, fields: string) => `
 	}
  `
 
-export * from "./user"
-export * from "./respository"
+export * from './user'
+export * from './respository'
 
 /**
- * @description Github Graphql SecurityAdvisories  
+ * @description Github Graphql SecurityAdvisories
  * @queryVariables
  ** type "CVE" | "GHSA"
  ** value string
  ** orderBy "PUBLISHED_AT" | "UPDATED_AT"
  ** publishedSince string
  ** updatedSince string
- * @fields 
+ * @fields
  ** SecurityAdvisory
 */
 
 export const SecurityAdvisories = (params: queryVariables.SecurityAdvisoriesFields) => `
     {
-		securityAdvisories(first: ${params.first} ${params.after ? `, after: "${params.after}" ` : ""} ${params.before ? `, after: "${params.before}" ` : ""} ${params.last ? `, last: ${params.last}` : ""}
-		${params.publishedSince ? `, publishedSince: "${params.publishedSince}" ` : ""} ${params.updatedSince ? `, updatedSince: "${params.updatedSince}" ` : ""} 
-		${params.value || params.type ? `, identifier: {type: ${params.type}, value: "${params.value}"}` : ""}) {
+		securityAdvisories(first: ${params.first} ${params.after ? `, after: "${params.after}" ` : ''} ${params.before ? `, after: "${params.before}" ` : ''} ${params.last ? `, last: ${params.last}` : ''}
+		${params.publishedSince ? `, publishedSince: "${params.publishedSince}" ` : ''} ${params.updatedSince ? `, updatedSince: "${params.updatedSince}" ` : ''} 
+		${params.value || params.type ? `, identifier: {type: ${params.type}, value: "${params.value}"}` : ''}) {
 			edges {
 				cursor
 				node {
@@ -82,7 +83,7 @@ export const SecurityAdvisories = (params: queryVariables.SecurityAdvisoriesFiel
 			nodes {
 				${params.fields}
 			}
-			${params.pageInfo ? params.pageInfo : ""}
+			${params.pageInfo ? params.pageInfo : ''}
 			totalCount
 		}
 	}
@@ -142,9 +143,9 @@ export const SponsorsListing = (slug: string, fields: string) => `
 
 export const Sponsorables = (params: queryVariables.Sponsorables) => `
  	{
-		sponsorables(${params.first ? `first: ${params.first}` : ""} ${params.last ? `last: ${params.last}` : ""} ${params.first ? `first: ${params.first}` : ""} ${params.dependencyEcosystem ? `, dependencyEcosystem: ${params.dependencyEcosystem}` : ""} ${params.onlyDependencies ? `, ${params.onlyDependencies}` : ""} ${params.after ? `, ${params.after}` : ""} ${params.before ? `, ${params.before}` : ""}
-    ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy} direction: ${params.direction}}` : ""} 
-    ${params.orgLoginForDependencies ? `, "${params.orgLoginForDependencies}"` : ""}) {
+		sponsorables(${params.first ? `first: ${params.first}` : ''} ${params.last ? `last: ${params.last}` : ''} ${params.first ? `first: ${params.first}` : ''} ${params.dependencyEcosystem ? `, dependencyEcosystem: ${params.dependencyEcosystem}` : ''} ${params.onlyDependencies ? `, ${params.onlyDependencies}` : ''} ${params.after ? `, ${params.after}` : ''} ${params.before ? `, ${params.before}` : ''}
+    ${params.orderBy || params.direction ? `orderBy: {field: ${params.orderBy} direction: ${params.direction}}` : ''} 
+    ${params.orgLoginForDependencies ? `, "${params.orgLoginForDependencies}"` : ''}) {
 			edges {
 				cursor
 				node {
@@ -154,12 +155,11 @@ export const Sponsorables = (params: queryVariables.Sponsorables) => `
 			nodes {
 				${params.fields}
 			}
-			${params.pageInfo ? params.pageInfo : ""}
+			${params.pageInfo ? params.pageInfo : ''}
 			totalCount
 		}
 	}
 `
-
 
 /**
  * @description Github Graphql Query for SecurityVulnerabilities
@@ -185,19 +185,19 @@ export const Viewer = (fields: string) => `
 /**
 * @description Github Graphql Query for Search
 * @defaultVariables totalCount
-* @queryVariables 
-** after string 
+* @queryVariables
+** after string
 ** before string
 ** first number
 ** last number
 ** query string
-* @fields 
+* @fields
 ** onApp
-** onIssue 
+** onIssue
 ** onMarketplaceListing
-** onOrganization 
+** onOrganization
 ** onPullRequest
-** onRepository 
+** onRepository
 ** onUser
 ** type "ISSUE" | "REPOSITORY" | "USER"
 ** codeCount
@@ -209,7 +209,7 @@ export const Viewer = (fields: string) => `
 
 export const Search = (params: queryVariables.Search) => `
  	{
-		search(query: "${params.query}", first: ${params.first} ${params.type ? `, type: ${params.type}` : ""} ${params.after ? `, after: ${params.after}` : ""} ${params.before ? `, before: ${params.before}` : ""} ${params.last ? `, last: ${params.last}` : ""}) {
+		search(query: "${params.query}", first: ${params.first} ${params.type ? `, type: ${params.type}` : ''} ${params.after ? `, after: ${params.after}` : ''} ${params.before ? `, before: ${params.before}` : ''} ${params.last ? `, last: ${params.last}` : ''}) {
 			edges {
 				cursor
 				node {
@@ -220,7 +220,7 @@ export const Search = (params: queryVariables.Search) => `
 			 nodes {
 				${params.fields}
 			 }
-			 ${params.pageInfo ? params.pageInfo : ""}
+			 ${params.pageInfo ? params.pageInfo : ''}
 			codeCount
 			issueCount
 			repositoryCount
@@ -234,29 +234,29 @@ export const Search = (params: queryVariables.Search) => `
  * @description Github Graphql Query for Resource
  * @fields
 ** url
-** resourcePath 
+** resourcePath
 ** onOrganization
-** onRelease 
-** onUser 
-** onIssue 
-** onPullRequest 
-** onRepository 
-** onTeamDiscussion 
-** onTeamDiscussionComment 
-** onCommit 
-** onCheckRun 
-** onMillestone 
-** onRepositoryTopic 
+** onRelease
+** onUser
+** onIssue
+** onPullRequest
+** onRepository
+** onTeamDiscussion
+** onTeamDiscussionComment
+** onCommit
+** onCheckRun
+** onMillestone
+** onRepositoryTopic
 ** onPullRequestCommit
-** onMannequin 
-** onBot 
-** onClosedEvent 
-** onCrossReferencedEvent 
-** onMergedEvent 
-** onReviewDismissedEvent 
-** onConvertToDraftEvent 
-** onReadyForReviewEvent 
-** onGist 
+** onMannequin
+** onBot
+** onClosedEvent
+** onCrossReferencedEvent
+** onMergedEvent
+** onReviewDismissedEvent
+** onConvertToDraftEvent
+** onReadyForReviewEvent
+** onGist
 */
 
 export const Resource = (url: string, fields: string) => `
@@ -265,7 +265,7 @@ export const Resource = (url: string, fields: string) => `
 			${fields}
 		}
  	}
-`;
+`
 
 /**
  * @description Github Graphql Query for RepositoryOwner
@@ -287,15 +287,15 @@ export const RepositoryOwner = (login: string, fields: string) => `
 			${fields}
  		}
 	}
-`;
+`
 
 /**
  * @description Github Graphql Query for Repository
- * @queryVariables 
+ * @queryVariables
  ** name string
- ** owner string 
+ ** owner string
  * @fields
- * Repository 
+ * Repository
 */
 export const RepositoryQuery = (name: string, owner: string, fields: string) => `
     {
@@ -1331,7 +1331,7 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
  ** CodeofConduct
  ** CodesofConduct
  ** Enterprise
- ** EnterpriseAdministratorInvitation 
+ ** EnterpriseAdministratorInvitation
  ** EnterpriseAdministratorInvitationByToken
  ** License
  ** Licenses
@@ -1359,7 +1359,7 @@ query($username: String!, $before: String, $after: String, $filterBy: IssueFilte
  ** Viewer
 */
 
-export const Relay = (fields: string = "") => `
+export const Relay = (fields: string = '') => `
   {
     relay {
       ${fields}
@@ -1368,7 +1368,7 @@ export const Relay = (fields: string = "") => `
 `
 
 /**
-* @description Github Graphql Nodes 
+* @description Github Graphql Nodes
 * @fields
 ** onCodeOfConduct
 ** onEnterprise
@@ -1560,7 +1560,7 @@ export const Relay = (fields: string = "") => `
 ** onMarketplaceListing
 ** onBlob
 ** onPackageTag
-** onTag 
+** onTag
 */
 
 export const Nodes = (ids: string, fields: string) => `
@@ -1579,13 +1579,13 @@ export const Nodes = (ids: string, fields: string) => `
  ** limit
  ** nodeCount
  ** remaining
- ** resetAt 
+ ** resetAt
  ** used
 */
 
-export const RateLimit = (fields: string, dryRun?: boolean,) => `
+export const RateLimit = (fields: string, dryRun?: boolean) => `
   {
-    rateLimit ${dryRun ? `(dryRun: ${dryRun})` : ""} {
+    rateLimit ${dryRun ? `(dryRun: ${dryRun})` : ''} {
       ${fields}
     }
   }
@@ -1593,7 +1593,7 @@ export const RateLimit = (fields: string, dryRun?: boolean,) => `
 
 /**
 * @description Github Graphql Node
-* @fields 
+* @fields
 ** onCodeOfConduct
 ** onEnterprise
 ** onEnterpriseUserAccount
@@ -1784,7 +1784,7 @@ export const RateLimit = (fields: string, dryRun?: boolean,) => `
 ** onMarketplaceListing
 ** onBlob
 ** onPackageTag
-** onTag 
+** onTag
 */
 
 export const Node = (id: string, fields: string) => `
@@ -1797,7 +1797,7 @@ export const Node = (id: string, fields: string) => `
 `
 
 /**
-* @description Github Graphql Query Meta 
+* @description Github Graphql Query Meta
 * @fields
 ** gitHubServicesSha
 ** gitIpAddresses
@@ -1857,7 +1857,7 @@ export const MarketplaceListingQuery = (slug: string, fields: string) => `
 
 export const MarketplaceCategory = (slug: string, fields: string, useTopicAliases?: boolean) => `
  {
-   marketplaceCategory(slug: "${slug}", ${useTopicAliases ? `useTopicAliases: ${useTopicAliases}` : ""}) {
+   marketplaceCategory(slug: "${slug}", ${useTopicAliases ? `useTopicAliases: ${useTopicAliases}` : ''}) {
      ${fields}
    }
  }
@@ -1883,15 +1883,17 @@ export const MarketplaceCategory = (slug: string, fields: string, useTopicAliase
 
 export const MarketplaceCategoriesQuery = (params: queryVariables.MarketplaceCategories) => `
   {
-    marketplaceCategories ${params.excludeEmpty || params.excludeSubcategories || params.includeCategories ? `(${params.excludeEmpty ? `excludeEmpty: ${params.excludeEmpty},` : ""} ${params.excludeSubcategories ? `excludeSubcategories: ${params.excludeSubcategories},` : ""}
-    ${params.includeCategories ? `includeCategories: "${params.includeCategories}",` : ""})` : ""} {
+    marketplaceCategories ${params.excludeEmpty || params.excludeSubcategories || params.includeCategories
+? `(${params.excludeEmpty ? `excludeEmpty: ${params.excludeEmpty},` : ''} ${params.excludeSubcategories ? `excludeSubcategories: ${params.excludeSubcategories},` : ''}
+    ${params.includeCategories ? `includeCategories: "${params.includeCategories}",` : ''})`
+: ''} {
       ${params.fields}
     }
   }
 `
 /**
- * @description Github Graphql Query for LicensesQuery 
- * @fields 
+ * @description Github Graphql Query for LicensesQuery
+ * @fields
  ** Licenses
 */
 
@@ -1901,8 +1903,8 @@ export const LicensesQuery = (fields: string) => `
   }
 `
 /**
- * @description Github Graphql Query for LicenseQuery 
- * @fields 
+ * @description Github Graphql Query for LicenseQuery
+ * @fields
  * License
 */
 
@@ -1925,8 +1927,8 @@ export const CodeOfConductQuery = (fields: string) => `
 
 /**
  * @description Github Graphql Query for EnterpriseAdministratorInvitation
- * @fields 
- ** EnterpriseAdministratorInvitation 
+ * @fields
+ ** EnterpriseAdministratorInvitation
  */
 
 export const EnterpriseAdministratorInvitationQuery = (fields: string) => `
@@ -1937,8 +1939,8 @@ export const EnterpriseAdministratorInvitationQuery = (fields: string) => `
 
 /**
 * @description Github Graphql Query for EnterpriseAdministratorInvitationByToken
-* @fields 
-** EnterpriseAdministratorInvitationByToken 
+* @fields
+** EnterpriseAdministratorInvitationByToken
 */
 
 export const EnterpriseAdministratorInvitationByTokenQuery = (fields: string) => `
@@ -1950,7 +1952,7 @@ export const EnterpriseAdministratorInvitationByTokenQuery = (fields: string) =>
 /**
 * @description Github Graphql Query EnterpriseQuery
 * @fields
-** Enterprise 
+** Enterprise
 */
 
 export const EnterpriseQuery = (fields: string) => `
