@@ -6,7 +6,7 @@ export declare interface PageInfo {
 }
 
 export declare interface BasicFields {
-    first: number;
+    first?: number;
     last?: number;
     after?: string;
     before?: string;
@@ -388,7 +388,6 @@ export declare interface VulnerabilitiesFields extends BasicFields {
     severities?: 'LOW' | 'MODERATE' | 'HIGH' | 'CRITICAL';
     direction?: 'DESC' | 'ASC'
 }
-
 
 export declare interface SecurityAdvisoriesFields extends BasicFields {
     type?: 'CVE' | 'GHSA'

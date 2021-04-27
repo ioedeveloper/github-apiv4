@@ -162,17 +162,10 @@ export const Sponsorables = (params: queryVariables.Sponsorables) => `
 `
 
 /**
- * @description Github Graphql Query for SecurityVulnerabilities
- * @queryArguments 
- * ecosystem "NPM" | "RUBYGEMS" | "MAVEN" | "COMPOSER" | "NUGET" | "PIP"
- * severities "LOW" | "MODERATE" | "HIGH" | "CRITICAL"
- * after string
- * before string
- * first number
- * last number
- * @queryVariables
- * fields Vulnerability
- * }
+ * @description Github Graphql Query for viewer details
+ * @description Github Graphql Query for Viewer
+ * @fields
+ ** User
  */
 export const Viewer = (fields: string) => `
     query {
@@ -998,60 +991,6 @@ export const CommitDirectories = `
       }
     }
   }
-`
-
-/**
- * @description Github Graphql Query for branch details
- * @queryVariable qualifiedName: "refs/heads/master"
- */
-export const Branch = `
-  query($repositoryOwner: String!, $repositoryName: String!, $qualifiedName: String!){
-    repository(owner: $repositoryOwner, name: $repositoryName){
-      branch: ref(qualifiedName: $qualifiedName){
-        id
-        name
-        prefix
-      }
-    }
-  }
-`
-
-/**
- * @description Github Graphql Query for commit details
- * @queryVariable expression: "refs/heads/master" OR commit hash
- */
-export const Commit = `
-query($repositoryOwner: String!, $repositoryName: String!, $expression: String!){
-  repository(owner: $repositoryOwner, name: $repositoryName){
-    commit: object(expression: $expression){
-      ... on Commit{
-        authoredByCommitter
-        authoredDate
-        changedFiles
-        commitUrl
-        committedDate
-        committedViaWeb
-        deletions
-        id
-        message
-        messageBody
-        messageBodyHTML
-        messageHeadline
-        messageHeadlineHTML
-        oid
-        pushedDate
-        resourcePath
-        tarballUrl
-        treeResourcePath
-        treeUrl
-        url
-        viewerCanSubscribe
-        viewerSubscription
-        zipballUrl
-      }
-    }
-  }
-}
 `
 
 /**
@@ -1917,7 +1856,7 @@ export const LicenseQuery = (fields: string) => `
 * @description Github Graphql Query for CodeOfConduct
  * @fields
  ** CodeOfConduct
- */
+*/
 
 export const CodeOfConductQuery = (fields: string) => `
   {

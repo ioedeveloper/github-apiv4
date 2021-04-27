@@ -2614,7 +2614,6 @@ export const Cards = (params: queryVariables.Cards) => `
                 ${params.fields}
             }
         }
-    
         nodes {
             ${params.fields}  
         }
@@ -3107,18 +3106,6 @@ export const SecurityAdvisory = (fields: string = '', ghsaId?: string) => `
 
 `
 
-
-/**
- * @description Github Graphql SecurityAdvisory
- * @fields Advisory 
- */
-
-
-export const SecurityAdvisory = (fields: string = "") => `
-    advisory {
-        ${fields}
-    }    
-`
 /**
 * @description Github Graphql Vulnerabilities
 * @defaultVariables totalCount

@@ -169,6 +169,7 @@ export const LatestOpinionatedReviews = (params: queryVariables.LatestOpinionate
 
 /**
 * @description Github Graphql Topic
+* @defaultVariables
 * @fields
 ** id
 ** name
@@ -186,7 +187,8 @@ export const Topic = (fields: string, name?: string) => `
 
 /**
 * @description Github Graphql RelatedTopics
-* @defaultVariables first number
+* @defaultVariables
+** first number
 * @fields
 ** Topic
 */
@@ -199,9 +201,7 @@ export const RelatedTopics = (first: number = 10, fields: string) => `
 /**
 * @description Github Graphql Discussion
 * @fields
-** author {
-    ** Owner
-}
+** author { Owner }
 ** authorAssociation
 ** body
 ** bodyHTML
@@ -213,9 +213,7 @@ export const RelatedTopics = (first: number = 10, fields: string) => `
 ** createdAt
 ** createdViaEmail
 ** databaseId
-** editor {
-    ** Owner
-*}
+** editor { Owner }
 ** id
 ** includesCreatedEdit
 ** isPinned
@@ -256,10 +254,9 @@ export const Discussion = (number: number, fields: string) => `
 ** first number
 ** last number
 ** orderBy "NAME"
-
+** fromComment number
 * @fields
 ** Comment
-
 */
 
 export const Comments = (params: queryVariables.Comments) => `
@@ -281,18 +278,6 @@ export const Comments = (params: queryVariables.Comments) => `
 `
 
 /**
-* @description Github Graphql Comment
-* @fields
-** Discussion
-*/
-
-export const Comment = (number: number, fields: string) => `
-    comment {
-        ${fields}
-    }
-`
-
-/**
 * @description Github Graphql Discussions
 * @defaultVariables totalCount
 * @queryArguments
@@ -301,7 +286,6 @@ export const Comment = (number: number, fields: string) => `
 ** first number
 ** last number
 ** orderBy "CREATED_AT"
-
 * @fields
 ** Discussion
 */

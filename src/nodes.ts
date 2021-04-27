@@ -295,6 +295,46 @@ export const onUnknownSignature = (fields:string = '') => `
 export const onSmimeSignature = (fields:string = '') => `
     ... on SmimeSignature {
         __typename
+    }
+`
+
+/**
+* @description Github Graphql onOauthApplicationCreateAuditEntry
+* @defaultVariables id
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** applicationUrl
+** callbackUrl
+** createdAt
+** oauthApplicationName
+** oauthApplicationResourcePath
+** oauthApplicationUrl
+** enterpriseResourcePath
+** enterpriseSlug
+** enterpriseUrl
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** rateLimit
+** state
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
+
+export const OauthApplicationCreateAuditEntry = (fields?: string) => `
+    ... on OauthApplicationCreateAuditEntry {
+        id
         ${fields}
     }
 `
@@ -419,6 +459,37 @@ export const onOrgAddBillingManagerAuditEntry = (fields?: string) => `
 export const onAutoRebaseEnabledEvent = (fields: string = '') => `
     ... on AutoRebaseEnabledEvent {
         createdAt
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql onOrgAddMemberAuditEntry
+* @defaultVariables id
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** operationType
+** organization { Organization }
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** permission
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
+
+export const onOrgAddMemberAuditEntry = (fields?: string) => `
+    ... on OrgAddMemberAuditEntry {
         id
         ${fields}
     }
@@ -437,6 +508,40 @@ export const onAutoRebaseEnabledEvent = (fields: string = '') => `
 export const onAutoSquashEnabledEvent = (fields: string = '') => `
     ... on AutoSquashEnabledEvent {
         createdAt
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql onOrgBlockUserAuditEntry
+* @defaultVariables id
+* @fields id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** blockedUser { User }
+** blockedUserName
+** blockedUserResourcePath
+** blockedUserUrl
+** createdAt
+** operationType
+** organization { Organization }
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** permission
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
+
+export const onOrgBlockUserAuditEntry = (fields?: string) => `
+    ... on OrgBlockUserAuditEntry {
         id
         ${fields}
     }
@@ -461,7 +566,16 @@ export const onAutomaticBaseChangeFailedEvent = (fields: string = '') => `
     }
 `
 
-* actorLocation {
+/**
+* @description Github Graphql onAssignedEvent
+* @fields
+** actor { Owner }
+** assignable { Assignable }
+** assignee { Owner }
+** createdAt
+** id
+** user { User }
+*/
 
 export const onAssignedEvent = (fields: string = '') => `
     ... on AssignedEvent {
@@ -490,7 +604,28 @@ export const onBaseRefDeletedEvent = (fields: string = '') => `
     }
 `
 
-* userUrl
+/**
+* @description Github Graphql onOrgConfigDisableCollaboratorsOnlyAuditEntry
+* @defaultVariables id
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onOrgConfigDisableCollaboratorsOnlyAuditEntry = (fields?: string) => `
@@ -520,57 +655,25 @@ export const onBaseRefChangedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgConfigEnableCollaboratorsOnlyAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const OrgConfigEnableCollaboratorsOnlyAuditEntry = (fields?: string) => `
@@ -597,16 +700,34 @@ export const onCommentDeletedEvent = (fields: string = '') => `
 `
 
 /**
-* @description Github Graphql onOrgDisableOauthAppRestrictionsAuditEntry
+* @description Github Graphql onOrgCreateAuditEntry
 * @defaultVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** billingPlan
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
 
-* actorIp
+export const onOrgCreateAuditEntry = (fields?: string) => `
+    ... on OrgCreateAuditEntry {
+        id
+        ${fields}
+    }
+`
 
 /**
 * @description Github Graphql onConnectedEvent
@@ -625,37 +746,27 @@ export const onConnectedEvent = (fields: string = '') => `
     }
 `
 
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+/**
+* @description Github Graphql onOrgDisableOauthAppRestrictionsAuditEntry
+* @defaultVariables id
+* @fields
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onOrgDisableOauthAppRestrictionsAuditEntry = (fields?: string) => `
@@ -666,14 +777,15 @@ export const onOrgDisableOauthAppRestrictionsAuditEntry = (fields?: string) => `
 `
 
 /**
-* @description Github Graphql onOrgDisableSamlAuditEntry
-* @defaultVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
+* @description Github Graphql onConvertToDraftEvent
+* @fields
+** actor { Owner }
+** createdAt
+** id
+** pullRequest{ PullRequest }
+** resourcePath
+** url
+*/
 
 export const onConvertToDraftEvent = (fields: string = '') => `
     ... on ConvertToDraftEvent {
@@ -681,7 +793,14 @@ export const onConvertToDraftEvent = (fields: string = '') => `
     }
 `
 
-* actorLocation {
+/**
+* @description Github Graphql onConvertedNoteToIssueEvent
+* @fields
+** actor { Owner }
+** createdAt
+** databaseId
+** id
+*/
 
 export const onConvertedNoteToIssueEvent = (fields: string = '') => `
     ... on ConvertedNoteToIssueEvent {
@@ -775,58 +894,22 @@ export const onBaseRefForcePushedEvent = (fields: string = '') => `
     }
 `
 
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* digestMethodUrl
-          
-* issuerUrl
-          
-* singleSignOnUrl
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+/**
+* @description Github Graphql onClosedEvent
+* @fields
+** actor { Owner }
+** closable { Closable }
+** closer { onCommit onPullRequest }
+** createdAt
+** id
+** resourcePath
+** url
 */
 
 export const onClosedEvent = (fields: string = '') => `
     ... on ClosedEvent {
         id
+        url
         ${fields}
     }
 `
@@ -834,14 +917,35 @@ export const onClosedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgDisableTwoFactorRequirementAuditEntry
 * @defaultVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
+* @fields
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** digestMethodUrl
+** issuerUrl
+** singleSignOnUrl
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
 
-* actorIp
+export const onOrgDisableTwoFactorRequirementAuditEntry = (fields?: string) => `
+    ... on OrgDisableTwoFactorRequirementAuditEntry {
+        id
+        ${fields}
+    }
+`
 
 /**
 * @description Github Graphql onCommitCommentThread
@@ -861,17 +965,53 @@ export const onCommitCommentThread = (fields: string = '') => `
         ${fields}
 `
 
-*   regionCode
-          
-* }
+/**
+* @description Github Graphql onOrgEnableOauthAppRestrictionsAuditEntry
+* @defaultVariables id
+* @fields
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** digestMethodUrl
+** issuerUrl
+** singleSignOnUrl
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
 
-* actorLogin
+export const onOrgEnableOauthAppRestrictionsAuditEntry = (fields?: string) => `
+    ... on OrgEnableOauthAppRestrictionsAuditEntry {
+        id
+        ${fields}
+    }
+`
 
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
+/**
+* @description Github Graphql onCrossReferencedEvent
+* @fields
+** id
+** actor { Owner }
+** createdAt
+** isCrossRepository
+** referencedAt
+** resourcePath
+** source { onIssue onPullRequest }
+** target { onIssue onPullRequest }
+** url
+** willCloseTarget
+*/
 
 export const onCrossReferencedEvent = (fields: string = '') => `
     ... on CrossReferencedEvent {
@@ -880,30 +1020,19 @@ export const onCrossReferencedEvent = (fields: string = '') => `
     }
 `
 
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+/**
+* @description Github Graphql onDemilestonedEvent
+** id
+** actor { Owner }
+** createdAt
+** milestoneTitle
+** subject { onIssue onPullRequest }
 */
 
 export const onDemilestonedEvent = (fields: string = '') => `
     ... on DemilestonedEvent {
         id
+        milestoneTitle
         ${fields}
     }
 `
@@ -911,60 +1040,37 @@ export const onDemilestonedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgEnableSamlAuditEntry
 * @defaultVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
+* @fields
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** digestMethodUrl
+** issuerUrl
+** singleSignOnUrl
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** signatureMethodUrl
+** singleSignOnUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
 
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* digestMethodUrl
-          
-* issuerUrl
-          
-* singleSignOnUrl
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* signatureMethodUrl
-          
-* singleSignOnUrl
-
-* user {
-    User
-}
+export const onOrgEnableSamlAuditEntry = (fields?: string) => `
+    ... on OrgEnableSamlAuditEntry {
+        id
+        ${fields}
+    }
+`
 
 /**
 * @description Github Graphql onDeployedEvent
@@ -981,6 +1087,7 @@ export const onDemilestonedEvent = (fields: string = '') => `
 export const onDeployedEvent = (fields: string = '') => `
     ... on DeployedEvent {
         id
+        databaseId
         ${fields}
     }
 `
@@ -988,28 +1095,49 @@ export const onDeployedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgEnableTwoFactorRequirementAuditEntry
 * @defaultVariables id
-* action
+* @fields
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
 
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
+export const onOrgEnableTwoFactorRequirementAuditEntry = (fields?: string) => `
+    ... on OrgEnableTwoFactorRequirementAuditEntry {
+        id
+        ${fields}
+    }
+`
 
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
+/**
+* @description Github Graphql onDeploymentEnvironmentChangedEvent
+* @fields
+** id
+** actor
+** createdAt
+** deploymentStatus {
+	** createdAt
+	**  creator { Owner }
+	** deployment { Deployment }
+	** description
+	** environmentUrl
+	** id
+	** logUrl
+	** state
+	** updatedAt
 * }
 ** PullRequest
 */
@@ -1017,6 +1145,7 @@ export const onDeployedEvent = (fields: string = '') => `
 export const onDeploymentEnvironmentChangedEvent = (fields: string = '') => `
     ... on DeploymentEnvironmentChangedEvent {
         id
+        actor
         ${fields}
     }
 `
@@ -1024,13 +1153,33 @@ export const onDeploymentEnvironmentChangedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgInviteMemberAuditEntry
 * @defaultVariables id
-* action
+* @fields
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** email
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
 
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
+export const onOrgInviteMemberAuditEntry = (fields?: string) => `
+    ... on OrgInviteMemberAuditEntry {
+        id
+        ${fields}
+    }
+`
 
 /**
 * @description Github Graphql onHeadRefDeletedEvent
@@ -1084,7 +1233,15 @@ export const onHeadRefRestoredEvent = (fields: string = '') => `
     }
 `
 
-* email
+/**
+* @description Github Graphql onLabeledEvent
+*@fields
+** actor { Owner }
+** createdAt
+** id
+** label { Label }
+** labelable { Labels onIssue onPullRequest }
+*/
 
 export const onLabeledEvent = (fields: string = '') => `
     ... on LabeledEvent {
@@ -1119,11 +1276,21 @@ export const onLabeledEvent = (fields: string = '') => `
 ** userUrl
 */
 
-* userLogin
-    
-* userResourcePath
+export const onOrgInviteToBusinessAuditEntry = (fields?: string) => `
+    ... on OrgInviteToBusinessAuditEntry {
+        id
+        ${fields}
+    }
+`
 
-* userUrl
+/**
+* @description Github Graphql onLockedEvent
+* @fields
+** createdAt
+** creator { Owner }
+** id
+** lockReason
+** lockable { activeLockReason locked { OnIssue onPullRequest } }
 */
 
 export const onLockedEvent = (fields: string = '') => `
@@ -1155,7 +1322,15 @@ export const onMergedEvent = (fields: string = '') => `
     }    
 `
 
-* actorLocation {
+/**
+* @description Github Graphql onMilestonedEvent
+* @fields
+** id
+** actor { Owner }
+** createdAt
+** milestoneTitle
+** subject { onIssue onPullRequest }
+*/
 
 export const onMilestonedEvent = (fields: string = '') => `
     ... on MilestonedEvent {
@@ -1221,13 +1396,35 @@ export const onReopenedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgOauthAppAccessApprovedAuditEntry
 * @defaultVariables id
-* action
+* @fields
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** oauthApplicationName
+** oauthApplicationResourcePath
+** oauthApplicationUrl
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
 
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
+export const onOrgOauthAppAccessApprovedAuditEntry = (fields?: string) => `
+    ... on OrgOauthAppAccessApprovedAuditEntry {
+        id
+        ${fields}
+    }
+`
 
 /**
 * @description Github Graphql onReviewDismissedEvent
@@ -1292,67 +1489,30 @@ export const onReviewRequestedEvent = (fields: string = '') => `
         ${fields}
     }
 `
-
 /**
 * @description Github Graphql onOrgOauthAppAccessDeniedAuditEntry
 * @defaultVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* oauthApplicationName
-          
-* oauthApplicationResourcePath
-          
-* oauthApplicationUrl
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** oauthApplicationName
+** oauthApplicationResourcePath
+** oauthApplicationUrl
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onOrgOauthAppAccessDeniedAuditEntry = (fields?: string) => `
@@ -1381,63 +1541,27 @@ export const onSubscribedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgOauthAppAccessRequestedAuditEntry
 * @defaultVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* oauthApplicationName
-          
-* oauthApplicationResourcePath
-          
-* oauthApplicationUrl
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** oauthApplicationName
+** oauthApplicationResourcePath
+** oauthApplicationUrl
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onOrgOauthAppAccessRequestedAuditEntry = (fields?: string) => `
@@ -1468,58 +1592,25 @@ export const onUnassignedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgRemoveBillingManagerAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+**  id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onOrgRemoveBillingManagerAuditEntry = (fields?: string) => `
@@ -1548,14 +1639,35 @@ export const onUnlabeledEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgRemoveMemberAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** membershipTypes
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** reason
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
 
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
+export const onOrgRemoveMemberAuditEntry = (fields?: string) => `
+    ... on OrgRemoveMemberAuditEntry {
+        id
+        ${fields}
+    }
+`
 
 /**
 * @description Github Graphql onUnlockedEvent
@@ -1572,118 +1684,49 @@ export const onUnlockedEvent = (fields: string = '') => `
     }
 `
 
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* membershipTypes
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* reason
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+/**
+/**
+* @description Github Graphql onOrgRemoveOutsideCollaboratorAuditEntry
+* @defaultVariables id
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** membershipTypes
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** reason
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
-export const onOrgRemoveMemberAuditEntry = (fields?: string) => `
-    ... on OrgRemoveMemberAuditEntry {
+export const onOrgRemoveOutsideCollaboratorAuditEntry = (fields?: string) => `
+    ... on OrgRemoveOutsideCollaboratorAuditEntry {
         id
         ${fields}
     }
 `
 
-
 /**
-* @description Github Graphql onOrgRemoveOutsideCollaboratorAuditEntry
-* @defaultVariables id
-* @queryVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* membershipTypes
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* reason
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @description Github Graphql onMarkedAsDuplicateEvent
+* @fields
+** actor { Owner}
+** canonical { onIssue onPullRequest }
+** createdAt
+** duplicate
+** id
+** isCrossRepository
 */
 
 export const onMarkedAsDuplicateEvent = (fields: string = '') => `
@@ -1691,84 +1734,40 @@ export const onMarkedAsDuplicateEvent = (fields: string = '') => `
         ${fields}
     }
 `
-
 /**
 * @description Github Graphql onOrgRestoreMemberAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** membershipTypes
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** restoredCustomEmailRoutingsCount
+** restoredIssueAssignmentsCount
+** restoredMemberships {
+    ** onOrgRestoreMemberMembershipOrganizationAuditEntryData
+    ** onOrgRestoreMemberMembershipRepositoryAuditEntryData
+    ** onOrgRestoreMemberMembershipTeamAuditEntryData
 }
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* membershipTypes
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* restoredCustomEmailRoutingsCount
-          
-* restoredIssueAssignmentsCount
-          
-* restoredMemberships {
-    onOrgRestoreMemberMembershipOrganizationAuditEntryData
-
-    onOrgRestoreMemberMembershipRepositoryAuditEntryData
-     
-    onOrgRestoreMemberMembershipTeamAuditEntryData
-}
-          
-* restoredMembershipsCount
-          
-* restoredRepositoriesCount
-          
-* restoredRepositoryStarsCount
-          
-* restoredRepositoryWatchesCount
-
-* user {
-}
-User
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+** restoredMembershipsCount
+** restoredRepositoriesCount
+** restoredRepositoryStarsCount
+** restoredRepositoryWatchesCount
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onOrgRestoreMemberAuditEntry = (fields?: string) => `
@@ -1779,11 +1778,13 @@ export const onOrgRestoreMemberAuditEntry = (fields?: string) => `
 `
 
 /**
-* @description Github Graphql onOrgRestoreMemberMembershipOrganizationAuditEntryData
+ * @description Github Graphql onMovedColumnsInProjectEvent
 * @fields
-* Repository
-*
-* organizationName
+* actor { Owner }
+** createdAt
+** databaseId
+** id
+*/
 
 export const onMovedColumnsInProjectEvent = (fields: string = '') => `
     ... on MovedColumnsInProjectEvent {
@@ -1791,7 +1792,13 @@ export const onMovedColumnsInProjectEvent = (fields: string = '') => `
     }
 `
 
-* organizationUrl
+/**
+* @description Github Graphql onOrgRestoreMemberMembershipOrganizationAuditEntryData
+* @fields
+** Repository
+** organizationName
+** organizationResourcePath
+** organizationUrl
 */
 
 export const onOrgRestoreMemberMembershipOrganizationAuditEntryData = (fields?: string) => `
@@ -1819,13 +1826,10 @@ export const onPinnedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgRestoreMemberMembershipOrganizationAuditEntryData
 * @fields
-* Repository
-*
-* organizationName
-
-* organizationResourcePath
-
-* organizationUrl
+** Repository
+** organizationName
+** organizationResourcePath
+** organizationUrl
 */
 
 export const onOrgRestoreMemberMembershipRepositoryAuditEntryData = (fields?: string) => `
@@ -1869,13 +1873,10 @@ export const onPullRequestCommit = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgRestoreMemberMembershipTeamAuditEntryData
 * @fields
-* Team
-*
-* teamName
-
-* teamResourcePath
-
-* teamUrl
+** team { Team }
+** teamName
+** teamResourcePath
+** teamUrl
 */
 
 export const onOrgRestoreMemberMembershipTeamAuditEntryData = (fields?: string) => `
@@ -1905,69 +1906,30 @@ export const onPullRequestCommitCommentThread = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgUnblockUserAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* blockedUser {
-    User
-}
-
-* blockedUserName
-
-* blockedUserResourcePath
-          
-* blockedUserUrl
-
-* createdAt
-
-* operationType
-    
-* Organization
-    
-* organizationName
- 
-* organizationResourcePath
-    
-* organizationUrl
-
-* permission
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** blockedUser { User }
+** blockedUserName
+** blockedUserResourcePath
+** blockedUserUrl
+** createdAt
+** operationType
+** organization { Organization }
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** permission
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onOrgUnblockUserAuditEntry = (fields?: string) => `
@@ -1978,15 +1940,10 @@ export const onOrgUnblockUserAuditEntry = (fields?: string) => `
 `
 
 /**
-* @description Github Graphql onOrgUpdateDefaultRepositoryPermissionAuditEntry
-* @defaultVariables id
-* @queryVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
+ * @description Github Graphql onPullRequestReview
+ * @fields
+ ** PullRequestReview
+ */
 
 export const onPullRequestReview = (fields: string = '') => `
     ... on PullRequestReview {
@@ -2060,61 +2017,26 @@ export const onReadyForReviewEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgUpdateMemberAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* operationType
-    
-* Organization
-    
-* organizationName
- 
-* organizationResourcePath
-    
-* organizationUrl
-
-* permission
-
-* permissionWas
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** operationType
+** organization { Organization }
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** permission
+** permissionWas
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onOrgUpdateMemberAuditEntry = (fields?: string) => `
@@ -2142,62 +2064,27 @@ export const onRemovedFromProjectEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgUpdateMemberRepositoryCreationPermissionAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* canCreateRepositories
-
-* createdAt
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
-
-* visibility
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** canCreateRepositories
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+** visibility
 */
 
 export const onOrgUpdateMemberRepositoryCreationPermissionAuditEntry = (fields?: string) => `
@@ -2226,61 +2113,26 @@ export const onTransferredEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onOrgUpdateMemberRepositoryInvitationPermissionAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* canInviteOutsideCollaboratorsToRepositories
-
-* createdAt
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
-
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** canInviteOutsideCollaboratorsToRepositories
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onOrgUpdateMemberRepositoryInvitationPermissionAuditEntry = (fields?: string) => `
@@ -2555,197 +2407,6 @@ export const onRepoArchivedAuditEntry = (fields?: string) => `
 ** userUrl
 */
 
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-/**
-* @description Github Graphql onRepoConfigDisableAnonymousGitAccessAuditEntry
-* @defaultVariables id
-* @fields
-** id
-** action
-** actor { onBot onOrganization onUser }
-** actorIp
-** actorLocation { city country countryCode region regionCode }
-** actorLogin
-** actorResourcePath
-** actorUrl
-** createdAt
-** organization { Organization }
-** operationType
-** organizationName
-** organizationResourcePath
-** Repository
-** repositoryName
-** repositoryResourcePath
-** repositoryUrl
-** organizationUrl
-** user { User }
-** userLogin
-** userResourcePath
-** userUrl
-*/
-
-* actorLocation {
-
-/**
-* @description Github Graphql onRepoConfigDisableCollaboratorsOnlyAuditEntry
-* @defaultVariables id
-* @fields
-** id
-** action
-** actor { onBot onOrganization onUser }
-** actorIp
-** actorLocation { city country countryCode region regionCode }
-** actorLogin
-** actorResourcePath
-** actorUrl
-** createdAt
-** organization { Organization }
-** operationType
-** organizationName
-** organizationResourcePath
-** Repository
-** repositoryName
-** repositoryResourcePath
-** repositoryUrl
-** organizationUrl
-** user { User }
-** userLogin
-** userResourcePath
-** userUrl
-*/
-
-*   regionCode
-          
-* }
-
-/**
-* @description Github Graphql onRepoConfigDisableContributorsOnlyAuditEntry
-* @defaultVariables id
-* @fields
-** id
-** action
-** actor { onBot onOrganization onUser }
-** actorIp
-** actorLocation { city country countryCode region regionCode }
-** actorLogin
-** actorResourcePath
-** actorUrl
-** createdAt
-** organization { Organization }
-** operationType
-** organizationName
-** organizationResourcePath
-** Repository
-** repositoryName
-** repositoryResourcePath
-** repositoryUrl
-** organizationUrl
-** user { User }
-** userLogin
-** userResourcePath
-** userUrl
-*/
-
-export const onRepoConfigDisableContributorsOnlyAuditEntry = (fields?: string) => `
-    ... on RepoConfigDisableContributorsOnlyAuditEntry {
-        id
-        ${fields}
-    }
-`
-/**
-* @description Github Graphql onRepoConfigDisableSockpuppetDisallowedAuditEntry
-* @defaultVariables id
-* @fields
-** id
-** action
-** actor { onBot onOrganization onUser }
-** actorIp
-** actorLocation { city country countryCode region regionCode }
-** actorLogin
-** actorResourcePath
-** actorUrl
-** createdAt
-** organization { Organization }
-** operationType
-** organizationName
-** organizationResourcePath
-** Repository
-** repositoryName
-** repositoryResourcePath
-** repositoryUrl
-** organizationUrl
-** user { User }
-** userLogin
-** userResourcePath
-** userUrl
-
-* isEnabled
-          
-* mergeType
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
- 
-* Repository 
-
-* repositoryName
-          
-* repositoryResourcePath
-          
-* repositoryUrl
-
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
-
-/**
-* @description Github Graphql onRepoChangeMergeSettingAuditEntry
-* @defaultVariables id
-* @fields
-** id
-** action
-** actor { onBot onOrganization onUser }
-** actorIp
-** actorLocation { city country countryCode region regionCode }
-** actorLogin
-** actorResourcePath
-** actorUrl
-** createdAt
-** isEnabled
-** mergeType
-** organization { Organization }
-** operationType
-** organizationName
-** organizationResourcePath
-** Repository
-** repositoryName
-** repositoryResourcePath
-** repositoryUrl
-** organizationUrl
-** user { User }
-** userLogin
-** userResourcePath
-** userUrl
-*/
-
 export const onRepoChangeMergeSettingAuditEntry = (fields?: string) => `
     ... on RepoChangeMergeSettingAuditEntry {
         id
@@ -2781,24 +2442,9 @@ export const onRepoChangeMergeSettingAuditEntry = (fields?: string) => `
 ** userUrl
 */
 
-export const onRepoConfigEnableCollaboratorsOnlyAuditEntry = (fields?: string) => `
-    ... on RepoConfigEnableCollaboratorsOnlyAuditEntry {
+export const onRepoConfigDisableAnonymousGitAccessAuditEntry = (fields?: string) => `
+    ... on RepoConfigDisableAnonymousGitAccessAuditEntry {
         id
-        ${fields}
-    }
-`
-
-/**
-* @description Github Graphql onUnsubscribedEvent
-* @fields
-* subscribable { Subscribable }
-** actor { Owner }
-** createdAt
-** id
-*/
-
-export const onUnsubscribedEvent = (fields: string = '') => `
-    ... on UnsubscribedEvent {
         ${fields}
     }
 `
@@ -2806,7 +2452,7 @@ export const onUnsubscribedEvent = (fields: string = '') => `
 /**
 * @description Github Graphql onRepoConfigDisableCollaboratorsOnlyAuditEntry
 * @defaultVariables id
-* @fields 
+* @fields
 ** id
 ** action
 ** actor { onBot onOrganization onUser }
@@ -2834,22 +2480,6 @@ export const onUnsubscribedEvent = (fields: string = '') => `
 export const onRepoConfigDisableCollaboratorsOnlyAuditEntry = (fields?: string) => `
     ... on RepoConfigDisableCollaboratorsOnlyAuditEntry {
         id
-        ${fields}
-    }
-`
-
-/**
-* @description Github Graphql onUserBlockedEvent
-* @fields
-** actor
-** blockDuration
-** createdAt
-** id
-** subject { User }
-*/
-
-export const onUserBlockedEvent = (fields: string = '') => `
-    ... on UserBlockedEvent {
         ${fields}
     }
 `
@@ -2926,143 +2556,84 @@ export const onRepoConfigDisableSockpuppetDisallowedAuditEntry = (fields?: strin
 /**
 * @description Github Graphql onRepoConfigEnableAnonymousGitAccessAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-
-* createdAt
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
- 
-* Repository 
-
-* repositoryName
-          
-* repositoryResourcePath
-          
-* repositoryUrl
-
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** Organization
+** operationType
+** organizationName
+** organizationResourcePath
+** Repository
+** repositoryName
+** repositoryResourcePath
+** repositoryUrl
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 
 */
 
-export const onIssueComment = (fields: string = '') => `
-    ... on IssueComment {
+export const onRepoConfigEnableAnonymousGitAccessAuditEntry = (fields?: string) => `
+    ... on RepoConfigEnableAnonymousGitAccessAuditEntry {
+        id
         ${fields}
     }
 `
 /**
 * @description Github Graphql onRepoConfigEnableCollaboratorsOnlyAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-
-* createdAt
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
- 
-* Repository 
-
-* repositoryName
-          
-* repositoryResourcePath
-          
-* repositoryUrl
-
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
-
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** Repository
+** repositoryName
+** repositoryResourcePath
+** repositoryUrl
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onRepoConfigEnableCollaboratorsOnlyAuditEntry = (fields?: string) => `
     ... on RepoConfigEnableCollaboratorsOnlyAuditEntry {
         id
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql onUnsubscribedEvent
+* @fields
+* subscribable { Subscribable }
+** actor { Owner }
+** createdAt
+** id
+*/
+
+export const onUnsubscribedEvent = (fields: string = '') => `
+    ... on UnsubscribedEvent {
         ${fields}
     }
 `
@@ -3102,13 +2673,17 @@ export const onRepoConfigEnableContributorsOnlyAuditEntry = (fields?: string) =>
 `
 
 /**
-* @description Github Graphql onCommit
+* @description Github Graphql onUserBlockedEvent
 * @fields
-** Commit
+** actor
+** blockDuration
+** createdAt
+** id
+** subject { User }
 */
 
-export const onCommit = (fields: string = '') => `
-    ... on Commit {
+export const onUserBlockedEvent = (fields: string = '') => `
+    ... on UserBlockedEvent {
         ${fields}
     }
 `
@@ -3143,6 +2718,139 @@ export const onCommit = (fields: string = '') => `
 
 export const onRepoConfigEnableSockpuppetDisallowedAuditEntry = (fields?: string) => `
     ... on RepoConfigEnableSockpuppetDisallowedAuditEntry {
+        id
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql onRepoConfigUnlockAnonymousGitAccessAuditEntry
+* @defaultVariables id
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** Repository
+** repositoryName
+** repositoryResourcePath
+** repositoryUrl
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+*/
+
+export const onRepoConfigUnlockAnonymousGitAccessAuditEntry = (fields?: string) => `
+    ... on RepoConfigUnlockAnonymousGitAccessAuditEntry {
+        id
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql onIssueComment
+* @fields
+** IssueComment
+*/
+
+export const onIssueComment = (fields: string = '') => `
+    ... on IssueComment {
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql onRepoCreateAuditEntry
+* @defaultVariables id
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** forkParentName
+** forkSourceName
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** Repository
+** repositoryName
+** repositoryResourcePath
+** repositoryUrl
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+** visibility
+*/
+
+export const onRepoCreateAuditEntry = (fields?: string) => `
+    ... on RepoCreateAuditEntry {
+        id
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql onCommit
+* @fields
+** Commit
+*/
+
+export const onCommit = (fields: string = '') => `
+    ... on Commit {
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql onRepoDestroyAuditEntry
+* @defaultVariables id
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** Repository
+** repositoryName
+** repositoryResourcePath
+** repositoryUrl
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
+** visibility
+*/
+
+export const onRepoDestroyAuditEntry = (fields?: string) => `
+    ... on RepoDestroyAuditEntry {
         id
         ${fields}
     }
@@ -3253,244 +2961,6 @@ export const onCreatedPullRequestContribution = (fields: string) => `
 `
 
 /**
-* @description Github Graphql onRepoConfigUnlockAnonymousGitAccessAuditEntry
-* @defaultVariables id
-* @fields
-** id
-** action
-** actor { onBot onOrganization onUser }
-** actorIp
-** actorLocation { city country countryCode region regionCode }
-** actorLogin
-** actorResourcePath
-** actorUrl
-** createdAt
-** organization { Organization }
-** operationType
-** organizationName
-** organizationResourcePath
-** Repository
-** repositoryName
-** repositoryResourcePath
-** repositoryUrl
-** organizationUrl
-** user { User }
-** userLogin
-** userResourcePath
-** userUrl
-*/
-
-export const onRepoConfigUnlockAnonymousGitAccessAuditEntry = (fields?: string) => `
-    ... on RepoConfigUnlockAnonymousGitAccessAuditEntry {
-        id
-        ${fields}
-    }
-`
-
-/**
-* @description Github Graphql onRepoCreateAuditEntry
-* @defaultVariables id
-* @fields
-** id
-** action
-** actor { onBot onOrganization onUser }
-** actorIp
-** actorLocation { city country countryCode region regionCode }
-** actorLogin
-** actorResourcePath
-** actorUrl
-** createdAt
-** forkParentName
-** forkSourceName
-** organization { Organization }
-** operationType
-** organizationName
-** organizationResourcePath
-** Repository
-** repositoryName
-** repositoryResourcePath
-** repositoryUrl
-** organizationUrl
-** user { User }
-** userLogin
-** userResourcePath
-** userUrl
-** visibility
-*/
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-
-* createdAt
-
-* forkParentName
-          
-* forkSourceName
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
- 
-* Repository 
-
-* repositoryName
-          
-* repositoryResourcePath
-          
-* repositoryUrl
-
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
-
-* visibility
-*/
-
-export const onRepoCreateAuditEntry = (fields?: string) => `
-    ... on RepoCreateAuditEntry {
-        id
-        ${fields}
-    }
-`
-
-/**
-* @description Github Graphql onRepoDestroyAuditEntry
-* @defaultVariables id
-* @fields 
-** id
-** action
-** actor { onBot onOrganization onUser }
-** actorIp
-** actorLocation { city country countryCode region regionCode }
-** actorLogin
-** actorResourcePath
-** actorUrl
-** createdAt
-** organization { Organization }
-** operationType
-** organizationName
-** organizationResourcePath
-** Repository 
-** repositoryName
-** repositoryResourcePath
-** repositoryUrl
-** organizationUrl
-** user { User }
-** userLogin
-** userResourcePath
-** userUrl
-** visibility
-*/
-
-export const onRepoDestroyAuditEntry = (fields?: string) => `
-    ... on RepoDestroyAuditEntry {
-        id
-        ${fields}
-    }
-`
-
-/**
-* @description Github Graphql onRepoRemoveMemberAuditEntry
-* @defaultVariables id
-* @queryVariables id
-* action
-
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-
-* createdAt
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
- 
-* Repository 
-
-* repositoryName
-          
-* repositoryResourcePath
-          
-* repositoryUrl
-
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
-
-/**
 * @description Github Graphql onRepoRemoveMemberAuditEntry
 * @defaultVariables id
 * @fields
@@ -3507,7 +2977,7 @@ export const onRepoDestroyAuditEntry = (fields?: string) => `
 ** operationType
 ** organizationName
 ** organizationResourcePath
-** Repository 
+** Repository
 ** repositoryName
 ** repositoryResourcePath
 ** repositoryUrl
@@ -3529,7 +2999,7 @@ export const onRepoRemoveMemberAuditEntry = (fields?: string) => `
 /**
 * @description Github Graphql onRepoRemoveTopicAuditEntry
 * @defaultVariables id
-* @fields 
+* @fields
 ** id
 ** action
 ** actor { onBot onOrganization onUser }
@@ -3543,7 +3013,7 @@ export const onRepoRemoveMemberAuditEntry = (fields?: string) => `
 ** operationType
 ** organizationName
 ** organizationResourcePath
-** Repository 
+** Repository
 ** repositoryName
 ** repositoryResourcePath
 ** repositoryUrl
@@ -3565,63 +3035,28 @@ export const onRepoRemoveTopicAuditEntry = (fields?: string) => `
 /**
 * @description Github Graphql onRepositoryVisibilityChangeDisableAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* enterpriseResourcePath
-          
-* enterpriseSlug
-          
-* enterpriseUrl
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** enterpriseResourcePath
+** enterpriseSlug
+** enterpriseUrl
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onRepositoryVisibilityChangeDisableAuditEntry = (fields?: string) => `
@@ -3634,63 +3069,28 @@ export const onRepositoryVisibilityChangeDisableAuditEntry = (fields?: string) =
 /**
 * @description Github Graphql onRepositoryVisibilityChangeEnableAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* enterpriseResourcePath
-          
-* enterpriseSlug
-          
-* enterpriseUrl
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** enterpriseResourcePath
+** enterpriseSlug
+** enterpriseUrl
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onRepositoryVisibilityChangeEnableAuditEntry = (fields?: string) => `
@@ -3703,66 +3103,30 @@ export const onRepositoryVisibilityChangeEnableAuditEntry = (fields?: string) =>
 /**
 * @description Github Graphql onTeamAddMemberAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* isLdapMapped
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* Team
-*
-* teamName
-
-* teamResourcePath
-
-* teamUrl
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** isLdapMapped
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** team { Team }
+** teamName
+** teamResourcePath
+** teamUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onTeamAddMemberAuditEntry = (fields?: string) => `
@@ -3811,85 +3175,38 @@ export const onTeamAddRepositoryAuditEntry = (fields?: string) => `
 /**
 * @description Github Graphql onTeamChangeParentTeamAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* isLdapMapped
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* parentTeam {
-    Team
-}
-
-* parentTeamName
-          
-* parentTeamNameWas
-          
-* parentTeamResourcePath
-          
-* parentTeamUrl
-
-* parentTeamWas {
-    Team
-}
-* parentTeamWasResourcePath
-
-* parentTeamWasUrl
-*
-* Team
-*
-* teamName
-
-* teamResourcePath
-
-* teamUrl
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** isLdapMapped
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** parentTeam { Team }
+** parentTeamName
+** parentTeamNameWas
+** parentTeamResourcePath
+** parentTeamUrl
+** parentTeamWas { Team }
+** parentTeamWasResourcePath
+** parentTeamWasUrl
+** team { Team }
+** teamName
+** teamResourcePath
+** teamUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onTeamChangeParentTeamAuditEntry = (fields?: string) => `
@@ -3955,66 +3272,30 @@ export const onCreatedRepositoryContribution = (fields: string) => `
 /**
 * @description Github Graphql onTeamRemoveRepositoryAuditEntry
 * @defaultVariables id
-* @queryVariables id
-* action
-* actor {
-    onBot
-    onOrganization
-    onUser
-}
-
-* actorIp
-
-* actorLocation {
-
-*   city
-            
-*   country
-            
-*   countryCode
-            
-*   region
-
-*   regionCode
-          
-* }
-
-* actorLogin
-
-* actorResourcePath
-          
-* actorUrl
-          
-* createdAt
-
-* isLdapMapped
-
-* Organization
-    
-* operationType
-    
-* organizationName
-    
-* organizationResourcePath
-    
-* organizationUrl
-
-* Team
-*
-* teamName
-
-* teamResourcePath
-
-* teamUrl
-* user {
-    User
-}
-
-* userLogin
-    
-* userResourcePath
-
-* userUrl
+* @fields
+** id
+** action
+** actor { onBot onOrganization onUser }
+** actorIp
+** actorLocation { city country countryCode region regionCode }
+** actorLogin
+** actorResourcePath
+** actorUrl
+** createdAt
+** isLdapMapped
+** organization { Organization }
+** operationType
+** organizationName
+** organizationResourcePath
+** organizationUrl
+** team { Team }
+** teamName
+** teamResourcePath
+** teamUrl
+** user { User }
+** userLogin
+** userResourcePath
+** userUrl
 */
 
 export const onTeamRemoveRepositoryAuditEntry = (fields?: string) => `
