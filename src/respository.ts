@@ -165,7 +165,6 @@ export const Repositories = (params: queryVariables.Repositories) => `
 		}
 		${params.pageInfo ? params.pageInfo : ''}
 		totalCount
- 	}
     }
 `
 
@@ -666,8 +665,8 @@ export const App = (fields: string = '') => `
 ** viewerSubscription
 */
 
-export const Issue = (issueNumber: number, fields: string = '') => `
-    issue (number: ${issueNumber}) {
+export const Issue = (issueNumber?: number, fields: string = '') => `
+    issue ${issueNumber ? `(number: ${issueNumber})` : ''} {
         id
         ${fields}
     }
@@ -767,7 +766,7 @@ export const Label = (name: string, fields: string = '') => `
 
 export const Issues = (params: queryVariables.Issues) => `
     issues(${params.first ? `first: ${params.first}` : ''}  ${params.last ? `last: ${params.last}` : ''} ${params.labels ? `, labels: ${params.labels}` : ''} ${params.state ? `, state: ${params.state}` : ''} ${params.after ? `, after: "${params.after}" ` : ''} ${params.before ? `, before: "${params.before}" ` : ''}
-        ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}` : ''}
+        ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}` : ''}}
         ${params.filterBy ? `, filterBy:{${params.filterBy}}` : ''}) {
 
         edges {

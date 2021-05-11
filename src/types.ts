@@ -4943,3 +4943,1031 @@ export declare interface UserAccountsUploads {
 }
 
 type Content = string | CardItems | Source
+
+export declare interface DefautFields {
+    clientMutationId?: string;
+    id?: string;
+}
+
+export declare interface IssueMutation extends DefautFields {
+    assigneeIds?: string[]
+    body: string;
+    issueTemplate?: string;
+    labelIds?: string[]
+    milestoneId?: string;
+    projectIds?: string[],
+    repositoryId: string;
+    issueState?: 'CLOSED' | 'OPEN'
+    title: string;
+}
+
+export declare interface AcceptEnterpriseAdministratorInvitationInput extends DefautFields {
+    invitationId: string;
+}
+
+export declare interface AcceptTopicSuggestionInput extends DefautFields {
+    clientMutationId?: string;
+    name: string;
+    repositoryId: string;
+}
+
+export declare interface AddAssigneesToAssignableInput extends DefautFields {
+    assignableId: string;
+    assigneeIds?: string[];
+    clientMutationId?: string;
+}
+
+export declare interface AddCommentInput extends DefautFields {
+    body: string;
+    subjectId: string;
+}
+
+export declare interface AddEnterpriseSupportEntitlementInput extends DefautFields {
+    enterpriseId: string;
+    login: string;
+}
+
+export declare interface LabelsToLabelableInput extends DefautFields {
+    labelIds?: string[];
+    labelableId: string;
+}
+
+export declare interface AddProjectColumnInput extends DefautFields {
+    name?: string[];
+    projectId: string;
+}
+
+export declare interface AddProjectCardInput extends DefautFields {
+    contentId: string;
+    note: string;
+    projectColumnId: string;
+}
+
+export declare interface AddPullRequestReviewCommentInput extends DefautFields {
+    body: string;
+    commitOID: string;
+    inReplyTo: string;
+    path: string;
+    position: number;
+    pullRequestId: string;
+    pullRequestReviewId: string;
+}
+
+export declare interface AddPullRequestReviewInput extends DefautFields {
+    body: string;
+    comments: string[]
+    commitOID: string;
+    event?: string;
+    path: string;
+    position: number;
+    pullRequestId: string;
+    threads: string;
+}
+
+export declare interface DraftPullRequestReviewComment{
+    body: string;
+    path: string;
+    position: number;
+}
+
+export declare interface DraftPullRequestReviewThread {
+    body: string;
+    line: number;
+    side: 'LEFT' | 'RIGHT';
+    startLine?: number;
+    path: string;
+    startSide: 'LEFT' | 'RIGHT';
+}
+
+export declare interface EnablePullRequestAutoMergeInput extends DefautFields {
+    authorEmail: string;
+    commitBody: string;
+    commitHeadline: string;
+    mergeMethod: 'MERGE' | 'REBASE' | 'SQUASH';
+    pullRequestId:string;
+}
+
+export declare interface EnterpriseAdministratorInvitationOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT';
+}
+
+export declare interface EnterpriseMemberOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'LOGIN';
+}
+
+export declare interface EnterpriseServerInstallationOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'CUSTOMER_NAME' | 'HOST_NAME';
+}
+
+export declare interface EnterpriseServerUserAccountEmailOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'EMAIL';
+}
+
+export declare interface EnterpriseServerUserAccountOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'LOGIN' | 'REMOTE_CREATED_AT';
+}
+
+export declare interface EnterpriseServerUserAccountsUploadOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT';
+}
+
+export declare interface GistOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'PUSHED_AT' | 'UPDATED_AT';
+}
+
+export declare interface AddPullRequestReviewThreadInput extends DefautFields {
+    body: string;
+    line: number;
+    pullRequestId: string;
+    pullRequestReviewId: string;
+    side: string;
+    startLine?: number;
+    path: string;
+    position: number;
+    startSide: 'LEFT' | 'RIGHT';
+}
+
+export declare interface AddReactionInput extends DefautFields {
+    content: 'CONFUSED' | 'EYES' | 'HEART' | 'HOORAY' | 'LAUGH' | 'ROCKET' | 'THUMBS_DOWN' | 'THUMBS_UP'
+    subjectId: string;
+}
+
+export declare interface AddStarInput extends DefautFields {
+    starrableId: string;
+}
+
+export declare interface AddVerifiableDomainInput extends DefautFields {
+    domain: string;
+    ownerId: string;
+}
+
+export declare interface ApproveVerifiableDomainInput extends DefautFields {
+    id: string;
+}
+
+export declare interface ArchiveRepositoryInput extends DefautFields {
+    repositoryId: string;
+}
+
+export declare interface AuditLogOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT';
+}
+
+export declare interface CancelEnterpriseAdminInvitationInput extends DefautFields {
+    invitationId: string;
+}
+
+export declare interface ChangeUserStatusInput extends DefautFields {
+    emoji: string;
+    expiresAt: string;
+    limitedAvailability: boolean;
+    message: string;
+    organizationId: string;
+}
+
+export declare interface CheckAnnotationData {
+    annotationLevel: 'FAILURE' | 'NOTICE' | 'WARNING';
+    location: string;
+    message: string;
+    path: string;
+    rawDetails: string;
+    title: string;
+}
+
+export declare interface CheckAnnotationRange {
+    endColumn: number;
+    endLine: number;
+    startColumn: number;
+    startLine: number;
+}
+
+export declare interface CheckRunAction {
+    description: string;
+    identifier: string;
+    label: string;
+}
+
+export declare interface CheckRunFilter {
+    appId: number;
+    checkName: string;
+    checkType: 'ALL' | 'LATEST';
+    status: 'COMPLETED' | 'IN_PROGRESS' | 'QUEUED' | 'REQUESTED' | 'WAITING'
+}
+
+export declare interface CheckRunOutput {
+    annotations: string;
+    images: string;
+    summary: string;
+    text: string;
+    title: string;
+}
+
+export declare interface CheckRunOutputImage {
+    alt: string;
+    caption: string;
+    imageUrl: string;
+}
+
+export declare interface CheckSuiteAutoTriggerPreference {
+    appId: string;
+    setting: boolean;
+}
+
+export declare interface CheckSuiteFilter {
+    appId: string;
+    checkName: string;
+}
+
+export declare interface ClearLabelsFromLabelableInput extends DefautFields {
+
+    labelableId: string;
+}
+
+export declare interface CloneProjectInput extends DefautFields {
+    body: string;
+    includeWorkflows: boolean;
+    name: string;
+    public: boolean;
+    sourceId: string;
+    targetOwnerId: string;
+}
+
+export declare interface CloneTemplateRepositoryInput extends DefautFields {
+    description: string;
+    includeAllBranches: boolean;
+    name: string;
+    ownerId: string;
+    repositoryId: string;
+    visibility: string;
+}
+
+export declare interface CloseIssueInput extends DefautFields {
+    issueId: string;
+}
+
+export declare interface ClosePullRequestInput extends DefautFields {
+    pullRequestId: string;
+}
+
+export declare interface CommitAuthor {
+    emails: string[];
+    id: string;
+}
+
+export declare interface Direction {
+    direction: 'ASC' | 'DESC';
+}
+
+export declare interface CommitContributionOrder extends Direction {
+    field: 'COMMIT_COUNT' | 'OCCURRED_AT';
+}
+
+export declare interface ConvertProjectCardNoteToIssueInput extends DefautFields{
+    body: string;
+    projectCardId: string;
+    repositoryId: string;
+    title: string;
+}
+
+export declare interface ConvertPullRequestToDraftInput extends DefautFields{
+    pullRequestId: string;
+}
+
+export declare interface CreateBranchProtectionRuleInput extends DefautFields{
+    allowsDeletions: boolean;
+    allowsForcePushes: boolean;
+    dismissesStaleReviews: boolean;
+    isAdminEnforced: boolean;
+    pattern: string;
+    pushActorIds: string[];
+    repositoryId: string;
+    requiredApprovingReviewCount: number;
+    requiredStatusCheckContexts: string[];
+    requiresApprovingReviews: boolean;
+    requiresCodeOwnerReviews: boolean;
+    requiresCommitSignatures: boolean;
+    requiresLinearHistory: boolean;
+    requiresStatusChecks: boolean;
+    requiresStrictStatusChecks: boolean;
+    restrictsPushes: boolean;
+    restrictsReviewDismissals: boolean;
+    reviewDismissalActorIds: string[];
+}
+
+export declare interface CreateCheckRunInput extends DefautFields {
+    actions: string;
+    completedAt: string;
+    conclusion: string;
+    detailsUrl: string;
+    externalId: string;
+    headSha: string;
+    name: string;
+    output: string;
+    repositoryId: string;
+    startedAt: string;
+    status: 'ERROR' | 'FAILURE' | 'INACTIVE' | 'IN_PROGRESS' | 'PENDING' | 'QUEUED' | 'SUCCESS' | 'WAITING';
+}
+
+export declare interface CreateCheckSuiteInput extends DefautFields {
+    headSha: string;
+    repositoryId: string;
+}
+
+export declare interface CreateContentAttachmentInput extends DefautFields {
+    body: string;
+    contentReferenceId: string;
+    title: string;
+}
+
+export declare interface CreateEnterpriseOrganizationInput extends DefautFields {
+    adminLogins: string[];
+    billingEmail: string;
+
+    enterpriseId: string;
+    login: string;
+    profileName: string;
+}
+
+export declare interface CreateIpAllowListEntryInput extends DefautFields {
+    allowListValue: string;
+    isActive: boolean;
+    name: string;
+    ownerId: string;
+}
+
+export declare interface CreateProjectInput extends DefautFields {
+    body: string;
+    name: string;
+    public: boolean;
+    ownerId: string;
+    projectId?: string;
+    template: string;
+    state: 'CLOSED' | 'OPEN';
+}
+
+export declare interface CreatePullRequestInput extends DefautFields {
+    baseRefName: string;
+    body: string;
+    draft: boolean;
+    headRefName: string;
+    maintainerCanModify: boolean;
+    repositoryId: string;
+    title: string;
+}
+
+export declare interface CreateRefInput extends DefautFields {
+    name: string;
+    oid: string;
+    repositoryId: string;
+}
+
+export declare interface CreateRepositoryInput extends DefautFields {
+    description: string;
+    hasIssuesEnabled: boolean;
+    hasWikiEnabled: boolean;
+    homepageUrl?: string;
+    name: string;
+    ownerId?: string;
+    teamId?: string;
+    template?: boolean;
+    visibility: 'INTERNAL' | 'PRIVATE' | 'PUBLIC';
+}
+
+export declare interface CreateTeamDiscussionCommentInput extends DefautFields {
+    body: string;
+    discussionId: string;
+}
+
+export declare interface CreateTeamDiscussionInput extends DefautFields {
+    body: string;
+    private: boolean;
+    teamId: string;
+    title: string;
+}
+
+export declare interface DeclineTopicSuggestionInput extends DefautFields {
+    name: string;
+    reason: 'NOT_RELEVANT' | 'PERSONAL_PREFERENCE' | 'TOO_GENERAL' | 'TOO_SPECIFIC';
+    repositoryId: string;
+}
+
+export declare interface DeleteBranchProtectionRuleInput extends DefautFields {
+    branchProtectionRuleId: string;
+}
+
+export declare interface DeleteDeploymentInput extends DefautFields {
+    id: string;
+}
+
+export declare interface DeleteIpAllowListEntryInput extends DefautFields {
+    ipAllowListEntryId: string;
+}
+
+export declare interface DeleteIssueInput extends DefautFields {
+    issueId: string;
+}
+
+export declare interface DeleteProjectColumnInput extends DefautFields {
+    columnId: string;
+}
+
+export declare interface DeleteProjectCardInput extends DefautFields {
+    projectId: string;
+}
+
+export declare interface DeleteProjectInput extends DefautFields {
+    projectId: string;
+}
+
+export declare interface DeletePullRequestReviewInput extends DefautFields {
+    pullRequestReviewId: string;
+}
+
+export declare interface DeleteRefInput extends DefautFields {
+    refId: string;
+}
+
+export declare interface DeploymentOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT'
+}
+
+export declare interface DisablePullRequestAutoMergeInput extends DefautFields {
+    pullRequestId: string;
+}
+
+export declare interface DismissPullRequestReviewInput extends DefautFields {
+    pullRequestReviewId: string;
+    message: string;
+}
+
+export declare interface FollowUserInput extends DefautFields {
+    userId: string;
+}
+
+export declare interface ImportProjectInput extends DefautFields {
+    body: string;
+    columnImports: string[];
+    name: string;
+    ownerName: string;
+    public: boolean;
+}
+
+export declare interface InviteEnterpriseAdminInput extends DefautFields {
+    email: string;
+    enterpriseId: string;
+    invitee: string;
+    role: 'BILLING_MANAGER' | 'OWNER';
+}
+
+export declare interface IpAllowListEntryOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'ALLOW_LIST_VALUE';
+}
+
+export declare interface IssueCommentOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'UPDATED_AT';
+}
+
+export declare interface IssueFilters extends DefautFields {
+    assignee: string | '*';
+    createdBy: string;
+    labels: string[]
+    mentioned: string;
+    milestone: string;
+    since: string;
+    states: 'CLOSED' | 'OPEN';
+    viewerSubscribed: boolean;
+}
+
+export declare interface IssueOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'COMMENTS' | 'CREATED_AT' | 'UPDATED_AT';
+}
+
+export declare interface LabelOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'NAME';
+}
+
+export declare interface LanguageOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'SIZE';
+}
+
+export declare interface LockLockableInput extends DefautFields {
+    lockReason: string;
+    lockableId: string;
+}
+
+export declare interface MarkFileAsViewedInput extends DefautFields {
+    path: string;
+    pullRequestId: string;
+}
+
+export declare interface LinkRepositoryToProjectInput extends DefautFields {
+    projectId: string;
+    repositoryId: string;
+}
+
+export declare interface MarkPullRequestReadyForReviewInput extends DefautFields {
+    pullRequestId: string;
+}
+
+export declare interface MergeBranchInput extends DefautFields {
+    authorEmail: string;
+    base: string;
+    commitMessage: string;
+    head: string;
+    repositoryId: string;
+}
+
+export declare interface MergePullRequestInput extends DefautFields {
+    authorEmail: string;
+    commitBody: string;
+    commitHeadline: string;
+    expectedHeadOid: string;
+    mergeMethod: 'MERGE' | 'REBASE' | 'SQUASH';
+    repositoryId: string;
+}
+
+export declare interface MilestoneOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'DUE_DATE' | 'NUMBER' | 'UPDATED_AT';
+}
+
+export declare interface MinimizeCommentInput extends DefautFields {
+    classifier: 'ABUSE' | 'DUPLICATE' | 'OFF_TOPIC' | 'OUTDATED' | 'RESOLVED' | 'SPAM';
+    subjectId: string;
+}
+
+export declare interface MoveProjectCardInput extends DefautFields {
+    afterCardId: string;
+    cardId: string;
+    columnId: string;
+}
+
+export declare interface MoveProjectColumnInput extends DefautFields {
+    afterColumnId: string;
+    columnId: string;
+}
+
+export declare interface OrganizationOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'LOGIN';
+}
+
+export declare interface PackageFileOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT';
+}
+
+export declare interface PackageOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT';
+}
+
+export declare interface PackageVersionOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT';
+}
+
+export declare interface PinIssueInput extends DefautFields {
+    issueId: string;
+}
+
+export declare interface ProjectCardImport extends DefautFields {
+    repository: string;
+}
+
+export declare interface ProjectColumnImport extends DefautFields {
+    columnName: string;
+    issues: string[];
+    position: number;
+}
+
+export declare interface ProjectOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'NAME' | 'UPDATED_AT';
+}
+
+export declare interface PullRequestOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'UPDATED_AT';
+}
+
+export declare interface ReactionOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT';
+}
+
+export declare interface RefOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'ALPHABETICAL' | 'TAG_COMMIT_DATE';
+}
+
+export declare interface RefUpdate {
+    afterOid: string;
+    beforeOid: string;
+    name: string;
+    force: boolean;
+}
+
+export declare interface RegenerateEnterpriseIdentityProviderRecoveryCodesInput extends DefautFields {
+    enterpriseId: string;
+}
+
+export declare interface RemoveAssigneesFromAssignableInput extends DefautFields {
+    assignableId: string;
+    assigneeIds: string[]
+}
+
+export declare interface RemoveEnterpriseAdminInput extends DefautFields {
+    enterpriseId: string;
+    login: string
+}
+
+export declare interface RemoveEnterpriseIdentityProviderInput extends DefautFields {
+    enterpriseId: string;
+}
+
+export declare interface RemoveEnterpriseOrganizationInput extends DefautFields {
+    enterpriseId: string;
+    organizationId: string;
+}
+
+export declare interface RemoveOutsideCollaboratorInput extends DefautFields {
+    organizationId : string;
+    userId: string;
+}
+
+export declare interface RemoveReactionInput extends DefautFields {
+    content: 'CONFUSED' | 'EYES' | 'HEART' | 'HOORAY' | 'LAUGH' | 'ROCKET' | 'THUMBS_DOWN' | 'THUMBS_UP';
+    subjectId: string;
+}
+
+export declare interface RemoveStarInput extends DefautFields {
+    starrableId: string;
+}
+
+export declare interface ReopenIssueInput extends DefautFields {
+    issueId: string;
+}
+
+export declare interface ReopenPullRequestInput extends DefautFields {
+    issueId: string;
+}
+
+export declare interface RepositoryInvitationOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'INVITEE_LOGIN';
+}
+
+export declare interface RepositoryOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'NAME' | 'PUSHED_AT' | 'STARGAZERS' | 'UPDATED_AT';
+}
+
+export declare interface RequestReviewsInput extends DefautFields {
+    pullRequestId: string;
+    teamIds?: string[]
+    union: boolean;
+    userIds: string[]
+}
+
+export declare interface RerequestCheckSuiteInput extends DefautFields {
+    checkSuiteId: string;
+    repositoryId: string
+}
+
+export declare interface ResolveReviewThreadInput extends DefautFields {
+    threadId: string;
+}
+
+export declare interface SavedReplyOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'UPDATED_AT';
+}
+
+export declare interface SecurityAdvisoryIdentifierFilter {
+    type: 'CVE' | 'GHSA';
+    value: string;
+}
+
+export declare interface SecurityAdvisoryOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'UPDATED_AT' | 'PUBLISHED_AT';
+}
+
+export declare interface SetEnterpriseIdentityProviderInput extends DefautFields {
+    digestMethod: 'SHA1' | 'SHA256' | 'SHA384' | 'SHA512';
+    enterpriseId: string;
+    idpCertificate: string
+    issuer: string;
+    signatureMethod: 'RSA_SHA1' | 'RSA_SHA256' | 'RSA_SHA384' | 'RSA_SHA512'
+    ssoUrl: string;
+}
+
+export declare interface SetInteractionLimitInput extends DefautFields {
+    expiry: 'ONE_DAY' | 'ONE_MONTH' | 'ONE_WEEK' | 'SIX_MONTHS' | 'THREE_DAYS';
+    limit: 'COLLABORATORS_ONLY' | 'CONTRIBUTORS_ONLY' | 'EXISTING_USERS' | 'NO_LIMIT';
+    organizationId?: string;
+    repositoryId?: string;
+    userId?: string;
+}
+
+export declare interface SponsorableOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'LOGIN';
+}
+
+export declare interface SponsorsTierOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'MONTHLY_PRICE_IN_CENTS';
+}
+
+export declare interface SponsorshipOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT';
+}
+
+export declare interface StarOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'STARRED_AT';
+}
+
+export declare interface SubmitPullRequestReviewInput extends DefautFields {
+    body: string;
+    event: 'APPROVE' | 'COMMENT' | 'DISMISS' | 'REQUEST_CHANGES';
+    pullRequestId: string;
+    pullRequestReviewId: string;
+}
+
+export declare interface TeamDiscussionCommentOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'NUMBER';
+}
+
+export declare interface TeamDiscussionOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT';
+}
+
+export declare interface TeamMemberOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'LOGIN';
+}
+
+export declare interface TeamOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'NAME';
+}
+
+export declare interface TeamRepositoryOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'CREATED_AT' | 'NAME' | 'PERMISSION' | 'PUSHED_AT' | 'STARGAZERS' | 'UPDATED_AT';
+}
+
+export declare interface TransferIssueInput extends DefautFields {
+    issueId: string;
+    repositoryId: string;
+}
+
+export declare interface UnarchiveRepositoryInput extends DefautFields {
+    repositoryId: string;
+}
+
+export declare interface UnfollowUserInput extends DefautFields {
+    userId: string;
+}
+
+export declare interface UnlinkRepositoryFromProjectInput extends DefautFields {
+    projectId: string;
+    repositoryId: string;
+}
+
+export declare interface UnlockLockableInput extends DefautFields {
+    lockableId: string;
+}
+
+export declare interface UnmarkFileAsViewedInput extends DefautFields {
+    path: string;
+    pullRequestId: string;
+}
+
+export declare interface UnmarkIssueAsDuplicateInput extends DefautFields {
+    canonicalId: string;
+    duplicateId: string;
+}
+
+export declare interface UnminimizeCommentInput extends DefautFields {
+    subjectId: string;
+}
+
+export declare interface UnpinIssueInput extends DefautFields {
+    issueId: string;
+}
+
+export declare interface UnresolveReviewThreadInput extends DefautFields {
+    threadId: string;
+}
+
+export declare interface UpdateCheckSuitePreferencesInput extends DefautFields {
+    autoTriggerPreferences: string[];
+    repositoryId: string;
+}
+
+export declare interface UpdateEnterpriseAdministratorRoleInput extends DefautFields {
+    enterpriseId: string;
+    login: string;
+    role: 'BILLING_MANAGER' | 'OWNER';
+}
+
+export declare interface UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput extends DefautFields {
+    enterpriseId: string;
+    settingValue: 'DISABLED' | 'ENABLED' | 'NO_POLICY';
+}
+
+export declare interface UpdateEnterpriseDefaultRepositoryPermissionSettingInput extends DefautFields {
+    enterpriseId: string;
+    settingValue: 'ADMIN' | 'NONE' | 'NO_POLICY' | 'READ' | 'WRITE';
+}
+
+export declare interface VisibilitySettingInput extends DefautFields {
+    enterpriseId: string;
+    settingValue: 'DISABLED' | 'ENABLED' | 'NO_POLICY';
+}
+
+export declare interface UpdateEnterpriseMembersCanCreateRepositoriesSettingInput extends DefautFields {
+    enterpriseId: string;
+    membersCanCreateInternalRepositories?: boolean;
+    membersCanCreatePrivateRepositories?: boolean;
+    membersCanCreatePublicRepositories?: boolean;
+    membersCanCreateRepositoriesPolicyEnabled?: boolean;
+    settingValue: 'ALL' | 'DISABLED' | 'NO_POLICY' | 'PRIVATE' | 'PUBLIC';
+}
+
+export declare interface UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput extends DefautFields {
+    enterpriseId: string;
+    settingValue: 'DISABLED' | 'ENABLED' | 'NO_POLICY';
+}
+
+export declare interface UpdateEnterpriseProfileInput extends DefautFields {
+    description: string;
+    enterpriseId: string;
+    location: string;
+    name: string;
+    websiteUrl: string;
+}
+
+export declare interface UpdateIpAllowListEnabledSettingInput extends DefautFields {
+    ownerId: string;
+    settingValue: 'DISABLED' | 'ENABLED';
+}
+
+export declare interface UpdateIpAllowListEntryInput extends DefautFields {
+    allowListValue: string;
+
+    ipAllowListEntryId: string;
+    isActive: boolean;
+    name: string;
+}
+
+export declare interface UpdateIssueCommentInput extends DefautFields {
+    id: string;
+    body: string;
+}
+
+export declare interface UpdateLabelInput extends DefautFields {
+    color: string;
+    description: string;
+    name: string;
+}
+
+export declare interface UpdateProjectCardInput extends DefautFields {
+    isArchived: boolean;
+    note: string;
+    projectCardId?: string;
+}
+
+export declare interface UpdatePullRequestInput extends DefautFields {
+    assigneeIds: string[];
+    baseRefName: string;
+    body: string;
+    labelIds: string[];
+    maintainerCanModify: boolean
+    milestoneId: string;
+    projectIds: string[];
+    pullRequestId: string;
+    state: 'CLOSED' | 'OPEN';
+    title: string;
+}
+
+export declare interface UpdatePullRequestReviewCommentInput extends DefautFields {
+    body: string;
+    pullRequestReviewCommentId: string;
+}
+
+export declare interface UpdatePullRequestReviewInput extends DefautFields {
+    body: string;
+    pullRequestReviewId: string;
+}
+
+export declare interface UpdateRefInput extends DefautFields {
+    force: boolean;
+    oid: string;
+    refId: string;
+}
+
+export declare interface UpdateRefsInput extends DefautFields {
+    refUpdates: string[];
+    repositoryId: string;
+}
+
+export declare interface UpdateRepositoryInput extends DefautFields{
+    hasProjectsEnabled: boolean;
+    repositoryId?: string;
+    description: string;
+    hasIssuesEnabled: boolean;
+    hasWikiEnabled: boolean;
+    homepageUrl?: string;
+    name: string;
+    template?: boolean;
+}
+
+export declare interface UpdateSubscriptionInput extends DefautFields {
+    state: 'IGNORED' | 'SUBSCRIBED' | 'UNSUBSCRIBED';
+    subscribableId: string;
+}
+
+export declare interface UpdateTeamDiscussionCommentInput extends DefautFields {
+    body: string;
+    bodyVersion: string;
+}
+
+export declare interface UpdateTeamDiscussionInput extends DefautFields {
+    body: string;
+    bodyVersion: string;
+    pinned: boolean;
+    title: string;
+}
+
+export declare interface UpdateTeamReviewAssignmentInput extends DefautFields {
+    algorithm: 'LOAD_BALANCE' | 'ROUND_ROBIN';
+    enabled: boolean;
+    excludedTeamMemberIds: string[];
+    notifyTeam: boolean;
+    teamMemberCount: number;
+}
+
+export declare interface UpdateTopicsInput extends DefautFields {
+    repositoryId: string;
+    topicNames: string[];
+}
+
+export declare interface UserStatusOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'UPDATED_AT';
+}
+
+export declare interface VerifiableDomainOrder {
+    direction: 'ASC' | 'DESC';
+    field: 'UPDATED_AT';
+}
+
+export declare interface CreateDeploymentInput extends DefautFields {
+    autoMerge: boolean;
+    description: string;
+    environment: string;
+    payload?: string;
+    refId: string;
+    repositoryId: string;
+    requiredContexts: string[];
+    task: string;
+}
+
+export declare interface CreateDeploymentStatusInput extends DefautFields {
+    autoInactive: boolean;
+    deploymentId: string;
+    description: string;
+    environment: string;
+    environmentUrl: string;
+    logUrl: string;
+    state: 'ERROR' | 'FAILURE' | 'INACTIVE' | 'IN_PROGRESS' | 'PENDING' | 'QUEUED' | 'SUCCESS' | 'WAITING';
+}
+
+export declare interface CreateLabelInput extends DefautFields {
+    color: string;
+    description: string;
+    name: string;
+    repositoryId: string;
+}

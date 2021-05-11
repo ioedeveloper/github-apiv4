@@ -1,3 +1,4 @@
+
 export declare interface PageInfo {
     endCursor: string;
     hasNextPage: boolean;
