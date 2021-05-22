@@ -56,12 +56,12 @@ export const AddAssigneesToAssignable = (mutationFields: types.AddAssigneesToAss
  ** body string
  ** clientMutationId string
  ** subjectId string
- * @fields Comment
+ * @fields Subject
  */
 
 export const AddComment = (mutationFields: types.AddCommentInput, comment?: string) => `
     mutation AddCommentInput {
-        addComment  (input:{body: "${mutationFields.body}" ${mutationFields.subjectId ? `, subjectId: "${mutationFields.subjectId}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+        addComment  (input:{body: "${mutationFields.body}"  subjectId: "${mutationFields.subjectId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${comment}
         }
     }
@@ -85,7 +85,7 @@ export const AddEnterpriseSupportEntitlement = (mutationFields: types.AddEnterpr
 `
 
 /**
- * @description Github Graphql Mutation for AddEnterpriseSupportEntitlement
+ * @description Github Graphql Mutation for AddLabelsToLabelable
  * @mutationFields
  ** clientMutationId string
  ** labelIds string[]
@@ -95,7 +95,7 @@ export const AddEnterpriseSupportEntitlement = (mutationFields: types.AddEnterpr
 
 export const AddLabelsToLabelable = (mutationFields: types.LabelsToLabelableInput, support?: string) => `
     mutation LabelsToLabelableInput {
-        addLabelsToLabelable  (input:{labelableId: "${mutationFields.labelableId}" ${mutationFields.labelIds ? `, labelIds: "${mutationFields.labelIds}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+        addLabelsToLabelable  (input:{labelableId: "${mutationFields.labelableId}", labelIds: ${mutationFields.labelIds} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${support}
         }
     }
@@ -113,7 +113,7 @@ export const AddLabelsToLabelable = (mutationFields: types.LabelsToLabelableInpu
 
 export const AddProjectCard = (mutationFields: types.AddProjectCardInput, card?: string) => `
     mutation AddProjectCardInput {
-        addProjectCard  (input:{note: "${mutationFields.note}" ${mutationFields.contentId ? `, contentId: "${mutationFields.contentId}"` : ''} ${mutationFields.projectColumnId ? `, projectColumnId: "${mutationFields.projectColumnId}"` : ''}
+        addProjectCard  (input:{${mutationFields.note ? `note: "${mutationFields.note}"` : ''} ${mutationFields.contentId ? `contentId: "${mutationFields.contentId}"` : ''} ${mutationFields.projectColumnId ? `, projectColumnId: "${mutationFields.projectColumnId}"` : ''}
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${card}
         }
@@ -124,22 +124,21 @@ export const AddProjectCard = (mutationFields: types.AddProjectCardInput, card?:
  * @description Github Graphql Mutation for AddProjectColumn
  * @mutationFields
  ** clientMutationId string
- ** contentId string
+ ** projectId string
  ** name string
- ** projectColumnId string
- * @fields ProjectCard
+ * @fields Project
  */
 
 export const AddProjectColumn = (mutationFields: types.AddProjectColumnInput, card?: string) => `
- mutation AddProjectColumnInput {
-    addProjectColumn  (input:{name: "${mutationFields.name}" ${mutationFields.projectId ? `, projectId: "${mutationFields.projectId}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-         ${card}
-     }
- }
+    mutation AddProjectColumnInput {
+        addProjectColumn  (input:{name: "${mutationFields.name}" ${mutationFields.projectId ? `, projectId: "${mutationFields.projectId}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+            ${card}
+        }
+    }
 `
 
 /**
- * @description Github Graphql Mutation for AddPullRequestReviewCommentInput
+ * @description Github Graphql Mutation for AddPullRequestReviewComment
  * @mutationFields
  ** body string
  ** clientMutationId string
@@ -150,39 +149,39 @@ export const AddProjectColumn = (mutationFields: types.AddProjectColumnInput, ca
  ** position number
  ** pullRequestId string
  ** pullRequestReviewId string
- * @fields PullRequestReviewComment
+ * @fields Comment
  */
 
-export const AddPullRequestReviewComment = (mutationFields: types.AddPullRequestReviewCommentInput, review?: string) => `
+export const AddPullRequestReviewComment = (mutationFields: types.AddPullRequestReviewCommentInput, pullRequest?: string) => `
     mutation AddPullRequestReviewCommentInput {
-        addPullRequestReviewComment  (input:{body: "${mutationFields.body}", pullRequestId:${mutationFields.pullRequestId}, pullRequestReviewId:"${mutationFields.pullRequestReviewId}" 
-            ${mutationFields.inReplyTo ? `, inReplyTo: "${mutationFields.inReplyTo}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
-            ${mutationFields.path ? `, path: "${mutationFields.path}"` : ''}}){
-            ${review}
+        addPullRequestReviewComment  (input:{body: "${mutationFields.body}", pullRequestId: "${mutationFields.pullRequestId}", ${mutationFields.pullRequestReviewId ? `pullRequestReviewId:"${mutationFields.pullRequestReviewId}"` : ''} 
+        ${mutationFields.commitOID ? `, commitOID: "${mutationFields.commitOID}"` : ''} ${mutationFields.inReplyTo ? `, inReplyTo: "${mutationFields.inReplyTo}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
+        ${mutationFields.position ? `, position: ${mutationFields.position}` : ''} ${mutationFields.path ? `, path: "${mutationFields.path}"` : ''} ${mutationFields.pullRequestReviewId ? `, pullRequestReviewId: "${mutationFields.pullRequestReviewId}"` : ''}}){
+            ${pullRequest}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for AddPullRequestReviewInput
+ * @description Github Graphql Mutation for AddPullRequestReview
  * @mutationFields
  ** body string
  ** clientMutationId string
  ** comments DraftPullRequestReviewComment[]
- ** commitOID ( GitObjectID )
- ** event ( PullRequestReviewEvent )
+ ** commitOID GitObjectID
+ ** event "APPROVE" | "COMMENT" | "DISMISS" | "REQUEST_CHANGES"
  ** path string
  ** pullRequestId string
  ** threads DraftPullRequestReviewThread[]
  * @fields PullRequestReview
  */
 
-export const AddPullRequestReview = (mutationFields: types.AddPullRequestReviewInput, review?: string) => `
+export const AddPullRequestReview = (mutationFields: types.AddPullRequestReviewInput, pullRequestReview?: string) => `
     mutation AddPullRequestReviewInput {
-        addPullRequestReview  (input:{body: "${mutationFields.body}", pullRequestId:${mutationFields.pullRequestId}, comments:"${mutationFields.comments}" 
+        addPullRequestReview  (input:{body: "${mutationFields.body}", pullRequestId: "${mutationFields.pullRequestId}" ${mutationFields.comments ? `, comments: "${mutationFields.comments}"` : ''} 
             ${mutationFields.commitOID ? `, commitOID: "${mutationFields.commitOID}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
-            ${mutationFields.event ? `, event: "${mutationFields.event}"` : ''}}){
-            ${review}
+            ${mutationFields.event ? `, event: ${mutationFields.event}` : ''} ${mutationFields.position ? `, position: ${mutationFields.position}` : ''} ${mutationFields.path ? `, path: "${mutationFields.path}"` : ''}}){
+            ${pullRequestReview}
         }
     }
 `
@@ -200,22 +199,22 @@ export const AddPullRequestReview = (mutationFields: types.AddPullRequestReviewI
  ** startLine number
  ** pullRequestId string
  ** startSide "LEFT" | "RIGHT"
- * @fields PullRequestReviewThread
+ * @fields Thread
  */
 
-export const AddPullRequestReviewThread = (mutationFields: types.AddPullRequestReviewThreadInput, review?: string) => `
+export const AddPullRequestReviewThread = (mutationFields: types.AddPullRequestReviewThreadInput, thread?: string) => `
     mutation AddPullRequestReviewThreadInput {
-        addPullRequestReviewThread  (input:{body: "${mutationFields.body}", path:"${mutationFields.path}", position:${mutationFields.position} line:${mutationFields.line} side:${mutationFields.side} startLine:${mutationFields.startLine} 
-        ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} ${mutationFields.pullRequestId ? `, pullRequestId: "${mutationFields.pullRequestId}"` : ''} ${mutationFields.pullRequestReviewId ? `, pullRequestReviewId: "${mutationFields.pullRequestReviewId}"` : ''}
-        ${mutationFields.startSide ? `, startSide: "${mutationFields.startSide}"` : ''}
+        addPullRequestReviewThread (input:{body: "${mutationFields.body}", pullRequestId: "${mutationFields.pullRequestId}" ${mutationFields.path ? `, path: "${mutationFields.path}"` : ''} ${mutationFields.position ? `, position: ${mutationFields.position}` : ''} 
+        ${mutationFields.line ? `, line: ${mutationFields.line}` : ''} ${mutationFields.side ? `, side: ${mutationFields.side}` : ''} ${mutationFields.startLine ? `, startLine: ${mutationFields.startLine}` : ''} ${mutationFields.pullRequestReviewId ? `, pullRequestReviewId: ${mutationFields.pullRequestReviewId}` : ''} 
+        ${mutationFields.startSide ? `, startSide: "${mutationFields.startSide}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
         }){
-            ${review}
+            ${thread}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for AddReactionInput
+ * @description Github Graphql Mutation for AddReaction
  * @mutationFields
  ** content "CONFUSED" | "EYES" | "HEART" | "HOORAY" | "LAUGH" | "ROCKET" | "THUMBS_DOWN" | "THUMBS_UP"
  ** subjectId string
@@ -231,7 +230,7 @@ export const AddReaction = (mutationFields: types.AddReactionInput, reaction?: s
 `
 
 /**
- * @description Github Graphql Mutation for AddStarInput
+ * @description Github Graphql Mutation for AddStar
  * @mutationFields
  ** clientMutationId string
  ** starrableId string
@@ -240,7 +239,7 @@ export const AddReaction = (mutationFields: types.AddReactionInput, reaction?: s
 
 export const AddStar = (mutationFields: types.AddStarInput, star?: string) => `
     mutation AddStarInput {
-        addStar  (input:{starrableId: "${mutationFields.starrableId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+        addStar (input:{starrableId: "${mutationFields.starrableId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${star}
         }
     }
@@ -268,13 +267,14 @@ export const AddVerifiableDomain = (mutationFields: types.AddVerifiableDomainInp
  * @mutationFields
  ** clientMutationId string
  ** id string
+ ** domain string
  * @fields Domain
  */
 
-export const ApproveVerifiableDomain = (mutationFields: types.ApproveVerifiableDomainInput, star?: string) => `
+export const ApproveVerifiableDomain = (mutationFields: types.ApproveVerifiableDomainInput, domain?: string) => `
     mutation ApproveVerifiableDomainInput {
-        approveVerifiableDomain  (input:{id: "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${star}
+        approveVerifiableDomain  (input:{id: "${mutationFields.id}", domain: "${mutationFields.domain}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+            ${domain}
         }
     }
 `
@@ -304,15 +304,15 @@ export const ArchiveRepository = (mutationFields: types.ArchiveRepositoryInput, 
  */
 
 export const AuditLogOrder = (mutationFields: types.AuditLogOrder, auditLog?: string) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
 `
 
 /**
- * @description Github Graphql Mutation for CancelEnterpriseAdminInvitationInput
+ * @description Github Graphql Mutation for CancelEnterpriseAdminInvitation
  * @mutationFields
  ** clientMutationId string
  ** invitationId string
- * @fields AuditLog
+ * @fields Invitation
  */
 
 export const CancelEnterpriseAdminInvitation = (mutationFields: types.CancelEnterpriseAdminInvitationInput, invitation?: string) => `
@@ -324,7 +324,7 @@ export const CancelEnterpriseAdminInvitation = (mutationFields: types.CancelEnte
 `
 
 /**
- * @description Github Graphql Mutation for ChangeUserStatusInput
+ * @description Github Graphql Mutation for ChangeUserStatus
  * @mutationFields
  ** clientMutationId string
  ** emoji string
@@ -335,11 +335,11 @@ export const CancelEnterpriseAdminInvitation = (mutationFields: types.CancelEnte
  * @fields Status
  */
 
-export const ChangeUserStatus = (mutationFields: types.ChangeUserStatusInput, issue?: string) => `
+export const ChangeUserStatus = (mutationFields: types.ChangeUserStatusInput, status?: string) => `
     mutation ChangeUserStatusInput {
-        changeUserStatus  (input:{message:${mutationFields.message} ${mutationFields.emoji ? `, emoji: "${mutationFields.emoji}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}
-            ${mutationFields.expiresAt ? `, expiresAt: ${mutationFields.expiresAt}` : ''} ${mutationFields.limitedAvailability ? `, limitedAvailability: ${mutationFields.limitedAvailability}` : ''} ${mutationFields.organizationId ? `, milestoneId: ${mutationFields.organizationId}"` : ''}}){
-            ${issue}
+        changeUserStatus  (input:{message: "${mutationFields.message}" ${mutationFields.emoji ? `, emoji: "${mutationFields.emoji}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}
+            ${mutationFields.expiresAt ? `, expiresAt: "${mutationFields.expiresAt}"` : ''} ${mutationFields.limitedAvailability ? `, limitedAvailability: ${mutationFields.limitedAvailability}` : ''} ${mutationFields.organizationId ? `, organizationId: ${mutationFields.organizationId}"` : ''}}){
+            ${status}
         }
     }
 `
@@ -353,16 +353,11 @@ export const ChangeUserStatus = (mutationFields: types.ChangeUserStatusInput, is
  ** path string
  ** rawDetails string
  ** title string
- * @fields CheckAnnotation
  */
 
-export const CheckAnnotationData = (mutationFields: types.CheckAnnotationData, issue?: string) => `
-    mutation CheckAnnotationData {
-        checkAnnotationData (input:{annotationLevel:${mutationFields.annotationLevel} ${mutationFields.location ? `, location: "${mutationFields.location}"` : ''} ${mutationFields.message ? `, message: ${mutationFields.message}` : ''}
-            ${mutationFields.path ? `, path: ${mutationFields.path}` : ''} ${mutationFields.rawDetails ? `, rawDetails: ${mutationFields.rawDetails}` : ''} ${mutationFields.title ? `, title: ${mutationFields.title}"` : ''}}){
-            ${issue}
-        }
-    }
+export const CheckAnnotationData = (mutationFields: types.CheckAnnotationData) => `
+    { annotationLevel:${mutationFields.annotationLevel} ${mutationFields.location ? `, location: ${mutationFields.location}` : ''} ${mutationFields.message ? `, message: "${mutationFields.message}"` : ''}
+        ${mutationFields.path ? `, path: "${mutationFields.path}"` : ''} ${mutationFields.rawDetails ? `, rawDetails: "${mutationFields.rawDetails}"` : ''} ${mutationFields.title ? `, title: "${mutationFields.title}"` : ''} }
 `
 
 /**
@@ -372,16 +367,11 @@ export const CheckAnnotationData = (mutationFields: types.CheckAnnotationData, i
  ** endLine number
  ** startColumn number
  ** startLine number
- * @fields CheckAnnotation
  */
 
-export const CheckAnnotationRange = (mutationFields: types.CheckAnnotationRange, review?: string) => `
-    mutation CheckAnnotationRange {
-        checkAnnotationRange  (input:{${mutationFields.startColumn ? `startColumn: ${mutationFields.startColumn}` : ''} ${mutationFields.endColumn ? `, endColumn: ${mutationFields.endColumn}` : ''} ${mutationFields.startLine ? `startLine: ${mutationFields.startLine}` : ''}
-        ${mutationFields.endLine ? `, endLine: ${mutationFields.endLine}` : ''}}){
-            ${review}
-        }
-    }
+export const CheckAnnotationRange = (mutationFields: types.CheckAnnotationRange) => `
+    { ${mutationFields.startColumn ? `startColumn: ${mutationFields.startColumn}` : ''} ${mutationFields.endColumn ? `, endColumn: ${mutationFields.endColumn}` : ''} ${mutationFields.startLine ? `startLine: ${mutationFields.startLine}` : ''}
+        ${mutationFields.endLine ? `, endLine: ${mutationFields.endLine}` : ''} }
 `
 
 /**
@@ -390,15 +380,10 @@ export const CheckAnnotationRange = (mutationFields: types.CheckAnnotationRange,
  ** description string
  ** identifier string
  ** label string
- * @fields CheckRun
  */
 
-export const CheckRunAction = (mutationFields: types.CheckRunAction, checkrun?: string) => `
- mutation CheckRunAction {
-    checkRunAction  (input:{${mutationFields.description ? `description: "${mutationFields.description}"` : ''} ${mutationFields.identifier ? `, identifier: "${mutationFields.identifier}"` : ''} ${mutationFields.label ? `label: "${mutationFields.label}"` : ''} }){
-         ${checkrun}
-     }
- }
+export const CheckRunAction = (mutationFields: types.CheckRunAction) => `
+    {${mutationFields.description ? `description: "${mutationFields.description}"` : ''} identifier: "${mutationFields.identifier}" label: "${mutationFields.label}" }
 `
 
 /**
@@ -408,16 +393,11 @@ export const CheckRunAction = (mutationFields: types.CheckRunAction, checkrun?: 
  ** checkName string
  ** checkType "ALL" | "LATEST"
  ** status "COMPLETED" | "IN_PROGRESS" | "QUEUED" | "REQUESTED" | "WAITING"
- * @fields CheckRun
  */
 
 export const CheckRunFilter = (mutationFields: types.CheckRunFilter, checkrun?: string) => `
- mutation CheckRunAction {
-    checkRunAction  (input:{${mutationFields.appId ? `appId: ${mutationFields.appId}` : ''} ${mutationFields.checkName ? `, checkName: "${mutationFields.checkName}"` : ''} ${mutationFields.checkType ? `, checkType: "${mutationFields.checkType}"` : ''}
-    ${mutationFields.status ? `, status: "${mutationFields.status}"` : ''} }){
-         ${checkrun}
-     }
- }
+ { ${mutationFields.appId ? `appId: ${mutationFields.appId}` : ''} ${mutationFields.checkName ? `, checkName: "${mutationFields.checkName}"` : ''} ${mutationFields.checkType ? `, checkType: "${mutationFields.checkType}"` : ''}
+    ${mutationFields.status ? `, status: "${mutationFields.status}"` : ''} }
 `
 
 /**
@@ -428,16 +408,11 @@ export const CheckRunFilter = (mutationFields: types.CheckRunFilter, checkrun?: 
  ** summary string
  ** text string
  ** title string
- * @fields CheckRun
  */
 
-export const CheckRunOutput = (mutationFields: types.CheckRunOutput, checkrun?: string) => `
- mutation CheckRunOutput {
-    checkRunOutput  (input:{ annotations: ${mutationFields.annotations}, images: ${mutationFields.images} summary: "${mutationFields.summary}",
-    text: "${mutationFields.text}" title: "${mutationFields.title}"}){
-         ${checkrun}
-     }
- }
+export const CheckRunOutput = (mutationFields: types.CheckRunOutput) => `
+    { annotations: ${mutationFields.annotations}, images: ${mutationFields.images} summary: "${mutationFields.summary}",
+        text: "${mutationFields.text}" title: "${mutationFields.title}" }
 `
 
 /**
@@ -446,15 +421,10 @@ export const CheckRunOutput = (mutationFields: types.CheckRunOutput, checkrun?: 
  ** alt string
  ** caption string
  ** imageUrl string
- * @fields CheckRun
  */
 
-export const CheckRunOutputImage = (mutationFields: types.CheckRunOutputImage, checkrun?: string) => `
- mutation CheckRunOutputImage {
-    checkRunOutputImage  (input:{ alt: "${mutationFields.alt}", imageUrl: "${mutationFields.imageUrl}", caption: "${mutationFields.caption}"}){
-         ${checkrun}
-     }
- }
+export const CheckRunOutputImage = (mutationFields: types.CheckRunOutputImage) => `
+    { alt: "${mutationFields.alt}", imageUrl: "${mutationFields.imageUrl}", caption: "${mutationFields.caption}" }
 `
 
 /**
@@ -466,11 +436,7 @@ export const CheckRunOutputImage = (mutationFields: types.CheckRunOutputImage, c
  */
 
 export const CheckSuiteAutoTriggerPreference = (mutationFields: types.CheckSuiteAutoTriggerPreference, checkrun?: string) => `
- mutation CheckSuiteAutoTriggerPreference {
-    checkSuiteAutoTriggerPreference  (input:{ appId: "${mutationFields.appId}", setting: ${mutationFields.setting}}){
-         ${checkrun}
-     }
- }
+    { appId: "${mutationFields.appId}", setting: ${mutationFields.setting} }
 `
 
 /**
@@ -478,19 +444,14 @@ export const CheckSuiteAutoTriggerPreference = (mutationFields: types.CheckSuite
  * @mutationFields
  ** appId number
  ** checkName boolean
- * @fields CheckRun
  */
 
 export const CheckSuiteFilter = (mutationFields: types.CheckSuiteFilter, checkrun?: string) => `
- mutation CheckSuiteFilter {
-    checkSuiteFilter  (input:{ appId: "${mutationFields.appId}", setting: "${mutationFields.checkName}"}){
-         ${checkrun}
-     }
- }
+    { appId: "${mutationFields.appId}", setting: "${mutationFields.checkName}" }
 `
 
 /**
- * @description Github Graphql Mutation for ClearLabelsFromLabelableInput
+ * @description Github Graphql Mutation for ClearLabelsFromLabelable
  * @mutationFields
  ** clientMutationId string
  ** labelableId string
@@ -498,11 +459,11 @@ export const CheckSuiteFilter = (mutationFields: types.CheckSuiteFilter, checkru
  */
 
 export const ClearLabelsFromLabelable = (mutationFields: types.ClearLabelsFromLabelableInput, labelable?: string) => `
- mutation ClearLabelsFromLabelableInput {
-    clearLabelsFromLabelable  (input:{ appId: "${mutationFields.labelableId}", ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}}){
-         ${labelable}
-     }
- }
+    mutation ClearLabelsFromLabelableInput {
+        clearLabelsFromLabelable  (input:{ labelableId: "${mutationFields.labelableId}", ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}}){
+            ${labelable}
+        }
+    }
 `
 
 /**
@@ -519,13 +480,13 @@ export const ClearLabelsFromLabelable = (mutationFields: types.ClearLabelsFromLa
  */
 
 export const CloneProject = (mutationFields: types.CloneProjectInput, project?: string) => `
- mutation CloneProjectInput {
-    cloneProject  (input:{body:"${mutationFields.body}", includeWorkflows: ${mutationFields.includeWorkflows} 
-         ${mutationFields.name ? `, name: "${mutationFields.name}"` : ''} ${mutationFields.public ? `, public: ${mutationFields.public}` : ''}
-         ${mutationFields.targetOwnerId ? `, targetOwnerId: ${mutationFields.targetOwnerId}` : ''} ${mutationFields.sourceId ? `, sourceId: ${mutationFields.sourceId}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-         ${project}
-     }
- }
+    mutation CloneProjectInput {
+        cloneProject  (input:{body:"${mutationFields.body}", includeWorkflows: ${mutationFields.includeWorkflows} 
+            ${mutationFields.name ? `, name: "${mutationFields.name}"` : ''} ${mutationFields.public ? `, public: ${mutationFields.public}` : ''}
+            ${mutationFields.targetOwnerId ? `, targetOwnerId: "${mutationFields.targetOwnerId}"` : ''} ${mutationFields.sourceId ? `, sourceId: "${mutationFields.sourceId}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
+            ${project}
+        }
+    }
 `
 
 /**
@@ -543,32 +504,32 @@ export const CloneProject = (mutationFields: types.CloneProjectInput, project?: 
 
 export const CloneTemplateRepository = (mutationFields: types.CloneTemplateRepositoryInput, repository?: string) => `
  mutation CloneTemplateRepositoryInput {
-    cloneTemplateRepository  (input:{description:"${mutationFields.description}", includeAllBranches: ${mutationFields.includeAllBranches} 
-         ${mutationFields.name ? `, name: "${mutationFields.name}"` : ''} ${mutationFields.ownerId ? `, ownerId: ${mutationFields.ownerId}` : ''} ${mutationFields.repositoryId ? `, repositoryId: ${mutationFields.repositoryId}` : ''} 
-         ${mutationFields.visibility ? `, visibility: "${mutationFields.visibility}"` : ''} }){
+    cloneTemplateRepository  (input:{ name: "${mutationFields.name}", repositoryId: "${mutationFields.repositoryId}" ${mutationFields.description ? `, description:"${mutationFields.description}"` : ''}
+    ${mutationFields.includeAllBranches ? `, includeAllBranches: ${mutationFields.includeAllBranches}` : ''} ${mutationFields.ownerId ? `, ownerId: "${mutationFields.ownerId}"` : ''} 
+    ${mutationFields.visibility ? `, visibility: ${mutationFields.visibility}` : ''} }){
          ${repository}
      }
  }
 `
 
 /**
- * @description Github Graphql Mutation for CloseIssueInput
+ * @description Github Graphql Mutation for CloseIssue
  * @mutationFields
  ** clientMutationId string
  ** issueId string
  * @fields Issue
  */
 
-export const CloseIssue = (mutationFields: types.CloseIssueInput, checkrun?: string) => `
- mutation CloseIssueInput {
-    closeIssue (input:{ issueId: "${mutationFields.issueId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${checkrun}
-     }
- }
+export const CloseIssue = (mutationFields: types.CloseIssueInput, issue?: string) => `
+    mutation CloseIssueInput {
+        closeIssue (input:{ issueId: "${mutationFields.issueId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${issue}
+        }
+    }
 `
 
 /**
- * @description Github Graphql Mutation for ClosePullRequestInput
+ * @description Github Graphql Mutation for ClosePullRequest
  * @mutationFields
  ** clientMutationId string
  ** pullRequestId string
@@ -588,15 +549,10 @@ export const ClosePullRequest = (mutationFields: types.ClosePullRequestInput, pu
  * @mutationFields
  ** emails string[]
  ** id string
- * @fields Issue
  */
 
-export const CommitAuthor = (mutationFields: types.CommitAuthor, checkrun?: string) => `
- mutation CommitAuthor {
-    commitAuthor (input:{ emails: ${mutationFields.emails} id: ${mutationFields.id}}){
-         ${checkrun}
-     }
- }
+export const CommitAuthor = (mutationFields: types.CommitAuthor) => `
+    { emails: ${mutationFields.emails} id: "${mutationFields.id}" }
 `
 
 /**
@@ -615,7 +571,6 @@ export const CommitContributionOrder = (mutationFields: types.CommitContribution
  * @description Github Graphql Mutation for ContributionOrder
  * @mutationFields
  ** direction "ASC" | "DESC"
- * @fields Issue
  */
 
 export const ContributionOrder = (mutationFields: types.Direction) => `
@@ -623,7 +578,7 @@ export const ContributionOrder = (mutationFields: types.Direction) => `
 `
 
 /**
- * @description Github Graphql Mutation for ConvertProjectCardNoteToIssueInput
+ * @description Github Graphql Mutation for ConvertProjectCardNoteToIssue
  * @mutationFields
  ** body string
  ** clientMutationId string
@@ -634,17 +589,17 @@ export const ContributionOrder = (mutationFields: types.Direction) => `
  */
 
 export const ConvertProjectCardNoteToIssue = (mutationFields: types.ConvertProjectCardNoteToIssueInput, projectCard?: string) => `
- mutation ConvertProjectCardNoteToIssueInput {
-    convertProjectCardNoteToIssue (input:{body: "${mutationFields.body}", ${mutationFields.projectCardId ? `, projectCardId: "${mutationFields.projectCardId}"` : ''} 
-    ${mutationFields.repositoryId ? `, repositoryId: "${mutationFields.repositoryId}"` : ''} ${mutationFields.title ? `, title: "${mutationFields.title}"` : ''}
-    ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${projectCard}
-     }
- }
+    mutation ConvertProjectCardNoteToIssueInput {
+        convertProjectCardNoteToIssue (input:{body: "${mutationFields.body}", ${mutationFields.projectCardId ? `, projectCardId: "${mutationFields.projectCardId}"` : ''} 
+        ${mutationFields.repositoryId ? `, repositoryId: "${mutationFields.repositoryId}"` : ''} ${mutationFields.title ? `, title: "${mutationFields.title}"` : ''}
+        ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${projectCard}
+        }
+    }
 `
 
 /**
- * @description Github Graphql Mutation for ConvertPullRequestToDraftInput
+ * @description Github Graphql Mutation for ConvertPullRequestToDraft
  * @mutationFields
  ** clientMutationId string
  ** pullRequestId string
@@ -652,15 +607,15 @@ export const ConvertProjectCardNoteToIssue = (mutationFields: types.ConvertProje
  */
 
 export const ConvertPullRequestToDraft = (mutationFields: types.ConvertPullRequestToDraftInput, pullRequest?: string) => `
- mutation ConvertPullRequestToDraftInput {
-    convertPullRequestToDraft (input:{ pullRequestId : "${mutationFields.pullRequestId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${pullRequest}
-     }
- }
+    mutation ConvertPullRequestToDraftInput {
+        convertPullRequestToDraft (input:{ pullRequestId : "${mutationFields.pullRequestId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${pullRequest}
+        }
+    }
 `
 
 /**
- * @description Github Graphql Mutation for CreateBranchProtectionRuleInput
+ * @description Github Graphql Mutation for CreateBranchProtectionRule
  * @mutationFields
  ** allowsDeletions boolean
  ** allowsForcePushes boolean
@@ -686,14 +641,15 @@ export const ConvertPullRequestToDraft = (mutationFields: types.ConvertPullReque
 
 export const CreateBranchProtectionRule = (mutationFields: types.CreateBranchProtectionRuleInput, branchProtectionRule?: string) => `
     mutation CreateBranchProtectionRuleInput {
-        createBranchProtectionRule (input:{allowsDeletions: ${mutationFields.allowsDeletions}, allowsForcePushes: ${mutationFields.allowsForcePushes}, dismissesStaleReviews: ${mutationFields.dismissesStaleReviews} 
-                ${mutationFields.isAdminEnforced ? `, isAdminEnforced: ${mutationFields.isAdminEnforced}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
-                ${mutationFields.pattern ? `, pattern: "${mutationFields.pattern}"` : ''} ${mutationFields.pushActorIds ? `, pushActorIds: ${mutationFields.pushActorIds}` : ''} ${mutationFields.repositoryId ? `, repositoryId: "${mutationFields.repositoryId}"` : ''}
-                ${mutationFields.requiredApprovingReviewCount ? `, requiredApprovingReviewCount: ${mutationFields.requiredApprovingReviewCount}` : ''} ${mutationFields.requiredStatusCheckContexts ? `, requiredStatusCheckContexts: ${mutationFields.requiredStatusCheckContexts}` : ''}
-                ${mutationFields.requiresApprovingReviews ? `, requiresApprovingReviews: ${mutationFields.requiresApprovingReviews}` : ''} ${mutationFields.requiresCodeOwnerReviews ? `, requiresCodeOwnerReviews: ${mutationFields.requiresCodeOwnerReviews}` : ''} 
-                ${mutationFields.requiresCommitSignatures ? `, requiresCommitSignatures: ${mutationFields.requiresCommitSignatures}` : ''} ${mutationFields.requiresLinearHistory ? `, requiresLinearHistory : ${mutationFields.requiresLinearHistory}` : ''}
-                ${mutationFields.requiresStatusChecks ? `, requiresStatusChecks: ${mutationFields.requiresStatusChecks}` : ''} ${mutationFields.requiresStrictStatusChecks ? `, requiresStrictStatusChecks: ${mutationFields.requiresStrictStatusChecks}` : ''} 
-                ${mutationFields.restrictsPushes ? `, restrictsPushes: ${mutationFields.restrictsPushes}` : ''} ${mutationFields.restrictsReviewDismissals ? `, restrictsReviewDismissals: ${mutationFields.restrictsReviewDismissals}` : ''} 
+        createBranchProtectionRule (input:{repositoryId: "${mutationFields.repositoryId}", pattern: "${mutationFields.pattern}" ${mutationFields.allowsDeletions !== undefined ? `, allowsDeletions: ${mutationFields.allowsDeletions}` : ''}, 
+            ${mutationFields.allowsForcePushes !== undefined ? `, allowsForcePushes: ${mutationFields.allowsForcePushes}` : ''} ${mutationFields.dismissesStaleReviews !== undefined ? `, dismissesStaleReviews: ${mutationFields.dismissesStaleReviews}` : ''} 
+            ${mutationFields.isAdminEnforced !== undefined ? `, isAdminEnforced: ${mutationFields.isAdminEnforced}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
+                ${mutationFields.pushActorIds ? `, pushActorIds: ${mutationFields.pushActorIds}` : ''} 
+                ${mutationFields.requiredApprovingReviewCount !== undefined ? `, requiredApprovingReviewCount: ${mutationFields.requiredApprovingReviewCount}` : ''} ${mutationFields.requiredStatusCheckContexts ? `, requiredStatusCheckContexts: ${mutationFields.requiredStatusCheckContexts}` : ''}
+                ${mutationFields.requiresApprovingReviews !== undefined ? `, requiresApprovingReviews: ${mutationFields.requiresApprovingReviews}` : ''} ${mutationFields.requiresCodeOwnerReviews !== undefined ? `, requiresCodeOwnerReviews: ${mutationFields.requiresCodeOwnerReviews}` : ''} 
+                ${mutationFields.requiresCommitSignatures !== undefined ? `, requiresCommitSignatures: ${mutationFields.requiresCommitSignatures}` : ''} ${mutationFields.requiresLinearHistory !== undefined ? `, requiresLinearHistory : ${mutationFields.requiresLinearHistory}` : ''}
+                ${mutationFields.requiresStatusChecks !== undefined ? `, requiresStatusChecks: ${mutationFields.requiresStatusChecks}` : ''} ${mutationFields.requiresStrictStatusChecks !== undefined ? `, requiresStrictStatusChecks: ${mutationFields.requiresStrictStatusChecks}` : ''} 
+                ${mutationFields.restrictsPushes !== undefined ? `, restrictsPushes: ${mutationFields.restrictsPushes}` : ''} ${mutationFields.restrictsReviewDismissals ? `, restrictsReviewDismissals: ${mutationFields.restrictsReviewDismissals}` : ''} 
                 ${mutationFields.reviewDismissalActorIds ? `, reviewDismissalActorIds: ${mutationFields.reviewDismissalActorIds}` : ''}}){
             ${branchProtectionRule}
         }
@@ -701,106 +657,109 @@ export const CreateBranchProtectionRule = (mutationFields: types.CreateBranchPro
 `
 
 /**
- * @description Github Graphql Mutation for CreateCheckRunInput
+ * @description Github Graphql Mutation for CreateCheckRun
  * @mutationFields
  ** actions CheckRunAction[]
  ** clientMutationId string
- ** completedAt Date
- ** conclusion CheckConclusionState
+ ** completedAt DateTime
+ ** conclusion 'ACTION_REQUIRED' | 'CANCELLED' | 'FAILURE' | 'NEUTRAL' | 'SKIPPED' | 'STALE' | 'STARTUP_FAILURE' | 'SUCCESS' | 'TIMED_OUT'
  ** detailsUrl string
  ** externalId string
  ** headSha GitObjectID
  ** name string
  ** output CheckRunOutput
  ** repositoryId string
- ** startedAt Date
- ** status RequestableCheckStatusState
+ ** startedAt DateTime
+ ** status 'COMPLETED' | 'IN_PROGRESS' | 'QUEUED' | 'WAITING'
  * @fields CheckRun
  */
 
 export const CreateCheckRun = (mutationFields: types.CreateCheckRunInput, checkRun?: string) => `
- mutation CreateCheckRunInput {
-    createCheckRun (input:{actions: ${mutationFields.actions}, completedAt: "${mutationFields.completedAt}", conclusion: ${mutationFields.conclusion} 
-             ${mutationFields.detailsUrl ? `, detailsUrl : "${mutationFields.detailsUrl}"` : ''} ${mutationFields.externalId ? `, externalId: "${mutationFields.externalId}"` : ''}
-             ${mutationFields.headSha ? `, headSha: "${mutationFields.headSha}"` : ''} ${mutationFields.name ? `, name: "${mutationFields.name}"` : ''} ${mutationFields.output ? `, output: ${mutationFields.output}` : ''}
-             ${mutationFields.repositoryId ? `, repositoryId: "${mutationFields.repositoryId}"` : ''} ${mutationFields.startedAt ? `, startedAt: "${mutationFields.startedAt}"` : ''}
-             ${mutationFields.status ? `, status: ${mutationFields.status}` : ''} }){
-         ${checkRun}
-     }
- }
+    mutation CreateCheckRunInput {
+        createCheckRun (input:{actions: [${mutationFields.actions}],  conclusion: ${mutationFields.conclusion} ${mutationFields.completedAt ? `, completedAt: "${mutationFields.completedAt}"` : ''} 
+                ${mutationFields.detailsUrl ? `, detailsUrl : "${mutationFields.detailsUrl}"` : ''} ${mutationFields.externalId ? `, externalId: "${mutationFields.externalId}"` : ''}
+                ${mutationFields.headSha ? `, headSha: "${mutationFields.headSha}"` : ''} ${mutationFields.name ? `, name: "${mutationFields.name}"` : ''} ${mutationFields.output ? `, output: ${mutationFields.output}` : ''}
+                ${mutationFields.repositoryId ? `, repositoryId: "${mutationFields.repositoryId}"` : ''} ${mutationFields.startedAt ? `, startedAt: "${mutationFields.startedAt}"` : ''}
+                ${mutationFields.status ? `, status: ${mutationFields.status}` : ''} }){
+            ${checkRun}
+        }
+    }
 `
 
 /**
- * @description Github Graphql Mutation for CreateCheckSuiteInput
+ * @description Github Graphql Mutation for CreateCheckSuite
  * @mutationFields
  ** clientMutationId string
  ** headSha string
  ** repositoryId string
- * @fields PullRequest
+ * @fields CheckSuite
  */
 
-export const CreateCheckSuite = (mutationFields: types.CreateCheckSuiteInput, repository?: string) => `
- mutation CreateCheckSuiteInput {
-    createCheckSuite (input:{ headSha : ${mutationFields.headSha}, repositoryId: "${mutationFields.repositoryId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${repository}
+export const CreateCheckSuite = (mutationFields: types.CreateCheckSuiteInput, checkSuite?: string) => `
+    mutation CreateCheckSuiteInput {
+        createCheckSuite (input:{ headSha : "${mutationFields.headSha}", repositoryId: "${mutationFields.repositoryId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${checkSuite}
+        }
     }
- }
 `
 
 /**
- * @description Github Graphql Mutation for CreateContentAttachmentInput
+ * @description Github Graphql Mutation for CreateContentAttachment
  * @mutationFields
  ** body string
  ** clientMutationId string
  ** contentReferenceId string
  ** title string
- * @fields PullRequest
+ * @fields ContentAttachment
  */
 
-export const CreateContentAttachment = (mutationFields: types.CreateContentAttachmentInput, repository?: string) => `
- mutation CreateContentAttachmentInput {
-    createContentAttachment (input:{ body: "${mutationFields.body}", contentReferenceId: "${mutationFields.contentReferenceId}", title: "${mutationFields.title}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${repository}
+export const CreateContentAttachment = (mutationFields: types.CreateContentAttachmentInput, contentAttachment?: string) => `
+    mutation CreateContentAttachmentInput {
+        createContentAttachment (input:{ body: "${mutationFields.body}", contentReferenceId: "${mutationFields.contentReferenceId}", title: "${mutationFields.title}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${contentAttachment}
+        }
     }
- }
 `
 
 /**
- * @description Github Graphql Mutation for CreateEnterpriseOrganizationInput
+ * @description Github Graphql Mutation for CreateEnterpriseOrganization
  * @mutationFields
- ** body string
+ ** adminLogins string
  ** clientMutationId string
- ** contentReferenceId string
- ** title string
+ ** billingEmail string
+ ** enterpriseId string
+ ** login string
+ ** profileName string
  * @fields Organization
  */
 
 export const CreateEnterpriseOrganization = (mutationFields: types.CreateEnterpriseOrganizationInput, repository?: string) => `
- mutation CreateEnterpriseOrganizationInput {
-    createEnterpriseOrganization (input:{ adminLogins: ${mutationFields.adminLogins}, billingEmail: "${mutationFields.billingEmail}", enterpriseId: "${mutationFields.enterpriseId}" 
-    login: "${mutationFields.login}" profileName: "${mutationFields.profileName}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${repository}
+    mutation CreateEnterpriseOrganizationInput {
+        createEnterpriseOrganization (input:{ login: "${mutationFields.login}", enterpriseId: "${mutationFields.enterpriseId}", adminLogins: [${mutationFields.adminLogins}], 
+        billingEmail: "${mutationFields.billingEmail}", profileName: "${mutationFields.profileName}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${repository}
+        }
     }
- }
 `
 
 /**
- * @description Github Graphql Mutation for CreateIpAllowListEntryInput
+ * @description Github Graphql Mutation for CreateIpAllowListEntry
  * @mutationFields
- ** body string
+ ** allowListValue string (An IP address or range of addresses in CIDR notation)
  ** clientMutationId string
- ** contentReferenceId string
- ** title string
+ ** isActive boolean
+ ** name string
+ ** ownerId string
  * @fields IpAllowList
  */
 
 export const CreateIpAllowListEntry = (mutationFields: types.CreateIpAllowListEntryInput, ipAllowList?: string) => `
- mutation CreateIpAllowListEntryInput {
-    createIpAllowListEntry (input:{ allowListValue: ${mutationFields.allowListValue}, isActive: ${mutationFields.isActive}, name: "${mutationFields.name}" 
-    ownerId: "${mutationFields.ownerId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${ipAllowList}
+    mutation CreateIpAllowListEntryInput {
+        createIpAllowListEntry (input:{ allowListValue: "${mutationFields.allowListValue}", isActive: ${mutationFields.isActive}, name: "${mutationFields.name}",
+            ownerId: "${mutationFields.ownerId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${ipAllowList}
+        }
     }
- }
 `
 
 /**
@@ -830,27 +789,28 @@ export const CreateIssue = (mutationFields: types.IssueMutation, issue?: string)
 `
 
 /**
- * @description Github Graphql Mutation for CreateProjectInput
+ * @description Github Graphql Mutation for CreateProject
  * @mutationFields
  ** body string
  ** clientMutationId string
  ** name string
- ** public boolean
- ** state "CLOSED" | "OPEN"
+ ** ownerId string
+ ** repositoryIds string[]
+ ** template "AUTOMATED_KANBAN_V2" | "AUTOMATED_REVIEWS_KANBAN" | "BASIC_KANBAN" | "BUG_TRIAGE"
  * @fields Project
  */
 
-export const CreateProjectInput = (mutationFields: types.CreateProjectInput, project?: string) => `
+export const CreateProject = (mutationFields: types.CreateProjectInput, project?: string) => `
     mutation CreateProjectInput {
-        createProject (input:{ body: ${mutationFields.body}, name: "${mutationFields.name}" ${mutationFields.public ? `, public: ${mutationFields.public}` : ''} 
-        ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+        createProject (input:{ body: "${mutationFields.body}", name: "${mutationFields.name}" ${mutationFields.ownerId ? `, ownerId: "${mutationFields.ownerId}"` : ''} ${mutationFields.repositoryIds ? `, repositoryIds: ${mutationFields.repositoryIds}` : ''}
+        ${mutationFields.template ? `, template: ${mutationFields.template}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${project}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for CreatePullRequestInput
+ * @description Github Graphql Mutation for CreatePullRequest
  * @mutationFields
  ** baseRefName string
  ** body string
@@ -863,18 +823,18 @@ export const CreateProjectInput = (mutationFields: types.CreateProjectInput, pro
  * @fields PullRequest
  */
 
-export const CreatePullRequestInput = (mutationFields: types.CreatePullRequestInput, pullRequest?: string) => `
+export const CreatePullRequest = (mutationFields: types.CreatePullRequestInput, pullRequest?: string) => `
  mutation CreatePullRequestInput {
-    createPullRequest (input:{ body: ${mutationFields.body}, baseRefName: ${mutationFields.baseRefName}, draft: ${mutationFields.draft} 
-        headRefName: "${mutationFields.headRefName}", maintainerCanModify: ${mutationFields.maintainerCanModify} 
-        repositoryId: "${mutationFields.repositoryId}", title: "${mutationFields.title}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+    createPullRequest (input:{ baseRefName: "${mutationFields.baseRefName}", headRefName: "${mutationFields.headRefName}", repositoryId: "${mutationFields.repositoryId}", title: "${mutationFields.title}",
+        ${mutationFields.draft ? `, draft: ${mutationFields.draft}` : ''} ${mutationFields.maintainerCanModify ? `, maintainerCanModify: ${mutationFields.maintainerCanModify}` : ''} 
+        ${mutationFields.body ? `, body: "${mutationFields.body}"` : ''}  ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
          ${pullRequest}
     }
  }
 `
 
 /**
- * @description Github Graphql Mutation for CreateRefInput
+ * @description Github Graphql Mutation for CreateRef
  * @mutationFields
  ** clientMutationId string
  ** name string
@@ -883,17 +843,17 @@ export const CreatePullRequestInput = (mutationFields: types.CreatePullRequestIn
  * @fields PullRequest
  */
 
-export const CreateRefInput = (mutationFields: types.CreateRefInput, project?: string) => `
- mutation CreateRefInput {
-    createRef (input:{ name: "${mutationFields.name}",  repositoryId: "${mutationFields.repositoryId}", oid: "${mutationFields.oid}", 
-    ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${project}
+export const CreateRef = (mutationFields: types.CreateRefInput, project?: string) => `
+    mutation CreateRefInput {
+        createRef (input:{ name: "${mutationFields.name}",  repositoryId: "${mutationFields.repositoryId}" ${mutationFields.oid ? `, oid: "${mutationFields.oid}"` : ''} 
+        ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${project}
+        }
     }
- }
 `
 
 /**
- * @description Github Graphql Mutation for CreateRepositoryInput
+ * @description Github Graphql Mutation for CreateRepository
  * @mutationFields
  ** clientMutationId string
  ** description string
@@ -904,40 +864,40 @@ export const CreateRefInput = (mutationFields: types.CreateRefInput, project?: s
  ** teamId string
  ** template boolean
  ** visibility "INTERNAL" | "PRIVATE" | "PUBLIC"
- * @fields Issue
+ * @fields Repository
  */
 
-export const CreateRepositoryInput = (mutationFields: types.CreateRepositoryInput, issue?: string) => `
+export const CreateRepository = (mutationFields: types.CreateRepositoryInput, repository?: string) => `
  mutation CreateRepositoryInput {
-    createRepository (input:{description:"${mutationFields.description}", name:"${mutationFields.name}", hasIssuesEnabled: ${mutationFields.hasIssuesEnabled}, 
-         assigneeIds: ${mutationFields.hasWikiEnabled} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
+    createRepository (input:{description:"${mutationFields.description}", name:"${mutationFields.name}" ${mutationFields.hasIssuesEnabled ? `, hasIssuesEnabled: ${mutationFields.hasIssuesEnabled}` : ''} 
+        ${mutationFields.hasWikiEnabled ? `, hasWikiEnabled: ${mutationFields.hasWikiEnabled}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
          ${mutationFields.homepageUrl ? `, homepageUrl: "${mutationFields.homepageUrl}"` : ''} ${mutationFields.ownerId ? `, ownerId: "${mutationFields.ownerId}"` : ''}
           ${mutationFields.teamId ? `, teamId: "${mutationFields.teamId}"` : ''} ${mutationFields.template ? `, template: ${mutationFields.template}` : ''} ${mutationFields.visibility ? `, visibility: ${mutationFields.visibility}` : ''} }){
-         ${issue}
+         ${repository}
      }
  }
 `
 
 /**
- * @description Github Graphql Mutation for CreateTeamDiscussionCommentInput
+ * @description Github Graphql Mutation for CreateTeamDiscussionComment
  * @mutationFields
  ** body string
  ** clientMutationId string
  ** discussionId string
- * @fields PullRequest
+ * @fields TeamDiscussionComment
  */
 
-export const CreateTeamDiscussionCommentInput = (mutationFields: types.CreateTeamDiscussionCommentInput, project?: string) => `
+export const CreateTeamDiscussionComment = (mutationFields: types.CreateTeamDiscussionCommentInput, teamDiscussion?: string) => `
  mutation CreateTeamDiscussionCommentInput {
     createTeamDiscussionComment (input:{ body: "${mutationFields.body}",  discussionId: "${mutationFields.discussionId}" 
     ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${project}
+         ${teamDiscussion}
     }
  }
 `
 
 /**
- * @description Github Graphql Mutation for CreateTeamDiscussionInput
+ * @description Github Graphql Mutation for CreateTeamDiscussion
  * @mutationFields
  ** body string
  ** clientMutationId string
@@ -947,7 +907,7 @@ export const CreateTeamDiscussionCommentInput = (mutationFields: types.CreateTea
  * @fields TeamDiscussion
  */
 
-export const CreateTeamDiscussionInput = (mutationFields: types.CreateTeamDiscussionInput, teamDiscussion?: string) => `
+export const CreateTeamDiscussion = (mutationFields: types.CreateTeamDiscussionInput, teamDiscussion?: string) => `
  mutation CreateTeamDiscussionInput {
     createTeamDiscussion (input:{ body: "${mutationFields.body}",  private : ${mutationFields.private}, teamId : "${mutationFields.teamId}", title : "${mutationFields.title}"  
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
@@ -957,7 +917,7 @@ export const CreateTeamDiscussionInput = (mutationFields: types.CreateTeamDiscus
 `
 
 /**
- * @description Github Graphql Mutation for DeclineTopicSuggestionInput
+ * @description Github Graphql Mutation for DeclineTopicSuggestion
  * @mutationFields
  ** name string
  ** clientMutationId string
@@ -966,7 +926,7 @@ export const CreateTeamDiscussionInput = (mutationFields: types.CreateTeamDiscus
  * @fields Topic
  */
 
-export const DeclineTopicSuggestionInput = (mutationFields: types.DeclineTopicSuggestionInput, topic?: string) => `
+export const DeclineTopicSuggestion = (mutationFields: types.DeclineTopicSuggestionInput, topic?: string) => `
  mutation DeclineTopicSuggestionInput {
     declineTopicSuggestion (input:{ name: "${mutationFields.name}",  reason : ${mutationFields.reason}, repositoryId: "${mutationFields.repositoryId}"  
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
@@ -976,46 +936,44 @@ export const DeclineTopicSuggestionInput = (mutationFields: types.DeclineTopicSu
 `
 
 /**
- * @description Github Graphql Mutation for DeleteBranchProtectionRuleInput
+ * @description Github Graphql Mutation for DeleteBranchProtectionRule
  * @mutationFields
  ** branchProtectionRuleId string
  ** clientMutationId string
- * @fields BranchProtectionRule
  */
 
-export const DeleteBranchProtectionRuleInput = (mutationFields: types.DeleteBranchProtectionRuleInput, branchProtectionRule?: string) => `
+export const DeleteBranchProtectionRule = (mutationFields: types.DeleteBranchProtectionRuleInput) => `
     mutation DeleteBranchProtectionRuleInput {
         deleteBranchProtectionRule (input:{branchProtectionRuleId: "${mutationFields.branchProtectionRuleId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${branchProtectionRule}
+            clientMutationId 
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeleteDeploymentInput
+ * @description Github Graphql Mutation for DeleteDeployment
  * @mutationFields
  ** id string
  ** clientMutationId string
- * @fields Deployment
  */
 
-export const DeleteDeploymentInput = (mutationFields: types.DefautFields, deployment?: string) => `
+export const DeleteDeployment = (mutationFields: types.DefautFields) => `
     mutation DeleteDeploymentInput {
         deleteDeployment (input:{id: "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${deployment}
+            clientMutationId
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeleteIpAllowListEntryInput
+ * @description Github Graphql Mutation for DeleteIpAllowListEntry
  * @mutationFields
  ** ipAllowListEntryId string
  ** clientMutationId string
  * @fields IpAllowList
  */
 
-export const DeleteIpAllowListEntryInput = (mutationFields: types.DeleteIpAllowListEntryInput, ipAllowList?: string) => `
+export const DeleteIpAllowListEntry = (mutationFields: types.DeleteIpAllowListEntryInput, ipAllowList?: string) => `
     mutation DeleteIpAllowListEntryInput {
         deleteIpAllowListEntry (input:{ipAllowListEntryId: "${mutationFields.ipAllowListEntryId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
             ${ipAllowList}
@@ -1024,126 +982,127 @@ export const DeleteIpAllowListEntryInput = (mutationFields: types.DeleteIpAllowL
 `
 
 /**
- * @description Github Graphql Mutation for DeleteIssueCommentInput
+ * @description Github Graphql Mutation for DeleteIssueComment
  * @mutationFields
  ** id string
  ** clientMutationId string
- * @fields Comment
  */
 
-export const DeleteIssueCommentInput = (mutationFields: types.DefautFields, deployment?: string) => `
-    mutation DeleteDeploymentInput {
-        deleteDeployment (input:{id: "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${deployment}
+export const DeleteIssueComment = (mutationFields: types.DefautFields) => `
+    mutation DeleteIssueCommentInput {
+        deleteIssueComment (input:{id: "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
+            clientMutationId
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeleteIssueInput
+ * @description Github Graphql Mutation for DeleteIssue
  * @mutationFields
  ** issueId string
  ** clientMutationId string
- * @fields Issue
+ * @fields Repository
  */
 
-export const DeleteIssueInput = (mutationFields: types.DeleteIssueInput, issue?: string) => `
+export const DeleteIssue = (mutationFields: types.DeleteIssueInput, repository?: string) => `
     mutation DeleteIssueInput {
         deleteIssue (input:{issueId: "${mutationFields.issueId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${issue}
+            ${repository}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeletePackageVersionInput
+ * @description Github Graphql Mutation for DeletePackageVersion
  * @mutationFields
- ** id string
+ ** packageVersionId string
  ** clientMutationId string
- * @fields PackageVersion
  */
 
-export const DeletePackageVersionInput = (mutationFields: types.DefautFields, packageVersion?: string) => `
-    mutation DeleteDeploymentInput {
-        deleteDeployment (input:{id: "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${packageVersion}
+export const DeletePackageVersion = (mutationFields: types.DeletePackageVersionInput) => `
+    mutation DeletePackageVersionInput {
+        deletePackageVersion (input:{packageVersionId: "${mutationFields.packageVersionId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
+            clientMutationId
+            success
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeleteProjectCardInput
+ * @description Github Graphql Mutation for DeleteProjectCard
  * @mutationFields
- ** projectId string
+ ** cardId string
  ** clientMutationId string
- * @fields ProjectCard
+ * @fields { ProjectColumn }
  */
 
-export const DeleteProjectCardInput = (mutationFields: types.DeleteProjectCardInput, projectCard?: string) => `
+export const DeleteProjectCard = (mutationFields: types.DeleteProjectCardInput, projectColumnFields: string) => `
     mutation DeleteProjectCardInput {
-        deleteProjectCard (input:{projectId: "${mutationFields.projectId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${projectCard}
+        deleteProjectCard (input:{cardId: "${mutationFields.cardId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
+            column { ${projectColumnFields} }
+            deletedCardId
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeleteProjectColumnInput
+ * @description Github Graphql Mutation for DeleteProjectColumn
  * @mutationFields
  ** columnId string
- ** clientMutationId string
- * @fields PackageVersion
- */
-
-export const DeleteProjectColumnInput = (mutationFields: types.DeleteProjectColumnInput, packageVersion?: string) => `
-    mutation DeleteProjectColumnInput {
-        deleteProjectColumn (input:{columnId : "${mutationFields.columnId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${packageVersion}
-        }
-    }
-`
-
-/**
- * @description Github Graphql Mutation for DeleteProjectInput
- * @mutationFields
- ** projectId string
  ** clientMutationId string
  * @fields Project
  */
 
-export const DeleteProjectInput = (mutationFields: types.DeleteProjectInput, project?: string) => `
-    mutation DeleteProjectInput {
-        deleteProjectColumn (input:{projectId : "${mutationFields.projectId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
+export const DeleteProjectColumn = (mutationFields: types.DeleteProjectColumnInput, project: string) => `
+    mutation DeleteProjectColumnInput {
+        deleteProjectColumn (input:{columnId : "${mutationFields.columnId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
+            deletedColumnId
             ${project}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeletePullRequestReviewCommentInput
+ * @description Github Graphql Mutation for DeleteProject
  * @mutationFields
  ** projectId string
  ** clientMutationId string
- * @fields ProjectColumn
+ * @fields ProjectOwner
  */
 
-export const DeletePullRequestReviewCommentInput = (mutationFields: types.DefautFields, projectColumn?: string) => `
+export const DeleteProject = (mutationFields: types.DeleteProjectInput, projectOwner?: string) => `
     mutation DeleteProjectInput {
-        deleteProjectColumn (input:{id : "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${projectColumn}
+        deleteProjectColumn (input:{projectId : "${mutationFields.projectId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
+            ${projectOwner}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeletePullRequestReviewInput
+ * @description Github Graphql Mutation for DeletePullRequestReviewComment
  * @mutationFields
- ** projectId string
+ ** id string
  ** clientMutationId string
  * @fields PullRequestReview
  */
 
-export const DeletePullRequestReviewInput = (mutationFields: types.DeletePullRequestReviewInput, pullRequestReview?: string) => `
+export const DeletePullRequestReviewComment = (mutationFields: types.DefautFields, pullRequestReview?: string) => `
+    mutation DeletePullRequestReviewCommentInput {
+        deletePullRequestReviewComment (input:{id : "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
+            ${pullRequestReview}
+        }
+    }
+`
+
+/**
+ * @description Github Graphql Mutation for DeletePullRequestReview
+ * @mutationFields
+ ** pullRequestReviewId string
+ ** clientMutationId string
+ * @fields PullRequestReview
+ */
+
+export const DeletePullRequestReview = (mutationFields: types.DeletePullRequestReviewInput, pullRequestReview?: string) => `
     mutation DeletePullRequestReviewInput {
         deletePullRequestReview (input:{pullRequestReviewId: "${mutationFields.pullRequestReviewId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
             ${pullRequestReview}
@@ -1152,65 +1111,61 @@ export const DeletePullRequestReviewInput = (mutationFields: types.DeletePullReq
 `
 
 /**
- * @description Github Graphql Mutation for DeleteRefInput
+ * @description Github Graphql Mutation for DeleteRef
  * @mutationFields
  ** refId string
  ** clientMutationId string
- * @fields Ref
  */
 
-export const DeleteRefInput = (mutationFields: types.DeleteRefInput, ref?: string) => `
+export const DeleteRef = (mutationFields: types.DeleteRefInput) => `
     mutation DeleteRefInput {
         deleteRef (input:{refId: "${mutationFields.refId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${ref}
+            clientMutationId
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeleteTeamDiscussionCommentInput
+ * @description Github Graphql Mutation for DeleteTeamDiscussionComment
  * @mutationFields
  ** id string
  ** clientMutationId string
- * @fields TeamDiscussionComment
  */
 
-export const DeleteTeamDiscussionCommentInput = (mutationFields: types.DefautFields, teamDiscussionComment?: string) => `
+export const DeleteTeamDiscussionComment = (mutationFields: types.DefautFields) => `
     mutation DeleteRefInput {
         deleteTeamDiscussionComment (input:{id: "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${teamDiscussionComment}
+            clientMutationId
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeleteTeamDiscussionInput
+ * @description Github Graphql Mutation for DeleteTeamDiscussion
  * @mutationFields
  ** id string
  ** clientMutationId string
- * @fields TeamDiscussion
  */
 
-export const DeleteTeamDiscussionInput = (mutationFields: types.DefautFields, teamDiscussion?: string) => `
+export const DeleteTeamDiscussion = (mutationFields: types.DefautFields) => `
     mutation DeleteTeamDiscussionInput {
         deleteTeamDiscussion (input:{id: "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${teamDiscussion}
+            clientMutationId
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeleteVerifiableDomainInput
+ * @description Github Graphql Mutation for DeleteVerifiableDomain
  * @mutationFields
  ** id string
  ** clientMutationId string
- * @fields VerifiableDomain
  */
 
-export const DeleteVerifiableDomainInput = (mutationFields: types.DefautFields, verifiableDomain?: string) => `
+export const DeleteVerifiableDomain = (mutationFields: types.DefautFields) => `
     mutation DeleteVerifiableDomainInput {
         deleteVerifiableDomain (input:{id: "${mutationFields.id}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${verifiableDomain}
+            clientMutationId
         }
     }
 `
@@ -1227,23 +1182,25 @@ export const DeploymentOrder = (mutationFields: types.DeploymentOrder) => `
 `
 
 /**
- * @description Github Graphql Mutation for DisablePullRequestAutoMergeInput
+ * @description Github Graphql Mutation for DisablePullRequestAutoMerge
  * @mutationFields
  ** pullRequestId string
  ** clientMutationId string
- * @fields PullRequest
+ * @fields
+ ** Actor
+ ** PullRequestReview
  */
 
-export const DisablePullRequestAutoMergeInput = (mutationFields: types.DisablePullRequestAutoMergeInput, pullRequest?: string) => `
+export const DisablePullRequestAutoMerge = (mutationFields: types.DisablePullRequestAutoMergeInput, fields?: string) => `
     mutation DisablePullRequestAutoMergeInput {
         disablePullRequestAutoMerge (input:{pullRequestId: "${mutationFields.pullRequestId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
-            ${pullRequest}
+            ${fields}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DismissPullRequestReviewInput
+ * @description Github Graphql Mutation for DismissPullRequestReview
  * @mutationFields
  ** pullRequestReviewId string
  ** clientMutationId string
@@ -1251,7 +1208,7 @@ export const DisablePullRequestAutoMergeInput = (mutationFields: types.DisablePu
  * @fields PullRequestReview
  */
 
-export const DismissPullRequestReviewInput = (mutationFields: types.DismissPullRequestReviewInput, pullRequest?: string) => `
+export const DismissPullRequestReview = (mutationFields: types.DismissPullRequestReviewInput, pullRequest?: string) => `
     mutation DismissPullRequestReviewInput {
         dismissPullRequestReview (input:{pullRequestReviewId: "${mutationFields.pullRequestReviewId}", message: "${mutationFields.message}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''} }){
             ${pullRequest}
@@ -1265,15 +1222,10 @@ export const DismissPullRequestReviewInput = (mutationFields: types.DismissPullR
  ** body string
  ** path string
  ** position number
- * @fields PullRequest
  */
 
-export const DraftPullRequestReviewComment = (mutationFields: types.DraftPullRequestReviewComment, review?: string) => `
-    mutation DraftPullRequestReviewComment {
-        draftPullRequestReviewComment (input:{body : "${mutationFields.body}", path:"${mutationFields.path}", position: ${mutationFields.position} }){
-            ${review}
-        }
-    }
+export const DraftPullRequestReviewComment = (mutationFields: types.DraftPullRequestReviewComment) => `
+    { body : "${mutationFields.body}", path:"${mutationFields.path}", position: ${mutationFields.position} }
 `
 
 /**
@@ -1285,20 +1237,15 @@ export const DraftPullRequestReviewComment = (mutationFields: types.DraftPullReq
  ** side "LEFT" | "RIGHT"
  ** startLine number
  ** startSide "LEFT" | "RIGHT"
- * @fields PullRequestReviewThread
  */
 
-export const DraftPullRequestReviewThread = (mutationFields: types.DraftPullRequestReviewThread, pullRequestReviewThread?: string) => `
-    mutation DraftPullRequestReviewThread {
-        draftPullRequestReviewThread  (input:{body: "${mutationFields.body}", path: "${mutationFields.path}", line: ${mutationFields.line}, side: ${mutationFields.side} startLine: ${mutationFields.startLine}
-        startSide: ${mutationFields.startSide}}){
-            ${pullRequestReviewThread}
-        }
-    }
+export const DraftPullRequestReviewThread = (mutationFields: types.DraftPullRequestReviewThread) => `
+    { body: "${mutationFields.body}", path: "${mutationFields.path}", line: ${mutationFields.line}, side: ${mutationFields.side} startLine: ${mutationFields.startLine}
+        startSide: ${mutationFields.startSide} }
 `
 
 /**
- * @description Github Graphql Mutation for EnablePullRequestAutoMergeInput
+ * @description Github Graphql Mutation for EnablePullRequestAutoMerge
  * @mutationFields
  ** authorEmail string
  ** clientMutationId string
@@ -1306,13 +1253,15 @@ export const DraftPullRequestReviewThread = (mutationFields: types.DraftPullRequ
  ** commitHeadline string
  ** mergeMethod "MERGE" | "REBASE" | "SQUASH"
  ** pullRequestId string
- * @fields PullRequest
+ * @fields
+ ** Actor
+ ** PullRequest
  */
 
-export const EnablePullRequestAutoMergeInput = (mutationFields: types.EnablePullRequestAutoMergeInput, pullRequest?: string) => `
+export const EnablePullRequestAutoMerge = (mutationFields: types.EnablePullRequestAutoMergeInput, pullRequest?: string) => `
     mutation EnablePullRequestAutoMergeInput {
-        enablePullRequestAutoMerge  (input:{${mutationFields.authorEmail ? `, authorEmail: ${mutationFields.authorEmail}` : ''} ${mutationFields.commitBody ? `, commitBody: ${mutationFields.commitBody}` : ''}, ${mutationFields.commitBody ? `, commitBody: ${mutationFields.commitBody}` : ''}, commitHeadline:"${mutationFields.commitHeadline}", 
-        ${mutationFields.mergeMethod ? `, mergeMethod: ${mutationFields.mergeMethod}` : ''} ${mutationFields.pullRequestId ? `, pullRequestId: ${mutationFields.pullRequestId}` : ''}}){
+        enablePullRequestAutoMerge (input:{pullRequestId: "${mutationFields.pullRequestId}" ${mutationFields.authorEmail ? `, authorEmail: "${mutationFields.authorEmail}"` : ''} ${mutationFields.commitBody ? `, commitBody: "${mutationFields.commitBody}"` : ''} ${mutationFields.commitHeadline ? `, commitHeadline: "${mutationFields.commitHeadline}"` : ''}
+        ${mutationFields.mergeMethod ? `, mergeMethod: ${mutationFields.mergeMethod}` : ''}}){
             ${pullRequest}
         }
     }
@@ -1337,7 +1286,7 @@ export const EnterpriseAdministratorInvitationOrder = (mutationFields: types.Ent
  */
 
 export const EnterpriseMemberOrder = (mutationFields: types.EnterpriseMemberOrder) => `
-    {field: ${mutationFields.field}, direction: ${mutationFields.direction}}
+    { field: ${mutationFields.field}, direction: ${mutationFields.direction} }
 `
 
 /**
@@ -1348,7 +1297,7 @@ export const EnterpriseMemberOrder = (mutationFields: types.EnterpriseMemberOrde
  */
 
 export const EnterpriseServerInstallationOrder = (mutationFields: types.EnterpriseServerInstallationOrder) => `
-    {field: ${mutationFields.field}, direction: ${mutationFields.direction}}
+    { field: ${mutationFields.field}, direction: ${mutationFields.direction} }
 `
 
 /**
@@ -1359,7 +1308,7 @@ export const EnterpriseServerInstallationOrder = (mutationFields: types.Enterpri
  */
 
 export const EnterpriseServerUserAccountEmailOrder = (mutationFields: types.EnterpriseServerUserAccountEmailOrder) => `
-    {field: ${mutationFields.field}, direction: ${mutationFields.direction}}
+    { field: ${mutationFields.field}, direction: ${mutationFields.direction} }
 `
 
 /**
@@ -1370,7 +1319,7 @@ export const EnterpriseServerUserAccountEmailOrder = (mutationFields: types.Ente
  */
 
 export const EnterpriseServerUserAccountOrder = (mutationFields: types.EnterpriseServerUserAccountOrder) => `
-    {field: ${mutationFields.field}, direction: ${mutationFields.direction}}
+    { field: ${mutationFields.field}, direction: ${mutationFields.direction} }
 `
 
 /**
@@ -1381,23 +1330,23 @@ export const EnterpriseServerUserAccountOrder = (mutationFields: types.Enterpris
  */
 
 export const EnterpriseServerUserAccountsUploadOrder = (mutationFields: types.EnterpriseServerUserAccountsUploadOrder) => `
-    {field: ${mutationFields.field}, direction: ${mutationFields.direction}}
+    { field: ${mutationFields.field}, direction: ${mutationFields.direction} }
 `
 
 /**
- * @description Github Graphql Mutation for FollowUserInput
+ * @description Github Graphql Mutation for FollowUser
  * @mutationFields
  ** clientMutationId string
  ** userId string
  * @fields User
  */
 
-export const FollowUserInput = (mutationFields: types.FollowUserInput, user?: string) => `
- mutation FollowUserInput {
-    followUser (input:{userId: ${mutationFields.userId} ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}}){
-         ${user}
-     }
- }
+export const FollowUser = (mutationFields: types.FollowUserInput, user?: string) => `
+    mutation FollowUserInput {
+        followUser (input:{userId: "${mutationFields.userId}" ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}}){
+            ${user}
+        }
+    }
 `
 
 /**
@@ -1408,11 +1357,11 @@ export const FollowUserInput = (mutationFields: types.FollowUserInput, user?: st
  */
 
 export const GistOrder = (mutationFields: types.GistOrder) => `
-    {field: ${mutationFields.field}, direction: ${mutationFields.direction}}
+    { field: ${mutationFields.field}, direction: ${mutationFields.direction} }
 `
 
 /**
- * @description Github Graphql Mutation for ImportProjectInput
+ * @description Github Graphql Mutation for ImportProject
  * @mutationFields
  ** body string
  ** clientMutationId string
@@ -1423,30 +1372,43 @@ export const GistOrder = (mutationFields: types.GistOrder) => `
  * @fields Project
  */
 
-export const ImportProjectInput = (mutationFields: types.ImportProjectInput, project?: string) => `
+export const ImportProject = (mutationFields: types.ImportProjectInput, project?: string) => `
     mutation ImportProjectInput {
-        importProject (input:{body: ${mutationFields.body}, columnImports: ${mutationFields.columnImports}, 
-            name: ${mutationFields.name}, ownerName: ${mutationFields.ownerName}, public: ${mutationFields.public} ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}}){
+        importProject (input:{body: "${mutationFields.body}", columnImports: ${mutationFields.columnImports}, name: "${mutationFields.name}", 
+        ownerName: "${mutationFields.ownerName}", public: ${mutationFields.public} ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}}){
             ${project}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for InviteEnterpriseAdminInput
+ * @description Github Graphql Mutation for ProjectColumnImport
+ * @mutationFields
+ ** columnName string
+ ** issues ProjectCardImport[]
+ ** position number
+ */
+
+export const ProjectColumnImport = (mutationFields: types.ProjectColumnImport) => `
+    { columnName: "${mutationFields.columnName}", position: ${mutationFields.position} 
+    ${mutationFields.issues ? `, issues: ${mutationFields.issues}` : ''} }
+`
+
+/**
+ * @description Github Graphql Mutation for InviteEnterpriseAdmin
  * @mutationFields
  ** email string
  ** clientMutationId string
  ** enterpriseId string
  ** invitee string
  ** role "BILLING_MANAGER" | "OWNER"
- * @fields Project
+ * @fields Invitation
  */
 
-export const InviteEnterpriseAdminInput = (mutationFields: types.InviteEnterpriseAdminInput, invitation?: string) => `
+export const InviteEnterpriseAdmin = (mutationFields: types.InviteEnterpriseAdminInput, invitation?: string) => `
     mutation InviteEnterpriseAdminInput {
-        inviteEnterpriseAdmin (input:{email: ${mutationFields.email}, enterpriseId: ${mutationFields.enterpriseId}, 
-            invitee: ${mutationFields.invitee}, role: ${mutationFields.role} ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}}){
+        inviteEnterpriseAdmin (input:{email: "${mutationFields.email}", enterpriseId: "${mutationFields.enterpriseId}", 
+            invitee: "${mutationFields.invitee}", role: ${mutationFields.role} ${mutationFields.clientMutationId ? `, clientMutationId: ${mutationFields.clientMutationId}` : ''}}){
             ${invitation}
         }
     }
@@ -1460,7 +1422,7 @@ export const InviteEnterpriseAdminInput = (mutationFields: types.InviteEnterpris
  */
 
 export const IpAllowListEntryOrder = (mutationFields: types.IpAllowListEntryOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1471,7 +1433,7 @@ export const IpAllowListEntryOrder = (mutationFields: types.IpAllowListEntryOrde
  */
 
 export const IssueCommentOrder = (mutationFields: types.IssueCommentOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1482,14 +1444,14 @@ export const IssueCommentOrder = (mutationFields: types.IssueCommentOrder) => `
  ** labels string[]
  ** mentioned boolean
  ** milestone string
- ** since Date()
+ ** since Date
  ** states "CLOSED" | "OPEN"
  ** viewerSubscribed boolean
  */
 
 export const IssueFilters = (mutationFields: types.IssueFilters) => `
-    {assignee: "${mutationFields.assignee}", createdBy: "${mutationFields.createdBy}", labels: ${mutationFields.labels}, mentioned: "${mutationFields.mentioned}", milestone: "${mutationFields.milestone}",
-    since: "${mutationFields.since}", states: ${mutationFields.states}, viewerSubscribed: ${mutationFields.viewerSubscribed}}
+    { assignee: "${mutationFields.assignee}", createdBy: "${mutationFields.createdBy}", labels: ${mutationFields.labels}, mentioned: "${mutationFields.mentioned}", milestone: "${mutationFields.milestone}",
+    since: "${mutationFields.since}", states: ${mutationFields.states}, viewerSubscribed: ${mutationFields.viewerSubscribed} }
 `
 
 /**
@@ -1500,7 +1462,7 @@ export const IssueFilters = (mutationFields: types.IssueFilters) => `
  */
 
 export const IssueOrder = (mutationFields: types.IssueOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1511,7 +1473,7 @@ export const IssueOrder = (mutationFields: types.IssueOrder) => `
  */
 
 export const LabelOrder = (mutationFields: types.LabelOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1522,19 +1484,21 @@ export const LabelOrder = (mutationFields: types.LabelOrder) => `
  */
 
 export const LanguageOrder = (mutationFields: types.LabelOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
- * @description Github Graphql Mutation for LinkRepositoryToProjectInput
+ * @description Github Graphql Mutation for LinkRepositoryToProject
  * @mutationFields
  ** clientMutationId string
  ** projectId string
  ** repositoryId string
- * @fields Repository
+ * @fields
+ ** Repository
+ ** Project
  */
 
-export const LinkRepositoryToProjectInput = (mutationFields: types.LinkRepositoryToProjectInput, repository?: string) => `
+export const LinkRepositoryToProject = (mutationFields: types.LinkRepositoryToProjectInput, repository?: string) => `
     mutation LinkRepositoryToProjectInput {
         linkRepositoryToProject (input:{projectId: "${mutationFields.projectId}", repositoryId: "${mutationFields.repositoryId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${repository}
@@ -1543,48 +1507,50 @@ export const LinkRepositoryToProjectInput = (mutationFields: types.LinkRepositor
 `
 
 /**
- * @description Github Graphql Mutation for LockLockableInput
+ * @description Github Graphql Mutation for LockLockable
  * @mutationFields
  ** clientMutationId string
- ** projectId string
- ** repositoryId string
- * @fields Lockable
+ ** lockableId string
+ ** lockReason "OFF_TOPIC" | "RESOLVED" | "SPAM" | "TOO_HEATED"
+ * @fields
+ ** Actor
+ ** lockedRecord { Lockable }
  */
 
-export const LockLockableInput = (mutationFields: types.LockLockableInput, lockable?: string) => `
+export const LockLockable = (mutationFields: types.LockLockableInput, fields?: string) => `
     mutation LockLockableInput {
-        lockLockable (input:{lockableId: "${mutationFields.lockableId}", lockReason: "${mutationFields.lockReason}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${lockable}
+        lockLockable (input:{lockableId: "${mutationFields.lockableId}", lockReason: ${mutationFields.lockReason} ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${fields}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for MarkFileAsViewedInput
+ * @description Github Graphql Mutation for MarkFileAsViewed
  * @mutationFields
  ** clientMutationId string
  ** path string
  ** pullRequestId string
- * @fields Lockable
+ * @fields PullRequest
  */
 
-export const MarkFileAsViewedInput = (mutationFields: types.MarkFileAsViewedInput, lockable?: string) => `
+export const MarkFileAsViewed = (mutationFields: types.MarkFileAsViewedInput, pullRequest?: string) => `
     mutation MarkFileAsViewedInput {
         markFileAsViewed (input:{pullRequestId : "${mutationFields.pullRequestId}", path: "${mutationFields.path}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${lockable}
+            ${pullRequest}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for MarkPullRequestReadyForReviewInput
+ * @description Github Graphql Mutation for MarkPullRequestReadyForReview
  * @mutationFields
  ** clientMutationId string
  ** pullRequestId string
  * @fields PullRequest
  */
 
-export const MarkPullRequestReadyForReviewInput = (mutationFields: types.MarkPullRequestReadyForReviewInput, pullRequest?: string) => `
+export const MarkPullRequestReadyForReview = (mutationFields: types.MarkPullRequestReadyForReviewInput, pullRequest?: string) => `
     mutation MarkPullRequestReadyForReviewInput {
         markPullRequestReadyForReview (input:{pullRequestId : "${mutationFields.pullRequestId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${pullRequest}
@@ -1593,7 +1559,7 @@ export const MarkPullRequestReadyForReviewInput = (mutationFields: types.MarkPul
 `
 
 /**
- * @description Github Graphql Mutation for MergeBranchInput
+ * @description Github Graphql Mutation for MergeBranch
  * @mutationFields
  ** authorEmail string
  ** base string
@@ -1601,20 +1567,20 @@ export const MarkPullRequestReadyForReviewInput = (mutationFields: types.MarkPul
  ** commitMessage string
  ** head string
  ** repositoryId string
- * @fields Branch
+ * @fields { Commit }
  */
 
-export const MergeBranchInput = (mutationFields: types.MergeBranchInput, branch?: string) => `
+export const MergeBranch = (mutationFields: types.MergeBranchInput, commitFields?: string) => `
     mutation MergeBranchInput {
         mergeBranch (input:{authorEmail : "${mutationFields.authorEmail}", base: "${mutationFields.base}", commitMessage: "${mutationFields.commitMessage}", 
         head: "${mutationFields.head}", repositoryId: "${mutationFields.repositoryId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${branch}
+            mergeCommit { ${commitFields} }
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for MergePullRequestInput
+ * @description Github Graphql Mutation for MergePullRequest
  * @mutationFields
  ** authorEmail string
  ** clientMutationId string
@@ -1622,14 +1588,17 @@ export const MergeBranchInput = (mutationFields: types.MergeBranchInput, branch?
  ** expectedHeadOid GitObjectID
  ** mergeMethod "MERGE" | "REBASE" | "SQUASH"
  ** pullRequestId string
- * @fields PullRequest
+ * @fields
+ ** Actor
+ ** PullRequest
  */
 
-export const MergePullRequestInput = (mutationFields: types.MergePullRequestInput, pullRequest?: string) => `
+export const MergePullRequest = (mutationFields: types.MergePullRequestInput, fields?: string) => `
     mutation MergePullRequestInput {
-        mergePullRequest (input:{authorEmail : "${mutationFields.authorEmail}", commitHeadline: "${mutationFields.commitHeadline}", commitBody: "${mutationFields.commitBody}", 
-        expectedHeadOid: "${mutationFields.expectedHeadOid}", mergeMethod: ${mutationFields.mergeMethod}, repositoryId: ${mutationFields.repositoryId} ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${pullRequest}
+        mergePullRequest (input:{ pullRequestId: "${mutationFields.pullRequestId}" ${mutationFields.authorEmail ? `, authorEmail : "${mutationFields.authorEmail}"` : ''}, commitBody: "${mutationFields.commitBody}", mergeMethod: ${mutationFields.mergeMethod},
+        ${mutationFields.expectedHeadOid ? `, expectedHeadOid: "${mutationFields.expectedHeadOid}"` : ''} ${mutationFields.commitHeadline ? `, commitHeadline: "${mutationFields.commitHeadline}"` : ''} 
+        ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${fields}
         }
     }
 `
@@ -1642,61 +1611,59 @@ export const MergePullRequestInput = (mutationFields: types.MergePullRequestInpu
  */
 
 export const MilestoneOrder = (mutationFields: types.MilestoneOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
- * @description Github Graphql Mutation for MinimizeCommentInput
+ * @description Github Graphql Mutation for MinimizeComment
  * @mutationFields
  ** classifier: "ABUSE" | "DUPLICATE" | "OFF_TOPIC" | "OUTDATED" | "RESOLVED" | "SPAM"
  ** clientMutationId string
  ** subjectId string
- * @fields Comment
+ * @fields { Comment }
  */
 
-export const MinimizeCommentInput = (mutationFields: types.MinimizeCommentInput, comment?: string) => `
+export const MinimizeComment = (mutationFields: types.MinimizeCommentInput, comment?: string) => `
     mutation MinimizeCommentInput {
         minimizeComment (input:{classifier : ${mutationFields.classifier}, subjectId: "${mutationFields.subjectId}",
         ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${comment}
+            minimizedComment { ${comment} }
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for MoveProjectCardInput
+ * @description Github Graphql Mutation for MoveProjectCard
  * @mutationFields
- ** afterCardId string
+ ** afterCardId string | null
  ** cardId string
  ** clientMutationId string
  ** commitHeadline string
  ** columnId string
- * @fields ProjectCard
  */
 
-export const MoveProjectCardInput = (mutationFields: types.MoveProjectCardInput, pullRequest?: string) => `
+export const MoveProjectCard = (mutationFields: types.MoveProjectCardInput) => `
     mutation MoveProjectCardInput {
-        moveProjectCard (input:{afterCardId : "${mutationFields.afterCardId}", cardId: "${mutationFields.cardId}", columnId: "${mutationFields.columnId}", 
-        ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${pullRequest}
+        moveProjectCard (input:{${mutationFields.afterCardId ? `afterCardId : "${mutationFields.afterCardId}"` : ''}, cardId: "${mutationFields.cardId}", 
+        columnId: "${mutationFields.columnId}", ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            clientMutationId
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for MoveProjectColumnInput
+ * @description Github Graphql Mutation for MoveProjectColumn
  * @mutationFields
  ** afterColumnId string
  ** clientMutationId string
  ** columnId string
- * @fields Column
  */
 
-export const MoveProjectColumnInput = (mutationFields: types.MoveProjectColumnInput, comment?: string) => `
+export const MoveProjectColumn = (mutationFields: types.MoveProjectColumnInput) => `
     mutation MoveProjectColumnInput {
-        moveProjectColumn (input:{afterColumnId : ${mutationFields.afterColumnId}, : afterColumnId: "${mutationFields.afterColumnId}",
+        moveProjectColumn (input:{columnId : "${mutationFields.columnId}", ${mutationFields.afterColumnId ? `afterColumnId: "${mutationFields.afterColumnId}"` : ''},
         ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${comment}
+            clientMutationId
         }
     }
 `
@@ -1709,7 +1676,7 @@ export const MoveProjectColumnInput = (mutationFields: types.MoveProjectColumnIn
  */
 
 export const OrganizationOrder = (mutationFields: types.OrganizationOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1720,7 +1687,7 @@ export const OrganizationOrder = (mutationFields: types.OrganizationOrder) => `
  */
 
 export const PackageFileOrder = (mutationFields: types.PackageFileOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1731,7 +1698,7 @@ export const PackageFileOrder = (mutationFields: types.PackageFileOrder) => `
  */
 
 export const PackageOrder = (mutationFields: types.PackageOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1742,19 +1709,18 @@ export const PackageOrder = (mutationFields: types.PackageOrder) => `
  */
 
 export const PackageVersionOrder = (mutationFields: types.PackageVersionOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
- * @description Github Graphql Mutation for PinIssueInput
+ * @description Github Graphql Mutation for PinIssue
  * @mutationFields
- ** afterColumnId string
  ** clientMutationId string
- ** columnId string
+ ** issueId string
  * @fields Issue
  */
 
-export const PinIssueInput = (mutationFields: types.PinIssueInput, issue?: string) => `
+export const PinIssue = (mutationFields: types.PinIssueInput, issue?: string) => `
     mutation PinIssueInput {
         pinIssue (input:{issueId: "${mutationFields.issueId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${issue}
@@ -1779,23 +1745,6 @@ export const ProjectCardImport = (mutationFields: types.ProjectCardImport, proje
 `
 
 /**
- * @description Github Graphql Mutation for ProjectColumnImport
- * @mutationFields
- ** columnName string
- ** issues ProjectCardImport[]
- ** position number
- * @fields ProjectCard
- */
-
-export const ProjectColumnImport = (mutationFields: types.ProjectColumnImport, projectCard?: string) => `
-    mutation ProjectColumnImport {
-        projectColumnImport (input:{columnName: "${mutationFields.columnName}", issues: ${mutationFields.issues} position: ${mutationFields.position} ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${projectCard}
-        }
-    }
-`
-
-/**
  * @description Github Graphql Mutation for ProjectOrder
  * @mutationFields
  ** direction "ASC" | "DESC"
@@ -1803,7 +1752,7 @@ export const ProjectColumnImport = (mutationFields: types.ProjectColumnImport, p
  */
 
 export const ProjectOrder = (mutationFields: types.ProjectOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1814,7 +1763,7 @@ export const ProjectOrder = (mutationFields: types.ProjectOrder) => `
  */
 
 export const PullRequestOrder = (mutationFields: types.PullRequestOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1825,7 +1774,7 @@ export const PullRequestOrder = (mutationFields: types.PullRequestOrder) => `
  */
 
 export const ReactionOrder = (mutationFields: types.ReactionOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1836,7 +1785,7 @@ export const ReactionOrder = (mutationFields: types.ReactionOrder) => `
  */
 
 export const RefOrder = (mutationFields: types.RefOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -1846,15 +1795,10 @@ export const RefOrder = (mutationFields: types.RefOrder) => `
  ** beforeOid GitObjectID
  ** name GitRefname
  ** force boolean
- * @fields Ref
  */
 
-export const RefUpdate = (mutationFields: types.RefUpdate, ref?: string) => `
-    mutation RefUpdate {
-        refUpdate (input:{afterOid: "${mutationFields.afterOid}", beforeOid: ${mutationFields.beforeOid}, name: "${mutationFields.name}", force: "${mutationFields.force}"}){
-            ${ref}
-        }
-    }
+export const RefUpdate = (mutationFields: types.RefUpdate) => `
+    { afterOid: "${mutationFields.afterOid}", beforeOid: "${mutationFields.beforeOid}", name: "${mutationFields.name}", force: ${mutationFields.force} }
 `
 
 /**
@@ -1862,13 +1806,13 @@ export const RefUpdate = (mutationFields: types.RefUpdate, ref?: string) => `
  * @mutationFields
  ** clientMutationId string
  ** enterpriseId string
- * @fields Enterprise
+ * @fields IdentityProvider
  */
 
-export const RegenerateEnterpriseIdentityProviderRecoveryCodesInput = (mutationFields: types.RegenerateEnterpriseIdentityProviderRecoveryCodesInput, enterprise?: string) => `
+export const RegenerateEnterpriseIdentityProviderRecoveryCodes = (mutationFields: types.RegenerateEnterpriseIdentityProviderRecoveryCodesInput, identityProvider?: string) => `
     mutation RegenerateEnterpriseIdentityProviderRecoveryCodesInput {
-        regenerateEnterpriseIdentityProviderRecoveryCodes (input:{enterpriseId: "${mutationFields.enterpriseId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}){
-            ${enterprise}
+        regenerateEnterpriseIdentityProviderRecoveryCodes (input:{enterpriseId: "${mutationFields.enterpriseId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${identityProvider}
         }
     }
 `
@@ -1878,19 +1822,18 @@ export const RegenerateEnterpriseIdentityProviderRecoveryCodesInput = (mutationF
  * @mutationFields
  ** clientMutationId string
  ** id string
- * @fields Domain
  */
 
-export const RegenerateVerifiableDomainTokenInput = (mutationFields: types.DefautFields, domain?: string) => `
+export const RegenerateVerifiableDomainToken = (mutationFields: types.DefautFields) => `
     mutation RegenerateVerifiableDomainTokenInput {
-        regenerateVerifiableDomainToken (input:{id: "${mutationFields.id}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}){
-            ${domain}
+        regenerateVerifiableDomainToken (input:{id: "${mutationFields.id}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            verificationToken
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for RemoveAssigneesFromAssignableInput
+ * @description Github Graphql Mutation for RemoveAssigneesFromAssignable
  * @mutationFields
  ** clientMutationId string
  ** assigneeIds string[]
@@ -1898,59 +1841,69 @@ export const RegenerateVerifiableDomainTokenInput = (mutationFields: types.Defau
  * @fields Assignable
  */
 
-export const RemoveAssigneesFromAssignableInput = (mutationFields: types.RemoveAssigneesFromAssignableInput, assignable?: string) => `
+export const RemoveAssigneesFromAssignable = (mutationFields: types.RemoveAssigneesFromAssignableInput, assignable?: string) => `
     mutation RemoveAssigneesFromAssignableInput {
-        removeAssigneesFromAssignable (input:{assigneeIds: ${mutationFields.assigneeIds}, assignableId: "${mutationFields.assignableId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}){
+        removeAssigneesFromAssignable (input:{assigneeIds: [${mutationFields.assigneeIds}], assignableId: "${mutationFields.assignableId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${assignable}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for RemoveEnterpriseAdminInput
+ * @description Github Graphql Mutation for RemoveEnterpriseAdmin
  * @mutationFields
  ** clientMutationId string
  ** enterpriseId string
  ** login string
- * @fields User
+ * @fields
+ ** admin { User }
+ ** Enterprise
+ ** message
+ ** viewer { User }
  */
 
-export const RemoveEnterpriseAdminInput = (mutationFields: types.RemoveEnterpriseAdminInput, assignable?: string) => `
+export const RemoveEnterpriseAdmin = (mutationFields: types.RemoveEnterpriseAdminInput, fields?: string) => `
     mutation RemoveEnterpriseAdminInput {
-        removeEnterpriseAdmin (input:{login: "${mutationFields.login}", enterpriseId: "${mutationFields.enterpriseId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}){
-            ${assignable}
+        removeEnterpriseAdmin (input:{login: "${mutationFields.login}", enterpriseId: "${mutationFields.enterpriseId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${fields}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for RemoveEnterpriseIdentityProviderInput
+ * @description Github Graphql Mutation for RemoveEnterpriseIdentityProvider
  * @mutationFields
  ** clientMutationId string
  ** enterpriseId string
- * @fields User
+ * @fields
+ ** User
+ ** Organization
+ ** Enterprise
  */
 
-export const RemoveEnterpriseIdentityProviderInput = (mutationFields: types.RemoveEnterpriseIdentityProviderInput, enterpriseIdentity?: string) => `
+export const RemoveEnterpriseIdentityProvider = (mutationFields: types.RemoveEnterpriseIdentityProviderInput, fields?: string) => `
     mutation RemoveEnterpriseIdentityProviderInput {
-        removeEnterpriseIdentityProvider (input:{enterpriseId: "${mutationFields.enterpriseId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}){
-            ${enterpriseIdentity}
+        removeEnterpriseIdentityProvider (input:{enterpriseId: "${mutationFields.enterpriseId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${fields}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for RemoveEnterpriseOrganizationInput
+ * @description Github Graphql Mutation for RemoveEnterpriseOrganization
  * @mutationFields
  ** clientMutationId string
  ** enterpriseId string
  ** organizationId  string
- * @fields User
+ * @fields
+ ** Enterprise
+ ** Organization
+ ** viewer { User }
  */
 
-export const RemoveEnterpriseOrganizationInput = (mutationFields: types.RemoveEnterpriseOrganizationInput, assignable?: string) => `
+export const RemoveEnterpriseOrganization = (mutationFields: types.RemoveEnterpriseOrganizationInput, assignable?: string) => `
     mutation RemoveEnterpriseOrganizationInput {
-        removeEnterpriseOrganization (input:{organizationId: "${mutationFields.organizationId}", enterpriseId: "${mutationFields.enterpriseId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}){
+        removeEnterpriseOrganization (input:{organizationId: "${mutationFields.organizationId}", enterpriseId: "${mutationFields.enterpriseId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${assignable}
         }
     }
@@ -1962,13 +1915,12 @@ export const RemoveEnterpriseOrganizationInput = (mutationFields: types.RemoveEn
  ** clientMutationId string
  ** enterpriseId string
  ** login string
- * @fields EnterpriseSupportEntitlement
  */
 
-export const RemoveEnterpriseSupportEntitlementInput = (mutationFields: types.RemoveEnterpriseAdminInput, enterpriseSupportEntitlement?: string) => `
+export const RemoveEnterpriseSupportEntitlement = (mutationFields: types.RemoveEnterpriseAdminInput) => `
     mutation RemoveEnterpriseSupportEntitlementInput {
         removeEnterpriseSupportEntitlement (input:{login: "${mutationFields.login}", enterpriseId: "${mutationFields.enterpriseId}" ${mutationFields.clientMutationId ? `clientMutationId: "${mutationFields.clientMutationId}"` : ''}){
-            ${enterpriseSupportEntitlement}
+            message
         }
     }
 `
@@ -1977,15 +1929,15 @@ export const RemoveEnterpriseSupportEntitlementInput = (mutationFields: types.Re
  * @description Github Graphql Mutation for RemoveLabelsFromLabelableInput
  * @mutationFields
  ** clientMutationId string
- ** labelIds string[]
  ** labelableId string
- * @fields Labels
+ ** labelIds string[]
+ * @fields Labelable
  */
 
-export const RemoveLabelsFromLabelableInput = (mutationFields: types.LabelsToLabelableInput, labels?: string) => `
+export const RemoveLabelsFromLabelable = (mutationFields: types.LabelsToLabelableInput, labelable?: string) => `
  mutation RemoveLabelsFromLabelableInput {
-    removeLabelsFromLabelable (input:{labelableId: "${mutationFields.labelableId}" ${mutationFields.labelIds ? `, labelIds: "${mutationFields.labelIds}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-         ${labels}
+    removeLabelsFromLabelable (input:{labelableId: "${mutationFields.labelableId}", labelIds: [${mutationFields.labelIds}] ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+         ${labelable}
      }
  }
 `
@@ -1996,13 +1948,13 @@ export const RemoveLabelsFromLabelableInput = (mutationFields: types.LabelsToLab
  ** clientMutationId string
  ** organizationId string
  ** userId string
- * @fields User
+ * @fields { User }
  */
 
-export const RemoveOutsideCollaboratorInput = (mutationFields: types.RemoveOutsideCollaboratorInput, user?: string) => `
+export const RemoveOutsideCollaborator = (mutationFields: types.RemoveOutsideCollaboratorInput, userFields?: string) => `
     mutation RemoveOutsideCollaboratorInput {
-        removeOutsideCollaborator (input:{userId: "${mutationFields.userId}", organizationId: "${mutationFields.organizationId} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${user}
+        removeOutsideCollaborator (input:{userId: "${mutationFields.userId}", organizationId: "${mutationFields.organizationId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+            removedUser { ${userFields} }
         }
     }
 `
@@ -2013,26 +1965,28 @@ export const RemoveOutsideCollaboratorInput = (mutationFields: types.RemoveOutsi
  ** content "CONFUSED" | "EYES" | "HEART" | "HOORAY" | "LAUGH" | "ROCKET" | "THUMBS_DOWN" | "THUMBS_UP"
  ** clientMutationId string
  ** subjectId string
- * @fields Reaction
+ * @fields
+ ** Reaction
+ ** Subject
  */
 
-export const RemoveReactionInput = (mutationFields: types.RemoveReactionInput, reaction?: string) => `
+export const RemoveReaction = (mutationFields: types.RemoveReactionInput, reaction?: string) => `
     mutation RemoveReactionInput {
-        removeReaction (input:{content: ${mutationFields.content}, subjectId: "${mutationFields.subjectId} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+        removeReaction (input:{content: ${mutationFields.content}, subjectId: "${mutationFields.subjectId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${reaction}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for RemoveStarInput
+ * @description Github Graphql Mutation for RemoveStar
  * @mutationFields
  ** clientMutationId string
  ** starrableId string
  * @fields Starrable
  */
 
-export const RemoveStarInput = (mutationFields: types.RemoveStarInput, starrable?: string) => `
+export const RemoveStar = (mutationFields: types.RemoveStarInput, starrable?: string) => `
     mutation RemoveStarInput {
         removeStar (input:{starrableId: "${mutationFields.starrableId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${starrable}
@@ -2041,14 +1995,14 @@ export const RemoveStarInput = (mutationFields: types.RemoveStarInput, starrable
 `
 
 /**
- * @description Github Graphql Mutation for ReopenIssueInput
+ * @description Github Graphql Mutation for ReopenIssue
  * @mutationFields
  ** clientMutationId string
  ** issueId string
  * @fields Issue
  */
 
-export const ReopenIssueInput = (mutationFields: types.ReopenIssueInput, issue?: string) => `
+export const ReopenIssue = (mutationFields: types.ReopenIssueInput, issue?: string) => `
     mutation ReopenIssueInput {
         reopenIssue (input:{issueId: "${mutationFields.issueId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${issue}
@@ -2057,16 +2011,16 @@ export const ReopenIssueInput = (mutationFields: types.ReopenIssueInput, issue?:
 `
 
 /**
- * @description Github Graphql Mutation for ReopenIssueInput
+ * @description Github Graphql Mutation for ReopenPullRequest
  * @mutationFields
  ** clientMutationId string
  ** pullRequestId string
  * @fields PullRequest
  */
 
-export const ReopenPullRequestInput = (mutationFields: types.ReopenPullRequestInput, pullRequest?: string) => `
+export const ReopenPullRequest = (mutationFields: types.ReopenPullRequestInput, pullRequest?: string) => `
     mutation ReopenPullRequestInput {
-        reopenPullRequest (input:{issueId: "${mutationFields.issueId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+        reopenPullRequest (input:{pullRequestId: "${mutationFields.pullRequestId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${pullRequest}
         }
     }
@@ -2080,7 +2034,7 @@ export const ReopenPullRequestInput = (mutationFields: types.ReopenPullRequestIn
  */
 
 export const RepositoryInvitationOrder = (mutationFields: types.RepositoryInvitationOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -2091,25 +2045,28 @@ export const RepositoryInvitationOrder = (mutationFields: types.RepositoryInvita
  */
 
 export const RepositoryOrder = (mutationFields: types.RepositoryOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
- * @description Github Graphql Mutation for RequestReviewsInput
+ * @description Github Graphql Mutation for RequestReviews
  * @mutationFields
  ** clientMutationId string
  ** pullRequestId string
  ** teamIds string[]
  ** union boolean
  ** userIds string[]
- * @fields RequestReviews
+ * @fields
+ ** Actor
+ ** PullRequest
+ ** requestedReviewersEdge UserEdge
  */
 
-export const RequestReviewsInput = (mutationFields: types.RequestReviewsInput, requestReview?: string) => `
+export const RequestReviews = (mutationFields: types.RequestReviewsInput, fields?: string) => `
     mutation RequestReviewsInput {
-        requestReviews (input:{pullRequestId: "${mutationFields.pullRequestId}", union: ${mutationFields.union}, userIds: ${mutationFields.union}
+        requestReviews (input:{pullRequestId: "${mutationFields.pullRequestId}", union: ${mutationFields.union}, userIds: [${mutationFields.userIds}]
         ${mutationFields.teamIds ? `, teamIds: ${mutationFields.teamIds}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${requestReview}
+            ${fields}
         }
     }
 `
@@ -2123,7 +2080,7 @@ export const RequestReviewsInput = (mutationFields: types.RequestReviewsInput, r
  * @fields CheckSuite
  */
 
-export const RerequestCheckSuiteInput = (mutationFields: types.RerequestCheckSuiteInput, checkSuite?: string) => `
+export const RerequestCheckSuite = (mutationFields: types.RerequestCheckSuiteInput, checkSuite?: string) => `
     mutation RerequestCheckSuiteInput {
         rerequestCheckSuite (input:{checkSuiteId: "${mutationFields.checkSuiteId}", repositoryId: "${mutationFields.repositoryId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${checkSuite}
@@ -2132,17 +2089,17 @@ export const RerequestCheckSuiteInput = (mutationFields: types.RerequestCheckSui
 `
 
 /**
- * @description Github Graphql Mutation for RerequestCheckSuiteInput
+ * @description Github Graphql Mutation for RerequestCheckSuite
  * @mutationFields
  ** clientMutationId string
  ** threadId string
- * @fields CheckSuite
+ * @fields { PullRequestReviewThread }
  */
 
-export const ResolveReviewThreadInput = (mutationFields: types.ResolveReviewThreadInput, checkSuite?: string) => `
+export const ResolveReviewThread = (mutationFields: types.ResolveReviewThreadInput, pullRequestReviewThreadFields?: string) => `
     mutation ResolveReviewThreadInput {
         resolveReviewThread (input:{threadId: "${mutationFields.threadId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${checkSuite}
+            thread{ ${pullRequestReviewThreadFields} }
         }
     }
 `
@@ -2155,7 +2112,7 @@ export const ResolveReviewThreadInput = (mutationFields: types.ResolveReviewThre
  */
 
 export const SavedReplyOrder = (mutationFields: types.SavedReplyOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -2166,7 +2123,7 @@ export const SavedReplyOrder = (mutationFields: types.SavedReplyOrder) => `
  */
 
 export const SecurityAdvisoryIdentifierFilter = (mutationFields: types.SecurityAdvisoryIdentifierFilter) => `
-    {type: ${mutationFields.type}, direction: ${mutationFields.value}}
+    { type: ${mutationFields.type}, direction: ${mutationFields.value} }
 `
 
 /**
@@ -2177,11 +2134,11 @@ export const SecurityAdvisoryIdentifierFilter = (mutationFields: types.SecurityA
  */
 
 export const SecurityAdvisoryOrder = (mutationFields: types.SecurityAdvisoryOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
- * @description Github Graphql Mutation for SetEnterpriseIdentityProviderInput
+ * @description Github Graphql Mutation for SetEnterpriseIdentityProvider
  * @mutationFields
  ** clientMutationId string
  ** digestMethod: "SHA1" | "SHA256" | "SHA384" | "SHA512"
@@ -2193,10 +2150,10 @@ export const SecurityAdvisoryOrder = (mutationFields: types.SecurityAdvisoryOrde
  * @fields EnterpriseIdentityProvider
  */
 
-export const SetEnterpriseIdentityProviderInput = (mutationFields: types.SetEnterpriseIdentityProviderInput, enterpriseIdentityProvider?: string) => `
+export const SetEnterpriseIdentityProvider = (mutationFields: types.SetEnterpriseIdentityProviderInput, enterpriseIdentityProvider?: string) => `
     mutation SetEnterpriseIdentityProviderInput {
-        setEnterpriseIdentityProvider (input:{digestMethod: ${mutationFields.digestMethod}, enterpriseId: "${mutationFields.enterpriseId}", idpCertificate: "${mutationFields.idpCertificate}",
-        issuer: "${mutationFields.issuer}", ssoUrl: "${mutationFields.ssoUrl}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+        setEnterpriseIdentityProvider (input:{digestMethod: ${mutationFields.digestMethod}, enterpriseId: "${mutationFields.enterpriseId}", ${mutationFields.idpCertificate ? `, idpCertificate: "${mutationFields.idpCertificate}"` : ''},
+        signatureMethod: ${mutationFields.signatureMethod} issuer: "${mutationFields.issuer}", ${mutationFields.ssoUrl ? `, ssoUrl: "${mutationFields.ssoUrl}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterpriseIdentityProvider}
         }
     }
@@ -2212,7 +2169,7 @@ export const SetEnterpriseIdentityProviderInput = (mutationFields: types.SetEnte
  * @fields OrganizationInteractionLimit
  */
 
-export const SetOrganizationInteractionLimitInput = (mutationFields: types.SetInteractionLimitInput, organizationInteractionLimit?: string) => `
+export const SetOrganizationInteractionLimit = (mutationFields: types.SetInteractionLimitInput, organizationInteractionLimit?: string) => `
     mutation SetOrganizationInteractionLimitInput {
         setOrganizationInteractionLimit (input:{expiry: ${mutationFields.expiry}, limit: ${mutationFields.limit}, organizationId: "${mutationFields.organizationId}" 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
@@ -2231,7 +2188,7 @@ export const SetOrganizationInteractionLimitInput = (mutationFields: types.SetIn
  * @fields RepositoryInteractionLimit
  */
 
-export const SetRepositoryInteractionLimitInput = (mutationFields: types.SetInteractionLimitInput, organizationInteractionLimit?: string) => `
+export const SetRepositoryInteractionLimit = (mutationFields: types.SetInteractionLimitInput, organizationInteractionLimit?: string) => `
     mutation SetRepositoryInteractionLimitInput {
         setRepositoryInteractionLimit (input:{expiry: ${mutationFields.expiry}, limit: ${mutationFields.limit}, repositoryId: "${mutationFields.repositoryId}" 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
@@ -2247,14 +2204,14 @@ export const SetRepositoryInteractionLimitInput = (mutationFields: types.SetInte
  ** expiry "ONE_DAY" | "ONE_MONTH" | "ONE_WEEK" | "SIX_MONTHS" | "THREE_DAYS"
  ** limit "COLLABORATORS_ONLY" | "CONTRIBUTORS_ONLY" | "EXISTING_USERS" | "NO_LIMIT"
  ** userId string
- * @fields RepositoryInteractionLimit
+ * @fields User
  */
 
-export const SetUserInteractionLimitInput = (mutationFields: types.SetInteractionLimitInput, organizationInteractionLimit?: string) => `
+export const SetUserInteractionLimit = (mutationFields: types.SetInteractionLimitInput, user?: string) => `
     mutation SetUserInteractionLimitInput {
         setUserInteractionLimit (input:{expiry: ${mutationFields.expiry}, limit: ${mutationFields.limit}, userId: "${mutationFields.userId}" 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${organizationInteractionLimit}
+            ${user}
         }
     }
 `
@@ -2267,7 +2224,7 @@ export const SetUserInteractionLimitInput = (mutationFields: types.SetInteractio
  */
 
 export const SponsorableOrder = (mutationFields: types.SponsorableOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -2278,7 +2235,7 @@ export const SponsorableOrder = (mutationFields: types.SponsorableOrder) => `
  */
 
 export const SponsorsTierOrder = (mutationFields: types.SponsorsTierOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -2289,7 +2246,7 @@ export const SponsorsTierOrder = (mutationFields: types.SponsorsTierOrder) => `
  */
 
 export const SponsorshipOrder = (mutationFields: types.SponsorsTierOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -2300,11 +2257,11 @@ export const SponsorshipOrder = (mutationFields: types.SponsorsTierOrder) => `
  */
 
 export const StarOrder = (mutationFields: types.StarOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
- * @description Github Graphql Mutation for SubmitPullRequestReviewInput
+ * @description Github Graphql Mutation for SubmitPullRequestReview
  * @mutationFields
  ** body string
  ** clientMutationId string
@@ -2314,7 +2271,7 @@ export const StarOrder = (mutationFields: types.StarOrder) => `
  * @fields PullRequestReview
  */
 
-export const SubmitPullRequestReviewInput = (mutationFields: types.SubmitPullRequestReviewInput, pullRequestReview?: string) => `
+export const SubmitPullRequestReview = (mutationFields: types.SubmitPullRequestReviewInput, pullRequestReview?: string) => `
     mutation SubmitPullRequestReviewInput {
         submitPullRequestReview (input:{body: "${mutationFields.body}", event: ${mutationFields.event}, pullRequestId: "${mutationFields.pullRequestId}", 
         pullRequestReviewId: "${mutationFields.pullRequestReviewId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
@@ -2331,7 +2288,7 @@ export const SubmitPullRequestReviewInput = (mutationFields: types.SubmitPullReq
  */
 
 export const TeamDiscussionCommentOrder = (mutationFields: types.TeamDiscussionCommentOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -2342,7 +2299,7 @@ export const TeamDiscussionCommentOrder = (mutationFields: types.TeamDiscussionC
  */
 
 export const TeamDiscussionOrder = (mutationFields: types.TeamDiscussionOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -2353,7 +2310,7 @@ export const TeamDiscussionOrder = (mutationFields: types.TeamDiscussionOrder) =
  */
 
 export const TeamMemberOrder = (mutationFields: types.TeamMemberOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -2364,7 +2321,7 @@ export const TeamMemberOrder = (mutationFields: types.TeamMemberOrder) => `
  */
 
 export const TeamOrder = (mutationFields: types.TeamOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
@@ -2375,11 +2332,11 @@ export const TeamOrder = (mutationFields: types.TeamOrder) => `
  */
 
 export const TeamRepositoryOrder = (mutationFields: types.TeamRepositoryOrder) => `
-    {field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''}}
+    { field: ${mutationFields.field}, ${mutationFields.direction ? `, direction: ${mutationFields.direction}` : ''} }
 `
 
 /**
- * @description Github Graphql Mutation for TransferIssueInput
+ * @description Github Graphql Mutation for TransferIssue
  * @mutationFields
  ** issueId string
  ** clientMutationId string
@@ -2387,7 +2344,7 @@ export const TeamRepositoryOrder = (mutationFields: types.TeamRepositoryOrder) =
  * @fields Issue
  */
 
-export const TransferIssueInput = (mutationFields: types.TransferIssueInput, issue?: string) => `
+export const TransferIssue = (mutationFields: types.TransferIssueInput, issue?: string) => `
     mutation TransferIssueInput {
         transferIssue (input:{issueId: "${mutationFields.issueId}", repositoryId: "${mutationFields.repositoryId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${issue}
@@ -2396,14 +2353,14 @@ export const TransferIssueInput = (mutationFields: types.TransferIssueInput, iss
 `
 
 /**
- * @description Github Graphql Mutation for UnarchiveRepositoryInput
+ * @description Github Graphql Mutation for UnarchiveRepository
  * @mutationFields
  ** clientMutationId string
  ** repositoryId string
  * @fields Repository
  */
 
-export const UnarchiveRepositoryInput = (mutationFields: types.UnarchiveRepositoryInput, repository?: string) => `
+export const UnarchiveRepository = (mutationFields: types.UnarchiveRepositoryInput, repository?: string) => `
     mutation UnarchiveRepositoryInput {
         unarchiveRepository (input:{repositoryId: "${mutationFields.repositoryId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${repository}
@@ -2412,15 +2369,14 @@ export const UnarchiveRepositoryInput = (mutationFields: types.UnarchiveReposito
 `
 
 /**
- * @description Github Graphql Mutation for UnfollowUserInput
+ * @description Github Graphql Mutation for UnfollowUser
  * @mutationFields
  ** clientMutationId string
- ** issueId string
- ** repositoryId string
+ ** userId string
  * @fields User
  */
 
-export const UnfollowUserInput = (mutationFields: types.UnfollowUserInput, user?: string) => `
+export const UnfollowUser = (mutationFields: types.UnfollowUserInput, user?: string) => `
     mutation UnfollowUserInput {
         unfollowUser (input:{userId: "${mutationFields.userId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${user}
@@ -2429,15 +2385,17 @@ export const UnfollowUserInput = (mutationFields: types.UnfollowUserInput, user?
 `
 
 /**
- * @description Github Graphql Mutation for UnlinkRepositoryFromProjectInput
+ * @description Github Graphql Mutation for UnlinkRepositoryFromProject
  * @mutationFields
  ** clientMutationId string
  ** projectId string
  ** repositoryId string
- * @fields Project
+ * @fields
+ ** Project
+ ** Repository
  */
 
-export const UnlinkRepositoryFromProjectInput = (mutationFields: types.UnlinkRepositoryFromProjectInput, project?: string) => `
+export const UnlinkRepositoryFromProject = (mutationFields: types.UnlinkRepositoryFromProjectInput, project?: string) => `
     mutation UnlinkRepositoryFromProjectInput {
         unlinkRepositoryFromProject (input:{projectId: "${mutationFields.projectId}", repositoryId: "${mutationFields.repositoryId}"
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
@@ -2447,34 +2405,34 @@ export const UnlinkRepositoryFromProjectInput = (mutationFields: types.UnlinkRep
 `
 
 /**
- * @description Github Graphql Mutation for UnlockLockableInput
+ * @description Github Graphql Mutation for UnlockLockable
  * @mutationFields
  ** clientMutationId string
  ** lockableId string
- * @fields Lockable
+ * @fields { Lockable }
  */
 
-export const UnlockLockableInput = (mutationFields: types.UnlockLockableInput, lockable?: string) => `
+export const UnlockLockable = (mutationFields: types.UnlockLockableInput, lockable?: string) => `
     mutation UnlockLockableInput {
         unlockLockable (input:{lockableId : "${mutationFields.lockableId}" 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${lockable}
+            unlockedRecord { ${lockable} }
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UnmarkFileAsViewedInput
+ * @description Github Graphql Mutation for UnmarkFileAsViewed
  * @mutationFields
  ** clientMutationId string
- ** canonicalId string
- ** duplicateId string
+ ** path string
+ ** pullRequestId string
  * @fields PullRequest
  */
 
-export const UnmarkFileAsViewedInput = (mutationFields: types.UnmarkIssueAsDuplicateInput, pullRequest?: string) => `
-    mutation UnlockLockableInput {  
-        unlockLockable (input:{duplicateId : "${mutationFields.duplicateId}", canonicalId: "${mutationFields.canonicalId}" 
+export const UnmarkFileAsViewed = (mutationFields: types.UnmarkFileAsViewedInput, pullRequest?: string) => `
+    mutation UnmarkFileAsViewedInput {  
+        unmarkFileAsViewed (input:{pullRequestId: "${mutationFields.pullRequestId}", path: "${mutationFields.path}" 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${pullRequest}
         }
@@ -2482,31 +2440,48 @@ export const UnmarkFileAsViewedInput = (mutationFields: types.UnmarkIssueAsDupli
 `
 
 /**
- * @description Github Graphql Mutation for UnminimizeCommentInput
+ * @description Github Graphql Mutation for UnmarkIssueAsDuplicate
  * @mutationFields
- ** clientMutationId string
- ** subjectId string
- * @fields Comment
+ ** canonicalId string
+ ** path string
+ ** duplicateId string
+ * @fields onIssue
  */
 
-export const UnminimizeCommentInput = (mutationFields: types.UnminimizeCommentInput, comment?: string) => `
-    mutation UnminimizeCommentInput {  
-        unminimizeComment (input:{subjectId : "${mutationFields.subjectId}", 
+export const UnmarkIssueAsDuplicate = (mutationFields: types.UnmarkIssueAsDuplicateInput, onIssue?: string) => `
+    mutation UnmarkIssueAsDuplicateInput {  
+        unmarkIssueAsDuplicate (input:{canonicalId: "${mutationFields.canonicalId}", duplicateId: "${mutationFields.duplicateId}" 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${comment}
+            duplicate { ${onIssue} }
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UnpinIssueInput
+ * @description Github Graphql Mutation for UnminimizeComment
  * @mutationFields
  ** clientMutationId string
  ** subjectId string
+ * @fields onComment
+ */
+
+export const UnminimizeComment = (mutationFields: types.UnminimizeCommentInput, comment?: string) => `
+    mutation UnminimizeCommentInput {  
+        unminimizeComment (input:{subjectId : "${mutationFields.subjectId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+            unminimizedComment { ${comment} }
+        }
+    }
+`
+
+/**
+ * @description Github Graphql Mutation for UnpinIssue
+ * @mutationFields
+ ** clientMutationId string
+ ** issueId string
  * @fields Issue
  */
 
-export const UnpinIssueInput = (mutationFields: types.UnpinIssueInput, issue?: string) => `
+export const UnpinIssue = (mutationFields: types.UnpinIssueInput, issue?: string) => `
     mutation UnpinIssueInput {  
         unpinIssue (input:{issueId: "${mutationFields.issueId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${issue}
@@ -2515,23 +2490,23 @@ export const UnpinIssueInput = (mutationFields: types.UnpinIssueInput, issue?: s
 `
 
 /**
- * @description Github Graphql Mutation for UnresolveReviewThreadInput
+ * @description Github Graphql Mutation for UnresolveReviewThread
  * @mutationFields
  ** clientMutationId string
  ** threadId string
- * @fields ReviewThread
+ * @fields { PullRequestReviewThread }
  */
 
-export const UnresolveReviewThreadInput = (mutationFields: types.UnresolveReviewThreadInput, review?: string) => `
+export const UnresolveReviewThread = (mutationFields: types.UnresolveReviewThreadInput, pullRequestReviewThread?: string) => `
     mutation UnresolveReviewThreadInput {  
         unresolveReviewThread (input:{threadId: "${mutationFields.threadId}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${review}
+            thread { ${pullRequestReviewThread} }
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateBranchProtectionRuleInput
+ * @description Github Graphql Mutation for UpdateBranchProtectionRule
  * @mutationFields
  ** allowsDeletions boolean
  ** allowsForcePushes boolean
@@ -2555,28 +2530,28 @@ export const UnresolveReviewThreadInput = (mutationFields: types.UnresolveReview
  * @fields BranchProtectionRule
  */
 
-export const UpdateBranchProtectionRuleInput = (mutationFields: types.CreateBranchProtectionRuleInput, branchProtectionRule?: string) => `
+export const UpdateBranchProtectionRule = (mutationFields: types.CreateBranchProtectionRuleInput, branchProtectionRule?: string) => `
  mutation UpdateBranchProtectionRuleInput {
-    updateBranchProtectionRuleInput(input:{allowsDeletions: ${mutationFields.allowsDeletions}, allowsForcePushes: ${mutationFields.allowsForcePushes}, dismissesStaleReviews: ${mutationFields.dismissesStaleReviews} 
-             ${mutationFields.isAdminEnforced ? `, isAdminEnforced: ${mutationFields.isAdminEnforced}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
-             ${mutationFields.pattern ? `, pattern: "${mutationFields.pattern}"` : ''} ${mutationFields.pushActorIds ? `, pushActorIds: ${mutationFields.pushActorIds}` : ''} ${mutationFields.repositoryId ? `, repositoryId: "${mutationFields.repositoryId}"` : ''}
-             ${mutationFields.requiredApprovingReviewCount ? `, requiredApprovingReviewCount: ${mutationFields.requiredApprovingReviewCount}` : ''} ${mutationFields.requiredStatusCheckContexts ? `, requiredStatusCheckContexts: ${mutationFields.requiredStatusCheckContexts}` : ''}
-             ${mutationFields.requiresApprovingReviews ? `, requiresApprovingReviews: ${mutationFields.requiresApprovingReviews}` : ''} ${mutationFields.requiresCodeOwnerReviews ? `, requiresCodeOwnerReviews: ${mutationFields.requiresCodeOwnerReviews}` : ''} 
-             ${mutationFields.requiresCommitSignatures ? `, requiresCommitSignatures: ${mutationFields.requiresCommitSignatures}` : ''} ${mutationFields.requiresLinearHistory ? `, requiresLinearHistory : ${mutationFields.requiresLinearHistory}` : ''}
-             ${mutationFields.requiresStatusChecks ? `, requiresStatusChecks: ${mutationFields.requiresStatusChecks}` : ''} ${mutationFields.requiresStrictStatusChecks ? `, requiresStrictStatusChecks: ${mutationFields.requiresStrictStatusChecks}` : ''} 
-             ${mutationFields.restrictsPushes ? `, restrictsPushes: ${mutationFields.restrictsPushes}` : ''} ${mutationFields.restrictsReviewDismissals ? `, restrictsReviewDismissals: ${mutationFields.restrictsReviewDismissals}` : ''} 
-             ${mutationFields.reviewDismissalActorIds ? `, reviewDismissalActorIds: ${mutationFields.reviewDismissalActorIds}` : ''}}){
+    updateBranchProtectionRule(input:{branchProtectionRuleId: "${mutationFields.branchProtectionRuleId}" ${mutationFields.allowsDeletions !== undefined ? `, allowsDeletions: ${mutationFields.allowsDeletions}` : ''} ${mutationFields.allowsForcePushes !== undefined ? `, allowsForcePushes: ${mutationFields.allowsForcePushes}` : ''}
+        ${mutationFields.dismissesStaleReviews !== undefined ? `, dismissesStaleReviews: ${mutationFields.dismissesStaleReviews}` : ''} ${mutationFields.isAdminEnforced !== undefined ? `, isAdminEnforced: ${mutationFields.isAdminEnforced}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
+             ${mutationFields.pattern ? `, pattern: "${mutationFields.pattern}"` : ''} ${mutationFields.pushActorIds ? `, pushActorIds: ${mutationFields.pushActorIds}` : ''} 
+             ${mutationFields.requiredApprovingReviewCount ? `, requiredApprovingReviewCount: ${mutationFields.requiredApprovingReviewCount}` : ''} ${mutationFields.requiredStatusCheckContexts ? `, requiredStatusCheckContexts: [ ${mutationFields.requiredStatusCheckContexts} ]` : ''}
+             ${mutationFields.requiresApprovingReviews !== undefined ? `, requiresApprovingReviews: ${mutationFields.requiresApprovingReviews}` : ''} ${mutationFields.requiresCodeOwnerReviews !== undefined ? `, requiresCodeOwnerReviews: ${mutationFields.requiresCodeOwnerReviews}` : ''} 
+             ${mutationFields.requiresCommitSignatures !== undefined ? `, requiresCommitSignatures: ${mutationFields.requiresCommitSignatures}` : ''} ${mutationFields.requiresLinearHistory !== undefined ? `, requiresLinearHistory : ${mutationFields.requiresLinearHistory}` : ''}
+             ${mutationFields.requiresStatusChecks !== undefined ? `, requiresStatusChecks: ${mutationFields.requiresStatusChecks}` : ''} ${mutationFields.requiresStrictStatusChecks !== undefined ? `, requiresStrictStatusChecks: ${mutationFields.requiresStrictStatusChecks}` : ''} 
+             ${mutationFields.restrictsPushes !== undefined ? `, restrictsPushes: ${mutationFields.restrictsPushes}` : ''} ${mutationFields.restrictsReviewDismissals !== undefined ? `, restrictsReviewDismissals: ${mutationFields.restrictsReviewDismissals}` : ''} 
+             ${mutationFields.reviewDismissalActorIds ? `, reviewDismissalActorIds: [ ${mutationFields.reviewDismissalActorIds} ]` : ''}}){
          ${branchProtectionRule}
      }
  }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateCheckRunInput
+ * @description Github Graphql Mutation for UpdateCheckRun
  * @mutationFields
  ** actions CheckRunAction[]
  ** clientMutationId string
- ** completedAt Date
+ ** completedAt DateTime
  ** conclusion CheckConclusionState
  ** detailsUrl string
  ** externalId string
@@ -2584,16 +2559,16 @@ export const UpdateBranchProtectionRuleInput = (mutationFields: types.CreateBran
  ** name string
  ** output CheckRunOutput
  ** repositoryId string
- ** startedAt Date
+ ** startedAt DateTime
  ** status RequestableCheckStatusState
  * @fields ChechRun
  */
 
-export const UpdateCheckRunInput = (mutationFields: types.CreateCheckRunInput, checkRun?: string) => `
+export const UpdateCheckRun = (mutationFields: types.CreateCheckRunInput, checkRun?: string) => `
  mutation UpdateCheckRunInput {
-    updateCheckRun (input:{actions: ${mutationFields.actions}, completedAt: "${mutationFields.completedAt}", conclusion: ${mutationFields.conclusion} 
-             ${mutationFields.detailsUrl ? `, detailsUrl : "${mutationFields.detailsUrl}"` : ''} ${mutationFields.externalId ? `, externalId: "${mutationFields.externalId}"` : ''}
-             ${mutationFields.headSha ? `, headSha: "${mutationFields.headSha}"` : ''} ${mutationFields.name ? `, name: "${mutationFields.name}"` : ''} ${mutationFields.output ? `, output: ${mutationFields.output}` : ''}
+    updateCheckRun (input:{checkRunId: "${mutationFields.checkRunId}" ${mutationFields.actions ? `, actions: [ ${mutationFields.actions} ]` : ''} ${mutationFields.completedAt ? `, completedAt: "${mutationFields.completedAt}"` : ''} 
+        ${mutationFields.conclusion ? `conclusion: ${mutationFields.conclusion}` : ''} ${mutationFields.detailsUrl ? `, detailsUrl : "${mutationFields.detailsUrl}"` : ''} ${mutationFields.externalId ? `, externalId: "${mutationFields.externalId}"` : ''}
+             ${mutationFields.headSha ? `, headSha: "${mutationFields.headSha}"` : ''} ${mutationFields.name ? `, name: "${mutationFields.name}"` : ''} ${mutationFields.output ? `, output: "${mutationFields.output}"` : ''}
              ${mutationFields.repositoryId ? `, repositoryId: "${mutationFields.repositoryId}"` : ''} ${mutationFields.startedAt ? `, startedAt: "${mutationFields.startedAt}"` : ''}
              ${mutationFields.status ? `, status: ${mutationFields.status}` : ''} }){
          ${checkRun}
@@ -2602,59 +2577,57 @@ export const UpdateCheckRunInput = (mutationFields: types.CreateCheckRunInput, c
 `
 
 /**
- * @description Github Graphql Mutation for UpdateCheckSuitePreferencesInput
+ * @description Github Graphql Mutation for UpdateCheckSuitePreferences
  * @mutationFields
  ** autoTriggerPreferences CheckSuiteAutoTriggerPreference[]
  ** repositoryId string
- * @fields CheckSuite
+ * @fields Repository
  */
 
-export const UpdateCheckSuitePreferencesInput = (mutationFields: types.UpdateCheckSuitePreferencesInput, checkSuite?: string) => `
+export const UpdateCheckSuitePreferences = (mutationFields: types.UpdateCheckSuitePreferencesInput, repository?: string) => `
     mutation UpdateCheckSuitePreferencesInput {  
-        updateCheckSuitePreferences (input:{repositoryId : "${mutationFields.repositoryId}", autoTriggerPreferences : "${mutationFields.autoTriggerPreferences}"
+        updateCheckSuitePreferences (input:{repositoryId : "${mutationFields.repositoryId}", autoTriggerPreferences : [ ${mutationFields.autoTriggerPreferences} ]
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${checkSuite}
+            ${repository}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseAdministratorRoleInput
+ * @description Github Graphql Mutation for UpdateEnterpriseAdministratorRole
  * @mutationFields
  ** enterpriseId string
  ** login string
  ** role "BILLING_MANAGER" | "OWNER"
- * @fields Enterprise
  */
 
-export const UpdateEnterpriseAdministratorRoleInput = (mutationFields: types.UpdateEnterpriseAdministratorRoleInput, enterprise?: string) => `
+export const UpdateEnterpriseAdministratorRole = (mutationFields: types.UpdateEnterpriseAdministratorRoleInput) => `
     mutation UpdateEnterpriseAdministratorRoleInput {  
-        updateEnterpriseAdministratorRole (input:{enterpriseId: "${mutationFields.enterpriseId}", login: "${mutationFields.login}","${mutationFields.enterpriseId}", role: ${mutationFields.role}
+        updateEnterpriseAdministratorRole (input:{enterpriseId: "${mutationFields.enterpriseId}", login: "${mutationFields.login}", role: ${mutationFields.role}
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseAdministratorRoleInput
+ * @description Github Graphql Mutation for UpdateEnterpriseAllowPrivateRepositoryForkingSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
- * @fields Enterprise
  */
 
-export const UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput = (mutationFields: types.UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput, enterprise?: string) => `
-    mutation UpdateEnterpriseAdministratorRoleInput {  
-        updateEnterpriseAdministratorRole (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
+export const UpdateEnterpriseAllowPrivateRepositoryForkingSetting = (mutationFields: types.UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput) => `
+    mutation UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput {  
+        updateEnterpriseAllowPrivateRepositoryForkingSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseDefaultRepositoryPermissionSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseDefaultRepositoryPermissionSetting
  * @mutationFields
  ** enterpriseId string
  ** login string
@@ -2662,17 +2635,18 @@ export const UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput = (mutati
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseDefaultRepositoryPermissionSettingInput = (mutationFields: types.UpdateEnterpriseDefaultRepositoryPermissionSettingInput, enterprise?: string) => `
+export const UpdateEnterpriseDefaultRepositoryPermissionSetting = (mutationFields: types.UpdateEnterpriseDefaultRepositoryPermissionSettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseDefaultRepositoryPermissionSettingInput {  
         updateEnterpriseDefaultRepositoryPermissionSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseMembersCanChangeRepositoryVisibilitySetting
  * @mutationFields
  ** enterpriseId string
  ** login string
@@ -2680,17 +2654,18 @@ export const UpdateEnterpriseDefaultRepositoryPermissionSettingInput = (mutation
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseMembersCanChangeRepositoryVisibilitySetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput {  
         updateEnterpriseMembersCanChangeRepositoryVisibilitySetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseMembersCanCreateRepositoriesSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseMembersCanCreateRepositoriesSetting
  * @mutationFields
  ** enterpriseId string
  ** membersCanCreateInternalRepositories boolean
@@ -2701,236 +2676,248 @@ export const UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput = 
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseMembersCanCreateRepositoriesSettingInput = (mutationFields: types.UpdateEnterpriseMembersCanCreateRepositoriesSettingInput, enterprise?: string) => `
+export const UpdateEnterpriseMembersCanCreateRepositoriesSetting = (mutationFields: types.UpdateEnterpriseMembersCanCreateRepositoriesSettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseMembersCanCreateRepositoriesSettingInput {  
         updateEnterpriseMembersCanCreateRepositoriesSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue}, ${mutationFields.membersCanCreateInternalRepositories ? `, membersCanCreateInternalRepositories: "${mutationFields.membersCanCreateInternalRepositories}"` : ''}
         ${mutationFields.membersCanCreatePrivateRepositories ? `, membersCanCreatePrivateRepositories: "${mutationFields.membersCanCreatePrivateRepositories}"` : ''} ${mutationFields.membersCanCreatePublicRepositories ? `, membersCanCreatePublicRepositories: "${mutationFields.membersCanCreatePublicRepositories}"` : ''}
         ${mutationFields.membersCanCreateRepositoriesPolicyEnabled ? `, membersCanCreateRepositoriesPolicyEnabled: "${mutationFields.membersCanCreateRepositoriesPolicyEnabled}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseMembersCanDeleteIssuesSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseMembersCanDeleteIssuesSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseMembersCanDeleteIssuesSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseMembersCanDeleteIssuesSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseMembersCanDeleteIssuesSettingInput {  
         updateEnterpriseMembersCanDeleteIssuesSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseMembersCanDeleteIssuesSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseMembersCanDeleteIssuesSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseMembersCanDeleteRepositoriesSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput {  
         updateEnterpriseMembersCanDeleteRepositoriesSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseMembersCanInviteCollaboratorsSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseMembersCanInviteCollaboratorsSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput {  
         updateEnterpriseMembersCanInviteCollaboratorsSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseMembersCanMakePurchasesSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseMembersCanMakePurchasesSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseMembersCanMakePurchasesSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseMembersCanMakePurchasesSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseMembersCanMakePurchasesSettingInput {  
         updateEnterpriseMembersCanMakePurchasesSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseMembersCanUpdateProtectedBranchesSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseMembersCanUpdateProtectedBranchesSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseMembersCanUpdateProtectedBranchesSetting {  
         updateEnterpriseMembersCanUpdateProtectedBranchesSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseMembersCanViewDependencyInsightsSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseMembersCanViewDependencyInsightsSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput {  
         updateEnterpriseMembersCanViewDependencyInsightsSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseOrganizationProjectsSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseOrganizationProjectsSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseOrganizationProjectsSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseOrganizationProjectsSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseOrganizationProjectsSettingInput {  
         updateEnterpriseOrganizationProjectsSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseProfileInput
+ * @description Github Graphql Mutation for UpdateEnterpriseProfile
  * @mutationFields
  ** description string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseProfileInput = (mutationFields: types.UpdateEnterpriseProfileInput, enterprise?: string) => `
+export const UpdateEnterpriseProfile = (mutationFields: types.UpdateEnterpriseProfileInput, enterprise?: string) => `
     mutation UpdateEnterpriseProfileInput {  
-        updateEnterpriseProfile (input:{description: "${mutationFields.description}", enterpriseId: "${mutationFields.enterpriseId}", location: "${mutationFields.location}",
-        name: "${mutationFields.name}", websiteUrl: "${mutationFields.websiteUrl}", ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+        updateEnterpriseProfile (input:{ enterpriseId: "${mutationFields.enterpriseId}", location: "${mutationFields.location}",
+            name: "${mutationFields.name}", ${mutationFields.description ? `, description: "${mutationFields.description}"` : ''}
+            ${mutationFields.websiteUrl ? `, websiteUrl: "${mutationFields.websiteUrl}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseRepositoryProjectsSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseRepositoryProjectsSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseRepositoryProjectsSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseRepositoryProjectsSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseRepositoryProjectsSettingInput {  
         updateEnterpriseRepositoryProjectsSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseTwoFactorAuthenticationRequiredSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "DISABLED" | "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseTwoFactorAuthenticationRequiredSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseTwoFactorAuthenticationRequiredSetting {  
         updateEnterpriseTwoFactorAuthenticationRequiredSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateEnterpriseTeamDiscussionsSettingInput
+ * @description Github Graphql Mutation for UpdateEnterpriseTeamDiscussionsSetting
  * @mutationFields
  ** enterpriseId string
  ** settingValue "ENABLED" | "NO_POLICY"
  * @fields Enterprise
  */
 
-export const UpdateEnterpriseTeamDiscussionsSettingInput = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
+export const UpdateEnterpriseTeamDiscussionsSetting = (mutationFields: types.VisibilitySettingInput, enterprise?: string) => `
     mutation UpdateEnterpriseTeamDiscussionsSettingInput {  
         updateEnterpriseTeamDiscussionsSetting (input:{enterpriseId: "${mutationFields.enterpriseId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
+            message
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateIpAllowListEnabledSettingInput
+ * @description Github Graphql Mutation for UpdateIpAllowListEnabledSetting
  * @mutationFields
  ** ownerId string
  ** clientMutationId string
  ** settingValue "ENABLED" | "NO_POLICY"
- * @fields Enterprise
+ * @fields { IpAllowListOwner }
  */
 
-export const UpdateIpAllowListEnabledSettingInput = (mutationFields: types.UpdateIpAllowListEnabledSettingInput, enterprise?: string) => `
+export const UpdateIpAllowListEnabledSetting = (mutationFields: types.UpdateIpAllowListEnabledSettingInput, ipAllowListOwnerFields?: string) => `
     mutation UpdateIpAllowListEnabledSettingInput {  
         updateIpAllowListEnabledSetting (input:{ownerId: "${mutationFields.ownerId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${enterprise}
+            owner { ${ipAllowListOwnerFields} }
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateIpAllowListEntryInput
+ * @description Github Graphql Mutation for UpdateIpAllowListEntry
  * @mutationFields
  ** allowListValue string
  ** clientMutationId string
  ** ipAllowListEntryId string
  ** isActive boolean
  ** name string
- * @fields Enterprise
+ * @fields IpAllowListEntry
  */
 
-export const UpdateIpAllowListEntryInput = (mutationFields: types.UpdateIpAllowListEntryInput, ipAllowListEntry?: string) => `
-    mutation UpdateIpAllowListEnabledSettingInput {  
-        updateIpAllowListEnabledSetting (input:{allowListValue: "${mutationFields.allowListValue}", ipAllowListEntryId: "${mutationFields.ipAllowListEntryId}",
-        isActive: ${mutationFields.isActive}, name: ${mutationFields.name},     
+export const UpdateIpAllowListEntry = (mutationFields: types.UpdateIpAllowListEntryInput, ipAllowListEntry?: string) => `
+    mutation UpdateIpAllowListEntryInput {  
+        updateIpAllowListEntry (input:{ipAllowListEntryId: "${mutationFields.ipAllowListEntryId}", name: "${mutationFields.name}", isActive: ${mutationFields.isActive}
+        ${mutationFields.allowListValue ? `, allowListValue: "${mutationFields.allowListValue}"` : ''}      
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${ipAllowListEntry}
         }
@@ -2938,7 +2925,7 @@ export const UpdateIpAllowListEntryInput = (mutationFields: types.UpdateIpAllowL
 `
 
 /**
- * @description Github Graphql Mutation for UpdateIssueCommentInput
+ * @description Github Graphql Mutation for UpdateIssueComment
  * @mutationFields
  ** body string
  ** clientMutationId string
@@ -2946,9 +2933,9 @@ export const UpdateIpAllowListEntryInput = (mutationFields: types.UpdateIpAllowL
  * @fields IssueComment
  */
 
-export const UpdateIssueCommentInput = (mutationFields: types.UpdateIssueCommentInput, issueComment?: string) => `
+export const UpdateIssueComment = (mutationFields: types.UpdateIssueCommentInput, issueComment?: string) => `
     mutation UpdateIssueCommentInput {  
-        updateIssueComment (input:{body: "${mutationFields.body}", id: ${mutationFields.id},
+        updateIssueComment (input:{body: "${mutationFields.body}", id: "${mutationFields.id}",
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${issueComment}
         }
@@ -2956,7 +2943,7 @@ export const UpdateIssueCommentInput = (mutationFields: types.UpdateIssueComment
 `
 
 /**
- * @description Github Graphql Mutation for CreateIssue
+ * @description Github Graphql Mutation for UpdateIssue
  * @mutationFields
  ** assigneeIds string[]
  ** body string
@@ -2969,60 +2956,62 @@ export const UpdateIssueCommentInput = (mutationFields: types.UpdateIssueComment
  ** repositoryId string
  ** state "CLOSED" | "OPEN"
  ** title string
- * @fields Issue
+ * @fields
+ ** Actor
+ ** Issue
  */
 
-export const UpdateIssueInput = (mutationFields: types.IssueMutation, issue?: string) => `
+export const UpdateIssue = (mutationFields: types.UpdateIssueInput, fields?: string) => `
     mutation UpdateIssueInput {
-        updateIssue (input:{body:"${mutationFields.body}", repositoryId:"${mutationFields.repositoryId}", title:"${mutationFields.title}" 
-            ${mutationFields.assigneeIds ? `, assigneeIds: ${mutationFields.assigneeIds}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
-            ${mutationFields.issueTemplate ? `, issueTemplate: ${mutationFields.issueTemplate}` : ''} ${mutationFields.labelIds ? `, labelIds: "${mutationFields.labelIds}"` : ''} ${mutationFields.milestoneId ? `, milestoneId: "${mutationFields.milestoneId}"` : ''}
-            ${mutationFields.projectIds ? `, projectIds: "${mutationFields.projectIds}"` : ''} }){
-            ${issue}
+        updateIssue (input:{id:"${mutationFields.id}" ${mutationFields.body ? `, body:"${mutationFields.body}"` : ''} ${mutationFields.title ? `, title:"${mutationFields.title}"` : ''}
+            ${mutationFields.assigneeIds ? `, assigneeIds: [ ${mutationFields.assigneeIds} ]` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
+            ${mutationFields.milestoneId ? `, milestoneId: "${mutationFields.milestoneId}"` : ''} ${mutationFields.labelIds ? `, labelIds: [ ${mutationFields.labelIds} ]` : ''} 
+            ${mutationFields.projectIds ? `, projectIds: [ ${mutationFields.projectIds} ]` : ''} ${mutationFields.state ? `, state: [ ${mutationFields.state} ]` : ''} }){
+            ${fields}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateLabelInput
+ * @description Github Graphql Mutation for UpdateLabel
  * @mutationFields
  ** name string
  ** clientMutationId string
  ** color string
  ** description string
  ** id string
- * @fields Issue
+ * @fields Label
  */
 
-export const UpdateLabelInput = (mutationFields: types.UpdateLabelInput, issue?: string) => `
+export const UpdateLabel = (mutationFields: types.UpdateLabelInput, label?: string) => `
     mutation UpdateLabelInput {
-        updateLabel (input:{body:"${mutationFields.name}", color:"${mutationFields.color}", description:"${mutationFields.description}" 
-            ${mutationFields.id ? `, id: ${mutationFields.id}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${issue}
+        updateLabel (input:{id: "${mutationFields.id}" ${mutationFields.name ? `, name: "${mutationFields.name}"` : ''} ${mutationFields.color ? `, color: ${mutationFields.color}` : ''} 
+        ${mutationFields.description ? `, description:"${mutationFields.description}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${label}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateNotificationRestrictionSettingInput
+ * @description Github Graphql Mutation for UpdateNotificationRestrictionSetting
  * @mutationFields
  ** ownerId string
  ** clientMutationId string
  ** settingValue "ENABLED" | "DISABLED"
- * @fields Enterprise
+ * @fields { VerifiableDomainOwner }
  */
 
-export const UpdateNotificationRestrictionSettingInput = (mutationFields: types.UpdateIpAllowListEnabledSettingInput, enterprise?: string) => `
+export const UpdateNotificationRestrictionSetting = (mutationFields: types.UpdateIpAllowListEnabledSettingInput, verifiableDomainOwner?: string) => `
     mutation UpdateNotificationRestrictionSettingInput {  
         updateNotificationRestrictionSetting (input:{ownerId: "${mutationFields.ownerId}", settingValue: ${mutationFields.settingValue},
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${enterprise}
+            owner { ${verifiableDomainOwner} }
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateProjectCardInput
+ * @description Github Graphql Mutation for UpdateProjectCard
  * @mutationFields
  ** isArchived boolean
  ** note string
@@ -3030,9 +3019,9 @@ export const UpdateNotificationRestrictionSettingInput = (mutationFields: types.
  * @fields Enterprise
  */
 
-export const UpdateProjectCardInput = (mutationFields: types.UpdateProjectCardInput, enterprise?: string) => `
+export const UpdateProjectCard = (mutationFields: types.UpdateProjectCardInput, enterprise?: string) => `
     mutation UpdateProjectCardInput {  
-        updateProjectCard (input:{note: "${mutationFields.note}", isArchived: ${mutationFields.isArchived}, projectCardId: ${mutationFields.projectCardId},
+        updateProjectCard (input:{note: "${mutationFields.note}" projectCardId: "${mutationFields.projectCardId}" ${mutationFields.isArchived ? `, isArchived: ${mutationFields.isArchived}` : ''}
          ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
             ${enterprise}
         }
@@ -3040,25 +3029,25 @@ export const UpdateProjectCardInput = (mutationFields: types.UpdateProjectCardIn
 `
 
 /**
- * @description Github Graphql Mutation for UpdateProjectColumnInput
+ * @description Github Graphql Mutation for UpdateProjectColumn
  * @mutationFields
  ** clientMutationId string
  ** contentId string
  ** name string
  ** projectColumnId string
- * @fields ProjectCard
+ * @fields ProjectColumn
  */
 
-export const UpdateProjectColumnInput = (mutationFields: types.AddProjectColumnInput, card?: string) => `
+export const UpdateProjectColumn = (mutationFields: types.AddProjectColumnInput, projectColumn?: string) => `
     mutation UpdateProjectColumnInput {
-        updateProjectColumn (input:{name: "${mutationFields.name}" ${mutationFields.projectId ? `, projectId: "${mutationFields.projectId}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
-            ${card}
+        updateProjectColumn (input:{name: "${mutationFields.name}", projectColumnId: "${mutationFields.projectColumnId}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}) {
+            ${projectColumn}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateProjectInput
+ * @description Github Graphql Mutation for UpdateProject
  * @mutationFields
  ** body string
  ** clientMutationId string
@@ -3069,9 +3058,10 @@ export const UpdateProjectColumnInput = (mutationFields: types.AddProjectColumnI
  * @fields Project
  */
 
-export const UpdateProjectInput = (mutationFields: types.CreateProjectInput, project?: string) => `
+export const UpdateProject = (mutationFields: types.UpdateProjectInput, project?: string) => `
     mutation UpdateProjectInput {
-        updateProject (input:{ body: ${mutationFields.body}, name: "${mutationFields.name}" ${mutationFields.public ? `, public: ${mutationFields.public}` : ''} 
+        updateProject (input:{ projectId: "${mutationFields.projectId}" ${mutationFields.name ? `, name: "${mutationFields.name}"` : ''} ${mutationFields.body ? `, body: "${mutationFields.body}"` : ''}
+        ${mutationFields.public ? `, public: ${mutationFields.public}` : ''} ${mutationFields.state ? `, state: ${mutationFields.state}` : ''} 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${project}
         }
@@ -3079,7 +3069,7 @@ export const UpdateProjectInput = (mutationFields: types.CreateProjectInput, pro
 `
 
 /**
- * @description Github Graphql Mutation for UpdatePullRequestInput
+ * @description Github Graphql Mutation for UpdatePullRequest
  * @mutationFields
  ** assigneeIds string[]
  ** baseRefName string
@@ -3090,91 +3080,96 @@ export const UpdateProjectInput = (mutationFields: types.CreateProjectInput, pro
  ** maintainerCanModify boolean
  ** repositoryId string
  ** title string
- * @fields PullRequest
+ * @fields
+ ** Actor
+ ** PullRequest
  */
 
-export const UpdatePullRequestInput = (mutationFields: types.UpdatePullRequestInput, pullRequest?: string) => `
+export const UpdatePullRequest = (mutationFields: types.UpdatePullRequestInput, fields?: string) => `
  mutation UpdatePullRequestInput {
-    updatePullRequest (input:{ body: "${mutationFields.body}", baseRefName: "${mutationFields.baseRefName}", projectIds: ${mutationFields.projectIds} 
-        assigneeIds: ${mutationFields.assigneeIds}, maintainerCanModify: ${mutationFields.maintainerCanModify}, labelIds: ${mutationFields.labelIds}, 
-        milestoneId: "${mutationFields.milestoneId}" pullRequestId: "${mutationFields.pullRequestId}", title: "${mutationFields.title}", state: "${mutationFields.state}"
+    updatePullRequest (input:{ pullRequestId: "${mutationFields.pullRequestId}" ${mutationFields.body ? `, body: "${mutationFields.body}"` : ''} ${mutationFields.baseRefName ? `, baseRefName: "${mutationFields.baseRefName}"` : ''}
+     ${mutationFields.projectIds ? `, projectIds: [ ${mutationFields.projectIds} ]` : ''} ${mutationFields.assigneeIds ? `, assigneeIds: [ ${mutationFields.assigneeIds} ]` : ''} 
+     ${mutationFields.maintainerCanModify ? `, maintainerCanModify: ${mutationFields.maintainerCanModify}` : ''} ${mutationFields.labelIds ? `, labelIds: [ ${mutationFields.labelIds} ]` : ''} 
+        ${mutationFields.milestoneId ? `, milestoneId: "${mutationFields.milestoneId}"` : ''}  ${mutationFields.title ? `, title: "${mutationFields.title}"` : ''} 
+        ${mutationFields.state ? `, state: ${mutationFields.state}` : ''}
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-         ${pullRequest}
+         ${fields}
     }
  }
 `
 
 /**
- * @description Github Graphql Mutation for UpdatePullRequestReviewCommentInput
+ * @description Github Graphql Mutation for UpdatePullRequestReviewComment
  * @mutationFields
  ** body string
  ** pullRequestReviewCommentId string
- * @fields PullRequest
+ * @fields PullRequestReviewComment
  */
 
-export const UpdatePullRequestReviewCommentInput = (mutationFields: types.UpdatePullRequestReviewCommentInput, pullRequest?: string) => `
+export const UpdatePullRequestReviewComment = (mutationFields: types.UpdatePullRequestReviewCommentInput, pullRequestReviewComment?: string) => `
     mutation UpdatePullRequestReviewCommentInput {
         updatePullRequestReviewComment (input:{ body: "${mutationFields.body}", pullRequestReviewCommentId: "${mutationFields.pullRequestReviewCommentId}", 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${pullRequest}
+            ${pullRequestReviewComment}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdatePullRequestReviewInput
+ * @description Github Graphql Mutation for UpdatePullRequestReview
  * @mutationFields
  ** body string
  ** pullRequestReviewId string
- * @fields PullRequest
+ * @fields PullRequestReview
  */
 
-export const UpdatePullRequestReviewInput = (mutationFields: types.UpdatePullRequestReviewInput, pullRequest?: string) => `
+export const UpdatePullRequestReview = (mutationFields: types.UpdatePullRequestReviewInput, pullRequestReview?: string) => `
     mutation UpdatePullRequestReviewInput {
-        updatePullRequestReview (input:{ body: "${mutationFields.body}", pullRequestReviewId : "${mutationFields.pullRequestReviewId}", 
+        updatePullRequestReview (input:{ body: "${mutationFields.body}", pullRequestReviewId: "${mutationFields.pullRequestReviewId}" 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${pullRequest}
+            ${pullRequestReview}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateRefInput
+ * @description Github Graphql Mutation for UpdateRef
  * @mutationFields
  ** force boolean
  ** oid GitObjectID
  ** refId string
- * @fields PullRequest
+ * @fields Ref
  */
 
-export const UpdateRefInput = (mutationFields: types.UpdateRefInput, pullRequest?: string) => `
+export const UpdateRef = (mutationFields: types.UpdateRefInput, ref?: string) => `
     mutation UpdateRefInput {
-        updateRef (input:{ force: ${mutationFields.force}, oid: "${mutationFields.oid}", refId: "${mutationFields.refId}", 
+        updateRef (input:{ refId: "${mutationFields.refId}" ${mutationFields.force !== undefined ? `, force: ${mutationFields.force}` : ''} 
+        ${mutationFields.oid ? `oid: "${mutationFields.oid}"` : ''}  
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${pullRequest}
+            ${ref}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateRefsInput
+ * @description Github Graphql Mutation for UpdateRefs
  * @mutationFields
- ** refUpdates UpdateRefInput[]
+ ** refUpdates RefUpdate[]
  ** repositoryId string
  * @fields Refs
  */
 
-export const UpdateRefsInput = (mutationFields: types.UpdateRefInput, refs?: string) => `
+export const UpdateRefs = (mutationFields: types.UpdateRefsInput, refs?: string) => `
     mutation UpdateRefsInput {
-        updateRefs (input:{ force: ${mutationFields.force}, oid: "${mutationFields.oid}", refId: "${mutationFields.refId}", 
+        updateRefs (input:{ refUpdates: ${mutationFields.refUpdates}, repositoryId: "${mutationFields.repositoryId}" 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${refs}
+            clientMutationId
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateRepositoryInput
+ * @description Github Graphql Mutation for UpdateRepository
  * @mutationFields
  ** clientMutationId string
  ** description string
@@ -3189,37 +3184,42 @@ export const UpdateRefsInput = (mutationFields: types.UpdateRefInput, refs?: str
  * @fields Repository
  */
 
-export const UpdateRepositoryInput = (mutationFields: types.UpdateRepositoryInput, repository?: string) => `
+export const UpdateRepository = (mutationFields: types.UpdateRepositoryInput, repository?: string) => `
  mutation UpdateRepositoryInput {
-    updateRepository (input:{description:"${mutationFields.description}", name:"${mutationFields.name}", hasIssuesEnabled: ${mutationFields.hasIssuesEnabled},
-        hasProjectsEnabled: ${mutationFields.hasProjectsEnabled}, hasWikiEnabled: ${mutationFields.hasWikiEnabled}, 
-        hasWikiEnabled: ${mutationFields.hasWikiEnabled} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
-         ${mutationFields.homepageUrl ? `, homepageUrl: "${mutationFields.homepageUrl}"` : ''}
-            ${mutationFields.template ? `, template: ${mutationFields.template}` : ''} }){
+    updateRepository (input:{repositoryId:"${mutationFields.repositoryId}" ${mutationFields.description ? `, description:"${mutationFields.description}"` : ''} ${mutationFields.name ? `, name:"${mutationFields.name}"` : ''} 
+    ${mutationFields.hasIssuesEnabled ? `, hasIssuesEnabled: ${mutationFields.hasIssuesEnabled}` : ''} ${mutationFields.hasWikiEnabled ? `, hasWikiEnabled: ${mutationFields.hasWikiEnabled}` : ''} 
+    ${mutationFields.hasProjectsEnabled ? `, hasProjectsEnabled: ${mutationFields.hasProjectsEnabled}` : ''}, ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}
+         ${mutationFields.homepageUrl ? `, homepageUrl: "${mutationFields.homepageUrl}"` : ''} ${mutationFields.template ? `, template: ${mutationFields.template}` : ''} }){
          ${repository}
      }
  }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateSubscriptionInput
+ * @description Github Graphql Mutation for UpdateSubscription
  * @mutationFields
  ** state "IGNORED" | "SUBSCRIBED" | "UNSUBSCRIBED"
  ** subscribableId string
- * @fields Subscription
+ * @fields
+ ** onCommit
+ ** onIssue
+ ** onPullRequest
+ ** onRepository
+ ** onTeam
+ ** onTeamDiscussion
  */
 
-export const UpdateSubscriptionInput = (mutationFields: types.UpdateSubscriptionInput, subscription?: string) => `
+export const UpdateSubscription = (mutationFields: types.UpdateSubscriptionInput, subscription?: string) => `
     mutation UpdateSubscriptionInput {
         updateSubscription (input:{ state: ${mutationFields.state}, subscribableId: "${mutationFields.subscribableId}"
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${subscription}
+            subscribable { ${subscription} }
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateTeamDiscussionCommentInput
+ * @description Github Graphql Mutation for UpdateTeamDiscussionComment
  * @mutationFields
  ** body string
  ** bodyVersion string
@@ -3227,17 +3227,17 @@ export const UpdateSubscriptionInput = (mutationFields: types.UpdateSubscription
  * @fields TeamDiscussionComment
  */
 
-export const UpdateTeamDiscussionCommentInput = (mutationFields: types.UpdateTeamDiscussionCommentInput, teamDiscussionComment?: string) => `
+export const UpdateTeamDiscussionComment = (mutationFields: types.UpdateTeamDiscussionCommentInput, teamDiscussionComment?: string) => `
     mutation UpdateTeamDiscussionCommentInput {
-        updateTeamDiscussionComment (input:{ id: "${mutationFields.id}", body: "${mutationFields.body}", bodyVersion: "${mutationFields.bodyVersion}", 
+        updateTeamDiscussionComment (input:{ id: "${mutationFields.id}", body: "${mutationFields.body}" ${mutationFields.bodyVersion ? `, bodyVersion: "${mutationFields.bodyVersion}"` : ''} 
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${teamDiscussionComment}
         }
-    }
+    }mutationFields.title
 `
 
 /**
- * @description Github Graphql Mutation for UpdateTeamDiscussionInput
+ * @description Github Graphql Mutation for UpdateTeamDiscussion
  * @mutationFields
  ** body string
  ** bodyVersion string
@@ -3247,17 +3247,18 @@ export const UpdateTeamDiscussionCommentInput = (mutationFields: types.UpdateTea
  * @fields TeamDiscussion
  */
 
-export const UpdateTeamDiscussionInput = (mutationFields: types.UpdateTeamDiscussionInput, teamDiscussion?: string) => `
+export const UpdateTeamDiscussion = (mutationFields: types.UpdateTeamDiscussionInput, teamDiscussion?: string) => `
     mutation UpdateTeamDiscussionInput {
-        updateTeamDiscussionComment (input:{ id: "${mutationFields.id}", body: "${mutationFields.body}", bodyVersion: "${mutationFields.bodyVersion}",pinned: ${mutationFields.pinned}, 
-        title: "${mutationFields.title}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+        updateTeamDiscussion (input:{ id: "${mutationFields.id}", body: "${mutationFields.body}" ${mutationFields.bodyVersion ? `, bodyVersion: "${mutationFields.bodyVersion}"` : ''}
+        ${mutationFields.pinned ? `, pinned: ${mutationFields.pinned}` : ''} ${mutationFields.title ? `, title: "${mutationFields.title}"` : ''} 
+        ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${teamDiscussion}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateTeamReviewAssignmentInput
+ * @description Github Graphql Mutation for UpdateTeamReviewAssignment
  * @mutationFields
  ** algorithm "LOAD_BALANCE" | "ROUND_ROBIN"
  ** enabled boolean
@@ -3265,31 +3266,33 @@ export const UpdateTeamDiscussionInput = (mutationFields: types.UpdateTeamDiscus
  ** id string
  ** notifyTeam boolean
  ** teamMemberCount number
- * @fields TeamDiscussion
+ * @fields Team
  */
 
-export const UpdateTeamReviewAssignmentInput = (mutationFields: types.UpdateTeamReviewAssignmentInput, teamDiscussion?: string) => `
+export const UpdateTeamReviewAssignment = (mutationFields: types.UpdateTeamReviewAssignmentInput, team?: string) => `
     mutation UpdateTeamReviewAssignmentInput {
-        updateTeamReviewAssignment (input:{ id: "${mutationFields.id}", algorithm: ${mutationFields.algorithm}, enabled: ${mutationFields.enabled}, excludedTeamMemberIds: ${mutationFields.excludedTeamMemberIds}, 
-        notifyTeam: ${mutationFields.notifyTeam}, teamMemberCount: ${mutationFields.teamMemberCount} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${teamDiscussion}
+        updateTeamReviewAssignment (input:{ id: "${mutationFields.id}", ${mutationFields.algorithm ? `, algorithm: ${mutationFields.algorithm}` : ''} ${mutationFields.enabled ? `, enabled: ${mutationFields.enabled}` : ''} 
+        ${mutationFields.excludedTeamMemberIds ? `, excludedTeamMemberIds: [ ${mutationFields.excludedTeamMemberIds} ]` : ''} 
+        ${mutationFields.notifyTeam ? `, notifyTeam: ${mutationFields.notifyTeam}` : ''} ${mutationFields.teamMemberCount ? `, teamMemberCount: ${mutationFields.teamMemberCount}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${team}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for UpdateTopicsInput
+ * @description Github Graphql Mutation for UpdateTopics
  * @mutationFields
  ** repositoryId string
  ** topicNames string[]
- * @fields Topics
+ * @fields Repository
  */
 
-export const UpdateTopicsInput = (mutationFields: types.UpdateTopicsInput, teamDiscussion?: string) => `
+export const UpdateTopics = (mutationFields: types.UpdateTopicsInput, repository?: string) => `
     mutation UpdateTopicsInput {
-        updateTopics (input:{ repositoryId: "${mutationFields.repositoryId}", topicNames: ${mutationFields.topicNames},
+        updateTopics (input:{ repositoryId: "${mutationFields.repositoryId}", topicNames: [ ${mutationFields.topicNames} ],
         ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${teamDiscussion}
+            ${repository}
+            invalidTopicNames
         }
     }
 `
@@ -3317,14 +3320,14 @@ export const VerifiableDomainOrder = (mutationFields: types.VerifiableDomainOrde
 `
 
 /**
- * @description Github Graphql Mutation for VerifyVerifiableDomainInput
+ * @description Github Graphql Mutation for VerifyVerifiableDomain
  * @mutationFields
  ** clientMutationId string
  ** id string
  * @fields VerifiableDomain
  */
 
-export const VerifyVerifiableDomainInput = (mutationFields: types.DefautFields, verifiableDomain?: string) => `
+export const VerifyVerifiableDomain = (mutationFields: types.DefautFields, verifiableDomain?: string) => `
     mutation VerifyVerifiableDomainInput {
         verifyVerifiableDomain (input:{ id: "${mutationFields.id}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
             ${verifiableDomain}
@@ -3333,7 +3336,7 @@ export const VerifyVerifiableDomainInput = (mutationFields: types.DefautFields, 
 `
 
 /**
- * @description Github Graphql Mutation for CreateDeploymentInput
+ * @description Github Graphql Mutation for CreateDeployment
  * @mutationFields
  ** autoMerge boolean
  ** clientMutationId string
@@ -3342,23 +3345,23 @@ export const VerifyVerifiableDomainInput = (mutationFields: types.DefautFields, 
  ** payload string
  ** refId string
  ** repositoryId string
- ** requiredContexts string
+ ** requiredContexts string[]
  ** task string
  * @fields Deployment
  */
 
-export const CreateDeploymentInput = (mutationFields: types.CreateDeploymentInput, refs?: string) => `
+export const CreateDeployment = (mutationFields: types.CreateDeploymentInput, deployment?: string) => `
     mutation CreateDeploymentInput {
-        createDeployment (input:{ autoMerge: ${mutationFields.autoMerge}, description: "${mutationFields.description}", environment: "${mutationFields.environment}", 
-        refId: "${mutationFields.refId}", repositoryId: "${mutationFields.repositoryId}" requiredContexts: ${mutationFields.requiredContexts}, task: "${mutationFields.task}" 
-        ${mutationFields.payload ? `, payload: "${mutationFields.payload}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${refs}
+        createDeployment (input:{ repositoryId: "${mutationFields.repositoryId}", ${mutationFields.autoMerge !== undefined ? `, autoMerge: ${mutationFields.autoMerge}` : ''} ${mutationFields.description ? `, description: "${mutationFields.description}"` : ''}  
+        ${mutationFields.environment ? `, environment: "${mutationFields.environment}"` : ''} ${mutationFields.refId ? `, refId: "${mutationFields.refId}"` : ''} ${mutationFields.requiredContexts ? `, requiredContexts: ${mutationFields.requiredContexts}` : ''}
+        ${mutationFields.task ? `, task: "${mutationFields.task}"` : ''} ${mutationFields.payload ? `, payload: "${mutationFields.payload}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${deployment}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for CreateDeploymentStatusInput
+ * @description Github Graphql Mutation for CreateDeploymentStatus
  * @mutationFields
  ** autoInactive boolean
  ** clientMutationId string
@@ -3371,51 +3374,46 @@ export const CreateDeploymentInput = (mutationFields: types.CreateDeploymentInpu
  * @fields Deployment
  */
 
-export const CreateDeploymentStatusInput = (mutationFields: types.CreateDeploymentStatusInput, refs?: string) => `
+export const CreateDeploymentStatus = (mutationFields: types.CreateDeploymentStatusInput, deployment?: string) => `
     mutation CreateDeploymentStatusInput {
-        createDeploymentStatus (input:{ autoInactive: ${mutationFields.autoInactive}, description: "${mutationFields.description}", environment: "${mutationFields.environment}", 
-        deploymentId: "${mutationFields.deploymentId}", environmentUrl: "${mutationFields.environmentUrl}" logUrl: ${mutationFields.logUrl}, state: ${mutationFields.state} 
-       ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${refs}
+        createDeploymentStatus (input:{deploymentId: "${mutationFields.deploymentId}" ${mutationFields.autoInactive !== undefined ? `, autoInactive: ${mutationFields.autoInactive}` : ''} ${mutationFields.description ? `, description: "${mutationFields.description}"` : ''}
+        ${mutationFields.environment ? `, environment: "${mutationFields.environment}"` : ''} ${mutationFields.environmentUrl ? `, environmentUrl: "${mutationFields.environmentUrl}"` : ''}
+        ${mutationFields.logUrl ? `, logUrl: "${mutationFields.logUrl}"` : ''} ${mutationFields.state ? `, state: ${mutationFields.state}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${deployment}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for CreateLabelInput
+ * @description Github Graphql Mutation for CreateLabel
  * @mutationFields
  ** name string
  ** clientMutationId string
  ** color string
  ** description string
  ** id string
- * @fields Issue
+ * @fields Label
  */
 
-export const CreateLabelInput = (mutationFields: types.CreateLabelInput, issue?: string) => `
+export const CreateLabel = (mutationFields: types.CreateLabelInput, label?: string) => `
     mutation CreateLabelInput {
-        createLabel (input:{body:"${mutationFields.name}", color:"${mutationFields.color}", description:"${mutationFields.description}" 
-            ${mutationFields.repositoryId ? `, repositoryId: ${mutationFields.repositoryId}` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${issue}
+        createLabel (input:{name:"${mutationFields.name}", color:"${mutationFields.color}", description:"${mutationFields.description}" 
+            ${mutationFields.repositoryId ? `, repositoryId: "${mutationFields.repositoryId}"` : ''} ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
+            ${label}
         }
     }
 `
 
 /**
- * @description Github Graphql Mutation for DeleteLabelInput
+ * @description Github Graphql Mutation for DeleteLabel
  * @mutationFields
- ** name string
- ** clientMutationId string
- ** color string
- ** description string
  ** id string
- * @fields Issue
  */
 
-export const DeleteLabelInput = (mutationFields: types.DefautFields, issue?: string) => `
+export const DeleteLabel = (mutationFields: types.DefautFields) => `
     mutation DeleteLabelInput {
-        deleteLabel (input:{id:"${mutationFields.id}" ${mutationFields.clientMutationId ? `, clientMutationId: "${mutationFields.clientMutationId}"` : ''}}){
-            ${issue}
+        deleteLabel (input:{id:"${mutationFields.id}" }){
+            clientMutationId
         }
     }
 `

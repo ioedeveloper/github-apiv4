@@ -500,7 +500,7 @@ export declare interface EnterpriseAdministratorInvitation {
     fields: string;
 }
 
-export declare interface Enterprise{
+export declare interface Enterprise {
     invitationToken?: string;
     slug?: string;
     fields: string;

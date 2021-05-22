@@ -634,7 +634,7 @@ export declare interface Commit {
     messageHeadline: string;
     messageHeadlineHTML: string;
     oid: string;
-    onBehalfOf: Organization;
+    onBehalfOf: OnBehalfOf;
     parents: Commits;
     pushedDate: string;
     repository: RepositoryInfo;
@@ -831,7 +831,7 @@ export declare interface Issue {
     }
     projectCards: ProjectCards;
     publishedAt: string;
-    reactionGroups: ReactionGroups[];
+    reactionGroups: ReactionGroups;
     repository: RepositoryInfo;
     resourcePath: string;
     state: string;
@@ -1246,7 +1246,7 @@ export declare interface PullRequest {
     projectCards: ProjectCards;
     repository: RepositoryInfo;
     reactions: Reactions;
-    reactionGroups: ReactionGroups[];
+    reactionGroups: ReactionGroups;
     resourcePath: string;
     revertResourcePath: string;
     revertUrl: string;
@@ -1399,7 +1399,7 @@ export declare interface Package {
     statistics: {
         downloadsTotalCount: number;
     };
-    version: Version| string;
+    version: Version | string;
     versions: {
         edges: {
             node: Version
@@ -1881,7 +1881,7 @@ export declare interface Comment {
     publishedAt: string;
     pullRequest: PullRequest;
     reactionGroup: ReactionGroup;
-    reactionGroups: ReactionGroups[];
+    reactionGroups: ReactionGroups;
     reactions: Reactions;
     repository: RepositoryInfo;
     resourcePath: string;
@@ -1945,7 +1945,7 @@ export declare interface IssueComment {
     minimizedReason: string;
     publishedAt: string;
     pullRequest: PullRequest;
-    reactionGroups: ReactionGroups[];
+    reactionGroups: ReactionGroups;
     reactions: Reactions;
 }
 
@@ -2007,7 +2007,7 @@ export declare interface TeamDiscussionComment {
 declare interface Subject extends PullRequest, Issue, TeamDiscussion, TeamDiscussionComment, CommitComment, IssueComment, PullRequestReview, PullRequestReviewComment {
     databaseId: number;
     id: number | string;
-    reactionGroups: ReactionGroups[];
+    reactionGroups: ReactionGroups;
     reactions: Reactions
     viewerCanReact: boolean;
 }
@@ -2684,14 +2684,14 @@ export declare interface Review {
     id: number | string;
     includesCreatedEdit: boolean;
     lastEditedAt: string;
-    onBehalfOf: Organization;
+    onBehalfOf: OnBehalfOf;
     minimizedReason: string;
     path: string;
     position: number;
     publishedAt: string;
     pullRequest: PullRequest;
     reactionGroup: ReactionGroup;
-    reactionGroups: ReactionGroups[];
+    reactionGroups: ReactionGroups;
     reactions: Reactions;
     repository: RepositoryInfo;
     resourcePath: string;
@@ -2770,24 +2770,38 @@ export declare interface RequestedReviewer extends Mannequin, Team, UserInfo {
 }
 
 export declare interface PullRequestReview {
-    comment: Comments;
-    diffSide: string;
+    author: Owner;
+    authorAssociation: string;
+    authorCanPushToRepository: boolean;
+    body: string;
+    bodyHTML: string;
+    bodyText: string;
+    comments: Comments;
+    commit: Commit;
+    createdAt: string;
+    createdViaEmail: boolean;
+    databaseId: number;
+    editor: Owner;
     id: number | string;
-    isCollapsed: boolean;
-    isOutdated: boolean;
-    isResolved: boolean;
-    line: number;
-    originalLine: number;
-    originalStartLine: number;
-    path: string;
+    includesCreatedEdit: boolean;
+    lastEditedAt: string;
+    onBehalfOf: OnBehalfOf;
+    publishedAt: string;
     pullRequest: PullRequest;
+    reactionGroups: ReactionGroups;
+    reactions: Reactions;
     repository: RepositoryInfo;
-    resolvedBy: UserInfo;
-    startDiffSide: string;
-    startLine: number;
-    viewerCanReply: boolean;
-    viewerCanResolve: boolean;
-    viewerCanUnresolve: boolean;
+    resourcePath: string;
+    state: string;
+    submittedAt: string;
+    updatedAt: string;
+    url: string;
+    userContentEdits: UserContentEdits;
+    viewerCanDelete: boolean;
+    viewerCanUpdate: boolean;
+    viewerCannotUpdateReasons: string[];
+    viewerDidAuthor: boolean;
+    viewerCanReact: boolean;
 }
 
 export declare interface PullRequestReviews {
@@ -2796,6 +2810,16 @@ export declare interface PullRequestReviews {
         node: PullRequestReview;
     }[],
     nodes: PullRequestReview[]
+    pageInfo: PageInfo;
+    totalCount: number;
+}
+
+export declare interface OnBehalfOf {
+    edges: {
+        cursor: string;
+        node: Team;
+    }[],
+    nodes: Team[]
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -3894,7 +3918,7 @@ export declare interface MemberStatus {
     emoji: string;
     emojiHTML: string;
     expiresAt: string;
-    id: number|string;
+    id: number | string;
     indicatesLimitedAvailability: boolean;
     message: string;
     organization: OrganizationInfo | string;
@@ -3964,7 +3988,7 @@ export declare interface ScimIdentity {
 
 export declare interface ExternalIdentity {
     guid: string;
-    id: string| number;
+    id: string | number;
     organizationInvitation: Invitation;
     samlIdentity: SamlIdentity;
     scimIdentity: ScimIdentity;
@@ -4064,7 +4088,7 @@ export declare interface Discussions {
 export declare interface Invitation {
     createdAt: string;
     email: string;
-    id: number|string;
+    id: number | string;
     invitationType: string;
     invitee: UserInfo;
     inviter: UserInfo;
@@ -4233,7 +4257,7 @@ export declare interface EnterpriseServerInstallation {
     id: string | number;
     isConnected: boolean;
     updatedAt: string;
-    userAccounts:UserAccounts| EnterpriseUserAccounts;
+    userAccounts: UserAccounts | EnterpriseUserAccounts;
     userAccountsUploads: UserAccountsUploads;
 }
 
@@ -4782,7 +4806,7 @@ export declare interface MarketplaceListingQuery {
 export declare interface Category {
     description: string;
     howItWorks: string;
-    id: number|string;
+    id: number | string;
     name: string;
     primaryListingCount: number;
     resourcePath: string;
@@ -4944,6 +4968,17 @@ export declare interface UserAccountsUploads {
 
 type Content = string | CardItems | Source
 
+export declare interface Starrable extends Topic, RepositoryInfo, Gist {
+
+}
+
+export declare interface ContentAttachment {
+    body: string;
+    contentReference: string;
+    databaseId: number;
+    title: string;
+}
+
 export declare interface DefautFields {
     clientMutationId?: string;
     id?: string;
@@ -4959,6 +4994,16 @@ export declare interface IssueMutation extends DefautFields {
     repositoryId: string;
     issueState?: 'CLOSED' | 'OPEN'
     title: string;
+}
+
+export declare interface UpdateIssueInput extends DefautFields {
+    assigneeIds?: string[]
+    body?: string;
+    labelIds?: string[]
+    milestoneId?: string;
+    projectIds?: string[],
+    state?: 'CLOSED' | 'OPEN'
+    title?: string;
 }
 
 export declare interface AcceptEnterpriseAdministratorInvitationInput extends DefautFields {
@@ -4988,43 +5033,44 @@ export declare interface AddEnterpriseSupportEntitlementInput extends DefautFiel
 }
 
 export declare interface LabelsToLabelableInput extends DefautFields {
-    labelIds?: string[];
+    labelIds: string[];
     labelableId: string;
 }
 
 export declare interface AddProjectColumnInput extends DefautFields {
-    name?: string[];
-    projectId: string;
+    name: string;
+    projectId?: string;
+    projectColumnId?: string;
 }
 
 export declare interface AddProjectCardInput extends DefautFields {
-    contentId: string;
-    note: string;
+    contentId?: string;
+    note?: string;
     projectColumnId: string;
 }
 
 export declare interface AddPullRequestReviewCommentInput extends DefautFields {
     body: string;
-    commitOID: string;
-    inReplyTo: string;
-    path: string;
-    position: number;
+    commitOID?: string;
+    inReplyTo?: string;
+    path?: string;
+    position?: number;
     pullRequestId: string;
-    pullRequestReviewId: string;
+    pullRequestReviewId?: string;
 }
 
 export declare interface AddPullRequestReviewInput extends DefautFields {
     body: string;
-    comments: string[]
-    commitOID: string;
-    event?: string;
-    path: string;
-    position: number;
+    comments?: string[]
+    commitOID?: string;
+    event: 'APPROVE' | 'COMMENT' | 'DISMISS' | 'REQUEST_CHANGES';
+    path?: string;
+    position?: number;
     pullRequestId: string;
-    threads: string;
+    threads?: string;
 }
 
-export declare interface DraftPullRequestReviewComment{
+export declare interface DraftPullRequestReviewComment {
     body: string;
     path: string;
     position: number;
@@ -5044,7 +5090,7 @@ export declare interface EnablePullRequestAutoMergeInput extends DefautFields {
     commitBody: string;
     commitHeadline: string;
     mergeMethod: 'MERGE' | 'REBASE' | 'SQUASH';
-    pullRequestId:string;
+    pullRequestId: string;
 }
 
 export declare interface EnterpriseAdministratorInvitationOrder {
@@ -5084,14 +5130,14 @@ export declare interface GistOrder {
 
 export declare interface AddPullRequestReviewThreadInput extends DefautFields {
     body: string;
-    line: number;
+    line?: number;
     pullRequestId: string;
-    pullRequestReviewId: string;
-    side: string;
+    pullRequestReviewId?: string;
+    side?: string;
     startLine?: number;
-    path: string;
-    position: number;
-    startSide: 'LEFT' | 'RIGHT';
+    path?: string;
+    position?: number;
+    startSide?: 'LEFT' | 'RIGHT';
 }
 
 export declare interface AddReactionInput extends DefautFields {
@@ -5109,7 +5155,7 @@ export declare interface AddVerifiableDomainInput extends DefautFields {
 }
 
 export declare interface ApproveVerifiableDomainInput extends DefautFields {
-    id: string;
+    domain: string;
 }
 
 export declare interface ArchiveRepositoryInput extends DefautFields {
@@ -5127,8 +5173,8 @@ export declare interface CancelEnterpriseAdminInvitationInput extends DefautFiel
 
 export declare interface ChangeUserStatusInput extends DefautFields {
     emoji: string;
-    expiresAt: string;
-    limitedAvailability: boolean;
+    expiresAt?: string;
+    limitedAvailability?: boolean;
     message: string;
     organizationId: string;
 }
@@ -5192,21 +5238,21 @@ export declare interface ClearLabelsFromLabelableInput extends DefautFields {
 }
 
 export declare interface CloneProjectInput extends DefautFields {
-    body: string;
+    body?: string;
     includeWorkflows: boolean;
-    name: string;
-    public: boolean;
+    name?: string;
+    public?: boolean;
     sourceId: string;
     targetOwnerId: string;
 }
 
 export declare interface CloneTemplateRepositoryInput extends DefautFields {
-    description: string;
-    includeAllBranches: boolean;
+    description?: string;
+    includeAllBranches?: boolean;
     name: string;
-    ownerId: string;
+    ownerId?: string;
     repositoryId: string;
-    visibility: string;
+    visibility: 'INTERNAL' | 'PRIVATE' | 'PUBLIC';
 }
 
 export declare interface CloseIssueInput extends DefautFields {
@@ -5230,50 +5276,52 @@ export declare interface CommitContributionOrder extends Direction {
     field: 'COMMIT_COUNT' | 'OCCURRED_AT';
 }
 
-export declare interface ConvertProjectCardNoteToIssueInput extends DefautFields{
+export declare interface ConvertProjectCardNoteToIssueInput extends DefautFields {
     body: string;
     projectCardId: string;
     repositoryId: string;
     title: string;
 }
 
-export declare interface ConvertPullRequestToDraftInput extends DefautFields{
+export declare interface ConvertPullRequestToDraftInput extends DefautFields {
     pullRequestId: string;
 }
 
-export declare interface CreateBranchProtectionRuleInput extends DefautFields{
-    allowsDeletions: boolean;
-    allowsForcePushes: boolean;
-    dismissesStaleReviews: boolean;
-    isAdminEnforced: boolean;
+export declare interface CreateBranchProtectionRuleInput extends DefautFields {
+    allowsDeletions?: boolean;
+    allowsForcePushes?: boolean;
+    branchProtectionRuleId?: string;
+    dismissesStaleReviews?: boolean;
+    isAdminEnforced?: boolean;
     pattern: string;
-    pushActorIds: string[];
-    repositoryId: string;
-    requiredApprovingReviewCount: number;
-    requiredStatusCheckContexts: string[];
-    requiresApprovingReviews: boolean;
-    requiresCodeOwnerReviews: boolean;
-    requiresCommitSignatures: boolean;
-    requiresLinearHistory: boolean;
-    requiresStatusChecks: boolean;
-    requiresStrictStatusChecks: boolean;
-    restrictsPushes: boolean;
-    restrictsReviewDismissals: boolean;
-    reviewDismissalActorIds: string[];
+    pushActorIds?: string[];
+    repositoryId?: string;
+    requiredApprovingReviewCount?: number;
+    requiredStatusCheckContexts?: string[];
+    requiresApprovingReviews?: boolean;
+    requiresCodeOwnerReviews?: boolean;
+    requiresCommitSignatures?: boolean;
+    requiresLinearHistory?: boolean;
+    requiresStatusChecks?: boolean;
+    requiresStrictStatusChecks?: boolean;
+    restrictsPushes?: boolean;
+    restrictsReviewDismissals?: boolean;
+    reviewDismissalActorIds?: string[];
 }
 
 export declare interface CreateCheckRunInput extends DefautFields {
-    actions: string;
-    completedAt: string;
-    conclusion: string;
-    detailsUrl: string;
-    externalId: string;
-    headSha: string;
-    name: string;
-    output: string;
+    actions?: string[];
+    checkRunId?: string;
+    completedAt?: string;
+    conclusion?: 'ACTION_REQUIRED' | 'CANCELLED' | 'FAILURE' | 'NEUTRAL' | 'SKIPPED' | 'STALE' | 'STARTUP_FAILURE' | 'SUCCESS' | 'TIMED_OUT';
+    detailsUrl?: string;
+    externalId?: string;
+    headSha?: string;
+    name?: string;
+    output?: string;
     repositoryId: string;
-    startedAt: string;
-    status: 'ERROR' | 'FAILURE' | 'INACTIVE' | 'IN_PROGRESS' | 'PENDING' | 'QUEUED' | 'SUCCESS' | 'WAITING';
+    startedAt?: string;
+    status?: 'COMPLETED' | 'IN_PROGRESS' | 'QUEUED' | 'WAITING';
 }
 
 export declare interface CreateCheckSuiteInput extends DefautFields {
@@ -5290,7 +5338,6 @@ export declare interface CreateContentAttachmentInput extends DefautFields {
 export declare interface CreateEnterpriseOrganizationInput extends DefautFields {
     adminLogins: string[];
     billingEmail: string;
-
     enterpriseId: string;
     login: string;
     profileName: string;
@@ -5306,19 +5353,25 @@ export declare interface CreateIpAllowListEntryInput extends DefautFields {
 export declare interface CreateProjectInput extends DefautFields {
     body: string;
     name: string;
-    public: boolean;
     ownerId: string;
-    projectId?: string;
-    template: string;
-    state: 'CLOSED' | 'OPEN';
+    repositoryIds: string[];
+    template?: 'AUTOMATED_KANBAN_V2' | 'AUTOMATED_REVIEWS_KANBAN' | 'BASIC_KANBAN' | 'BUG_TRIAGE';
+}
+
+export declare interface UpdateProjectInput extends DefautFields {
+    body?: string;
+    name?: string;
+    projectId: string;
+    public?: boolean;
+    state?: 'OPEN' | 'CLOSE'
 }
 
 export declare interface CreatePullRequestInput extends DefautFields {
     baseRefName: string;
     body: string;
-    draft: boolean;
+    draft?: boolean;
     headRefName: string;
-    maintainerCanModify: boolean;
+    maintainerCanModify?: boolean;
     repositoryId: string;
     title: string;
 }
@@ -5331,8 +5384,8 @@ export declare interface CreateRefInput extends DefautFields {
 
 export declare interface CreateRepositoryInput extends DefautFields {
     description: string;
-    hasIssuesEnabled: boolean;
-    hasWikiEnabled: boolean;
+    hasIssuesEnabled?: boolean;
+    hasWikiEnabled?: boolean;
     homepageUrl?: string;
     name: string;
     ownerId?: string;
@@ -5380,7 +5433,7 @@ export declare interface DeleteProjectColumnInput extends DefautFields {
 }
 
 export declare interface DeleteProjectCardInput extends DefautFields {
-    projectId: string;
+    cardId: string;
 }
 
 export declare interface DeleteProjectInput extends DefautFields {
@@ -5465,7 +5518,7 @@ export declare interface LanguageOrder {
 }
 
 export declare interface LockLockableInput extends DefautFields {
-    lockReason: string;
+    lockReason: 'OFF_TOPIC' | 'RESOLVED' | 'SPAM' | 'TOO_HEATED';
     lockableId: string;
 }
 
@@ -5492,12 +5545,12 @@ export declare interface MergeBranchInput extends DefautFields {
 }
 
 export declare interface MergePullRequestInput extends DefautFields {
-    authorEmail: string;
+    authorEmail?: string;
     commitBody: string;
-    commitHeadline: string;
-    expectedHeadOid: string;
+    commitHeadline?: string;
+    expectedHeadOid?: string;
     mergeMethod: 'MERGE' | 'REBASE' | 'SQUASH';
-    repositoryId: string;
+    pullRequestId: string;
 }
 
 export declare interface MilestoneOrder {
@@ -5511,13 +5564,13 @@ export declare interface MinimizeCommentInput extends DefautFields {
 }
 
 export declare interface MoveProjectCardInput extends DefautFields {
-    afterCardId: string;
+    afterCardId: string | null;
     cardId: string;
     columnId: string;
 }
 
 export declare interface MoveProjectColumnInput extends DefautFields {
-    afterColumnId: string;
+    afterColumnId?: string;
     columnId: string;
 }
 
@@ -5549,9 +5602,9 @@ export declare interface ProjectCardImport extends DefautFields {
     repository: string;
 }
 
-export declare interface ProjectColumnImport extends DefautFields {
+export declare interface ProjectColumnImport {
     columnName: string;
-    issues: string[];
+    issues?: string[];
     position: number;
 }
 
@@ -5606,7 +5659,7 @@ export declare interface RemoveEnterpriseOrganizationInput extends DefautFields 
 }
 
 export declare interface RemoveOutsideCollaboratorInput extends DefautFields {
-    organizationId : string;
+    organizationId: string;
     userId: string;
 }
 
@@ -5624,7 +5677,7 @@ export declare interface ReopenIssueInput extends DefautFields {
 }
 
 export declare interface ReopenPullRequestInput extends DefautFields {
-    issueId: string;
+    pullRequestId: string;
 }
 
 export declare interface RepositoryInvitationOrder {
@@ -5835,8 +5888,7 @@ export declare interface UpdateIpAllowListEnabledSettingInput extends DefautFiel
 }
 
 export declare interface UpdateIpAllowListEntryInput extends DefautFields {
-    allowListValue: string;
-
+    allowListValue?: string;
     ipAllowListEntryId: string;
     isActive: boolean;
     name: string;
@@ -5848,28 +5900,28 @@ export declare interface UpdateIssueCommentInput extends DefautFields {
 }
 
 export declare interface UpdateLabelInput extends DefautFields {
-    color: string;
-    description: string;
-    name: string;
+    color?: string;
+    description?: string;
+    name?: string;
 }
 
 export declare interface UpdateProjectCardInput extends DefautFields {
-    isArchived: boolean;
+    isArchived?: boolean;
     note: string;
     projectCardId?: string;
 }
 
 export declare interface UpdatePullRequestInput extends DefautFields {
-    assigneeIds: string[];
-    baseRefName: string;
-    body: string;
-    labelIds: string[];
-    maintainerCanModify: boolean
-    milestoneId: string;
-    projectIds: string[];
-    pullRequestId: string;
-    state: 'CLOSED' | 'OPEN';
-    title: string;
+    assigneeIds?: string[];
+    baseRefName?: string;
+    body?: string;
+    labelIds?: string[];
+    maintainerCanModify?: boolean
+    milestoneId?: string;
+    projectIds?: string[];
+    pullRequestId?: string;
+    state?: 'CLOSED' | 'OPEN';
+    title?: string;
 }
 
 export declare interface UpdatePullRequestReviewCommentInput extends DefautFields {
@@ -5883,7 +5935,7 @@ export declare interface UpdatePullRequestReviewInput extends DefautFields {
 }
 
 export declare interface UpdateRefInput extends DefautFields {
-    force: boolean;
+    force?: boolean;
     oid: string;
     refId: string;
 }
@@ -5893,14 +5945,14 @@ export declare interface UpdateRefsInput extends DefautFields {
     repositoryId: string;
 }
 
-export declare interface UpdateRepositoryInput extends DefautFields{
-    hasProjectsEnabled: boolean;
-    repositoryId?: string;
+export declare interface UpdateRepositoryInput extends DefautFields {
+    hasProjectsEnabled?: boolean;
+    repositoryId: string;
     description: string;
-    hasIssuesEnabled: boolean;
-    hasWikiEnabled: boolean;
+    hasIssuesEnabled?: boolean;
+    hasWikiEnabled?: boolean;
     homepageUrl?: string;
-    name: string;
+    name?: string;
     template?: boolean;
 }
 
@@ -5911,22 +5963,22 @@ export declare interface UpdateSubscriptionInput extends DefautFields {
 
 export declare interface UpdateTeamDiscussionCommentInput extends DefautFields {
     body: string;
-    bodyVersion: string;
+    bodyVersion?: string;
 }
 
 export declare interface UpdateTeamDiscussionInput extends DefautFields {
     body: string;
-    bodyVersion: string;
-    pinned: boolean;
-    title: string;
+    bodyVersion?: string;
+    pinned?: boolean;
+    title?: string;
 }
 
 export declare interface UpdateTeamReviewAssignmentInput extends DefautFields {
-    algorithm: 'LOAD_BALANCE' | 'ROUND_ROBIN';
-    enabled: boolean;
-    excludedTeamMemberIds: string[];
-    notifyTeam: boolean;
-    teamMemberCount: number;
+    algorithm?: 'LOAD_BALANCE' | 'ROUND_ROBIN';
+    enabled?: boolean;
+    excludedTeamMemberIds?: string[];
+    notifyTeam?: boolean;
+    teamMemberCount?: number;
 }
 
 export declare interface UpdateTopicsInput extends DefautFields {
@@ -5945,23 +5997,23 @@ export declare interface VerifiableDomainOrder {
 }
 
 export declare interface CreateDeploymentInput extends DefautFields {
-    autoMerge: boolean;
-    description: string;
+    autoMerge?: boolean;
+    description?: string;
     environment: string;
     payload?: string;
-    refId: string;
+    refId?: string;
     repositoryId: string;
-    requiredContexts: string[];
-    task: string;
+    requiredContexts?: string[];
+    task?: string;
 }
 
 export declare interface CreateDeploymentStatusInput extends DefautFields {
-    autoInactive: boolean;
+    autoInactive?: boolean;
     deploymentId: string;
-    description: string;
-    environment: string;
-    environmentUrl: string;
-    logUrl: string;
+    description?: string;
+    environment?: string;
+    environmentUrl?: string;
+    logUrl?: string;
     state: 'ERROR' | 'FAILURE' | 'INACTIVE' | 'IN_PROGRESS' | 'PENDING' | 'QUEUED' | 'SUCCESS' | 'WAITING';
 }
 
@@ -5970,4 +6022,980 @@ export declare interface CreateLabelInput extends DefautFields {
     description: string;
     name: string;
     repositoryId: string;
+}
+
+export declare interface ProjectOwner extends UserInfo, OrganizationInfo {
+
+}
+
+export declare interface IpAllowListOwner extends OrganizationInfo, Enterprise {
+
+}
+
+export declare interface DeletePackageVersionInput extends DefautFields {
+    packageVersionId: string;
+}
+
+export declare interface AcceptEnterpriseAdministratorInvitation {
+    acceptEnterpriseAdministratorInvitation: {
+        invitation: Invitation;
+        clientMutationId: string;
+    };
+}
+
+export declare interface AcceptTopicSuggestion {
+    acceptTopicSuggestion: {
+        topic: Topic;
+        clientMutationId: string;
+    };
+}
+
+export declare interface AddAssigneesToAssignable {
+    addAssigneesToAssignable: {
+        assignable: Assignable;
+        clientMutationId: string;
+
+    };
+}
+
+export declare interface AddComment {
+    addComment: {
+        subject: Subject;
+        clientMutationId: string;
+    }
+}
+
+export declare interface AddEnterpriseSupportEntitlement {
+    addEnterpriseSupportEntitlement: {
+        enterprise: Enterprise;
+        clientMutationId: string;
+    }
+}
+
+export declare interface AddLabelsToLabelable {
+    addLabelsToLabelable: {
+        labelable: Labelable;
+        clientMutationId: string;
+    }
+}
+
+export declare interface AddProjectCard {
+    addProjectCard: {
+        clientMutationId: string;
+        projectCard: ProjectCard;
+    }
+}
+
+export declare interface AddPullRequestReviewComment {
+    addPullRequestReviewComment: {
+        clientMutationId: string;
+        comment: Comment;
+    }
+}
+
+export declare interface AddPullRequestReview {
+    addPullRequestReview: {
+        pullRequestReview: PullRequestReview;
+    }
+}
+
+export declare interface AddPullRequestReviewThread {
+    addPullRequestReviewThread: {
+        clientMutationId: string;
+        thread: PullRequestReviewThread;
+    }
+}
+
+export declare interface AddReaction {
+    AddReaction: {
+        clientMutationId: string;
+        reaction: Reaction;
+    }
+}
+
+export declare interface AddProjectColumn {
+    addProjectColumn: {
+        clientMutationId: string;
+        project: Project;
+    }
+}
+
+export declare interface AddStar {
+    addStar: {
+        clientMutationId: string;
+        star: Starrable;
+    }
+}
+
+export declare interface AddVerifiableDomain {
+    addVerifiableDomain: {
+        clientMutationId: string;
+        domain: Domain;
+    }
+}
+
+export declare interface ApproveVerifiableDomain {
+    approveVerifiableDomain: {
+        clientMutationId: string;
+        domain: Domain;
+    }
+}
+
+export declare interface ArchiveRepository {
+    archiveRepository: {
+        clientMutationId: string;
+        repository: RepositoryInfo;
+    }
+}
+
+export declare interface CancelEnterpriseAdminInvitation {
+    cancelEnterpriseAdminInvitation: {
+        clientMutationId: string;
+        invitation: Invitation;
+    }
+}
+
+export declare interface ChangeUserStatus extends DefautFields {
+    changeUserStatus: {
+        clientMutationId: string;
+        status: Status;
+    }
+}
+
+export declare interface ClearLabelsFromLabelable extends DefautFields {
+    clearLabelsFromLabelable: {
+        clientMutationId: string;
+        labelable: Labelable;
+    }
+}
+
+export declare interface CloneProject {
+    cloneProject: {
+        clientMutationId: string;
+        project: Project;
+    }
+}
+
+export declare interface CloneTemplateRepository {
+    cloneTemplateRepository: {
+        clientMutationId: string;
+        templateRepository: RepositoryInfo;
+    }
+}
+
+export declare interface CloseIssue {
+    closeIssue: {
+        clientMutationId: string;
+        issue: Issue;
+    }
+}
+
+export declare interface ClosePullRequest {
+    closePullRequest: {
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+
+export declare interface ConvertProjectCardNoteToIssue {
+    convertProjectCardNoteToIssue: {
+        clientMutationId: string;
+        projectCard: ProjectCard;
+    }
+}
+
+export declare interface ConvertPullRequestToDraft {
+    convertPullRequestToDraft: {
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+
+export declare interface CreateBranchProtectionRule {
+    createBranchProtectionRule: {
+        clientMutationId: string;
+        branchProtectionRule: BranchProtectionRule;
+    }
+}
+
+export declare interface CreateCheckRun {
+    createCheckRun: {
+        clientMutationId: string;
+        checkRun: CheckRun;
+    }
+}
+
+export declare interface CreateCheckSuite {
+    createCheckSuite: {
+        clientMutationId: string;
+        checkSuite: CheckSuite;
+    }
+}
+
+export declare interface CreateContentAttachment {
+    createContentAttachment: {
+        clientMutationId: string;
+        contentAttachment: ContentAttachment;
+    }
+}
+
+export declare interface CreateEnterpriseOrganization {
+    createEnterpriseOrganization: {
+        clientMutationId: string;
+        organization: Organization;
+    }
+}
+
+export declare interface CreateIpAllowListEntry {
+    createIpAllowListEntry: {
+        clientMutationId: string;
+        ipAllowListEntry: IpAllowListEntry;
+    }
+}
+
+export declare interface CreateIssue {
+    createIssue: {
+        issue: Issue
+    }
+}
+
+export declare interface CreateProject {
+    createProject: {
+        clientMutationId: string;
+        project: Project;
+    }
+}
+
+export declare interface CreatePullRequest {
+    createPullRequest: {
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+
+export declare interface CreateRef {
+    createRef: {
+        clientMutationId: string;
+        ref: Ref;
+    }
+}
+
+export declare interface CreateRepository {
+    createRepository: {
+        clientMutationId: string;
+        repository: RepositoryInfo;
+    }
+}
+
+export declare interface CreateTeamDiscussionComment {
+    createTeamDiscussionComment: {
+        clientMutationId: string;
+        teamDiscussionComment: TeamDiscussionComment;
+    }
+}
+
+export declare interface CreateTeamDiscussion {
+    createTeamDiscussion: {
+        clientMutationId: string;
+        teamDiscussion: TeamDiscussion;
+    }
+}
+
+export declare interface DeclineTopicSuggestion {
+    declineTopicSuggestion: {
+        clientMutationId: string;
+        topic: Topic;
+    }
+}
+
+export declare interface DeleteBranchProtectionRule {
+    deleteBranchProtectionRule: {
+        clientMutationId: string;
+    };
+}
+
+export declare interface DeleteDeployment {
+    deleteDeployment: {
+        clientMutationId: string;
+    };
+}
+
+export declare interface DeleteIpAllowListEntry {
+    deleteIpAllowListEntry: {
+        clientMutationId: string;
+        ipAllowListEntry: IpAllowListEntry;
+    }
+}
+
+export declare interface DeleteIssueComment {
+    deleteIssueComment: {
+        clientMutationId: string;
+    }
+}
+
+export declare interface DeleteIssue {
+    deleteIssue: {
+        clientMutationId: string;
+        repository: RepositoryInfo;
+    }
+}
+
+export declare interface DeletePackageVersion {
+    deletePackageVersion: {
+        clientMutationId: string;
+    }
+}
+
+export declare interface DeleteProjectCard {
+    deleteProjectCard: {
+        clientMutationId: string;
+        column: ProjectColunm;
+        deletedCardId: string;
+    }
+}
+
+export declare interface DeleteProjectColumn {
+    deleteProjectColumn: {
+        clientMutationId: string;
+        deletedColumnId: string;
+    }
+}
+
+export declare interface DeleteProject {
+    deleteProject: {
+        clientMutationId: string;
+        owner: ProjectOwner;
+    }
+}
+
+export declare interface DeletePullRequestReviewComment {
+    deletePullRequestReviewComment: {
+        clientMutationId: string;
+        pullRequestReview: PullRequestReview;
+    }
+}
+
+export declare interface DeletePullRequestReview {
+    deletePullRequestReview: {
+        clientMutationId: string;
+        pullRequestReview: PullRequestReview;
+    }
+}
+
+export declare interface DeleteRef {
+    deleteRef: {
+        clientMutationId: string;
+    }
+}
+
+export declare interface DeleteTeamDiscussionComment {
+    deleteTeamDiscussionComment: {
+        clientMutationId: string;
+    }
+}
+
+export declare interface DeleteTeamDiscussion {
+    deleteTeamDiscussion: {
+        clientMutationId: string;
+    }
+}
+
+export declare interface DeleteVerifiableDomain {
+    deleteVerifiableDomain: {
+        clientMutationId: string;
+    }
+}
+
+export declare interface DisablePullRequestAutoMerge {
+    disablePullRequestAutoMerge: {
+        actor: Actor;
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+
+export declare interface DismissPullRequestReview {
+    dismissPullRequestReview: {
+        clientMutationId: string;
+        pullRequestReview: PullRequestReview;
+    }
+}
+
+export declare interface EnablePullRequestAutoMerge {
+    enablePullRequestAutoMerge: {
+        actor: Actor;
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+
+export declare interface FollowUser {
+    followUser: {
+        clientMutationId: string;
+        user: User;
+    }
+}
+
+export declare interface ImportProject {
+    importProject: {
+        clientMutationId: string;
+        project: Project;
+    }
+}
+
+export declare interface InviteEnterpriseAdmin {
+    inviteEnterpriseAdmin: {
+        clientMutationId: string;
+        invitation: Invitation;
+    }
+}
+
+export declare interface LinkRepositoryToProject {
+    linkRepositoryToProject: {
+        clientMutationId: string;
+        project: Project;
+        repository: RepositoryInfo;
+    }
+}
+
+export declare interface MarkFileAsViewed {
+    markFileAsViewed: {
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+
+export declare interface MarkPullRequestReadyForReview {
+    markPullRequestReadyForReview: {
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+
+export declare interface MergeBranch {
+    mergeBranch: {
+        clientMutationId: string;
+        mergeCommit: Commit;
+    }
+}
+
+export declare interface MergePullRequest {
+    mergePullRequest: {
+        actor: Actor;
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+
+export declare interface MinimizeComment {
+    minimizeComment: {
+        clientMutationId: string;
+        minimizedComment: Comment;
+    }
+}
+
+export declare interface MoveProjectColumn {
+    moveProjectCard: {
+        clientMutationId: string;
+        cardEdge: any;
+    }
+}
+export declare interface PinIssue {
+    pinIssue: {
+        clientMutationId: string;
+        issue: Issue;
+    }
+}
+export declare interface RegenerateEnterpriseIdentityProviderRecoveryCodes {
+    regenerateEnterpriseIdentityProviderRecoveryCodes: {
+        clientMutationId: string;
+        identityProvider: EnterpriseIdentityProvider;
+    }
+}
+export declare interface RegenerateVerifiableDomainToken {
+    regenerateVerifiableDomainToken: {
+        clientMutationId: string;
+        verificationToken: string;
+    }
+}
+export declare interface RemoveAssigneesFromAssignable {
+    removeAssigneesFromAssignable: {
+        clientMutationId: string;
+        assignable: Assignable;
+    }
+}
+export declare interface RemoveEnterpriseAdmin {
+    removeEnterpriseAdmin: {
+        clientMutationId: string;
+        admin: UserInfo;
+        enterprise: Enterprise;
+        message: string;
+        viewer: UserInfo;
+    }
+}
+
+export declare interface RemoveEnterpriseIdentityProvider {
+    removeEnterpriseIdentityProvider: {
+        clientMutationId: string;
+        identityProvider: EnterpriseIdentityProvider;
+    }
+}
+
+export declare interface RemoveEnterpriseOrganization {
+    removeEnterpriseOrganization: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        organization: Organization;
+        viewer: UserInfo;
+    }
+}
+
+export declare interface RemoveEnterpriseSupportEntitlement {
+    removeEnterpriseSupportEntitlement: {
+        clientMutationId: string;
+        message: string;
+    }
+}
+
+export declare interface RemoveLabelsFromLabelable {
+    removeLabelsFromLabelable: {
+        clientMutationId: string;
+        labelable: string;
+    }
+}
+
+export declare interface RemoveOutsideCollaborator {
+    removeOutsideCollaborator: {
+        clientMutationId: string;
+        removedUser: UserInfo;
+    }
+}
+
+export declare interface RemoveReaction {
+    removeReaction: {
+        clientMutationId: string;
+        reaction: Reaction;
+        subject: Subject;
+    }
+}
+
+export declare interface RemoveStar {
+    removeStar: {
+        clientMutationId: string;
+        starrable: Starrable;
+    }
+}
+
+export declare interface ReopenIssue {
+    reopenIssue: {
+        clientMutationId: string;
+        issue: Issue;
+    }
+}
+
+export declare interface ReopenPullRequest {
+    reopenPullRequest: {
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+export declare interface RequestReviews {
+    requestReviews: {
+        actor: Actor;
+        clientMutationId: string;
+        pullRequest: PullRequest;
+        requestedReviewersEdge: any;
+    }
+}
+
+export declare interface RerequestCheckSuite {
+    rerequestCheckSuite: {
+        clientMutationId: string;
+        checkSuite: CheckSuite;
+    }
+}
+
+export declare interface ResolveReviewThread {
+    resolveReviewThread: {
+        clientMutationId: string;
+        thread: PullRequestReviewThread;
+    }
+}
+
+export declare interface SetEnterpriseIdentityProvider {
+    setEnterpriseIdentityProvider: {
+        clientMutationId: string;
+        identityProvider: EnterpriseIdentityProvider;
+    }
+}
+
+export declare interface SetOrganizationInteractionLimit {
+    setOrganizationInteractionLimit: {
+        clientMutationId: string;
+        organization: OrganizationInfo;
+    }
+}
+export declare interface setUserInteractionLimit {
+    moveProjectCard: {
+        clientMutationId: string;
+        user: UserInfo;
+    }
+}
+export declare interface SubmitPullRequestReview {
+    submitPullRequestReview: {
+        clientMutationId: string;
+        pullRequestReview: PullRequestReview;
+    }
+}
+export declare interface TransferIssue {
+    transferIssue: {
+        clientMutationId: string;
+        issue: Issue;
+    }
+}
+export declare interface UnarchiveRepository {
+    unarchiveRepository: {
+        clientMutationId: string;
+        repository: RepositoryInfo;
+    }
+}
+export declare interface UnfollowUser {
+    unfollowUser: {
+        clientMutationId: string;
+        user: UserInfo;
+    }
+}
+export declare interface UnlinkRepositoryFromProject {
+    unlinkRepositoryFromProject: {
+        clientMutationId: string;
+        project: Project;
+        repository: RepositoryInfo;
+    }
+}
+export declare interface UnlockLockable {
+    unlockLockable: {
+        actor: Actor;
+        clientMutationId: string;
+        unlockedRecord: Lockable;
+    }
+}
+export declare interface UnmarkFileAsViewed {
+    unmarkFileAsViewed: {
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+export declare interface UnmarkIssueAsDuplicate {
+    unmarkIssueAsDuplicate: {
+        clientMutationId: string;
+        duplicate: Issue;
+    }
+}
+export declare interface UnminimizeComment {
+    unminimizeComment: {
+        clientMutationId: string;
+        unminimizedComment: Comment;
+    }
+}
+export declare interface UnpinIssue {
+    unpinIssue: {
+        clientMutationId: string;
+        issue: Issue;
+    }
+}
+
+export declare interface UnresolveReviewThread {
+    moveProjectCard: {
+        clientMutationId: string;
+        thread: PullRequestReviewThread;
+    }
+}
+
+export declare interface UpdateBranchProtectionRule {
+    updateBranchProtectionRule: {
+        clientMutationId: string;
+        branchProtectionRule: BranchProtectionRule;
+    }
+}
+
+export declare interface UpdateCheckRun {
+    updateCheckRun: {
+        clientMutationId: string;
+        checkRun: CheckRun;
+    }
+}
+
+export declare interface UupdateCheckSuitePreferences {
+    unpinIssue: {
+        clientMutationId: string;
+        repository: RepositoryInfo;
+    }
+}
+
+export declare interface UpdateEnterpriseAdministratorRole {
+    updateEnterpriseAdministratorRole: {
+        clientMutationId: string;
+        message: string;
+    }
+}
+
+export declare interface UpdateEnterpriseAllowPrivateRepositoryForkingSetting {
+    updateEnterpriseAllowPrivateRepositoryForkingSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+    }
+}
+
+export declare interface UpdateEnterpriseDefaultRepositoryPermissionSetting {
+    updateEnterpriseDefaultRepositoryPermissionSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+
+export declare interface UpdateEnterpriseMembersCanChangeRepositoryVisibilitySetting {
+    updateEnterpriseMembersCanChangeRepositoryVisibilitySetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+export declare interface UpdateEnterpriseMembersCanCreateRepositoriesSetting {
+    updateEnterpriseMembersCanCreateRepositoriesSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+export declare interface UpdateEnterpriseMembersCanDeleteIssuesSetting {
+    updateEnterpriseMembersCanDeleteIssuesSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+export declare interface UpdateEnterpriseMembersCanDeleteRepositoriesSetting {
+    updateEnterpriseMembersCanDeleteRepositoriesSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+export declare interface UpdateEnterpriseMembersCanInviteCollaboratorsSetting {
+    updateEnterpriseMembersCanInviteCollaboratorsSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+export declare interface UpdateEnterpriseMembersCanMakePurchasesSetting {
+    updateEnterpriseMembersCanMakePurchasesSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+export declare interface UpdateEnterpriseMembersCanUpdateProtectedBranchesSetting {
+    updateEnterpriseMembersCanUpdateProtectedBranchesSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+export declare interface UpdateEnterpriseMembersCanViewDependencyInsightsSetting {
+    updateEnterpriseMembersCanViewDependencyInsightsSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+
+export declare interface UpdateEnterpriseOrganizationProjectsSetting {
+    updateEnterpriseOrganizationProjectsSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+
+export declare interface UpdateEnterpriseProfile {
+    updateEnterpriseProfile: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+    }
+}
+
+export declare interface UpdateEnterpriseRepositoryProjectsSetting {
+    updateEnterpriseRepositoryProjectsSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+
+export declare interface UpdateEnterpriseTeamDiscussionsSetting {
+    updateEnterpriseTeamDiscussionsSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+
+export declare interface UpdateEnterpriseTwoFactorAuthenticationRequiredSetting {
+    updateEnterpriseTwoFactorAuthenticationRequiredSetting: {
+        clientMutationId: string;
+        enterprise: Enterprise;
+        message: string;
+    }
+}
+
+export declare interface UpdateIpAllowListEnabledSetting {
+    updateIpAllowListEnabledSetting: {
+        clientMutationId: string;
+        owner: IpAllowListOwner;
+    }
+}
+
+export declare interface UpdateIpAllowListEntry {
+    updateEnterpriseOrganizationProjectsSetting: {
+        clientMutationId: string;
+        ipAllowListEntry: IpAllowListEntry;
+    }
+}
+
+export declare interface UpdateIssue {
+    updateIssue: {
+        clientMutationId: string;
+        actor: Actor;
+        issue: Issue;
+    }
+}
+
+export declare interface UpdateIssueComment {
+    updateIssueComment: {
+        clientMutationId: string;
+        issueComment: IssueComment;
+    }
+}
+
+export declare interface UpdateLabel {
+    updateLabel: {
+        clientMutationId: string;
+        label: Label;
+    }
+}
+
+export declare interface UpdateNotificationRestrictionSetting {
+    updateNotificationRestrictionSetting: {
+        clientMutationId: string;
+        owner: any;
+    }
+}
+
+export declare interface UpdateProject {
+    updateEnterpriseOrganizationProjectsSetting: {
+        clientMutationId: string;
+        project: Project;
+    }
+}
+
+export declare interface UpdateProjectCard {
+    updateProjectCard: {
+        clientMutationId: string;
+        projectCard: ProjectCard;
+    }
+}
+
+export declare interface UpdateProjectColumn{
+    unpinIssue: {
+        clientMutationId: string;
+        projectColumn: Column;
+    }
+}
+
+export declare interface UpdatePullRequest {
+    updatePullRequest: {
+        actor: Actor;
+        clientMutationId: string;
+        pullRequest: PullRequest;
+    }
+}
+
+export declare interface UpdatePullRequestReview {
+    updatePullRequestReview: {
+        clientMutationId: string;
+        pullRequestReview: PullRequestReview;
+    }
+}
+
+export declare interface UpdatePullRequestReviewComment {
+    updatePullRequestReviewComment: {
+        clientMutationId: string;
+        pullRequestReviewComment: PullRequestReviewComment;
+    }
+}
+
+export declare interface UpdateRef {
+    updateRef: {
+        clientMutationId: string;
+        ref: Ref;
+    }
+}
+
+export declare interface UpdateRefs {
+    updateRefs: {
+        clientMutationId: string;
+        refs: Refs;
+    }
+}
+
+export declare interface UpdateRepository {
+    updateRepository: {
+        clientMutationId: string;
+        respository: RepositoryInfo;
+    }
+}
+
+export declare interface UpdateSubscription {
+    updateSubscription: {
+        clientMutationId: string;
+        subscribable: Subscribable;
+    }
+}
+
+export declare interface UpdateTeamDiscussion {
+    updateTeamDiscussion: {
+        clientMutationId: string;
+        teamDiscussion: TeamDiscussion;
+    }
+}
+
+export declare interface UpdateTeamDiscussionComment {
+    updateTeamDiscussionComment: {
+        clientMutationId: string;
+        teamDiscussionComment: TeamDiscussionComment;
+    }
+}
+
+export declare interface UpdateTeamReviewAssignment {
+    updateTeamReviewAssignment: {
+        clientMutationId: string;
+        team: Team;
+    }
+}
+
+export declare interface UpdateTopics {
+    updateTopics: {
+        clientMutationId: string;
+        invalidTopicNames: string[];
+        repository: Repository;
+    }
+}
+
+export declare interface VerifyVerifiableDomain {
+    verifyVerifiableDomain: {
+        clientMutationId: string;
+        domain: Domain;
+    }
 }
