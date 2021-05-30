@@ -27,10 +27,9 @@ import { queryVariables } from '.'
  ** subject { databaseId id }
  */
 
-export const Comment = (fromComment:number = 10, first: number = 10, fields: string = '', orderBy: string = 'NUMBER', direction:string = 'ASC', after: string = '', before: string = '', last: number = 0) => `
-    comment(fromComment: ${fromComment},${after ? `, after: ${after} ` : ''}${before ? `, before: ${before} ` : ''}, first: ${first}${last ? `, last: ${last}` : ''}, orderBy: {orderBy: ${orderBy}, direction: ${direction}}) {
+export const Comment = (fields: string) => `
+    comment {
         ${fields}
-        totalCount
     }
 `
 
@@ -118,6 +117,7 @@ export const Reactions = (params: queryVariables.Reactions) => `
 		totalCount
     }
 `
+
 /**
 * @description Github Graphql Reaction
 * @fields
@@ -305,5 +305,118 @@ export const Discussions = (params: queryVariables.Discussions) => `
             ${params.fields}  
         }
         ${params.pageInfo ? params.pageInfo : ''}
+    }
+`
+
+/**
+* @description Github Graphql TeamDiscussion
+* @fields
+** author { Owner }
+** authorAssociation
+** body
+** bodyHTML
+** bodyText
+** bodyVersion
+** Comments
+** commentsResourcePath
+** commentsUrl
+** createdAt
+** createdViaEmail
+** databaseId
+** editor { Owner }
+** id
+** includesCreatedEdit
+** isPinned
+** isPrivate
+** lastEditedAt
+** number
+** publishedAt
+** ReactionGroups
+** Reactions
+** resourcePath
+** Team
+** title
+** updatedAt
+** url
+** UserContentEdits
+** viewerCanDelete
+** viewerCanPin
+** viewerCanReact
+** viewerCanSubscribe
+** viewerCanUpdate
+** viewerCannotUpdateReasons
+** viewerDidAuthor
+** viewerSubscription
+*/
+
+export const TeamDiscussion = (fields: string = '') => `
+    teamDiscussion {
+        id
+        ${fields}
+    }    
+`
+
+/**
+* @description Github Graphql Reactable
+* @fields
+** author { Owner }
+** authorAssociation
+** body
+** bodyHTML
+** bodyText
+** bodyVersion
+** createdAt
+** createdViaEmail
+** databaseId
+** Discussion
+** editor { Owner }
+** id
+** includesCreatedEdit
+** lastEditedAt
+** number
+** publishedAt
+** url
+** UserContentEdits
+** viewerCanDelete
+** viewerCanPin
+** viewerCanUpdate
+** viewerCannotUpdateReasons
+** viewerDidAuthor
+*/
+
+export const TeamDiscussionComment = (fields: string = '') => `
+    teamDiscussionComment {
+        id
+        ${fields}
+    }    
+`
+
+/**
+* @description Github Graphql Topics
+* @defaultVariables totalCount
+* @queryArguments
+** direction 'ASC' | 'DESC'
+** after string
+** before string
+** first number
+** last number
+** content string
+** @fields
+** Topic
+*/
+
+export const Topics = (params: queryVariables.BasicFields) => `
+    topics(${params.first ? `first: ${params.first}` : ''} ${params.last ? `last: ${params.last}` : ''} ${params.after ? `, after: "${params.after}"` : ''} ${params.before ? `, before: "${params.before}"` : ''}) {
+        edges {
+			cursor
+			node {
+				${params.fields}
+			}
+		}
+		nodes {
+			${params.fields}  
+		}
+		${params.pageInfo ? params.pageInfo : ''}
+		totalCount
     }
 `

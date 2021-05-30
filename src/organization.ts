@@ -3,7 +3,7 @@ import { queryVariables } from '.'
 /**
  * @description Github Graphql Organization
  * @fields
- **  anyPinnableItems (type: "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM")
+ ** anyPinnableItems (type: "REPOSITORY" | "GIST" | "ISSUE" | "PROJECT" | "PULL_REQUEST" | "USER" | "ORGANIZATION" | "TEAM")
  ** AuditLog
  ** avatarUrl
  ** createdAt
@@ -67,7 +67,8 @@ export const Organization = (fields: string, login?: string) => `
     }
 `
 
-/** @description Github Graphql AuditLog
+/**
+* @description Github Graphql AuditLog
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -150,7 +151,8 @@ export const AuditLog = (params: queryVariables.AuditLog) => `
     }
 `
 
-/** @description Github Graphql AuditLog
+/**
+* @description Github Graphql Domains
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -194,7 +196,8 @@ export const Domains = (params: queryVariables.Domains) => `
     }
 `
 
-/** @description Github Graphql IpAllowListEntries
+/**
+* @description Github Graphql IpAllowListEntries
 * @defaultVariables totalCount
 * @queryArguments
 *** after string
@@ -229,7 +232,8 @@ export const IpAllowListEntries = (params: queryVariables.IpAllowListEntries) =>
     }
 `
 
-/** @description Github Graphql Items
+/**
+* @description Github Graphql Items
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -257,7 +261,8 @@ export const Items = (params: queryVariables.BasicFields) => `
     }
 `
 
-/** @description Github Graphql MemberStatuses
+/**
+* @description Github Graphql MemberStatuses
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -292,7 +297,8 @@ export const MemberStatuses = (params: queryVariables.MemberStatuses) => `
         totalCount
     }
 `
-/** @description Github Graphql MembersWithRole
+/**
+* @description Github Graphql MembersWithRole
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -319,7 +325,8 @@ export const MembersWithRole = (params: queryVariables.BasicFields) => `
     }
 `
 
-/** @description Github Graphql PendingMembers
+/**
+* @description Github Graphql PendingMembers
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -345,7 +352,8 @@ export const PendingMembers = (params: queryVariables.BasicFields) => `
         totalCount
     }
 `
-/** @description Github Graphql PinnableItems
+/**
+* @description Github Graphql PinnableItems
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -373,7 +381,8 @@ export const OrganizationPinnableItems = (params: queryVariables.Item) => `
     }
 `
 
-/** @description Github Graphql PinnedItems
+/**
+* @description Github Graphql PinnedItems
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -402,7 +411,8 @@ export const OrganizationPinnedItems = (params: queryVariables.Item) => `
     }
 `
 
-/** @description Github Graphql SamlIdentity
+/**
+* @description Github Graphql SamlIdentity
 * @fields
 ** emails { primary type value }
 ** familyName
@@ -419,7 +429,8 @@ export const SamlIdentity = (fields: string = '') => `
     }
 `
 
-/** @description Github Graphql ScimIdentity
+/**
+* @description Github Graphql ScimIdentity
 * @fields
 ** emails { primary type value }
 ** familyName
@@ -436,7 +447,8 @@ export const ScimIdentity = (fields: string = '') => `
     }
 `
 
-/** @description Github Graphql SponsorshipForViewerAsSponsor
+/**
+* @description Github Graphql SponsorshipForViewerAsSponsor
 * @fields
 ** createdAt
 ** id
@@ -455,7 +467,8 @@ export const SponsorshipForViewerAsSponsor = (fields: string = '') => `
     }
 `
 
-/** @description Github Graphql
+/**
+* @description Github Graphql
 * @fields
 ** hasSponsorsListing
 ** isSponsoredBy(accountLogin: "")
@@ -467,7 +480,8 @@ export const Sponsorable = (fields: string = '') => `
     }
 `
 
-/** @description Github Graphql SponsorshipsAsMaintainer
+/**
+* @description Github Graphql SponsorshipsAsMaintainer
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -506,7 +520,8 @@ export const SponsorshipsAsMaintainer = (params: queryVariables.Sponsorships) =>
     }
 `
 
-/** @description Github Graphql Tier
+/**
+* @description Github Graphql Tier
 * @fields
 ** AdminInfo
 ** ClosestLesserValueTier
@@ -529,7 +544,8 @@ export const Tier = (fields: string = '') => `
     }
 `
 
-/** @description Github Graphql AdminInfo
+/**
+* @description Github Graphql AdminInfo
 ** @fields Sponsorships
 */
 
@@ -539,7 +555,8 @@ export const AdminInfo = (fields: string = '') => `
     }
 `
 
-/** @description Github Graphql Sponsorships
+/**
+* @description Github Graphql Sponsorships
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -578,7 +595,8 @@ export const Sponsorships = (params: queryVariables.Sponsorships) => `
     }
 `
 
-/** @description Github Graphql ClosestLesserValueTier
+/**
+* @description Github Graphql ClosestLesserValueTier
 * @fields
 ** AdminInfo
 ** ClosestLesserValueTier
@@ -600,7 +618,8 @@ export const ClosestLesserValueTier = (fields: string = '') => `
         ${fields}
     }
 `
-/** @description Github Graphql SponsorsListing
+/**
+* @description Github Graphql SponsorsListing
 * @fields
 ** activeGoal { Goal }
 ** createdAt
@@ -619,7 +638,8 @@ export const OrgSponsorsListing = (fields: string = '', slug?: string) => `
     }
 `
 
-/** @description Github Graphql Goal
+/**
+* @description Github Graphql Goal
 * @fields
 ** description
 ** kind
@@ -635,7 +655,8 @@ export const Goal = (fields: string = '') => `
     }
 `
 
-/** @description Github Graphql Tiers
+/**
+* @description Github Graphql Tiers
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -665,7 +686,8 @@ export const Tiers = (params: queryVariables.Tiers) => `
     }
 `
 
-/** @description Github Graphql Team
+/**
+* @description Github Graphql Team
 ** @fields
 ** Ancestors
 ** avatarUrl
@@ -707,13 +729,14 @@ export const Tiers = (params: queryVariables.Tiers) => `
 ** viewerSubscription
 */
 
-export const Team = (slug: string, fields: string = '') => `
-    team (slug: "${slug}") {
+export const Team = (fields: string, slug?: string) => `
+    team ${slug ? `(slug: "${slug}")` : ''} {
         ${fields}
     }
 `
 
-/** @description Github Graphql Ancestors
+/**
+* @description Github Graphql Ancestors
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -741,7 +764,8 @@ export const Ancestors = (params: queryVariables.BasicFields) => `
     }
 `
 
-/** @description Github Graphql ChildTeams
+/**
+* @description Github Graphql ChildTeams
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -772,7 +796,8 @@ export const ChildTeams = (params: queryVariables.ChildTeams) => `
     }
 `
 
-/** @description Github Graphql Invitation
+/**
+* @description Github Graphql Invitation
 * @fields
 ** createdAt
 ** email
@@ -784,13 +809,14 @@ export const ChildTeams = (params: queryVariables.ChildTeams) => `
 ** role
 */
 
-export const Invitation = (slug: string, fields: string = '') => `
-    invitation (slug: "${slug}") {
+export const Invitation = (fields: string, slug?: string) => `
+    invitation ${slug ? `(slug: "${slug}")` : ''} {
         ${fields}
     }
 `
 
-/** @description Github Graphql Invitations
+/**
+* @description Github Graphql Invitations
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -817,7 +843,8 @@ export const Invitations = (params: queryVariables.BasicFields) => `
 
     }
 `
-/** @description Github Graphql Members
+/**
+* @description Github Graphql Members
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -849,7 +876,8 @@ export const Members = (params: queryVariables.Members) => `
     }
 `
 
-/** @description Github Graphql Teams
+/**
+* @description Github Graphql Teams
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -883,7 +911,8 @@ export const Teams = (params: queryVariables.Teams) => `
     }
 `
 
-/** @description Github Graphql ItemShowcase
+/**
+* @description Github Graphql ItemShowcase
 * @fields
 ** hasPinnedItems
 ** Items
@@ -894,7 +923,8 @@ export const OrgItemShowcase = (fields: string) => `
     }
 `
 
-/** @description Github Graphql SponsorshipsAsSponsor
+/**
+* @description Github Graphql SponsorshipsAsSponsor
 * @defaultVariables totalCount
 * @queryArguments
 ** after string
@@ -929,5 +959,49 @@ export const SponsorshipsAsSponsor = (params: queryVariables.SponsorshipsAsSpons
         ${params.pageInfo ? params.pageInfo : ''}
         totalCount
 
+    }
+`
+/**
+* @description Github Graphql Domain
+* @fields
+** createdAt
+** databaseId
+** dnsHostName
+** domain
+** hasFoundHostName
+** hasFoundVerificationToken
+** id
+** isRequiredForPolicyEnforcement
+** isVerified
+** owner { onEnterprise onOrganization }
+** punycodeEncodedDomain
+** tokenExpirationTime
+** updatedAt
+** verificationToken
+*/
+
+export const Domain = (fields: string) => `
+    domain {
+        id
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql IpAllowListEntry
+** @fields
+** allowListValue
+** createdAt
+** id
+** isActive
+** name
+** owner { onEnterprise onOrganization }
+** updatedAt
+*/
+
+export const IpAllowListEntry = (fields: string) => `
+    ipAllowListEntry {
+        id
+        ${fields}
     }
 `

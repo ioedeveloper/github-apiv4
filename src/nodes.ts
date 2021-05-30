@@ -4398,3 +4398,15 @@ export const onPackageTag = (fields: string) => `
       ${fields}
    }
 `
+
+/**
+* @description Github Graphql node Comment
+* @fields
+* Comment
+*/
+
+export const onComment = (fields: string = '') => `
+    ... on Comment {
+        ${fields}
+    }
+`

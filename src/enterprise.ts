@@ -216,9 +216,9 @@ export const SecondaryCategory = (fields: string = '') => `
 
 export const MarketplaceCategories = (params: queryVariables.MarketplaceCategories) => `
 	marketplaceCategories ${params.excludeEmpty || params.excludeSubcategories || params.includeCategories
-? `(${params.excludeEmpty ? `excludeEmpty: ${params.excludeEmpty},` : ''} ${params.excludeSubcategories ? `excludeSubcategories: ${params.excludeSubcategories},` : ''}
+		? `(${params.excludeEmpty ? `excludeEmpty: ${params.excludeEmpty},` : ''} ${params.excludeSubcategories ? `excludeSubcategories: ${params.excludeSubcategories},` : ''}
 	${params.includeCategories ? `includeCategories: "${params.includeCategories}",` : ''})`
-: ''} {
+		: ''} {
 		${params.fields}
 	}
 `
@@ -313,9 +313,9 @@ export const EnterpriseAdministratorInvitationByToken = (invitationToken: string
 ** viewerIsAdmin
 ** websiteUrl
 */
-export const Enterprise = (params: queryVariables.Enterprise) => `
-    enterprise ${params.invitationToken || params.slug ? `(${params.invitationToken ? `invitationToken: "${params.invitationToken}"` : ''} ${params.slug ? `slug: "${params.slug}"` : ''})` : ''} {
-        ${params.fields}
+export const Enterprise = (fields: string, invitationToken?: string, slug?: string) => `
+    enterprise ${invitationToken || slug ? `(${invitationToken ? `invitationToken: "${invitationToken}"` : ''} ${slug ? `slug: "${slug}"` : ''})` : ''} {
+        ${fields}
     }
 `
 
@@ -383,6 +383,53 @@ export const CodesOfConduct = (fields: string) => `
 
 export const CodeOfConduct = (fields: string, key?: string) => `
     codeOfConduct ${key ? `(key: "${key}")` : ''} {
+        ${fields}
+    }
+ `
+
+/**
+* @description Github Graphql ProjectOwner
+* @fields
+** onUser
+** onProject
+** onRepostory
+*/
+
+export const ProjectOwner = (fields: string, key?: string) => `
+	projectOwner ${key ? `(key: "${key}")` : ''} {
+        ${fields}
+    }
+ `
+
+/**
+* @description Github Graphql for IdentityProvider
+* @fields
+** digestMethod
+** ExternalIdentities
+** Enterprise
+** id
+** idpCertificate
+** issuer
+** recoveryCodes
+** signatureMethod
+** ssoUrl
+*/
+
+export const IdentityProvider = (fields: string) => `
+	identityProvider {
+		${fields}
+	}
+`
+
+/**
+* @description Github Graphql IpAllowListOwner
+* @fields
+** onEnterprise
+** onOrganization
+*/
+
+export const IpAllowListOwner = (fields: string, key?: string) => `
+	ipAllowListOwner ${key ? `(key: "${key}")` : ''} {
         ${fields}
     }
  `
