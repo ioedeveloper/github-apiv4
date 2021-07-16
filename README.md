@@ -1,10 +1,8 @@
 # Github-APIv4
 
-<!-- [START badges] -->
-
-![travis build](https://api.travis-ci.org/ioedeveloper/github-apiv4.svg?branch=master)
+<!-- [START badges] --> "
 [![npm version](https://badge.fury.io/js/github-apiv4.svg)](https://badge.fury.io/js/github-apiv4)
-[![Open Source Helpers](https://www.codetriage.com/ioedeveloper/github-apiv4/badges/users.svg)](https://www.codetriage.com/ioedeveloper/github-apiv4)
+
 
 <!-- [END badges] -->
 
@@ -82,9 +80,9 @@ fetch("https://api.github.com/graphql", {
 		res.json().then((res) => {
 			//Check if the response has a data
 			if (res.data) {
+        //The return type is a typeof Viewer
 				const response = res.data;
 
-				//Use the data
 				console.log(response.viewer.bio);
 				console.log(response.viewer.following);
 			} else {
@@ -122,7 +120,7 @@ fetch("https://api.github.com/graphql", {
 		res.json().then((res) => {
 			//Check if the response has a data
 			if (res.data) {
-				//Use the data. The return type is a typeof Viewer
+				//The return type is a typeof Viewer
 				const response: types.Viewer = res.data;
 
 				console.log(response.viewer.bio);
@@ -210,8 +208,8 @@ fetch("https://api.github.com/graphql", {
 		res.json().then((res) => {
 			//Check if the response has a data
 			if (res.data) {
+        //The return type is a typeof Repository
 				const response = res.data;
-				//Use the data
 
 				console.log(response.repository.assignableUsers.nodes[4].name);
 				console.log(response.repository.branchProtectionRules);
@@ -333,7 +331,6 @@ fetch("https://api.github.com/graphql", {
 				//This creates a response variable with the typeof Repository
 				const response: types.Repository = res.data;
 
-				//Use the data
 				console.log(response.repository.assignableUsers.nodes[4].name);
 				console.log(response.repository.branchProtectionRules);
 				console.log(response.repository.codeOfConduct.body);
@@ -405,7 +402,9 @@ fetch('https://api.github.com/graphql', {
 }).then(res => res.json().then(res => {
   //Check if the response has a data
   if (res.data) {
-    //Use the data
+    //The return type is a typeof PullRequest
+    const response:types.CreatePullRequest = res.data; 
+
     if(res.errors) console.log(res.errors)
 
     console.log(data.createPullRequest.pullRequest)
@@ -447,7 +446,8 @@ fetch('https://api.github.com/graphql', {
   if (res.data) {
     //There can be more that one error in a Query so you can loop through them
     if(res.errors)console.log(res.errors)
-    //This creates a response variable with the typeof CreatePullRequest
+
+    //This creates a response variable with the typeof PullRequest
     const data: types.CreatePullRequest = res.data
 
     console.log(data.createPullRequest.pullRequest)
@@ -485,7 +485,9 @@ fetch('https://api.github.com/graphql', {
 }).then(res => res.json().then(res => {
   //Check if the response has a data
   if (res.data) {
-    
+    //The return type is a typeof CreateProject
+    const response = res.data;
+
     //There can be more that one error in a Query so you can loop through them
     if(res.errors)console.log(res.errors)
 
