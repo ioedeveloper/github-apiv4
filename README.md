@@ -1,6 +1,6 @@
 # Github-APIv4
 
-<!-- [START badges] --> "
+<!-- [START badges] --> 
 [![npm version](https://badge.fury.io/js/github-apiv4.svg)](https://badge.fury.io/js/github-apiv4)
 
 
