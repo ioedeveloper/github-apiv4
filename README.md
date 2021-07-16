@@ -33,7 +33,7 @@ fetch('https://api.github.com/graphql', {
       'Content-Type': 'application/json',
       'Authorization': `bearer ${accessCode}`
   },
-  body: JSON.stringify({ query: githubApiv4.queries.Viewer("bio login twitterUsername email company avatarUrl" ) }),
+  body: JSON.stringify({ query: githubApiv4.queries.Viewer }),
 })
   .then(res => res.json())
   .then(res => console.log(res.data));
@@ -54,23 +54,202 @@ import * as githubApiv4 from 'github-apiv4';
 import * as fetch from 'isomorphic-fetch';
 
 const accessCode = 'YOUR_GITHUB_ACCESS_CODE';
+const query = queries.Viewer(`bio ${queries.Following({first:10, fields:"login"})}`)
+
+fetch('https://api.github.com/graphql', { 
+  method: 'POST',
+  headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `bearer ${accessCode}`
+  },
+  body: JSON.stringify({ query: query}),    
+}).then(res => res.json().then(res => {
+    if(res.data){
+      const response:types.Viewer = res.data
+      console.log(response.viewer.bio )
+      console.log(response.viewer.following)
+    
+    }else{
+      console.log("An error occurred",res) 
+      console.log(query)
+    }
+  }))
+  .catch(err => console.log(err));
+
+```
+
+**Typescript Example - query Repository:**
+
+Save file as **repositoryTS.ts**
+```ts
+import * as githubApiv4 from 'github-apiv4';
+import * as fetch from 'isomorphic-fetch';
+
+const accessCode = 'YOUR_GITHUB_ACCESS_CODE';
+const user = queries.User("bio")
+const commitCommentField = `
+  body ${queries.Author("login")}
+  ${queries.ReactionGroups("createdAt")}  
+  ${queries.Reactions({first: 10, fields: `${queries.Reactable("id")}`})} 
+  ${queries.UserContentEdits({first:10, fields:"createdAt"})} 
+`
+const fields = `
+  ${queries.AssignableUsers({first:10,fields:"bio name"})} 
+  ${queries.BranchProtectionRules({first: 10, fields:"allowsDeletions"})} 
+  ${queries.CodeOfConduct("id url body")}
+  ${queries.Collaborators({first: 10, fields:"name url login", affiliation:"OUTSIDE"})}
+  ${queries.CommitComments({first: 10, fields:commitCommentField})}
+  contactLinks {name}
+  defaultBranchRef{id name}
+  ${queries.DeployKeys({first: 10, fields:"id title "})}
+  ${queries.Deployments({first: 10, fields:"environment description"})}
+  ${queries.Forks({first: 10, fields: "description createdAt id", })}
+  ${queries.Issue("22","id body createdAt")}
+  ${queries.Label("severe: new feature","description")}
+  ${queries.Labels({first:10, fields:"description"})}
+  ${queries.Languages({first: 10, fields:"color name"})}
+  ${queries.LatestRelease("description")}
+  ${queries.LicenseInfo("body")}
+  ${queries.MentionableUsers({first:10,fields:"login"})} 
+  ${queries.Milestones({first:10, fields:"description"})}
+  ${queries.Milestone(3, "description")} 
+  ${queries.Packages({first: 10, fields:"name"})}
+  ${queries.PinnedIssues({first:10, fields:"databaseId"})}
+  ${queries.Projects({first: 10,fields:"number body"})}
+  ${queries.Project(14, "body number")} 
+  ${queries.Refs({refPrefix:"refs/",first:10,fields:"prefix name"})}
+  ${queries.Ref("refs/heads/dwds-integration","name ")}
+  ${queries.Releases({first:10, fields:"name" })}
+  ${queries.Release("v0.4.0","name description")}
+  ${queries.RepositoryTopics({first:10, fields: `${queries.Topic(`name ${queries.RelatedTopics(10,"name")}`)}`})}
+  ${queries.Stargazers({first:10, fields:"login"})}
+  ${queries.Submodules({first:10, fields:"name"})}
+  ${queries.VulnerabilityAlerts({first: 10,fields:"createdAt"})}
+  ${queries.Watchers({first:10,fields:"login"})}  
+` 
+const query = queries.RepositoryQuery("fundhillapi","Sectur1",fields) 
+// const query = queries.RepositoryQuery("react","facebook",fields)
 
 fetch('https://api.github.com/graphql', {
   method: 'POST',
   headers: { 
       'Content-Type': 'application/json',
       'Authorization': `bearer ${accessCode}`
-  },
-  body: JSON.stringify({ query: githubApiv4.queries.Viewer("bio login twitterUsername email company avatarUrl" )}),
-})
-  .then(res => res.json())
-  .then(res => {
-      if((res.data as githubApiv4.types.Viewer).viewer){
-        console.log(res.data)
-      }else{
-        console.log('Type Mismatch!');
+  }, 
+  body: JSON.stringify({ query: query}),
+}).then(res => res.json().then(res => {
+    if(res.data){
+      const response:types.Repository = res.data
+      console.log(response.repository.assignableUsers.nodes[4].name )
+      console.log(response.repository.branchProtectionRules )
+      console.log(response.repository.codeOfConduct.body)
+      console.log(response.repository.collaborators.nodes[0].login)
+      console.log(response.repository.commitComments.nodes[9].author)
+      console.log(response.repository.commitComments.nodes[9].reactionGroups)
+      console.log(response.repository.commitComments.nodes[9].reactions.nodes)
+      console.log(response.repository.commitComments.nodes[9].userContentEdits.nodes)
+      console.log(response.repository.contactLinks[0])
+      console.log(response.repository.defaultBranchRef)
+      console.log(response.repository.deployments.nodes[0].description)
+      console.log(response.repository.forks.nodes)
+      console.log(response.repository.issue.body)
+      console.log(response.repository.label) 
+      console.log(response.repository.labels) 
+      console.log(response.repository.languages.nodes[5].name) 
+      console.log(response.repository.latestRelease) 
+      console.log(response.repository.licenseInfo)  
+      console.log(response.repository.mentionableUsers)  
+      console.log(response.repository.milestones.nodes[4].description)  
+      console.log(response.repository.milestone.description)  
+      console.log(response.repository.packages)  
+      console.log(response.repository.projects.nodes)  
+      console.log(response.repository.project)
+      console.log(response.repository.refs.nodes[5])  
+      console.log(response.repository.ref)  
+      console.log(response.repository.releases.nodes)  
+      console.log(response.repository.release)  
+      console.log(response.repository.repositoryTopics.nodes[2].topic.relatedTopics[5].name)  
+      console.log(response.repository.stargazers)  
+      console.log(response.repository.submodules.nodes)  
+      console.log(response.repository.vulnerabilityAlerts);  
+    }else{ 
+      console.log(query)
+      for(let error of res.errors){
+        console.log(error.message, error.locations)
       }
-  })
+      console.log("An error occurred",res) 
+
+
+    }
+  }))
+  .catch(err => console.log(err));
+
+```
+**Typescript Example - creating a Repository:**
+
+Save file as **createRepo.ts**
+```ts
+import { types } from "github-apiv4"
+import fetch from "isomorphic-fetch";
+import { mutation } from "./mutations"
+
+const mutation = mutations.CreatePullRequest({baseRefName:"master", body:"Merge Mutation with Master", headRefName:"Awesome", title:"Mutations", repositoryId:"MDEwOlJlcG9zaXRvcnkzNzAzNDg4NDU=",},queries.PullRequest("title body id")),
+
+fetch('https://api.github.com/graphql', {
+  method: 'POST', "headers": {
+    'Content-Type': 'application/json',
+    'Authorization': `bearer ${accessCode}`,
+    "Accept": "application/vnd.github.update-refs-preview+json " + "application/vnd.github.hawkgirl-preview+json " +
+      "application/vnd.github.starfox-preview+json " + "application/vnd.github.merge-info-preview+json " +
+      "application/vnd.github.corsair-preview+json " + "application/vnd.github.flash-preview+json " +
+      "application/vnd.github.bane-preview+json " + "application/vnd.github.package-deletes-preview+json " +
+      "application/vnd.github.slothette-preview+json " + "application/vnd.github.stone-crop-preview+json"
+  },
+  body: JSON.stringify({ query: mutation }),
+}).then(res => res.json().then(res => {
+  if (res.data) {
+    if(res.errors)console.log(res.errors)
+    const data: types.CreatePullRequest = res.data
+    console.log(data.createPullRequest.pullRequest)  
+  } else {
+    console.log("An error occurred", res)
+  }
+}))
+  .catch(err => console.log(err));
+
+```
+**Typescript Example - creating a Project:**
+
+Save file as **createRepo.ts**
+```ts
+import { types } from "github-apiv4"
+import fetch from "isomorphic-fetch";
+import { mutation } from "./mutations"
+
+const mutation = mutations.mutations.CreateProject({name: "GitHubv4", ownerId:"MDQ6VXNlcjIyODE3NDky",body:"This is the test project for Githubv4", repositoryIds:[`"MDEwOlJlcG9zaXRvcnkzNjgxMzc4NjU="`]}, queries.Project("body url")),
+
+fetch('https://api.github.com/graphql', {
+  method: 'POST', "headers": {
+    'Content-Type': 'application/json',
+    'Authorization': `bearer ${accessCode}`,
+    "Accept": "application/vnd.github.update-refs-preview+json " + "application/vnd.github.hawkgirl-preview+json " +
+      "application/vnd.github.starfox-preview+json " + "application/vnd.github.merge-info-preview+json " +
+      "application/vnd.github.corsair-preview+json " + "application/vnd.github.flash-preview+json " +
+      "application/vnd.github.bane-preview+json " + "application/vnd.github.package-deletes-preview+json " +
+      "application/vnd.github.slothette-preview+json " + "application/vnd.github.stone-crop-preview+json"
+  },
+  body: JSON.stringify({ query: mutation }),
+}).then(res => res.json().then(res => {
+  if (res.data) {
+    if(res.errors)console.log(res.errors)
+    const data: types.CreateProject = res.data
+    console.log(data.CreateProject.project)  
+  } else {
+    console.log("An error occurred", res)
+  }
+}))
+  .catch(err => console.log(err));
+
 ```
 Github API response (res.data is) of type [githubApiv4.types.Viewer](https://github-apiv4.netlify.com/interfaces/_types_.viewer.html)
 
@@ -140,7 +319,7 @@ node apolloClient.js
 # Resources
 
 - [API Documentation](https://github-apiv4.netlify.com/)
-- [Examples](#usage)
+- [Examples](https://github.com/Sectur1/github-test)
 
 # Contribute
 ### Contributing to Github-APIv4
