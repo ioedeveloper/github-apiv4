@@ -105,7 +105,7 @@ import { queryVariables } from '.'
 ** Watchers
  */
 
-export const Repository = (fields: string = '', name?: '', owner?: '') => `
+export const Repository = (fields: string = '', name?: string, owner?: string) => `
     repository ${name || owner ? `(${name ? `name: "${name}"` : ''} ${owner ? `, owner: "${owner}"` : ''})` : ''} {
         id
         ${fields}
@@ -165,7 +165,6 @@ export const Repositories = (params: queryVariables.Repositories) => `
 		}
 		${params.pageInfo ? params.pageInfo : ''}
 		totalCount
- 	}
     }
 `
 
@@ -434,8 +433,8 @@ export const BranchProtectionRuleConflicts = (params: queryVariables.BasicFields
 ** viewerSubscription
  */
 
-export const PullRequest = (number: number = 10, fields: string = '') => `
-    pullRequest(number: ${number}) {
+export const PullRequest = (fields: string, pullRequestNumber?: number) => `
+    pullRequest ${pullRequestNumber ? `(number: ${pullRequestNumber})` : ''} {
         ${fields}
     }
 `
@@ -666,8 +665,8 @@ export const App = (fields: string = '') => `
 ** viewerSubscription
 */
 
-export const Issue = (issueNumber: number, fields: string = '') => `
-    issue (number: ${issueNumber}) {
+export const Issue = (fields: string = '', issueNumber?: number) => `
+    issue ${issueNumber ? `(number: ${issueNumber})` : ''} {
         id
         ${fields}
     }
@@ -741,8 +740,8 @@ export const Labels = (params: queryVariables.Labels) => `
 ** url
  */
 
-export const Label = (name: string, fields: string = '') => `
-    label (name: "${name}") {
+export const Label = (fields: string = '', name?: string) => `
+    label ${name ? `(name: "${name}")` : ''} {
         id
         ${fields}
     }
@@ -767,7 +766,7 @@ export const Label = (name: string, fields: string = '') => `
 
 export const Issues = (params: queryVariables.Issues) => `
     issues(${params.first ? `first: ${params.first}` : ''}  ${params.last ? `last: ${params.last}` : ''} ${params.labels ? `, labels: ${params.labels}` : ''} ${params.state ? `, state: ${params.state}` : ''} ${params.after ? `, after: "${params.after}" ` : ''} ${params.before ? `, before: "${params.before}" ` : ''}
-        ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}` : ''}
+        ${params.orderBy || params.direction ? `, orderBy: {field: ${params.orderBy}, direction: ${params.direction}}` : ''}
         ${params.filterBy ? `, filterBy:{${params.filterBy}}` : ''}) {
 
         edges {
@@ -1205,8 +1204,8 @@ export const Deployment = (fields: string = '') => `
 ** target { GitObject }
  */
 
-export const Ref = (qualifiedName: string, fields: string = '') => `
-    ref (qualifiedName: "${qualifiedName}") {
+export const Ref = (fields: string = '', qualifiedName?: string) => `
+    ref ${qualifiedName ? `(qualifiedName: "${qualifiedName}")` : ''} {
         id
         ${fields}
     }
@@ -2100,7 +2099,6 @@ export const Lockable = (fields: string = '') => `
 
 export const Labelable = (fields: string = '') => `
     labelable {
-        id
         ${fields}
     }
     
@@ -2274,7 +2272,7 @@ export const TimelineItems = (params: queryVariables.TimelineItems) => `
 */
 
 export const Assignees = (params: queryVariables.BasicFields) => `
-    assignees(${params.first ? `first: ${params.first}` : ''}  ${params.first ? `first: ${params.first}` : ''} ${params.after ? `, after: "${params.after}" ` : ''} ${params.before ? `, before: "${params.before}" ` : ''}) {
+    assignees(${params.first ? `first: ${params.first}` : ''}  ${params.last ? `last: ${params.last}` : ''} ${params.after ? `, after: "${params.after}" ` : ''} ${params.before ? `, before: "${params.before}" ` : ''}) {
         edges {
 			cursor
 			node {
@@ -2343,8 +2341,8 @@ export const Closable = (fields: string = '') => `
 ** viewerCanUpdate
 */
 
-export const Project = (number: number, fields: string = '') => `
-    project (number: ${number}) {
+export const Project = (fields: string = '', projectNumber?: number) => `
+    project ${projectNumber ? `(number: ${projectNumber})` : ''} {
         id
         name
         ${fields}
@@ -2353,6 +2351,12 @@ export const Project = (number: number, fields: string = '') => `
 
 /**
 * @description Github Graphql ProjectCards
+* @queryArguments
+** after string
+** before string
+** first number
+** last number
+** archivedStates'ARCHIVED' | 'NOT_ARCHIVED'
 * @fields
 ** Column
 ** content { onIssue onPullRequest }
@@ -3265,4 +3269,238 @@ export const ExternalIdentity = (fields: string = '') => `
         ${fields}
     }    
 
+`
+
+/**
+* @description Github Graphql Assignable
+* @fields
+** Assignees
+*/
+
+export const Assignable = (fields: string) => `
+    assignable {
+        ${fields}  
+    }
+`
+
+/**
+* @description Github Graphql Subject
+* @fields
+** id
+** onPullRequest
+** onIssue
+*/
+
+export const Subject = (fields: string) => `
+    subject {
+        id
+        ${fields}  
+    }
+`
+
+/**
+* @description Github Graphql ProjectColumn
+* @fields
+** { Column }
+*/
+
+export const ProjectColumn = (fields: string) => `
+    projectColumn {
+        id
+        ${fields}  
+    }
+`
+
+/**
+* @description Github Graphql PullRequestReviewComment
+* @fields
+ ** author { Author }
+ ** authorAssociation
+ ** body
+ ** bodyHTML
+ ** bodyText
+ ** bodyVersion
+ ** createdAt
+ ** createdViaEmail
+ ** Commit
+ ** databaseId
+ ** diffHunk
+ ** draftedAt
+ ** Discussion
+ ** editor { Editor }
+ ** id
+ ** includesCreatedEdit
+ ** isMinimized
+ ** lastEditedAt
+ ** minimizedReason
+ ** number
+ ** originalCommit { Comment }
+ ** originalPosition
+ ** outdated
+ ** path
+ ** position
+ ** publishedAt
+ ** Repository
+ ** replyTo { User }
+ ** Reactions
+ ** ReactionGroups
+ ** PullRequestReview
+ ** PullRequest
+ ** ReactionGroups
+ ** resourcePath
+ ** state
+ ** updatedAt
+ ** url
+ ** UserContentEdits
+ ** viewerCanDelete
+ ** viewerCanMinimize
+ ** viewerCanReact
+ ** viewerCanUpdate
+ ** viewerCannotUpdateReasons
+ ** viewerDidAuthor
+*/
+
+export const PullRequestReviewComment = (fields: string = '') => `
+    pullRequestReviewComment {
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql PullRequestReview
+* @fields
+ ** author { Author }
+ ** authorAssociation
+ ** body
+ ** bodyHTML
+ ** bodyText
+ ** Comments
+ ** Commit
+ ** createdAt
+ ** createdViaEmail
+ ** databaseId
+ ** editor { Owner }
+ ** id
+ ** includesCreatedEdit
+ ** lastEditedAt
+ ** onBehalfOf
+ ** publishedAt
+ ** PullRequest
+ ** ReactionGroups
+ ** Reactions
+ ** Repository
+ ** resourcePath
+ ** state
+ ** submittedAt
+ ** updatedAt
+ ** url
+ ** UserContentEdits
+ ** viewerCanDelete
+ ** viewerCanReact
+ ** viewerCanUpdate
+ ** viewerCannotUpdateReasons
+ ** viewerDidAuthor
+*/
+
+export const PullRequestReview = (fields: string = '') => `
+    pullRequestReview {
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql Thread
+* @fields
+** Comments
+*/
+
+export const Thread = (fields: string) => `
+    thread {
+        ${fields}  
+    }
+`
+
+/**
+* @description Github Graphql Starrable
+* @fields
+** onGist
+** onRepository
+** onTopic
+*/
+
+export const Starrable = (fields: string) => `
+    starrable {
+        ${fields}  
+    }
+`
+/**
+* @description Github Graphql ProjectCard
+* @fields
+** Column
+** content { onIssue onPullRequest }
+** createdAt
+** creator { Owner }
+** databaseId
+** id
+** isArchived
+** note
+** Project
+** resourcePath
+** state
+** updatedAt
+** url
+*/
+
+export const ProjectCard = (fields: string) => `
+    projectCard {
+        id
+        ${fields}  
+    }
+`
+/**
+* @description Github Graphql ContentAttachment
+* @fields
+** body
+** contentReference
+** databaseId
+** title
+*/
+
+export const ContentAttachment = (fields: string) => `
+    contentAttachment {
+        ${fields}  
+    }
+`
+
+/**
+* @description Github Graphql DeploymentStatus
+* @fields
+** id
+** createdAt
+** creator { Owner }
+** Deployment
+** description
+** environmentUrl
+** logUrl
+** state
+** updatedAt
+*/
+
+export const DeploymentStatus = (fields: string = '') => `
+    deploymentStatus {
+        ${fields}
+    }
+`
+
+/**
+* @description Github Graphql for VerifiableDomainOwner
+* @fields
+** onEnterprise
+** onOrganization
+*/
+
+export const VerifiableDomainOwner = (fields: string = '') => `
+    verifiableDomainOwner {
+        ${fields}
+    }
 `
