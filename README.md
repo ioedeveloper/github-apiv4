@@ -33,7 +33,7 @@ fetch('https://api.github.com/graphql', {
       'Content-Type': 'application/json',
       'Authorization': `bearer ${accessCode}`
   },
-  body: JSON.stringify({ query: githubApiv4.queries.ViewerQuery("bio login twitterUsername email company avatarUrl" ) }),
+  body: JSON.stringify({ query: githubApiv4.queries.Viewer("bio login twitterUsername email company avatarUrl" ) }),
 })
   .then(res => res.json())
   .then(res => console.log(res.data));
@@ -61,7 +61,7 @@ fetch('https://api.github.com/graphql', {
       'Content-Type': 'application/json',
       'Authorization': `bearer ${accessCode}`
   },
-  body: JSON.stringify({ query: githubApiv4.queries.ViewerQuery("bio login twitterUsername email company avatarUrl" )}),
+  body: JSON.stringify({ query: githubApiv4.queries.Viewer("bio login twitterUsername email company avatarUrl" )}),
 })
   .then(res => res.json())
   .then(res => {
