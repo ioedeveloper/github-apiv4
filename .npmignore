@@ -1,0 +1,12 @@
+.circleci
+docs
+node_modules
+src
+test
+.eslintrc.json
+.gitignore
+CONTRIBUTING.md
+LICENSE
+nodemon.json
+tsconfig.json
+typedoc.json
