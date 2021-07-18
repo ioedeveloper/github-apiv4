@@ -6,7 +6,7 @@
 
 <!-- [END badges] -->
 
-###### [API](https://github-apiv4.netlify.com/) | [Contribute](#contribute) | [FAQ](#faq)
+###### [API](https://ioedeveloper.github.io/github-apiv4/) | [Contribute](#contribute) | [FAQ](#faq)
 
 > Github-APIv4 is a Node library that provides a list of Github graphql (APIv4) queries and their respective return types.
 
@@ -48,7 +48,7 @@ fetch("https://api.github.com/graphql", {
 	.then((res) => console.log(res.data));
 ```
 
-Github API response (res.data is) of type [githubApiv4.types.Viewer](https://github-apiv4.netlify.com/interfaces/_types_.viewer.html)
+Github API response (res.data is) of type [githubApiv4.types.Viewer](https://ioedeveloper.github.io/github-apiv4/interfaces/types.viewer.html)
 
 Execute script on the command line
 
@@ -617,7 +617,7 @@ node apolloClient.js
 
 # Resources
 
--   [API Documentation](https://github-apiv4.netlify.com/)
+-   [API Documentation](https://ioedeveloper.github.io/github-apiv4/)
 -   [Examples](https://github.com/Sectur1/github-test)
 
 # Contribute
