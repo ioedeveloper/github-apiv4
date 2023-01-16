@@ -81,9 +81,9 @@ export declare interface Query extends BasicFields {
     query?: string;
 }
 
-export declare interface Search extends BasicFields {
-    type?: 'ISSUE' | 'REPOSITORY' | 'USER'
-    query?: string;
+export declare interface SearchQuery extends BasicFields {
+    type: 'ISSUE' | 'REPOSITORY' | 'USER'
+    query: string;
 }
 
 export declare interface Packages extends BasicFields {
@@ -155,7 +155,7 @@ export declare interface AuditLog extends BasicFields {
     direction?: 'ASC' | 'DESC';
 }
 
-export declare interface Sponsorables extends BasicFields {
+export declare interface SponsorablesQuery extends BasicFields {
     dependencyEcosystem?: 'RUBYGEMS' | 'NPM' | 'PIP' | 'MAVEN' | 'NUGET' | 'COMPOSER'
     onlyDependencies?: boolean;
     orgLoginForDependencies?: string;
@@ -349,7 +349,7 @@ export declare interface Teams extends BasicFields {
     userLogins?: string;
 }
 
-export declare interface MarketplaceListings extends BasicFields {
+export declare interface MarketplaceListingsQuery extends BasicFields {
     adminId?: string;
     allStates?: boolean;
     categorySlug?: string;
@@ -361,12 +361,19 @@ export declare interface MarketplaceListings extends BasicFields {
     withFreeTrialsOnly?: boolean;
 }
 
-export declare interface MarketplaceCategories {
+export declare interface MarketplaceCategoriesQuery {
     excludeEmpty?: boolean;
     excludeSubcategories?: boolean;
     includeCategories?: string;
     fields: string
 }
+
+export declare interface MarketplaceCategoryQuery {
+    slug: string
+    useTopicAliases: boolean
+    fields: string
+}
+
 
 export declare interface Repository {
     repositoryOwner?: string;
@@ -383,14 +390,14 @@ export declare interface CustomFields {
     orgLoginForDependencies?: string;
 }
 
-export declare interface VulnerabilitiesFields extends BasicFields {
+export declare interface VulnerabilitiesQuery extends BasicFields {
     orderBy?: 'UPDATED_AT';
     ecosystem?: 'NPM' | 'RUBYGEMS' | 'MAVEN' | 'COMPOSER' | 'NUGET' | 'PIP';
     severities?: 'LOW' | 'MODERATE' | 'HIGH' | 'CRITICAL';
     direction?: 'DESC' | 'ASC'
 }
 
-export declare interface SecurityAdvisoriesFields extends BasicFields {
+export declare interface SecurityAdvisoriesFieldsQuery extends BasicFields {
     type?: 'CVE' | 'GHSA'
     value?: string;
     orderBy?: 'PUBLISHED_AT' | 'UPDATED_AT'
@@ -493,7 +500,7 @@ export declare interface UserIssues {
     includeNotificationContexts?: boolean;
 }
 
-export declare interface EnterpriseAdministratorInvitation {
+export declare interface EnterpriseAdministratorInvitationQuery {
     enterpriseSlug?: string;
     role?: 'OWNER' | 'BILLING_MANAGER';
     userLogin?: string;
