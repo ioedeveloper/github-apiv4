@@ -1,5 +1,4 @@
-
-export declare interface Viewer {
+export declare interface ViewerRes {
     viewer: UserInfo;
 }
 
@@ -283,14 +282,14 @@ export declare interface BranchDirectories {
     };
 }
 
-export declare interface Repository {
+export declare interface RepositoryRes {
     repository: RepositoryInfo
 }
 
 export declare interface RepositoryInfo {
     assignableUsers: AssignableUsers;
     branchProtectionRules: BranchProtectionRules;
-    codeOfConduct: CodeOfConduct;
+    codeOfConduct: CodeOfConductType;
     collaborators: Collaborators;
     commitComments: CommitComments;
     contactLinks: {
@@ -717,7 +716,7 @@ export declare interface Following {
     totalCount: number;
 }
 
-export declare interface User {
+export declare interface UserRes {
     user: UserInfo;
 }
 
@@ -1064,7 +1063,7 @@ declare interface UserAccounts {
     user: UserInfo;
 }
 
-export declare interface Organization {
+export declare interface OrganizationRes {
     organization: OrganizationInfo;
 }
 
@@ -1178,7 +1177,7 @@ export declare interface ReactionGroup {
     issueComment: IssueComment;
     pullRequestReview: PullRequestReview;
     pullRequestReviewComment: PullRequestReviewComment;
-    users: User[]
+    users: UserRes[]
     viewerHasReacted: boolean
 }
 
@@ -1504,14 +1503,14 @@ export declare interface Tier {
 
 export declare interface Sponsor {
     organization: OrganizationInfo | string;
-    user: User;
+    user: UserRes;
 }
 export declare interface SponsorShip {
     createdAt: string;
     id: number | string;
-    maintainer: User;
+    maintainer: UserRes;
     privacyLevel: string;
-    sponsor: User
+    sponsor: UserRes
     sponsorEntity: Sponsor
     sponsorable: {
         hasSponsorsListing: boolean;
@@ -1524,7 +1523,7 @@ export declare interface SponsorShip {
         viewerCanSponsor: boolean;
         viewerIsSponsoring: boolean;
         organizatio: OrganizationInfo;
-        user: User;
+        user: UserRes;
     }
     tier: Tier
 }
@@ -1587,7 +1586,7 @@ export declare interface Tiers {
 
 }
 
-export declare interface Sponsorables {
+export declare interface SponsorablesRes {
     sponsorables: {
         edges: [{
             cursor: string;
@@ -1635,9 +1634,9 @@ export declare interface RelevantTeams {
 export declare interface RelevantOrganizations {
     edges: {
         cursor: string;
-        node: Organization;
+        node: OrganizationRes;
     }[];
-    nodes: Organization[];
+    nodes: OrganizationRes[];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -2015,9 +2014,9 @@ declare interface Subject extends PullRequest, Issue, TeamDiscussion, TeamDiscus
 export declare interface Organizations {
     edges: {
         cursor: string;
-        node: Organization;
+        node: OrganizationRes;
     }[];
-    nodes: Organization[];
+    nodes: OrganizationRes[];
     pageInfo: PageInfo;
     totalCount: number;
 }
@@ -2096,7 +2095,7 @@ export declare interface SecurityVulnerabilities {
     }
 }
 
-export declare interface SecurityVulnerabilitiesQuery {
+export declare interface SecurityVulnerabilitiesQueryRes {
     securityVulnerabilities: {
         edges: {
             cursor: string;
@@ -2142,11 +2141,11 @@ export declare interface Advisory {
     withdrawnAt: string;
 }
 
-export declare interface SecurityAdvisoryQuery {
+export declare interface SecurityAdvisoryRes {
     securityAdvisory: SecurityAdvisory;
 }
 
-export declare interface SecurityAdvisories {
+export declare interface SecurityAdvisoriesRes {
     securityAdvisories: {
         edges: {
             cursor: string;
@@ -2157,7 +2156,7 @@ export declare interface SecurityAdvisories {
     }
 }
 
-export declare interface Search {
+export declare interface SearchRes {
     search: {
         edges: [{
             cursor: string;
@@ -2189,7 +2188,7 @@ export declare interface App {
     url: string;
 }
 
-export declare interface Resource extends OrganizationInfo, Release, UserInfo, Issue, PullRequest, Repository, TeamDiscussion, TeamDiscussion, Commit, CheckRun, Milestone, Topic, Comment, Mannequin, Bot, ClosedEvent, CrossReferencedEvent, MergedEvent, CrossReferencedEvent,
+export declare interface ResourceRes extends OrganizationInfo, Release, UserInfo, Issue, PullRequest, RepositoryRes, TeamDiscussion, TeamDiscussion, Commit, CheckRun, Milestone, Topic, Comment, Mannequin, Bot, ClosedEvent, CrossReferencedEvent, MergedEvent, CrossReferencedEvent,
     MergedEvent, ReviewDismissedEvent, ConvertToDraftEvent, ReadyForReviewEvent, Gist {
     resource: {
         url: string;
@@ -2197,7 +2196,7 @@ export declare interface Resource extends OrganizationInfo, Release, UserInfo, I
     }
 }
 
-export declare interface RepositoryOwner {
+export declare interface RepositoryOwnerRes {
     repositoryOwner: RepositoryOwnerItem;
 }
 
@@ -3451,31 +3450,31 @@ export declare interface MarketplaceListings {
 }
 
 export declare interface Relay {
-    codeofConduct: CodeOfConduct;
-    codesofConduct: CodeOfConduct[];
+    codeofConduct: CodeOfConductType;
+    codesofConduct: CodeOfConductType[];
     enterprise: Enterprise;
-    enterpriseAdministratorInvitation: EnterpriseAdministratorInvitation;
-    enterpriseAdministratorInvitationByToken: EnterpriseAdministratorInvitationByToken
+    enterpriseAdministratorInvitation: EnterpriseAdministratorInvitationRes;
+    enterpriseAdministratorInvitationByToken: EnterpriseAdministratorInvitationByTokenRes
     license: License;
     licenses: License[];
     relay: Relay;
-    repository: Repository;
-    repositoryOwner: RepositoryOwner;
-    resource: Resource;
-    search: Search;
-    securityAdvisories: SecurityAdvisories;
+    repository: RepositoryRes;
+    repositoryOwner: RepositoryOwnerRes;
+    resource: ResourceRes;
+    search: SearchRes;
+    securityAdvisories: SecurityAdvisoriesRes;
     securityAdvisory: SecurityAdvisory;
     securityVulnerabilities: SecurityVulnerabilities;
-    sponsorables: Sponsorables;
+    sponsorables: SponsorablesRes;
     sponsorsListing: SponsorsListing;
     topic: Topic;
     user: UserInfo;
-    viewer: Viewer;
+    viewer: ViewerRes;
     marketplaceCategories: MarketplaceCategory[];
     marketplaceCategory: MarketplaceCategory;
     marketplaceListing: MarketplaceListing;
     marketplaceListings: MarketplaceListings;
-    meta: Meta;
+    meta: MetaRes;
     node: Node;
     nodes: Nodes;
     organization: OrganizationInfo | string;
@@ -3493,7 +3492,7 @@ export declare interface RateLimit {
     used: number;
 }
 
-export declare interface Actor extends Bot, User, OrganizationInfo, App, Team, Enterprise {
+export declare interface Actor extends Bot, UserRes, OrganizationInfo, App, Team, Enterprise {
 
 }
 
@@ -3660,14 +3659,14 @@ export declare interface onOrgRestoreMemberMembershipTeamAuditEntryData {
 }
 
 export declare interface onOrgRestoreMemberMembershipRepositoryAuditEntryData {
-    repository: Repository;
+    repository: RepositoryRes;
     organizationName: string;
     organizationResourcePath: string;
     organizationUrl: string;
 }
 
 export declare interface onOrgRestoreMemberMembershipOrganizationInfoAuditEntryData {
-    repository: Repository;
+    repository: RepositoryRes;
     organizationName: string;
     organizationResourcePath: string;
     organizationUrl: string;
@@ -3693,14 +3692,14 @@ export declare interface onOrgUpdateMemberRepositoryInvitationPermissionAuditEnt
 }
 
 export declare interface onPrivateRepositoryForkingDisableAuditEntry extends MemberNodeFields {
-    repository: Repository;
+    repository: RepositoryRes;
     repositoryName: string;
     repositoryResourcePath: string;
     repositoryUrl: string;
 }
 
 export declare interface onPrivateRepositoryForkingEnableAuditEntry extends MemberNodeFields {
-    repository: Repository;
+    repository: RepositoryRes;
     repositoryName: string;
     repositoryResourcePath: string;
     repositoryUrl: string;
@@ -3715,7 +3714,7 @@ export declare interface onRepoAddMemberAuditEntry extends MemberNodeFields {
 }
 
 export declare interface onRepoAddTopicAuditEntry extends MemberNodeFields {
-    repository: Repository;
+    repository: RepositoryRes;
     repositoryName: string;
     repositoryResourcePath: string;
     repositoryUrl: string;
@@ -3899,7 +3898,7 @@ export declare interface Domains {
     totalCount: number;
 }
 
-export declare interface Item extends Gist, Repository {
+export declare interface Item extends Gist, RepositoryRes {
 
 }
 
@@ -4166,8 +4165,8 @@ declare interface MembersReposType {
     userUrl: string;
 }
 
-export declare interface NodeTypes extends CodeOfConduct, Enterprise, EnterpriseUserAccount, OrganizationInfo, Package, PackageVersion, PackageFile, Release, User, Project, ProjectColunm, ProjectCard, Issue, UserContentEdits, Label, PullRequest,
-    Reaction, Repository, License, BranchProtectionRule, Ref, PushAllowance, App, Team, UserStatus, TeamDiscussion, TeamDiscussionComment, OrganizationInvitation, ReviewDismissalAllowance, CommitComment, Commit, CheckSuite, CheckRun, Push, Deployment,
+export declare interface NodeTypes extends CodeOfConductType, Enterprise, EnterpriseUserAccount, OrganizationInfo, Package, PackageVersion, PackageFile, Release, UserRes, Project, ProjectColunm, ProjectCard, Issue, UserContentEdits, Label, PullRequest,
+    Reaction, RepositoryRes, License, BranchProtectionRule, Ref, PushAllowance, App, Team, UserStatus, TeamDiscussion, TeamDiscussionComment, OrganizationInvitation, ReviewDismissalAllowance, CommitComment, Commit, CheckSuite, CheckRun, Push, Deployment,
     DeploymentStatus, Status, StatusContext, StatusCheckRollup, Tree, DeployKey, Language, Milestone, PinnedIssue, RepositoryTopic, Topic, RepositoryVulnerabilityAlert, SecurityAdvisory, CWE, IssueComment, PullRequestCommit, PullRequestReview,
     PullRequestReviewComment, ReviewRequest, Mannequin, PullRequestReviewThread, AssignedEvent, Bot, BaseRefDeletedEvent, BaseRefForcePushedEvent, ClosedEvent, CommitCommentThread, CrossReferencedEvent, DemilestonedEvent, DeployedEvent, DeploymentEnvironmentChangedEvent,
     HeadRefDeletedEvent, HeadRefForcePushedEvent, HeadRefRestoredEvent, LabeledEvent, LockedEvent, MergedEvent, MilestonedEvent, ReferencedEvent, RenamedTitleEvent, ReopenedEvent, ReviewDismissedEvent, ReviewRequestRemovedEvent, ReviewRequestedEvent,
@@ -4179,7 +4178,7 @@ export declare interface NodeTypes extends CodeOfConduct, Enterprise, Enterprise
     OrgOauthAppAccessRequestedAuditEntry, OrgRemoveBillingManagerAuditEntry, OrgRemoveMemberAuditEntry, OrgRemoveOutsideCollaboratorAuditEntry, OrgRestoreMemberAuditEntry, OrgUnblockUserAuditEntry, OrgUpdateDefaultRepositoryPermissionAuditEntry, OrgUpdateMemberAuditEntry, OrgUpdateMemberRepositoryCreationPermissionAuditEntry,
     OrgUpdateMemberRepositoryInvitationPermissionAuditEntry, PrivateRepositoryForkingDisableAuditEntry, PrivateRepositoryForkingEnableAuditEntry, RepoAddTopicAuditEntry, RepoChangeMergeSettingAuditEntry,
     RepoCreateAuditEntry, TeamAddMemberAuditEntry, TeamChangeParentTeamAuditEntry, VerifiableDomain, IpAllowListEntry, OrganizationIdentityProvider, ExternalIdentity, EnterpriseServerInstallation, EnterpriseServerUserAccount, EnterpriseServerUserAccountEmail,
-    EnterpriseServerUserAccountsUpload, EnterpriseRepositoryInfo, EnterpriseAdministratorInvitation, RepositoryInvitation, EnterpriseIdentityProvider, MarketplaceCategory, MarketplaceListing, Blob, PackageTag, Tag {
+    EnterpriseServerUserAccountsUpload, EnterpriseRepositoryInfo, EnterpriseAdministratorInvitationRes, RepositoryInvitation, EnterpriseIdentityProvider, MarketplaceCategory, MarketplaceListing, Blob, PackageTag, Tag {
 
 }
 
@@ -4725,7 +4724,7 @@ export declare interface Nodes {
     nodes: NodeTypes;
 }
 
-export declare interface Meta {
+export declare interface MetaRes {
     meta: {
         gitHubServicesSha: string;
         gitIpAddresses: string[];
@@ -4795,7 +4794,7 @@ export declare interface MarketplaceListing {
     viewerIsListingAdmin: boolean;
 }
 
-export declare interface MarketplaceListingsQuery {
+export declare interface MarketplaceListingsRes {
     marketplaceListings: MarketplaceListings;
 }
 
@@ -4815,11 +4814,11 @@ export declare interface Category {
     url: string;
 }
 
-export declare interface MarketplaceCategoryQuery {
+export declare interface MarketplaceCategoryRes {
     marketplaceCategory: Category;
 }
 
-export declare interface MarketplaceCategoriesQuery {
+export declare interface MarketplaceCategoriesRes {
     marketplaceCategories: Category[];
 }
 export declare interface License {
@@ -4852,22 +4851,22 @@ export declare interface License {
     url: string;
 }
 
-export declare interface LicensesQuery {
+export declare interface LicensesRes {
     licenses: License[]
 }
 
-export declare interface LicenseQuery {
+export declare interface LicenseRes {
     license: License
 }
 
-export declare interface EnterpriseAdministratorInvitation {
+export declare interface EnterpriseAdministratorInvitationRes {
     enterpriseAdministratorInvitation: Invitation
 }
 
-export declare interface EnterpriseAdministratorInvitationByToken {
+export declare interface EnterpriseAdministratorInvitationByTokenRes {
     enterpriseAdministratorInvitationByToken: Invitation
 }
-export declare interface EnterpriseQuery {
+export declare interface EnterpriseRes {
     enterprise: Enterprise;
 }
 
@@ -4886,7 +4885,7 @@ export declare interface BillingInfo {
     totalLicenses: number;
 }
 
-export declare interface CodeOfConduct {
+export declare interface CodeOfConductType {
     body: string;
     id: number | string;
     key: string;
@@ -4895,12 +4894,13 @@ export declare interface CodeOfConduct {
     url: string;
 }
 
-export declare interface CodeOfConductQuery {
-    codeOfConduct: CodeOfConduct;
+export declare interface CodeOfConductRes {
+    codeOfConduct: CodeOfConductType;
 }
 
-export declare interface CodesOfConductQuery {
-    codesOfConduct: CodeOfConduct[];
+export declare interface CodesOfConductRes {
+    codesOfConduct: CodeOfConductType[];
+    errors?: ErrorType[]
 }
 
 export declare interface Email {
@@ -6242,7 +6242,7 @@ export declare interface CreateContentAttachment {
 export declare interface CreateEnterpriseOrganization {
     createEnterpriseOrganization: {
         clientMutationId: string;
-        organization: Organization;
+        organization: OrganizationRes;
     }
 }
 
@@ -6432,7 +6432,7 @@ export declare interface EnablePullRequestAutoMerge {
 export declare interface FollowUser {
     followUser: {
         clientMutationId: string;
-        user: User;
+        user: UserRes;
     }
 }
 
@@ -6545,7 +6545,7 @@ export declare interface RemoveEnterpriseOrganization {
     removeEnterpriseOrganization: {
         clientMutationId: string;
         enterprise: Enterprise;
-        organization: Organization;
+        organization: OrganizationRes;
         viewer: UserInfo;
     }
 }
@@ -6989,7 +6989,7 @@ export declare interface UpdateTopics {
     updateTopics: {
         clientMutationId: string;
         invalidTopicNames: string[];
-        repository: Repository;
+        repository: RepositoryRes;
     }
 }
 
@@ -6998,4 +6998,9 @@ export declare interface VerifyVerifiableDomain {
         clientMutationId: string;
         domain: Domain;
     }
+}
+
+interface ErrorType {
+    message: string
+    locations: any
 }
